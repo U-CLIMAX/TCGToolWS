@@ -56,7 +56,8 @@
           style="position: relative"
         >
           <DeckCardList
-            :grouped-cards="groupedCards"
+            :display-grouped-cards="groupedCards"
+            :stats-grouped-cards="groupedCards"
             :group-by="groupBy"
             :selected-card="selectedCardData"
             :is-modal-visible="isModalVisible"
