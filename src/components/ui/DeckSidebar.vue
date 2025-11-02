@@ -173,7 +173,7 @@
   <!-- Save Deck Dialog -->
   <v-dialog v-model="isSaveDialogOpen" max-width="500px" @update:model-value="closeSaveDialog">
     <v-card>
-      <v-card-title>{{ deckStore.storeKey ? '更新卡组' : '储存卡组' }}</v-card-title>
+      <v-card-title>{{ deckStore.editingDeckKey ? '更新卡组' : '储存卡组' }}</v-card-title>
       <v-card-text>
         <v-text-field
           v-model="deckName"
@@ -235,7 +235,7 @@
           >建立新卡组
         </v-btn>
         <v-btn
-          v-if="deckStore.storeKey"
+          v-if="deckStore.editingDeckKey"
           color="secondary"
           variant="tonal"
           @click="handleUpdateDeck"
@@ -306,7 +306,7 @@ const openSaveDialog = () => {
   if (!authStore.isAuthenticated) {
     isAuthAlertOpen.value = true
   } else if (deckCards.value.length > 0) {
-    if (deckStore.storeKey) {
+    if (deckStore.editingDeckKey) {
       deckName.value = deckStore.deckName
       selectedCoverCardId.value = deckStore.coverCardId
     } else {
@@ -320,7 +320,7 @@ const closeSaveDialog = (value) => {
   if (!value) {
     // Reset state when dialog is closed
     isSaveDialogOpen.value = false
-    if (!deckStore.storeKey) {
+    if (!deckStore.editingDeckKey) {
       deckName.value = ''
       selectedCoverCardId.value = null
     }
@@ -344,7 +344,7 @@ const handleCreateDeck = async () => {
     isSaveDialogOpen.value = false
     triggerSnackbar('新卡组已成功创建！', 'success')
     await router.push(`/decks/${key}`)
-    deckStore.clearEditingInfo()
+    deckStore.clearEditingDeck()
     deckStore.clearDeck()
   } catch (error) {
     triggerSnackbar(error.message, 'error')
@@ -355,7 +355,7 @@ const handleCreateDeck = async () => {
 }
 
 const handleUpdateDeck = async () => {
-  if (!deckStore.storeKey) {
+  if (!deckStore.editingDeckKey) {
     triggerSnackbar('缺少卡组标识，无法更新', 'error')
     return
   }
@@ -370,12 +370,12 @@ const handleUpdateDeck = async () => {
       coverCardId: selectedCoverCardId.value,
     }
 
-    const { key } = await encodeDeck(deckData, { existingKey: deckStore.storeKey })
+    const { key } = await encodeDeck(deckData, { existingKey: deckStore.editingDeckKey })
 
     isSaveDialogOpen.value = false
     triggerSnackbar('卡组已成功更新！', 'success')
     await router.push(`/decks/${key}`)
-    deckStore.clearEditingInfo()
+    deckStore.clearEditingDeck()
     deckStore.clearDeck()
   } catch (error) {
     triggerSnackbar(error.message, 'error')

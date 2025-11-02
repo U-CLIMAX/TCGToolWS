@@ -265,7 +265,7 @@ const handleEditDeck = () => {
     triggerSnackbar('无法编辑卡组', 'error')
     return
   }
-  if (deckStore.totalCardCount > 0 && !isLocalDeck.value) {
+  if (deckStore.totalCardCount > 0 && deckStore.editingDeckKey !== deckKey) {
     isConfirmEditDialogVisible.value = true
     return
   }
