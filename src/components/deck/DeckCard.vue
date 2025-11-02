@@ -27,7 +27,10 @@
           </template>
           <div :class="{ 'title-background': !isEditing, 'full-mask': isEditing }"></div>
           <div v-if="isEditing" class="editing-text">编辑中</div>
-          <v-card-text class="position-relative text-white text-h6" style="z-index: 1">
+          <v-card-text
+            class="position-relative text-white text-h6 text-truncate"
+            style="z-index: 1"
+          >
             {{ deck.name }}
           </v-card-text>
         </v-img>
@@ -179,5 +182,6 @@ async function confirmDeleteDeck() {
   font-size: 1.5rem; /* text-h5 */
   color: white;
   font-weight: bold;
+  white-space: nowrap;
 }
 </style>
