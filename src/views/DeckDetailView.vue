@@ -58,7 +58,6 @@
             <div class="header-right mt-2 ga-2">
               <template v-if="smAndUp">
                 <v-btn
-                  v-if="!uiStore.isTableModeActive"
                   :size="resize"
                   :icon="uiStore.showStatsDashboard ? 'mdi-chart-pie' : 'mdi-chart-pie-outline'"
                   variant="text"
