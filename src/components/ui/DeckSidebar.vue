@@ -21,7 +21,7 @@
             color="error"
             density="compact"
             :disabled="deckStore.totalCardCount === 0"
-            @click="deckStore.clearDeck"
+            @click="clearDeckAndEditingState"
           >
           </v-btn>
           <h2 class="text-h6">当前卡组</h2>
@@ -327,6 +327,11 @@ const closeSaveDialog = (value) => {
   }
 }
 
+function clearDeckAndEditingState() {
+  deckStore.clearDeck()
+  deckStore.clearEditingDeck()
+}
+
 const handleCreateDeck = async () => {
   deckStore.updateDominantSeriesId()
   uiStore.setLoading(true)
@@ -363,11 +368,11 @@ const handleUpdateDeck = async () => {
   uiStore.setLoading(true)
   try {
     const deckData = {
-      name: deckName.value,
-      version: deckStore.version,
-      cards: deckStore.cardsInDeck,
-      seriesId: deckStore.seriesId,
-      coverCardId: selectedCoverCardId.value,
+      name: toRaw(deckName.value),
+      version: toRaw(deckStore.version),
+      cards: toRaw(deckStore.cardsInDeck),
+      seriesId: toRaw(deckStore.seriesId),
+      coverCardId: toRaw(selectedCoverCardId.value),
     }
 
     const { key } = await encodeDeck(deckData, { existingKey: deckStore.editingDeckKey })
