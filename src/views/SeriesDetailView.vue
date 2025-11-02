@@ -58,7 +58,7 @@
             >
               <v-btn
                 :size="resize"
-                icon="mdi-cards"
+                :icon="isCardDeckOpen ? 'mdi-cards' : 'mdi-cards-outline'"
                 variant="text"
                 @click="isCardDeckOpen = !isCardDeckOpen"
               ></v-btn>
