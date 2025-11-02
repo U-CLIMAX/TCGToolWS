@@ -6,7 +6,7 @@ import { computed } from 'vue'
  * @param {import('vue').Ref<object>} selectedCard - A ref to the currently selected card object.
  * @returns {{selectedCardIndex: import('vue').ComputedRef<number>, getPrevCard: () => object|null, getNextCard: () => object|null}}
  */
-export function useCardNavigation(cards, selectedCard) {
+export const useCardNavigation = (cards, selectedCard) => {
   const selectedCardIndex = computed(() => {
     if (!selectedCard.value) {
       return -1

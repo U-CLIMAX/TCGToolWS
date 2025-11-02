@@ -1,7 +1,7 @@
 import { ref, computed, watch } from 'vue'
 import { useDisplay } from 'vuetify'
 
-export function useBottomSheet(initialSheetHeight = 0.4) {
+export const useBottomSheet = (initialSheetHeight = 0.4) => {
   const { smAndUp } = useDisplay()
 
   const sheetContent = ref(null) // Can be 'filter', 'deck', or other specific content

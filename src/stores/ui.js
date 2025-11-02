@@ -28,7 +28,7 @@ export const useUIStore = defineStore(
 
     const backgroundImage = ref(null)
 
-    async function restoreBackgroundImage() {
+    const restoreBackgroundImage = async () => {
       const storedImage = await backgroundStore.getItem(BACKGROUND_IMAGE_KEY)
       if (storedImage) {
         backgroundImage.value = storedImage

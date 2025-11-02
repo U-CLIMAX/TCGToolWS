@@ -2,7 +2,7 @@ import { watch, computed } from 'vue'
 import { useUIStore } from '@/stores/ui'
 import { storeToRefs } from 'pinia'
 
-export function usePerformanceManager() {
+export const usePerformanceManager = () => {
   const uiStore = useUIStore()
   const { performanceThreshold, renderedCardsCount, isPerformanceMode } = storeToRefs(uiStore)
 

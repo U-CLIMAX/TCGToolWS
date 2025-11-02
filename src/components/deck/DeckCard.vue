@@ -114,11 +114,11 @@ const imageUrl = useCardImage(
 
 const isLocalDeck = computed(() => props.deckKey === 'local')
 
-function handleDeleteDeck() {
+const handleDeleteDeck = () => {
   isDeleteDialogOpen.value = true
 }
 
-async function confirmDeleteDeck() {
+const confirmDeleteDeck = async () => {
   uiStore.setLoading(true)
 
   try {

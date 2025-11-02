@@ -1,6 +1,6 @@
 import { ref, computed, onUnmounted } from 'vue'
 
-export function useCooldown(durationSeconds = 60) {
+export const useCooldown = (durationSeconds = 60) => {
   const cooldownEndTime = ref(0)
   const remainingSeconds = ref(0)
   let timer = null

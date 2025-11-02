@@ -354,11 +354,11 @@ const closeSaveDialog = (value) => {
   }
 }
 
-function openClearConfirmDialog() {
+const openClearConfirmDialog = () => {
   isClearConfirmDialogOpen.value = true
 }
 
-function confirmClearAction() {
+const confirmClearAction = () => {
   deckStore.clearDeck()
   deckStore.clearEditingDeck()
   isClearConfirmDialogOpen.value = false

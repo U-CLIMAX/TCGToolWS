@@ -6,7 +6,7 @@ const FALLBACK_COLORS = ['#8CA0A0', '#A7B8B8', '#C1C9C9', '#DADFE0', '#ECEFF0', 
 
 Vibrant.use(new WorkerPipeline(PipelineWorker))
 
-export function useColorExtractor(imageUrl) {
+export const useColorExtractor = (imageUrl) => {
   const colors = ref([])
 
   watchEffect((onCleanup) => {

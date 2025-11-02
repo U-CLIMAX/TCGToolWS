@@ -6,7 +6,7 @@ import { computed } from 'vue'
  * @param {import('vue').Ref<String>} groupBy - A ref containing the key to group the cards by (e.g., 'level', 'color').
  * @returns {{groupedCards: import('vue').ComputedRef<Map<String, Array>>}} - An object containing the computed grouped cards.
  */
-export function useDeckGrouping(cards, groupBy) {
+export const useDeckGrouping = (cards, groupBy) => {
   const groupedCards = computed(() => {
     const cardList = cards.value
     if (!cardList || cardList.length === 0) {
