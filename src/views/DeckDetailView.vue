@@ -58,6 +58,13 @@
             <div class="header-right mt-2 ga-2">
               <template v-if="smAndUp">
                 <v-btn
+                  v-if="isEditing"
+                  :size="resize"
+                  :icon="showDifferences ? 'mdi-compare' : 'mdi-compare-off'"
+                  variant="text"
+                  @click="showDifferences = !showDifferences"
+                ></v-btn>
+                <v-btn
                   :size="resize"
                   :icon="uiStore.showStatsDashboard ? 'mdi-chart-pie' : 'mdi-chart-pie-outline'"
                   variant="text"
@@ -89,7 +96,8 @@
           style="position: relative"
         >
           <DeckCardList
-            :grouped-cards="groupedCards"
+            :display-grouped-cards="displayGroupedCards"
+            :stats-grouped-cards="statsGroupedCards"
             :group-by="groupBy"
             :is-light-with-bg="isLightWithBg"
             :selected-card="selectedCardData"
@@ -140,6 +148,14 @@
           </template>
           <v-list-item-title v-if="!uiStore.showStatsDashboard">显示统计</v-list-item-title>
           <v-list-item-title v-else>隐藏统计</v-list-item-title>
+        </v-list-item>
+        <v-list-item v-if="isEditing" @click="showDifferences = !showDifferences">
+          <template #prepend>
+            <v-icon v-if="!showDifferences">mdi-compare-off</v-icon>
+            <v-icon v-else>mdi-compare</v-icon>
+          </template>
+          <v-list-item-title v-if="!showDifferences">显示差异</v-list-item-title>
+          <v-list-item-title v-else>隐藏差异</v-list-item-title>
         </v-list-item>
         <v-list-item @click="handleEditDeck">
           <template #prepend>
@@ -229,6 +245,14 @@ const isLightWithBg = computed(() => {
   return hasBackgroundImage.value && theme.global.name.value === 'light'
 })
 const isConfirmEditDialogVisible = ref(false)
+
+const showDifferences = ref(true)
+const isEditing = computed(() => {
+  if (isLocalDeck.value) {
+    return deckStore.editingDeckKey === null
+  }
+  return deckStore.editingDeckKey === deckKey
+})
 
 const handleShareCard = async () => {
   if (!deckKey || isLocalDeck.value) {
@@ -336,11 +360,54 @@ const groupByOptions = [
   { title: '费用', value: 'cost' },
 ]
 
+const originalCards = computed(() => (deck.value ? Object.values(deck.value.cards) : []))
+const editedCards = computed(() => Object.values(deckStore.cardsInDeck))
+
+const cardsForDisplay = computed(() => {
+  if (!isEditing.value || !showDifferences.value) {
+    return Object.values(cards.value)
+  }
+
+  const originalCardMap = new Map(originalCards.value.map((c) => [c.id, c.quantity]))
+  const editedCardMap = new Map(editedCards.value.map((c) => [c.id, c.quantity]))
+  const allCardIds = new Set([...originalCardMap.keys(), ...editedCardMap.keys()])
+  const allCardsInfo = { ...cards.value, ...deckStore.cardsInDeck }
+
+  return Array.from(allCardIds)
+    .map((id) => {
+      const originalQty = originalCardMap.get(id) || 0
+      const editedQty = editedCardMap.get(id) || 0
+      const cardData = allCardsInfo[id]
+
+      if (!cardData) return null
+
+      let diffStatus = 'unchanged'
+      if (originalQty === 0 && editedQty > 0) diffStatus = 'added'
+      else if (originalQty > 0 && editedQty === 0) diffStatus = 'removed'
+      else if (originalQty !== editedQty) diffStatus = 'changed'
+
+      return {
+        ...cardData,
+        quantity: editedQty,
+        diffStatus,
+      }
+    })
+    .filter(Boolean)
+})
+
+const cardsForStats = computed(() => {
+  if (isEditing.value && !showDifferences.value) {
+    return originalCards.value
+  }
+  return editedCards.value.filter((c) => c.quantity > 0)
+})
+
 const deckCards = computed(() => Object.values(cards.value))
-const { groupedCards } = useDeckGrouping(deckCards, groupBy)
+const { groupedCards: displayGroupedCards } = useDeckGrouping(cardsForDisplay, groupBy)
+const { groupedCards: statsGroupedCards } = useDeckGrouping(cardsForStats, groupBy)
 
 const flattenedDisplayCards = computed(() => {
-  const cardGroups = Array.from(groupedCards.value.values())
+  const cardGroups = Array.from(displayGroupedCards.value.values())
   return cardGroups.flat()
 })
 
