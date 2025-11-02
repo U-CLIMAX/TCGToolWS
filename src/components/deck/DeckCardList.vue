@@ -4,14 +4,14 @@
       <v-fab-transition>
         <DeckStatsDashboard
           v-if="uiStore.showStatsDashboard"
-          :grouped-cards="groupedCards"
+          :grouped-cards="statsGroupedCards"
           :group-by="groupBy"
         />
       </v-fab-transition>
 
       <v-fade-transition>
         <div v-show="showCards" :class="{ 'd-none': !showCards }">
-          <div v-for="([groupName, group], index) in groupedCards" :key="groupName">
+          <div v-for="([groupName, group], index) in displayGroupedCards" :key="groupName">
             <div
               class="d-flex align-center text-subtitle-2 text-disabled mb-1 ga-1"
               :class="{ 'mt-3': index > 0 }"
@@ -58,6 +58,10 @@
                     <div
                       v-bind="props"
                       class="card-container deck-detail-card"
+                      :class="{
+                        'diff-added': item.diffStatus === 'added',
+                        'diff-removed': item.diffStatus === 'removed',
+                      }"
                       @click="$emit('card-click', item)"
                     >
                       <v-img
@@ -79,7 +83,12 @@
                           <v-img src="/placehold.webp" :aspect-ratio="400 / 559" cover />
                         </template>
                       </v-img>
-                      <div class="quantity-badge">{{ item.quantity }}</div>
+                      <div
+                        class="quantity-badge"
+                        :class="{ 'diff-changed': item.diffStatus === 'changed' }"
+                      >
+                        {{ item.quantity }}
+                      </div>
                     </div>
                   </template>
                 </v-tooltip>
@@ -126,7 +135,11 @@ import WsIcon from '@/assets/ui/ws-icon.svg?url'
 import { useUIStore } from '@/stores/ui'
 
 const props = defineProps({
-  groupedCards: {
+  displayGroupedCards: {
+    type: Map,
+    required: true,
+  },
+  statsGroupedCards: {
     type: Map,
     required: true,
   },
@@ -251,6 +264,18 @@ const getGroupName = (groupName) => {
 .centered-content {
   margin: 0 auto;
   max-width: 1200px;
+}
+
+.diff-added {
+  opacity: 0.7;
+}
+
+.diff-removed .v-img {
+  filter: grayscale(100%);
+}
+
+.quantity-badge.diff-changed {
+  background-color: rgb(var(--v-theme-error));
 }
 
 @media (max-width: 1200px) {
