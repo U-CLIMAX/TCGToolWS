@@ -16,7 +16,7 @@
               class="d-flex align-center text-subtitle-2 text-disabled mb-1 ga-1"
               :class="{ 'mt-3': index > 0 }"
             >
-              <span :class="isLightWithBg ? 'text-grey-lighten-2' : 'text-grey'">
+              <span :class="isLightWithBg ? 'text-grey-lighten-2' : 'text-grey-darken-4'">
                 {{ getGroupName(groupName) }}</span
               >
               <v-chip
