@@ -12,7 +12,7 @@ export const useDeckStore = defineStore(
     const seriesId = ref('')
     const deckName = ref('')
     const coverCardId = ref('')
-    const storeKey = ref('')
+    const editingDeckKey = ref('')
     const savedDecks = ref({})
     const maxDeckSize = 50
 
@@ -69,18 +69,18 @@ export const useDeckStore = defineStore(
       cardsInDeck.value = {}
     }
 
-    const loadDeckForEditing = (deck, key) => {
+    const setEditingDeck = (deck, key) => {
       cardsInDeck.value = deck.cards
       seriesId.value = deck.seriesId
       deckName.value = deck.name
       coverCardId.value = deck.coverCardId
-      storeKey.value = key
+      editingDeckKey.value = key
     }
 
-    const clearEditingInfo = () => {
+    const clearEditingDeck = () => {
       deckName.value = ''
       coverCardId.value = ''
-      storeKey.value = ''
+      editingDeckKey.value = ''
     }
 
     const updateDominantSeriesId = () => {
@@ -227,8 +227,8 @@ export const useDeckStore = defineStore(
 
       delete savedDecks.value[key]
 
-      if (storeKey.value === key) {
-        clearEditingInfo()
+      if (editingDeckKey.value === key) {
+        clearEditingDeck()
       }
     }
 
@@ -240,13 +240,13 @@ export const useDeckStore = defineStore(
       seriesId,
       deckName,
       coverCardId,
-      storeKey,
+      editingDeckKey,
       addCard,
       removeCard,
       clearDeck,
       isDeckFull,
-      loadDeckForEditing,
-      clearEditingInfo,
+      setEditingDeck,
+      clearEditingDeck,
       updateDominantSeriesId,
       savedDecks,
       saveEncodedDeck,

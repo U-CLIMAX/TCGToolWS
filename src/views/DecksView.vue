@@ -17,10 +17,14 @@
       </v-row>
       <v-row class="ma-0 pt-3">
         <v-col v-if="localDeck && initialLoadingComplete" cols="6" sm="4" md="3">
-          <DeckCard :deck="localDeck" deckKey="local" />
+          <DeckCard :deck="localDeck" deckKey="local" :is-editing="true" />
         </v-col>
         <v-col v-for="(deck, key) in decodedDecks" :key="key" cols="6" sm="4" md="3">
-          <DeckCard :deck="deck" :deckKey="key" />
+          <DeckCard
+            :deck="deck"
+            :deckKey="key"
+            :is-editing="key === deckStore.editingDeckKey"
+          />
         </v-col>
       </v-row>
     </v-container>
@@ -57,10 +61,10 @@ const navigateToSharedDeck = () => {
 }
 
 const localDeck = computed(() => {
-  if (deckStore.totalCardCount > 0) {
+  if (deckStore.totalCardCount > 0 && !deckStore.editingDeckKey) {
     const cards = Object.values(deckStore.cardsInDeck)
     return {
-      name: '当前卡组',
+      name: '未命名卡组',
       cards: deckStore.cardsInDeck,
       coverCardId: deckStore.coverCardId || (cards.length > 0 ? cards[0].id : null),
       seriesId: deckStore.seriesId,

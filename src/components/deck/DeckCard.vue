@@ -10,7 +10,7 @@
       >
         <v-img
           :src="imageUrl"
-          :class="isLocalDeck ? 'd-flex align-center justify-center' : 'align-end'"
+          class="align-end"
           style="transform: scale(1.1)"
           aspect-ratio="1"
           cover
@@ -25,14 +25,9 @@
           <template #error>
             <v-img src="/placehold.webp" aspect-ratio="1" cover />
           </template>
-          <div :class="{ 'title-background': !isLocalDeck, 'full-mask': isLocalDeck }"></div>
-          <v-card-text
-            :class="[
-              'position-relative text-white',
-              isLocalDeck ? 'text-h5 text-center' : 'text-h6',
-            ]"
-            style="z-index: 1"
-          >
+          <div :class="{ 'title-background': !isEditing, 'full-mask': isEditing }"></div>
+          <div v-if="isEditing" class="editing-text">编辑中</div>
+          <v-card-text class="position-relative text-white text-h6" style="z-index: 1">
             {{ deck.name }}
           </v-card-text>
         </v-img>
@@ -85,6 +80,10 @@ const props = defineProps({
   deckKey: {
     type: String,
     required: true,
+  },
+  isEditing: {
+    type: Boolean,
+    default: false,
   },
 })
 
@@ -169,5 +168,16 @@ async function confirmDeleteDeck() {
   height: 100%;
   background: rgba(0, 0, 0, 0.7);
   pointer-events: none;
+}
+
+.editing-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  font-size: 1.5rem; /* text-h5 */
+  color: white;
+  font-weight: bold;
 }
 </style>

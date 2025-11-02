@@ -274,7 +274,7 @@ const handleEditDeck = () => {
 
 const EditDeck = () => {
   const keyForEditing = isLocalDeck.value ? null : deckKey
-  deckStore.loadDeckForEditing(deck.value, keyForEditing)
+  deckStore.setEditingDeck(deck.value, keyForEditing)
   if (isLocalDeck.value) deckStore.updateDominantSeriesId()
   router.push({ name: 'SeriesDetail', params: { seriesId: deckStore.seriesId } })
 }
