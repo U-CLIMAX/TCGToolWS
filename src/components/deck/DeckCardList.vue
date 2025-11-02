@@ -85,7 +85,10 @@
                       </v-img>
                       <div
                         class="quantity-badge"
-                        :class="{ 'diff-changed': item.diffStatus === 'changed' }"
+                        :class="{
+                          'diff-increased': item.diffStatus === 'increased',
+                          'diff-decreased': item.diffStatus === 'decreased',
+                        }"
                       >
                         {{ item.quantity }}
                       </div>
@@ -274,7 +277,11 @@ const getGroupName = (groupName) => {
   filter: grayscale(100%);
 }
 
-.quantity-badge.diff-changed {
+.quantity-badge.diff-increased {
+  background-color: rgb(var(--v-theme-success));
+}
+
+.quantity-badge.diff-decreased {
   background-color: rgb(var(--v-theme-error));
 }
 
