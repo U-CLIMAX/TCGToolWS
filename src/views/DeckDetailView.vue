@@ -58,7 +58,7 @@
             <div class="header-right mt-2 ga-2">
               <template v-if="smAndUp">
                 <v-btn
-                  v-if="isEditing"
+                  v-if="isEditing && deckStore.editingDeckKey"
                   :size="resize"
                   :icon="showDifferences ? 'mdi-vector-difference-ba' : 'mdi-vector-difference-ab'"
                   variant="text"
@@ -149,7 +149,10 @@
           <v-list-item-title v-if="!uiStore.showStatsDashboard">显示统计</v-list-item-title>
           <v-list-item-title v-else>隐藏统计</v-list-item-title>
         </v-list-item>
-        <v-list-item v-if="isEditing" @click="handleShowDifferencesClick">
+        <v-list-item
+          v-if="isEditing && deckStore.editingDeckKey"
+          @click="handleShowDifferencesClick"
+        >
           <template #prepend>
             <v-icon v-if="!showDifferences">mdi-vector-difference-ab</v-icon>
             <v-icon v-else>mdi-vector-difference-ba</v-icon>
