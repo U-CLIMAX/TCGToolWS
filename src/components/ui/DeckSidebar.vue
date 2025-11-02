@@ -16,12 +16,12 @@
       <div class="d-flex justify-space-between align-center">
         <div class="d-flex align-center ga-2">
           <v-btn
-            icon="mdi-delete-sweep-outline"
+            :icon="clearButtonIcon"
             variant="text"
             color="error"
             density="compact"
             :disabled="deckStore.totalCardCount === 0"
-            @click="deckStore.clearDeck"
+            @click="openClearConfirmDialog"
           >
           </v-btn>
           <h2 class="text-h6">当前卡组</h2>
@@ -173,7 +173,7 @@
   <!-- Save Deck Dialog -->
   <v-dialog v-model="isSaveDialogOpen" max-width="500px" @update:model-value="closeSaveDialog">
     <v-card>
-      <v-card-title>{{ deckStore.storeKey ? '更新卡组' : '储存卡组' }}</v-card-title>
+      <v-card-title>{{ deckStore.editingDeckKey ? '更新卡组' : '储存卡组' }}</v-card-title>
       <v-card-text>
         <v-text-field
           v-model="deckName"
@@ -235,13 +235,24 @@
           >建立新卡组
         </v-btn>
         <v-btn
-          v-if="deckStore.storeKey"
+          v-if="deckStore.editingDeckKey"
           color="secondary"
           variant="tonal"
           @click="handleUpdateDeck"
           :disabled="!deckName.trim() || !selectedCoverCardId"
           >更新卡组
         </v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
+  <!-- Clear Confirm Dialog -->
+  <v-dialog v-model="isClearConfirmDialogOpen" max-width="400">
+    <v-card :title="clearDialogTitle" prepend-icon="mdi-alert-outline">
+      <v-card-text>{{ clearDialogContent }}</v-card-text>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn text="取消" @click="isClearConfirmDialogOpen = false"></v-btn>
+        <v-btn color="primary" variant="flat" text="确认" @click="confirmClearAction"></v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -297,6 +308,22 @@ const isSaveDialogOpen = ref(false)
 const deckName = ref('')
 const selectedCoverCardId = ref(null)
 
+const isClearConfirmDialogOpen = ref(false)
+
+const clearButtonIcon = computed(() => {
+  return deckStore.editingDeckKey ? 'mdi-exit-run' : 'mdi-delete-sweep-outline'
+})
+
+const clearDialogTitle = computed(() => {
+  return deckStore.editingDeckKey ? '退出编辑' : '清除卡组'
+})
+
+const clearDialogContent = computed(() => {
+  return deckStore.editingDeckKey
+    ? '确定要退出编辑吗？未储存的内容将丢失。'
+    : '确定要清除卡组内容吗？将会清除目前编辑的所有资讯。'
+})
+
 const flattenedDisplayCards = computed(() => {
   const cardGroups = Array.from(groupedCards.value.values())
   return cardGroups.flat()
@@ -306,7 +333,7 @@ const openSaveDialog = () => {
   if (!authStore.isAuthenticated) {
     isAuthAlertOpen.value = true
   } else if (deckCards.value.length > 0) {
-    if (deckStore.storeKey) {
+    if (deckStore.editingDeckKey) {
       deckName.value = deckStore.deckName
       selectedCoverCardId.value = deckStore.coverCardId
     } else {
@@ -320,11 +347,21 @@ const closeSaveDialog = (value) => {
   if (!value) {
     // Reset state when dialog is closed
     isSaveDialogOpen.value = false
-    if (!deckStore.storeKey) {
+    if (!deckStore.editingDeckKey) {
       deckName.value = ''
       selectedCoverCardId.value = null
     }
   }
+}
+
+function openClearConfirmDialog() {
+  isClearConfirmDialogOpen.value = true
+}
+
+function confirmClearAction() {
+  deckStore.clearDeck()
+  deckStore.clearEditingDeck()
+  isClearConfirmDialogOpen.value = false
 }
 
 const handleCreateDeck = async () => {
@@ -344,7 +381,7 @@ const handleCreateDeck = async () => {
     isSaveDialogOpen.value = false
     triggerSnackbar('新卡组已成功创建！', 'success')
     await router.push(`/decks/${key}`)
-    deckStore.clearEditingInfo()
+    deckStore.clearEditingDeck()
     deckStore.clearDeck()
   } catch (error) {
     triggerSnackbar(error.message, 'error')
@@ -355,7 +392,7 @@ const handleCreateDeck = async () => {
 }
 
 const handleUpdateDeck = async () => {
-  if (!deckStore.storeKey) {
+  if (!deckStore.editingDeckKey) {
     triggerSnackbar('缺少卡组标识，无法更新', 'error')
     return
   }
@@ -363,19 +400,19 @@ const handleUpdateDeck = async () => {
   uiStore.setLoading(true)
   try {
     const deckData = {
-      name: deckName.value,
-      version: deckStore.version,
-      cards: deckStore.cardsInDeck,
-      seriesId: deckStore.seriesId,
-      coverCardId: selectedCoverCardId.value,
+      name: toRaw(deckName.value),
+      version: toRaw(deckStore.version),
+      cards: toRaw(deckStore.cardsInDeck),
+      seriesId: toRaw(deckStore.seriesId),
+      coverCardId: toRaw(selectedCoverCardId.value),
     }
 
-    const { key } = await encodeDeck(deckData, { existingKey: deckStore.storeKey })
+    const { key } = await encodeDeck(deckData, { existingKey: deckStore.editingDeckKey })
 
     isSaveDialogOpen.value = false
     triggerSnackbar('卡组已成功更新！', 'success')
     await router.push(`/decks/${key}`)
-    deckStore.clearEditingInfo()
+    deckStore.clearEditingDeck()
     deckStore.clearDeck()
   } catch (error) {
     triggerSnackbar(error.message, 'error')

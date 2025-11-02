@@ -265,7 +265,10 @@ const handleEditDeck = () => {
     triggerSnackbar('无法编辑卡组', 'error')
     return
   }
-  if (deckStore.totalCardCount > 0 && !isLocalDeck.value) {
+  if (
+    deckStore.totalCardCount > 0 &&
+    !(deckStore.editingDeckKey === deckKey || (isLocalDeck.value && !deckStore.editingDeckKey))
+  ) {
     isConfirmEditDialogVisible.value = true
     return
   }
@@ -274,7 +277,7 @@ const handleEditDeck = () => {
 
 const EditDeck = () => {
   const keyForEditing = isLocalDeck.value ? null : deckKey
-  deckStore.loadDeckForEditing(deck.value, keyForEditing)
+  deckStore.setEditingDeck(deck.value, keyForEditing)
   if (isLocalDeck.value) deckStore.updateDominantSeriesId()
   router.push({ name: 'SeriesDetail', params: { seriesId: deckStore.seriesId } })
 }
