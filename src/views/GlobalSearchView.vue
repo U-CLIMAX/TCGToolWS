@@ -217,7 +217,7 @@ const resize = computed(() => {
 })
 
 const searchIcon = computed(() =>
-  isFilterOpen.value ? 'mdi-layers-search-outline' : 'mdi-layers-search'
+  isFilterOpen.value ? 'mdi-layers-search' : 'mdi-layers-search-outline'
 )
 const headerOffsetHeight = computed(() => rawHeaderHeight.value)
 
