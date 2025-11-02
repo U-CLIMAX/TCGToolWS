@@ -246,6 +246,8 @@ const isLightWithBg = computed(() => {
 })
 const isConfirmEditDialogVisible = ref(false)
 
+const originalCards = ref([])
+const editedCards = ref([])
 const showDifferences = ref(true)
 const isEditing = computed(() => {
   if (isLocalDeck.value) {
@@ -348,20 +350,33 @@ onMounted(async () => {
       initialCards = decoded.cards
     }
 
-    // ---獲取所有卡片的完整資料 ---
-    const cardPromises = Object.values(initialCards).map(async (card) => {
-      const fullCardData = await fetchCardByIdAndPrefix(card.id, card.cardIdPrefix)
-      if (fullCardData) {
-        return { ...fullCardData, quantity: card.quantity }
+    cards.value = Object.values(initialCards).reduce((acc, card) => {
+      const baseId = card.id.replace(/[A-Za-z]+$/, '')
+      if (acc[baseId]) {
+        acc[baseId].quantity += card.quantity
+      } else {
+        acc[baseId] = { ...card, baseId }
       }
-      return null
-    })
 
-    const fullCardsData = (await Promise.all(cardPromises)).filter(Boolean)
-    cards.value = fullCardsData.reduce((acc, card) => {
-      acc[card.id] = card
       return acc
     }, {})
+
+    // Process originalCards here after deck.value is set
+    if (deck.value?.cards) {
+      const cardsArray = Object.values(deck.value.cards)
+      originalCards.value = await Promise.all(
+        cardsArray.map(async (card) => {
+          const fullCardData = await fetchCardByIdAndPrefix(card.id, card.cardIdPrefix)
+          if (!fullCardData) {
+            console.warn(`Card data not found for id: ${card.id}, prefix: ${card.cardIdPrefix}`)
+            return null
+          }
+          return { ...fullCardData, quantity: card.quantity }
+        })
+      )
+    } else {
+      originalCards.value = []
+    }
   } catch (error) {
     triggerSnackbar(error.message, 'error')
   } finally {
@@ -378,8 +393,36 @@ const groupByOptions = [
   { title: '费用', value: 'cost' },
 ]
 
-const originalCards = computed(() => (deck.value ? Object.values(deck.value.cards) : []))
-const editedCards = computed(() => Object.values(deckStore.cardsInDeck))
+watch(
+  () => deckStore.cardsInDeck,
+  async (newCards) => {
+    console.log('deckStore.cardsInDeck watcher triggered with:', newCards)
+    if (newCards && Object.keys(newCards).length > 0) {
+      try {
+        const cardsArray = Object.values(newCards)
+        const fetchedCards = await Promise.all(
+          cardsArray.map(async (card) => {
+            const fullCardData = await fetchCardByIdAndPrefix(card.id, card.cardIdPrefix)
+            if (!fullCardData) {
+              console.warn(`Card data not found for id: ${card.id}, prefix: ${card.cardIdPrefix}`)
+              return null
+            }
+            return { ...fullCardData, quantity: card.quantity }
+          })
+        )
+
+        // 過濾掉那些查詢失敗的卡片
+        editedCards.value = fetchedCards.filter(Boolean)
+      } catch (error) {
+        console.error('Failed to fetch card details for editedCards:', error)
+      }
+    } else {
+      editedCards.value = []
+      console.log('deckStore.cardsInDeck is empty, resetting editedCards.')
+    }
+  },
+  { deep: true, immediate: true }
+)
 
 const cardsForDisplay = computed(() => {
   // When NOT showing diffs, or when not editing, always show the remote deck.
