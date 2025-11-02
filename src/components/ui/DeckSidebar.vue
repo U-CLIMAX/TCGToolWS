@@ -16,12 +16,12 @@
       <div class="d-flex justify-space-between align-center">
         <div class="d-flex align-center ga-2">
           <v-btn
-            icon="mdi-delete-sweep-outline"
+            :icon="clearButtonIcon"
             variant="text"
             color="error"
             density="compact"
             :disabled="deckStore.totalCardCount === 0"
-            @click="clearDeckAndEditingState"
+            @click="openClearConfirmDialog"
           >
           </v-btn>
           <h2 class="text-h6">当前卡组</h2>
@@ -245,6 +245,17 @@
       </v-card-actions>
     </v-card>
   </v-dialog>
+  <!-- Clear Confirm Dialog -->
+  <v-dialog v-model="isClearConfirmDialogOpen" max-width="400">
+    <v-card :title="clearDialogTitle" prepend-icon="mdi-alert-outline">
+      <v-card-text>{{ clearDialogContent }}</v-card-text>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn text="取消" @click="isClearConfirmDialogOpen = false"></v-btn>
+        <v-btn color="primary" variant="flat" text="确认" @click="confirmClearAction"></v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script setup>
@@ -297,6 +308,22 @@ const isSaveDialogOpen = ref(false)
 const deckName = ref('')
 const selectedCoverCardId = ref(null)
 
+const isClearConfirmDialogOpen = ref(false)
+
+const clearButtonIcon = computed(() => {
+  return deckStore.editingDeckKey ? 'mdi-exit-run' : 'mdi-delete-sweep-outline'
+})
+
+const clearDialogTitle = computed(() => {
+  return deckStore.editingDeckKey ? '退出编辑' : '清除卡组'
+})
+
+const clearDialogContent = computed(() => {
+  return deckStore.editingDeckKey
+    ? '确定要退出编辑吗？未储存的内容将丢失。'
+    : '确定要清除卡组内容吗？将会清除目前编辑的所有资讯。'
+})
+
 const flattenedDisplayCards = computed(() => {
   const cardGroups = Array.from(groupedCards.value.values())
   return cardGroups.flat()
@@ -327,9 +354,14 @@ const closeSaveDialog = (value) => {
   }
 }
 
-function clearDeckAndEditingState() {
+function openClearConfirmDialog() {
+  isClearConfirmDialogOpen.value = true
+}
+
+function confirmClearAction() {
   deckStore.clearDeck()
   deckStore.clearEditingDeck()
+  isClearConfirmDialogOpen.value = false
 }
 
 const handleCreateDeck = async () => {
