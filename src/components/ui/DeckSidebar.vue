@@ -369,13 +369,12 @@ const handleCreateDeck = async () => {
   uiStore.setLoading(true)
   try {
     const deckData = {
-      name: toRaw(deckName.value),
-      version: toRaw(deckStore.version),
+      name: deckName.value,
+      version: deckStore.version,
       cards: toRaw(deckStore.cardsInDeck),
-      seriesId: toRaw(deckStore.seriesId),
-      coverCardId: toRaw(selectedCoverCardId.value),
+      seriesId: deckStore.seriesId,
+      coverCardId: selectedCoverCardId.value,
     }
-
     const { key } = await encodeDeck(deckData, { isSharedDeck: false })
 
     isSaveDialogOpen.value = false
@@ -400,11 +399,11 @@ const handleUpdateDeck = async () => {
   uiStore.setLoading(true)
   try {
     const deckData = {
-      name: toRaw(deckName.value),
-      version: toRaw(deckStore.version),
+      name: deckName.value,
+      version: deckStore.version,
       cards: toRaw(deckStore.cardsInDeck),
-      seriesId: toRaw(deckStore.seriesId),
-      coverCardId: toRaw(selectedCoverCardId.value),
+      seriesId: deckStore.seriesId,
+      coverCardId: selectedCoverCardId.value,
     }
 
     const { key } = await encodeDeck(deckData, { existingKey: deckStore.editingDeckKey })
