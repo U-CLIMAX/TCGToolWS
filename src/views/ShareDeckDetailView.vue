@@ -239,10 +239,24 @@ const handleSaveDeck = async () => {
   uiStore.setLoading(true)
 
   try {
+    const cardsToEncode = Object.values(cards.value).reduce((acc, card) => {
+      acc[card.id] = {
+        id: card.id,
+        cardIdPrefix: card.cardIdPrefix,
+        product_name: card.product_name,
+        level: card.level,
+        color: card.color,
+        cost: card.cost,
+        type: card.type,
+        quantity: card.quantity,
+      }
+      return acc
+    }, {})
+
     const deckData = {
       name: toRaw(deckName.value),
       version: toRaw(deck.value.version),
-      cards: toRaw(cards.value),
+      cards: cardsToEncode,
       seriesId: toRaw(deck.value.seriesId),
       coverCardId: toRaw(selectedCoverCardId.value),
     }
