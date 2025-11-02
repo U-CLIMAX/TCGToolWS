@@ -60,7 +60,7 @@
                 <v-btn
                   v-if="isEditing"
                   :size="resize"
-                  :icon="showDifferences ? 'mdi-compare' : 'mdi-compare-off'"
+                  :icon="showDifferences ? 'mdi-vector-difference-ba' : 'mdi-vector-difference-ab'"
                   variant="text"
                   @click="showDifferences = !showDifferences"
                 ></v-btn>
@@ -149,10 +149,10 @@
           <v-list-item-title v-if="!uiStore.showStatsDashboard">显示统计</v-list-item-title>
           <v-list-item-title v-else>隐藏统计</v-list-item-title>
         </v-list-item>
-        <v-list-item v-if="isEditing" @click="showDifferences = !showDifferences">
+        <v-list-item v-if="isEditing" @click="handleShowDifferencesClick">
           <template #prepend>
-            <v-icon v-if="!showDifferences">mdi-compare-off</v-icon>
-            <v-icon v-else>mdi-compare</v-icon>
+            <v-icon v-if="!showDifferences">mdi-vector-difference-ab</v-icon>
+            <v-icon v-else>mdi-vector-difference-ba</v-icon>
           </template>
           <v-list-item-title v-if="!showDifferences">显示差异</v-list-item-title>
           <v-list-item-title v-else>隐藏差异</v-list-item-title>
@@ -193,7 +193,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn text="取消" @click="isConfirmEditDialogVisible = false"></v-btn>
-          <v-btn color="primary" variant="flat" text="确认" @click="EditDeck"></v-btn>
+          <v-btn color="primary" variant="flat" text="确认" @click="confirmAndEditDeck"></v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -288,20 +288,38 @@ const handleEditDeck = () => {
     triggerSnackbar('无法编辑卡组', 'error')
     return
   }
-  if (
+
+  // Check if there's an ongoing edit of a *different* deck
+  const isEditingAnotherDeck =
     deckStore.totalCardCount > 0 &&
     !(deckStore.editingDeckKey === deckKey || (isLocalDeck.value && !deckStore.editingDeckKey))
-  ) {
+
+  if (isEditingAnotherDeck) {
     isConfirmEditDialogVisible.value = true
     return
   }
-  EditDeck()
+
+  // If no conflict, or continuing the current edit, proceed.
+  startEditing()
 }
 
-const EditDeck = () => {
-  const keyForEditing = isLocalDeck.value ? null : deckKey
-  deckStore.setEditingDeck(deck.value, keyForEditing)
-  if (isLocalDeck.value) deckStore.updateDominantSeriesId()
+const confirmAndEditDeck = () => {
+  isConfirmEditDialogVisible.value = false
+  startEditing(true) // Force start, overwriting previous edit
+}
+
+const startEditing = (force = false) => {
+  const isAlreadyEditingThis =
+    deckStore.editingDeckKey === deckKey || (isLocalDeck.value && deckStore.editingDeckKey === null)
+
+  // Only call setEditingDeck if we are starting a new session or forcing an overwrite
+  if (!isAlreadyEditingThis || force) {
+    const keyForEditing = isLocalDeck.value ? null : deckKey
+    deckStore.setEditingDeck(deck.value, keyForEditing)
+    if (isLocalDeck.value) deckStore.updateDominantSeriesId()
+  }
+
+  // Navigate to the editor view
   router.push({ name: 'SeriesDetail', params: { seriesId: deckStore.seriesId } })
 }
 
@@ -364,27 +382,38 @@ const originalCards = computed(() => (deck.value ? Object.values(deck.value.card
 const editedCards = computed(() => Object.values(deckStore.cardsInDeck))
 
 const cardsForDisplay = computed(() => {
+  // When NOT showing diffs, or when not editing, always show the remote deck.
   if (!isEditing.value || !showDifferences.value) {
-    return Object.values(cards.value)
+    return originalCards.value.map((c) => ({ ...c, diffStatus: 'unchanged' }))
   }
 
+  // WHEN SHOWING DIFFS:
   const originalCardMap = new Map(originalCards.value.map((c) => [c.id, c.quantity]))
   const editedCardMap = new Map(editedCards.value.map((c) => [c.id, c.quantity]))
   const allCardIds = new Set([...originalCardMap.keys(), ...editedCardMap.keys()])
-  const allCardsInfo = { ...cards.value, ...deckStore.cardsInDeck }
+
+  const cardInfoSource = {}
+  originalCards.value.forEach((c) => (cardInfoSource[c.id] = c))
+  editedCards.value.forEach((c) => {
+    cardInfoSource[c.id] = { ...(cardInfoSource[c.id] || {}), ...c }
+  })
 
   return Array.from(allCardIds)
     .map((id) => {
       const originalQty = originalCardMap.get(id) || 0
       const editedQty = editedCardMap.get(id) || 0
-      const cardData = allCardsInfo[id]
+      const cardData = cardInfoSource[id]
 
-      if (!cardData) return null
+      if (!cardData || (originalQty === 0 && editedQty === 0)) return null
 
       let diffStatus = 'unchanged'
-      if (originalQty === 0 && editedQty > 0) diffStatus = 'added'
-      else if (originalQty > 0 && editedQty === 0) diffStatus = 'removed'
-      else if (originalQty !== editedQty) diffStatus = 'changed'
+      if (originalQty === 0 && editedQty > 0) {
+        diffStatus = 'added'
+      } else if (originalQty > 0 && editedQty === 0) {
+        diffStatus = 'removed'
+      } else if (originalQty !== editedQty) {
+        diffStatus = editedQty > originalQty ? 'increased' : 'decreased'
+      }
 
       return {
         ...cardData,
@@ -396,10 +425,12 @@ const cardsForDisplay = computed(() => {
 })
 
 const cardsForStats = computed(() => {
-  if (isEditing.value && !showDifferences.value) {
-    return originalCards.value
+  // When showing diffs, stats are for the EDITED deck.
+  if (isEditing.value && showDifferences.value) {
+    return editedCards.value.filter((c) => c.quantity > 0)
   }
-  return editedCards.value.filter((c) => c.quantity > 0)
+  // Otherwise, stats are for the REMOTE deck.
+  return originalCards.value.filter((c) => c.quantity > 0)
 })
 
 const deckCards = computed(() => Object.values(cards.value))
@@ -548,6 +579,10 @@ const selectGroupBy = (value) => {
 const showMoreActionsBottomSheet = ref(false)
 const handleStatsDashboardClick = () => {
   uiStore.showStatsDashboard = !uiStore.showStatsDashboard
+  showMoreActionsBottomSheet.value = false
+}
+const handleShowDifferencesClick = () => {
+  showDifferences.value = !showDifferences.value
   showMoreActionsBottomSheet.value = false
 }
 const handleExportClick = () => {

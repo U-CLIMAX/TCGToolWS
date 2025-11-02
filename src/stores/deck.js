@@ -48,6 +48,7 @@ export const useDeckStore = defineStore(
           color: card.color,
           cost: card.cost,
           type: card.type,
+          trigger_soul_count: card.trigger_soul_count,
           quantity: 1,
         }
       }
