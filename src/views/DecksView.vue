@@ -20,11 +20,7 @@
           <DeckCard :deck="localDeck" deckKey="local" :is-editing="true" />
         </v-col>
         <v-col v-for="(deck, key) in decodedDecks" :key="key" cols="6" sm="4" md="3">
-          <DeckCard
-            :deck="deck"
-            :deckKey="key"
-            :is-editing="key === deckStore.editingDeckKey"
-          />
+          <DeckCard :deck="deck" :deckKey="key" :is-editing="key === deckStore.editingDeckKey" />
         </v-col>
       </v-row>
     </v-container>
