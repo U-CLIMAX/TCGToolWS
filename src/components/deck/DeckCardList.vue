@@ -270,19 +270,21 @@ const getGroupName = (groupName) => {
 }
 
 .diff-added {
-  opacity: 0.7;
+  opacity: 0.68;
 }
 
 .diff-removed .v-img {
-  filter: grayscale(100%);
+  filter: grayscale(90%);
 }
 
 .quantity-badge.diff-increased {
   background-color: rgb(var(--v-theme-success));
+  box-shadow: 0 0 8px 2px rgba(var(--v-theme-success), 0.7);
 }
 
 .quantity-badge.diff-decreased {
-  background-color: rgb(var(--v-theme-error));
+  background-color: rgb(var(--v-theme-warning));
+  box-shadow: 0 0 8px 2px rgba(var(--v-theme-warning), 0.7);
 }
 
 @media (max-width: 1200px) {
