@@ -1,9 +1,11 @@
 import { defineStore } from 'pinia'
 import { ref, computed, watch } from 'vue'
 import router from '@/router'
+import { useDeckStore } from './deck'
 
 export const useAuthStore = defineStore('auth', () => {
   const codeVersion = 1
+  const deckStore = useDeckStore()
 
   // 初始化:從 storage 讀取
   const initState = () => {
@@ -85,6 +87,8 @@ export const useAuthStore = defineStore('auth', () => {
     token.value = null
     localStorage.removeItem('auth')
     sessionStorage.removeItem('auth')
+
+    deckStore.reset()
   }
 
   const refreshSession = async () => {

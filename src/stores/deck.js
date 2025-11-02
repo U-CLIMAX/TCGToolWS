@@ -233,6 +233,15 @@ export const useDeckStore = defineStore(
       }
     }
 
+    const reset = () => {
+      cardsInDeck.value = {}
+      seriesId.value = ''
+      deckName.value = ''
+      coverCardId.value = ''
+      editingDeckKey.value = ''
+      savedDecks.value = {}
+    }
+
     return {
       version,
       cardsInDeck,
@@ -255,6 +264,7 @@ export const useDeckStore = defineStore(
       fetchDecks,
       fetchDeckByKey,
       deleteDeck,
+      reset,
     }
   },
   {
