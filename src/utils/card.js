@@ -12,24 +12,39 @@ const findPrefixesByCardPrefix = (prefix) => {
   return [prefix]
 }
 
-export const fetchCardByIdAndPrefix = async (id, prefix) => {
-  try {
-    const filterStore = useFilterStore()
-    const seriesPrefixes = findPrefixesByCardPrefix(prefix)
-    const { allCards } = await filterStore.fetchAndProcessCards(seriesPrefixes)
+const cardCache = new Map()
 
-    const card = allCards.find((c) => (c.id === id || c.baseId === id) && c.cardIdPrefix === prefix)
+export const fetchCardByIdAndPrefix = (id, prefix) => {
+  const cacheKey = `${prefix}-${id}`
+  if (cardCache.has(cacheKey)) {
+    return cardCache.get(cacheKey)
+  }
 
-    if (!card) {
-      console.warn(`Card with ID "${id}" not found in prefix "${prefix}"`)
+  const fetchPromise = (async () => {
+    try {
+      const filterStore = useFilterStore()
+      const seriesPrefixes = findPrefixesByCardPrefix(prefix)
+      const { allCards } = await filterStore.fetchAndProcessCards(seriesPrefixes)
+
+      const card =
+        allCards.find((c) => (c.id === id || c.baseId === id) && c.cardIdPrefix === prefix) || null
+
+      if (!card) {
+        console.warn(`Card with ID "${id}" not found in prefix "${prefix}"`)
+        return null
+      }
+
+      return card
+    } catch (e) {
+      console.error(`Failed to load card ${id} with prefix ${prefix}:`, e)
+      // On error, remove the promise from the cache to allow retries
+      cardCache.delete(cacheKey)
       return null
     }
+  })()
 
-    return card
-  } catch (e) {
-    console.error(`Failed to load card ${id} with prefix ${prefix}:`, e)
-    return null
-  }
+  cardCache.set(cacheKey, fetchPromise)
+  return fetchPromise
 }
 
 export const fetchCardsByBaseIdAndPrefix = async (baseId, prefix) => {
