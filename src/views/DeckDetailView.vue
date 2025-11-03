@@ -298,7 +298,7 @@ const handleCopyDeckKey = async () => {
   }
 }
 
-const handleEditDeck = () => {
+const handleEditDeck = async () => {
   if (!deck.value) {
     triggerSnackbar('无法编辑卡组', 'error')
     return
@@ -315,15 +315,15 @@ const handleEditDeck = () => {
   }
 
   // If no conflict, or continuing the current edit, proceed.
-  startEditing()
+  await startEditing()
 }
 
-const confirmAndEditDeck = () => {
+const confirmAndEditDeck = async () => {
   isConfirmEditDialogVisible.value = false
-  startEditing(true) // Force start, overwriting previous edit
+  await startEditing(true) // Force start, overwriting previous edit
 }
 
-const startEditing = (force = false) => {
+const startEditing = async (force = false) => {
   const isAlreadyEditingThis =
     deckStore.editingDeckKey === deckKey || (isLocalDeck.value && deckStore.editingDeckKey === null)
 
@@ -332,10 +332,31 @@ const startEditing = (force = false) => {
     const keyForEditing = isLocalDeck.value ? null : deckKey
     deckStore.setEditingDeck(deck.value, keyForEditing)
     if (isLocalDeck.value) deckStore.updateDominantSeriesId()
+
+    await updateEditedCards()
   }
 
   // Navigate to the editor view
   router.push({ name: 'SeriesDetail', params: { seriesId: deckStore.seriesId } })
+}
+
+const updateEditedCards = async () => {
+  if (isEditing.value && Object.keys(deckStore.cardsInDeck).length > 0) {
+    const cardsArray = Object.values(deckStore.cardsInDeck)
+    const fetchedCards = await Promise.all(
+      cardsArray.map(async (card) => {
+        const fullCardData = await fetchCardByIdAndPrefix(card.id, card.cardIdPrefix)
+        if (!fullCardData) {
+          console.warn(`Card data not found for id: ${card.id}, prefix: ${card.cardIdPrefix}`)
+          return null
+        }
+        return { ...fullCardData, quantity: card.quantity }
+      })
+    )
+    editedCards.value = fetchedCards.filter(Boolean)
+  } else {
+    editedCards.value = []
+  }
 }
 
 onMounted(async () => {
@@ -395,20 +416,7 @@ onMounted(async () => {
     }
 
     // 如果正在編輯，也要加載 editedCards
-    if (isEditing.value && Object.keys(deckStore.cardsInDeck).length > 0) {
-      const cardsArray = Object.values(deckStore.cardsInDeck)
-      const fetchedCards = await Promise.all(
-        cardsArray.map(async (card) => {
-          const fullCardData = await fetchCardByIdAndPrefix(card.id, card.cardIdPrefix)
-          if (!fullCardData) {
-            console.warn(`Card data not found for id: ${card.id}, prefix: ${card.cardIdPrefix}`)
-            return null
-          }
-          return { ...fullCardData, quantity: card.quantity }
-        })
-      )
-      editedCards.value = fetchedCards.filter(Boolean)
-    }
+    await updateEditedCards()
 
     // 確保所有資料都準備好
     await nextTick()
