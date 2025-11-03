@@ -424,40 +424,6 @@ const groupByOptions = [
   { title: '费用', value: 'cost' },
 ]
 
-watch(
-  () => deckStore.cardsInDeck,
-  async (newCards) => {
-    // 只在資料已經初始化後才執行
-    if (!isDataReady.value) return
-
-    console.log('deckStore.cardsInDeck watcher triggered with:', newCards)
-    if (newCards && Object.keys(newCards).length > 0) {
-      try {
-        const cardsArray = Object.values(newCards)
-        const fetchedCards = await Promise.all(
-          cardsArray.map(async (card) => {
-            const fullCardData = await fetchCardByIdAndPrefix(card.id, card.cardIdPrefix)
-            if (!fullCardData) {
-              console.warn(`Card data not found for id: ${card.id}, prefix: ${card.cardIdPrefix}`)
-              return null
-            }
-            return { ...fullCardData, quantity: card.quantity }
-          })
-        )
-
-        // 過濾掉那些查詢失敗的卡片
-        editedCards.value = fetchedCards.filter(Boolean)
-      } catch (error) {
-        console.error('Failed to fetch card details for editedCards:', error)
-      }
-    } else {
-      editedCards.value = []
-      console.log('deckStore.cardsInDeck is empty, resetting editedCards.')
-    }
-  },
-  { deep: true }
-)
-
 const cardsForDisplay = computed(() => {
   // When NOT showing diffs, or when not editing, always show the remote deck.
   if (!isEditing.value || !showDifferences.value) {
