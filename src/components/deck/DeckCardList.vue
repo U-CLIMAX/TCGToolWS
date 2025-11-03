@@ -61,9 +61,21 @@
                       :class="{
                         'diff-added': item.diffStatus === 'added',
                         'diff-removed': item.diffStatus === 'removed',
+                        'diff-increased': item.diffStatus === 'increased',
+                        'diff-decreased': item.diffStatus === 'decreased',
                       }"
                       @click="$emit('card-click', item)"
                     >
+                      <div
+                        v-if="item.diffStatus"
+                        class="diff-label"
+                        :class="`diff-label-${item.diffStatus}`"
+                      >
+                        <span v-if="item.diffStatus === 'added'">+新增</span>
+                        <span v-else-if="item.diffStatus === 'removed'">-移除</span>
+                        <span v-else-if="item.diffStatus === 'increased'">↑</span>
+                        <span v-else-if="item.diffStatus === 'decreased'">↓</span>
+                      </div>
                       <v-img
                         :src="useCardImage(item.cardIdPrefix, item.id).value"
                         :aspect-ratio="400 / 559"
@@ -235,6 +247,13 @@ const getGroupName = (groupName) => {
 </script>
 
 <style scoped>
+/* 佈局樣式 (Layout Styles) */
+.centered-content {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+/* 卡片基礎樣式 (Card Base) */
 .card-container {
   position: relative;
   cursor: pointer;
@@ -245,6 +264,9 @@ const getGroupName = (groupName) => {
   transform: translateY(-5px);
 }
 
+/* 卡片內部元件 (Card Sub-Elements) */
+
+/* 右下角數量標記 (Quantity Badge) */
 .quantity-badge {
   position: absolute;
   bottom: 8px;
@@ -255,7 +277,7 @@ const getGroupName = (groupName) => {
   padding: 0 6px;
   font-size: 0.8rem;
   font-weight: bold;
-  border: 2px solid white;
+  border: 2px solid white !important;
   min-width: 24px;
   height: 24px;
   display: flex;
@@ -264,29 +286,116 @@ const getGroupName = (groupName) => {
   line-height: 1;
 }
 
-.centered-content {
-  margin: 0 auto;
-  max-width: 1200px;
+/* 左上角差異標籤 (Diff Label) */
+.diff-label {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  z-index: 2;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
+/* "增加"和"減少"標籤 (↑/↓) 的共同基礎樣式 (變為圓形) */
+.diff-label-increased,
+.diff-label-decreased {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+/* 差異比較 - 狀態修改 (Diff Status Modifiers) */
+
+/* 新增 / 增加 (Success / Green) */
+
+/* 容器邊框 */
+.diff-added,
+.diff-increased {
+  border: 2px solid rgb(var(--v-theme-success));
+  border-radius: 14px;
+}
+
+/* "新增" 獨有的容器樣式 (透明度、光暈) */
 .diff-added {
   opacity: 0.68;
+  box-shadow: 0 0 12px rgba(var(--v-theme-success), 0.4);
 }
 
-.diff-removed .v-img {
-  filter: grayscale(90%);
-}
-
+/* 數量標記變色 */
 .quantity-badge.diff-increased {
   background-color: rgb(var(--v-theme-success));
   box-shadow: 0 0 8px 2px rgba(var(--v-theme-success), 0.7);
 }
 
-.quantity-badge.diff-decreased {
-  background-color: rgb(var(--v-theme-warning));
-  box-shadow: 0 0 8px 2px rgba(var(--v-theme-warning), 0.7);
+/* 左上角標籤變色 */
+.diff-label-added {
+  background-color: rgba(var(--v-theme-success), 0.9);
+}
+.diff-label-increased {
+  background-color: rgba(var(--v-theme-success), 0.9);
 }
 
+/* 移除 / 減少 (Error / Red) */
+
+/* 容器邊框 */
+.diff-removed,
+.diff-decreased {
+  border: 2px solid rgb(var(--v-theme-error));
+  border-radius: 14px;
+}
+
+/* "移除" 獨有的容器樣式 (灰階、斜線) */
+.diff-removed .v-img {
+  filter: grayscale(90%);
+  opacity: 0.5;
+}
+
+.diff-removed {
+  position: relative; /* 為了 ::after 定位 */
+}
+
+/* 移除卡片加上斜線效果 */
+.diff-removed::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 48%,
+    rgba(var(--v-theme-error), 0.8) 48%,
+    rgba(var(--v-theme-error), 0.8) 52%,
+    transparent 52%
+  );
+  pointer-events: none;
+  border-radius: 14px;
+}
+
+/* 數量標記變色 */
+.quantity-badge.diff-decreased {
+  background-color: rgb(var(--v-theme-error));
+  box-shadow: 0 0 8px 2px rgba(var(--v-theme-error), 0.7);
+}
+
+/* 左上角標籤變色 */
+.diff-label-removed {
+  background-color: rgba(var(--v-theme-error), 0.9);
+}
+.diff-label-decreased {
+  background-color: rgba(var(--v-theme-error), 0.9);
+}
+
+/* 響應式設計 (Responsive) */
 @media (max-width: 1200px) {
   .centered-content {
     max-width: 100%;
