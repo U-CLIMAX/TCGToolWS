@@ -247,7 +247,11 @@
   </v-dialog>
   <!-- Clear Confirm Dialog -->
   <v-dialog v-model="isClearConfirmDialogOpen" max-width="400">
-    <v-card :title="clearDialogTitle" prepend-icon="mdi-alert-outline">
+    <v-card>
+      <template #prepend>
+        <v-icon color="warning">mdi-alert-outline</v-icon>
+        <v-card-title class="text-warning pl-2"> {{ clearDialogTitle }} </v-card-title>
+      </template>
       <v-card-text>{{ clearDialogContent }}</v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
