@@ -204,7 +204,7 @@ watch(
 )
 
 const iconFilterStyle = computed(() => {
-  return theme.global.name.value === 'light' ? 'none' : 'invert(1)'
+  return theme.global.name.value === 'dark' ? 'none' : 'invert(1)'
 })
 
 const modalCardImageUrl = computed(() => {
@@ -240,14 +240,14 @@ const getGroupName = (groupName) => {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  background-color: rgba(var(--v-theme-surface-variant), 0.7);
+  background-color: rgba(var(--v-theme-surface), 0.7);
   backdrop-filter: blur(4px) saturate(180%);
   -webkit-backdrop-filter: blur(4px) saturate(180%); /* Safari 支援 */
   padding: 4px 12px;
   border-radius: 16px;
   margin-bottom: 4px;
   border: 1px solid rgba(var(--v-border-color), var(--v-border-opacity));
-  color: rgb(var(--v-theme-on-surface-variant));
+  color: rgb(var(--v-theme-on-surface));
   font-size: 0.875rem;
 }
 
