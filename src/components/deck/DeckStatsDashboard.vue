@@ -31,33 +31,23 @@
                 <div class="text-disabled text-body-2 mt-1">张卡</div>
               </div>
             </template>
-            <template #legend="{ items, toggle, isActive }">
-              <div>
-                <v-list class="bg-transparent" density="compact">
-                  <v-list-item
-                    v-for="item in items"
-                    :key="item.key"
-                    :class="['px-2 my-1', { 'opacity-40': !isActive(item) }]"
-                    class="ga-6 h-100"
-                    :title="item.title"
-                    rounded="lg"
-                    link
-                    @click="toggle(item)"
-                  >
-                    <template #prepend>
-                      <v-avatar
-                        :color="item.color"
-                        :size="20"
-                        class="mr-3"
-                        rounded="circle"
-                      ></v-avatar>
-                    </template>
-                    <template #append>
-                      <div class="font-weight-bold">{{ item.value }}</div>
-                    </template>
-                  </v-list-item>
-                </v-list>
-              </div>
+            <template #legend="{ items }">
+              <v-list class="bg-transparent" density="compact">
+                <v-list-item
+                  v-for="item in items"
+                  :key="item.key"
+                  class="px-2 my-1 ga-6 h-100"
+                  rounded="lg"
+                >
+                  <template #prepend>
+                    <v-avatar :color="item.color" :size="20" class="mr-3" rounded="circle" />
+                  </template>
+                  <v-list-item-title>{{ item.title }}</v-list-item-title>
+                  <template #append>
+                    <div class="font-weight-bold">{{ item.value }}</div>
+                  </template>
+                </v-list-item>
+              </v-list>
             </template>
           </v-pie>
         </div>
