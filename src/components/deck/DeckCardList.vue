@@ -51,8 +51,15 @@
                 }}
               </v-chip>
             </div>
-            <v-row dense class="ma-0">
-              <v-col v-for="item in group" :key="item.id" cols="4" sm="3" md="2">
+            <transition-group tag="div" class="v-row v-row--dense ma-0" name="card-fade" appear>
+              <v-col
+                v-for="(item, itemIndex) in group"
+                :key="item.id"
+                cols="4"
+                sm="3"
+                md="2"
+                :style="{ '--stagger-index': itemIndex }"
+              >
                 <v-tooltip :text="item.id" location="top center">
                   <template v-slot:activator="{ props }">
                     <div
@@ -108,7 +115,7 @@
                   </template>
                 </v-tooltip>
               </v-col>
-            </v-row>
+            </transition-group>
           </div>
         </div>
       </v-fade-transition>
@@ -400,5 +407,17 @@ const getGroupName = (groupName) => {
   .centered-content {
     max-width: 100%;
   }
+}
+
+/* 卡片交錯淡入動畫 (Card Staggered Fade-in Animation) */
+.card-fade-enter-active {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  /* 利用 CSS 變數和 calc 函數來計算延遲 */
+  transition-delay: calc(0.03s * var(--stagger-index));
+}
+
+.card-fade-enter-from {
+  opacity: 0;
+  transform: scale(0.9);
 }
 </style>

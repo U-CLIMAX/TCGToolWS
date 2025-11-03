@@ -266,16 +266,12 @@ watch(
 }
 
 /* Image fade-in animation on route enter */
-.slide-y-in-enter-active .series-card .v-img,
-.slide-y-in-enter-active .deck-detail-card .v-img,
-.slide-y-in-enter-active .deck-card .v-img {
+.slide-y-in-enter-active .series-card .v-img {
   transition:
     transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0.1s,
     opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0.1s !important;
 }
-.slide-y-in-enter-from .series-card .v-img,
-.slide-y-in-enter-from .deck-detail-card .v-img,
-.slide-y-in-enter-from .deck-card .v-img {
+.slide-y-in-enter-from .series-card .v-img {
   transform: scale(0.95);
   opacity: 0;
 }
