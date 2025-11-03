@@ -6,9 +6,20 @@
           <div class="overlay-header-content">
             <!-- 左側 -->
             <div class="header-left">
-              <v-btn icon :size="resize" variant="text" @click="openSaveDialog" :disabled="!deck">
-                <v-icon size="24">mdi-content-save-outline</v-icon>
-              </v-btn>
+              <v-tooltip text="储存卡组" location="bottom">
+                <template v-slot:activator="{ props }">
+                  <v-btn
+                    v-bind="props"
+                    icon
+                    :size="resize"
+                    variant="text"
+                    @click="openSaveDialog"
+                    :disabled="!deck"
+                  >
+                    <v-icon size="24">mdi-content-save-outline</v-icon>
+                  </v-btn>
+                </template>
+              </v-tooltip>
             </div>
 
             <!-- 中間 -->
