@@ -55,7 +55,7 @@
             </div>
 
             <!-- 右側 -->
-            <div class="header-right mt-2 ga-2">
+            <div class="header-right mt-2">
               <template v-if="smAndUp">
                 <v-btn
                   v-if="isEditing && deckStore.editingDeckKey"
@@ -67,6 +67,7 @@
                 <v-btn
                   :size="resize"
                   :icon="uiStore.showStatsDashboard ? 'mdi-chart-pie' : 'mdi-chart-pie-outline'"
+                  class="mr-2"
                   variant="text"
                   @click="uiStore.showStatsDashboard = !uiStore.showStatsDashboard"
                 ></v-btn>
