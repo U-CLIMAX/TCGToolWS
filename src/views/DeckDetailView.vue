@@ -7,36 +7,52 @@
             <!-- 左側 -->
             <div class="header-left">
               <template v-if="smAndUp">
-                <v-btn
-                  :size="resize"
-                  icon="mdi-export-variant"
-                  variant="text"
-                  title="汇出卡组"
-                  @click="openExportDialog"
-                ></v-btn>
-                <v-btn
-                  :size="resize"
-                  icon="mdi-share-variant"
-                  variant="text"
-                  title="分享卡组"
-                  :disabled="isLocalDeck"
-                  @click="handleShareCard"
-                ></v-btn>
-                <v-btn
-                  :size="resize"
-                  icon="mdi-link-variant"
-                  variant="text"
-                  title="复制卡组代码"
-                  :disabled="isLocalDeck"
-                  @click="handleCopyDeckKey"
-                ></v-btn>
-                <v-btn
-                  :size="resize"
-                  icon="mdi-pencil"
-                  variant="text"
-                  title="编辑卡组"
-                  @click="handleEditDeck"
-                ></v-btn>
+                <v-tooltip text="汇出卡组" location="bottom">
+                  <template v-slot:activator="{ props }">
+                    <v-btn
+                      v-bind="props"
+                      :size="resize"
+                      icon="mdi-export-variant"
+                      variant="text"
+                      @click="openExportDialog"
+                    ></v-btn>
+                  </template>
+                </v-tooltip>
+                <v-tooltip text="分享卡组" location="bottom">
+                  <template v-slot:activator="{ props }">
+                    <v-btn
+                      v-bind="props"
+                      :size="resize"
+                      icon="mdi-share-variant"
+                      variant="text"
+                      :disabled="isLocalDeck"
+                      @click="handleShareCard"
+                    ></v-btn>
+                  </template>
+                </v-tooltip>
+                <v-tooltip text="复制卡组代码" location="bottom">
+                  <template v-slot:activator="{ props }">
+                    <v-btn
+                      v-bind="props"
+                      :size="resize"
+                      icon="mdi-link-variant"
+                      variant="text"
+                      :disabled="isLocalDeck"
+                      @click="handleCopyDeckKey"
+                    ></v-btn>
+                  </template>
+                </v-tooltip>
+                <v-tooltip text="编辑卡组" location="bottom">
+                  <template v-slot:activator="{ props }">
+                    <v-btn
+                      v-bind="props"
+                      :size="resize"
+                      icon="mdi-pencil"
+                      variant="text"
+                      @click="handleEditDeck"
+                    ></v-btn>
+                  </template>
+                </v-tooltip>
               </template>
               <template v-if="!smAndUp">
                 <v-btn
@@ -61,22 +77,35 @@
             <!-- 右側 -->
             <div class="header-right mt-2">
               <template v-if="smAndUp">
-                <v-btn
-                  v-if="isEditing && deckStore.editingDeckKey"
-                  :size="resize"
-                  :icon="showDifferences ? 'mdi-vector-difference-ba' : 'mdi-vector-difference-ab'"
-                  variant="text"
-                  :title="showDifferences ? '隐藏差异' : '显示差异'"
-                  @click="showDifferences = !showDifferences"
-                ></v-btn>
-                <v-btn
-                  :size="resize"
-                  :icon="uiStore.showStatsDashboard ? 'mdi-chart-pie' : 'mdi-chart-pie-outline'"
-                  class="mr-2"
-                  variant="text"
-                  :title="uiStore.showStatsDashboard ? '隐藏统计' : '显示统计'"
-                  @click="uiStore.showStatsDashboard = !uiStore.showStatsDashboard"
-                ></v-btn>
+                <v-tooltip :text="showDifferences ? '隐藏差异' : '显示差异'" location="bottom">
+                  <template v-slot:activator="{ props }">
+                    <v-btn
+                      v-if="isEditing && deckStore.editingDeckKey"
+                      v-bind="props"
+                      :size="resize"
+                      :icon="
+                        showDifferences ? 'mdi-vector-difference-ba' : 'mdi-vector-difference-ab'
+                      "
+                      variant="text"
+                      @click="showDifferences = !showDifferences"
+                    ></v-btn>
+                  </template>
+                </v-tooltip>
+                <v-tooltip
+                  :text="uiStore.showStatsDashboard ? '隐藏统计' : '显示统计'"
+                  location="bottom"
+                >
+                  <template v-slot:activator="{ props }">
+                    <v-btn
+                      v-bind="props"
+                      :size="resize"
+                      :icon="uiStore.showStatsDashboard ? 'mdi-chart-pie' : 'mdi-chart-pie-outline'"
+                      class="mr-2"
+                      variant="text"
+                      @click="uiStore.showStatsDashboard = !uiStore.showStatsDashboard"
+                    ></v-btn>
+                  </template>
+                </v-tooltip>
                 <div style="width: 120px">
                   <v-select
                     v-model="groupBy"
