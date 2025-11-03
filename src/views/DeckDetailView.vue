@@ -96,7 +96,9 @@
           :style="{ paddingTop: `${headerOffsetHeight}px` }"
           style="position: relative"
         >
+          <!-- 只在資料準備好後才渲染 -->
           <DeckCardList
+            v-if="isDataReady"
             :display-grouped-cards="displayGroupedCards"
             :stats-grouped-cards="statsGroupedCards"
             :group-by="groupBy"
@@ -192,7 +194,7 @@
       <v-card title="确认编辑" prepend-icon="mdi-alert-outline">
         <v-card-text>
           <p>检测到有尚未储存的卡组，若继续将会复盖。</p>
-          <p>是否要捨弃目前的卡组，开始编辑新的卡组？</p>
+          <p>是否要舍弃目前的卡组，开始编辑新的卡组？</p>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -259,6 +261,8 @@ const isEditing = computed(() => {
   }
   return deckStore.editingDeckKey === deckKey
 })
+
+const isDataReady = ref(false)
 
 const handleShareCard = async () => {
   if (!deckKey || isLocalDeck.value) {
@@ -331,6 +335,7 @@ const startEditing = (force = false) => {
 
 onMounted(async () => {
   uiStore.setLoading(true)
+  isDataReady.value = false
 
   try {
     let initialCards = {}
@@ -378,9 +383,31 @@ onMounted(async () => {
           return { ...fullCardData, quantity: card.quantity }
         })
       )
+      // 過濾掉 null 值
+      originalCards.value = originalCards.value.filter(Boolean)
     } else {
       originalCards.value = []
     }
+
+    // 如果正在編輯，也要加載 editedCards
+    if (isEditing.value && Object.keys(deckStore.cardsInDeck).length > 0) {
+      const cardsArray = Object.values(deckStore.cardsInDeck)
+      const fetchedCards = await Promise.all(
+        cardsArray.map(async (card) => {
+          const fullCardData = await fetchCardByIdAndPrefix(card.id, card.cardIdPrefix)
+          if (!fullCardData) {
+            console.warn(`Card data not found for id: ${card.id}, prefix: ${card.cardIdPrefix}`)
+            return null
+          }
+          return { ...fullCardData, quantity: card.quantity }
+        })
+      )
+      editedCards.value = fetchedCards.filter(Boolean)
+    }
+
+    // 確保所有資料都準備好
+    await nextTick()
+    isDataReady.value = true
   } catch (error) {
     triggerSnackbar(error.message, 'error')
   } finally {
@@ -400,6 +427,9 @@ const groupByOptions = [
 watch(
   () => deckStore.cardsInDeck,
   async (newCards) => {
+    // 只在資料已經初始化後才執行
+    if (!isDataReady.value) return
+
     console.log('deckStore.cardsInDeck watcher triggered with:', newCards)
     if (newCards && Object.keys(newCards).length > 0) {
       try {
@@ -425,7 +455,7 @@ watch(
       console.log('deckStore.cardsInDeck is empty, resetting editedCards.')
     }
   },
-  { deep: true, immediate: true }
+  { deep: true }
 )
 
 const cardsForDisplay = computed(() => {
@@ -599,7 +629,7 @@ watch(
 
         await convertElementToPng('deck-share-image-content', deck.value.name.trim())
       } catch (error) {
-        console.error('生成圖片失敗:', error)
+        console.error('生成图片失败:', error)
         triggerSnackbar('生成图片失败，请稍后再试。', 'error')
       } finally {
         if (imageRef) {
