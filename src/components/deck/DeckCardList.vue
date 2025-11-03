@@ -12,44 +12,38 @@
       <v-fade-transition>
         <div v-show="showCards" :class="{ 'd-none': !showCards }">
           <div v-for="([groupName, group], index) in displayGroupedCards" :key="groupName">
-            <div
-              class="d-flex align-center text-subtitle-2 text-disabled mb-1 ga-1"
-              :class="{ 'mt-3': index > 0 }"
-            >
-              <span :class="isLightWithBg ? 'text-grey-lighten-2' : 'text-grey-darken-4'">
-                {{ getGroupName(groupName) }}</span
-              >
-              <v-chip
-                size="small"
-                variant="tonal"
-                :color="chipColor1"
-                rounded="circle"
-                style="aspect-ratio: 1"
-                class="mr-3 d-inline-flex align-center justify-center"
-              >
-                {{ group.reduce((sum, item) => sum + item.quantity, 0) }}
-              </v-chip>
+            <div class="group-header" :class="{ 'mt-3': index > 0 }">
+              <span>
+                {{ getGroupName(groupName) }}
+              </span>
 
-              <!-- 魂標數量 chip -->
-              <v-chip size="small" variant="tonal" :color="chipColor2" label>
-                <template #prepend>
-                  <v-img
-                    :src="WsIcon"
-                    alt="Back to top"
-                    width="14"
-                    aspect-ratio="1"
-                    draggable="false"
-                    class="mr-1"
-                    :style="{ filter: iconFilterStyle }"
-                  />
-                </template>
-                {{
-                  group.reduce(
-                    (sum, item) => sum + item.quantity * (item.trigger_soul_count || 0),
-                    0
-                  )
-                }}
-              </v-chip>
+              <!-- 卡片數量 -->
+              <div class="d-flex align-center ga-2">
+                <v-icon size="14">mdi-cards</v-icon>
+                <span>
+                  {{ group.reduce((sum, item) => sum + item.quantity, 0) }}
+                </span>
+              </div>
+
+              <!-- 魂標數量 -->
+              <div class="d-flex align-center ga-2">
+                <v-img
+                  :src="WsIcon"
+                  alt="魂標"
+                  width="14"
+                  aspect-ratio="1"
+                  draggable="false"
+                  :style="{ filter: iconFilterStyle }"
+                />
+                <span>
+                  {{
+                    group.reduce(
+                      (sum, item) => sum + item.quantity * (item.trigger_soul_count || 0),
+                      0
+                    )
+                  }}
+                </span>
+              </div>
             </div>
             <transition-group tag="div" class="v-row v-row--dense ma-0" name="card-fade" appear>
               <v-col
@@ -169,10 +163,6 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  isLightWithBg: {
-    type: Boolean,
-    default: false,
-  },
   selectedCard: {
     type: Object,
     default: null,
@@ -192,14 +182,6 @@ const props = defineProps({
   totalCards: {
     type: Number,
     default: 0,
-  },
-  chipColor1: {
-    type: String,
-    default: 'green-accent-4',
-  },
-  chipColor2: {
-    type: String,
-    default: 'orange-accent-4',
   },
 })
 
@@ -222,7 +204,7 @@ watch(
 )
 
 const iconFilterStyle = computed(() => {
-  return theme.global.name.value === 'light' ? 'invert(1)' : 'none'
+  return theme.global.name.value === 'light' ? 'none' : 'invert(1)'
 })
 
 const modalCardImageUrl = computed(() => {
@@ -254,6 +236,21 @@ const getGroupName = (groupName) => {
 </script>
 
 <style scoped>
+.group-header {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background-color: rgba(var(--v-theme-surface-variant), 0.7);
+  backdrop-filter: blur(4px) saturate(180%);
+  -webkit-backdrop-filter: blur(4px) saturate(180%); /* Safari 支援 */
+  padding: 4px 12px;
+  border-radius: 16px;
+  margin-bottom: 4px;
+  border: 1px solid rgba(var(--v-border-color), var(--v-border-opacity));
+  color: rgb(var(--v-theme-on-surface-variant));
+  font-size: 0.875rem;
+}
+
 /* 佈局樣式 (Layout Styles) */
 .centered-content {
   margin: 0 auto;
