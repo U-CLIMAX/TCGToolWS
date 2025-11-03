@@ -11,12 +11,14 @@
                   :size="resize"
                   icon="mdi-export-variant"
                   variant="text"
+                  title="汇出卡组"
                   @click="openExportDialog"
                 ></v-btn>
                 <v-btn
                   :size="resize"
                   icon="mdi-share-variant"
                   variant="text"
+                  title="分享卡组"
                   :disabled="isLocalDeck"
                   @click="handleShareCard"
                 ></v-btn>
@@ -24,6 +26,7 @@
                   :size="resize"
                   icon="mdi-link-variant"
                   variant="text"
+                  title="复制卡组代码"
                   :disabled="isLocalDeck"
                   @click="handleCopyDeckKey"
                 ></v-btn>
@@ -31,6 +34,7 @@
                   :size="resize"
                   icon="mdi-pencil"
                   variant="text"
+                  title="编辑卡组"
                   @click="handleEditDeck"
                 ></v-btn>
               </template>
@@ -62,6 +66,7 @@
                   :size="resize"
                   :icon="showDifferences ? 'mdi-vector-difference-ba' : 'mdi-vector-difference-ab'"
                   variant="text"
+                  :title="showDifferences ? '隐藏差异' : '显示差异'"
                   @click="showDifferences = !showDifferences"
                 ></v-btn>
                 <v-btn
@@ -69,6 +74,7 @@
                   :icon="uiStore.showStatsDashboard ? 'mdi-chart-pie' : 'mdi-chart-pie-outline'"
                   class="mr-2"
                   variant="text"
+                  :title="uiStore.showStatsDashboard ? '隐藏统计' : '显示统计'"
                   @click="uiStore.showStatsDashboard = !uiStore.showStatsDashboard"
                 ></v-btn>
                 <div style="width: 120px">
@@ -190,7 +196,12 @@
     </v-bottom-sheet>
 
     <v-dialog v-model="isConfirmEditDialogVisible" max-width="420">
-      <v-card title="确认编辑" prepend-icon="mdi-alert-outline">
+      <v-card>
+        <template #prepend>
+          <v-icon color="warning">mdi-alert-outline</v-icon>
+          <v-card-title class="text-warning pl-2"> 确认编辑 </v-card-title>
+        </template>
+
         <v-card-text>
           <p>检测到有尚未储存的卡组，若继续将会复盖。</p>
           <p>是否要舍弃目前的卡组，开始编辑新的卡组？</p>
