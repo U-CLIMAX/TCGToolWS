@@ -105,7 +105,7 @@
             :is-modal-visible="isModalVisible"
             :linked-cards="linkedCardsDetails"
             :selected-card-index="selectedCardIndex"
-            :total-cards="deckCards.length"
+            :total-cards="flattenedDisplayCards.length"
             @card-click="handleCardClick"
             @update:isModalVisible="isModalVisible = $event"
             @show-new-card="handleShowNewCard"
@@ -480,7 +480,6 @@ const cardsForStats = computed(() => {
   return originalCards.value.filter((c) => c.quantity > 0)
 })
 
-const deckCards = computed(() => Object.values(cards.value))
 const { groupedCards: displayGroupedCards } = useDeckGrouping(cardsForDisplay, groupBy)
 const { groupedCards: statsGroupedCards } = useDeckGrouping(cardsForStats, groupBy)
 
