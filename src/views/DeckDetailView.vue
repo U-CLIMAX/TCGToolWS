@@ -102,7 +102,6 @@
             :display-grouped-cards="displayGroupedCards"
             :stats-grouped-cards="statsGroupedCards"
             :group-by="groupBy"
-            :is-light-with-bg="isLightWithBg"
             :selected-card="selectedCardData"
             :is-modal-visible="isModalVisible"
             :linked-cards="linkedCardsDetails"
@@ -214,7 +213,6 @@
 
 <script setup>
 import { computed, ref, onUnmounted, onMounted, watch, nextTick } from 'vue'
-import { useTheme } from 'vuetify'
 import { useRoute, useRouter } from 'vue-router'
 import { useDeckEncoder } from '@/composables/useDeckEncoder'
 import { useDisplay } from 'vuetify'
@@ -234,7 +232,6 @@ const { smAndUp } = useDisplay()
 const resize = computed(() => {
   return smAndUp.value ? 'default' : 'small'
 })
-const theme = useTheme()
 const route = useRoute()
 const router = useRouter()
 const { decodeDeck } = useDeckEncoder()
@@ -247,9 +244,6 @@ const isLocalDeck = computed(() => deckKey === 'local')
 const deck = ref(null)
 const cards = ref({})
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
-const isLightWithBg = computed(() => {
-  return hasBackgroundImage.value && theme.global.name.value === 'light'
-})
 const isConfirmEditDialogVisible = ref(false)
 
 const originalCards = ref([])
