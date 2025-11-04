@@ -371,7 +371,7 @@ useInfiniteScrollState({
 @media (min-width: 600px) and (max-width: 959.98px) {
   .sidebar-container.left-sidebar-open,
   .sidebar-container.right-sidebar-open {
-    width: 46%;
+    width: 51%;
   }
 }
 
