@@ -87,18 +87,44 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     console.log(`✅ Successfully loaded ${allCards.value.length} cards from ${source}`)
   }
 
-  const fetchAndStoreData = async (fileName, version) => {
+  const fetchAndStoreData = async (manifest) => {
     isLoading.value = true
     error.value = null
     let db
     try {
-      console.log(`📥 Fetching card database from remote: ${fileName}`)
-      const response = await fetch(`/${fileName}`)
-      if (!response.ok) {
-        throw new Error(`Failed to fetch card database: ${response.statusText}`)
+      const { version, chunked, chunks, fileName } = manifest
+      let compressedBuffer
+
+      if (chunked) {
+        console.log(`📥 Fetching ${chunks.length} card database chunks from remote...`)
+        const responses = await Promise.all(chunks.map((chunkFile) => fetch(`/${chunkFile}`)))
+
+        for (const response of responses) {
+          if (!response.ok) {
+            throw new Error(`Failed to fetch a card database chunk: ${response.statusText}`)
+          }
+        }
+
+        const buffers = await Promise.all(responses.map((res) => res.arrayBuffer()))
+
+        // Concatenate buffers
+        const totalLength = buffers.reduce((acc, buffer) => acc + buffer.byteLength, 0)
+        const combined = new Uint8Array(totalLength)
+        let offset = 0
+        for (const buffer of buffers) {
+          combined.set(new Uint8Array(buffer), offset)
+          offset += buffer.byteLength
+        }
+        compressedBuffer = combined.buffer
+      } else {
+        console.log(`📥 Fetching card database from remote: ${fileName}`)
+        const response = await fetch(`/${fileName}`)
+        if (!response.ok) {
+          throw new Error(`Failed to fetch card database: ${response.statusText}`)
+        }
+        compressedBuffer = await response.arrayBuffer()
       }
 
-      const compressedBuffer = await response.arrayBuffer()
       const decompressed = inflate(new Uint8Array(compressedBuffer), { to: 'string' })
       const data = JSON.parse(decompressed)
 
@@ -152,26 +178,32 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
 
       const manifest = await manifestResponse.json()
       const currentVersion = manifest.version
-      const fileName = manifest.fileName
       console.log(`📌 Current version: ${currentVersion}`)
 
       const storedVersion = localStorage.getItem('global_search_index_version')
       console.log(`📌 Local version: ${storedVersion || 'None'}`)
 
+      let loadedFromLocal = false
       if (storedVersion === currentVersion) {
         console.log('✅ Versions match, trying to load from local database...')
         try {
           await loadDataFromLocal(currentVersion)
+          loadedFromLocal = true
           // eslint-disable-next-line no-unused-vars
         } catch (e) {
-          console.log('↪️ Local load failed, fetching from remote...')
-          await fetchAndStoreData(fileName, currentVersion)
+          console.log('↪️ Local load failed, will fetch from remote as a fallback.')
         }
-      } else {
-        console.log(
-          `🔄 Version mismatch (Local: ${storedVersion || 'None'}, Remote: ${currentVersion}), fetching new data...`
-        )
-        await fetchAndStoreData(fileName, currentVersion)
+      }
+
+      if (!loadedFromLocal) {
+        if (storedVersion !== currentVersion) {
+          console.log(
+            `🔄 Version mismatch (Local: ${
+              storedVersion || 'None'
+            }, Remote: ${currentVersion}), fetching new data...`
+          )
+        }
+        await fetchAndStoreData(manifest)
       }
 
       isReady.value = true
