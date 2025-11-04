@@ -10,7 +10,11 @@
         size="64"
         class="mb-4"
       ></v-progress-circular>
-      <div v-if="globalSearchStore.isInitialSetup" class="text-h6 text-blue-accent-1">
+      <div
+        v-if="globalSearchStore.isInitialSetup"
+        class="text-subtitle-1 text-sm-h6 text-blue-accent-1 text-center text-no-wrap"
+        style="overflow: hidden; text-overflow: ellipsis"
+      >
         初始化中，这可能会需要一点时间...
       </div>
     </div>

@@ -167,59 +167,59 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
   }
 
   const initialize = async () => {
-  console.log('🔍 Checking card database version...')
-  isLoading.value = true
-  error.value = null
+    console.log('🔍 Checking card database version...')
+    isLoading.value = true
+    error.value = null
 
-  try {
-    const manifestResponse = await fetch('/card-db-manifest.json')
-    if (!manifestResponse.ok) throw new Error('Failed to load manifest file')
+    try {
+      const manifestResponse = await fetch('/card-db-manifest.json')
+      if (!manifestResponse.ok) throw new Error('Failed to load manifest file')
 
-    const manifest = await manifestResponse.json()
-    const currentVersion = manifest.version
-    console.log(`📌 Current version: ${currentVersion}`)
+      const manifest = await manifestResponse.json()
+      const currentVersion = manifest.version
+      console.log(`📌 Current version: ${currentVersion}`)
 
-    const storedVersion = localStorage.getItem('global_search_index_version')
-    console.log(`📌 Local version: ${storedVersion || 'None'}`)
+      const storedVersion = localStorage.getItem('global_search_index_version')
+      console.log(`📌 Local version: ${storedVersion || 'None'}`)
 
-    let loadedFromLocal = false
-    if (storedVersion === currentVersion) {
-      console.log('✅ Versions match, trying to load from local database...')
-      try {
-        await loadDataFromLocal(currentVersion)
-        loadedFromLocal = true
+      let loadedFromLocal = false
+      if (storedVersion === currentVersion) {
+        console.log('✅ Versions match, trying to load from local database...')
+        try {
+          await loadDataFromLocal(currentVersion)
+          loadedFromLocal = true
           // eslint-disable-next-line no-unused-vars
-      } catch (e) {
-        console.log('↪️ Local load failed, will fetch from remote as a fallback.')
+        } catch (e) {
+          console.log('↪️ Local load failed, will fetch from remote as a fallback.')
+        }
       }
-    }
 
-    if (!loadedFromLocal) {
-      isInitialSetup.value = true
-      await nextTick()  // Wait for the DOM to update before performing time-consuming operations
-      
-      if (storedVersion !== currentVersion) {
-        console.log(
-          `🔄 Version mismatch (Local: ${
-            storedVersion || 'None'
-          }, Remote: ${currentVersion}), fetching new data...`
-        )
+      if (!loadedFromLocal) {
+        isInitialSetup.value = true
+        await nextTick() // Wait for the DOM to update before performing time-consuming operations
+
+        if (storedVersion !== currentVersion) {
+          console.log(
+            `🔄 Version mismatch (Local: ${
+              storedVersion || 'None'
+            }, Remote: ${currentVersion}), fetching new data...`
+          )
+        }
+        await fetchAndStoreData(manifest)
       }
-      await fetchAndStoreData(manifest)
-    }
 
-    isReady.value = true
-    console.log('✨ Data is ready!')
-  } catch (e) {
-    console.error('❌ Initialization failed:', e)
-    error.value = e
-    isInitialSetup.value = false
-    isReady.value = false
-  } finally {
-    isInitialSetup.value = false
-    isLoading.value = false
+      isReady.value = true
+      console.log('✨ Data is ready!')
+    } catch (e) {
+      console.error('❌ Initialization failed:', e)
+      error.value = e
+      isInitialSetup.value = false
+      isReady.value = false
+    } finally {
+      isInitialSetup.value = false
+      isLoading.value = false
+    }
   }
-}
 
   const terminate = () => {
     terminateWorker()
