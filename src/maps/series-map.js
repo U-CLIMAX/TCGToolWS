@@ -97,7 +97,7 @@ export const seriesMap = {
   },
   'Angel Beats!／Kud Wafter': {
     id: 'ab',
-    prefixes: ['AB', 'KW', 'Kab', 'Hab'],
+    prefixes: ['AB', 'KW', 'Kab', 'Hab', 'Kkw'],
   },
   'CANAAN': {
     id: 'cn',
@@ -105,7 +105,7 @@ export const seriesMap = {
   },
   'CLANNAD': {
     id: 'cl',
-    prefixes: ['CL', 'Kcl'],
+    prefixes: ['CL', 'Kcl', 'Kta'],
   },
   'PIXAR': {
     id: 'pxr',
@@ -169,7 +169,21 @@ export const seriesMap = {
   },
   'Key': {
     id: 'key',
-    prefixes: ['Kab', 'Kai', 'Kch', 'Kcl', 'Kdb', 'Key', 'Khb', 'Kka', 'Klb', 'Krw', 'Ksm'],
+    prefixes: [
+      'Kab',
+      'Kai',
+      'Kch',
+      'Kcl',
+      'Kdb',
+      'Key',
+      'Khb',
+      'Kka',
+      'Klb',
+      'Krw',
+      'Ksm',
+      'Kkw',
+      'Kta',
+    ],
   },
   'Little Busters!': {
     id: 'lb',

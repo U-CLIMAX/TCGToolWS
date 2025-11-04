@@ -1,0 +1,29 @@
+{
+  "Kkw/WE50-28": {
+    "name": "一緒に過ごす夏 クド",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6000,
+    "cost": 1,
+    "trait": ["Anniversary", "動物", "科学"],
+    "color": "绿色",
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "effect": "【永】 このカードは相手の効果に選ばれない。<br/>【永】 他のあなたの《科学》のキャラすべてに、ソウルを＋1。",
+    "all_cards": [
+      {
+        "id": "Kkw/WE50-28",
+        "rarity": "N"
+      },
+      {
+        "id": "Kkw/WE50-28PRR",
+        "rarity": "PRR"
+      },
+      {
+        "id": "Kkw/WE50-28SP",
+        "rarity": "SP"
+      }
+    ]
+  }
+}
