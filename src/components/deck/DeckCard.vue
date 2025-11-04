@@ -25,12 +25,10 @@
           <template #error>
             <v-img src="/placehold.webp" aspect-ratio="1" cover />
           </template>
+
           <div :class="{ 'title-background': !isEditing, 'full-mask': isEditing }"></div>
           <div v-if="isEditing" class="editing-text">编辑中</div>
-          <v-card-text
-            class="position-relative text-white text-h6 text-truncate"
-            style="z-index: 1"
-          >
+          <v-card-text class="deck-title" style="z-index: 1">
             {{ deck.name }}
           </v-card-text>
         </v-img>
@@ -39,12 +37,17 @@
       <v-scale-transition>
         <div v-show="(isHovering || isTouch) && imageUrl" class="delete-btn-container">
           <v-btn
-            icon="mdi-trash-can-outline"
-            size="large"
-            variant="text"
-            color="pink-accent-3"
+            icon
+            :variant="isTouch ? 'text' : 'tonal'"
+            :size="smAndDown ? 'x-small' : 'small'"
+            class="delete-btn"
+            color="black"
             @click.prevent="handleDeleteDeck"
-          ></v-btn>
+          >
+            <v-icon color="red-accent-4" style="font-size: clamp(16px, 2vw, 24px)">
+              mdi-trash-can-outline
+            </v-icon>
+          </v-btn>
         </div>
       </v-scale-transition>
 
@@ -69,6 +72,7 @@
 
 <script setup>
 import { computed, ref } from 'vue'
+import { useDisplay } from 'vuetify'
 import { useCardImage } from '@/composables/useCardImage'
 import { useDeckStore } from '@/stores/deck'
 import { useDevice } from '@/composables/useDevice'
@@ -92,6 +96,7 @@ const props = defineProps({
 
 const deckStore = useDeckStore()
 const { isTouch } = useDevice()
+const { smAndDown } = useDisplay()
 const uiStore = useUIStore()
 const { triggerSnackbar } = useSnackbar()
 
@@ -148,9 +153,18 @@ const confirmDeleteDeck = async () => {
 
 .delete-btn-container {
   position: absolute;
-  bottom: 8px;
-  right: 8px;
+  top: 2px;
+  right: 2px;
   z-index: 2;
+}
+
+.deck-title {
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: clamp(0.6rem, 1vw, 1.1rem) !important;
+  line-height: 1.3;
 }
 
 .title-background {
@@ -179,9 +193,33 @@ const confirmDeleteDeck = async () => {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
-  font-size: 1.5rem; /* text-h5 */
-  color: white;
+  font-size: clamp(1rem, 3vw, 1.5rem);
   font-weight: bold;
   white-space: nowrap;
+  background: linear-gradient(
+    90deg,
+    #ffb3ba,
+    #ffdfba,
+    #ffffba,
+    #baffc9,
+    #bae1ff,
+    #d4baff,
+    #ffb3f0,
+    #ffb3ba
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow 3s linear infinite;
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
 }
 </style>

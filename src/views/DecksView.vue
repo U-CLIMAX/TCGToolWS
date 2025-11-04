@@ -16,10 +16,10 @@
         </v-col>
       </v-row>
       <v-row class="ma-0 pt-3">
-        <v-col v-if="localDeck && initialLoadingComplete" cols="6" sm="4" md="3">
+        <v-col v-if="localDeck && initialLoadingComplete" cols="4" sm="2">
           <DeckCard :deck="localDeck" deckKey="local" :is-editing="true" />
         </v-col>
-        <v-col v-for="(deck, key) in decodedDecks" :key="key" cols="6" sm="4" md="3">
+        <v-col v-for="(deck, key) in decodedDecks" :key="key" cols="4" sm="2">
           <DeckCard :deck="deck" :deckKey="key" :is-editing="key === deckStore.editingDeckKey" />
         </v-col>
       </v-row>
