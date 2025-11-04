@@ -198,7 +198,7 @@ const chunkCount = Math.ceil(gzippedContent.length / CHUNK_SIZE)
 const chunkFiles = []
 
 console.log(
-  `📦 Total size: ${totalSizeMB} MB, splitting into ${chunkCount} chunks of ~256 KB...`
+  `📦 Total size: ${totalSizeMB} MB, splitting into ${chunkCount} chunks of ~512 KB...`
 )
 
 for (let i = 0; i < chunkCount; i++) {

@@ -107,14 +107,8 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
         const buffers = await Promise.all(responses.map((res) => res.arrayBuffer()))
 
         // Concatenate buffers
-        const totalLength = buffers.reduce((acc, buffer) => acc + buffer.byteLength, 0)
-        const combined = new Uint8Array(totalLength)
-        let offset = 0
-        for (const buffer of buffers) {
-          combined.set(new Uint8Array(buffer), offset)
-          offset += buffer.byteLength
-        }
-        compressedBuffer = combined.buffer
+        const blob = new Blob(buffers)
+        compressedBuffer = await blob.arrayBuffer()
       } else {
         console.log(`📥 Fetching card database from remote: ${fileName}`)
         const response = await fetch(`/${fileName}`)
