@@ -1,25 +1,56 @@
 <template>
   <div class="fill-height d-flex overflow-y-auto themed-scrollbar">
     <v-container class="h-100 pa-0">
-      <v-row justify="center" class="ma-0 pt-3">
-        <v-col cols="12" sm="8" md="6">
+      <div class="d-flex justify-center pt-3 px-3">
+        <v-sheet
+          class="search-container"
+          :class="{ 'glass-sheet': hasBackgroundImage && !transparent }"
+          rounded="lg"
+          elevation="2"
+        >
           <v-text-field
-            v-model="deckCode"
-            label="输入卡组代码"
-            variant="solo"
+            v-model="deckNameSearchTerm"
+            label="搜索卡组名称"
+            variant="solo-filled"
             density="compact"
             append-inner-icon="mdi-magnify"
             hide-details
-            @keydown.enter="navigateToSharedDeck"
-            @click:append-inner="navigateToSharedDeck"
+            flat
+            class="mb-3"
           />
-        </v-col>
-      </v-row>
+          <v-btn block variant="tonal" prepend-icon="mdi-import" @click="showDeckCodeDialog = true">
+            通过卡组代码查看
+          </v-btn>
+        </v-sheet>
+      </div>
+
+      <v-dialog v-model="showDeckCodeDialog" max-width="500px">
+        <v-card>
+          <v-card-title>输入卡组代码</v-card-title>
+          <v-card-text>
+            <v-text-field
+              v-model="deckCode"
+              label="卡组代码"
+              variant="outlined"
+              density="compact"
+              hide-details
+              autofocus
+              @keydown.enter="navigateToSharedDeck"
+            />
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer />
+            <v-btn variant="text" @click="showDeckCodeDialog = false">取消</v-btn>
+            <v-btn color="primary" variant="flat" @click="navigateToSharedDeck">确认</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+
       <v-row class="ma-0 pt-3">
         <v-col v-if="localDeck && initialLoadingComplete" cols="4" sm="2">
           <DeckCard :deck="localDeck" deckKey="local" :is-editing="true" />
         </v-col>
-        <v-col v-for="(deck, key) in decodedDecks" :key="key" cols="4" sm="2">
+        <v-col v-for="(deck, key) in filteredDecks" :key="key" cols="4" sm="2">
           <DeckCard :deck="deck" :deckKey="key" :is-editing="key === deckStore.editingDeckKey" />
         </v-col>
       </v-row>
@@ -43,8 +74,23 @@ const uiStore = useUIStore()
 const { triggerSnackbar } = useSnackbar()
 
 const deckCode = ref('')
+const deckNameSearchTerm = ref('')
 const decodedDecks = ref({})
 const initialLoadingComplete = ref(false)
+const showDeckCodeDialog = ref(false)
+const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
+
+const filteredDecks = computed(() => {
+  const searchTerm = deckNameSearchTerm.value.toLowerCase()
+  if (!searchTerm) {
+    return decodedDecks.value
+  }
+  return Object.fromEntries(
+    Object.entries(decodedDecks.value).filter(([, deck]) =>
+      deck.name.toLowerCase().includes(searchTerm)
+    )
+  )
+})
 
 const navigateToSharedDeck = () => {
   const code = deckCode.value.trim()
@@ -53,6 +99,8 @@ const navigateToSharedDeck = () => {
       name: 'ShareDeckDetail',
       params: { key: code },
     })
+    showDeckCodeDialog.value = false
+    deckCode.value = ''
   }
 }
 
@@ -85,7 +133,6 @@ onMounted(async () => {
 
   try {
     await deckStore.fetchDecks()
-    await loadDecodedDecks()
   } catch (error) {
     triggerSnackbar(error.message, 'error')
   } finally {
@@ -103,4 +150,10 @@ watch(
 )
 </script>
 
-<style scoped></style>
+<style scoped>
+.search-container {
+  width: 100%;
+  max-width: 600px;
+  padding: 16px;
+}
+</style>
