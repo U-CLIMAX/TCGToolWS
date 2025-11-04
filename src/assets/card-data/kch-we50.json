@@ -1,0 +1,98 @@
+{
+  "Kch/WE50-06": {
+    "name": "最高のクリスマス 西森 柚咲",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["Anniversary", "能力者", "生徒会"],
+    "color": "黄色",
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "effect": "【永】 このカードはサイドアタックできない。<br/>【自】［手札を1枚控え室に置く］ このカードが舞台から控え室に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の山札を上から4枚まで見て、レベル1以上のカードを1枚まで選んで相手に見せ、手札に加え、残りのカードを控え室に置く。（CXのレベルは0として扱う）",
+    "all_cards": [
+      {
+        "id": "Kch/WE50-06",
+        "rarity": "N"
+      },
+      {
+        "id": "Kch/WE50-06PRR",
+        "rarity": "PRR"
+      }
+    ]
+  },
+  "Kch/WE50-22": {
+    "name": "眠りへ誘う少女達 友利 奈緒＆乙坂 歩未",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["Anniversary", "能力者", "生徒会"],
+    "color": "绿色",
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "effect": "【永】 他のあなたの、《Anniversary》か《能力者》のキャラすべてに、パワーを＋500。<br/>【自】［手札のCXを1枚控え室に置く］ あなたのCXがトリガーした時、あなたはコストを払ってよい。そうしたら、あなたは自分の山札を上から2枚まで見て、カードを1枚まで選び、手札に加え、残りのカードを控え室に置く。",
+    "all_cards": [
+      {
+        "id": "Kch/WE50-22",
+        "rarity": "N"
+      },
+      {
+        "id": "Kch/WE50-22PRR",
+        "rarity": "PRR"
+      }
+    ]
+  },
+  "Kch/WE50-29": {
+    "name": "最高のクリスマス 友利 奈緒",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 3,
+    "power": 8000,
+    "cost": 2,
+    "trait": ["Anniversary", "能力者", "生徒会"],
+    "color": "绿色",
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "effect": "【永】 あなたの、《Anniversary》か《能力者》のキャラが4枚以上なら、あなたの手札のこのカードのレベルを－1。<br/>【自】 このカードが手札から舞台に置かれた時、次の2つの効果のうちあなたが選んだ1つを行う。『あなたは自分の山札を上から3枚まで見て、カードを1枚まで選び、手札に加え、残りのカードを控え室に置く。』『あなたは自分のクロックの上から1枚を、控え室に置いてよい。』<br/>【自】 このカードがアタックした時、他のあなたの、《Anniversary》か《能力者》のキャラがいるなら、そのターン中、このカードのパワーを＋3000。",
+    "all_cards": [
+      {
+        "id": "Kch/WE50-29",
+        "rarity": "N"
+      },
+      {
+        "id": "Kch/WE50-29PRR",
+        "rarity": "PRR"
+      }
+    ]
+  },
+  "Kch/WE50-52": {
+    "name": "これからの記録 友利 奈緒",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Anniversary", "能力者", "生徒会"],
+    "color": "蓝色",
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "effect": "【自】［手札を1枚控え室に置く］ このカードが手札から舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の控え室のレベルＸ以下の、《Anniversary》か《能力者》のキャラを1枚選び、手札に戻す。Ｘはあなたの控え室の「撮りたかった景色 友利 奈緒」の枚数に等しい。",
+    "all_cards": [
+      {
+        "id": "Kch/WE50-52",
+        "rarity": "N"
+      },
+      {
+        "id": "Kch/WE50-52PRR",
+        "rarity": "PRR"
+      },
+      {
+        "id": "Kch/WE50-52SP",
+        "rarity": "SP"
+      }
+    ]
+  }
+}

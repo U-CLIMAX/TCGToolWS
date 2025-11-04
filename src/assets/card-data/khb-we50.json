@@ -1,0 +1,98 @@
+{
+  "Khb/WE50-32": {
+    "name": "Extreme Flag 茅森 月歌＆朝倉 可憐",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["Anniversary", "セラフ", "第31A部隊"],
+    "color": "红色",
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "effect": "【永】 他のあなたの「黎明のエモーショナル・ソウル 茅森 月歌」すべてに、パワーを＋1500し、次の能力を与える。『【永】 このカードは相手の効果に選ばれない。』<br/>【自】［手札の、《Anniversary》か《セラフ》のキャラを1枚控え室に置く］ このカードが手札から舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の山札を見て「HEAVEN BURNS RED 茅森 月歌」か「黎明のエモーショナル・ソウル 茅森 月歌」を1枚まで選んで相手に見せ、手札に加え、その山札をシャッフルする。",
+    "all_cards": [
+      {
+        "id": "Khb/WE50-32",
+        "rarity": "N"
+      },
+      {
+        "id": "Khb/WE50-32PRR",
+        "rarity": "PRR"
+      }
+    ]
+  },
+  "Khb/WE50-35": {
+    "name": "あたしの伝説はこれから始まる 茅森 月歌",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Anniversary", "セラフ", "第31A部隊"],
+    "color": "红色",
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "effect": "【自】 このカードが手札から舞台に置かれた時、あなたは自分の手札を1枚選び、ストック置場に置いてよい。<br/>【自】［(1)］ このカードがアタックした時、あなたはコストを払ってよい。そうしたら、そのアタック中、あなたはトリガーステップにトリガーチェックを2回行う。",
+    "all_cards": [
+      {
+        "id": "Khb/WE50-35",
+        "rarity": "N"
+      },
+      {
+        "id": "Khb/WE50-35PRR",
+        "rarity": "PRR"
+      },
+      {
+        "id": "Khb/WE50-35SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "Khb/WE50-42": {
+    "name": "Extreme Flag 逢川 めぐみ＆國見 タマ",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6500,
+    "cost": 2,
+    "trait": ["Anniversary", "セラフ", "第31A部隊"],
+    "color": "红色",
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "effect": "【永】 他のあなたの後列の、《Anniversary》か《セラフ》のキャラ1枚につき、このカードのパワーを＋2500。",
+    "all_cards": [
+      {
+        "id": "Khb/WE50-42",
+        "rarity": "N"
+      },
+      {
+        "id": "Khb/WE50-42PRR",
+        "rarity": "PRR"
+      }
+    ]
+  },
+  "Khb/WE50-44": {
+    "name": "Extreme Flag 和泉 ユキ＆東城 つかさ",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 3,
+    "power": 8500,
+    "cost": 2,
+    "trait": ["Anniversary", "セラフ", "第31A部隊"],
+    "color": "红色",
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "effect": "【永】 あなたの、《Anniversary》か《セラフ》のキャラが4枚以上なら、あなたの手札のこのカードのレベルを－1。<br/>【永】 相手の後列のキャラ1枚につき、このカードのパワーを＋1000。<br/>【自】 このカードが手札から舞台に置かれた時、あなたは自分のクロックの上から1枚を、控え室に置いてよい。",
+    "all_cards": [
+      {
+        "id": "Khb/WE50-44",
+        "rarity": "N"
+      },
+      {
+        "id": "Khb/WE50-44PRR",
+        "rarity": "PRR"
+      }
+    ]
+  }
+}

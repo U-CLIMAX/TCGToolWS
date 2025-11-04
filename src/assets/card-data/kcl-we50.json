@@ -1,0 +1,98 @@
+{
+  "Kcl/WE50-01": {
+    "name": "未来へと続く坂道 渚",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Anniversary", "演劇", "だんご"],
+    "color": "黄色",
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "effect": "【起】 集中 ［(1) このカードを【レスト】する］ あなたは自分の山札の上から4枚をめくり、控え室に置く。それらのカードのトリガーアイコンが<img src=\"/effect-icons/choice.webp\"/>のCX1枚につき、次の行動を行う。『あなたは自分の山札を上から4枚まで見て、カードを1枚まで選び、手札に加え、残りのカードを控え室に置く。』",
+    "all_cards": [
+      {
+        "id": "Kcl/WE50-01",
+        "rarity": "N"
+      },
+      {
+        "id": "Kcl/WE50-01PRR",
+        "rarity": "PRR"
+      },
+      {
+        "id": "Kcl/WE50-01SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "Kcl/WE50-25": {
+    "name": "かなりの行動派 風子",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["Anniversary", "ヒトデ"],
+    "color": "绿色",
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "effect": "【自】 このカードが舞台から控え室に置かれた時、あなたは自分の山札を上から3枚まで見て、CXを1枚まで選んで相手に見せ、手札に加え、残りのカードを控え室に置く。手札に加えたなら、あなたは自分の手札を1枚選び、控え室に置く。",
+    "all_cards": [
+      {
+        "id": "Kcl/WE50-25",
+        "rarity": "N"
+      },
+      {
+        "id": "Kcl/WE50-25PRR",
+        "rarity": "PRR"
+      }
+    ]
+  },
+  "Kcl/WE50-51": {
+    "name": "春に集う少女達",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Anniversary"],
+    "color": "蓝色",
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "effect": "【永】 すべての領域にあるこのカードは《本》と《ヒトデ》と《演劇》と《音楽》と《双子》と《生徒会》と《だんご》と《スポーツ》と《委員長》を得る。<br/>【永】 あなたのターン中、他のあなたのキャラが3枚以上なら、このカードのパワーを＋2000。<br/>【自】【CXコンボ】 このカードがアタックした時、CX置場に「新たな季節の始まり」があり、他のあなたのキャラが3枚以上なら、あなたは自分の山札の上から2枚を、控え室に置き、自分の控え室のレベルＸ以下のキャラを1枚まで選び、手札に戻す。Ｘはこの効果で控え室に置かれたカードのレベルの合計に等しい。（CXのレベルは0として扱う）",
+    "all_cards": [
+      {
+        "id": "Kcl/WE50-51",
+        "rarity": "N"
+      },
+      {
+        "id": "Kcl/WE50-51PRR",
+        "rarity": "PRR"
+      }
+    ]
+  },
+  "Kcl/WE50-59": {
+    "name": "新たな季節の始まり",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "trigger_soul_count": 1,
+    "effect": "【永】 あなたのキャラすべてに、パワーを＋1000し、ソウルを＋1。<br/>（<img src=\"/effect-icons/gate.webp\"/>：このカードがトリガーした時、あなたは自分の控え室のCXを1枚選び、手札に戻してよい）",
+    "all_cards": [
+      {
+        "id": "Kcl/WE50-59",
+        "rarity": "N"
+      },
+      {
+        "id": "Kcl/WE50-59PRR",
+        "rarity": "PRR"
+      }
+    ]
+  }
+}

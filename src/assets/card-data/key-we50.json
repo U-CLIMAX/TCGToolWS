@@ -1,0 +1,164 @@
+{
+  "Key/WE50-20": {
+    "name": "ミステリアスな少女 ミア",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["Anniversary", "ルーパーズ"],
+    "color": "绿色",
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "effect": "【自】 あなたがこのカードの『助太刀』を使った時、相手のCX置場にCXがあるなら、あなたは自分のバトル中の、《Anniversary》か《ルーパーズ》のキャラを1枚選び、そのターン中、パワーを＋2000。<br/>【起】【カウンター】 助太刀2500 レベル2 ［(1) 手札のこのカードを控え室に置く］ （あなたは自分のフロントアタックされているキャラを1枚選び、そのターン中、パワーを＋2500）",
+    "all_cards": [
+      {
+        "id": "Key/WE50-20",
+        "rarity": "N"
+      },
+      {
+        "id": "Key/WE50-20PRR",
+        "rarity": "PRR"
+      },
+      {
+        "id": "Key/WE50-20SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "Key/WE50-21": {
+    "name": "自称・学習型コンパニオンAI LUNAR-Q",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 2,
+    "power": 5500,
+    "cost": 1,
+    "trait": ["Anniversary", "VR"],
+    "color": "绿色",
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "effect": "【自】 このカードが手札から舞台に置かれた時、あなたは自分のキャラを2枚まで選び、そのターン中、次の能力を与える。『【自】 このカードが【リバース】した時、このカードのバトル相手のレベルが相手のレベルより高いなら、あなたは相手のクロックの上から1枚を、控え室に置いてよい。そうしたら、あなたはそのキャラをクロック置場に置く。』",
+    "all_cards": [
+      {
+        "id": "Key/WE50-21",
+        "rarity": "N"
+      },
+      {
+        "id": "Key/WE50-21PRR",
+        "rarity": "PRR"
+      },
+      {
+        "id": "Key/WE50-21SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "Key/WE50-30": {
+    "name": "温かい歌声 シオナ",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Anniversary", "音楽"],
+    "color": "绿色",
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "effect": "【自】 このカードが手札から舞台に置かれた時、次の相手のターンの終わりまで、このカードのパワーを＋4500し、このカードは次の能力を得る。『【永】 このカードのバトル中、すべてのプレイヤーは『助太刀』を手札からプレイできない。』<br/>【自】［手札のキャラを2枚控え室に置く］ このカードのバトル相手が【リバース】した時、あなたはコストを払ってよい。そうしたら、あなたはそのバトル相手をクロック置場に置く。",
+    "all_cards": [
+      {
+        "id": "Key/WE50-30",
+        "rarity": "N"
+      },
+      {
+        "id": "Key/WE50-30PRR",
+        "rarity": "PRR"
+      },
+      {
+        "id": "Key/WE50-30SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "Key/WE50-39": {
+    "name": "好奇心旺盛な自律人形 灰桜",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Anniversary", "自律人形"],
+    "color": "红色",
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "effect": "【自】［手札を1枚控え室に置く］ このカードが手札から舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の山札を見てレベル0以下のキャラを1枚まで選び、舞台の好きな枠に置き、その山札をシャッフルする。<br/>【自】 このカードが【リバース】した時、このカードのバトル相手のレベルが1以下なら、あなたはそのキャラを【リバース】してよい。",
+    "all_cards": [
+      {
+        "id": "Key/WE50-39",
+        "rarity": "N"
+      },
+      {
+        "id": "Key/WE50-39PRR",
+        "rarity": "PRR"
+      },
+      {
+        "id": "Key/WE50-39SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "Key/WE50-46": {
+    "name": "コンパニオンロボット ゆめみ",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Anniversary", "星"],
+    "color": "蓝色",
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "effect": "【自】 このカードがアタックした時、あなたは他の自分の、《Anniversary》か《星》のキャラを1枚選び、次の相手のターンの終わりまで、パワーを＋1500し、『【自】 アンコール ［手札のキャラを1枚控え室に置く］』を与える。",
+    "all_cards": [
+      {
+        "id": "Key/WE50-46",
+        "rarity": "N"
+      },
+      {
+        "id": "Key/WE50-46PRR",
+        "rarity": "PRR"
+      },
+      {
+        "id": "Key/WE50-46SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "Key/WE50-56": {
+    "name": "人間になりたい少女型アンドロイド フィリア",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9000,
+    "cost": 2,
+    "trait": ["Anniversary", "アンドロイド"],
+    "color": "蓝色",
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "effect": "【永】 あなたの控え室のCXが2枚以下なら、あなたの手札のこのカードのレベルを－1。<br/>【永】 他のあなたのキャラが3枚以上なら、このカードのパワーを＋1500し、このカードは『【自】 アンコール ［手札の、《Anniversary》か《アンドロイド》のキャラを1枚控え室に置く］』を得る。<br/>【自】 このカードが手札から舞台に置かれた時、あなたは自分の山札を上からＸ枚まで見て、カードを1枚まで選び、手札に加え、残りのカードを控え室に置く。Ｘはあなたの、《Anniversary》か《アンドロイド》のキャラの枚数に等しい。",
+    "all_cards": [
+      {
+        "id": "Key/WE50-56",
+        "rarity": "N"
+      },
+      {
+        "id": "Key/WE50-56PRR",
+        "rarity": "PRR"
+      },
+      {
+        "id": "Key/WE50-56SP",
+        "rarity": "SP"
+      }
+    ]
+  }
+}

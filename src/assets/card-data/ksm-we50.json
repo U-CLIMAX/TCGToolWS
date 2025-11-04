@@ -1,0 +1,401 @@
+{
+  "Ksm/WE50-02": {
+    "name": "むすんだ未来 うみ＆識",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Anniversary", "サマポケ", "時間"],
+    "color": "黄色",
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "effect": "【自】 このカードがアタックした時、あなたは他の自分のキャラを1枚選び、そのターン中、パワーを＋1500。<br/>【自】［(1) あなたの山札の上から1枚をクロック置場に置く］ このカードが舞台から控え室に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の山札を上から2枚まで見て、《Anniversary》か《サマポケ》のキャラを2枚まで選んで相手に見せ、手札に加え、残りのカードを控え室に置く。",
+    "all_cards": [
+      {
+        "id": "Ksm/WE50-02",
+        "rarity": "N"
+      },
+      {
+        "id": "Ksm/WE50-02PRR",
+        "rarity": "PRR"
+      },
+      {
+        "id": "Ksm/WE50-02SSP",
+        "rarity": "SSP"
+      }
+    ]
+  },
+  "Ksm/WE50-061": {
+    "name": "REFLECTION BLUE",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "effect": "【永】 あなたのキャラすべてに、パワーを＋1000し、ソウルを＋1。",
+    "all_cards": [
+      {
+        "id": "Ksm/WE50-061A",
+        "rarity": "AGR"
+      }
+    ]
+  },
+  "Ksm/WE50-09": {
+    "name": "夏の月 識",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Anniversary", "サマポケ", "鬼"],
+    "color": "黄色",
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "effect": "【永】 他のあなたの、《Anniversary》か《サマポケ》のキャラが2枚以上なら、このカードのパワーを＋1000。<br/>【自】【CXコンボ】［手札を1枚控え室に置く］ このカードがアタックした時、CX置場に「水面に映る鬼」があるなら、あなたはコストを払ってよい。そうしたら、次の行動を2回行う。『あなたは自分の山札を上から3枚まで見て、《Anniversary》か《サマポケ》のキャラを1枚まで選んで相手に見せ、手札に加え、残りのカードを控え室に置く。』",
+    "all_cards": [
+      {
+        "id": "Ksm/WE50-09",
+        "rarity": "N"
+      },
+      {
+        "id": "Ksm/WE50-09PRR",
+        "rarity": "PRR"
+      },
+      {
+        "id": "Ksm/WE50-09SSP",
+        "rarity": "SSP"
+      }
+    ]
+  },
+  "Ksm/WE50-16": {
+    "name": "水面に映る鬼",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "trigger_soul_count": 2,
+    "effect": "【自】 このカードが手札からCX置場に置かれた時、あなたは自分の控え室のレベル1以下のキャラを1枚まで選び、ストック置場に置き、自分のキャラすべてに、そのターン中、ソウルを＋1。",
+    "all_cards": [
+      {
+        "id": "Ksm/WE50-16",
+        "rarity": "N"
+      },
+      {
+        "id": "Ksm/WE50-16PRR",
+        "rarity": "PRR"
+      }
+    ]
+  },
+  "Ksm/WE50-18": {
+    "name": "視線を奪って 静久",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Anniversary", "サマポケ", "おっぱい"],
+    "color": "绿色",
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "effect": "【永】 応援 あなたのターン中、このカードの前のあなたのレベル1以上のキャラすべてに、パワーを＋500。<br/>【起】 集中 ［(1) このカードを【レスト】する］ あなたは自分の山札の上から4枚をめくり、控え室に置く。それらのカードのCX1枚につき、あなたは自分の控え室のキャラを1枚まで選び、手札に戻す。",
+    "all_cards": [
+      {
+        "id": "Ksm/WE50-18",
+        "rarity": "N"
+      },
+      {
+        "id": "Ksm/WE50-18PRR",
+        "rarity": "PRR"
+      }
+    ]
+  },
+  "Ksm/WE50-19": {
+    "name": "猫耳メイド 鴎",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Anniversary", "サマポケ", "海賊"],
+    "color": "绿色",
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "effect": "【自】 このカードが手札から舞台に置かれた時、そのターン中、このカードのパワーを＋1500。<br/>【自】 このカードがアタックした時、CX置場にトリガーアイコンが<img src=\"/effect-icons/treasure.webp\"/>のCXがあるなら、あなたは自分の山札の上から1枚を公開する。そのカードのレベルが1以上なら、そのアタック中、あなたはトリガーステップにトリガーチェックを2回行う。（CXのレベルは0として扱う。公開したカードは元に戻す）",
+    "all_cards": [
+      {
+        "id": "Ksm/WE50-19",
+        "rarity": "N"
+      },
+      {
+        "id": "Ksm/WE50-19PRR",
+        "rarity": "PRR"
+      }
+    ]
+  },
+  "Ksm/WE50-24": {
+    "name": "Summer Pockets 5th 鴎",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Anniversary", "サマポケ", "海賊"],
+    "color": "绿色",
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "effect": "【起】［このカードを控え室に置く］ あなたのレベルが3以上なら、あなたは自分の手札の「“夏の思い出”鴎」を1枚まで選び、このカードがいた枠に置く。<br/>【起】 共鳴 ［(1) 手札の「“夏の思い出”鴎」を1枚公開し、このカードを【レスト】する］ あなたは自分の山札を上から3枚まで見て、《Anniversary》か《サマポケ》のキャラを1枚まで選んで相手に見せ、手札に加え、残りのカードを控え室に置く。",
+    "all_cards": [
+      {
+        "id": "Ksm/WE50-24",
+        "rarity": "N"
+      },
+      {
+        "id": "Ksm/WE50-24PRR",
+        "rarity": "PRR"
+      }
+    ]
+  },
+  "Ksm/WE50-33": {
+    "name": "縁側の幸せ しろは＆七海",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Anniversary", "サマポケ", "時間"],
+    "color": "红色",
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "effect": "【起】［このカードを控え室に置く］ あなたのレベルが3以上なら、あなたは自分の手札の「“夏の思い出”七海」を1枚まで選び、このカードがいた枠に置く。<br/>【起】 集中 ［(1) このカードを【レスト】する］ あなたは自分の山札の上から4枚をめくり、控え室に置く。それらのカードのCX1枚につき、あなたは自分の山札を見て《Anniversary》か《サマポケ》のキャラを1枚まで選んで相手に見せ、手札に加え、その山札をシャッフルする。",
+    "all_cards": [
+      {
+        "id": "Ksm/WE50-33",
+        "rarity": "N"
+      },
+      {
+        "id": "Ksm/WE50-33PRR",
+        "rarity": "PRR"
+      }
+    ]
+  },
+  "Ksm/WE50-34": {
+    "name": "Water Battle 美希",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Anniversary", "サマポケ", "武器"],
+    "color": "红色",
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "effect": "【永】 このカードはサイドアタックできない。あなたのキャラすべてが《Anniversary》か《サマポケ》なら、このカードのパワーを＋2000。<br/>【自】 相手のアタックフェイズの始めに、あなたのキャラすべてが《Anniversary》か《サマポケ》なら、あなたは自分の山札の上から1枚を、控え室に置いてよい。そのカードがレベル2以下のキャラなら、そのターン中、このカードは次の能力を得る。『【自】 このカードがフロントアタックされた時、あなたはこのカードを手札に戻してよい。』",
+    "all_cards": [
+      {
+        "id": "Ksm/WE50-34",
+        "rarity": "N"
+      },
+      {
+        "id": "Ksm/WE50-34PRR",
+        "rarity": "PRR"
+      }
+    ]
+  },
+  "Ksm/WE50-37": {
+    "name": "短夜 しろは",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Anniversary", "サマポケ", "時間"],
+    "color": "红色",
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "effect": "【自】［手札を1枚控え室に置く］ このカードがアタックした時、あなたはコストを払ってよい。そうしたら、あなたは自分の山札を上から4枚まで見て、《Anniversary》か《サマポケ》のキャラを1枚まで選んで相手に見せ、手札に加え、残りのカードを控え室に置く。",
+    "all_cards": [
+      {
+        "id": "Ksm/WE50-37",
+        "rarity": "N"
+      },
+      {
+        "id": "Ksm/WE50-37PRR",
+        "rarity": "PRR"
+      },
+      {
+        "id": "Ksm/WE50-37SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "Ksm/WE50-38": {
+    "name": "昼の花火 うみ",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Anniversary", "サマポケ", "時間"],
+    "color": "红色",
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "effect": "【自】 このカードが手札から舞台に置かれた時、他のあなたの、《Anniversary》か《サマポケ》のキャラがいるなら、そのターン中、このカードのパワーを＋2000。<br/>【自】［手札を1枚クロック置場に置く］ このカードが舞台から控え室に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の山札を見て《Anniversary》か《サマポケ》のキャラを1枚まで選んで相手に見せ、手札に加え、その山札をシャッフルする。",
+    "all_cards": [
+      {
+        "id": "Ksm/WE50-38",
+        "rarity": "N"
+      },
+      {
+        "id": "Ksm/WE50-38PRR",
+        "rarity": "PRR"
+      }
+    ]
+  },
+  "Ksm/WE50-40": {
+    "name": "Summer Pockets 5th しろは＆うみ",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["Anniversary", "サマポケ", "時間"],
+    "color": "红色",
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "effect": "【永】 記憶 あなたのターン中、あなたの思い出置場にカードがあるなら、このカードのパワーを＋1500。<br/>【自】［(1)］ このカードが手札から舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の控え室のコスト0以下の《時間》のキャラを1枚選び、舞台の好きな枠に置き、ターンの終わりに、そのキャラを思い出にする。",
+    "all_cards": [
+      {
+        "id": "Ksm/WE50-40",
+        "rarity": "N"
+      },
+      {
+        "id": "Ksm/WE50-40PRR",
+        "rarity": "PRR"
+      }
+    ]
+  },
+  "Ksm/WE50-41": {
+    "name": "海を見つめる少女 しろは",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 2,
+    "power": 5000,
+    "cost": 1,
+    "trait": ["Anniversary", "サマポケ", "時間"],
+    "color": "红色",
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "effect": "【永】 他のあなたの「夏の一滴 しろは」すべてに、次の能力を与える。『【自】 このカードがアタックした時、あなたは自分の山札を上から1枚見て、山札の上か下に置き、そのターン中、このカードのパワーを＋1000。』<br/>【永】 応援 このカードの前のあなたのキャラすべてに、パワーを＋Ｘ。Ｘはそのキャラのレベル×500に等しい。",
+    "all_cards": [
+      {
+        "id": "Ksm/WE50-41",
+        "rarity": "N"
+      },
+      {
+        "id": "Ksm/WE50-41PRR",
+        "rarity": "PRR"
+      }
+    ]
+  },
+  "Ksm/WE50-49": {
+    "name": "Summer Pockets 5th 紬",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "trait": ["Anniversary", "サマポケ", "ヌイグルミ"],
+    "color": "蓝色",
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "effect": "【永】 他のあなたの、《Anniversary》か《サマポケ》のキャラすべてに、パワーを＋500。<br/>【永】 記憶 あなたの思い出置場に「蔵で見つけた写真」があるなら、このカードは『【永】 応援 このカードの前のあなたのキャラすべてに、パワーを＋500。』を得る。",
+    "all_cards": [
+      {
+        "id": "Ksm/WE50-49",
+        "rarity": "N"
+      },
+      {
+        "id": "Ksm/WE50-49PRR",
+        "rarity": "PRR"
+      }
+    ]
+  },
+  "Ksm/WE50-55": {
+    "name": "Summer Pockets 5th 蒼",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6500,
+    "cost": 2,
+    "trait": ["Anniversary", "サマポケ", "双子"],
+    "color": "蓝色",
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "effect": "【永】 他のあなたの、《Anniversary》か《サマポケ》のキャラ1枚につき、このカードのパワーを＋1000。<br/>【自】 このカードがダイレクトアタックした時、あなたは自分の控え室の、《Anniversary》か《サマポケ》のキャラを1枚選び、ストック置場に置いてよい。",
+    "all_cards": [
+      {
+        "id": "Ksm/WE50-55",
+        "rarity": "N"
+      },
+      {
+        "id": "Ksm/WE50-55PRR",
+        "rarity": "PRR"
+      }
+    ]
+  },
+  "Ksm/WE50-57": {
+    "name": "海の家の看板娘 紬＆静久",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Anniversary", "サマポケ", "ヌイグルミ"],
+    "color": "蓝色",
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "effect": "【自】 このカードが手札から舞台に置かれた時、あなたは自分のクロックの上から1枚を、控え室に置いてよい。<br/>【自】【CXコンボ】［(1) 手札を1枚控え室に置く］ このカードがアタックした時、CX置場に「絶景ビーチ」があり、他のあなたの、《Anniversary》か《サマポケ》のキャラが2枚以上なら、あなたはコストを払ってよい。そうしたら、相手に3ダメージを与える。（ダメージキャンセルは発生する）",
+    "all_cards": [
+      {
+        "id": "Ksm/WE50-57",
+        "rarity": "N"
+      },
+      {
+        "id": "Ksm/WE50-57PRR",
+        "rarity": "PRR"
+      }
+    ]
+  },
+  "Ksm/WE50-60": {
+    "name": "絶景ビーチ",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "trigger_soul_count": 1,
+    "effect": "【永】 あなたのキャラすべてに、パワーを＋1000し、ソウルを＋1。<br/>（<img src=\"/effect-icons/gate.webp\"/>：このカードがトリガーした時、あなたは自分の控え室のCXを1枚選び、手札に戻してよい）",
+    "all_cards": [
+      {
+        "id": "Ksm/WE50-60",
+        "rarity": "N"
+      },
+      {
+        "id": "Ksm/WE50-60PRR",
+        "rarity": "PRR"
+      }
+    ]
+  }
+}

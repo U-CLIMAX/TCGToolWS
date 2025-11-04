@@ -1,0 +1,102 @@
+{
+  "Klb/WE50-13": {
+    "name": "黄昏の街を見下ろす鈴と小毬",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Anniversary", "動物", "お菓子"],
+    "color": "黄色",
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "effect": "【自】 このカードが手札から舞台に置かれた時、あなたは自分の手札の自分のレベル以下のレベルのキャラを1枚まで選び、舞台の好きな枠に置き、そのターン中、このカードのパワーを＋3500。<br/>【自】【CXコンボ】 このカードがアタックした時、CX置場に「リトルバスターズ！」があるなら、あなたは相手に1ダメージを与えてよい。（ダメージキャンセルは発生する）",
+    "all_cards": [
+      {
+        "id": "Klb/WE50-13",
+        "rarity": "N"
+      },
+      {
+        "id": "Klb/WE50-13PRR",
+        "rarity": "PRR"
+      },
+      {
+        "id": "Klb/WE50-13SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "Klb/WE50-15": {
+    "name": "リトルバスターズ！",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "effect": "【永】 あなたのキャラすべてに、パワーを＋1000し、ソウルを＋1。<br/>（<img src=\"/effect-icons/choice.webp\"/>：このカードがトリガーした時、あなたは自分の控え室のトリガーアイコンに<img src=\"/effect-icons/soul.webp\"/>があるキャラを1枚選び、手札に戻すかストック置場に置いてよい）",
+    "all_cards": [
+      {
+        "id": "Klb/WE50-15",
+        "rarity": "N"
+      },
+      {
+        "id": "Klb/WE50-15PRR",
+        "rarity": "PRR"
+      },
+      {
+        "id": "Klb/WE50-15SSP",
+        "rarity": "SSP"
+      }
+    ]
+  },
+  "Klb/WE50-26": {
+    "name": "夕焼けの放課後 佳奈多＆クド",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 0,
+    "trait": ["Anniversary", "委員長", "動物"],
+    "color": "绿色",
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "effect": "【自】［手札を1枚控え室に置く］ このカードが手札から舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の控え室のコスト0以下のキャラを1枚選び、舞台の好きな枠に置く。<br/>【自】 このカードがアタックした時、あなたは他の自分の、《Anniversary》か《委員長》のキャラを1枚選び、そのターン中、パワーを＋1000。",
+    "all_cards": [
+      {
+        "id": "Klb/WE50-26",
+        "rarity": "N"
+      },
+      {
+        "id": "Klb/WE50-26PRR",
+        "rarity": "PRR"
+      }
+    ]
+  },
+  "Klb/WE50-36": {
+    "name": "沙耶とあや",
+    "product_name": "プレミアムブースター Key 25th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Anniversary", "武器"],
+    "color": "红色",
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "effect": "【自】 このカードが手札から舞台に置かれた時、あなたは自分の山札を上からＸ枚まで見て、レベル1以上のカードを1枚まで選んで相手に見せ、手札に加え、残りのカードを控え室に置く。手札に加えたなら、あなたは自分の手札を1枚選び、控え室に置く。Ｘはあなたの舞台のキャラの持つ色の合計に等しい。（CXのレベルは0として扱う）",
+    "all_cards": [
+      {
+        "id": "Klb/WE50-36",
+        "rarity": "N"
+      },
+      {
+        "id": "Klb/WE50-36PRR",
+        "rarity": "PRR"
+      }
+    ]
+  }
+}
