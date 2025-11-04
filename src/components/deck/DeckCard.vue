@@ -165,6 +165,7 @@ const confirmDeleteDeck = async () => {
   white-space: nowrap;
   font-size: clamp(0.6rem, 1vw, 1.1rem) !important;
   line-height: 1.3;
+  color: white;
 }
 
 .title-background {
