@@ -6,11 +6,13 @@
     >
       <v-progress-circular
         indeterminate
-        color="blue-accent-1"
+        :color="globalSearchStore.isInitialSetup ? 'blue-accent-1' : 'primary'"
         size="64"
         class="mb-4"
       ></v-progress-circular>
-      <div class="text-h6 text-blue-accent-1">初始化中...</div>
+      <div v-if="globalSearchStore.isInitialSetup" class="text-h6 text-blue-accent-1">
+        初始化中，这可能会需要一点时间...
+      </div>
     </div>
 
     <div v-else class="d-flex flex-column h-100">
