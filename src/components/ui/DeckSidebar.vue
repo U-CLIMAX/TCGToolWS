@@ -29,6 +29,19 @@
             <v-icon start icon="mdi-cards-diamond-outline"></v-icon>
             {{ deckStore.totalCardCount }} / 50
           </v-chip>
+          <v-tooltip text="前往卡组页面" location="top center">
+            <template v-slot:activator="{ props }">
+              <v-btn
+                v-bind="props"
+                :disabled="deckStore.totalCardCount <= 0"
+                icon="mdi-open-in-new"
+                variant="text"
+                color="teal-lighten-1"
+                density="compact"
+                @click="navigateToDeckDetail"
+              ></v-btn>
+            </template>
+          </v-tooltip>
         </div>
         <v-btn
           icon="mdi-content-save-outline"
@@ -366,6 +379,14 @@ const confirmClearAction = () => {
   deckStore.clearDeck()
   deckStore.clearEditingDeck()
   isClearConfirmDialogOpen.value = false
+}
+
+const navigateToDeckDetail = () => {
+  if (deckStore.editingDeckKey) {
+    router.push({ name: 'DeckDetail', params: { key: deckStore.editingDeckKey } })
+  } else if (deckStore.totalCardCount > 0) {
+    router.push({ name: 'DeckDetail', params: { key: 'local' } })
+  }
 }
 
 const handleCreateDeck = async () => {
