@@ -10,7 +10,6 @@ const dbKey = 'card-data'
 
 export const useGlobalSearchStore = defineStore('globalSearch', () => {
   // --- State ---
-  const allCards = ref([]) // 所有卡片資料
   const isReady = ref(false)
   const isLoading = ref(false)
   const error = ref(null)
@@ -76,7 +75,6 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
   // --- Data Loading Logic ---
 
   const setCardData = async (data, source, version) => {
-    allCards.value = data.cards
     productNames.value = data.filterOptions.productNames
     traits.value = data.filterOptions.traits
     rarities.value = data.filterOptions.rarities
@@ -84,7 +82,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     powerRange.value = data.filterOptions.powerRange
     resetFilters()
     await initializeWorker(data.cards, { cacheKey: 'global-search-index', version })
-    console.log(`✅ Successfully loaded ${allCards.value.length} cards from ${source}`)
+    console.log(`✅ Successfully loaded ${data.cards.length} cards from ${source}`)
   }
 
   const fetchAndStoreData = async (manifest) => {
@@ -219,7 +217,6 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
 
   const terminate = () => {
     terminateWorker()
-    allCards.value = []
     isReady.value = false
     searchResults.value = []
     hasActiveFilters.value = false
