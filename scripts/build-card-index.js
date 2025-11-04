@@ -188,24 +188,44 @@ output.version = version
 // 將最終 output 物件轉換為 JSON 字串以供壓縮
 const content = JSON.stringify(output)
 
-// 使用帶 hash 的檔名
-const outputFileName = `all_cards_db.${hash}.bin`
-const outputFilePath = path.join(OUTPUT_DIR, outputFileName)
-
-// 寫入卡片資料檔案 (gzip 壓縮)
+// 進行 gzip 壓縮
 const gzippedContent = zlib.gzipSync(content)
-fs.writeFileSync(outputFilePath, gzippedContent)
-const fileSize = (fs.statSync(outputFilePath).size / 1024 / 1024).toFixed(2)
+const totalSizeMB = (gzippedContent.length / 1024 / 1024).toFixed(2)
 
-console.log(`💾 Index file created: ${outputFilePath}`)
-console.log(`     - File size: ${fileSize} MB`)
+// --- 分片邏輯 ---
+const CHUNK_SIZE = 512 * 1024 // 512 KB
+const chunkCount = Math.ceil(gzippedContent.length / CHUNK_SIZE)
+const chunkFiles = []
+
+console.log(
+  `📦 Total size: ${totalSizeMB} MB, splitting into ${chunkCount} chunks of ~512 KB...`
+)
+
+for (let i = 0; i < chunkCount; i++) {
+  const start = i * CHUNK_SIZE
+  const end = start + CHUNK_SIZE
+  const chunk = gzippedContent.subarray(start, end)
+
+  const chunkFileName = `all_cards_db.${hash}.part${i + 1}.bin`
+  const chunkFilePath = path.join(OUTPUT_DIR, chunkFileName)
+
+  fs.writeFileSync(chunkFilePath, chunk)
+  chunkFiles.push(chunkFileName)
+  console.log(
+    `     - Created chunk ${i + 1}/${chunkCount}: ${chunkFileName} (${(
+      chunk.length / 1024
+    ).toFixed(2)} KB)`
+  )
+}
+console.log('💾 Index chunks created.')
 
 // 建立 manifest 檔案
 const manifest = {
   version,
   hash,
-  fileName: outputFileName,
-  fileSize: `${fileSize} MB`,
+  chunked: true,
+  chunks: chunkFiles,
+  totalSize: `${totalSizeMB} MB`,
   cardCount,
   filterOptions: {
     productCount: filterOptions.productNames.length,
@@ -219,10 +239,10 @@ const manifest = {
 fs.writeFileSync(MANIFEST_FILE, JSON.stringify(manifest, null, 2))
 console.log(`     - Manifest file created: ${MANIFEST_FILE}`)
 
-// 清理舊的帶 hash 的檔案
+// 清理舊的帶 hash 的檔案（包括舊的單體檔案和舊分片）
 const oldFiles = fs
   .readdirSync(OUTPUT_DIR)
-  .filter((f) => f.startsWith('all_cards_db.') && f.endsWith('.bin') && f !== outputFileName)
+  .filter((f) => f.startsWith('all_cards_db.') && f.endsWith('.bin') && !chunkFiles.includes(f))
 
 oldFiles.forEach((oldFile) => {
   const oldFilePath = path.join(OUTPUT_DIR, oldFile)

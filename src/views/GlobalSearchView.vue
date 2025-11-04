@@ -1,7 +1,22 @@
 <template>
   <v-container fluid class="h-100 pa-0">
-    <div v-if="globalSearchStore.isLoading" class="d-flex justify-center align-center h-100">
-      <v-progress-circular indeterminate color="primary" size="64"></v-progress-circular>
+    <div
+      v-if="globalSearchStore.isLoading"
+      class="d-flex flex-column justify-center align-center h-100"
+    >
+      <v-progress-circular
+        indeterminate
+        :color="globalSearchStore.isInitialSetup ? 'blue-accent-1' : 'primary'"
+        size="64"
+        class="mb-4"
+      ></v-progress-circular>
+      <div
+        v-if="globalSearchStore.isInitialSetup"
+        class="text-subtitle-1 text-sm-h6 text-blue-accent-1 text-center text-no-wrap"
+        style="overflow: hidden; text-overflow: ellipsis"
+      >
+        初始化中，这可能会需要一点时间...
+      </div>
     </div>
 
     <div v-else class="d-flex flex-column h-100">

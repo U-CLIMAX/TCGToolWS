@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref, watch } from 'vue'
+import { ref, watch, nextTick } from 'vue'
 import { inflate } from 'pako'
 import { useCardFiltering } from '@/composables/useCardFiltering.js'
 import { openDB, saveData, loadData } from '@/utils/db.js'
@@ -10,8 +10,8 @@ const dbKey = 'card-data'
 
 export const useGlobalSearchStore = defineStore('globalSearch', () => {
   // --- State ---
-  const allCards = ref([]) // 所有卡片資料
   const isReady = ref(false)
+  const isInitialSetup = ref(false)
   const isLoading = ref(false)
   const error = ref(null)
 
@@ -76,7 +76,6 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
   // --- Data Loading Logic ---
 
   const setCardData = async (data, source, version) => {
-    allCards.value = data.cards
     productNames.value = data.filterOptions.productNames
     traits.value = data.filterOptions.traits
     rarities.value = data.filterOptions.rarities
@@ -84,21 +83,41 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     powerRange.value = data.filterOptions.powerRange
     resetFilters()
     await initializeWorker(data.cards, { cacheKey: 'global-search-index', version })
-    console.log(`✅ Successfully loaded ${allCards.value.length} cards from ${source}`)
+    console.log(`✅ Successfully loaded ${data.cards.length} cards from ${source}`)
   }
 
-  const fetchAndStoreData = async (fileName, version) => {
+  const fetchAndStoreData = async (manifest) => {
     isLoading.value = true
     error.value = null
     let db
     try {
-      console.log(`📥 Fetching card database from remote: ${fileName}`)
-      const response = await fetch(`/${fileName}`)
-      if (!response.ok) {
-        throw new Error(`Failed to fetch card database: ${response.statusText}`)
+      const { version, chunked, chunks, fileName } = manifest
+      let compressedBuffer
+
+      if (chunked) {
+        console.log(`📥 Fetching ${chunks.length} card database chunks from remote...`)
+        const responses = await Promise.all(chunks.map((chunkFile) => fetch(`/${chunkFile}`)))
+
+        for (const response of responses) {
+          if (!response.ok) {
+            throw new Error(`Failed to fetch a card database chunk: ${response.statusText}`)
+          }
+        }
+
+        const buffers = await Promise.all(responses.map((res) => res.arrayBuffer()))
+
+        // Concatenate buffers
+        const blob = new Blob(buffers)
+        compressedBuffer = await blob.arrayBuffer()
+      } else {
+        console.log(`📥 Fetching card database from remote: ${fileName}`)
+        const response = await fetch(`/${fileName}`)
+        if (!response.ok) {
+          throw new Error(`Failed to fetch card database: ${response.statusText}`)
+        }
+        compressedBuffer = await response.arrayBuffer()
       }
 
-      const compressedBuffer = await response.arrayBuffer()
       const decompressed = inflate(new Uint8Array(compressedBuffer), { to: 'string' })
       const data = JSON.parse(decompressed)
 
@@ -152,26 +171,35 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
 
       const manifest = await manifestResponse.json()
       const currentVersion = manifest.version
-      const fileName = manifest.fileName
       console.log(`📌 Current version: ${currentVersion}`)
 
       const storedVersion = localStorage.getItem('global_search_index_version')
       console.log(`📌 Local version: ${storedVersion || 'None'}`)
 
+      let loadedFromLocal = false
       if (storedVersion === currentVersion) {
         console.log('✅ Versions match, trying to load from local database...')
         try {
           await loadDataFromLocal(currentVersion)
+          loadedFromLocal = true
           // eslint-disable-next-line no-unused-vars
         } catch (e) {
-          console.log('↪️ Local load failed, fetching from remote...')
-          await fetchAndStoreData(fileName, currentVersion)
+          console.log('↪️ Local load failed, will fetch from remote as a fallback.')
         }
-      } else {
-        console.log(
-          `🔄 Version mismatch (Local: ${storedVersion || 'None'}, Remote: ${currentVersion}), fetching new data...`
-        )
-        await fetchAndStoreData(fileName, currentVersion)
+      }
+
+      if (!loadedFromLocal) {
+        isInitialSetup.value = true
+        await nextTick() // Wait for the DOM to update before performing time-consuming operations
+
+        if (storedVersion !== currentVersion) {
+          console.log(
+            `🔄 Version mismatch (Local: ${
+              storedVersion || 'None'
+            }, Remote: ${currentVersion}), fetching new data...`
+          )
+        }
+        await fetchAndStoreData(manifest)
       }
 
       isReady.value = true
@@ -179,15 +207,16 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     } catch (e) {
       console.error('❌ Initialization failed:', e)
       error.value = e
+      isInitialSetup.value = false
       isReady.value = false
     } finally {
+      isInitialSetup.value = false
       isLoading.value = false
     }
   }
 
   const terminate = () => {
     terminateWorker()
-    allCards.value = []
     isReady.value = false
     searchResults.value = []
     hasActiveFilters.value = false
@@ -197,6 +226,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
   return {
     // State
     isReady,
+    isInitialSetup,
     isLoading,
     error,
     // Filter Options
