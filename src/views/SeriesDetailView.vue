@@ -174,13 +174,14 @@
 </template>
 
 <script setup>
-import { ref, computed, watchEffect, onUnmounted, watch } from 'vue'
+import { ref, computed, watchEffect, onMounted, onUnmounted, watch } from 'vue'
 import { useDisplay } from 'vuetify'
 import { storeToRefs } from 'pinia'
 import { seriesMap } from '@/maps/series-map.js'
 import { useDeckStore } from '@/stores/deck'
 import { useFilterStore } from '@/stores/filter'
 import { useUIStore } from '@/stores/ui'
+import { useRecentStore } from '@/stores/recent'
 import { useInfiniteScrollState } from '@/composables/useInfiniteScrollState.js'
 import CardInfiniteScrollList from '@/components/card/CardInfiniteScrollList.vue'
 import BaseFilterSidebar from '@/components/ui/FilterSidebar.vue'
@@ -202,6 +203,7 @@ const resize = computed(() => {
 const deckStore = useDeckStore()
 const filterStore = useFilterStore()
 const uiStore = useUIStore()
+const recentStore = useRecentStore()
 const headerRef = ref(null)
 const { isCardDeckOpen, isFilterOpen, isTableModeActive, isPerformanceMode } = storeToRefs(uiStore)
 const rawHeaderHeight = ref(0)
@@ -271,6 +273,10 @@ watch([() => filterStore.filteredCards, isTableModeActive], () => {
   if (listRef.value) {
     listRef.value.reset()
   }
+})
+
+onMounted(() => {
+  recentStore.addSeries(props.seriesId)
 })
 
 onUnmounted(() => {

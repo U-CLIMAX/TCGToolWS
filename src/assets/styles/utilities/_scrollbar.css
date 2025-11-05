@@ -6,6 +6,7 @@
 .themed-scrollbar::-webkit-scrollbar,
 .themed-scrollbar textarea::-webkit-scrollbar {
   width: var(--sb-size);
+  height: var(--sb-size);
 }
 
 .themed-scrollbar::-webkit-scrollbar-track,

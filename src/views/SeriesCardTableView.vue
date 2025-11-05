@@ -7,6 +7,23 @@
       empty-text=""
       class="h-100 themed-scrollbar"
     >
+      <v-container class="pa-0">
+        <v-sheet v-if="recentlyViewed.length > 0" color="transparent">
+          <div class="d-flex align-center mb-2">
+            <v-icon :color="isLightWithBg ? 'white' : ''" class="mr-2" icon="mdi-history" />
+            <div class="text-h6" :class="isLightWithBg ? 'text-white' : ''">最近查看</div>
+          </div>
+
+          <v-slide-group class="pa-2" show-arrows>
+            <v-slide-group-item v-for="item in recentlyViewed" :key="item.data.id">
+              <div class="ma-1" style="width: 130px">
+                <SeriesCard :series-name="item.name" :series-data="item.data" />
+              </div>
+            </v-slide-group-item>
+          </v-slide-group>
+        </v-sheet>
+      </v-container>
+
       <v-container class="pt-0">
         <v-row justify="space-between" align="center" class="px-3 mt-2">
           <v-btn-toggle
@@ -67,6 +84,7 @@ import { ref, computed, watch, nextTick, onMounted } from 'vue'
 import { useTheme } from 'vuetify'
 import { storeToRefs } from 'pinia'
 import { useUIStore } from '@/stores/ui'
+import { useRecentStore } from '@/stores/recent'
 import { useInfiniteScrollState } from '@/composables/useInfiniteScrollState.js'
 import { seriesMap } from '@/maps/series-map.js'
 import SeriesCard from '@/components/card/SeriesCard.vue'
@@ -86,6 +104,19 @@ const infiniteScrollRef = ref(null)
 
 const uiStore = useUIStore()
 const { seriesSearchTerm, seriesSortBy, seriesSortAscending } = storeToRefs(uiStore)
+
+const recentStore = useRecentStore()
+const { seriesIds } = storeToRefs(recentStore)
+
+const recentlyViewed = computed(() => {
+  return seriesIds.value
+    .map((id) => {
+      const seriesEntry = Object.entries(seriesMap).find(([, data]) => data.id === id)
+      return seriesEntry ? { name: seriesEntry[0], data: seriesEntry[1] } : null
+    })
+    .filter(Boolean)
+})
+
 const theme = useTheme()
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 const isLightWithBg = computed(() => {
