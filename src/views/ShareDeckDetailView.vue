@@ -50,6 +50,7 @@
                     variant="outlined"
                     hide-details
                     :disabled="!deck"
+                    :menu-props="uiStore.glassMenuProps"
                   ></v-select>
                 </div>
               </template>
