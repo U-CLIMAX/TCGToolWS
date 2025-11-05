@@ -223,4 +223,39 @@ const confirmDeleteDeck = async () => {
     background-position: 200% 50%;
   }
 }
+
+@media (max-width: 349.98px) {
+  .deck-title {
+    padding-left: 8px;
+    padding-bottom: 8px;
+  }
+}
+
+@media (min-width: 350px) and (max-width: 499.98px) {
+  .deck-title {
+    padding-left: 12px;
+    padding-bottom: 12px;
+  }
+}
+
+@media (min-width: 500px) and (max-width: 599.98px) {
+  .deck-title {
+    padding-left: 16px;
+    padding-bottom: 16px;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 699.98px) {
+  .deck-title {
+    padding-left: 8px;
+    padding-bottom: 8px;
+  }
+}
+
+@media (min-width: 700px) and (max-width: 959.98px) {
+  .deck-title {
+    padding-left: 12px;
+    padding-bottom: 12px;
+  }
+}
 </style>
