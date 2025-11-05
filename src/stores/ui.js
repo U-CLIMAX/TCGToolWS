@@ -26,6 +26,11 @@ export const useUIStore = defineStore(
     const useAdaptiveColor = ref(true)
     const showStatsDashboard = ref(true)
 
+    // State for SeriesCardTableView
+    const seriesSearchTerm = ref('')
+    const seriesSortBy = ref('date') // 'date' or 'name'
+    const seriesSortAscending = ref(false)
+
     const backgroundImage = ref(null)
 
     const glassMenuProps = computed(() => {
@@ -99,6 +104,9 @@ export const useUIStore = defineStore(
       setRenderedCardsCount,
       useAdaptiveColor,
       showStatsDashboard,
+      seriesSearchTerm,
+      seriesSortBy,
+      seriesSortAscending,
       backgroundImage,
       setBackgroundImage,
       updateBackgroundImage,
@@ -116,6 +124,9 @@ export const useUIStore = defineStore(
         'isCardDeckOpen',
         'performanceThreshold',
         'showStatsDashboard',
+        'seriesSearchTerm',
+        'seriesSortBy',
+        'seriesSortAscending',
       ],
     },
   }

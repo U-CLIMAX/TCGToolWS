@@ -1,6 +1,6 @@
 <template>
   <v-container fluid class="h-100 pa-0">
-    <FloatingSearch @update:search-term="onSearch" />
+    <FloatingSearch />
     <v-infinite-scroll
       ref="infiniteScrollRef"
       @load="load"
@@ -10,7 +10,7 @@
       <v-container class="pt-0">
         <v-row justify="space-between" align="center" class="px-3 mt-2">
           <v-btn-toggle
-            v-model="sortBy"
+            v-model="seriesSortBy"
             mandatory
             density="compact"
             variant="tonal"
@@ -27,14 +27,14 @@
           </v-btn-toggle>
 
           <v-btn
-            @click="sortAscending = !sortAscending"
+            @click="seriesSortAscending = !seriesSortAscending"
             density="compact"
             variant="tonal"
             class="ml-4"
             :class="isLightWithBg ? 'text-white' : ''"
           >
-            <v-icon start>{{ sortAscending ? 'mdi-arrow-up' : 'mdi-arrow-down' }}</v-icon>
-            {{ sortAscending ? 'Asc' : 'Desc' }}
+            <v-icon start>{{ seriesSortAscending ? 'mdi-arrow-up' : 'mdi-arrow-down' }}</v-icon>
+            {{ seriesSortAscending ? 'Asc' : 'Desc' }}
           </v-btn>
         </v-row>
         <v-row>
@@ -65,13 +65,14 @@
 <script setup>
 import { ref, computed, watch, nextTick, onMounted } from 'vue'
 import { useTheme } from 'vuetify'
+import { storeToRefs } from 'pinia'
+import { useUIStore } from '@/stores/ui'
 import { useInfiniteScrollState } from '@/composables/useInfiniteScrollState.js'
 import { seriesMap } from '@/maps/series-map.js'
 import SeriesCard from '@/components/card/SeriesCard.vue'
 import FloatingSearch from '@/components/ui/FloatingSearchBar.vue'
 import BackToTopButton from '@/components/ui/BackToTopButton.vue'
 import collator from '@/utils/collator.js'
-import { useUIStore } from '@/stores/ui'
 
 const itemsPerLoad = 24
 const allSeries = ref(
@@ -80,22 +81,19 @@ const allSeries = ref(
     data,
   }))
 )
-const searchTerm = ref('')
-const sortBy = ref('date') // 'date' or 'name'
-const sortAscending = ref(false)
 const displayedSeries = ref([])
 const infiniteScrollRef = ref(null)
 
 const uiStore = useUIStore()
+const { seriesSearchTerm, seriesSortBy, seriesSortAscending } = storeToRefs(uiStore)
 const theme = useTheme()
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
-
 const isLightWithBg = computed(() => {
   return hasBackgroundImage.value && theme.global.name.value === 'light'
 })
 
 const filteredSeries = computed(() => {
-  const term = searchTerm.value.trim().toLowerCase()
+  const term = seriesSearchTerm.value.trim().toLowerCase()
   const list = term
     ? allSeries.value.filter(
         (item) =>
@@ -106,7 +104,7 @@ const filteredSeries = computed(() => {
 
   return list.sort((a, b) => {
     let comparison = 0
-    if (sortBy.value === 'date') {
+    if (seriesSortBy.value === 'date') {
       const dateA =
         a.data.latestReleaseDate === '-' ? new Date(0) : new Date(a.data.latestReleaseDate)
       const dateB =
@@ -115,7 +113,7 @@ const filteredSeries = computed(() => {
     } else {
       comparison = collator.compare(a.name, b.name)
     }
-    return sortAscending.value ? comparison : -comparison
+    return seriesSortAscending.value ? comparison : -comparison
   })
 })
 
@@ -136,19 +134,16 @@ const load = async ({ done }) => {
 }
 
 watch(
-  filteredSeries,
-  () => {
+  [seriesSearchTerm, seriesSortBy, seriesSortAscending],
+  async () => {
     displayedSeries.value = []
+    await nextTick()
     if (infiniteScrollRef.value) {
       infiniteScrollRef.value.reset()
     }
   },
-  { immediate: true }
+  { deep: true }
 )
-
-const onSearch = (newTerm) => {
-  searchTerm.value = newTerm
-}
 
 const storageKey = computed(() => 'seriesCardTableViewState')
 

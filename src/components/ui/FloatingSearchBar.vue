@@ -3,6 +3,7 @@
     <div v-if="isExpanded" class="overlay" @click="collapse"></div>
   </v-fade-transition>
   <div
+    v-bind="$attrs"
     ref="draggableContainer"
     class="floating-search-container"
     :style="containerStyle"
@@ -11,14 +12,14 @@
     <div :class="['search-wrapper', { 'is-expanded': isExpanded }]" v-click-outside="collapse">
       <v-text-field
         ref="inputRef"
-        v-model="searchText"
+        v-model="localSearchTerm"
         class="search-input"
         placeholder="系列名称、番号"
         variant="plain"
         density="compact"
         hide-details
         single-line
-        @keydown.enter="performSearch"
+        @keydown.enter="collapse"
       />
       <v-btn class="search-button" icon variant="text" @mousedown="startDrag" @click="handleTap">
         <v-icon>mdi-magnify</v-icon>
@@ -28,12 +29,31 @@
 </template>
 
 <script setup>
-import { ref, nextTick, computed, onMounted, onUnmounted } from 'vue'
+import { ref, nextTick, computed, onMounted, onUnmounted, watch } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useUIStore } from '@/stores/ui'
+import { debounce } from 'es-toolkit'
 
-const emit = defineEmits(['update:searchTerm'])
+const uiStore = useUIStore()
+const { seriesSearchTerm } = storeToRefs(uiStore)
+
+const localSearchTerm = ref(seriesSearchTerm.value)
+
+const debouncedUpdateStore = debounce((newValue) => {
+  uiStore.seriesSearchTerm = newValue
+}, 300)
+
+watch(localSearchTerm, (newValue) => {
+  debouncedUpdateStore(newValue)
+})
+
+watch(seriesSearchTerm, (newValue) => {
+  if (localSearchTerm.value !== newValue) {
+    localSearchTerm.value = newValue
+  }
+})
 
 const isExpanded = ref(false)
-const searchText = ref('')
 const inputRef = ref(null)
 
 const draggableContainer = ref(null)
@@ -118,7 +138,7 @@ const toggleExpand = async () => {
   if (movedDuringDrag.value) {
     return
   }
-  if (isExpanded.value && !searchText.value) {
+  if (isExpanded.value && !seriesSearchTerm.value) {
     isExpanded.value = false
   } else if (!isExpanded.value) {
     // Adjust position before expanding to prevent going off-screen
@@ -138,17 +158,12 @@ const toggleExpand = async () => {
     await nextTick()
     inputRef.value?.focus()
   } else {
-    performSearch()
+    collapse()
   }
 }
 
 const collapse = () => {
   isExpanded.value = false
-}
-
-const performSearch = () => {
-  emit('update:searchTerm', searchText.value)
-  collapse()
 }
 
 const handleTap = () => {
@@ -159,7 +174,7 @@ const handleTap = () => {
   if (!isExpanded.value) {
     toggleExpand()
   } else {
-    performSearch()
+    collapse()
   }
 }
 </script>
