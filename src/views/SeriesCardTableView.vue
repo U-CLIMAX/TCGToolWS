@@ -16,8 +16,8 @@
 
           <v-slide-group class="pa-2" show-arrows>
             <v-slide-group-item v-for="item in recentlyViewed" :key="item.data.id">
-              <div class="ma-1" style="width: 130px">
-                <SeriesCard :series-name="item.name" :series-data="item.data" />
+              <div class="ma-1" style="width: 150px">
+                <SeriesCard :series-name="item.name" :series-data="item.data" :is-compact="true" />
               </div>
             </v-slide-group-item>
           </v-slide-group>
