@@ -69,7 +69,7 @@
                   ? 'text-body-2 font-weight-medium'
                   : 'text-subtitle-2 text-sm-subtitle-1 font-weight-medium'
               "
-              style="iscompact?'line-height: 1.4' : 'line-height: 1.3'"
+              :style="isCompact ? 'line-height: 1.4' : 'line-height: 1.3'"
             >
               {{ seriesName }}
             </p>
