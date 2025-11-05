@@ -46,11 +46,11 @@
         </v-card>
       </v-dialog>
 
-      <v-row class="ma-0 pt-3">
-        <v-col v-if="localDeck && initialLoadingComplete" cols="4" sm="2">
+      <v-row class="ma-1 pt-3" no-gutters>
+        <v-col v-if="localDeck && initialLoadingComplete" class="pa-2" cols="4" sm="2">
           <DeckCard :deck="localDeck" deckKey="local" :is-editing="true" />
         </v-col>
-        <v-col v-for="(deck, key) in filteredDecks" :key="key" cols="4" sm="2">
+        <v-col v-for="(deck, key) in filteredDecks" :key="key" class="pa-2" cols="4" sm="2">
           <DeckCard :deck="deck" :deckKey="key" :is-editing="key === deckStore.editingDeckKey" />
         </v-col>
       </v-row>
