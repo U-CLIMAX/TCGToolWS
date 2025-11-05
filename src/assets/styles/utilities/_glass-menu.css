@@ -1,0 +1,27 @@
+.glass-menu {
+  background: linear-gradient(
+    135deg,
+    rgba(var(--v-theme-surface), 0.75),
+    rgba(var(--v-theme-surface), 0.55)
+  ) !important;
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 4px 24px 0 rgba(0, 0, 0, 0.12),
+    0 2px 6px 0 rgba(0, 0, 0, 0.05);
+}
+
+.glass-menu .v-list {
+  background: transparent !important;
+}
+
+.glass-menu .v-list-item:hover > .v-list-item__overlay {
+  background-color: currentColor;
+  opacity: 0.15;
+}
+
+.glass-menu .v-list-item--active > .v-list-item__overlay {
+  background-color: currentColor;
+  opacity: 0.25;
+}

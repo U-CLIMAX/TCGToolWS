@@ -74,6 +74,7 @@
           clearable
           v-model="filterStore.selectedCardTypes"
           variant="outlined"
+          :menu-props="menuProps"
         ></v-select>
 
         <v-select
@@ -90,6 +91,7 @@
           clearable
           v-model="filterStore.selectedColors"
           variant="outlined"
+          :menu-props="menuProps"
         ></v-select>
 
         <v-autocomplete
@@ -99,6 +101,7 @@
           clearable
           v-model="filterStore.selectedProductName"
           variant="outlined"
+          :menu-props="menuProps"
         ></v-autocomplete>
 
         <v-autocomplete
@@ -110,6 +113,7 @@
           clearable
           v-model="filterStore.selectedRarities"
           variant="outlined"
+          :menu-props="menuProps"
         ></v-autocomplete>
 
         <v-autocomplete
@@ -121,6 +125,7 @@
           clearable
           v-model="filterStore.selectedTraits"
           variant="outlined"
+          :menu-props="menuProps"
         ></v-autocomplete>
 
         <v-select
@@ -132,6 +137,7 @@
           clearable
           v-model="filterStore.selectedLevels"
           variant="outlined"
+          :menu-props="menuProps"
         ></v-select>
 
         <div>
@@ -191,6 +197,14 @@ const props = defineProps({
 const { smAndUp } = useDisplay()
 const uiStore = useUIStore()
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
+
+const menuProps = computed(() => {
+  if (hasBackgroundImage.value) {
+    return { contentClass: 'glass-menu' }
+  }
+  return {}
+})
+
 const filterStore = props.globalFilter ? useGlobalSearchStore() : useFilterStore()
 
 const keywordInput = ref(filterStore.keyword)
