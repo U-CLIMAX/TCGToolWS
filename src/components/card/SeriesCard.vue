@@ -29,17 +29,28 @@
         </v-img>
 
         <div class="card-content pa-3 pt-1">
-          <div
-            class="align-center text-caption mb-2 text-truncate"
-            :class="isLightWithBg ? 'text-grey-lighten-2' : 'text-grey'"
-          >
-            <v-icon start size="small">mdi-layers-outline</v-icon>
-            {{ seriesData.prefixes.join(', ') }}
-          </div>
+          <div>
+            <div
+              class="align-center text-caption mb-2 text-truncate"
+              :class="isLightWithBg ? 'text-grey-lighten-2' : 'text-grey'"
+            >
+              <v-icon start size="small">mdi-layers-outline</v-icon>
+              {{ seriesData.prefixes.join(', ') }}
+            </div>
 
-          <p class="text-subtitle-2 text-sm-subtitle-1 text-truncate">
-            {{ seriesName }}
-          </p>
+            <p class="text-subtitle-2 text-sm-subtitle-1 text-truncate">
+              {{ seriesName }}
+            </p>
+          </div>
+          <v-spacer></v-spacer>
+          <div>
+            <p
+              class="text-caption text-right"
+              :class="isLightWithBg ? 'text-grey-lighten-2' : 'text-grey'"
+            >
+              {{ seriesData.latestReleaseDate }}
+            </p>
+          </div>
         </div>
       </v-card>
     </template>

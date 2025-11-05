@@ -2,6 +2,7 @@ export const seriesMap = {
   'Re：从零开始的异世界生活': {
     id: 're0',
     prefixes: ['RZ'],
+    latestReleaseDate: '2024-11-22',
   },
   '富士见Fantasia文库': {
     id: 'fantasia',
@@ -42,130 +43,162 @@ export const seriesMap = {
       'Ftt',
       'Fvd',
     ],
+    latestReleaseDate: '2024-10-25',
   },
   '女神异闻录': {
     id: 'persona',
     prefixes: ['P3', 'P4', 'PQ', 'P5'],
+    latestReleaseDate: '2024-5-17',
   },
   '莉可丽丝': {
     id: 'lrc',
     prefixes: ['LRC'],
+    latestReleaseDate: '2024-11-15',
   },
   '少女乐队的呐喊': {
     id: 'gbc',
     prefixes: ['GCR'],
+    latestReleaseDate: '2025-02-28',
   },
   '足球小将': {
     id: 'ctb',
     prefixes: ['CTB'],
+    latestReleaseDate: '2024-09-13',
   },
   '蜡笔小新': {
     id: 'cs',
     prefixes: ['CS'],
+    latestReleaseDate: '2024-07-26',
   },
   '摇曳露营': {
     id: 'yrc',
     prefixes: ['YRC'],
+    latestReleaseDate: '2024-11-08',
   },
   '里世界郊游': {
     id: 'rsk',
     prefixes: ['RSK'],
+    latestReleaseDate: '2024-01-19',
   },
   'BanG Dream!': {
     id: 'bd',
     prefixes: ['BD'],
+    latestReleaseDate: '2025-02-28',
   },
   '缘结甘神家': {
     id: 'amg',
     prefixes: ['AMG'],
+    latestReleaseDate: '2025-04-18',
   },
   '世界计划多彩舞台 feat. 初音未来': {
     id: 'pjs',
     prefixes: ['PJS'],
+    latestReleaseDate: '2025-12-26',
   },
   '青桐高校': {
     id: 'aoh',
     prefixes: ['AOH'],
+    latestReleaseDate: '2025-06-13',
   },
   'Love Live! 莲之空女学院学园偶像俱乐部': {
     id: 'lhs',
     prefixes: ['LHS'],
+    latestReleaseDate: '2025-01-31',
   },
   '偶像大师 灰姑娘女孩': {
     id: 'imc',
     prefixes: ['IMC'],
+    latestReleaseDate: '2026-01-30',
   },
   'Angel Beats!／Kud Wafter': {
     id: 'ab',
     prefixes: ['AB', 'KW', 'Kab', 'Hab', 'Kkw'],
+    latestReleaseDate: '2014-06-27',
   },
   'CANAAN': {
     id: 'cn',
     prefixes: ['CN'],
+    latestReleaseDate: '2009-08-27',
   },
   'CLANNAD': {
     id: 'cl',
     prefixes: ['CL', 'Kcl', 'Kta'],
+    latestReleaseDate: '2016-04-08',
   },
   'PIXAR': {
     id: 'pxr',
     prefixes: ['PXR', 'Dpx', 'MRp'],
+    latestReleaseDate: '2025-08-01',
   },
   'Charlotte': {
     id: 'cha',
     prefixes: ['CHA', 'Kch'],
+    latestReleaseDate: '2015-10-30',
   },
   '初音岛': {
     id: 'dc',
     prefixes: ['DC', 'DC3', 'DC4', 'DS', 'DC5'],
+    latestReleaseDate: '2023-08-24',
   },
   'D4DJ': {
     id: 'dj',
     prefixes: ['DJ'],
+    latestReleaseDate: '2023-04-21',
   },
   'DARLING in the FRANXX': {
     id: 'fxx',
     prefixes: ['FXX'],
+    latestReleaseDate: '2018-09-21',
   },
   '约会大作战': {
     id: 'dal',
     prefixes: ['DAL', 'Fdl'],
+    latestReleaseDate: '2025-10-03',
   },
   'DOG DAYS': {
     id: 'dd',
     prefixes: ['DD'],
+    latestReleaseDate: '2015-11-13',
   },
   'D_CIDE TRAUMEREI': {
     id: 'dct',
     prefixes: ['DCT'],
+    latestReleaseDate: '2022-04-29',
   },
   'Disney': {
     id: 'dds',
     prefixes: ['Dds', 'MRd'],
+    latestReleaseDate: '2024-05-24',
   },
   'Disney100': {
     id: 'dds100',
     prefixes: ['Dmv', 'Dsw', 'Dpx', 'Dds'],
+    latestReleaseDate: '2023-04-07',
   },
   'Fate': {
     id: 'fate',
     prefixes: ['FS', 'FU', 'FH', 'FZ'],
+    latestReleaseDate: '2020-12-04',
   },
   'Fate/Apocrypha': {
     id: 'apo',
     prefixes: ['APO'],
+    latestReleaseDate: '2018-05-25',
   },
   'Fate/Grand Order': {
     id: 'fgo',
     prefixes: ['FGO'],
+    latestReleaseDate: '2021-10-29',
   },
   'Hololive': {
     id: 'hol',
     prefixes: ['HOL'],
+    latestReleaseDate: '2024-09-06',
   },
   'JOJO的奇妙冒险': {
     id: 'jj',
     prefixes: ['JJ'],
+    latestReleaseDate: '2023-08-11',
   },
   'Key': {
     id: 'key',
@@ -184,162 +217,202 @@ export const seriesMap = {
       'Kkw',
       'Kta',
     ],
+    latestReleaseDate: '2025-11-07',
   },
   'Little Busters!': {
     id: 'lb',
     prefixes: ['LB', 'KW', 'Klb'],
+    latestReleaseDate: '2021-10-15',
   },
   '超时空要塞': {
     id: 'mde',
     prefixes: ['MF', 'MDE'],
+    latestReleaseDate: '2024-01-25',
   },
   'Lost Decade': {
     id: 'lod',
     prefixes: ['LOD'],
+    latestReleaseDate: '2020-06-05',
   },
   'Love Live!': {
     id: 'll',
     prefixes: ['LL', 'LSF', 'SIL'],
+    latestReleaseDate: '2023-10-27',
   },
   'Love Live! Sunshine!!': {
     id: 'lls',
     prefixes: ['LSS', 'LSF', 'SIS'],
+    latestReleaseDate: '2019-08-09',
   },
   'Love Live! 虹咲学园学园偶像同好会': {
     id: 'lnj',
     prefixes: ['LNJ', 'LSF', 'SIN'],
+    latestReleaseDate: '2022-05-27',
   },
   'Love Live! SuperStar!!': {
     id: 'lsp',
     prefixes: ['LSP', 'LSF', 'SIP'],
+    latestReleaseDate: '2021-12-10',
   },
   'Love Live! 学园偶像祭2': {
     id: 'sif',
     prefixes: ['SIL', 'SIS', 'SIN', 'SIP', 'LSF'],
+    latestReleaseDate: '2023-10-27',
   },
   'MARVEL': {
     id: 'mar',
     prefixes: ['MAR', 'Dmv'],
+    latestReleaseDate: '2025-09-19',
   },
   'MELTY BLOOD／空之境界': {
     id: 'mb',
     prefixes: ['MB', 'KK'],
+    latestReleaseDate: '2010-11-20',
   },
   'Overlord': {
     id: 'ovl',
     prefixes: ['OVL'],
+    latestReleaseDate: '2025-11-28',
   },
   'Phantom -Requiem for the Phantom-': {
     id: 'pt',
     prefixes: ['PT'],
+    latestReleaseDate: '2009-10-10',
   },
   'Rewrite': {
     id: 'rw',
     prefixes: ['RW', 'Krw'],
+    latestReleaseDate: '2017-01-27',
   },
   'SPY×FAMILY': {
     id: 'spy',
     prefixes: ['SPY'],
+    latestReleaseDate: '2023-07-21',
   },
   '零之使魔': {
     id: 'zm',
     prefixes: ['ZM'],
+    latestReleaseDate: '2012-05-12',
   },
   '魔法少女奈叶': {
     id: 'nr',
     prefixes: ['NS', 'N1', 'NV', 'NA', 'N2', 'NR', 'ND', 'NTA'],
+    latestReleaseDate: '2025-06-20',
   },
   '幸运☆星': {
     id: 'ls',
     prefixes: ['LS'],
+    latestReleaseDate: '2009-03-28',
   },
   '穿越宇宙的少女／舞-HiME＆舞-乙HiME': {
     id: 'sk',
     prefixes: ['SK', 'MH'],
+    latestReleaseDate: '2009-08-27',
   },
   '凉宫春日的忧郁': {
     id: 'sy',
     prefixes: ['SY', 'Ssy'],
+    latestReleaseDate: '2016-12-23',
   },
   '魔法禁书目录／某科学的超电磁炮': {
     id: 'gid',
     prefixes: ['ID', 'RG', 'Gid'],
+    latestReleaseDate: '2016-12-23',
   },
   '灼眼的夏娜': {
     id: 'ss',
     prefixes: ['SS', 'Gss'],
+    latestReleaseDate: '2023-10-20',
   },
   '机器人笔记': {
     id: 'rn',
     prefixes: ['RN'],
+    latestReleaseDate: '2012-11-24',
   },
   '日常': {
     id: 'nj',
     prefixes: ['NJ'],
+    latestReleaseDate: '2012-01-14',
   },
   '魔法少女小圆': {
     id: 'mr',
     prefixes: ['MM', 'MR'],
+    latestReleaseDate: '2020-08-14',
   },
   '战姬绝唱Symphogear': {
     id: 'sg',
     prefixes: ['SG'],
+    latestReleaseDate: '2021-06-11',
   },
   'Vividred Operation': {
     id: 'vr',
     prefixes: ['VR'],
+    latestReleaseDate: '2013-06-29',
   },
   '穿透幻影的太阳': {
     id: 'gt',
     prefixes: ['GT'],
+    latestReleaseDate: '2013-11-29',
   },
   '伪恋': {
     id: 'nk',
     prefixes: ['NK'],
+    latestReleaseDate: '2015-08-21',
   },
   '临时女友': {
     id: 'gf',
     prefixes: ['GF'],
+    latestReleaseDate: '2015-07-24',
   },
   'To LOVE': {
     id: 'tl',
     prefixes: ['TL'],
+    latestReleaseDate: '2016-03-11',
   },
   '请问您今天要来点兔子吗？？': {
     id: 'gu',
     prefixes: ['GU'],
+    latestReleaseDate: '2024-10-11',
   },
   '卡牌游戏西柚子': {
     id: 'cgs',
     prefixes: ['CGS', 'SI'],
+    latestReleaseDate: '2016-03-25',
   },
   '为美好的世界献上祝福！': {
     id: 'ks',
     prefixes: ['KS', 'Sks'],
+    latestReleaseDate: '2020-04-24',
   },
   'ViVid Strike!': {
     id: 'vs',
     prefixes: ['VS'],
+    latestReleaseDate: '2017-06-23',
   },
   '兽娘动物园': {
     id: 'kmn',
     prefixes: ['KMN'],
+    latestReleaseDate: '2017-08-25',
   },
   '雏逻辑～from Luck & Logic～': {
     id: 'hll',
     prefixes: ['HLL'],
+    latestReleaseDate: '2018-01-26',
   },
   '路人女主的养成方法': {
     id: 'shs',
     prefixes: ['SHS', 'Fsh'],
+    latestReleaseDate: '2022-06-10',
   },
   'Summer Pockets': {
     id: 'smp',
     prefixes: ['SMP', 'Ksm'],
+    latestReleaseDate: '2025-07-18',
   },
   '摇曳庄的幽奈小姐': {
     id: 'yys',
     prefixes: ['YYS'],
+    latestReleaseDate: '2018-12-14',
   },
   '角川Sneaker文库': {
     id: 'snk',
@@ -378,50 +451,62 @@ export const seriesMap = {
       'Stk',
       'Stm',
     ],
+    latestReleaseDate: '2025-03-14',
   },
   '青春猪头少年': {
     id: 'sby',
     prefixes: ['SBY', 'Gby'],
+    latestReleaseDate: '2024-03-15',
   },
   '魔卡少女樱': {
     id: 'ccs',
     prefixes: ['CCS'],
+    latestReleaseDate: '2024-02-23',
   },
   '五等分的新娘': {
     id: '5hy',
     prefixes: ['5HY'],
+    latestReleaseDate: '2024-03-08',
   },
   '租借女友': {
     id: 'knk',
     prefixes: ['KNK'],
+    latestReleaseDate: '2025-10-31',
   },
   '公主连结！Re:Dive': {
     id: 'prd',
     prefixes: ['PRD'],
+    latestReleaseDate: '2022-09-09',
   },
   '成神之日': {
     id: 'dbg',
     prefixes: ['DBG', 'Kdb'],
+    latestReleaseDate: '2021-05-28',
   },
   '佐贺偶像是传奇 卷土重来': {
     id: 'zls',
     prefixes: ['ZLS'],
+    latestReleaseDate: '2021-11-12',
   },
   '小林家的龙女仆': {
     id: 'kmd',
     prefixes: ['KMD'],
+    latestReleaseDate: '2022-04-08',
   },
   '炽焰天穹': {
     id: 'hbr',
     prefixes: ['HBR', 'Khb', 'Hab'],
+    latestReleaseDate: '2024-08-09',
   },
   '赛马娘 Pretty Derby': {
     id: 'uma',
     prefixes: ['UMA'],
+    latestReleaseDate: '2024-09-27',
   },
   '孤独摇滚': {
     id: 'btr',
     prefixes: ['BTR'],
+    latestReleaseDate: '2023-09-29',
   },
   '电击文库': {
     id: 'dgk',
@@ -477,289 +562,361 @@ export const seriesMap = {
       'Gtd',
       'Gyf',
     ],
+    latestReleaseDate: '2023-09-01',
   },
   '幻日夜羽 -镜中晖光-': {
     id: 'yhn',
     prefixes: ['YHN'],
+    latestReleaseDate: '2023-11-10',
   },
   '机甲爱丽丝': {
     id: 'ags',
     prefixes: ['AGS'],
+    latestReleaseDate: '2023-10-13',
   },
   '妖幻三重奏': {
     id: 'ayt',
     prefixes: ['AYT'],
+    latestReleaseDate: '2023-11-23',
   },
   '碧蓝档案': {
     id: 'bav',
     prefixes: ['BAV'],
+    latestReleaseDate: '2025-10-24',
   },
   '学园偶像大师': {
     id: 'gim',
     prefixes: ['GIM'],
+    latestReleaseDate: '2025-05-23',
   },
   '败犬女主太多了！': {
     id: 'mki',
     prefixes: ['MKI'],
+    latestReleaseDate: '2025-06-27',
   },
   'Visual Arts': {
     id: 'va',
     prefixes: ['VA'],
+    latestReleaseDate: '-',
   },
   '魔界战记': {
     id: 'dg',
     prefixes: ['DG'],
+    latestReleaseDate: '2013-09-13',
   },
   '光明之响': {
     id: 'sr',
     prefixes: ['SE', 'SF', 'SR'],
+    latestReleaseDate: '2015-07-31',
   },
   'THE KING OF FIGHTERS': {
     id: 'kf',
     prefixes: ['KF'],
+    latestReleaseDate: '2023-09-22',
   },
   '战国BASARA': {
     id: 'sb',
     prefixes: ['SB'],
+    latestReleaseDate: '2010-09-18',
   },
   '偶像大师': {
     id: 'im',
     prefixes: ['IM', 'IAS'],
+    latestReleaseDate: '2022-06-24',
   },
   '妖精的尾巴': {
     id: 'ft',
     prefixes: ['FT'],
+    latestReleaseDate: '2025-02-07',
   },
   '侦探歌剧 少女福尔摩斯': {
     id: 'mk',
     prefixes: ['MK', 'MK2'],
+    latestReleaseDate: '2019-01-28',
   },
   '新世纪福音战士新剧场版': {
     id: 'ev',
     prefixes: ['EV'],
+    latestReleaseDate: '2010-12-11',
   },
   '黑岩射手': {
     id: 'br',
     prefixes: ['BR'],
+    latestReleaseDate: '2011-01-22',
   },
   '刀语': {
     id: 'kg',
     prefixes: ['KG'],
+    latestReleaseDate: '2011-04-02',
   },
   '物语系列': {
     id: 'bm',
     prefixes: ['BM', 'NM', 'MG'],
+    latestReleaseDate: '2016-01-22',
   },
   '罪恶王冠': {
     id: 'gc',
     prefixes: ['GC'],
+    latestReleaseDate: '2012-04-07',
   },
   '加速世界': {
     id: 'aw',
     prefixes: ['AW', 'Gaw'],
+    latestReleaseDate: '2016-09-02',
   },
   '刀剑神域': {
     id: 'sao',
     prefixes: ['SAO', 'Gso'],
+    latestReleaseDate: '2022-11-18',
   },
   '初音未来 -Project DIVA-': {
     id: 'pd',
     prefixes: ['PD'],
+    latestReleaseDate: '2017-12-01',
   },
   '心理测量者': {
     id: 'pp',
     prefixes: ['PP'],
+    latestReleaseDate: '2013-05-18',
   },
   '翠星之加尔刚蒂亚': {
     id: 'gg',
     prefixes: ['GG'],
+    latestReleaseDate: '2013-08-23',
   },
   'TV动画「恶魔幸存者2」': {
     id: 'ds2',
     prefixes: ['DS2'],
+    latestReleaseDate: '2013-10-18',
   },
   '魔法少女伊莉雅': {
     id: 'pi',
     prefixes: ['PI'],
+    latestReleaseDate: '2021-02-12',
   },
   'T宝的悲惨日常': {
     id: 'woo',
     prefixes: ['Woo'],
+    latestReleaseDate: '2014-01-11',
   },
   '斩服少女': {
     id: 'klk',
     prefixes: ['KLK'],
+    latestReleaseDate: '2016-12-23',
   },
   '记录的地平线': {
     id: 'lh',
     prefixes: ['LH'],
+    latestReleaseDate: '2016-04-08',
   },
   '舰队Collection': {
     id: 'kc',
     prefixes: ['KC'],
+    latestReleaseDate: '2019-07-26',
   },
   '超爆裂异次元卡片大战 Gigant Shooter 司': {
     id: 'gst',
     prefixes: ['GST'],
+    latestReleaseDate: '2014-10-10',
   },
   '火星异种': {
     id: 'tf',
     prefixes: ['TF'],
+    latestReleaseDate: '2015-02-27',
   },
   '进击的巨人': {
     id: 'aot',
     prefixes: ['AOT'],
+    latestReleaseDate: '2017-09-29',
   },
   'SchoolGirl Strikers': {
     id: 'sgs',
     prefixes: ['SGS'],
+    latestReleaseDate: '2016-02-26',
   },
   '噗哟噗哟': {
     id: 'py',
     prefixes: ['PY'],
+    latestReleaseDate: '2016-02-04',
   },
   '阿松': {
     id: 'oms',
     prefixes: ['OMS'],
+    latestReleaseDate: '2016-06-17',
   },
   '境界之轮回': {
     id: 'kr',
     prefixes: ['KR'],
+    latestReleaseDate: '2016-07-15',
   },
   '羁绊者': {
     id: 'ki',
     prefixes: ['KI'],
+    latestReleaseDate: '2016-09-30',
   },
   '锁链战记 ～赫克瑟塔斯之光～': {
     id: 'cc',
     prefixes: ['CC'],
+    latestReleaseDate: '2017-04-28',
   },
   'STAR WARS': {
     id: 'sw',
     prefixes: ['SW', 'Dsw'],
+    latestReleaseDate: '2024-08-23',
   },
   '天元突破红莲螺岩': {
     id: 'gl',
     prefixes: ['GL'],
+    latestReleaseDate: '2018-01-26',
   },
   '动画电影『GODZILLA』': {
     id: 'gzl',
     prefixes: ['GZL'],
+    latestReleaseDate: '2018-11-09',
   },
   '刀剑神域外传 Gun Gale Online': {
     id: 'ggo',
     prefixes: ['GGO', 'Ggg'],
+    latestReleaseDate: '2025-03-07',
   },
   '少女☆歌剧 Revue Starlight': {
     id: 'rsl',
     prefixes: ['RSL'],
+    latestReleaseDate: '2022-10-14',
   },
   '游戏人生': {
     id: 'ngl',
     prefixes: ['NGL'],
+    latestReleaseDate: '2018-08-03',
   },
   '偶像大师 MILLION LIVE!': {
     id: 'ims',
     prefixes: ['IMS', 'IAS'],
+    latestReleaseDate: '2022-06-24',
   },
   'STEINS;GATE': {
     id: 'stg',
     prefixes: ['STG'],
+    latestReleaseDate: '2018-10-26',
   },
   '哥布林杀手': {
     id: 'gbs',
     prefixes: ['GBS'],
+    latestReleaseDate: '2019-04-19',
   },
   '关于我转生变成史莱姆这档事': {
     id: 'tsk',
     prefixes: ['TSK'],
+    latestReleaseDate: '2023-01-20',
   },
   '灰色的果实': {
     id: 'gri',
     prefixes: ['GRI'],
+    latestReleaseDate: '2024-06-07',
   },
   '突击莉莉': {
     id: 'all',
     prefixes: ['ALL'],
+    latestReleaseDate: '2022-01-20',
   },
   '新樱花大战': {
     id: 'skr',
     prefixes: ['SKR'],
+    latestReleaseDate: '2020-05-15',
   },
   '因为太怕痛就全点防御力了': {
     id: 'bfr',
     prefixes: ['BFR'],
+    latestReleaseDate: '2020-11-20',
   },
   '辉夜大小姐想让我告白～天才们的恋爱头脑战～': {
     id: 'kgl',
     prefixes: ['KGL'],
+    latestReleaseDate: '2022-07-15',
   },
   '偶像大师 闪耀色彩': {
     id: 'isc',
     prefixes: ['ISC'],
+    latestReleaseDate: '2025-09-26',
   },
   '无职转生 ~到了异世界就拿出真本事~': {
     id: 'mti',
     prefixes: ['MTI'],
+    latestReleaseDate: '2021-07-30',
   },
   '境界触发者': {
     id: 'wtr',
     prefixes: ['WTR'],
+    latestReleaseDate: '2021-10-15',
   },
   '在地下城寻求邂逅是否搞错了什么': {
     id: 'ddm',
     prefixes: ['DDM'],
+    latestReleaseDate: '2021-11-26',
   },
   '东京复仇者': {
     id: 'trv',
     prefixes: ['TRV'],
+    latestReleaseDate: '2022-05-13',
   },
   '碧蓝航线': {
     id: 'azl',
     prefixes: ['AZL'],
+    latestReleaseDate: '2025-01-17',
   },
   '电锯人': {
     id: 'csm',
     prefixes: ['CSM'],
+    latestReleaseDate: '2023-06-16',
   },
   '平凡职业造就世界最强': {
     id: 'ari',
     prefixes: ['ARI'],
+    latestReleaseDate: '2023-02-24',
   },
   '智龙迷城': {
     id: 'pad',
     prefixes: ['PAD'],
+    latestReleaseDate: '2023-05-19',
   },
   '我推的孩子': {
     id: 'osk',
     prefixes: ['OSK'],
+    latestReleaseDate: '2025-02-14',
   },
   '葬送的芙莉莲': {
     id: 'sfn',
     prefixes: ['SFN'],
+    latestReleaseDate: '2024-04-12',
   },
   'Disney 镜之守卫者': {
     id: 'mrp',
     prefixes: ['MRd', 'MRp'],
+    latestReleaseDate: '2024-05-24',
   },
   '浪客剑心 -明治剑客浪漫谭-': {
     id: 'rkn',
     prefixes: ['RKN'],
+    latestReleaseDate: '2024-07-12',
   },
   '胜利女神：妮姬': {
     id: 'nik',
     prefixes: ['NIK'],
+    latestReleaseDate: '2024-12-13',
   },
   '胆大党': {
     id: 'ddd',
     prefixes: ['DDD'],
+    latestReleaseDate: '2025-03-28',
   },
   '怪兽8号': {
     id: 'kj8',
     prefixes: ['KJ8'],
+    latestReleaseDate: '2025-08-08',
   },
   '其他': {
     id: 'ws',
     prefixes: ['WS'],
+    latestReleaseDate: '-',
   },
 }

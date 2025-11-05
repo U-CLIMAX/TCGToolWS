@@ -8,6 +8,35 @@
       class="h-100 themed-scrollbar"
     >
       <v-container class="pt-0">
+        <v-row justify="space-between" align="center" class="px-3 mt-2">
+          <v-btn-toggle
+            v-model="sortBy"
+            mandatory
+            density="compact"
+            variant="tonal"
+            :class="isLightWithBg ? 'text-white' : ''"
+          >
+            <v-btn value="date" size="small">
+              <v-icon start>mdi-calendar</v-icon>
+              Date
+            </v-btn>
+            <v-btn value="name" size="small">
+              <v-icon start>mdi-sort-alphabetical-variant</v-icon>
+              Name
+            </v-btn>
+          </v-btn-toggle>
+
+          <v-btn
+            @click="sortAscending = !sortAscending"
+            density="compact"
+            variant="tonal"
+            class="ml-4"
+            :class="isLightWithBg ? 'text-white' : ''"
+          >
+            <v-icon start>{{ sortAscending ? 'mdi-arrow-up' : 'mdi-arrow-down' }}</v-icon>
+            {{ sortAscending ? 'Asc' : 'Desc' }}
+          </v-btn>
+        </v-row>
         <v-row>
           <v-col
             v-for="item in displayedSeries"
@@ -35,12 +64,14 @@
 
 <script setup>
 import { ref, computed, watch, nextTick, onMounted } from 'vue'
+import { useTheme } from 'vuetify'
 import { useInfiniteScrollState } from '@/composables/useInfiniteScrollState.js'
 import { seriesMap } from '@/maps/series-map.js'
 import SeriesCard from '@/components/card/SeriesCard.vue'
 import FloatingSearch from '@/components/ui/FloatingSearchBar.vue'
 import BackToTopButton from '@/components/ui/BackToTopButton.vue'
 import collator from '@/utils/collator.js'
+import { useUIStore } from '@/stores/ui'
 
 const itemsPerLoad = 24
 const allSeries = ref(
@@ -50,8 +81,18 @@ const allSeries = ref(
   }))
 )
 const searchTerm = ref('')
+const sortBy = ref('date') // 'date' or 'name'
+const sortAscending = ref(false)
 const displayedSeries = ref([])
 const infiniteScrollRef = ref(null)
+
+const uiStore = useUIStore()
+const theme = useTheme()
+const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
+
+const isLightWithBg = computed(() => {
+  return hasBackgroundImage.value && theme.global.name.value === 'light'
+})
 
 const filteredSeries = computed(() => {
   const term = searchTerm.value.trim().toLowerCase()
@@ -63,7 +104,19 @@ const filteredSeries = computed(() => {
       )
     : allSeries.value.slice()
 
-  return list.sort((a, b) => collator.compare(a.name, b.name))
+  return list.sort((a, b) => {
+    let comparison = 0
+    if (sortBy.value === 'date') {
+      const dateA =
+        a.data.latestReleaseDate === '-' ? new Date(0) : new Date(a.data.latestReleaseDate)
+      const dateB =
+        b.data.latestReleaseDate === '-' ? new Date(0) : new Date(b.data.latestReleaseDate)
+      comparison = dateA.getTime() - dateB.getTime()
+    } else {
+      comparison = collator.compare(a.name, b.name)
+    }
+    return sortAscending.value ? comparison : -comparison
+  })
 })
 
 const load = async ({ done }) => {
@@ -82,12 +135,16 @@ const load = async ({ done }) => {
   done('ok')
 }
 
-watch(searchTerm, () => {
-  displayedSeries.value = []
-  if (infiniteScrollRef.value) {
-    infiniteScrollRef.value.reset()
-  }
-})
+watch(
+  filteredSeries,
+  () => {
+    displayedSeries.value = []
+    if (infiniteScrollRef.value) {
+      infiniteScrollRef.value.reset()
+    }
+  },
+  { immediate: true }
+)
 
 const onSearch = (newTerm) => {
   searchTerm.value = newTerm
