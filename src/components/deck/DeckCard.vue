@@ -224,38 +224,24 @@ const confirmDeleteDeck = async () => {
   }
 }
 
-@media (max-width: 349.98px) {
+@media (max-width: 599.98px) {
   .deck-title {
-    padding-left: 8px;
-    padding-bottom: 8px;
+    padding-left: clamp(8px, 2.5vw, 16px);
+    padding-bottom: clamp(8px, 2.5vw, 16px);
   }
 }
 
-@media (min-width: 350px) and (max-width: 499.98px) {
+@media (min-width: 600px) and (max-width: 799.98px) {
   .deck-title {
-    padding-left: 12px;
-    padding-bottom: 12px;
+    padding-left: clamp(8px, 1.5vw, 12px);
+    padding-bottom: clamp(8px, 1.5vw, 12px);
   }
 }
 
-@media (min-width: 500px) and (max-width: 599.98px) {
+@media (min-width: 800px) and (max-width: 959.98px) {
   .deck-title {
-    padding-left: 16px;
-    padding-bottom: 16px;
-  }
-}
-
-@media (min-width: 600px) and (max-width: 699.98px) {
-  .deck-title {
-    padding-left: 8px;
-    padding-bottom: 8px;
-  }
-}
-
-@media (min-width: 700px) and (max-width: 959.98px) {
-  .deck-title {
-    padding-left: 12px;
-    padding-bottom: 12px;
+    padding-left: clamp(12px, 2vw, 16px);
+    padding-bottom: clamp(12px, 2vw, 16px);
   }
 }
 </style>
