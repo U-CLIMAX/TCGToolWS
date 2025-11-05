@@ -75,7 +75,7 @@ import { useDisplay } from 'vuetify'
 import CardTemplate from '@/components/card/CardTemplate.vue'
 import CardDetailModal from '@/components/card/CardDetailModal.vue'
 import BackToTopButton from '@/components/ui/BackToTopButton.vue'
-import { fetchCardsByBaseIdAndPrefix } from '@/utils/card'
+import { fetchCardByIdAndPrefix, fetchCardsByBaseIdAndPrefix } from '@/utils/card'
 import { useCardImage } from '@/composables/useCardImage.js'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import { useUIStore } from '@/stores/ui'
@@ -164,18 +164,16 @@ const onNextCard = () => {
 }
 
 const fetchLinkedCards = async (card) => {
-  if (!card?.link || card.link.length === 0) {
-    selectedLinkedCards.value = []
-    return
-  }
-
   try {
     isLoadingLinks.value = true
 
+    const cardToDisplay = await fetchCardByIdAndPrefix(card.id, card.cardIdPrefix)
     // sanitize all link IDs to get clean base IDs.
-    const baseIds = [...new Set(card.link.map((linkId) => linkId.replace(/[a-zA-Z]+$/, '')))]
+    const baseIds = [
+      ...new Set(cardToDisplay.link.map((linkId) => linkId.replace(/[a-zA-Z]+$/, ''))),
+    ]
     const linkRequests = baseIds.map(
-      async (baseId) => await fetchCardsByBaseIdAndPrefix(baseId, card.cardIdPrefix)
+      async (baseId) => await fetchCardsByBaseIdAndPrefix(baseId, cardToDisplay.cardIdPrefix)
     )
 
     const linkedCardsData = await Promise.all(linkRequests)

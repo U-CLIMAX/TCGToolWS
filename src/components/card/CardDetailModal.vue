@@ -126,7 +126,7 @@
               <div class="text-body-2 mb-2 text-grey">特征</div>
               <v-chip v-for="r in card.trait" :key="r" class="mr-2 mb-2" label>{{ r }}</v-chip>
             </div>
-            <div v-if="card.link && card.link.length > 0" class="mt-4">
+            <div v-if="linkedCards && linkedCards.length > 0" class="mt-4">
               <div class="text-body-2 mb-2 text-grey">关联卡片</div>
               <div v-if="isLoadingLinks" class="d-flex justify-center align-center pa-4">
                 <v-progress-circular indeterminate color="primary"></v-progress-circular>
@@ -175,7 +175,6 @@ const props = defineProps({
   cardIndex: { type: Number, default: 0 },
   totalCards: { type: Number, default: 1 },
 })
-
 const deckStore = useDeckStore()
 
 const cardCount = computed(() => {
