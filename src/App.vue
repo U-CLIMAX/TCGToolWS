@@ -289,6 +289,12 @@ watch(
   transform: translateY(-20px);
   opacity: 0;
 }
+
+/* 設定給效果小圖標用的樣式 */
+.inline-icon {
+  height: 1rem;
+  vertical-align: -0.15rem;
+}
 </style>
 
 <style scoped>
