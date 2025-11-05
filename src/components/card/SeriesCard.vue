@@ -3,14 +3,17 @@
     <template v-slot:activator="{ props }">
       <v-card
         v-bind="props"
-        class="series-card d-flex flex-column flex-grow-1"
-        :class="{ 'glass-card': hasBackgroundImage, 'compact': isCompact }"
+        class="series-card d-flex flex-column flex-grow-1 overflow-hidden"
+        :class="[
+          { 'glass-card': hasBackgroundImage, 'compact': isCompact },
+          isCompact ? 'pa-2' : 'pa-3',
+        ]"
         hover
         :to="{ name: 'SeriesDetail', params: { seriesId: seriesData.id } }"
         variant="flat"
         rounded="3md"
       >
-        <div class="image-wrapper">
+        <div class="image-wrapper position-relative overflow-hidden rounded-3md mb-2">
           <v-img
             :src="iconUrl"
             aspect-ratio="1"
@@ -30,8 +33,8 @@
           </v-img>
 
           <!-- Compact 模式下 Hover 時顯示的資訊覆蓋層 -->
-          <div v-if="isCompact" class="hover-overlay rounded-3md">
-            <div class="overlay-content pa-2">
+          <div v-if="isCompact" class="hover-overlay rounded-3md d-flex align-end">
+            <div class="overlay-content pa-2 w-100">
               <div class="text-caption text-white mb-1">
                 <v-icon size="x-small" class="mr-1">mdi-layers-outline</v-icon>
                 {{ seriesData.prefixes.join(', ') }}
@@ -43,30 +46,36 @@
           </div>
         </div>
 
-        <div class="card-content">
-          <div class="info-section">
+        <!-- card-content -->
+        <div class="card-content d-flex flex-column flex-grow-1 ga-1">
+          <!-- info-section -->
+          <div class="d-flex flex-column ga-1">
+            <!-- prefixes-line -->
             <div
               v-if="!isCompact"
-              class="prefixes-line text-truncate"
+              class="text-truncate d-flex align-center"
               :class="isLightWithBg ? 'text-grey-lighten-2' : 'text-grey'"
+              style="min-height: 18px"
             >
               <v-icon size="x-small" class="mr-1">mdi-layers-outline</v-icon>
               <span class="text-caption">{{ seriesData.prefixes.join(', ') }}</span>
             </div>
 
+            <!-- series-title -->
             <p
-              class="series-title text-truncate"
+              class="text-truncate"
               :class="
                 isCompact
                   ? 'text-body-2 font-weight-medium'
                   : 'text-subtitle-2 text-sm-subtitle-1 font-weight-medium'
               "
+              style="iscompact? 'line-height: 1.4' : 'line-height: 1.3'"
             >
               {{ seriesName }}
             </p>
           </div>
 
-          <div v-if="!isCompact" class="date-section">
+          <div v-if="!isCompact" class="date-section mt-auto pt-1">
             <p class="text-caption" :class="isLightWithBg ? 'text-grey-lighten-2' : 'text-grey'">
               {{ seriesData.latestReleaseDate }}
             </p>
@@ -113,7 +122,6 @@ const iconUrl = computed(() => {
 <style scoped>
 .series-card {
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
 }
 
 .series-card:hover {
@@ -121,23 +129,8 @@ const iconUrl = computed(() => {
   box-shadow: none;
 }
 
-.series-card.compact {
-  padding: 8px;
-}
-
-.series-card:not(.compact) {
-  padding: 12px;
-}
-
 .series-card.compact:hover {
   transform: translateY(-4px);
-}
-
-.image-wrapper {
-  position: relative;
-  overflow: hidden;
-  border-radius: 12px;
-  margin-bottom: 8px;
 }
 
 .series-card.compact .image-wrapper {
@@ -152,38 +145,6 @@ const iconUrl = computed(() => {
   transform: scale(1.08);
 }
 
-.card-content {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.info-section {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.prefixes-line {
-  display: flex;
-  align-items: center;
-  min-height: 18px;
-}
-
-.series-title {
-  line-height: 1.3;
-}
-
-.series-card.compact .series-title {
-  line-height: 1.4;
-}
-
-.date-section {
-  margin-top: auto;
-  padding-top: 4px;
-}
-
 /* Compact 模式的 Hover 覆蓋層效果 */
 .hover-overlay {
   position: absolute;
@@ -194,15 +155,9 @@ const iconUrl = computed(() => {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
-  display: flex;
-  align-items: flex-end;
 }
 
 .series-card.compact:hover .hover-overlay {
   opacity: 1;
-}
-
-.overlay-content {
-  width: 100%;
 }
 </style>
