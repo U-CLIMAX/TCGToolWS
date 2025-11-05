@@ -16,7 +16,7 @@
 
           <v-slide-group class="pa-2" show-arrows>
             <v-slide-group-item v-for="item in recentlyViewed" :key="item.data.id">
-              <div class="ma-1" style="width: 150px">
+              <div class="ma-1" :style="{ width: smAndDown ? '125px' : '150px' }">
                 <SeriesCard :series-name="item.name" :series-data="item.data" :is-compact="true" />
               </div>
             </v-slide-group-item>
@@ -81,7 +81,7 @@
 
 <script setup>
 import { ref, computed, watch, nextTick, onMounted } from 'vue'
-import { useTheme } from 'vuetify'
+import { useTheme, useDisplay } from 'vuetify'
 import { storeToRefs } from 'pinia'
 import { useUIStore } from '@/stores/ui'
 import { useRecentStore } from '@/stores/recent'
@@ -118,6 +118,7 @@ const recentlyViewed = computed(() => {
 })
 
 const theme = useTheme()
+const { smAndDown } = useDisplay()
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 const isLightWithBg = computed(() => {
   return hasBackgroundImage.value && theme.global.name.value === 'light'
