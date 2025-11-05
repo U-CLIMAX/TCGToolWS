@@ -153,8 +153,8 @@ const confirmDeleteDeck = async () => {
 
 .delete-btn-container {
   position: absolute;
-  top: 2px;
-  right: 2px;
+  top: -2px;
+  right: 4px;
   z-index: 2;
 }
 
