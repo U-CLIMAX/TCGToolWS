@@ -198,10 +198,13 @@ const ICON_REGEX = new RegExp(Object.keys(ICON_MAP).join('|'), 'g')
 const formattedEffect = computed(() => {
   const rawEffect = props.card.effect || '无'
 
-  const replaced = rawEffect.replace(ICON_REGEX, (match) => {
+  let replaced = rawEffect.replace(ICON_REGEX, (match) => {
     const icon = ICON_MAP[match]
     return icon ? ` <img src="/effect-icons/${icon}.svg" class="inline-icon"> ` : match
   })
+
+  // 補上缺少 inline-icon 的 img
+  replaced = replaced.replace(/<img\b(?![^>]*\bclass=)/g, '<img class="inline-icon"')
 
   return DOMPurify.sanitize(replaced)
 })
