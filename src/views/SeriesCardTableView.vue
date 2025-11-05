@@ -9,7 +9,7 @@
     >
       <v-container class="pa-0">
         <v-sheet v-if="recentlyViewed.length > 0" color="transparent">
-          <div class="d-flex align-center mb-2">
+          <div class="d-flex align-center ps-2 mb-2">
             <v-icon :color="isLightWithBg ? 'white' : ''" class="mr-2" icon="mdi-history" />
             <div class="text-h6" :class="isLightWithBg ? 'text-white' : ''">最近查看</div>
           </div>
