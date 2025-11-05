@@ -200,7 +200,7 @@ const formattedEffect = computed(() => {
 
   let replaced = rawEffect.replace(ICON_REGEX, (match) => {
     const icon = ICON_MAP[match]
-    return icon ? ` <img src="/effect-icons/${icon}.svg" class="inline-icon"> ` : match
+    return icon ? ` <img src="/effect-icons/${icon}.svg"> ` : match
   })
 
   // 補上缺少 inline-icon 的 img
