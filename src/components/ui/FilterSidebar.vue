@@ -7,7 +7,7 @@
     <v-sheet
       :rounded="smAndUp ? '3md' : false"
       class="pa-4 ga-4 d-flex flex-column fill-height overflow-y-auto overflow-x-hidden themed-scrollbar"
-      :class="{ 'glass-sheet': hasBackgroundImage && !transparent }"
+      :class="{ 'glass-sheet': uiStore.backgroundImage && !transparent }"
       :color="transparent ? 'transparent' : undefined"
     >
       <div class="d-flex flex-column ga-4">
@@ -74,7 +74,7 @@
           clearable
           v-model="filterStore.selectedCardTypes"
           variant="outlined"
-          :menu-props="menuProps"
+          :menu-props="uiStore.glassMenuProps"
         ></v-select>
 
         <v-select
@@ -91,7 +91,7 @@
           clearable
           v-model="filterStore.selectedColors"
           variant="outlined"
-          :menu-props="menuProps"
+          :menu-props="uiStore.glassMenuProps"
         ></v-select>
 
         <v-autocomplete
@@ -101,7 +101,7 @@
           clearable
           v-model="filterStore.selectedProductName"
           variant="outlined"
-          :menu-props="menuProps"
+          :menu-props="uiStore.glassMenuProps"
         ></v-autocomplete>
 
         <v-autocomplete
@@ -113,7 +113,7 @@
           clearable
           v-model="filterStore.selectedRarities"
           variant="outlined"
-          :menu-props="menuProps"
+          :menu-props="uiStore.glassMenuProps"
         ></v-autocomplete>
 
         <v-autocomplete
@@ -125,7 +125,7 @@
           clearable
           v-model="filterStore.selectedTraits"
           variant="outlined"
-          :menu-props="menuProps"
+          :menu-props="uiStore.glassMenuProps"
         ></v-autocomplete>
 
         <v-select
@@ -137,7 +137,7 @@
           clearable
           v-model="filterStore.selectedLevels"
           variant="outlined"
-          :menu-props="menuProps"
+          :menu-props="uiStore.glassMenuProps"
         ></v-select>
 
         <div>
@@ -169,7 +169,7 @@
 </template>
 
 <script setup>
-import { ref, watch, computed } from 'vue'
+import { ref, watch } from 'vue'
 import { useDisplay } from 'vuetify'
 import { debounce } from 'es-toolkit'
 import { useUIStore } from '@/stores/ui'
@@ -196,14 +196,6 @@ const props = defineProps({
 
 const { smAndUp } = useDisplay()
 const uiStore = useUIStore()
-const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
-
-const menuProps = computed(() => {
-  if (hasBackgroundImage.value) {
-    return { contentClass: 'glass-menu' }
-  }
-  return {}
-})
 
 const filterStore = props.globalFilter ? useGlobalSearchStore() : useFilterStore()
 

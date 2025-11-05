@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import localforage from 'localforage'
 
@@ -27,6 +27,13 @@ export const useUIStore = defineStore(
     const showStatsDashboard = ref(true)
 
     const backgroundImage = ref(null)
+
+    const glassMenuProps = computed(() => {
+      if (backgroundImage.value) {
+        return { contentClass: 'glass-menu' }
+      }
+      return {}
+    })
 
     const restoreBackgroundImage = async () => {
       const storedImage = await backgroundStore.getItem(BACKGROUND_IMAGE_KEY)
@@ -97,6 +104,7 @@ export const useUIStore = defineStore(
       updateBackgroundImage,
       clearBackgroundImage,
       restoreBackgroundImage,
+      glassMenuProps,
     }
   },
   {
