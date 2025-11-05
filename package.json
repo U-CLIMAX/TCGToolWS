@@ -37,7 +37,7 @@
     "vue": "^3.5.18",
     "vue-advanced-cropper": "^2.8.9",
     "vue-router": "^4.5.1",
-    "vuetify": "^3.10.2"
+    "vuetify": "^3.10.9"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.13.8",
