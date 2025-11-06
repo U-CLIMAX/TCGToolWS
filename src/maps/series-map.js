@@ -83,7 +83,7 @@ export const seriesMap = {
   'BanG Dream!': {
     id: 'bd',
     prefixes: ['BD'],
-    latestReleaseDate: '2025-02-28',
+    latestReleaseDate: '2025-09-12',
   },
   '缘结甘神家': {
     id: 'amg',
