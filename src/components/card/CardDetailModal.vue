@@ -263,6 +263,11 @@ const handleDownloadCard = async () => {
   effectText.style.textAlign = 'justify'
 
   effectText.querySelectorAll('img').forEach((icon) => {
+    let src = icon.getAttribute('src')
+    if (src && src.endsWith('.svg')) {
+      icon.setAttribute('src', src.replace(/\.svg$/, '.webp'))
+    }
+
     icon.crossOrigin = 'anonymous'
     icon.style.height = '0.9rem'
     icon.style.verticalAlign = '-0.15rem'
@@ -281,12 +286,12 @@ const handleDownloadCard = async () => {
     const images = Array.from(exportContainer.querySelectorAll('img'))
     const imageLoadPromises = images.map(
       (image) =>
-        new Promise((resolve, reject) => {
+        new Promise((resolve) => {
           if (image.complete) {
             resolve()
           } else {
             image.onload = resolve
-            image.onerror = reject
+            image.onerror = resolve
           }
         })
     )
