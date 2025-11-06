@@ -285,7 +285,6 @@ const handleDownloadCard = async () => {
     icon.crossOrigin = 'anonymous'
     icon.style.height = '0.9rem'
     icon.style.verticalAlign = '-0.15rem'
-    icon.style.margin = '0 2px'
     icon.style.display = 'inline-block'
   })
 
