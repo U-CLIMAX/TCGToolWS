@@ -1,5 +1,6 @@
 <template>
   <v-card
+    id="card-detail"
     class="d-flex flex-column w-100"
     style="position: relative"
     :class="{
@@ -7,6 +8,14 @@
       'overflow-visible': $vuetify.display.mdAndUp,
     }"
   >
+    <v-btn
+      v-if="card.type != '高潮卡'"
+      icon="mdi-download"
+      variant="tonal"
+      size="small"
+      class="download-button"
+      @click="handleDownloadCard"
+    ></v-btn>
     <v-btn
       icon="mdi-close"
       variant="tonal"
@@ -26,8 +35,8 @@
         }"
       >
         <v-img
-          :src="props.imgUrl"
-          :alt="props.card.name"
+          :src="imgUrl"
+          :alt="card.name"
           rounded="5md"
           cover
           :aspect-ratio="400 / 559"
@@ -50,10 +59,7 @@
           </template>
         </v-img>
         <div>
-          <v-card-actions
-            v-if="props.showActions"
-            class="d-flex justify-center align-center pa-0 pt-4"
-          >
+          <v-card-actions v-if="showActions" class="d-flex justify-center align-center pa-0 pt-4">
             <v-btn
               icon="mdi-minus"
               size="small"
@@ -92,29 +98,29 @@
         >
           <div class="pa-4">
             <v-card-subtitle class="pb-1 text-body-2 pa-0">
-              {{ props.card.product_name }}
+              {{ card.product_name }}
             </v-card-subtitle>
-            <v-card-title class="pt-0 text-h5 text-wrap pa-0">{{ props.card.name }}</v-card-title>
+            <v-card-title class="pt-0 text-h5 text-wrap pa-0">{{ card.name }}</v-card-title>
             <v-card-subtitle class="pt-0 text-body-2 pa-0 mb-4">
-              {{ props.card.id }}
+              {{ card.id }}
             </v-card-subtitle>
 
             <v-row dense class="my-4 text-center">
               <v-col>
                 <div class="text-body-2 text-grey">等级</div>
-                <div class="font-weight-bold text-body-1">{{ props.card.level }}</div>
+                <div class="font-weight-bold text-body-1">{{ card.level }}</div>
               </v-col>
               <v-col>
                 <div class="text-body-2 text-grey">费用</div>
-                <div class="font-weight-bold text-body-1">{{ props.card.cost }}</div>
+                <div class="font-weight-bold text-body-1">{{ card.cost }}</div>
               </v-col>
               <v-col>
                 <div class="text-body-2 text-grey">战斗力</div>
-                <div class="font-weight-bold text-body-1">{{ props.card.power }}</div>
+                <div class="font-weight-bold text-body-1">{{ card.power }}</div>
               </v-col>
               <v-col>
                 <div class="text-body-2 text-grey">灵魂值</div>
-                <div class="font-weight-bold text-body-1">{{ props.card.soul }}</div>
+                <div class="font-weight-bold text-body-1">{{ card.soul }}</div>
               </v-col>
             </v-row>
             <v-divider class="mb-4"></v-divider>
@@ -163,6 +169,12 @@ import { computed } from 'vue'
 import LinkedCard from './LinkedCard.vue'
 import DOMPurify from 'dompurify'
 import { useDeckStore } from '@/stores/deck'
+import { convertElementToPng } from '@/utils/domToImage.js'
+import { useSnackbar } from '@/composables/useSnackbar'
+import { useUIStore } from '@/stores/ui'
+
+const { triggerSnackbar } = useSnackbar()
+const uiStore = useUIStore()
 
 const emit = defineEmits(['close', 'show-new-card', 'prev-card', 'next-card', 'load-more'])
 
@@ -209,6 +221,88 @@ const formattedEffect = computed(() => {
   return DOMPurify.sanitize(replaced)
 })
 
+const handleDownloadCard = async () => {
+  uiStore.setLoading(true)
+
+  const exportContainer = document.createElement('div')
+  exportContainer.id = 'temp-export-container'
+
+  exportContainer.style.position = 'absolute'
+  exportContainer.style.left = '-9999px'
+  exportContainer.style.top = '-9999px'
+  exportContainer.style.width = '400px'
+  exportContainer.style.height = '557px'
+  exportContainer.style.borderRadius = '8px'
+  exportContainer.style.overflow = 'hidden'
+  exportContainer.style.fontFamily = 'system-ui, sans-serif'
+
+  const img = document.createElement('img')
+  img.crossOrigin = 'anonymous'
+  img.src = props.imgUrl
+  img.style.width = '100%'
+  img.style.height = '100%'
+  img.style.objectFit = 'cover'
+  img.style.display = 'block'
+
+  const overlay = document.createElement('div')
+  overlay.style.position = 'absolute'
+  overlay.style.bottom = props.card.type === '事件卡' ? '53px' : '67px'
+  overlay.style.left = '12px'
+  overlay.style.right = '12px'
+  overlay.style.backgroundColor = 'rgba(255, 255, 255, 0.85)'
+  overlay.style.color = 'black'
+  overlay.style.padding = '10px'
+  overlay.style.boxSizing = 'border-box'
+  overlay.style.borderRadius = '8px'
+
+  const effectText = document.createElement('div')
+  effectText.innerHTML = formattedEffect.value
+  effectText.style.fontSize = '0.9rem'
+  effectText.style.lineHeight = '1.2'
+  effectText.style.wordBreak = 'break-word'
+  effectText.style.textAlign = 'justify'
+
+  effectText.querySelectorAll('img').forEach((icon) => {
+    icon.crossOrigin = 'anonymous'
+    icon.style.height = '0.9rem'
+    icon.style.verticalAlign = '-0.15rem'
+    icon.style.margin = '0 2px'
+    icon.style.display = 'inline-block'
+  })
+
+  overlay.appendChild(effectText)
+
+  exportContainer.appendChild(img)
+  exportContainer.appendChild(overlay)
+
+  document.body.appendChild(exportContainer)
+
+  try {
+    await new Promise((resolve, reject) => {
+      img.onload = async () => {
+        try {
+          const filename = props.card.id || 'card'
+          await convertElementToPng('temp-export-container', filename, 1)
+          resolve()
+        } catch (e) {
+          reject(e)
+        }
+      }
+      img.onerror = (e) => {
+        console.error('Failed to load image:', e)
+        reject(new Error('圖片載入失敗，無法匯出'))
+      }
+    })
+    triggerSnackbar('圖片已成功匯出', 'success')
+  } catch (error) {
+    console.error('Failed to export card image:', error)
+    triggerSnackbar(`導出失敗: ${error.message}`, 'error')
+  } finally {
+    document.body.removeChild(exportContainer)
+    uiStore.setLoading(false)
+  }
+}
+
 const handleShowNewCard = (payload) => {
   emit('show-new-card', payload)
 }
@@ -232,6 +326,15 @@ const handleNextCard = () => {
   right: 12px;
   z-index: 15;
   background-color: rgba(0, 0, 0, 0.6) !important;
+  color: white !important;
+}
+
+.download-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 15;
+  background-color: rgba(0, 0, 0, 0.8) !important;
   color: white !important;
 }
 

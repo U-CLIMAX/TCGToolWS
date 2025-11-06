@@ -636,7 +636,7 @@ watch(
 
         await new Promise((resolve) => setTimeout(resolve, 300))
 
-        await convertElementToPng('deck-share-image-content', deck.value.name.trim())
+        await convertElementToPng('deck-share-image-content', deck.value.name.trim(), 2)
       } catch (error) {
         console.error('生成图片失败:', error)
         triggerSnackbar('生成图片失败，请稍后再试。', 'error')

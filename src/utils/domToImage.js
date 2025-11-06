@@ -1,6 +1,6 @@
 import { snapdom } from '@zumer/snapdom'
 
-export const convertElementToPng = async (elementId, name) => {
+export const convertElementToPng = async (elementId, name, scale = 1) => {
   const element = document.getElementById(elementId)
   if (!element) {
     console.error(`Element with ID "${elementId}" not found.`)
@@ -12,7 +12,7 @@ export const convertElementToPng = async (elementId, name) => {
       width: rect.width,
       height: rect.height,
       dpr: window.devicePixelRatio,
-      scale: 2,
+      scale: scale,
       type: 'png',
     }
 
