@@ -55,7 +55,7 @@
             </v-img>
             <v-fade-transition>
               <v-btn
-                v-if="(isHovering || !$vuetify.display.mdAndUp) && card.type != '高潮卡'"
+                v-if="(isHovering || isTouch) && card.type != '高潮卡'"
                 icon="mdi-download"
                 variant="tonal"
                 size="small"
@@ -179,6 +179,7 @@ import { useDeckStore } from '@/stores/deck'
 import { convertElementToPng } from '@/utils/domToImage.js'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useUIStore } from '@/stores/ui'
+import { useDevice } from '@/composables/useDevice'
 
 const { triggerSnackbar } = useSnackbar()
 const uiStore = useUIStore()
@@ -195,6 +196,7 @@ const props = defineProps({
   totalCards: { type: Number, default: 1 },
 })
 const deckStore = useDeckStore()
+const { isTouch } = useDevice()
 
 const cardCount = computed(() => {
   return props.card ? deckStore.getCardCount(props.card.id) : 0
