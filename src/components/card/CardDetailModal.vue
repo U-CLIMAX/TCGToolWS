@@ -278,25 +278,29 @@ const handleDownloadCard = async () => {
   document.body.appendChild(exportContainer)
 
   try {
-    await new Promise((resolve, reject) => {
-      img.onload = async () => {
-        try {
-          const filename = props.card.id || 'card'
-          await convertElementToPng('temp-export-container', filename, 1)
-          resolve()
-        } catch (e) {
-          reject(e)
-        }
-      }
-      img.onerror = (e) => {
-        console.error('Failed to load image:', e)
-        reject(new Error('图片载入失败，无法汇出'))
-      }
-    })
+    const images = Array.from(exportContainer.querySelectorAll('img'))
+    const imageLoadPromises = images.map(
+      (image) =>
+        new Promise((resolve, reject) => {
+          if (image.complete) {
+            resolve()
+          } else {
+            image.onload = resolve
+            image.onerror = reject
+          }
+        })
+    )
+
+    await Promise.all(imageLoadPromises)
+    await new Promise((resolve) => setTimeout(resolve, 50))
+
+    const filename = props.card.id || 'card'
+    await convertElementToPng('temp-export-container', filename, 1)
+
     triggerSnackbar('图片已成功汇出', 'success')
   } catch (error) {
     console.error('Failed to export card image:', error)
-    triggerSnackbar(`导出失败: ${error.message}`, 'error')
+    triggerSnackbar(`导出失败: ${error.message || '未知错误'}`, 'error')
   } finally {
     document.body.removeChild(exportContainer)
     uiStore.setLoading(false)
