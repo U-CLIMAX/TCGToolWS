@@ -1,6 +1,12 @@
 <template>
   <v-app id="app" class="grid-background" :style="appStyle">
-    <v-app-bar scroll-behavior="elevate" scroll-threshold="160" height="50" :class="appBarClass">
+    <v-app-bar
+      scroll-behavior="elevate"
+      scroll-threshold="160"
+      height="50"
+      :color="appBarColor"
+      :elevation="5"
+    >
       <template #prepend>
         <v-app-bar-nav-icon class="d-md-none" @click="drawer = !drawer"></v-app-bar-nav-icon>
       </template>
@@ -138,17 +144,13 @@ import DeckIcon from '@/assets/ui/deck.svg'
 import SearchIcon from '@/assets/ui/search.svg'
 
 const authStore = useAuthStore()
-const vuetifyTheme = useTheme()
-const uiStore = useUIStore()
 const authDialog = ref(null)
 const { show, text, color, triggerSnackbar } = useSnackbar()
 const route = useRoute()
 const isSettingsModalOpen = ref(false)
-
-const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
-const isLightTheme = computed(() => vuetifyTheme.global.name.value === 'light')
 const titleImg = computed(() => {
-  return isLightTheme.value ? titleLightImg : titleDarkImg
+  const isLightTheme = vuetifyTheme.global.name.value === 'light'
+  return isLightTheme ? titleLightImg : titleDarkImg
 })
 
 const isInSpecialFlow = computed(() => {
@@ -186,6 +188,9 @@ const navItems = [
   { text: '我的卡组', name: 'Decks', requiresAuth: true, icon: 'deck.svg' },
 ]
 
+const vuetifyTheme = useTheme()
+const uiStore = useUIStore()
+
 usePerformanceManager()
 
 const { mdAndDown, smAndDown } = useDisplay()
@@ -196,17 +201,16 @@ const titleImgStyle = computed(() => {
   }
 })
 
-const appBarClass = computed(() => {
-  const classes = []
+const appBarColor = computed(() => {
+  const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
+  const isLightTheme = vuetifyTheme.global.name.value === 'light'
 
   if (hasBackgroundImage.value) {
-    classes.push('glass-app-bar')
-    classes.push(isLightTheme.value ? 'glass-app-bar--light' : 'glass-app-bar--dark')
+    // 如果有背景圖，就使用帶透明度的版本
+    return isLightTheme ? '#E0E0E0CC' : '#424242CC'
   } else {
-    classes.push(isLightTheme.value ? 'grey-lighten-3' : 'grey-darken-3')
+    return isLightTheme ? 'grey-lighten-3' : 'grey-darken-3'
   }
-
-  return classes.join(' ')
 })
 
 const appStyle = computed(() => {
@@ -294,21 +298,5 @@ watch(
 .inline-icon {
   height: 1rem;
   vertical-align: -0.15rem;
-}
-</style>
-
-<style scoped>
-.glass-app-bar {
-  background-color: var(--header-bg-color);
-  backdrop-filter: blur(9px);
-  -webkit-backdrop-filter: blur(9px);
-}
-
-.glass-app-bar--light {
-  background-color: rgba(255, 255, 255, 0.8) !important;
-}
-
-.glass-app-bar--dark {
-  background-color: rgba(83, 81, 81, 0.8) !important;
 }
 </style>

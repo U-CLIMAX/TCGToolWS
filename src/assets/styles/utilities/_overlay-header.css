@@ -4,17 +4,9 @@
   left: 0;
   right: 0;
   z-index: 10;
-  background: linear-gradient(
-    135deg,
-    rgba(var(--v-theme-surface), 0.7),
-    rgba(var(--v-theme-surface), 0.3)
-  );
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow:
-    0 8px 32px 0 rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  background-color: var(--header-bg-color);
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
   transition: background-color 0.2s ease-in-out;
 }
 
