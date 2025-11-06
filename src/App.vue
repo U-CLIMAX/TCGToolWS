@@ -4,7 +4,7 @@
       scroll-behavior="elevate"
       scroll-threshold="160"
       height="50"
-      :color="appBarColor"
+      :color="vuetifyTheme.global.current.value.dark ? 'grey-darken-3' : 'grey-lighten-3'"
       :elevation="5"
     >
       <template #prepend>
@@ -198,18 +198,6 @@ const { mdAndDown, smAndDown } = useDisplay()
 const titleImgStyle = computed(() => {
   return {
     maxWidth: mdAndDown.value ? '140px' : '170px',
-  }
-})
-
-const appBarColor = computed(() => {
-  const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
-  const isLightTheme = vuetifyTheme.global.name.value === 'light'
-
-  if (hasBackgroundImage.value) {
-    // 如果有背景圖，就使用帶透明度的版本
-    return isLightTheme ? '#E0E0E0CC' : '#424242CC'
-  } else {
-    return isLightTheme ? 'grey-lighten-3' : 'grey-darken-3'
   }
 })
 
