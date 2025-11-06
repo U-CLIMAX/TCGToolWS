@@ -27,7 +27,11 @@
         }"
       >
         <v-hover v-slot="{ isHovering, props: hoverProps }">
-          <div v-bind="hoverProps" class="image-wrapper rounded-5md">
+          <div
+            v-bind="hoverProps"
+            class="image-wrapper rounded-5md"
+            :class="{ 'light-mode-glowing-border': isLightMode }"
+          >
             <v-img
               :src="imgUrl"
               :alt="card.name"
@@ -197,6 +201,7 @@ const props = defineProps({
 })
 const deckStore = useDeckStore()
 const { isTouch } = useDevice()
+const isLightMode = computed(() => uiStore.theme === 'light')
 
 const cardCount = computed(() => {
   return props.card ? deckStore.getCardCount(props.card.id) : 0
@@ -412,17 +417,20 @@ const handleNextCard = () => {
 .image-wrapper::after {
   content: '';
   position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   border-radius: inherit;
-  /* background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #4facfe); */
   background: white;
   opacity: 0;
   z-index: -1;
   filter: blur(8px);
   transition: opacity 0.3s ease-out;
+}
+
+.image-wrapper.light-mode-glowing-border::after {
+  background: black;
 }
 
 .image-wrapper:hover::after {
