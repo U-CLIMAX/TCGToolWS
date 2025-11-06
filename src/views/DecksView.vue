@@ -46,14 +46,17 @@
         </v-card>
       </v-dialog>
 
-      <v-row class="ma-1 pt-3" no-gutters>
-        <v-col v-if="localDeck && initialLoadingComplete" class="pa-2" cols="4" sm="2">
-          <DeckCard :deck="localDeck" deckKey="local" :is-editing="true" />
+      <transition-group
+        v-if="initialLoadingComplete"
+        tag="div"
+        class="v-row ma-1 pt-3"
+        name="deck-fade"
+        appear
+      >
+        <v-col v-for="item in displayedDecks" :key="item.key" class="pa-2" cols="4" sm="2">
+          <DeckCard :deck="item.deck" :deckKey="item.key" :is-editing="item.isEditing" />
         </v-col>
-        <v-col v-for="(deck, key) in filteredDecks" :key="key" class="pa-2" cols="4" sm="2">
-          <DeckCard :deck="deck" :deckKey="key" :is-editing="key === deckStore.editingDeckKey" />
-        </v-col>
-      </v-row>
+      </transition-group>
     </v-container>
   </div>
 </template>
@@ -117,6 +120,32 @@ const localDeck = computed(() => {
   return null
 })
 
+const displayedDecks = computed(() => {
+  if (!initialLoadingComplete.value) {
+    return []
+  }
+
+  const items = []
+
+  if (localDeck.value) {
+    items.push({
+      deck: localDeck.value,
+      key: 'local',
+      isEditing: true,
+    })
+  }
+
+  for (const key in filteredDecks.value) {
+    items.push({
+      deck: filteredDecks.value[key],
+      key: key,
+      isEditing: key === deckStore.editingDeckKey,
+    })
+  }
+
+  return items
+})
+
 const loadDecodedDecks = async () => {
   const decks = {}
   for (const key in deckStore.savedDecks) {
@@ -155,5 +184,14 @@ watch(
   width: 100%;
   max-width: 600px;
   padding: 16px;
+}
+
+.deck-fade-enter-active {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.deck-fade-enter-from {
+  opacity: 0;
+  transform: scale(0.9);
 }
 </style>
