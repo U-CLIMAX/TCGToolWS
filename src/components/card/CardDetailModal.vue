@@ -290,13 +290,13 @@ const handleDownloadCard = async () => {
       }
       img.onerror = (e) => {
         console.error('Failed to load image:', e)
-        reject(new Error('圖片載入失敗，無法匯出'))
+        reject(new Error('图片载入失败，无法汇出'))
       }
     })
-    triggerSnackbar('圖片已成功匯出', 'success')
+    triggerSnackbar('图片已成功汇出', 'success')
   } catch (error) {
     console.error('Failed to export card image:', error)
-    triggerSnackbar(`導出失敗: ${error.message}`, 'error')
+    triggerSnackbar(`导出失败: ${error.message}`, 'error')
   } finally {
     document.body.removeChild(exportContainer)
     uiStore.setLoading(false)
