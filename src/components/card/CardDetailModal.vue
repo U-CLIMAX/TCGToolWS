@@ -9,14 +9,6 @@
     }"
   >
     <v-btn
-      v-if="card.type != '高潮卡'"
-      icon="mdi-download"
-      variant="tonal"
-      size="small"
-      class="download-button"
-      @click="handleDownloadCard"
-    ></v-btn>
-    <v-btn
       icon="mdi-close"
       variant="tonal"
       size="small"
@@ -34,30 +26,45 @@
           position: 'relative',
         }"
       >
-        <v-img
-          :src="imgUrl"
-          :alt="card.name"
-          rounded="5md"
-          cover
-          :aspect-ratio="400 / 559"
-          :max-width="400"
-          lazy-src="/empty-placehold.webp"
-        >
-          <template #placeholder>
-            <div class="d-flex align-center justify-center fill-height">
-              <v-progress-circular color="grey-lighten-4" indeterminate></v-progress-circular>
-            </div>
-          </template>
-          <template #error>
+        <v-hover v-slot="{ isHovering, props: hoverProps }">
+          <div v-bind="hoverProps" class="image-wrapper rounded-5md">
             <v-img
-              src="/placehold.webp"
-              :aspect-ratio="400 / 559"
-              rounded="5md"
+              :src="imgUrl"
+              :alt="card.name"
               cover
+              :aspect-ratio="400 / 559"
               :max-width="400"
-            />
-          </template>
-        </v-img>
+              lazy-src="/empty-placehold.webp"
+              class="card-image"
+              :class="{ 'hover-scale': isHovering }"
+            >
+              <template #placeholder>
+                <div class="d-flex align-center justify-center fill-height">
+                  <v-progress-circular color="grey-lighten-4" indeterminate></v-progress-circular>
+                </div>
+              </template>
+              <template #error>
+                <v-img
+                  src="/placehold.webp"
+                  :aspect-ratio="400 / 559"
+                  rounded="lg"
+                  cover
+                  :max-width="400"
+                />
+              </template>
+            </v-img>
+            <v-fade-transition>
+              <v-btn
+                v-if="(isHovering || !$vuetify.display.mdAndUp) && card.type != '高潮卡'"
+                icon="mdi-download"
+                variant="tonal"
+                size="small"
+                class="download-button"
+                @click="handleDownloadCard"
+              ></v-btn>
+            </v-fade-transition>
+          </div>
+        </v-hover>
         <div>
           <v-card-actions v-if="showActions" class="d-flex justify-center align-center pa-0 pt-4">
             <v-btn
@@ -342,11 +349,11 @@ const handleNextCard = () => {
 }
 
 .download-button {
-  position: fixed;
-  top: 12px;
-  left: 12px;
-  z-index: 15;
-  background-color: rgba(0, 0, 0, 0.8) !important;
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.6) !important;
   color: white !important;
 }
 
@@ -392,5 +399,18 @@ const handleNextCard = () => {
 .nav-button-sm {
   background-color: rgba(0, 0, 0, 0.6) !important;
   color: white !important;
+}
+
+.image-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-image {
+  transition: transform 0.2s ease-in-out;
+}
+
+.card-image.hover-scale {
+  transform: scale(1.05);
 }
 </style>
