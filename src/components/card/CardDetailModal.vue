@@ -405,14 +405,36 @@ const handleNextCard = () => {
 
 .image-wrapper {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  transition: filter 0.3s ease-out;
+}
+
+.image-wrapper::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: inherit;
+  /* background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #4facfe); */
+  background: white;
+  opacity: 0;
+  z-index: -1;
+  filter: blur(8px);
+  transition: opacity 0.3s ease-out;
+}
+
+.image-wrapper:hover::after {
+  opacity: 0.8;
 }
 
 .card-image {
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.3s ease-out;
+  border-radius: inherit;
 }
 
 .card-image.hover-scale {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 </style>
