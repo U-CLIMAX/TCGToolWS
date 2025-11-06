@@ -331,8 +331,8 @@ const handleNextCard = () => {
 
 .download-button {
   position: fixed;
-  top: 20px;
-  left: 20px;
+  top: 12px;
+  left: 12px;
   z-index: 15;
   background-color: rgba(0, 0, 0, 0.8) !important;
   color: white !important;
