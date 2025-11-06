@@ -292,7 +292,10 @@ const handleDownloadCard = async () => {
     )
 
     await Promise.all(imageLoadPromises)
-    await new Promise((resolve) => setTimeout(resolve, 50))
+    // wait for browser to render (100ms + 2rAF)
+    await new Promise((resolve) => setTimeout(resolve, 100))
+    await new Promise((resolve) => requestAnimationFrame(resolve))
+    await new Promise((resolve) => requestAnimationFrame(resolve))
 
     const filename = props.card.id || 'card'
     await convertElementToPng('temp-export-container', filename, 1)

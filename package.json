@@ -18,7 +18,7 @@
     "db:init": "wrangler d1 execute ws-account-db --local --file=./schema.sql"
   },
   "dependencies": {
-    "@zumer/snapdom": "^1.9.14",
+    "@zumer/snapdom": "^2.0.0-dev.1",
     "comlink": "^4.4.2",
     "dompurify": "^3.2.7",
     "es-toolkit": "^1.41.0",
