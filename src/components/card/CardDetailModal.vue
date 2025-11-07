@@ -7,7 +7,7 @@
       right: handleSwipeRight,
     }"
     @click="handleModalClick"
-    class="d-flex flex-column w-100"
+    class="d-flex flex-column w-100 cursor-auto"
     style="position: relative"
     :class="{
       'overflow-y-auto themed-scrollbar': !$vuetify.display.mdAndUp,
