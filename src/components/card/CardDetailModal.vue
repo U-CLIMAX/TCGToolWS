@@ -1,6 +1,10 @@
 <template>
   <v-card
     id="card-detail"
+    v-touch="{
+      left: handleSwipeLeft,
+      right: handleSwipeRight,
+    }"
     class="d-flex flex-column w-100"
     style="position: relative"
     :class="{
@@ -340,6 +344,18 @@ const handleNextCard = () => {
     emit('load-more')
   }
   emit('next-card')
+}
+
+const handleSwipeLeft = () => {
+  if (isTouch.value && props.cardIndex < props.totalCards - 1) {
+    handleNextCard()
+  }
+}
+
+const handleSwipeRight = () => {
+  if (isTouch.value && props.cardIndex > 0) {
+    emit('prev-card')
+  }
 }
 </script>
 
