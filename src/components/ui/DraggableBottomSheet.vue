@@ -17,7 +17,7 @@
         <div class="header-drag-area">
           <div class="resize-handle"></div>
           <div class="pt-2">
-            <slot name="header"></slot>
+            <slot name="header" :content="lastKnownContent"></slot>
           </div>
         </div>
         <div class="header-close-area">
@@ -35,7 +35,7 @@
           touchAction: 'pan-y',
         }"
       >
-        <slot :contentHeight="sheetContentHeight"></slot>
+        <slot :contentHeight="sheetContentHeight" :content="lastKnownContent"></slot>
       </v-card-text>
     </v-card>
   </div>
@@ -64,8 +64,15 @@ const internalSheetContent = computed({
   set: (val) => emit('update:content', val),
 })
 
-const { shouldRender, sheetTranslateY, sheetContentHeight, isDragging, isAnimating, startDrag } =
-  useBottomSheet(internalSheetContent)
+const {
+  shouldRender,
+  sheetTranslateY,
+  sheetContentHeight,
+  isDragging,
+  isAnimating,
+  startDrag,
+  lastKnownContent,
+} = useBottomSheet(internalSheetContent)
 
 const closeSheet = () => {
   internalSheetContent.value = null

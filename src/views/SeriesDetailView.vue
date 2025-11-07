@@ -128,18 +128,18 @@
 
       <!-- Bottom Sheet for Mobile  -->
       <DraggableBottomSheet v-model:content="sheetContent">
-        <template #header>
-          <span class="text-h6">{{ sheetContent === 'filter' ? '筛选' : '卡组' }}</span>
+        <template #header="{ content }">
+          <span class="text-h6">{{ content === 'filter' ? '筛选' : '卡组' }}</span>
         </template>
-        <template #default="{ contentHeight }">
+        <template #default="{ contentHeight, content }">
           <BaseFilterSidebar
-            v-if="sheetContent === 'filter'"
+            v-if="content === 'filter'"
             :header-offset-height="0"
             :container-height="contentHeight"
             transparent
           />
           <DeckSidebar
-            v-if="sheetContent === 'deck'"
+            v-if="content === 'deck'"
             :header-offset-height="0"
             :container-height="contentHeight"
             transparent

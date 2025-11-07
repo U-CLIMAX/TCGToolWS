@@ -16,6 +16,7 @@ export const useBottomSheet = (externalSheetContent) => {
 
   const isAnimatingOut = ref(false)
   const shouldRender = computed(() => sheetContent.value !== null || isAnimatingOut.value)
+  const lastKnownContent = ref(sheetContent.value)
 
   // 核心狀態: Y 軸位移 (以百分比表示，相對於視窗高度)
   const sheetTranslateYPercent = ref(SNAP_POINTS.CLOSED)
@@ -198,6 +199,10 @@ export const useBottomSheet = (externalSheetContent) => {
 
   // 監聽開關狀態
   watch(sheetContent, (newContent, oldContent) => {
+    if (newContent) {
+      lastKnownContent.value = newContent
+    }
+
     if (newContent && !oldContent) {
       // --- OPENING ---
       cancelAnimation()
@@ -231,5 +236,6 @@ export const useBottomSheet = (externalSheetContent) => {
     isAnimating,
     startDrag,
     smAndUp,
+    lastKnownContent,
   }
 }
