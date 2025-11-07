@@ -88,29 +88,80 @@ export const useBottomSheet = () => {
     window.removeEventListener('mouseup', stopDrag)
     window.removeEventListener('touchend', stopDrag)
 
-    // 找到最接近的吸附點
     const currentPercent = sheetTranslateYPercent.value
-    const snapValues = [SNAP_POINTS.FULL, SNAP_POINTS.LARGE, SNAP_POINTS.DEFAULT, SNAP_POINTS.PEEK]
+    const dragDelta = currentPercent - initialDragPercent
 
-    // 如果拖到太下面 (超過 0.95),直接關閉
-    if (currentPercent > 0.95) {
+    const sortedSnaps = [
+      SNAP_POINTS.FULL,
+      SNAP_POINTS.LARGE,
+      SNAP_POINTS.DEFAULT,
+      SNAP_POINTS.PEEK,
+    ].sort((a, b) => a - b)
+
+    if (currentPercent > (SNAP_POINTS.PEEK + SNAP_POINTS.CLOSED) / 2) {
       isSheetOpen.value = false
       return
     }
 
-    // 找最近的吸附點
-    let closestSnap = snapValues[0]
-    let minDistance = Math.abs(currentPercent - snapValues[0])
-
-    for (const snapValue of snapValues) {
-      const distance = Math.abs(currentPercent - snapValue)
-      if (distance < minDistance) {
-        minDistance = distance
-        closestSnap = snapValue
+    // Find the snap point index where the drag started
+    let startingSnapIndex = 0
+    let minStartDistance = Infinity
+    sortedSnaps.forEach((snap, index) => {
+      const distance = Math.abs(initialDragPercent - snap)
+      if (distance < minStartDistance) {
+        minStartDistance = distance
+        startingSnapIndex = index
       }
+    })
+
+    const dragThreshold = 0.03 // User must drag at least 3% of the screen height to trigger a directional snap
+    let finalSnap = sortedSnaps[startingSnapIndex] // Default to staying put
+
+    if (dragDelta < -dragThreshold) {
+      // Swiped Up: Find the closest snap point among all points *above* the starting one
+      const potentialSnaps = sortedSnaps.slice(0, startingSnapIndex)
+      if (potentialSnaps.length > 0) {
+        let closestSnap = potentialSnaps[0]
+        let minDistance = Math.abs(currentPercent - closestSnap)
+        potentialSnaps.forEach((snap) => {
+          const distance = Math.abs(currentPercent - snap)
+          if (distance < minDistance) {
+            minDistance = distance
+            closestSnap = snap
+          }
+        })
+        finalSnap = closestSnap
+      }
+    } else if (dragDelta > dragThreshold) {
+      // Swiped Down: Find the closest snap point among all points *below* the starting one
+      const potentialSnaps = sortedSnaps.slice(startingSnapIndex + 1)
+      if (potentialSnaps.length > 0) {
+        let closestSnap = potentialSnaps[0]
+        let minDistance = Math.abs(currentPercent - closestSnap)
+        potentialSnaps.forEach((snap) => {
+          const distance = Math.abs(currentPercent - snap)
+          if (distance < minDistance) {
+            minDistance = distance
+            closestSnap = snap
+          }
+        })
+        finalSnap = closestSnap
+      }
+    } else {
+      // Minor Drag: Find the closest snap point among *all* points
+      let closestSnap = sortedSnaps[0]
+      let minDistance = Math.abs(currentPercent - closestSnap)
+      sortedSnaps.forEach((snap) => {
+        const distance = Math.abs(currentPercent - snap)
+        if (distance < minDistance) {
+          minDistance = distance
+          closestSnap = snap
+        }
+      })
+      finalSnap = closestSnap
     }
 
-    sheetTranslateYPercent.value = closestSnap
+    sheetTranslateYPercent.value = finalSnap
   }
 
   // 監聽開關狀態
