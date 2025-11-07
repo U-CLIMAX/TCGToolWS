@@ -211,17 +211,21 @@ const deckStore = useDeckStore()
 const { isTouch } = useDevice()
 const isLightMode = computed(() => uiStore.theme === 'light')
 
-const navButtonsVisible = ref(!isTouch.value)
+const showOnTap = ref(false)
 let hideTimeout = null
+
+const navButtonsVisible = computed(() => {
+  return !isTouch.value || showOnTap.value
+})
 
 const handleModalClick = () => {
   if (isTouch.value) {
-    navButtonsVisible.value = true
+    showOnTap.value = true
     if (hideTimeout) {
       clearTimeout(hideTimeout)
     }
     hideTimeout = setTimeout(() => {
-      navButtonsVisible.value = false
+      showOnTap.value = false
     }, 1000)
   }
 }
