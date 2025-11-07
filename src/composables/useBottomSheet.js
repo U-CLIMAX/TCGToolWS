@@ -79,6 +79,16 @@ export const useBottomSheet = () => {
     sheetTranslateYPercent.value = newPercent
   }
 
+  // Helper function to find the closest snap point from a given array
+  const findClosestSnap = (targetPercent, snapPoints) => {
+    if (!snapPoints || snapPoints.length === 0) {
+      return null
+    }
+    return snapPoints.reduce((prev, curr) =>
+      Math.abs(curr - targetPercent) < Math.abs(prev - targetPercent) ? curr : prev,
+    )
+  }
+
   const stopDrag = () => {
     if (!isDragging.value) return
 
@@ -103,62 +113,28 @@ export const useBottomSheet = () => {
       return
     }
 
-    // Find the snap point index where the drag started
-    let startingSnapIndex = 0
-    let minStartDistance = Infinity
-    sortedSnaps.forEach((snap, index) => {
-      const distance = Math.abs(initialDragPercent - snap)
-      if (distance < minStartDistance) {
-        minStartDistance = distance
-        startingSnapIndex = index
-      }
-    })
-
-    const dragThreshold = 0.03 // User must drag at least 3% of the screen height to trigger a directional snap
-    let finalSnap = sortedSnaps[startingSnapIndex] // Default to staying put
+    const startingSnap = findClosestSnap(initialDragPercent, sortedSnaps)
+    const startingSnapIndex = sortedSnaps.indexOf(startingSnap)
+    const dragThreshold = 0.03 // User must drag at least 3% of the screen height
+    let finalSnap = startingSnap
 
     if (dragDelta < -dragThreshold) {
-      // Swiped Up: Find the closest snap point among all points *above* the starting one
+      // Swiped Up: Find the closest snap among points *above* the starting one
       const potentialSnaps = sortedSnaps.slice(0, startingSnapIndex)
-      if (potentialSnaps.length > 0) {
-        let closestSnap = potentialSnaps[0]
-        let minDistance = Math.abs(currentPercent - closestSnap)
-        potentialSnaps.forEach((snap) => {
-          const distance = Math.abs(currentPercent - snap)
-          if (distance < minDistance) {
-            minDistance = distance
-            closestSnap = snap
-          }
-        })
-        finalSnap = closestSnap
+      const closest = findClosestSnap(currentPercent, potentialSnaps)
+      if (closest !== null) {
+        finalSnap = closest
       }
     } else if (dragDelta > dragThreshold) {
-      // Swiped Down: Find the closest snap point among all points *below* the starting one
+      // Swiped Down: Find the closest snap among points *below* the starting one
       const potentialSnaps = sortedSnaps.slice(startingSnapIndex + 1)
-      if (potentialSnaps.length > 0) {
-        let closestSnap = potentialSnaps[0]
-        let minDistance = Math.abs(currentPercent - closestSnap)
-        potentialSnaps.forEach((snap) => {
-          const distance = Math.abs(currentPercent - snap)
-          if (distance < minDistance) {
-            minDistance = distance
-            closestSnap = snap
-          }
-        })
-        finalSnap = closestSnap
+      const closest = findClosestSnap(currentPercent, potentialSnaps)
+      if (closest !== null) {
+        finalSnap = closest
       }
     } else {
-      // Minor Drag: Find the closest snap point among *all* points
-      let closestSnap = sortedSnaps[0]
-      let minDistance = Math.abs(currentPercent - closestSnap)
-      sortedSnaps.forEach((snap) => {
-        const distance = Math.abs(currentPercent - snap)
-        if (distance < minDistance) {
-          minDistance = distance
-          closestSnap = snap
-        }
-      })
-      finalSnap = closestSnap
+      // Minor Drag: Find the closest snap among *all* points
+      finalSnap = findClosestSnap(currentPercent, sortedSnaps)
     }
 
     sheetTranslateYPercent.value = finalSnap
