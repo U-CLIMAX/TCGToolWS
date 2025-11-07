@@ -160,25 +160,17 @@
           <v-divider></v-divider>
 
           <!-- 內容區域 - 可以獨立滾動 -->
-          <v-card-text
-            class="pa-0 sheet-content"
-            :style="{
-              height: sheetContentHeight + 'px',
-              overflowY: 'auto',
-              touchAction: 'pan-y',
-            }"
-          >
+          <v-card-text class="pa-0 sheet-content" style="overflow-y: hidden; touch-action: pan-y">
             <BaseFilterSidebar
               v-if="sheetContent === 'filter'"
               :header-offset-height="0"
-              class="px-4"
+              :container-height="sheetContentHeight"
               transparent
             />
             <DeckSidebar
               v-if="sheetContent === 'deck'"
               :header-offset-height="0"
               :container-height="sheetContentHeight"
-              class="px-4"
               transparent
             />
           </v-card-text>
