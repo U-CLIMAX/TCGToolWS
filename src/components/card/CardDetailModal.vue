@@ -389,6 +389,10 @@ const handleSwipeRight = () => {
 </script>
 
 <style scoped>
+#card-detail :deep(.v-card__overlay) {
+  display: none !important;
+}
+
 .v-card-title.text-wrap {
   white-space: normal;
 }
