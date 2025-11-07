@@ -1,10 +1,12 @@
 <template>
   <v-card
     id="card-detail"
+    :ripple="false"
     v-touch="{
       left: handleSwipeLeft,
       right: handleSwipeRight,
     }"
+    @click="handleModalClick"
     class="d-flex flex-column w-100"
     style="position: relative"
     :class="{
@@ -166,6 +168,7 @@
       icon="mdi-chevron-left"
       variant="tonal"
       class="nav-button-left"
+      :class="{ 'button-hidden': !navButtonsVisible }"
       @click="emit('prev-card')"
       :disabled="cardIndex === 0"
     ></v-btn>
@@ -173,6 +176,7 @@
       icon="mdi-chevron-right"
       variant="tonal"
       class="nav-button-right"
+      :class="{ 'button-hidden': !navButtonsVisible }"
       @click="handleNextCard"
       :disabled="cardIndex === totalCards - 1"
     ></v-btn>
@@ -180,7 +184,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, ref, onUnmounted } from 'vue'
 import LinkedCard from './LinkedCard.vue'
 import DOMPurify from 'dompurify'
 import { useDeckStore } from '@/stores/deck'
@@ -206,6 +210,27 @@ const props = defineProps({
 const deckStore = useDeckStore()
 const { isTouch } = useDevice()
 const isLightMode = computed(() => uiStore.theme === 'light')
+
+const navButtonsVisible = ref(!isTouch.value)
+let hideTimeout = null
+
+const handleModalClick = () => {
+  if (isTouch.value) {
+    navButtonsVisible.value = true
+    if (hideTimeout) {
+      clearTimeout(hideTimeout)
+    }
+    hideTimeout = setTimeout(() => {
+      navButtonsVisible.value = false
+    }, 1000)
+  }
+}
+
+onUnmounted(() => {
+  if (hideTimeout) {
+    clearTimeout(hideTimeout)
+  }
+})
 
 const cardCount = computed(() => {
   return props.card ? deckStore.getCardCount(props.card.id) : 0
@@ -390,6 +415,12 @@ const handleSwipeRight = () => {
   background-color: rgba(0, 0, 0, 0.6) !important;
   color: white !important;
   z-index: 15;
+  transition: opacity 0.3s ease-out;
+}
+
+.button-hidden {
+  opacity: 0 !important;
+  pointer-events: none;
 }
 
 .nav-button-left {
