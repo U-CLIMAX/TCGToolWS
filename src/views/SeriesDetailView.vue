@@ -132,7 +132,7 @@
           class="rounded-t-xl d-flex flex-column bottom-sheet-card"
           :class="{
             'glass-sheet': hasBackgroundImage,
-            'is-snapping': !isDragging,
+            'is-snapping': !isDragging && !isAnimating,
           }"
           :style="{
             transform: `translateY(${sheetTranslateY}px)`,
@@ -219,8 +219,15 @@ const headerOffsetHeight = computed(() => rawHeaderHeight.value)
 const listRef = ref(null)
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
-const { sheetContent, isSheetOpen, sheetTranslateY, sheetContentHeight, isDragging, startDrag } =
-  useBottomSheet()
+const {
+  sheetContent,
+  isSheetOpen,
+  sheetTranslateY,
+  sheetContentHeight,
+  isDragging,
+  isAnimating,
+  startDrag,
+} = useBottomSheet()
 
 const observer = new ResizeObserver(([entry]) => {
   if (entry && entry.target) {

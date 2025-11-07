@@ -26,6 +26,7 @@ export const useBottomSheet = () => {
   // 核心狀態: Y 軸位移 (以百分比表示，相對於視窗高度)
   const sheetTranslateYPercent = ref(SNAP_POINTS.CLOSED)
   const isDragging = ref(false)
+  const isAnimating = ref(false)
 
   // 計算實際的像素值和內容高度
   const sheetTranslateY = computed(() => {
@@ -41,12 +42,27 @@ export const useBottomSheet = () => {
 
   let startY = 0
   let initialDragPercent = 0
+  let velocity = 0 // in %/s
+  let lastDragEvent = { time: 0, pos: 0 }
+  let animationFrameId = null
+
+  const cancelAnimation = () => {
+    if (animationFrameId) {
+      cancelAnimationFrame(animationFrameId)
+      animationFrameId = null
+    }
+    isAnimating.value = false
+  }
 
   const startDrag = (event) => {
+    cancelAnimation()
     isDragging.value = true
     const touch = event.touches ? event.touches[0] : event
     startY = touch.clientY
     initialDragPercent = sheetTranslateYPercent.value
+
+    velocity = 0
+    lastDragEvent = { time: performance.now(), pos: initialDragPercent }
 
     window.addEventListener('mousemove', onDrag, { passive: false })
     window.addEventListener('touchmove', onDrag, { passive: false })
@@ -65,7 +81,15 @@ export const useBottomSheet = () => {
     const deltaPercent = deltaY / window.innerHeight
 
     // 計算新的位置百分比
-    let newPercent = initialDragPercent + deltaPercent
+    const newPercent = initialDragPercent + deltaPercent
+
+    const now = performance.now()
+    const deltaTime = now - lastDragEvent.time
+    const deltaPos = newPercent - lastDragEvent.pos
+    if (deltaTime > 0) {
+      velocity = deltaPos / (deltaTime / 1000) // Velocity in %/s
+    }
+    lastDragEvent = { time: now, pos: newPercent }
 
     // 限制在邊界內 (允許稍微超出,產生橡皮筋效果)
     const MIN_PERCENT = SNAP_POINTS.FULL - 0.05
@@ -73,10 +97,48 @@ export const useBottomSheet = () => {
     if (newPercent < MIN_PERCENT) {
       // 橡皮筋效果: 超出上邊界時減緩
       const overflow = MIN_PERCENT - newPercent
-      newPercent = MIN_PERCENT - overflow * 0.3
+      sheetTranslateYPercent.value = MIN_PERCENT - overflow * 0.3
+    } else {
+      sheetTranslateYPercent.value = newPercent
     }
+  }
 
-    sheetTranslateYPercent.value = newPercent
+  const runSpringAnimation = (target) => {
+    cancelAnimation()
+    isAnimating.value = true
+
+    const stiffness = 200
+    const damping = 25
+    const mass = 1
+    const precision = 0.005
+
+    let lastTime = performance.now()
+
+    const step = (currentTime) => {
+      const deltaTime = (currentTime - lastTime) / 1000
+      lastTime = currentTime
+
+      const currentPos = sheetTranslateYPercent.value
+      const displacement = currentPos - target
+
+      if (Math.abs(displacement) < precision && Math.abs(velocity) < precision) {
+        sheetTranslateYPercent.value = target
+        velocity = 0
+        cancelAnimation()
+        return
+      }
+
+      const springForce = -stiffness * displacement
+      const dampingForce = -damping * velocity
+      const acceleration = (springForce + dampingForce) / mass
+
+      velocity += acceleration * deltaTime
+      const newPos = currentPos + velocity * deltaTime
+
+      sheetTranslateYPercent.value = newPos
+      animationFrameId = requestAnimationFrame(step)
+    }
+    animationFrameId = requestAnimationFrame(step)
   }
 
   // Helper function to find the closest snap point from a given array
@@ -85,7 +147,7 @@ export const useBottomSheet = () => {
       return null
     }
     return snapPoints.reduce((prev, curr) =>
-      Math.abs(curr - targetPercent) < Math.abs(prev - targetPercent) ? curr : prev,
+      Math.abs(curr - targetPercent) < Math.abs(prev - targetPercent) ? curr : prev
     )
   }
 
@@ -137,19 +199,30 @@ export const useBottomSheet = () => {
       finalSnap = findClosestSnap(currentPercent, sortedSnaps)
     }
 
-    sheetTranslateYPercent.value = finalSnap
+    runSpringAnimation(finalSnap)
   }
 
   // 監聽開關狀態
   watch(
     isSheetOpen,
-    (isOpen) => {
+    (isOpen, wasOpen) => {
+      // Only animate on explicit open/close, not on initial load
+      const shouldAnimate = wasOpen !== undefined
+      cancelAnimation()
+
       if (isOpen) {
-        // 打開時設置為預設高度
-        sheetTranslateYPercent.value = SNAP_POINTS.DEFAULT
+        if (shouldAnimate) {
+          sheetTranslateYPercent.value = SNAP_POINTS.CLOSED + 0.01 // Start from just outside
+          runSpringAnimation(SNAP_POINTS.DEFAULT)
+        } else {
+          sheetTranslateYPercent.value = SNAP_POINTS.DEFAULT
+        }
       } else {
-        // 關閉時設置為完全關閉（視窗外）
-        sheetTranslateYPercent.value = SNAP_POINTS.CLOSED
+        if (shouldAnimate) {
+          runSpringAnimation(SNAP_POINTS.CLOSED)
+        } else {
+          sheetTranslateYPercent.value = SNAP_POINTS.CLOSED
+        }
       }
     },
     { immediate: true }
@@ -168,6 +241,7 @@ export const useBottomSheet = () => {
     sheetTranslateY,
     sheetContentHeight,
     isDragging,
+    isAnimating,
     startDrag,
     smAndUp,
   }
