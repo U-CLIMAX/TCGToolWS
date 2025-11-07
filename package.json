@@ -25,6 +25,7 @@
     "flexsearch": "^0.8.212",
     "hono": "^4.9.9",
     "jsoncrush": "^1.1.8",
+    "jspdf": "^3.0.3",
     "jwt-decode": "^4.0.0",
     "lean-qr": "^2.6.0",
     "localforage": "^1.10.0",

@@ -248,6 +248,7 @@
       v-model="exportDialog"
       :cards="cards"
       @download-image="handleDownloadDeckImage"
+      @download-pdf="handleDownloadDeckPDF"
     />
   </div>
 </template>
@@ -258,6 +259,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { useDeckEncoder } from '@/composables/useDeckEncoder'
 import { useDisplay } from 'vuetify'
 import { useDeckGrouping } from '@/composables/useDeckGrouping'
+import { useCardImage } from '@/composables/useCardImage'
 import { fetchCardByIdAndPrefix, fetchCardsByBaseIdAndPrefix } from '@/utils/card'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useUIStore } from '@/stores/ui'
@@ -265,6 +267,7 @@ import { useDeckStore } from '@/stores/deck'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import collator from '@/utils/collator.js'
 import { convertElementToPng } from '@/utils/domToImage.js'
+import { convertDeckToPDF } from '@/utils/domToPDF'
 import DeckShareImage from '@/components/deck/DeckShareImage.vue'
 import DeckCardList from '@/components/deck/DeckCardList.vue'
 import DeckExportDialog from '@/components/deck/DeckExportDialog.vue'
@@ -654,6 +657,31 @@ watch(
     immediate: false,
   }
 )
+
+const handleDownloadDeckPDF = async () => {
+  uiStore.setLoading(true)
+  try {
+    // 2. 在傳遞前，使用 .map() 同步處理數組
+    const cardsWithImages = originalCards.value.map((card) => {
+      // 根據您的要求，同步獲取 imgUrl
+      const imgUrl = useCardImage(card.cardIdPrefix, card.id)
+
+      // 返回一個包含所有原始屬性，並附加 imgUrl 的新對象
+      return {
+        ...card,
+        imgUrl: imgUrl.value,
+      }
+    })
+    console.log(cardsWithImages)
+    // 3. 將這個 "已處理過的" 新陣列傳遞給 PDF 生成器
+    await convertDeckToPDF(cardsWithImages, deck.value.name)
+  } catch (error) {
+    console.error('生成PDF失败:', error)
+    triggerSnackbar('生成PDF失败，请稍后再试。', 'error')
+  } finally {
+    uiStore.setLoading(false)
+  }
+}
 
 const showBottomSheet = ref(false)
 const selectGroupBy = (value) => {
