@@ -379,46 +379,6 @@ useInfiniteScrollState({
   z-index: 10;
 }
 
-.sheet-header {
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-.header-spacer-left {
-  width: 56px; /* Balance the close button area */
-}
-
-.header-drag-area {
-  flex-grow: 1;
-  position: relative;
-  cursor: grab;
-  padding: 12px 0;
-  text-align: center;
-}
-
-.header-drag-area:active {
-  cursor: grabbing;
-}
-
-.header-close-area {
-  width: 56px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.resize-handle {
-  width: 80px;
-  height: 4px;
-  background-color: grey;
-  border-radius: 2px;
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
 @media (max-width: 599.98px) {
   .sidebar-container {
     position: absolute;
