@@ -126,31 +126,46 @@
         </div>
       </div>
 
-      <!-- Bottom Sheet for Mobile -->
-      <v-bottom-sheet v-model="isSheetOpen" :scrim="false" inset persistent>
+      <!-- Bottom Sheet for Mobile  -->
+      <div v-if="isSheetOpen" class="bottom-sheet-overlay">
         <v-card
-          class="rounded-t-xl d-flex flex-column"
-          :class="{ 'glass-sheet': hasBackgroundImage }"
-          style="height: 100%"
+          class="rounded-t-xl d-flex flex-column bottom-sheet-card"
+          :class="{
+            'glass-sheet': hasBackgroundImage,
+            'is-snapping': !isDragging,
+          }"
+          :style="{
+            transform: `translateY(${sheetTranslateY}px)`,
+            touchAction: 'none',
+          }"
         >
-          <div class="sheet-header">
+          <!-- 拖曳手柄區域 - 僅此區域可拖曳 -->
+          <div class="sheet-header" @mousedown="startDrag" @touchstart.prevent="startDrag">
             <div class="header-spacer-left"></div>
-            <div class="header-drag-area" @mousedown="startDrag" @touchstart.prevent="startDrag">
+            <div class="header-drag-area">
               <div class="resize-handle"></div>
               <div class="pt-2">
                 <span class="text-h6">{{ sheetTitle }}</span>
               </div>
             </div>
             <div class="header-close-area">
-              <v-btn icon="mdi-close" variant="text" @click="isSheetOpen = false"></v-btn>
+              <v-btn
+                icon="mdi-close"
+                variant="text"
+                @click.stop="isSheetOpen = false"
+                @touchstart.stop
+              ></v-btn>
             </div>
           </div>
           <v-divider></v-divider>
+
+          <!-- 內容區域 - 可以獨立滾動 -->
           <v-card-text
-            class="pa-0"
+            class="pa-0 sheet-content"
             :style="{
-              'height': sheetHeight + 'px',
-              'overflow-y': sheetContent === 'deck' ? 'hidden' : 'auto',
+              height: sheetContentHeight + 'px',
+              overflowY: 'auto',
+              touchAction: 'pan-y',
             }"
           >
             <BaseFilterSidebar
@@ -162,13 +177,13 @@
             <DeckSidebar
               v-if="sheetContent === 'deck'"
               :header-offset-height="0"
-              :container-height="sheetHeight"
+              :container-height="sheetContentHeight"
               class="px-4"
               transparent
             />
           </v-card-text>
         </v-card>
-      </v-bottom-sheet>
+      </div>
     </div>
   </v-container>
 </template>
@@ -212,7 +227,8 @@ const headerOffsetHeight = computed(() => rawHeaderHeight.value)
 const listRef = ref(null)
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
-const { sheetContent, isSheetOpen, sheetHeight, startDrag } = useBottomSheet()
+const { sheetContent, isSheetOpen, sheetTranslateY, sheetContentHeight, isDragging, startDrag } =
+  useBottomSheet()
 
 const observer = new ResizeObserver(([entry]) => {
   if (entry && entry.target) {
@@ -251,13 +267,12 @@ watch(lgAndUp, (isDesktop) => {
   }
 })
 
-// Close bottom sheet when resizing to desktop
+// Close bottom sheet when resizing to desktop (handled in useBottomSheet)
 watch(smAndUp, (isDesktop) => {
   if (isDesktop && isSheetOpen.value) {
     isSheetOpen.value = false
   }
 })
-// --- End of mobile & Tablet specific logic ---
 
 const seriesName = computed(() => {
   const foundEntry = Object.entries(seriesMap).find(([, value]) => value.id === props.seriesId)
@@ -362,26 +377,58 @@ useInfiniteScrollState({
   z-index: 10;
 }
 
+/* Bottom Sheet Overlay - 固定定位容器 */
+.bottom-sheet-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2000;
+  pointer-events: none;
+}
+
+/* Bottom Sheet 卡片 */
+.bottom-sheet-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  pointer-events: auto;
+  will-change: transform;
+  /* 使用 GPU 加速 */
+  transform: translateZ(0);
+  box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* 吸附動畫 - 只在非拖曳時啟用 */
+.bottom-sheet-card.is-snapping {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .sheet-header {
   display: flex;
   align-items: center;
   width: 100%;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.sheet-header:active {
+  cursor: grabbing;
 }
 
 .header-spacer-left {
-  width: 56px; /* Balance the close button area */
+  width: 56px;
 }
 
 .header-drag-area {
   flex-grow: 1;
   position: relative;
-  cursor: grab;
   padding: 12px 0;
   text-align: center;
-}
-
-.header-drag-area:active {
-  cursor: grabbing;
 }
 
 .header-close-area {
@@ -400,6 +447,26 @@ useInfiniteScrollState({
   top: 8px;
   left: 50%;
   transform: translateX(-50%);
+}
+
+/* 內容區域樣式 */
+.sheet-content {
+  /* 確保內容可以獨立滾動 */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 針對 WebKit 瀏覽器的滾動條樣式 */
+.sheet-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sheet-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sheet-content::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.5);
+  border-radius: 4px;
 }
 
 @media (max-width: 599.98px) {
