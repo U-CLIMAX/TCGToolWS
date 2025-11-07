@@ -13,25 +13,9 @@ const SNAP_POINTS = {
 export const useBottomSheet = (externalSheetContent) => {
   const sheetContent = externalSheetContent || ref(null)
   const { smAndUp } = useDisplay()
-  const isClosing = ref(false)
-  const isSheetOpen = computed({
-    get: () => sheetContent.value !== null,
-    set: (value) => {
-      if (!value) {
-        // When closing, cancel any active JS animation and let the CSS transition handle it.
-        cancelAnimation()
-        if (isClosing.value || sheetContent.value === null) return
 
-        isClosing.value = true
-        sheetTranslateYPercent.value = SNAP_POINTS.CLOSED // Trigger CSS close animation
-        setTimeout(() => {
-          sheetContent.value = null // Actually hide/unmount after animation
-          isClosing.value = false
-        }, 300) // Must match CSS transition duration
-      }
-      // Opening is handled by setting sheetContent directly, which triggers the watch
-    },
-  })
+  const isAnimatingOut = ref(false)
+  const shouldRender = computed(() => sheetContent.value !== null || isAnimatingOut.value)
 
   // 核心狀態: Y 軸位移 (以百分比表示，相對於視窗高度)
   const sheetTranslateYPercent = ref(SNAP_POINTS.CLOSED)
@@ -181,7 +165,7 @@ export const useBottomSheet = (externalSheetContent) => {
     ].sort((a, b) => a - b)
 
     if (currentPercent > (SNAP_POINTS.PEEK + SNAP_POINTS.CLOSED) / 2) {
-      isSheetOpen.value = false
+      sheetContent.value = null
       return
     }
 
@@ -215,25 +199,32 @@ export const useBottomSheet = (externalSheetContent) => {
   // 監聽開關狀態
   watch(sheetContent, (newContent, oldContent) => {
     if (newContent && !oldContent) {
-      // Opening: Set initial state and trigger CSS transition
+      // --- OPENING ---
       cancelAnimation()
       sheetTranslateYPercent.value = SNAP_POINTS.CLOSED
       requestAnimationFrame(() => {
         sheetTranslateYPercent.value = SNAP_POINTS.DEFAULT
       })
+    } else if (!newContent && oldContent) {
+      // --- CLOSING ---
+      cancelAnimation()
+      isAnimatingOut.value = true
+      sheetTranslateYPercent.value = SNAP_POINTS.CLOSED
+      setTimeout(() => {
+        isAnimatingOut.value = false
+      }, 300) // Must match CSS transition duration
     }
   })
 
   // Close bottom sheet when resizing to desktop
   watch(smAndUp, (isDesktop) => {
-    if (isDesktop && isSheetOpen.value) {
+    if (isDesktop && sheetContent.value) {
       sheetContent.value = null // Close directly without animation on resize
     }
   })
 
   return {
-    sheetContent,
-    isSheetOpen,
+    shouldRender,
     sheetTranslateY,
     sheetContentHeight,
     isDragging,

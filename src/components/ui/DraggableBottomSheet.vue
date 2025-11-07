@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isSheetOpen" class="bottom-sheet-overlay">
+  <div v-if="shouldRender" class="bottom-sheet-overlay">
     <v-card
       class="rounded-t-xl d-flex flex-column bottom-sheet-card"
       :class="{
@@ -64,7 +64,7 @@ const internalSheetContent = computed({
   set: (val) => emit('update:content', val),
 })
 
-const { isSheetOpen, sheetTranslateY, sheetContentHeight, isDragging, isAnimating, startDrag } =
+const { shouldRender, sheetTranslateY, sheetContentHeight, isDragging, isAnimating, startDrag } =
   useBottomSheet(internalSheetContent)
 
 const closeSheet = () => {
