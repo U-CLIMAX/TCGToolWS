@@ -15,6 +15,15 @@
         >
           下载图片
         </v-btn>
+        <v-btn
+          block
+          color="primary"
+          prepend-icon="mdi-file-pdf-box"
+          class="mb-5"
+          @click="onDownloadPDF"
+        >
+          下载PDF
+        </v-btn>
         <div class="position-relative">
           <v-textarea
             label="卡组 txt"
@@ -85,6 +94,11 @@ const closeDialog = () => {
 
 const onDownloadImage = () => {
   emit('download-image')
+  closeDialog()
+}
+
+const onDownloadPDF = () => {
+  emit('download-pdf')
   closeDialog()
 }
 </script>
