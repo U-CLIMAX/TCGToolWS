@@ -141,7 +141,7 @@ const closeSheet = () => {
 }
 
 .resize-handle {
-  width: 80px;
+  width: 40px;
   height: 4px;
   background-color: grey;
   border-radius: 2px;
