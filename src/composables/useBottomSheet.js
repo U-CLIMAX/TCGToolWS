@@ -14,12 +14,23 @@ export const useBottomSheet = () => {
   const { smAndUp } = useDisplay()
 
   const sheetContent = ref(null) // 'filter', 'deck', or null
+  const isClosing = ref(false)
   const isSheetOpen = computed({
     get: () => sheetContent.value !== null,
     set: (value) => {
       if (!value) {
-        sheetContent.value = null
+        // When closing, cancel any active JS animation and let the CSS transition handle it.
+        cancelAnimation()
+        if (isClosing.value || sheetContent.value === null) return
+
+        isClosing.value = true
+        sheetTranslateYPercent.value = SNAP_POINTS.CLOSED // Trigger CSS close animation
+        setTimeout(() => {
+          sheetContent.value = null // Actually hide/unmount after animation
+          isClosing.value = false
+        }, 300) // Must match CSS transition duration
       }
+      // Opening is handled by setting sheetContent directly, which triggers the watch
     },
   })
 
@@ -81,7 +92,7 @@ export const useBottomSheet = () => {
     const deltaPercent = deltaY / window.innerHeight
 
     // 計算新的位置百分比
-    const newPercent = initialDragPercent + deltaPercent
+    let newPercent = initialDragPercent + deltaPercent
 
     const now = performance.now()
     const deltaTime = now - lastDragEvent.time
@@ -97,10 +108,10 @@ export const useBottomSheet = () => {
     if (newPercent < MIN_PERCENT) {
       // 橡皮筋效果: 超出上邊界時減緩
       const overflow = MIN_PERCENT - newPercent
-      sheetTranslateYPercent.value = MIN_PERCENT - overflow * 0.3
-    } else {
-      sheetTranslateYPercent.value = newPercent
+      newPercent = MIN_PERCENT - overflow * 0.3
     }
+
+    sheetTranslateYPercent.value = newPercent
   }
 
   const runSpringAnimation = (target) => {
@@ -202,36 +213,22 @@ export const useBottomSheet = () => {
     runSpringAnimation(finalSnap)
   }
 
-  // 監聽開關狀態
-  watch(
-    isSheetOpen,
-    (isOpen, wasOpen) => {
-      // Only animate on explicit open/close, not on initial load
-      const shouldAnimate = wasOpen !== undefined
+   // 監聽開關狀態
+  watch(sheetContent, (newContent, oldContent) => {
+    if (newContent && !oldContent) {
+      // Opening: Set initial state and trigger CSS transition
       cancelAnimation()
-
-      if (isOpen) {
-        if (shouldAnimate) {
-          sheetTranslateYPercent.value = SNAP_POINTS.CLOSED + 0.01 // Start from just outside
-          runSpringAnimation(SNAP_POINTS.DEFAULT)
-        } else {
-          sheetTranslateYPercent.value = SNAP_POINTS.DEFAULT
-        }
-      } else {
-        if (shouldAnimate) {
-          runSpringAnimation(SNAP_POINTS.CLOSED)
-        } else {
-          sheetTranslateYPercent.value = SNAP_POINTS.CLOSED
-        }
-      }
-    },
-    { immediate: true }
-  )
+      sheetTranslateYPercent.value = SNAP_POINTS.CLOSED
+      requestAnimationFrame(() => {
+        sheetTranslateYPercent.value = SNAP_POINTS.DEFAULT
+      })
+    }
+  })
 
   // Close bottom sheet when resizing to desktop
   watch(smAndUp, (isDesktop) => {
     if (isDesktop && isSheetOpen.value) {
-      isSheetOpen.value = false
+      sheetContent.value = null // Close directly without animation on resize
     }
   })
 
