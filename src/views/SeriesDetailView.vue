@@ -127,55 +127,25 @@
       </div>
 
       <!-- Bottom Sheet for Mobile  -->
-      <div v-if="isSheetOpen" class="bottom-sheet-overlay">
-        <v-card
-          class="rounded-t-xl d-flex flex-column bottom-sheet-card"
-          :class="{
-            'glass-sheet': hasBackgroundImage,
-            'is-snapping': !isDragging && !isAnimating,
-          }"
-          :style="{
-            transform: `translateY(${sheetTranslateY}px)`,
-            touchAction: 'none',
-          }"
-        >
-          <!-- 拖曳手柄區域 - 僅此區域可拖曳 -->
-          <div class="sheet-header" @mousedown="startDrag" @touchstart.prevent="startDrag">
-            <div class="header-spacer-left"></div>
-            <div class="header-drag-area">
-              <div class="resize-handle"></div>
-              <div class="pt-2">
-                <span class="text-h6">{{ sheetTitle }}</span>
-              </div>
-            </div>
-            <div class="header-close-area">
-              <v-btn
-                icon="mdi-close"
-                variant="text"
-                @click.stop="isSheetOpen = false"
-                @touchstart.stop
-              ></v-btn>
-            </div>
-          </div>
-          <v-divider></v-divider>
-
-          <!-- 內容區域 - 可以獨立滾動 -->
-          <v-card-text class="pa-0 sheet-content" style="overflow-y: hidden; touch-action: pan-y">
-            <BaseFilterSidebar
-              v-if="sheetContent === 'filter'"
-              :header-offset-height="0"
-              :container-height="sheetContentHeight"
-              transparent
-            />
-            <DeckSidebar
-              v-if="sheetContent === 'deck'"
-              :header-offset-height="0"
-              :container-height="sheetContentHeight"
-              transparent
-            />
-          </v-card-text>
-        </v-card>
-      </div>
+      <DraggableBottomSheet v-model:content="sheetContent">
+        <template #header>
+          <span class="text-h6">{{ sheetContent === 'filter' ? '筛选' : '卡组' }}</span>
+        </template>
+        <template #default="{ contentHeight }">
+          <BaseFilterSidebar
+            v-if="sheetContent === 'filter'"
+            :header-offset-height="0"
+            :container-height="contentHeight"
+            transparent
+          />
+          <DeckSidebar
+            v-if="sheetContent === 'deck'"
+            :header-offset-height="0"
+            :container-height="contentHeight"
+            transparent
+          />
+        </template>
+      </DraggableBottomSheet>
     </div>
   </v-container>
 </template>
@@ -193,7 +163,7 @@ import { useInfiniteScrollState } from '@/composables/useInfiniteScrollState.js'
 import CardInfiniteScrollList from '@/components/card/CardInfiniteScrollList.vue'
 import BaseFilterSidebar from '@/components/ui/FilterSidebar.vue'
 import DeckSidebar from '@/components/ui/DeckSidebar.vue'
-import { useBottomSheet } from '@/composables/useBottomSheet.js'
+import DraggableBottomSheet from '@/components/ui/DraggableBottomSheet.vue'
 
 const props = defineProps({
   seriesId: {
@@ -217,17 +187,7 @@ const rawHeaderHeight = ref(0)
 const filterIcon = computed(() => (isFilterOpen.value ? 'mdi-filter-off' : 'mdi-filter'))
 const headerOffsetHeight = computed(() => rawHeaderHeight.value)
 const listRef = ref(null)
-const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
-
-const {
-  sheetContent,
-  isSheetOpen,
-  sheetTranslateY,
-  sheetContentHeight,
-  isDragging,
-  isAnimating,
-  startDrag,
-} = useBottomSheet()
+const sheetContent = ref(null)
 
 const observer = new ResizeObserver(([entry]) => {
   if (entry && entry.target) {
@@ -239,12 +199,6 @@ watchEffect(() => {
   if (headerRef.value) {
     observer.observe(headerRef.value)
   }
-})
-
-const sheetTitle = computed(() => {
-  if (sheetContent.value === 'filter') return '筛选'
-  if (sheetContent.value === 'deck') return '卡组'
-  return ''
 })
 
 watch(isFilterOpen, (newValue) => {
@@ -266,10 +220,10 @@ watch(lgAndUp, (isDesktop) => {
   }
 })
 
-// Close bottom sheet when resizing to desktop (handled in useBottomSheet)
+// Close bottom sheet when resizing to desktop
 watch(smAndUp, (isDesktop) => {
-  if (isDesktop && isSheetOpen.value) {
-    isSheetOpen.value = false
+  if (isDesktop && sheetContent.value) {
+    sheetContent.value = null
   }
 })
 

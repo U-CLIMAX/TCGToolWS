@@ -10,10 +10,9 @@ const SNAP_POINTS = {
   CLOSED: 1.0, // 完全關閉
 }
 
-export const useBottomSheet = () => {
+export const useBottomSheet = (externalSheetContent) => {
+  const sheetContent = externalSheetContent || ref(null)
   const { smAndUp } = useDisplay()
-
-  const sheetContent = ref(null) // 'filter', 'deck', or null
   const isClosing = ref(false)
   const isSheetOpen = computed({
     get: () => sheetContent.value !== null,
@@ -213,7 +212,7 @@ export const useBottomSheet = () => {
     runSpringAnimation(finalSnap)
   }
 
-   // 監聽開關狀態
+  // 監聽開關狀態
   watch(sheetContent, (newContent, oldContent) => {
     if (newContent && !oldContent) {
       // Opening: Set initial state and trigger CSS transition
