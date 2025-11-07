@@ -219,6 +219,9 @@ const ICON_MAP = {
   '【反击】': 'backup',
   '【倒置】': 'reversed',
   '倒置': 'reversed',
+  '【一回合1次】': 'turn1',
+  '【一回合2次】': 'turn2',
+  '【一回合3次】': 'turn3',
 }
 const ICON_REGEX = new RegExp(Object.keys(ICON_MAP).join('|'), 'g')
 const formattedEffect = computed(() => {
