@@ -192,6 +192,7 @@ import { convertElementToPng } from '@/utils/domToImage.js'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useUIStore } from '@/stores/ui'
 import { useDevice } from '@/composables/useDevice'
+import { formatEffectToHtml } from '@/utils/cardEffectFormatter'
 
 const { triggerSnackbar } = useSnackbar()
 const uiStore = useUIStore()
@@ -240,35 +241,9 @@ const cardCount = computed(() => {
   return props.card ? deckStore.getCardCount(props.card.id) : 0
 })
 
-const ICON_MAP = {
-  '【CX联动】': 'cx',
-  '【自】': 'auto',
-  '【永】': 'cont',
-  '【起】': 'act',
-  '竖置': 'stand',
-  '【竖置】': 'stand',
-  '横置': 'rest',
-  '【横置】': 'rest',
-  '【反击】': 'backup',
-  '【倒置】': 'reversed',
-  '倒置': 'reversed',
-  '【一回合1次】': 'turn1',
-  '【一回合2次】': 'turn2',
-  '【一回合3次】': 'turn3',
-}
-const ICON_REGEX = new RegExp(Object.keys(ICON_MAP).join('|'), 'g')
 const formattedEffect = computed(() => {
-  const rawEffect = props.card.effect || '无'
-
-  let replaced = rawEffect.replace(ICON_REGEX, (match) => {
-    const icon = ICON_MAP[match]
-    return icon ? ` <img src="/effect-icons/${icon}.svg"> ` : match
-  })
-
-  // 補上缺少 inline-icon 的 img
-  replaced = replaced.replace(/<img\b(?![^>]*\bclass=)/g, '<img class="inline-icon"')
-
-  return DOMPurify.sanitize(replaced)
+  const rawHtml = formatEffectToHtml(props.card.effect)
+  return DOMPurify.sanitize(rawHtml)
 })
 
 const handleDownloadCard = async () => {
