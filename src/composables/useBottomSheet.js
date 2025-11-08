@@ -1,4 +1,4 @@
-import { ref, computed, watch, onUnmounted } from 'vue'
+import { ref, computed, watch, onUnmounted, nextTick } from 'vue'
 import { useDisplay } from 'vuetify'
 
 // 定義吸附點 (相對於視窗頂部的距離)
@@ -211,8 +211,11 @@ export const useBottomSheet = (externalSheetContent) => {
       // --- OPENING ---
       cancelAnimation()
       sheetTranslateYPercent.value = SNAP_POINTS.CLOSED
-      requestAnimationFrame(() => {
-        sheetTranslateYPercent.value = SNAP_POINTS.DEFAULT
+      // Use a double delay to give Firefox's rendering engine time to process the new complex component
+      nextTick(() => {
+        setTimeout(() => {
+          sheetTranslateYPercent.value = SNAP_POINTS.DEFAULT
+        }, 0) // A 0ms timeout pushes this to the next event loop cycle, after rendering
       })
     } else if (!newContent && oldContent) {
       // --- CLOSING ---
