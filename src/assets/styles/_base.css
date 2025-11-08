@@ -3,7 +3,8 @@ html {
 }
 
 @media all and (display-mode: standalone) {
-  html, body {
+  html,
+  body {
     overscroll-behavior-y: contain;
   }
 }

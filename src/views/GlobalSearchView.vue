@@ -1,25 +1,6 @@
 <template>
   <v-container fluid class="h-100 pa-0">
-    <div
-      v-if="globalSearchStore.isLoading"
-      class="d-flex flex-column justify-center align-center h-100"
-    >
-      <v-progress-circular
-        indeterminate
-        :color="globalSearchStore.isInitialSetup ? 'blue-accent-1' : 'primary'"
-        size="64"
-        class="mb-4"
-      ></v-progress-circular>
-      <div
-        v-if="globalSearchStore.isInitialSetup"
-        class="text-subtitle-1 text-sm-h6 text-blue-accent-1 text-center text-no-wrap"
-        style="overflow: hidden; text-overflow: ellipsis"
-      >
-        初始化中，这可能会需要一点时间...
-      </div>
-    </div>
-
-    <div v-else class="d-flex flex-column h-100">
+    <div class="d-flex flex-column h-100">
       <div ref="headerRef" class="overlay-header pl-4 pr-4 pa-1">
         <div class="overlay-header-content">
           <div class="header-left">
@@ -29,6 +10,7 @@
               :icon="searchIcon"
               variant="text"
               @click="isFilterOpen = !isFilterOpen"
+              :disabled="globalSearchStore.isLoading"
             ></v-btn>
           </div>
 
@@ -45,6 +27,7 @@
               class="counter-chip font-weight-bold flex-shrink-0"
               :color="isChipShowWarning ? 'warning' : undefined"
               :style="{ cursor: isChipShowWarning ? 'help' : undefined }"
+              :disabled="globalSearchStore.isLoading"
             >
               <template v-if="isChipShowWarning">
                 <v-tooltip activator="parent" location="bottom">
@@ -62,6 +45,7 @@
               :icon="isTableModeActive ? 'mdi-grid' : 'mdi-grid-large'"
               variant="text"
               @click="isTableModeActive = !isTableModeActive"
+              :disabled="globalSearchStore.isLoading"
             ></v-btn>
             <v-badge
               v-if="smAndUp"
@@ -76,6 +60,7 @@
                 :icon="isCardDeckOpen ? 'mdi-cards' : 'mdi-cards-outline'"
                 variant="text"
                 @click="isCardDeckOpen = !isCardDeckOpen"
+                :disabled="globalSearchStore.isLoading"
               ></v-btn>
             </v-badge>
           </div>
@@ -93,12 +78,32 @@
               class="fill-height pl-4 pb-4"
               :header-offset-height="headerOffsetHeight"
               :global-filter="true"
+              :disabled="globalSearchStore.isLoading"
             />
           </div>
         </template>
 
+        <div
+          v-if="globalSearchStore.isLoading"
+          class="d-flex flex-column justify-center align-center h-100 w-100"
+        >
+          <v-progress-circular
+            indeterminate
+            :color="globalSearchStore.isInitialSetup ? 'blue-accent-1' : 'primary'"
+            size="64"
+            class="mb-4"
+          ></v-progress-circular>
+          <div
+            v-if="globalSearchStore.isInitialSetup"
+            class="text-subtitle-1 text-sm-h6 text-blue-accent-1 text-center text-no-wrap"
+            style="overflow: hidden; text-overflow: ellipsis"
+          >
+            初始化中，这可能会需要一点时间...
+          </div>
+        </div>
+
         <v-container
-          v-if="displayEmptySearchMessage"
+          v-else-if="displayEmptySearchMessage"
           class="d-flex align-center justify-center text-grey h-100 w-100"
         >
           <div class="rwd-text-wapper">
@@ -133,6 +138,7 @@
             color="primary"
             class="opacity-90"
             @click="sheetContent = 'filter'"
+            :disabled="globalSearchStore.isLoading"
           ></v-btn>
           <v-badge
             :content="deckStore.totalCardCount"
@@ -148,6 +154,7 @@
               color="primary"
               class="opacity-90"
               @click="sheetContent = 'deck'"
+              :disabled="globalSearchStore.isLoading"
             ></v-btn>
           </v-badge>
         </div>
@@ -186,6 +193,7 @@
               class="px-4"
               transparent
               :global-filter="true"
+              :disabled="globalSearchStore.isLoading"
             />
             <DeckSidebar
               v-if="sheetContent === 'deck'"
