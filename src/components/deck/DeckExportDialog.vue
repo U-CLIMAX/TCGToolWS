@@ -15,15 +15,28 @@
         >
           下载图片
         </v-btn>
-        <v-btn
-          block
-          color="primary"
-          prepend-icon="mdi-file-pdf-box"
-          class="mb-5"
-          @click="onDownloadPDF"
-        >
-          下载PDF
-        </v-btn>
+        <div class="d-flex mb-5">
+          <v-btn
+            color="primary"
+            class="flex-grow-1"
+            prepend-icon="mdi-file-pdf-box"
+            @click="onDownloadPDF"
+          >
+            汇出PDF
+          </v-btn>
+
+          <v-btn-toggle
+            density="compact"
+            v-model="selectedLanguage"
+            mandatory
+            color="primary"
+            variant="outlined"
+            class="ml-2"
+          >
+            <v-btn value="jp">日</v-btn>
+            <v-btn value="zh">中</v-btn>
+          </v-btn-toggle>
+        </div>
         <div class="position-relative">
           <v-textarea
             label="卡组 txt"
@@ -50,7 +63,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useSnackbar } from '@/composables/useSnackbar'
 
 const props = defineProps({
@@ -64,8 +77,10 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['update:modelValue', 'download-image'])
+const emit = defineEmits(['update:modelValue', 'download-image', 'download-pdf'])
 const { triggerSnackbar } = useSnackbar()
+
+const selectedLanguage = ref('jp')
 
 const deckBaseIds = computed(() => {
   if (!props.cards) return ''
@@ -98,7 +113,7 @@ const onDownloadImage = () => {
 }
 
 const onDownloadPDF = () => {
-  emit('download-pdf')
+  emit('download-pdf', selectedLanguage.value)
   closeDialog()
 }
 </script>
