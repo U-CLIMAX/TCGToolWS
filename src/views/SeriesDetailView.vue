@@ -220,13 +220,6 @@ watch(lgAndUp, (isDesktop) => {
   }
 })
 
-// Close bottom sheet when resizing to desktop
-watch(smAndUp, (isDesktop) => {
-  if (isDesktop && sheetContent.value) {
-    sheetContent.value = null
-  }
-})
-
 const seriesName = computed(() => {
   const foundEntry = Object.entries(seriesMap).find(([, value]) => value.id === props.seriesId)
   return foundEntry ? foundEntry[0] : '未知系列'

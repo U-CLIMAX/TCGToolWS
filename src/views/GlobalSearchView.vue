@@ -257,13 +257,6 @@ watch(lgAndUp, (isDesktop) => {
   }
 })
 
-// Close bottom sheet when resizing to desktop
-watch(smAndUp, (isDesktop) => {
-  if (isDesktop && sheetContent.value) {
-    sheetContent.value = null
-  }
-})
-
 const displayEmptySearchMessage = computed(
   () => !hasActiveFilters.value && !globalSearchStore.isLoading
 )
