@@ -222,6 +222,12 @@
           </template>
           <v-list-item-title>汇出卡组</v-list-item-title>
         </v-list-item>
+        <v-list-item @click="handleDownloadPDFClick">
+          <template #prepend>
+            <v-icon>mdi-file-pdf-box</v-icon>
+          </template>
+          <v-list-item-title>汇出PDF</v-list-item-title>
+        </v-list-item>
       </v-list>
     </v-bottom-sheet>
 
@@ -250,6 +256,16 @@
       @download-image="handleDownloadDeckImage"
       @download-pdf="handleDownloadDeckPDF"
     />
+
+    <v-dialog v-model="pdfLanguageDialog" max-width="300">
+      <v-card>
+        <v-card-title>选择PDF语言</v-card-title>
+        <v-card-text class="d-flex justify-space-around">
+          <v-btn variant="tonal" @click="selectPdfLanguage('zh')">中文</v-btn>
+          <v-btn variant="tonal" @click="selectPdfLanguage('jp')">日文</v-btn>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -658,23 +674,18 @@ watch(
   }
 )
 
-const handleDownloadDeckPDF = async () => {
+const handleDownloadDeckPDF = async (language) => {
   uiStore.setLoading(true)
   try {
-    // 2. 在傳遞前，使用 .map() 同步處理數組
     const cardsWithImages = originalCards.value.map((card) => {
-      // 根據您的要求，同步獲取 imgUrl
       const imgUrl = useCardImage(card.cardIdPrefix, card.id)
-
-      // 返回一個包含所有原始屬性，並附加 imgUrl 的新對象
       return {
         ...card,
         imgUrl: imgUrl.value,
       }
     })
-    console.log(cardsWithImages)
-    // 3. 將這個 "已處理過的" 新陣列傳遞給 PDF 生成器
-    await convertDeckToPDF(cardsWithImages, deck.value.name)
+
+    await convertDeckToPDF(cardsWithImages, deck.value.name, language)
   } catch (error) {
     console.error('生成PDF失败:', error)
     triggerSnackbar('生成PDF失败，请稍后再试。', 'error')
@@ -709,6 +720,17 @@ const handleShareClick = () => {
 const handleCopyClick = () => {
   handleCopyDeckKey()
   showMoreActionsBottomSheet.value = false
+}
+
+const pdfLanguageDialog = ref(false)
+const handleDownloadPDFClick = () => {
+  showMoreActionsBottomSheet.value = false
+  pdfLanguageDialog.value = true
+}
+
+const selectPdfLanguage = async (lang) => {
+  pdfLanguageDialog.value = false
+  await handleDownloadDeckPDF(lang)
 }
 </script>
 
