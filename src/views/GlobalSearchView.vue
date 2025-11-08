@@ -4,14 +4,19 @@
       <div ref="headerRef" class="overlay-header pl-4 pr-4 pa-1">
         <div class="overlay-header-content">
           <div class="header-left">
-            <v-btn
-              v-if="smAndUp"
-              :size="resize"
-              :icon="searchIcon"
-              variant="text"
-              @click="isFilterOpen = !isFilterOpen"
-              :disabled="globalSearchStore.isLoading"
-            ></v-btn>
+            <v-tooltip :text="isFilterOpen ? '关闭搜索' : '开启搜索'" location="bottom">
+              <template v-slot:activator="{ props }">
+                <v-btn
+                  v-if="smAndUp"
+                  v-bind="props"
+                  :size="resize"
+                  :icon="searchIcon"
+                  variant="text"
+                  @click="isFilterOpen = !isFilterOpen"
+                  :disabled="globalSearchStore.isLoading"
+                ></v-btn>
+              </template>
+            </v-tooltip>
           </div>
 
           <div class="header-center d-flex align-center">
@@ -39,14 +44,22 @@
           </div>
 
           <div class="header-right">
-            <v-btn
-              v-if="smAndUp"
-              :size="resize"
-              :icon="isTableModeActive ? 'mdi-grid' : 'mdi-grid-large'"
-              variant="text"
-              @click="isTableModeActive = !isTableModeActive"
-              :disabled="globalSearchStore.isLoading"
-            ></v-btn>
+            <v-tooltip
+              :text="isTableModeActive ? '切换预设模式' : '切换紧凑模式'"
+              location="bottom"
+            >
+              <template v-slot:activator="{ props }">
+                <v-btn
+                  v-if="smAndUp"
+                  v-bind="props"
+                  :size="resize"
+                  :icon="isTableModeActive ? 'mdi-grid' : 'mdi-grid-large'"
+                  variant="text"
+                  @click="isTableModeActive = !isTableModeActive"
+                  :disabled="globalSearchStore.isLoading"
+                ></v-btn>
+              </template>
+            </v-tooltip>
             <v-badge
               v-if="smAndUp"
               :content="deckStore.totalCardCount"
@@ -55,13 +68,18 @@
               offset-x="6"
               offset-y="12"
             >
-              <v-btn
-                :size="resize"
-                :icon="isCardDeckOpen ? 'mdi-cards' : 'mdi-cards-outline'"
-                variant="text"
-                @click="isCardDeckOpen = !isCardDeckOpen"
-                :disabled="globalSearchStore.isLoading"
-              ></v-btn>
+              <v-tooltip :text="isCardDeckOpen ? '隐藏卡组' : '检视卡组'" location="bottom">
+                <template v-slot:activator="{ props }">
+                  <v-btn
+                    v-bind="props"
+                    :size="resize"
+                    :icon="isCardDeckOpen ? 'mdi-cards' : 'mdi-cards-outline'"
+                    variant="text"
+                    @click="isCardDeckOpen = !isCardDeckOpen"
+                    :disabled="globalSearchStore.isLoading"
+                  ></v-btn>
+                </template>
+              </v-tooltip>
             </v-badge>
           </div>
         </div>
