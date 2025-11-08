@@ -161,50 +161,27 @@
       </div>
 
       <!-- Bottom Sheet for Mobile -->
-      <v-bottom-sheet v-model="isSheetOpen" :scrim="false" inset persistent>
-        <v-card
-          class="rounded-t-xl d-flex flex-column"
-          :class="{ 'glass-sheet': hasBackgroundImage }"
-          style="height: 100%"
-        >
-          <div class="sheet-header">
-            <div class="header-spacer-left"></div>
-            <div class="header-drag-area" @mousedown="startDrag" @touchstart.prevent="startDrag">
-              <div class="resize-handle"></div>
-              <div class="pt-2">
-                <span class="text-h6">{{ sheetTitle }}</span>
-              </div>
-            </div>
-            <div class="header-close-area">
-              <v-btn icon="mdi-close" variant="text" @click="isSheetOpen = false"></v-btn>
-            </div>
-          </div>
-          <v-divider></v-divider>
-          <v-card-text
-            class="pa-0"
-            :style="{
-              'height': sheetHeight + 'px',
-              'overflow-y': sheetContent === 'deck' ? 'hidden' : 'auto',
-            }"
-          >
-            <BaseFilterSidebar
-              v-if="sheetContent === 'filter'"
-              :header-offset-height="0"
-              class="px-4"
-              transparent
-              :global-filter="true"
-              :disabled="globalSearchStore.isLoading"
-            />
-            <DeckSidebar
-              v-if="sheetContent === 'deck'"
-              :header-offset-height="0"
-              :container-height="sheetHeight"
-              class="px-4"
-              transparent
-            />
-          </v-card-text>
-        </v-card>
-      </v-bottom-sheet>
+      <DraggableBottomSheet v-model:content="sheetContent">
+        <template #header="{ content }">
+          <span class="text-h6">{{ content === 'filter' ? '搜索' : '卡组' }}</span>
+        </template>
+        <template #default="{ contentHeight, content }">
+          <BaseFilterSidebar
+            v-if="content === 'filter'"
+            :header-offset-height="0"
+            :container-height="contentHeight"
+            :global-filter="true"
+            :disabled="globalSearchStore.isLoading"
+            transparent
+          />
+          <DeckSidebar
+            v-if="content === 'deck'"
+            :header-offset-height="0"
+            :container-height="contentHeight"
+            transparent
+          />
+        </template>
+      </DraggableBottomSheet>
     </div>
   </v-container>
 </template>
@@ -220,7 +197,7 @@ import { useInfiniteScrollState } from '@/composables/useInfiniteScrollState.js'
 import CardInfiniteScrollList from '@/components/card/CardInfiniteScrollList.vue'
 import BaseFilterSidebar from '@/components/ui/FilterSidebar.vue'
 import DeckSidebar from '@/components/ui/DeckSidebar.vue'
-import { useBottomSheet } from '@/composables/useBottomSheet.js'
+import DraggableBottomSheet from '@/components/ui/DraggableBottomSheet.vue'
 
 const globalSearchStore = useGlobalSearchStore()
 const uiStore = useUIStore()
@@ -230,10 +207,9 @@ const headerRef = ref(null)
 const { isFilterOpen, isTableModeActive, isCardDeckOpen, isPerformanceMode } = storeToRefs(uiStore)
 const { searchCountDetails, hasActiveFilters, searchResults } = storeToRefs(globalSearchStore)
 const rawHeaderHeight = ref(0)
-const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
-const { sheetContent, isSheetOpen, sheetHeight, startDrag, smAndUp } = useBottomSheet()
-const { lgAndUp } = useDisplay()
+const sheetContent = ref(null)
+const { smAndUp, lgAndUp } = useDisplay()
 
 const resize = computed(() => {
   return smAndUp.value ? 'default' : 'x-small'
@@ -262,12 +238,6 @@ watch(isTableModeActive, () => {
   }
 })
 
-const sheetTitle = computed(() => {
-  if (sheetContent.value === 'filter') return '搜索'
-  if (sheetContent.value === 'deck') return '卡组'
-  return ''
-})
-
 watch(isFilterOpen, (newValue) => {
   if (newValue && !lgAndUp.value) {
     isCardDeckOpen.value = false
@@ -284,13 +254,6 @@ watch(isCardDeckOpen, (newValue) => {
 watch(lgAndUp, (isDesktop) => {
   if (!isDesktop && isFilterOpen.value && isCardDeckOpen.value) {
     isCardDeckOpen.value = false
-  }
-})
-
-// Close bottom sheet when resizing to desktop
-watch(smAndUp, (isDesktop) => {
-  if (isDesktop && isSheetOpen.value) {
-    isSheetOpen.value = false
   }
 })
 
@@ -407,46 +370,6 @@ useInfiniteScrollState({
   bottom: 16px;
   left: 16px;
   z-index: 10;
-}
-
-.sheet-header {
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-.header-spacer-left {
-  width: 56px; /* Balance the close button area */
-}
-
-.header-drag-area {
-  flex-grow: 1;
-  position: relative;
-  cursor: grab;
-  padding: 12px 0;
-  text-align: center;
-}
-
-.header-drag-area:active {
-  cursor: grabbing;
-}
-
-.header-close-area {
-  width: 56px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.resize-handle {
-  width: 80px;
-  height: 4px;
-  background-color: grey;
-  border-radius: 2px;
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 @media (max-width: 599.98px) {
