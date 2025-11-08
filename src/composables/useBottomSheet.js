@@ -1,4 +1,4 @@
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, onUnmounted } from 'vue'
 import { useDisplay } from 'vuetify'
 
 // 定義吸附點 (相對於視窗頂部的距離)
@@ -47,6 +47,13 @@ export const useBottomSheet = (externalSheetContent) => {
       animationFrameId = null
     }
     isAnimating.value = false
+  }
+
+  const cleanupEventListeners = () => {
+    window.removeEventListener('mousemove', onDrag)
+    window.removeEventListener('touchmove', onDrag)
+    window.removeEventListener('mouseup', stopDrag)
+    window.removeEventListener('touchend', stopDrag)
   }
 
   const startDrag = (event) => {
@@ -150,10 +157,7 @@ export const useBottomSheet = (externalSheetContent) => {
     if (!isDragging.value) return
 
     isDragging.value = false
-    window.removeEventListener('mousemove', onDrag)
-    window.removeEventListener('touchmove', onDrag)
-    window.removeEventListener('mouseup', stopDrag)
-    window.removeEventListener('touchend', stopDrag)
+    cleanupEventListeners()
 
     const currentPercent = sheetTranslateYPercent.value
     const dragDelta = currentPercent - initialDragPercent
@@ -226,6 +230,11 @@ export const useBottomSheet = (externalSheetContent) => {
     if (isDesktop && sheetContent.value) {
       sheetContent.value = null // Close directly without animation on resize
     }
+  })
+
+  onUnmounted(() => {
+    cleanupEventListeners()
+    cancelAnimation()
   })
 
   return {
