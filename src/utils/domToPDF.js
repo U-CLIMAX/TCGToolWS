@@ -215,11 +215,9 @@ export const convertDeckToPDF = async (cards, name, language) => {
     downloadLink.download = `${name || 'deck'}_${language}.pdf`
     downloadLink.click()
     URL.revokeObjectURL(blobUrl)
-
-    renderContent.remove()
-    styleElement.remove()
   } catch (error) {
     console.error('生成 PDF 時發生錯誤:', error)
+  } finally {
     renderContent.remove()
     styleElement.remove()
   }
