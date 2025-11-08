@@ -51,24 +51,32 @@
           ></v-divider>
         </template>
 
-        <v-btn @click="isSettingsModalOpen = true" icon="mdi-cog"></v-btn>
+        <v-tooltip text="设定" location="bottom">
+          <template v-slot:activator="{ props }">
+            <v-btn v-bind="props" @click="isSettingsModalOpen = true" icon="mdi-cog"></v-btn>
+          </template>
+        </v-tooltip>
 
         <template v-if="!isInSpecialFlow">
-          <v-btn
-            v-if="authStore.isAuthenticated"
-            @click="handleLogoutClick"
-            icon="mdi-logout"
-            color="red-lighten-1"
-            title="登出"
-          ></v-btn>
-          <v-btn
-            v-else
-            @click="handleLogin"
-            icon="mdi-login"
-            color="teal-lighten-1"
-            title=" 登录/注册"
-          ></v-btn
-        ></template>
+          <v-tooltip :text="authStore.isAuthenticated ? '登出' : '登录/注册'" location="bottom">
+            <template v-slot:activator="{ props }">
+              <v-btn
+                v-if="authStore.isAuthenticated"
+                v-bind="props"
+                @click="handleLogoutClick"
+                icon="mdi-logout"
+                color="red-lighten-1"
+              ></v-btn>
+              <v-btn
+                v-else
+                v-bind="props"
+                @click="handleLogin"
+                icon="mdi-login"
+                color="teal-lighten-1"
+              ></v-btn>
+            </template>
+          </v-tooltip>
+        </template>
       </template>
     </v-app-bar>
 
