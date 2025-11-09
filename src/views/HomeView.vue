@@ -75,11 +75,7 @@
           @mouseup="handleMouseUp"
           @mousemove="handleMouseMove"
         >
-          <div
-            v-for="feature in features"
-            :key="feature.id"
-            class="feature-item"
-          >
+          <div v-for="feature in features" :key="feature.id" class="feature-item">
             <div class="feature-card">
               <div class="feature-glass-bg"></div>
               <v-img :src="feature.image" class="feature-img" cover></v-img>
@@ -172,10 +168,7 @@ const handleMouseMove = (e) => {
 const updateScrollPadding = () => {
   if (homeLayout.value && scrollContainer.value) {
     const layoutLeftOffset = homeLayout.value.offsetLeft
-    const layoutPadding = parseInt(
-      getComputedStyle(homeLayout.value).paddingLeft,
-      10
-    )
+    const layoutPadding = parseInt(getComputedStyle(homeLayout.value).paddingLeft, 10)
     const totalPadding = layoutLeftOffset + layoutPadding - 16
     scrollContainer.value.style.paddingLeft = `${totalPadding}px`
   }
@@ -509,6 +502,7 @@ onUnmounted(() => {
   transform: translateX(-50%);
   width: 75.7%; /* (100 - 5.4 * 2.25 *2)% */
   aspect-ratio: 1 / 1;
+  pointer-events: none;
 }
 
 .feature-text {
