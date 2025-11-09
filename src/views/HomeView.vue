@@ -1,8 +1,8 @@
 <template>
   <v-container fluid class="home-view fill-height">
-    <v-row class="fill-height" align="center" justify="center">
+    <v-row class="fill-height" align="start" justify="center">
       <!-- Left Section -->
-      <v-col cols="12" md="5" class="d-flex flex-column justify-space-between" style="height: 70vh;">
+      <v-col cols="12" md="5" class="d-flex flex-column">
         <!-- Title Area (Left Top) -->
         <div class="title-area">
           <h1 class="main-title">U CLIMAX</h1>
@@ -10,25 +10,26 @@
         </div>
 
         <!-- Image Counter (Left Bottom) -->
-        <div class="counter-area">
-          <div class="counter-container">
-            <div
-              v-for="(image, index) in images"
-              :key="index"
-              class="counter-bar"
-              :class="{ active: currentIndex === index }"
-              @click="goToImage(index)"
-            >
-              <span v-if="currentIndex === index" class="counter-number">{{ index + 1 }}</span>
-            </div>
-          </div>
-        </div>
+
       </v-col>
 
       <!-- Right Section - Image Display with Coordinate Lines -->
-      <v-col cols="12" md="7" class="d-flex align-center justify-start" style="height: 70vh;">
+      <v-col cols="12" md="7" class="d-flex align-start justify-start">
         <!-- Coordinate System -->
         <div class="coordinate-system">
+          <div class="counter-area">
+            <div class="counter-container">
+              <div
+                v-for="(image, index) in images"
+                :key="index"
+                class="counter-bar"
+                :class="{ active: currentIndex === index }"
+                @click="goToImage(index)"
+              >
+                <span v-if="currentIndex === index" class="counter-number">{{ index + 1 }}</span>
+              </div>
+            </div>
+          </div>
           <!-- Vertical Line (extends up to match image height, small portion below) -->
           <div class="vertical-line"></div>
           <!-- Horizontal Line (extends right to match image width, small portion left) -->
@@ -98,14 +99,16 @@ const goToImage = (index) => {
 
 /* Counter Area */
 .counter-area {
-  align-self: flex-start;
+  position: absolute;
+  bottom: 20px;
+  right: calc(100% + 20px);
 }
 
 .counter-container {
   display: flex;
   flex-direction: row;
   gap: 12px;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .counter-bar {
@@ -140,8 +143,7 @@ const goToImage = (index) => {
 .coordinate-system {
   position: relative;
   width: 100%;
-  max-width: 800px;
-  aspect-ratio: 16 / 9;
+  height: 80vh;
 }
 
 /* Vertical Line - extends from top edge down past the bottom edge */
@@ -166,17 +168,17 @@ const goToImage = (index) => {
   opacity: 0.6;
 }
 
-/* Triangle in 4th quadrant near origin */
+/* Triangle in 3rd quadrant near origin */
 .triangle {
   position: absolute;
-  width: 24px;
-  height: 24px;
+  width: 10px;
+  height: 10px;
   background-color: rgb(var(--v-theme-on-background));
-  clip-path: polygon(0 0, 100% 0, 0 100%); /* Right angle at top-left */
+  clip-path: polygon(100% 0, 0 0, 100% 100%); /* Right angle at bottom-right */
   opacity: 0.6;
-  /* Position it with a gap */
-  left: 10px; /* Gap from vertical line */
-  bottom: -34px; /* -24px height - 10px gap */
+  /* Position it with a 1px gap */
+  bottom: -12px; /* -10px height - 2px gap */
+  right: calc(100% + 2px); /* 1px gap from vertical line */
 }
 
 /* Image Display - positioned in 1st quadrant */
