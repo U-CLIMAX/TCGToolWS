@@ -79,20 +79,21 @@ const goToImage = (index) => {
   padding: 2rem;
   display: grid;
   grid-template-columns: 1fr 1.5fr; /* Left column takes 1 part, right takes 1.5 */
-  align-items: center;
+  align-items: start; /* Align items to the top */
   gap: 2rem;
+  margin: 0 auto; /* Center the layout when max-width is applied */
 }
 
 /* Sections */
 .content-section {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* Removed justify-content: center to align content to top */
 }
 
 .visual-section {
   display: flex;
-  align-items: center;
+  /* Removed align-items: center to align content to top */
   justify-content: center;
 }
 
@@ -102,11 +103,14 @@ const goToImage = (index) => {
 }
 
 .main-title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(2rem, 4vw, 3rem); /* Smaller font size */
   font-weight: 700;
   letter-spacing: 0.1em;
   margin: 0;
   color: rgb(var(--v-theme-on-background));
+  white-space: nowrap; /* Prevent wrapping */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Show ellipsis for overflowed text */
 }
 
 .sub-title {
@@ -213,6 +217,7 @@ const goToImage = (index) => {
     grid-template-columns: 1fr; /* Stack columns */
     text-align: center;
     gap: 4rem; /* Increase gap for vertical stacking */
+    align-items: center; /* Center items when stacked */
   }
 
   .content-section {
