@@ -141,7 +141,7 @@ const handleMouseDown = (e) => {
   if (!scrollContainer.value) return
   isDown.value = true
   scrollContainer.value.classList.add('active')
-  startX.value = e.pageX - scrollContainer.value.offsetLeft
+  startX.value = e.clientX - scrollContainer.value.getBoundingClientRect().left
   scrollLeft.value = scrollContainer.value.scrollLeft
 }
 
@@ -160,17 +160,20 @@ const handleMouseUp = () => {
 const handleMouseMove = (e) => {
   if (!isDown.value || !scrollContainer.value) return
   e.preventDefault()
-  const x = e.pageX - scrollContainer.value.offsetLeft
+  const x = e.clientX - scrollContainer.value.getBoundingClientRect().left
   const walk = (x - startX.value) * 2 // scroll-fast
   scrollContainer.value.scrollLeft = scrollLeft.value - walk
 }
 
 const updateScrollPadding = () => {
   if (homeLayout.value && scrollContainer.value) {
-    const layoutLeftOffset = homeLayout.value.offsetLeft
+    const layoutRect = homeLayout.value.getBoundingClientRect()
     const layoutPadding = parseInt(getComputedStyle(homeLayout.value).paddingLeft, 10)
-    const totalPadding = layoutLeftOffset + layoutPadding - 16
+    // The scroll container is full-bleed, so its content needs to be padded
+    // by the same amount as the home-layout's content is from the viewport edge.
+    const totalPadding = layoutRect.left + layoutPadding
     scrollContainer.value.style.paddingLeft = `${totalPadding}px`
+    scrollContainer.value.style.paddingRight = `${totalPadding}px`
   }
 }
 
@@ -450,12 +453,17 @@ onUnmounted(() => {
   gap: 2rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  padding-right: 2rem;
   cursor: grab;
   user-select: none;
   /* Hide scrollbar */
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+
+  /* Full-bleed effect */
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .features-scroll-container.active {
