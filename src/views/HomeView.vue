@@ -218,7 +218,7 @@ onUnmounted(() => {
 
 .main-title {
   font-size: clamp(2rem, 4vw, 3rem); /* Smaller font size */
-  font-weight: 700;
+  font-family: 'DIN';
   letter-spacing: 0.1em;
   margin: 0;
   color: rgb(var(--v-theme-on-background));
