@@ -1,22 +1,16 @@
 <template>
-  <v-container fluid class="home-view fill-height d-flex align-center">
-    <v-row align="start">
-      <v-spacer></v-spacer>
+  <v-container fluid class="home-view fill-height">
+    <div class="home-layout">
       <!-- Left Section -->
-      <v-col cols="12" md="3" class="d-flex flex-column">
-        <!-- Title Area (Left Top) -->
+      <div class="content-section">
         <div class="title-area">
           <h1 class="main-title">U CLIMAX</h1>
           <p class="sub-title">ws卡查工具</p>
         </div>
-
-        <!-- Image Counter (Left Bottom) -->
-
-      </v-col>
+      </div>
 
       <!-- Right Section - Image Display with Coordinate Lines -->
-      <v-col cols="12" md="6" class="d-flex align-start justify-start">
-        <!-- Coordinate System -->
+      <div class="visual-section">
         <div class="coordinate-system">
           <div class="counter-area">
             <div class="counter-container">
@@ -26,15 +20,14 @@
                 class="counter-bar"
                 :class="{ active: currentIndex === index }"
                 @click="goToImage(index)"
-              >
-              </div>
+              ></div>
             </div>
           </div>
-          <!-- Vertical Line (extends up to match image height, small portion below) -->
+          <!-- Vertical Line -->
           <div class="vertical-line"></div>
-          <!-- Horizontal Line (extends right to match image width, small portion left) -->
+          <!-- Horizontal Line -->
           <div class="horizontal-line"></div>
-          <!-- Triangle in 3th quadrant near origin -->
+          <!-- Triangle -->
           <div class="triangle"></div>
 
           <!-- Image Display -->
@@ -47,9 +40,8 @@
             ></v-img>
           </transition>
         </div>
-      </v-col>
-      <v-spacer></v-spacer>
-    </v-row>
+      </div>
+    </div>
   </v-container>
 </template>
 
@@ -76,11 +68,37 @@ const goToImage = (index) => {
 .home-view {
   width: 100%;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-layout {
+  width: 100%;
+  max-width: 1400px; /* Max width for large screens */
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr; /* Left column takes 1 part, right takes 1.5 */
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Sections */
+.content-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.visual-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Title Area */
 .title-area {
-  align-self: flex-start;
+  text-align: left;
 }
 
 .main-title {
@@ -118,10 +136,6 @@ const goToImage = (index) => {
   background-color: rgba(128, 128, 128, 0.5);
   cursor: pointer;
   transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
 }
 
 .counter-bar:hover {
@@ -133,54 +147,43 @@ const goToImage = (index) => {
   background-color: rgba(255, 255, 255, 0.9);
 }
 
-.counter-number {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: rgb(var(--v-theme-on-background));
-}
-
 /* Coordinate System */
 .coordinate-system {
   position: relative;
   height: 60vh;
   aspect-ratio: 16 / 9;
+  width: 100%;
   max-width: 100%;
-  margin: 0 auto;
 }
 
-/* Vertical Line - extends from top edge down past the bottom edge */
 .vertical-line {
   position: absolute;
   left: 0;
-  bottom: -25px; /* Extends 20px below the origin */
+  bottom: -25px;
   width: 1px;
-  height: calc(100% + 25px); /* Starts from the top and goes down */
+  height: calc(100% + 25px);
   background-color: rgb(var(--v-theme-on-background));
 }
 
-/* Horizontal Line - extends from right edge left past the left edge */
 .horizontal-line {
   position: absolute;
   bottom: 0;
-  left: -25px; /* Extends 20px left of the origin */
-  width: calc(100% + 25px); /* Starts from the right and goes left */
+  left: -25px;
+  width: calc(100% + 25px);
   height: 1px;
   background-color: rgb(var(--v-theme-on-background));
 }
 
-/* Triangle in 3rd quadrant near origin */
 .triangle {
   position: absolute;
   width: 10px;
   height: 10px;
   background-color: rgb(var(--v-theme-on-background));
-  clip-path: polygon(100% 0, 0 0, 100% 100%); /* Right angle at bottom-right */
-  /* Position it with a 1px gap */
-  bottom: -12px; /* -10px height - 2px gap */
-  right: calc(100% + 2px); /* 1px gap from vertical line */
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+  bottom: -12px;
+  right: calc(100% + 2px);
 }
 
-/* Image Display - positioned in 1st quadrant */
 .display-image {
   position: absolute;
   top: 0;
@@ -193,7 +196,7 @@ const goToImage = (index) => {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
-/* Fade transition for image switching */
+/* Fade transition */
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease;
@@ -206,12 +209,30 @@ const goToImage = (index) => {
 
 /* Responsive adjustments */
 @media (max-width: 960px) {
-  .main-title {
-    font-size: clamp(2rem, 4vw, 3rem);
+  .home-layout {
+    grid-template-columns: 1fr; /* Stack columns */
+    text-align: center;
+    gap: 4rem; /* Increase gap for vertical stacking */
   }
 
-  .sub-title {
-    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+  .content-section {
+    align-items: center; /* Center title area */
+  }
+
+  .title-area {
+    text-align: center;
+  }
+
+  .coordinate-system {
+    height: auto;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-layout {
+    padding: 1rem;
   }
 
   .counter-bar {
@@ -221,29 +242,6 @@ const goToImage = (index) => {
 
   .counter-bar.active {
     width: 160px;
-  }
-}
-
-@media (max-width: 600px) {
-  .counter-area {
-    margin-top: 2rem;
-  }
-
-  .counter-bar {
-    height: 30px;
-    width: 30px;
-  }
-
-  .counter-bar.active {
-    width: 120px;
-  }
-
-  .counter-number {
-    font-size: 1.2rem;
-  }
-
-  .coordinate-system {
-    width: 100%;
   }
 }
 </style>
