@@ -72,10 +72,10 @@ import lottie from 'lottie-web'
 import bgAnimationData from '@/assets/animations/bg_anime.json'
 
 const images = ref([
-  '/intro/series_card_list.png',
-  '/intro/features_intro.png',
-  '/intro/single_card.png',
-  '/intro/deck_features.png',
+  '/intro/series_card_list.webp',
+  '/intro/features_intro.webp',
+  '/intro/single_card.webp',
+  '/intro/deck_features.webp',
 ])
 
 const currentIndex = ref(0)
@@ -141,7 +141,7 @@ onMounted(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('/texture.png'); /* Texture image */
+  background-image: url('/texture.webp'); /* Texture image */
   background-size: cover;
   background-position: center;
 }
