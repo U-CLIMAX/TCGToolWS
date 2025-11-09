@@ -1,5 +1,6 @@
 <template>
   <div class="home-background">
+    <div class="solid-background-layer"></div>
     <div id="lottie-animation" class="lottie-animation-layer"></div>
     <div class="glass-layer"></div>
     <div class="texture-layer"></div>
@@ -106,12 +107,21 @@ onMounted(() => {
   z-index: -1; /* Ensure it's behind the content */
 }
 
-.lottie-animation-layer {
+.solid-background-layer {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  background-color: #232323; /* Solid background color */
+}
+
+.lottie-animation-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 600px; /* Smaller width */
+  height: 600px; /* Smaller height */
   /* Lottie animation will fill this container */
 }
 
