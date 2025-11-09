@@ -6,50 +6,17 @@
       <div class="glass-layer"></div>
       <div class="texture-layer"></div>
     </div>
-    <div class="home-layout">
-      <!-- Left Section -->
-      <div class="content-section">
-        <div class="title-area">
-          <h1 class="main-title">U CLIMAX</h1>
-          <p class="sub-title">ws卡查工具</p>
-        </div>
-
-        <!-- Desktop Counter -->
-        <div class="counter-area d-none d-md-block">
-          <div class="counter-container">
-            <div
-              v-for="(image, index) in images"
-              :key="index"
-              class="counter-bar"
-              :class="{ active: currentIndex === index }"
-              @click="goToImage(index)"
-            ></div>
+    <div class="main-content-wrapper">
+      <div class="home-layout">
+        <!-- Left Section -->
+        <div class="content-section">
+          <div class="title-area">
+            <h1 class="main-title">U CLIMAX</h1>
+            <p class="sub-title">ws卡查工具</p>
           </div>
-        </div>
-      </div>
 
-      <!-- Right Section - Image Display with Coordinate Lines -->
-      <div class="visual-section">
-        <div class="coordinate-system">
-          <!-- Vertical Line -->
-          <div class="vertical-line"></div>
-          <!-- Horizontal Line -->
-          <div class="horizontal-line"></div>
-          <!-- Triangle -->
-          <div class="triangle"></div>
-
-          <!-- Image Display -->
-          <transition name="fade" mode="out-in">
-            <v-img
-              :key="currentIndex"
-              :src="images[currentIndex]"
-              class="display-image"
-              cover
-            ></v-img>
-          </transition>
-
-          <!-- Mobile Counter -->
-          <div class="counter-area d-block d-md-none">
+          <!-- Desktop Counter -->
+          <div class="counter-area d-none d-md-block">
             <div class="counter-container">
               <div
                 v-for="(image, index) in images"
@@ -59,6 +26,58 @@
                 @click="goToImage(index)"
               ></div>
             </div>
+          </div>
+        </div>
+
+        <!-- Right Section - Image Display with Coordinate Lines -->
+        <div class="visual-section">
+          <div class="coordinate-system">
+            <!-- Vertical Line -->
+            <div class="vertical-line"></div>
+            <!-- Horizontal Line -->
+            <div class="horizontal-line"></div>
+            <!-- Triangle -->
+            <div class="triangle"></div>
+
+            <!-- Image Display -->
+            <transition name="fade" mode="out-in">
+              <v-img
+                :key="currentIndex"
+                :src="images[currentIndex]"
+                class="display-image"
+                cover
+              ></v-img>
+            </transition>
+
+            <!-- Mobile Counter -->
+            <div class="counter-area d-block d-md-none">
+              <div class="counter-container">
+                <div
+                  v-for="(image, index) in images"
+                  :key="index"
+                  class="counter-bar"
+                  :class="{ active: currentIndex === index }"
+                  @click="goToImage(index)"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Features Section -->
+      <div class="features-section">
+        <h2 class="features-title">工具特色</h2>
+        <div class="features-scroll-container">
+          <div
+            v-for="feature in features"
+            :key="feature.id"
+            class="feature-item"
+          >
+            <div class="feature-card">
+              <div class="feature-glass-bg"></div>
+              <v-img :src="feature.image" class="feature-img" cover></v-img>
+            </div>
+            <p class="feature-text">{{ feature.text }}</p>
           </div>
         </div>
       </div>
@@ -76,6 +95,12 @@ const images = ref([
   '/intro/features_intro.webp',
   '/intro/single_card.webp',
   '/intro/deck_features.webp',
+])
+
+const features = ref([
+  { id: 1, image: '/feature/export-pdf.webp', text: '支持导出卡组pdf' },
+  { id: 2, image: '/feature/deck-edit.webp', text: '卡组编辑可视化' },
+  { id: 3, image: '/feature/global-search.webp', text: '支持全局搜索' },
 ])
 
 const currentIndex = ref(0)
@@ -180,11 +205,20 @@ onUnmounted(() => {
   overflow-x: hidden;
   overflow-y: auto;
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* Align to top */
   justify-content: center;
   position: relative; /* Ensure content is above background */
   z-index: 0; /* Ensure content is above background */
   background: none; /* Remove default background */
+  padding-top: 5vh; /* Add some padding to the top */
+  padding-bottom: 5vh; /* Add some padding to the bottom */
+}
+
+.main-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
 }
 
 .home-layout {
@@ -340,6 +374,81 @@ onUnmounted(() => {
   opacity: 0;
 }
 
+/* Features Section */
+.features-section {
+  width: 100%;
+  max-width: 1400px;
+  padding: 0 2rem;
+  margin-top: 6rem; /* Increased margin for more space */
+}
+
+.features-title {
+  font-size: clamp(1.2rem, 2.2vw, 1.7rem);
+  font-weight: 200;
+  font-family: 'DIN';
+  margin-bottom: 1.5rem;
+  color: white;
+  opacity: 1;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+}
+
+.features-scroll-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 2rem;
+  padding: 1rem 0;
+  /* Hide scrollbar */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.features-scroll-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.feature-item {
+  flex: 0 0 clamp(180px, 30vw, 220px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.feature-card {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 115%; /* Creates space for the overflowing image */
+}
+
+.feature-glass-bg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  aspect-ratio: 37 / 24;
+  background: rgba(var(--v-theme-surface), 0.2);
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feature-img {
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+.feature-text {
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.9);
+}
+
 /* Responsive adjustments */
 @media (max-width: 959.98px) {
   .home-layout {
@@ -411,6 +520,11 @@ onUnmounted(() => {
     padding-bottom: calc(
       var(--mobile-counter-gap) + var(--mobile-counter-height-phone) + 1rem
     ); /* Keep space for counter */
+  }
+
+  .features-section {
+    padding: 0 1rem;
+    margin-top: 4rem;
   }
 
   .coordinate-system {
