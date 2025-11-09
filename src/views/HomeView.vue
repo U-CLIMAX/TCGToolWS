@@ -7,22 +7,24 @@
           <h1 class="main-title">U CLIMAX</h1>
           <p class="sub-title">ws卡查工具</p>
         </div>
+
+        <!-- Image Counter (Left Bottom) -->
+        <div class="counter-area">
+          <div class="counter-container">
+            <div
+              v-for="(image, index) in images"
+              :key="index"
+              class="counter-bar"
+              :class="{ active: currentIndex === index }"
+              @click="goToImage(index)"
+            ></div>
+          </div>
+        </div>
       </div>
 
       <!-- Right Section - Image Display with Coordinate Lines -->
       <div class="visual-section">
         <div class="coordinate-system">
-          <div class="counter-area">
-            <div class="counter-container">
-              <div
-                v-for="(image, index) in images"
-                :key="index"
-                class="counter-bar"
-                :class="{ active: currentIndex === index }"
-                @click="goToImage(index)"
-              ></div>
-            </div>
-          </div>
           <!-- Vertical Line -->
           <div class="vertical-line"></div>
           <!-- Horizontal Line -->
@@ -54,7 +56,7 @@ const images = ref([
   'https://picsum.photos/id/20/1920/1080',
   'https://picsum.photos/id/30/1920/1080',
   'https://picsum.photos/id/40/1920/1080',
-  'https://picsum.photos/id/50/1920/1080',
+  // 'https://picsum.photos/id/50/1920/1080',
 ])
 
 const currentIndex = ref(0)
@@ -88,12 +90,11 @@ const goToImage = (index) => {
 .content-section {
   display: flex;
   flex-direction: column;
-  /* Removed justify-content: center to align content to top */
+  height: 100%; /* Ensure section takes full height of grid row */
 }
 
 .visual-section {
   display: flex;
-  /* Removed align-items: center to align content to top */
   justify-content: center;
 }
 
@@ -122,9 +123,8 @@ const goToImage = (index) => {
 
 /* Counter Area */
 .counter-area {
-  position: absolute;
-  bottom: 20px;
-  right: calc(100% + 20px);
+  margin-top: auto; /* Push counter to the bottom of the flex container */
+  padding-bottom: 20px; /* Align with image bottom (image is 20px from axis) */
 }
 
 .counter-container {
@@ -132,11 +132,13 @@ const goToImage = (index) => {
   flex-direction: row;
   gap: 12px;
   align-items: flex-end;
+  width: 100%;
 }
 
 .counter-bar {
+  width: 40px; /* Fixed width for non-active bars */
+  flex-shrink: 0; /* Prevent shrinking */
   height: 100px;
-  width: 50px;
   background-color: rgba(128, 128, 128, 0.5);
   cursor: pointer;
   transition: all 0.3s ease;
@@ -147,7 +149,8 @@ const goToImage = (index) => {
 }
 
 .counter-bar.active {
-  width: 200px;
+  flex-grow: 1; /* Allow active bar to grow and fill space */
+  width: auto; /* Width is now flexible */
   background-color: rgba(255, 255, 255, 0.9);
 }
 
@@ -222,16 +225,22 @@ const goToImage = (index) => {
 
   .content-section {
     align-items: center; /* Center title area */
+    height: auto; /* Reset height */
   }
 
   .title-area {
     text-align: center;
   }
 
-  .coordinate-system {
-    height: auto;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-    width: 100%;
+  .counter-area {
+    margin-top: 2rem; /* Adjust margin for smaller screens */
+    padding-bottom: 0; /* Reset padding */
+    width: 100%; /* Ensure counter area takes full width on mobile */
+  }
+
+  .counter-bar {
+    width: 40px;
+    height: 60px;
   }
 }
 
@@ -241,12 +250,8 @@ const goToImage = (index) => {
   }
 
   .counter-bar {
+    width: 30px;
     height: 40px;
-    width: 40px;
-  }
-
-  .counter-bar.active {
-    width: 160px;
   }
 }
 </style>
