@@ -66,10 +66,20 @@
             <v-fade-transition>
               <v-btn
                 v-if="(isHovering || isTouch) && card.type != '高潮卡'"
+                icon="mdi-file-document-arrow-right"
+                variant="tonal"
+                size="small"
+                class="download-text-button"
+                @click="handleDownloadText"
+              ></v-btn>
+            </v-fade-transition>
+            <v-fade-transition>
+              <v-btn
+                v-if="(isHovering || isTouch) && card.type != '高潮卡'"
                 icon="mdi-download"
                 variant="tonal"
                 size="small"
-                class="download-button"
+                class="download-card-button"
                 @click="handleDownloadCard"
               ></v-btn>
             </v-fade-transition>
@@ -180,14 +190,18 @@
       @click="handleNextCard"
       :disabled="cardIndex === totalCards - 1"
     ></v-btn>
+
+    <DownloadTextDialog v-model="isDownloadTextDialogOpen" @confirm="executeDownloadText" />
   </v-card>
 </template>
 
 <script setup>
 import { computed, ref, onUnmounted } from 'vue'
 import LinkedCard from './LinkedCard.vue'
+import DownloadTextDialog from './DownloadTextDialog.vue'
 import DOMPurify from 'dompurify'
 import { useDeckStore } from '@/stores/deck'
+import { useDownloadStore } from '@/stores/download'
 import { convertElementToPng } from '@/utils/domToImage.js'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useUIStore } from '@/stores/ui'
@@ -196,6 +210,7 @@ import { formatEffectToHtml } from '@/utils/cardEffectFormatter'
 
 const { triggerSnackbar } = useSnackbar()
 const uiStore = useUIStore()
+const downloadStore = useDownloadStore()
 
 const emit = defineEmits(['close', 'show-new-card', 'prev-card', 'next-card', 'load-more'])
 
@@ -211,6 +226,8 @@ const props = defineProps({
 const deckStore = useDeckStore()
 const { isTouch } = useDevice()
 const isLightMode = computed(() => uiStore.theme === 'light')
+
+const isDownloadTextDialogOpen = ref(false)
 
 const showOnTap = ref(false)
 let hideTimeout = null
@@ -245,6 +262,83 @@ const formattedEffect = computed(() => {
   const rawHtml = formatEffectToHtml(props.card.effect)
   return DOMPurify.sanitize(rawHtml)
 })
+
+const handleDownloadText = () => {
+  isDownloadTextDialogOpen.value = true
+}
+
+const executeDownloadText = async () => {
+  isDownloadTextDialogOpen.value = false
+  uiStore.setLoading(true)
+
+  const exportContainer = document.createElement('div')
+  exportContainer.id = 'temp-text-export-container'
+
+  exportContainer.style.position = 'absolute'
+  exportContainer.style.left = '-9999px'
+  exportContainer.style.top = '-9999px'
+  exportContainer.style.width = `${downloadStore.textWidth}px`
+  exportContainer.style.backgroundColor = downloadStore.textBgColor
+  exportContainer.style.borderRadius = `${downloadStore.textBorderRadius}px`
+  exportContainer.style.padding = '20px'
+  exportContainer.style.boxSizing = 'border-box'
+  exportContainer.style.fontFamily = 'system-ui, sans-serif'
+  exportContainer.style.display = 'flex'
+  exportContainer.style.alignItems = 'center'
+  exportContainer.style.justifyContent = 'center'
+
+  const effectText = document.createElement('div')
+  effectText.innerHTML = formattedEffect.value
+  effectText.style.fontSize = `${downloadStore.textFontSize}px`
+  effectText.style.lineHeight = '1.5'
+  effectText.style.wordBreak = 'break-word'
+  effectText.style.textAlign = 'justify'
+  effectText.style.width = '100%'
+
+  effectText.querySelectorAll('img').forEach((icon) => {
+    let src = icon.getAttribute('src')
+    if (src && src.endsWith('.svg')) {
+      icon.setAttribute('src', src.replace(/\.svg$/, '.webp'))
+    }
+    icon.crossOrigin = 'anonymous'
+    icon.style.height = `${downloadStore.textFontSize}px`
+    icon.style.verticalAlign = '-0.15em'
+    icon.style.display = 'inline-block'
+  })
+
+  exportContainer.appendChild(effectText)
+  document.body.appendChild(exportContainer)
+
+  try {
+    const images = Array.from(exportContainer.querySelectorAll('img'))
+    const imageLoadPromises = images.map(
+      (image) =>
+        new Promise((resolve) => {
+          if (image.complete) {
+            resolve()
+          } else {
+            image.onload = resolve
+            image.onerror = resolve
+          }
+        })
+    )
+    await Promise.all(imageLoadPromises)
+    await new Promise((resolve) => setTimeout(resolve, 100))
+    await new Promise((resolve) => requestAnimationFrame(resolve))
+    await new Promise((resolve) => requestAnimationFrame(resolve))
+
+    const filename = `${props.card.id}-effect`
+    await convertElementToPng('temp-text-export-container', filename, 1)
+
+    triggerSnackbar('效果文本图片已成功汇出', 'success')
+  } catch (error) {
+    console.error('Failed to export card text image:', error)
+    triggerSnackbar(`导出失败: ${error.message || '未知错误'}`, 'error')
+  } finally {
+    document.body.removeChild(exportContainer)
+    uiStore.setLoading(false)
+  }
+}
 
 const handleDownloadCard = async () => {
   uiStore.setLoading(true)
@@ -381,7 +475,16 @@ const handleSwipeRight = () => {
   color: white !important;
 }
 
-.download-button {
+.download-text-button {
+  position: absolute;
+  bottom: 55px;
+  right: 8px;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.6) !important;
+  color: white !important;
+}
+
+.download-card-button {
   position: absolute;
   bottom: 8px;
   right: 8px;
