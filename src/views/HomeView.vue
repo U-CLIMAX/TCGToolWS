@@ -363,6 +363,11 @@ onMounted(() => {
     bottom: auto; /* Remove bottom anchor */
     height: calc(100% + var(--mobile-counter-gap) + var(--mobile-counter-height-tablet));
   }
+
+  .horizontal-line {
+    left: calc(-1 * var(--axis-cross-length));
+    width: calc(100% + var(--axis-cross-length) + 3rem); /* Extending to the edge of the screen */
+  }
 }
 
 @media (max-width: 599.98px) {
