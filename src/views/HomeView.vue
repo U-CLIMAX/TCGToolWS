@@ -86,7 +86,8 @@ const goToImage = (index) => {
   --mobile-counter-height-phone: 40px;
 
   width: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   display: flex;
   align-items: center;
   justify-content: center;
