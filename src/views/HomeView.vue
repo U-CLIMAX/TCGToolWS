@@ -1,12 +1,12 @@
 <template>
-  <v-container fluid class="home-view fill-height">
-    <v-row class="fill-height" align="center" justify="center">
+  <v-container fluid class="home-view fill-height d-flex align-center">
+    <v-row align="start" justify="center" style="width: 100%">
       <!-- Left Section -->
       <v-col cols="12" md="4" class="d-flex flex-column">
         <!-- Title Area (Left Top) -->
         <div class="title-area">
           <h1 class="main-title">U CLIMAX</h1>
-          <p class="sub-title">ws中文卡查</p>
+          <p class="sub-title">ws卡查工具</p>
         </div>
 
         <!-- Image Counter (Left Bottom) -->
@@ -14,7 +14,7 @@
       </v-col>
 
       <!-- Right Section - Image Display with Coordinate Lines -->
-      <v-col cols="12" md="6" class="d-flex align-start justify-start">
+      <v-col cols="12" md="7" class="d-flex align-start justify-start">
         <!-- Coordinate System -->
         <div class="coordinate-system">
           <div class="counter-area">
@@ -34,7 +34,7 @@
           <div class="vertical-line"></div>
           <!-- Horizontal Line (extends right to match image width, small portion left) -->
           <div class="horizontal-line"></div>
-          <!-- Triangle in 4th quadrant near origin -->
+          <!-- Triangle in 3th quadrant near origin -->
           <div class="triangle"></div>
 
           <!-- Image Display -->
@@ -112,7 +112,7 @@ const goToImage = (index) => {
 }
 
 .counter-bar {
-  height: 50px;
+  height: 100px;
   width: 50px;
   background-color: rgba(128, 128, 128, 0.5);
   cursor: pointer;
@@ -150,22 +150,20 @@ const goToImage = (index) => {
 .vertical-line {
   position: absolute;
   left: 0;
-  bottom: -20px; /* Extends 20px below the origin */
-  width: 2px;
-  height: calc(100% + 20px); /* Starts from the top and goes down */
+  bottom: -25px; /* Extends 20px below the origin */
+  width: 1px;
+  height: calc(100% + 25px); /* Starts from the top and goes down */
   background-color: rgb(var(--v-theme-on-background));
-  opacity: 0.6;
 }
 
 /* Horizontal Line - extends from right edge left past the left edge */
 .horizontal-line {
   position: absolute;
   bottom: 0;
-  left: -20px; /* Extends 20px left of the origin */
-  width: calc(100% + 20px); /* Starts from the right and goes left */
-  height: 2px;
+  left: -25px; /* Extends 20px left of the origin */
+  width: calc(100% + 25px); /* Starts from the right and goes left */
+  height: 1px;
   background-color: rgb(var(--v-theme-on-background));
-  opacity: 0.6;
 }
 
 /* Triangle in 3rd quadrant near origin */
@@ -175,7 +173,6 @@ const goToImage = (index) => {
   height: 10px;
   background-color: rgb(var(--v-theme-on-background));
   clip-path: polygon(100% 0, 0 0, 100% 100%); /* Right angle at bottom-right */
-  opacity: 0.6;
   /* Position it with a 1px gap */
   bottom: -12px; /* -10px height - 2px gap */
   right: calc(100% + 2px); /* 1px gap from vertical line */
