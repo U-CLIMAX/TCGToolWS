@@ -1,8 +1,9 @@
 <template>
   <v-container fluid class="home-view fill-height d-flex align-center">
-    <v-row align="start" justify="center" style="width: 100%">
+    <v-row align="start">
+      <v-spacer></v-spacer>
       <!-- Left Section -->
-      <v-col cols="12" md="4" class="d-flex flex-column">
+      <v-col cols="12" md="3" class="d-flex flex-column">
         <!-- Title Area (Left Top) -->
         <div class="title-area">
           <h1 class="main-title">U CLIMAX</h1>
@@ -14,7 +15,7 @@
       </v-col>
 
       <!-- Right Section - Image Display with Coordinate Lines -->
-      <v-col cols="12" md="7" class="d-flex align-start justify-start">
+      <v-col cols="12" md="6" class="d-flex align-start justify-start">
         <!-- Coordinate System -->
         <div class="coordinate-system">
           <div class="counter-area">
@@ -47,6 +48,7 @@
           </transition>
         </div>
       </v-col>
+      <v-spacer></v-spacer>
     </v-row>
   </v-container>
 </template>
@@ -142,6 +144,8 @@ const goToImage = (index) => {
   position: relative;
   height: 60vh;
   aspect-ratio: 16 / 9;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 /* Vertical Line - extends from top edge down past the bottom edge */
