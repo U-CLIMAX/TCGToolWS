@@ -407,7 +407,8 @@ onUnmounted(() => {
 }
 
 .feature-item {
-  flex: 0 0 clamp(180px, 30vw, 220px);
+  /* flex: 0 0 clamp(220px, 35vw, 280px); */
+  flex: 0 0 clamp(500px, 35vw, 700px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -418,7 +419,7 @@ onUnmounted(() => {
   position: relative;
   width: 100%;
   height: 0;
-  padding-bottom: 115%; /* Creates space for the overflowing image */
+  padding-bottom: 80%; /* Creates space for the overflowing image */
 }
 
 .feature-glass-bg {
@@ -426,8 +427,8 @@ onUnmounted(() => {
   bottom: 0;
   left: 0;
   width: 100%;
-  aspect-ratio: 37 / 24;
-  background: rgba(var(--v-theme-surface), 0.2);
+  aspect-ratio: 49 / 32;
+  background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px) saturate(120%);
   -webkit-backdrop-filter: blur(10px) saturate(120%);
   border-radius: 16px;
@@ -436,10 +437,10 @@ onUnmounted(() => {
 
 .feature-img {
   position: absolute;
-  bottom: 15%;
+  bottom: 5.4%;
   left: 50%;
   transform: translateX(-50%);
-  width: 100%;
+  width: 75.7%; /* (100 - 5.4 * 2.25 *2)% */
   aspect-ratio: 1 / 1;
 }
 
