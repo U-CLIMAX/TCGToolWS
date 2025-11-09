@@ -69,7 +69,6 @@ const images = ref([
   'https://picsum.photos/id/20/1920/1080',
   'https://picsum.photos/id/30/1920/1080',
   'https://picsum.photos/id/40/1920/1080',
-  'https://picsum.photos/id/50/1920/1080',
 ])
 
 const currentIndex = ref(0)
@@ -81,6 +80,11 @@ const goToImage = (index) => {
 
 <style scoped>
 .home-view {
+  --axis-gap: clamp(1rem, 2vw, 1.5rem); /* 16px to 24px */
+  --mobile-counter-gap: clamp(3rem, 8vw, 4rem); /* 48px to 64px */
+  --mobile-counter-height-tablet: 60px;
+  --mobile-counter-height-phone: 40px;
+
   width: 100%;
   overflow: hidden;
   display: flex;
@@ -97,6 +101,7 @@ const goToImage = (index) => {
   align-items: start; /* Align items to the top */
   gap: 2rem;
   margin: 0 auto; /* Center the layout when max-width is applied */
+  position: relative;
 }
 
 /* Sections */
@@ -137,7 +142,7 @@ const goToImage = (index) => {
 /* Desktop Counter */
 .content-section .counter-area {
   margin-top: auto; /* Push counter to the bottom of the flex container */
-  padding-bottom: 20px; /* Align with image bottom (image is 20px from axis) */
+  padding-bottom: var(--axis-gap); /* Align with image bottom */
 }
 
 .content-section .counter-container {
@@ -179,9 +184,9 @@ const goToImage = (index) => {
 .vertical-line {
   position: absolute;
   left: 0;
-  bottom: -25px;
+  bottom: calc(-1 * var(--axis-gap));
   width: 1px;
-  height: calc(100% + 25px);
+  height: calc(100% + var(--axis-gap));
   background-color: rgb(var(--v-theme-on-background));
   transition: height 0.3s ease;
 }
@@ -189,8 +194,8 @@ const goToImage = (index) => {
 .horizontal-line {
   position: absolute;
   bottom: 0;
-  left: -25px;
-  width: calc(100% + 25px);
+  left: calc(-1 * var(--axis-gap));
+  width: calc(100% + var(--axis-gap));
   height: 1px;
   background-color: rgb(var(--v-theme-on-background));
 }
@@ -208,8 +213,8 @@ const goToImage = (index) => {
 .display-image {
   position: absolute;
   top: 0;
-  left: 20px;
-  bottom: 20px;
+  left: var(--axis-gap);
+  bottom: var(--axis-gap);
   right: 0;
   width: auto;
   height: auto;
@@ -233,12 +238,13 @@ const goToImage = (index) => {
   .home-layout {
     grid-template-columns: 1fr; /* Stack columns */
     gap: 2rem;
-    padding-bottom: 140px; /* Make space for the absolute positioned counter */
+    padding-bottom: calc(
+      var(--mobile-counter-gap) + var(--mobile-counter-height-tablet) + 2rem
+    ); /* Make space for counter */
   }
 
   .content-section {
     height: auto; /* Reset height */
-    /* Removed align-items: center */
   }
 
   .title-area {
@@ -249,71 +255,85 @@ const goToImage = (index) => {
     height: auto;
     padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
     width: 100%;
+    --w-tablet: calc(var(--mobile-counter-height-tablet) / 2.5);
+    --w-active-tablet: calc(var(--w-tablet) * 4);
   }
 
   /* Mobile Counter Styles */
   .coordinate-system .counter-area {
     position: absolute;
-    bottom: -120px; /* 60px gap + 60px counter height */
-    left: 20px; /* Align with image left */
+    bottom: calc(
+      -1 * (var(--mobile-counter-gap) + var(--mobile-counter-height-tablet))
+    );
+    left: var(--axis-gap); /* Align with image left */
     transform: none; /* Remove centering transform */
   }
 
   .coordinate-system .counter-container {
     display: flex;
     gap: 12px;
-    /* Total width for 5 items, w=40, active=160, gap=12 -> (4*40)+(1*160)+(4*12) = 368px */
-    width: 368px;
+    /* Width is now fully dynamic based on content */
   }
 
   .coordinate-system .counter-bar {
-    width: 40px;
-    height: 60px;
+    width: var(--w-tablet);
+    height: var(--mobile-counter-height-tablet);
     background-color: rgba(128, 128, 128, 0.5);
     cursor: pointer;
     transition: all 0.3s ease;
   }
 
   .coordinate-system .counter-bar.active {
-    width: 160px; /* 4 * 40px */
+    width: var(--w-active-tablet);
     background-color: rgba(255, 255, 255, 0.9);
   }
 
   .vertical-line {
     top: 0; /* Re-anchor to the top */
     bottom: auto; /* Remove bottom anchor */
-    /* 60px gap + 60px counter height */
-    height: calc(100% + 120px);
+    height: calc(
+      100% + var(--mobile-counter-gap) + var(--mobile-counter-height-tablet)
+    );
   }
 }
 
 @media (max-width: 599.98px) {
   .home-layout {
     padding: 1rem;
-    padding-bottom: 120px; /* Keep space for counter */
+    padding-bottom: calc(
+      var(--mobile-counter-gap) + var(--mobile-counter-height-phone) + 1rem
+    ); /* Keep space for counter */
+  }
+
+  .coordinate-system {
+    --w-phone: calc(var(--mobile-counter-height-phone) / 2.5);
+    --w-active-phone: calc(var(--w-phone) * 4);
   }
 
   /* Adjust mobile counter for smaller screens */
   .coordinate-system .counter-container {
-    /* w=30, active=120, gap=12 -> (4*30)+(1*120)+(4*12) = 288px */
-    width: 288px;
+    /* Width is dynamic */
   }
 
   .coordinate-system .counter-bar {
-    width: 30px;
-    height: 40px;
+    width: var(--w-phone);
+    height: var(--mobile-counter-height-phone);
   }
 
   .coordinate-system .counter-bar.active {
-    width: 120px; /* 4 * 30px */
+    width: var(--w-active-phone);
   }
 
   .coordinate-system .counter-area {
-    bottom: -100px; /* 60px gap + 40px counter height */
+    bottom: calc(
+      -1 * (var(--mobile-counter-gap) + var(--mobile-counter-height-phone))
+    );
   }
 
   .vertical-line {
-    height: calc(100% + 100px);
+    height: calc(
+      100% + var(--mobile-counter-gap) + var(--mobile-counter-height-phone)
+    );
   }
 }
 </style>
