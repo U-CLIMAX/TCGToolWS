@@ -8,8 +8,8 @@
           <p class="sub-title">ws卡查工具</p>
         </div>
 
-        <!-- Image Counter (Left Bottom) -->
-        <div class="counter-area">
+        <!-- Desktop Counter -->
+        <div class="counter-area d-none d-md-block">
           <div class="counter-container">
             <div
               v-for="(image, index) in images"
@@ -41,6 +41,19 @@
               cover
             ></v-img>
           </transition>
+
+          <!-- Mobile Counter -->
+          <div class="counter-area d-block d-md-none">
+            <div class="counter-container">
+              <div
+                v-for="(image, index) in images"
+                :key="index"
+                class="counter-bar"
+                :class="{ active: currentIndex === index }"
+                @click="goToImage(index)"
+              ></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -56,7 +69,7 @@ const images = ref([
   'https://picsum.photos/id/20/1920/1080',
   'https://picsum.photos/id/30/1920/1080',
   'https://picsum.photos/id/40/1920/1080',
-  // 'https://picsum.photos/id/50/1920/1080',
+  'https://picsum.photos/id/50/1920/1080',
 ])
 
 const currentIndex = ref(0)
@@ -121,13 +134,13 @@ const goToImage = (index) => {
   opacity: 0.8;
 }
 
-/* Counter Area */
-.counter-area {
+/* Desktop Counter */
+.content-section .counter-area {
   margin-top: auto; /* Push counter to the bottom of the flex container */
   padding-bottom: 20px; /* Align with image bottom (image is 20px from axis) */
 }
 
-.counter-container {
+.content-section .counter-container {
   display: flex;
   flex-direction: row;
   gap: 12px;
@@ -135,8 +148,8 @@ const goToImage = (index) => {
   width: 100%;
 }
 
-.counter-bar {
-  width: 40px; /* Fixed width for non-active bars */
+.content-section .counter-bar {
+  width: 50px; /* Fixed width for non-active bars */
   flex-shrink: 0; /* Prevent shrinking */
   height: 100px;
   background-color: rgba(128, 128, 128, 0.5);
@@ -144,11 +157,11 @@ const goToImage = (index) => {
   transition: all 0.3s ease;
 }
 
-.counter-bar:hover {
+.content-section .counter-bar:hover {
   background-color: rgba(128, 128, 128, 0.8);
 }
 
-.counter-bar.active {
+.content-section .counter-bar.active {
   flex-grow: 1; /* Allow active bar to grow and fill space */
   width: auto; /* Width is now flexible */
   background-color: rgba(255, 255, 255, 0.9);
@@ -170,6 +183,7 @@ const goToImage = (index) => {
   width: 1px;
   height: calc(100% + 25px);
   background-color: rgb(var(--v-theme-on-background));
+  transition: height 0.3s ease;
 }
 
 .horizontal-line {
@@ -215,43 +229,91 @@ const goToImage = (index) => {
 }
 
 /* Responsive adjustments */
-@media (max-width: 960px) {
+@media (max-width: 959.98px) {
   .home-layout {
     grid-template-columns: 1fr; /* Stack columns */
-    text-align: center;
-    gap: 4rem; /* Increase gap for vertical stacking */
-    align-items: center; /* Center items when stacked */
+    gap: 2rem;
+    padding-bottom: 140px; /* Make space for the absolute positioned counter */
   }
 
   .content-section {
-    align-items: center; /* Center title area */
     height: auto; /* Reset height */
+    /* Removed align-items: center */
   }
 
   .title-area {
-    text-align: center;
+    text-align: left; /* Align title to the left */
   }
 
-  .counter-area {
-    margin-top: 2rem; /* Adjust margin for smaller screens */
-    padding-bottom: 0; /* Reset padding */
-    width: 100%; /* Ensure counter area takes full width on mobile */
+  .coordinate-system {
+    height: auto;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    width: 100%;
   }
 
-  .counter-bar {
+  /* Mobile Counter Styles */
+  .coordinate-system .counter-area {
+    position: absolute;
+    bottom: -120px; /* 60px gap + 60px counter height */
+    left: 20px; /* Align with image left */
+    transform: none; /* Remove centering transform */
+  }
+
+  .coordinate-system .counter-container {
+    display: flex;
+    gap: 12px;
+    /* Total width for 5 items, w=40, active=160, gap=12 -> (4*40)+(1*160)+(4*12) = 368px */
+    width: 368px;
+  }
+
+  .coordinate-system .counter-bar {
     width: 40px;
     height: 60px;
+    background-color: rgba(128, 128, 128, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .coordinate-system .counter-bar.active {
+    width: 160px; /* 4 * 40px */
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+
+  .vertical-line {
+    top: 0; /* Re-anchor to the top */
+    bottom: auto; /* Remove bottom anchor */
+    /* 60px gap + 60px counter height */
+    height: calc(100% + 120px);
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 599.98px) {
   .home-layout {
     padding: 1rem;
+    padding-bottom: 120px; /* Keep space for counter */
   }
 
-  .counter-bar {
+  /* Adjust mobile counter for smaller screens */
+  .coordinate-system .counter-container {
+    /* w=30, active=120, gap=12 -> (4*30)+(1*120)+(4*12) = 288px */
+    width: 288px;
+  }
+
+  .coordinate-system .counter-bar {
     width: 30px;
     height: 40px;
+  }
+
+  .coordinate-system .counter-bar.active {
+    width: 120px; /* 4 * 30px */
+  }
+
+  .coordinate-system .counter-area {
+    bottom: -100px; /* 60px gap + 40px counter height */
+  }
+
+  .vertical-line {
+    height: calc(100% + 100px);
   }
 }
 </style>
