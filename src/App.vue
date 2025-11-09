@@ -30,7 +30,6 @@
             <template v-for="item in navItems" :key="item.to">
               <v-btn
                 v-if="!item.requiresAuth || authStore.isAuthenticated"
-                size="large"
                 variant="text"
                 :to="{ name: item.name }"
                 :text="item.text"

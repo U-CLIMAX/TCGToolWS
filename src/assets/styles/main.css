@@ -16,3 +16,17 @@
 
 /* 字體樣式 */
 @import './fonts/LXGWWenKaiLite/fonts.css';
+@import './fonts/NotoSansSC/fonts.css';
+@import './fonts/NotoSansJP/fonts.css';
+@import './fonts/NotoSans/fonts.css';
+
+:root {
+  --font-noto: 'Noto Sans', 'Noto Sans SC', 'Noto Sans JP', sans-serif;
+  --font-wenkai: 'LXGW WenKai Lite', sans-serif;
+}
+.font-noto {
+  font-family: var(--font-noto);
+}
+.font-wenkai {
+  font-family: var(--font-wenkai) !important;
+}

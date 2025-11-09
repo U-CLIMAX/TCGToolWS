@@ -135,29 +135,31 @@
             <v-row dense class="my-4 text-center">
               <v-col>
                 <div class="text-body-2 text-grey">等级</div>
-                <div class="font-weight-bold text-body-1">{{ card.level }}</div>
+                <div class="font-wenkai font-weight-bold text-body-1">{{ card.level }}</div>
               </v-col>
               <v-col>
                 <div class="text-body-2 text-grey">费用</div>
-                <div class="font-weight-bold text-body-1">{{ card.cost }}</div>
+                <div class="font-wenkai font-weight-bold text-body-1">{{ card.cost }}</div>
               </v-col>
               <v-col>
                 <div class="text-body-2 text-grey">战斗力</div>
-                <div class="font-weight-bold text-body-1">{{ card.power }}</div>
+                <div class="font-wenkai font-weight-bold text-body-1">{{ card.power }}</div>
               </v-col>
               <v-col>
                 <div class="text-body-2 text-grey">灵魂值</div>
-                <div class="font-weight-bold text-body-1">{{ card.soul }}</div>
+                <div class="font-wenkai font-weight-bold text-body-1">{{ card.soul }}</div>
               </v-col>
             </v-row>
             <v-divider class="mb-4"></v-divider>
             <div>
               <div class="text-body-2 mb-2 text-grey">效果</div>
-              <div class="text-body-1" v-html="formattedEffect"></div>
+              <div class="font-wenkai text-body-1" v-html="formattedEffect"></div>
             </div>
             <div v-if="card.trait && card.trait.length > 0 && card.trait[0] !== '-'" class="mt-4">
               <div class="text-body-2 mb-2 text-grey">特征</div>
-              <v-chip v-for="r in card.trait" :key="r" class="mr-2 mb-2" label>{{ r }}</v-chip>
+              <v-chip v-for="r in card.trait" :key="r" class="font-wenkai mr-2 mb-2" label>
+                {{ r }}
+              </v-chip>
             </div>
             <div v-if="linkedCards && linkedCards.length > 0" class="mt-4">
               <div class="text-body-2 mb-2 text-grey">关联卡片</div>

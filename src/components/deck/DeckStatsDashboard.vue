@@ -25,7 +25,7 @@
           >
             <template #center>
               <div class="text-center">
-                <div class="text-h2 font-weight-bold">
+                <div class="text-h2 font-weight-black">
                   {{ totalCardCount }}
                 </div>
                 <div class="text-disabled text-body-2 mt-1">张卡</div>
