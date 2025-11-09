@@ -147,8 +147,8 @@ onMounted(() => {
 }
 
 .home-view {
-  --axis-gap: clamp(1rem, 2vw, 1.5rem); /* 16px to 24px */
-  --mobile-counter-gap: clamp(3rem, 8vw, 4rem); /* 48px to 64px */
+  --axis-gap: clamp(1rem, 2vw, 1.5rem);
+  --mobile-counter-gap: clamp(2rem, 6vw, 3rem);
   --mobile-counter-height-tablet: 60px;
   --mobile-counter-height-phone: 40px;
 
@@ -340,7 +340,7 @@ onMounted(() => {
 
   .coordinate-system .counter-container {
     display: flex;
-    gap: 12px;
+    gap: calc(var(--mobile-counter-height-tablet) * 0.15);
     /* Width is now fully dynamic based on content */
   }
 
@@ -379,6 +379,7 @@ onMounted(() => {
 
   /* Adjust mobile counter for smaller screens */
   .coordinate-system .counter-container {
+    gap: calc(var(--mobile-counter-height-phone) * 0.15);
     /* Width is dynamic */
   }
 
