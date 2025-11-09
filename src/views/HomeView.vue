@@ -71,12 +71,11 @@ import { ref, onMounted } from 'vue'
 import lottie from 'lottie-web'
 import bgAnimationData from '@/assets/animations/bg_anime.json'
 
-// Demo images
 const images = ref([
-  'https://picsum.photos/id/10/1920/1080',
-  'https://picsum.photos/id/20/1920/1080',
-  'https://picsum.photos/id/30/1920/1080',
-  'https://picsum.photos/id/40/1920/1080',
+  '/intro/series_card_list.png',
+  '/intro/features_intro.png',
+  '/intro/single_card.png',
+  '/intro/deck_features.png',
 ])
 
 const currentIndex = ref(0)
