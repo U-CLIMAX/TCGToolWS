@@ -7,7 +7,7 @@
       <div class="texture-layer"></div>
     </div>
     <div class="main-content-wrapper">
-      <div class="home-layout">
+      <div ref="homeLayout" class="home-layout">
         <!-- Left Section -->
         <div class="content-section">
           <div class="title-area">
@@ -67,7 +67,14 @@
       <!-- Features Section -->
       <div class="features-section">
         <h2 class="features-title">工具特色</h2>
-        <div class="features-scroll-container">
+        <div
+          ref="scrollContainer"
+          class="features-scroll-container"
+          @mousedown="handleMouseDown"
+          @mouseleave="handleMouseLeave"
+          @mouseup="handleMouseUp"
+          @mousemove="handleMouseMove"
+        >
           <div
             v-for="feature in features"
             :key="feature.id"
@@ -127,6 +134,53 @@ const goToImage = (index) => {
   startAutoScroll() // Reset timer on manual navigation
 }
 
+// --- Drag to Scroll and Layout Logic ---
+const homeLayout = ref(null)
+const scrollContainer = ref(null)
+const isDown = ref(false)
+const startX = ref(0)
+const scrollLeft = ref(0)
+
+const handleMouseDown = (e) => {
+  if (!scrollContainer.value) return
+  isDown.value = true
+  scrollContainer.value.classList.add('active')
+  startX.value = e.pageX - scrollContainer.value.offsetLeft
+  scrollLeft.value = scrollContainer.value.scrollLeft
+}
+
+const handleMouseLeave = () => {
+  if (!scrollContainer.value) return
+  isDown.value = false
+  scrollContainer.value.classList.remove('active')
+}
+
+const handleMouseUp = () => {
+  if (!scrollContainer.value) return
+  isDown.value = false
+  scrollContainer.value.classList.remove('active')
+}
+
+const handleMouseMove = (e) => {
+  if (!isDown.value || !scrollContainer.value) return
+  e.preventDefault()
+  const x = e.pageX - scrollContainer.value.offsetLeft
+  const walk = (x - startX.value) * 2 // scroll-fast
+  scrollContainer.value.scrollLeft = scrollLeft.value - walk
+}
+
+const updateScrollPadding = () => {
+  if (homeLayout.value && scrollContainer.value) {
+    const layoutLeftOffset = homeLayout.value.offsetLeft
+    const layoutPadding = parseInt(
+      getComputedStyle(homeLayout.value).paddingLeft,
+      10
+    )
+    const totalPadding = layoutLeftOffset + layoutPadding - 16
+    scrollContainer.value.style.paddingLeft = `${totalPadding}px`
+  }
+}
+
 onMounted(() => {
   lottie.loadAnimation({
     container: document.getElementById('lottie-animation'),
@@ -136,10 +190,15 @@ onMounted(() => {
     animationData: bgAnimationData,
   })
   startAutoScroll()
+
+  // Layout and scroll logic
+  updateScrollPadding()
+  window.addEventListener('resize', updateScrollPadding)
 })
 
 onUnmounted(() => {
   stopAutoScroll()
+  window.removeEventListener('resize', updateScrollPadding)
 })
 </script>
 
@@ -377,8 +436,6 @@ onUnmounted(() => {
 /* Features Section */
 .features-section {
   width: 100%;
-  max-width: 1400px;
-  padding: 0 2rem;
   margin-top: 6rem; /* Increased margin for more space */
 }
 
@@ -386,20 +443,30 @@ onUnmounted(() => {
   font-size: clamp(1.2rem, 2.2vw, 1.7rem);
   font-weight: 200;
   font-family: 'DIN';
-  margin-bottom: 1.5rem;
   color: white;
   opacity: 1;
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+  max-width: 1400px;
+  margin: 0 auto 1.5rem auto;
+  padding: 0 2rem;
 }
 
 .features-scroll-container {
   display: flex;
   overflow-x: auto;
   gap: 2rem;
-  padding: 1rem 0;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-right: 2rem;
+  cursor: grab;
+  user-select: none;
   /* Hide scrollbar */
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+.features-scroll-container.active {
+  cursor: grabbing;
 }
 
 .features-scroll-container::-webkit-scrollbar {
@@ -524,8 +591,15 @@ onUnmounted(() => {
   }
 
   .features-section {
-    padding: 0 1rem;
     margin-top: 4rem;
+  }
+
+  .features-title {
+    padding: 0 1rem;
+  }
+
+  .features-scroll-container {
+    padding-right: 1rem;
   }
 
   .coordinate-system {
