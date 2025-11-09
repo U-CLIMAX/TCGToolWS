@@ -306,16 +306,15 @@ onUnmounted(() => {
 }
 
 .main-title {
-  font-size: clamp(2rem, 4vw, 3rem); /* Smaller font size */
-  font-family: 'DIN';
-  transform-origin: left;
-  transform: scaleX(0.95);
+  font-size: clamp(2rem, 6vw, 5rem); /* Smaller font size */
+  font-family: 'DINCond-Black';
   margin: 0;
   color: rgb(var(--v-theme-on-background));
   white-space: nowrap; /* Prevent wrapping */
   overflow: hidden; /* Hide overflow */
   text-overflow: ellipsis; /* Show ellipsis for overflowed text */
-  line-height: 1.1;
+  line-height: 0.8;
+  margin-bottom: 3px;
   opacity: 1; /* Keep the element opaque as a whole */
   -webkit-text-stroke: 1px rgb(var(--v-theme-on-background)); /* Set an opaque stroke. */
   color: rgba(
@@ -327,11 +326,12 @@ onUnmounted(() => {
 .sub-title {
   font-size: clamp(1.4rem, 2.8vw, 2.1rem);
   font-weight: 100;
-  font-family: 'DIN';
+  font-family: 'DINPro-Light';
   margin: 0.5rem 0 0 0;
   color: white;
   opacity: 1;
   margin-top: 0px;
+  line-height: 0.9;
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
 }
 
@@ -437,8 +437,8 @@ onUnmounted(() => {
 
 .features-title {
   font-size: clamp(1.2rem, 2.2vw, 1.7rem);
-  font-weight: 200;
-  font-family: 'DIN';
+  font-weight: 700;
+  font-family: 'DINPro-Light';
   color: white;
   opacity: 1;
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
