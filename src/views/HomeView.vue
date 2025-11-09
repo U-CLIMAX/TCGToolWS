@@ -1,5 +1,9 @@
 <template>
-  <v-container fluid class="home-view fill-height">
+  <div class="home-background">
+    <div id="lottie-animation" class="lottie-animation-layer"></div>
+    <div class="glass-layer"></div>
+    <div class="texture-layer"></div>
+    <v-container fluid class="home-view fill-height">
     <div class="home-layout">
       <!-- Left Section -->
       <div class="content-section">
@@ -58,10 +62,13 @@
       </div>
     </div>
   </v-container>
+  </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import lottie from 'lottie-web'
+import bgAnimationData from '@/assets/animations/bg_anime.json'
 
 // Demo images
 const images = ref([
@@ -76,9 +83,61 @@ const currentIndex = ref(0)
 const goToImage = (index) => {
   currentIndex.value = index
 }
+
+onMounted(() => {
+  lottie.loadAnimation({
+    container: document.getElementById('lottie-animation'),
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    animationData: bgAnimationData,
+  })
+})
 </script>
 
 <style scoped>
+.home-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1; /* Ensure it's behind the content */
+}
+
+.lottie-animation-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Lottie animation will fill this container */
+}
+
+.glass-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(20px) saturate(160%); /* Glass effect */
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  background: rgba(var(--v-theme-surface), 0.2); /* Semi-transparent overlay */
+}
+
+.texture-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/texture.png'); /* Texture image */
+  background-size: cover;
+  background-position: center;
+  opacity: 0.1; /* Adjust opacity as needed */
+}
+
 .home-view {
   --axis-gap: clamp(1rem, 2vw, 1.5rem); /* 16px to 24px */
   --mobile-counter-gap: clamp(3rem, 8vw, 4rem); /* 48px to 64px */
@@ -91,6 +150,9 @@ const goToImage = (index) => {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative; /* Ensure content is above background */
+  z-index: 0; /* Ensure content is above background */
+  background: none; /* Remove default background */
 }
 
 .home-layout {

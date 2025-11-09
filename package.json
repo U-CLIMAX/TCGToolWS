@@ -29,6 +29,7 @@
     "jwt-decode": "^4.0.0",
     "lean-qr": "^2.6.0",
     "localforage": "^1.10.0",
+    "lottie-web": "^5.13.0",
     "nanoid": "^5.1.6",
     "node-vibrant": "^4.0.3",
     "nprogress": "^0.2.0",
