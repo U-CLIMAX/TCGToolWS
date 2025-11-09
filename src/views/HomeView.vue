@@ -219,19 +219,31 @@ onUnmounted(() => {
 .main-title {
   font-size: clamp(2rem, 4vw, 3rem); /* Smaller font size */
   font-family: 'DIN';
-  letter-spacing: 0.1em;
+  transform-origin: left;
+  transform: scaleX(0.95);
   margin: 0;
   color: rgb(var(--v-theme-on-background));
   white-space: nowrap; /* Prevent wrapping */
   overflow: hidden; /* Hide overflow */
   text-overflow: ellipsis; /* Show ellipsis for overflowed text */
+  line-height: 1.1;
+  opacity: 1; /* Keep the element opaque as a whole */
+  -webkit-text-stroke: 1px rgb(var(--v-theme-on-background)); /* Set an opaque stroke. */
+  color: rgba(
+    var(--v-theme-on-background),
+    0.8
+  ); /* Set the text color (Fill) to 0.8 transparency. */
 }
 
 .sub-title {
-  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+  font-weight: 100;
+  font-family: 'DIN';
   margin: 0.5rem 0 0 0;
-  color: rgb(var(--v-theme-on-background));
-  opacity: 0.8;
+  color: white;
+  opacity: 1;
+  margin-top: 0px;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
 }
 
 /* Desktop Counter */
