@@ -21,7 +21,7 @@
   font-size: clamp(1.5rem, 4vw, 2.5rem);
   font-weight: bold;
   color: rgba(var(--v-theme-on-surface), 0.45);
-  line-height: 1.2 !important; 
+  line-height: 1.2 !important;
 }
 
 @media (max-width: 599.98px) {
