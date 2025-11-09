@@ -26,7 +26,6 @@
                 :class="{ active: currentIndex === index }"
                 @click="goToImage(index)"
               >
-                <span v-if="currentIndex === index" class="counter-number">{{ index + 1 }}</span>
               </div>
             </div>
           </div>
@@ -117,7 +116,6 @@ const goToImage = (index) => {
   background-color: rgba(128, 128, 128, 0.5);
   cursor: pointer;
   transition: all 0.3s ease;
-  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
