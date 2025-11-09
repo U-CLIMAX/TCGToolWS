@@ -282,7 +282,7 @@ const executeDownloadText = async () => {
   exportContainer.style.borderRadius = `${downloadStore.textBorderRadius}px`
   exportContainer.style.padding = '20px'
   exportContainer.style.boxSizing = 'border-box'
-  exportContainer.style.fontFamily = 'system-ui, sans-serif'
+  exportContainer.style.fontFamily = 'LXGW WenKai Lite, system-ui, sans-serif'
   exportContainer.style.display = 'flex'
   exportContainer.style.alignItems = 'center'
   exportContainer.style.justifyContent = 'center'
@@ -329,7 +329,7 @@ const executeDownloadText = async () => {
     await new Promise((resolve) => requestAnimationFrame(resolve))
 
     const filename = `${props.card.id}-effect`
-    await convertElementToPng('temp-text-export-container', filename, 1)
+    await convertElementToPng('temp-text-export-container', filename, 1, true)
 
     triggerSnackbar('效果文本图片已成功汇出', 'success')
   } catch (error) {
@@ -354,7 +354,7 @@ const handleDownloadCard = async () => {
   exportContainer.style.height = '557px'
   exportContainer.style.borderRadius = '8px'
   exportContainer.style.overflow = 'hidden'
-  exportContainer.style.fontFamily = 'system-ui, sans-serif'
+  exportContainer.style.fontFamily = 'LXGW WenKai Lite, system-ui, sans-serif'
 
   const img = document.createElement('img')
   img.crossOrigin = 'anonymous'
@@ -422,7 +422,7 @@ const handleDownloadCard = async () => {
     await new Promise((resolve) => requestAnimationFrame(resolve))
 
     const filename = props.card.id || 'card'
-    await convertElementToPng('temp-export-container', filename, 1)
+    await convertElementToPng('temp-export-container', filename, 1, true)
 
     triggerSnackbar('图片已成功汇出', 'success')
   } catch (error) {
