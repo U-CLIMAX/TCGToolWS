@@ -67,7 +67,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import lottie from 'lottie-web'
 import bgAnimationData from '@/assets/animations/bg_anime.json'
 
@@ -79,9 +79,27 @@ const images = ref([
 ])
 
 const currentIndex = ref(0)
+let intervalId = null
+
+const nextImage = () => {
+  currentIndex.value = (currentIndex.value + 1) % images.value.length
+}
+
+const startAutoScroll = () => {
+  stopAutoScroll() // Ensure no multiple intervals are running
+  intervalId = setInterval(nextImage, 5000) // Change image every 5 seconds
+}
+
+const stopAutoScroll = () => {
+  if (intervalId) {
+    clearInterval(intervalId)
+    intervalId = null
+  }
+}
 
 const goToImage = (index) => {
   currentIndex.value = index
+  startAutoScroll() // Reset timer on manual navigation
 }
 
 onMounted(() => {
@@ -92,6 +110,11 @@ onMounted(() => {
     autoplay: true,
     animationData: bgAnimationData,
   })
+  startAutoScroll()
+})
+
+onUnmounted(() => {
+  stopAutoScroll()
 })
 </script>
 
