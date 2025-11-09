@@ -222,12 +222,6 @@
           </template>
           <v-list-item-title>汇出卡组</v-list-item-title>
         </v-list-item>
-        <v-list-item @click="handleDownloadPDFClick">
-          <template #prepend>
-            <v-icon>mdi-file-pdf-box</v-icon>
-          </template>
-          <v-list-item-title>汇出PDF</v-list-item-title>
-        </v-list-item>
       </v-list>
     </v-bottom-sheet>
 
@@ -256,16 +250,6 @@
       @download-image="handleDownloadDeckImage"
       @download-pdf="handleDownloadDeckPDF"
     />
-
-    <v-dialog v-model="pdfLanguageDialog" max-width="300">
-      <v-card>
-        <v-card-title>选择PDF语言</v-card-title>
-        <v-card-text class="d-flex justify-space-around">
-          <v-btn variant="tonal" @click="selectPdfLanguage('zh')">中文</v-btn>
-          <v-btn variant="tonal" @click="selectPdfLanguage('jp')">日文</v-btn>
-        </v-card-text>
-      </v-card>
-    </v-dialog>
   </div>
 </template>
 
@@ -720,17 +704,6 @@ const handleShareClick = () => {
 const handleCopyClick = () => {
   handleCopyDeckKey()
   showMoreActionsBottomSheet.value = false
-}
-
-const pdfLanguageDialog = ref(false)
-const handleDownloadPDFClick = () => {
-  showMoreActionsBottomSheet.value = false
-  pdfLanguageDialog.value = true
-}
-
-const selectPdfLanguage = async (lang) => {
-  pdfLanguageDialog.value = false
-  await handleDownloadDeckPDF(lang)
 }
 </script>
 

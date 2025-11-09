@@ -9,7 +9,7 @@
         <v-btn
           block
           color="primary"
-          prepend-icon="mdi-download"
+          prepend-icon="mdi-image-outline"
           class="mb-5"
           @click="onDownloadImage"
         >
@@ -22,7 +22,7 @@
             prepend-icon="mdi-file-pdf-box"
             @click="onDownloadPDF"
           >
-            汇出PDF
+            下载PDF
           </v-btn>
 
           <v-btn-toggle
