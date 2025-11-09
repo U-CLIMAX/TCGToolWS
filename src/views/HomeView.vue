@@ -148,6 +148,7 @@ onMounted(() => {
 
 .home-view {
   --axis-gap: clamp(1rem, 2vw, 1.5rem);
+  --axis-cross-length: clamp(1.3rem, 2.5vw, 2rem);
   --mobile-counter-gap: clamp(2rem, 6vw, 3rem);
   --mobile-counter-height-tablet: 60px;
   --mobile-counter-height-phone: 40px;
@@ -255,9 +256,9 @@ onMounted(() => {
 .vertical-line {
   position: absolute;
   left: 0;
-  bottom: calc(-1 * var(--axis-gap));
+  bottom: calc(-1 * var(--axis-cross-length));
   width: 1px;
-  height: calc(100% + var(--axis-gap));
+  height: calc(100% + var(--axis-cross-length));
   background-color: rgb(var(--v-theme-on-background));
   transition: height 0.3s ease;
 }
@@ -265,19 +266,19 @@ onMounted(() => {
 .horizontal-line {
   position: absolute;
   bottom: 0;
-  left: calc(-1 * var(--axis-gap));
-  width: calc(100% + var(--axis-gap));
+  left: calc(-1 * var(--axis-cross-length));
+  width: calc(100% + var(--axis-cross-length));
   height: 1px;
   background-color: rgb(var(--v-theme-on-background));
 }
 
 .triangle {
   position: absolute;
-  width: 10px;
-  height: 10px;
+  width: calc(var(--axis-cross-length) * 0.3);
+  height: calc(var(--axis-cross-length) * 0.3);
   background-color: rgb(var(--v-theme-on-background));
   clip-path: polygon(100% 0, 0 0, 100% 100%);
-  bottom: -12px;
+  bottom: calc(var(--axis-cross-length) * -0.3 - 2px);
   right: calc(100% + 2px);
 }
 
