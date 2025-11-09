@@ -15,6 +15,8 @@
 @import './themes/_app.css';
 
 /* 字體樣式 */
+@import './fonts/DINCond-Black/fonts.css';
+@import './fonts/DINPro-Light/fonts.css';
 @import './fonts/LXGWWenKaiLite/fonts.css';
 @import './fonts/ChillRoundGothic_Bold/fonts.css';
 @import './fonts/ChillRoundGothic_ExtraLight/fonts.css';
