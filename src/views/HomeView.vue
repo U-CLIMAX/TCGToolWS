@@ -1,10 +1,11 @@
 <template>
-  <div class="home-background">
-    <div class="solid-background-layer"></div>
-    <div id="lottie-animation" class="lottie-animation-layer"></div>
-    <div class="glass-layer"></div>
-    <div class="texture-layer"></div>
-    <v-container fluid class="home-view fill-height">
+  <v-container fluid class="home-view fill-height">
+    <div class="home-background">
+      <div class="solid-background-layer"></div>
+      <div id="lottie-animation" class="lottie-animation-layer"></div>
+      <div class="glass-layer"></div>
+      <div class="texture-layer"></div>
+    </div>
     <div class="home-layout">
       <!-- Left Section -->
       <div class="content-section">
@@ -63,7 +64,6 @@
       </div>
     </div>
   </v-container>
-  </div>
 </template>
 
 <script setup>
@@ -131,8 +131,8 @@ onMounted(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  backdrop-filter: blur(20px) saturate(160%); /* Glass effect */
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(120px) saturate(160%); /* Glass effect */
+  -webkit-backdrop-filter: blur(120px) saturate(160%);
   background: rgba(var(--v-theme-surface), 0.2); /* Semi-transparent overlay */
 }
 
@@ -145,7 +145,6 @@ onMounted(() => {
   background-image: url('/texture.png'); /* Texture image */
   background-size: cover;
   background-position: center;
-  opacity: 0.1; /* Adjust opacity as needed */
 }
 
 .home-view {
@@ -335,9 +334,7 @@ onMounted(() => {
   /* Mobile Counter Styles */
   .coordinate-system .counter-area {
     position: absolute;
-    bottom: calc(
-      -1 * (var(--mobile-counter-gap) + var(--mobile-counter-height-tablet))
-    );
+    bottom: calc(-1 * (var(--mobile-counter-gap) + var(--mobile-counter-height-tablet)));
     left: var(--axis-gap); /* Align with image left */
     transform: none; /* Remove centering transform */
   }
@@ -364,9 +361,7 @@ onMounted(() => {
   .vertical-line {
     top: 0; /* Re-anchor to the top */
     bottom: auto; /* Remove bottom anchor */
-    height: calc(
-      100% + var(--mobile-counter-gap) + var(--mobile-counter-height-tablet)
-    );
+    height: calc(100% + var(--mobile-counter-gap) + var(--mobile-counter-height-tablet));
   }
 }
 
@@ -398,15 +393,11 @@ onMounted(() => {
   }
 
   .coordinate-system .counter-area {
-    bottom: calc(
-      -1 * (var(--mobile-counter-gap) + var(--mobile-counter-height-phone))
-    );
+    bottom: calc(-1 * (var(--mobile-counter-gap) + var(--mobile-counter-height-phone)));
   }
 
   .vertical-line {
-    height: calc(
-      100% + var(--mobile-counter-gap) + var(--mobile-counter-height-phone)
-    );
+    height: calc(100% + var(--mobile-counter-gap) + var(--mobile-counter-height-phone));
   }
 }
 </style>
