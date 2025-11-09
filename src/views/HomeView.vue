@@ -170,7 +170,7 @@ onMounted(() => {
   display: grid;
   grid-template-columns: 1fr 1.5fr; /* Left column takes 1 part, right takes 1.5 */
   align-items: start; /* Align items to the top */
-  gap: 2rem;
+  gap: var(--axis-gap);
   margin: 0 auto; /* Center the layout when max-width is applied */
   position: relative;
 }
@@ -213,7 +213,7 @@ onMounted(() => {
 /* Desktop Counter */
 .content-section .counter-area {
   margin-top: auto; /* Push counter to the bottom of the flex container */
-  padding-bottom: var(--axis-gap); /* Align with image bottom */
+  margin-bottom: var(--axis-gap); /* Align with image bottom */
 }
 
 .content-section .counter-container {
