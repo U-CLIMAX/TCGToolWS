@@ -92,6 +92,21 @@
           <p class="pc-phone-text">支持网页端与手机端</p>
         </div>
       </div>
+
+      <!-- Copyright Section -->
+      <div class="copyright-section">
+        <p>版权声明</p><br></br>
+        <p>敬请尊重并遵守官方版权相关规定。您在使用我方资料时，须同时严格遵循日本官方转载协议，例如不得将资料非法用于商业用途。</p><br></br>
+        <p>如您的行为存在侵犯官方版权的情况，U CLIMAX网站及相关人员对此不承担任何责任，亦无任何关联。</p><br></br>
+        <p>U CLIMAX及相关人员对本声明内容拥有最终解释权。</p><br></br>
+
+        <p>附加说明</p><br></br>
+
+        <p>1. 若您计划大面积使用我方资料，须事先与U CLIMAX相关负责人取得联系，并获得书面同意后方可实施。</p><br></br>
+        <p>2. 对于會明确攻击、诋毁U CLIMAX或其相关人员的组织/个人，以及其他不受UCLIMAX欢迎的组织/个人，我方有权拒绝其使用任何资料。</p><br></br>
+        <p>3. 一旦发现违规使用资料的行为，U CLIMAX有权要求立即撤回相关内容；根据情节严重程度，我方将采取列入黑名单、追究法律责任等进一步措施。</p><br></br>
+        <p>我们致力于积极维护国内ws社区的健康环境，感谢您的理解与支持！</p>
+      </div>
     </div>
   </v-container>
 </template>
@@ -351,7 +366,6 @@ onUnmounted(() => {
   display: flex;
   justify-content: center;
   margin-top: 12rem;
-  margin-bottom: 9vh;
 }
 
 /* --- Typography --- */
@@ -572,6 +586,21 @@ onUnmounted(() => {
   border-radius: var(--border-radius-card);
 }
 
+/* --- Copyright Section --- */
+.copyright-section {
+  width: clamp(30rem, 60vw, 70rem);
+  margin: 12rem auto 9vh auto;
+  color: rgba(var(--color-white-rgb), 0.8);
+  text-align: left;
+}
+
+.copyright-section p {
+  font-size: var(--font-size-feature-text);
+  font-weight: bold;
+  line-height: 1.7;
+  color: rgba(var(--color-white-rgb), 0.7);
+}
+
 /* --- Transitions --- */
 .fade-enter-active,
 .fade-leave-active {
@@ -649,6 +678,11 @@ onUnmounted(() => {
   .pc-phone-content {
     width: clamp(26.5rem, 90vw, 61.25rem);;
   }
+
+  .copyright-section {
+    width: 75%;
+    margin-top: 8rem;
+  }
 }
 
 @media (max-width: 599.98px) {
@@ -696,6 +730,10 @@ onUnmounted(() => {
 
   .vertical-line {
     height: calc(100% + var(--mobile-counter-gap) + var(--mobile-counter-height-phone));
+  }
+
+  .copyright-section {
+    margin-top: 6rem;
   }
 }
 </style>
