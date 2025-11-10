@@ -207,6 +207,48 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+/* --- Root Variables --- */
+.home-view {
+  /* Layout & Sizing */
+  --axis-gap: clamp(1rem, 2vw, 1.5rem);
+  --axis-cross-length: clamp(1.3rem, 2.5vw, 2rem);
+  --max-layout-width: 1400px;
+
+  /* Typography */
+  --font-family-title: 'DINCond-Black';
+  --font-family-subtitle: 'DINPro-Light';
+  --font-size-title: clamp(2rem, 6vw, 5rem);
+  --font-size-subtitle: clamp(1.4rem, 2.8vw, 2.1rem);
+  --font-size-feature-title: clamp(1.2rem, 2.2vw, 1.7rem);
+  --font-size-feature-text: clamp(0.9rem, 1.5vw, 1rem);
+  --font-size-pc-phone-text: clamp(1rem, 2vw, 1.5rem);
+
+  /* Colors & Effects */
+  --color-bg-solid: #232323;
+  --color-glass-bg: rgba(var(--v-theme-surface), 0.2);
+  --color-text-primary: white;
+  --color-text-translucent-stroke: rgba(255, 255, 255, 0.1);
+  --color-text-feature: rgba(255, 255, 255, 0.9);
+  --color-counter-bar-inactive: rgba(128, 128, 128, 0.5);
+  --color-counter-bar-hover: rgba(128, 128, 128, 0.8);
+  --color-counter-bar-active: rgba(255, 255, 255, 0.9);
+  --shadow-image: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+  /* Borders */
+  --border-radius-image: 4px;
+  --border-radius-card: 8px;
+  --border-radius-feature-glass: 16px;
+
+  /* Transitions */
+  --transition-duration: 0.3s;
+
+  /* Mobile Specific */
+  --mobile-counter-gap: clamp(2rem, 6vw, 3rem);
+  --mobile-counter-height-tablet: 60px;
+  --mobile-counter-height-phone: 40px;
+}
+
+/* --- Base & Background --- */
 .home-background {
   position: fixed;
   top: 0;
@@ -223,7 +265,7 @@ onUnmounted(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #232323; /* Solid background color */
+  background-color: var(--color-bg-solid);
 }
 
 .lottie-animation-layer {
@@ -243,7 +285,7 @@ onUnmounted(() => {
   height: 100%;
   backdrop-filter: blur(120px) saturate(160%); /* Glass effect */
   -webkit-backdrop-filter: blur(120px) saturate(160%);
-  background: rgba(var(--v-theme-surface), 0.2); /* Semi-transparent overlay */
+  background: var(--color-glass-bg); /* Semi-transparent overlay */
 }
 
 .texture-layer {
@@ -257,13 +299,8 @@ onUnmounted(() => {
   background-position: center;
 }
 
+/* --- Main Layout --- */
 .home-view {
-  --axis-gap: clamp(1rem, 2vw, 1.5rem);
-  --axis-cross-length: clamp(1.3rem, 2.5vw, 2rem);
-  --mobile-counter-gap: clamp(2rem, 6vw, 3rem);
-  --mobile-counter-height-tablet: 60px;
-  --mobile-counter-height-phone: 40px;
-
   width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
@@ -286,7 +323,7 @@ onUnmounted(() => {
 
 .home-layout {
   width: 100%;
-  max-width: 1400px; /* Max width for large screens */
+  max-width: var(--max-layout-width); /* Max width for large screens */
   padding: 2rem;
   display: grid;
   grid-template-columns: 1fr 1.5fr; /* Left column takes 1 part, right takes 1.5 */
@@ -296,7 +333,7 @@ onUnmounted(() => {
   position: relative;
 }
 
-/* Sections */
+/* --- Sections --- */
 .content-section {
   display: flex;
   flex-direction: column;
@@ -308,23 +345,33 @@ onUnmounted(() => {
   justify-content: center;
 }
 
-/* Title Area */
+.features-section {
+  width: 100%;
+  margin-top: 6rem;
+}
+
+.pc-phone-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 12rem;
+  margin-bottom: 9vh;
+}
+
+/* --- Typography --- */
 .title-area {
   text-align: left;
 }
 
 .main-title {
-  font-size: clamp(2rem, 6vw, 5rem); /* Smaller font size */
-  font-family: 'DINCond-Black';
-  margin: 0;
-  color: rgb(var(--v-theme-on-background));
-  white-space: nowrap; /* Prevent wrapping */
-  overflow: hidden; /* Hide overflow */
-  text-overflow: ellipsis; /* Show ellipsis for overflowed text */
+  font-family: var(--font-family-title);
+  font-size: var(--font-size-title);
   line-height: 0.9;
-  margin-bottom: 3px;
-  opacity: 1; /* Keep the element opaque as a whole */
-  -webkit-text-stroke: 1px rgb(var(--v-theme-on-background)); /* Set an opaque stroke. */
+  margin: 0 0 3px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-text-stroke: 1px var(--color-text-primary); /* Set an opaque stroke. */
   color: rgba(
     var(--v-theme-on-background),
     0.8
@@ -332,18 +379,52 @@ onUnmounted(() => {
 }
 
 .sub-title {
-  font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+  font-family: var(--font-family-subtitle);
+  font-size: var(--font-size-subtitle);
   font-weight: 100;
-  font-family: 'DINPro-Light';
-  margin: 0.5rem 0 0 0;
-  color: white;
-  opacity: 1;
-  margin-top: 0px;
   line-height: 0.9;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+  margin: 0;
+  color: var(--color-text-primary);
+  -webkit-text-stroke: 1px var(--color-text-translucent-stroke);
 }
 
-/* Desktop Counter */
+.features-title {
+  font-family: var(--font-family-subtitle);
+  font-size: var(--font-size-feature-title);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  -webkit-text-stroke: 1px var(--color-text-translucent-stroke);
+  max-width: var(--max-layout-width);
+  margin: 0 auto 1.5rem auto;
+  padding: 0 2rem;
+}
+
+.feature-text {
+  font-size: var(--font-size-feature-text);
+  font-weight: 300;
+  color: var(--color-text-feature);
+}
+
+.pc-phone-text {
+  font-size: var(--font-size-pc-phone-text);
+  font-weight: 500;
+  color: var(--color-text-feature);
+  text-align: center;
+}
+
+/* --- Component: Image Carousel & Counter --- */
+.display-image {
+  position: absolute;
+  top: 0;
+  left: var(--axis-gap);
+  bottom: var(--axis-gap);
+  right: 0;
+  width: auto;
+  height: auto;
+  border-radius: var(--border-radius-image);
+  box-shadow: var(--shadow-image);
+}
+
 .content-section .counter-area {
   margin-top: auto; /* Push counter to the bottom of the flex container */
   margin-bottom: var(--axis-gap); /* Align with image bottom */
@@ -361,22 +442,22 @@ onUnmounted(() => {
   width: 50px; /* Fixed width for non-active bars */
   flex-shrink: 0; /* Prevent shrinking */
   height: 100px;
-  background-color: rgba(128, 128, 128, 0.5);
+  background-color: var(--color-counter-bar-inactive);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition-duration) ease;
 }
 
 .content-section .counter-bar:hover {
-  background-color: rgba(128, 128, 128, 0.8);
+  background-color: var(--color-counter-bar-hover);
 }
 
 .content-section .counter-bar.active {
   flex-grow: 1; /* Allow active bar to grow and fill space */
   width: auto; /* Width is now flexible */
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: var(--color-counter-bar-active);
 }
 
-/* Coordinate System */
+/* --- Component: Coordinate System --- */
 .coordinate-system {
   position: relative;
   height: 35.6rem;
@@ -392,7 +473,7 @@ onUnmounted(() => {
   width: 1px;
   height: calc(100% + var(--axis-cross-length));
   background-color: rgb(var(--v-theme-on-background));
-  transition: height 0.3s ease;
+  transition: height var(--transition-duration) ease;
 }
 
 .horizontal-line {
@@ -414,78 +495,7 @@ onUnmounted(() => {
   right: calc(100% + 2px);
 }
 
-.display-image {
-  position: absolute;
-  top: 0;
-  left: var(--axis-gap);
-  bottom: var(--axis-gap);
-  right: 0;
-  width: auto;
-  height: auto;
-  border-radius: 4px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
-/* Fade transition */
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-
-/* Features Section */
-.features-section {
-  width: 100%;
-  margin-top: 6rem; /* Increased margin for more space */
-}
-
-/* PC and Phone Support Section */
-.pc-phone-section {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-top: 12rem; /* Same as features-section margin-top for equal spacing */
-  margin-bottom: 9vh; /* Align with home-view padding-bottom, temp attribute */
-}
-
-.pc-phone-content {
-  /* width: clamp(18.75rem, 50vw, 43.75rem); */
-  width: clamp(26.5rem, 50vw, 61.25rem);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-
-.pc-phone-img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-
-.pc-phone-text {
-  font-size: clamp(1rem, 2vw, 1.5rem);
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.9);
-  text-align: center;
-}
-
-.features-title {
-  font-size: clamp(1.2rem, 2.2vw, 1.7rem);
-  font-weight: 700;
-  font-family: 'DINPro-Light';
-  color: white;
-  opacity: 1;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
-  max-width: 1400px;
-  margin: 0 auto 1.5rem auto;
-  padding: 0 2rem;
-}
-
+/* --- Component: Features Section --- */
 .features-scroll-container {
   display: flex;
   overflow-x: auto;
@@ -505,16 +515,15 @@ onUnmounted(() => {
   transform: translateX(-50%);
 }
 
-.features-scroll-container.active {
-  cursor: grabbing;
-}
-
 .features-scroll-container::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
 
+.features-scroll-container.active {
+  cursor: grabbing;
+}
+
 .feature-item {
-  /* flex: 0 0 clamp(220px, 35vw, 280px); */
   flex: 0 0 clamp(440px, 35vw, 560px);
   display: flex;
   flex-direction: column;
@@ -538,8 +547,8 @@ onUnmounted(() => {
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px) saturate(120%);
   -webkit-backdrop-filter: blur(10px) saturate(120%);
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-feature-glass);
+  border: 1px solid var(--color-text-translucent-stroke);
 }
 
 .feature-img {
@@ -552,13 +561,33 @@ onUnmounted(() => {
   pointer-events: none;
 }
 
-.feature-text {
-  font-size: clamp(0.9rem, 1.5vw, 1rem);
-  font-weight: 300;
-  color: rgba(255, 255, 255, 0.9);
+/* --- Component: PC and Phone Support Section --- */
+.pc-phone-content {
+  width: clamp(26.5rem, 50vw, 61.25rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
-/* Responsive adjustments */
+.pc-phone-img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--border-radius-card);
+}
+
+/* --- Transitions --- */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity var(--transition-duration) ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* --- Responsive Adjustments --- */
 @media (max-width: 959.98px) {
   .home-layout {
     grid-template-columns: 1fr; /* Stack columns */
@@ -595,20 +624,19 @@ onUnmounted(() => {
   .coordinate-system .counter-container {
     display: flex;
     gap: calc(var(--mobile-counter-height-tablet) * 0.15);
-    /* Width is now fully dynamic based on content */
   }
 
   .coordinate-system .counter-bar {
     width: var(--w-tablet);
     height: var(--mobile-counter-height-tablet);
-    background-color: rgba(128, 128, 128, 0.5);
+    background-color: var(--color-counter-bar-inactive);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all var(--transition-duration) ease;
   }
 
   .coordinate-system .counter-bar.active {
     width: var(--w-active-tablet);
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: var(--color-counter-bar-active);
   }
 
   .vertical-line {
@@ -651,7 +679,6 @@ onUnmounted(() => {
   /* Adjust mobile counter for smaller screens */
   .coordinate-system .counter-container {
     gap: calc(var(--mobile-counter-height-phone) * 0.15);
-    /* Width is dynamic */
   }
 
   .coordinate-system .counter-bar {
