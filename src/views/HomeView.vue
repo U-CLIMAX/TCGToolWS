@@ -123,7 +123,7 @@
                 <div class="placeholder"></div>
               </div>
             </div>
-            <div class="afd-section">
+            <div class="ifd-section">
               <h2>爱发电</h2>
             </div>
           </div>
@@ -678,11 +678,11 @@ onUnmounted(() => {
   border-radius: var(--border-radius-card);
 }
 
-.afd-section {
+.ifd-section {
   text-align: center;
 }
 
-.afd-section h2 {
+.ifd-section h2 {
   font-size: clamp(3.24rem, 5.4vw, 4.5rem);
   font-family: var(--font-family-subtitle);
   font-weight: 700;
@@ -859,7 +859,7 @@ onUnmounted(() => {
     grid-template-columns: 1fr;
   }
 
-  .afd-section {
+  .ifd-section {
     text-align: left;
     margin-top: 1.5rem;
   }
