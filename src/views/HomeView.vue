@@ -84,6 +84,14 @@
           </div>
         </div>
       </div>
+
+      <!-- PC and Phone Support Section -->
+      <div class="pc-phone-section">
+        <div class="pc-phone-content">
+          <v-img src="/pc_and_ph.webp" class="pc-phone-img" cover></v-img>
+          <p class="pc-phone-text">支持网页端与手机端</p>
+        </div>
+      </div>
     </div>
   </v-container>
 </template>
@@ -433,6 +441,37 @@ onUnmounted(() => {
 .features-section {
   width: 100%;
   margin-top: 6rem; /* Increased margin for more space */
+}
+
+/* PC and Phone Support Section */
+.pc-phone-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 12rem; /* Same as features-section margin-top for equal spacing */
+  margin-bottom: 9vh; /* Align with home-view padding-bottom, temp attribute */
+}
+
+.pc-phone-content {
+  /* width: clamp(18.75rem, 50vw, 43.75rem); */
+  width: clamp(26.5rem, 50vw, 61.25rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.pc-phone-img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.pc-phone-text {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
 }
 
 .features-title {
