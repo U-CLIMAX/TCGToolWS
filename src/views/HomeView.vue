@@ -738,6 +738,10 @@ onUnmounted(() => {
     width: calc(100% + var(--axis-cross-length) + 3rem); /* Extending to the edge of the screen */
   }
 
+  .pc-phone-section {
+    margin-top: 8rem;
+  }
+
   .pc-phone-content {
     width: clamp(26.5rem, 90vw, 61.25rem);
   }
@@ -749,7 +753,7 @@ onUnmounted(() => {
 
   .support-section {
     grid-template-columns: 1fr;
-    margin-top: 4rem;
+    margin-top: 8rem;
   }
 }
 
