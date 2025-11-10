@@ -12,10 +12,10 @@ import { onMounted, onUnmounted } from 'vue'
 import lottie from 'lottie-web'
 import bgAnimationData from '@/assets/animations/bg_anime.json'
 
-let anim;
+let anim
 
 onMounted(() => {
-  const container = document.getElementById('lottie-animation');
+  const container = document.getElementById('lottie-animation')
   if (container) {
     anim = lottie.loadAnimation({
       container: container,
@@ -23,13 +23,13 @@ onMounted(() => {
       loop: true,
       autoplay: true,
       animationData: bgAnimationData,
-    });
+    })
   }
 })
 
 onUnmounted(() => {
   if (anim) {
-    anim.destroy();
+    anim.destroy()
   }
 })
 </script>
