@@ -224,14 +224,10 @@ onUnmounted(() => {
   --font-size-pc-phone-text: clamp(1rem, 2vw, 1.5rem);
 
   /* Colors & Effects */
+  --color-white-rgb: 255, 255, 255;
+  --color-grey-rgb: 128, 128, 128;
+  --color-dark-black-rgb: 18, 18, 18;
   --color-bg-solid: #232323;
-  --color-glass-bg: rgba(var(--v-theme-surface), 0.2);
-  --color-text-primary: white;
-  --color-text-translucent-stroke: rgba(255, 255, 255, 0.1);
-  --color-text-feature: rgba(255, 255, 255, 0.9);
-  --color-counter-bar-inactive: rgba(128, 128, 128, 0.5);
-  --color-counter-bar-hover: rgba(128, 128, 128, 0.8);
-  --color-counter-bar-active: rgba(255, 255, 255, 0.9);
   --shadow-image: 0 8px 32px rgba(0, 0, 0, 0.3);
 
   /* Borders */
@@ -285,7 +281,7 @@ onUnmounted(() => {
   height: 100%;
   backdrop-filter: blur(120px) saturate(160%); /* Glass effect */
   -webkit-backdrop-filter: blur(120px) saturate(160%);
-  background: var(--color-glass-bg); /* Semi-transparent overlay */
+  background: rgba(var(--color-dark-black-rgb), 0.2);
 }
 
 .texture-layer {
@@ -371,11 +367,8 @@ onUnmounted(() => {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  -webkit-text-stroke: 1px var(--color-text-primary); /* Set an opaque stroke. */
-  color: rgba(
-    var(--v-theme-on-background),
-    0.8
-  ); /* Set the text color (Fill) to 0.8 transparency. */
+  -webkit-text-stroke: 1px rgb(var(--color-white-rgb));
+  color: rgba(var(--color-white-rgb), 0.8); /* Set the text color (Fill) to 0.8 transparency. */
 }
 
 .sub-title {
@@ -384,16 +377,16 @@ onUnmounted(() => {
   font-weight: 100;
   line-height: 0.9;
   margin: 0;
-  color: var(--color-text-primary);
-  -webkit-text-stroke: 1px var(--color-text-translucent-stroke);
+  color: rgb(var(--color-white-rgb));
+  -webkit-text-stroke: 1px rgba(var(--color-white-rgb), 0.1);
 }
 
 .features-title {
   font-family: var(--font-family-subtitle);
   font-size: var(--font-size-feature-title);
   font-weight: 700;
-  color: var(--color-text-primary);
-  -webkit-text-stroke: 1px var(--color-text-translucent-stroke);
+  color: rgb(var(--color-white-rgb));
+  -webkit-text-stroke: 1px rgba(var(--color-white-rgb), 0.1);
   max-width: var(--max-layout-width);
   margin: 0 auto 1.5rem auto;
   padding: 0 2rem;
@@ -402,13 +395,13 @@ onUnmounted(() => {
 .feature-text {
   font-size: var(--font-size-feature-text);
   font-weight: 300;
-  color: var(--color-text-feature);
+  color: rgba(var(--color-white-rgb), 0.9);
 }
 
 .pc-phone-text {
   font-size: var(--font-size-pc-phone-text);
   font-weight: 500;
-  color: var(--color-text-feature);
+  color: rgba(var(--color-white-rgb), 0.9);
   text-align: center;
 }
 
@@ -442,19 +435,19 @@ onUnmounted(() => {
   width: 50px; /* Fixed width for non-active bars */
   flex-shrink: 0; /* Prevent shrinking */
   height: 100px;
-  background-color: var(--color-counter-bar-inactive);
+  background-color: rgba(var(--color-grey-rgb), 0.5);
   cursor: pointer;
   transition: all var(--transition-duration) ease;
 }
 
 .content-section .counter-bar:hover {
-  background-color: var(--color-counter-bar-hover);
+  background-color: rgba(var(--color-grey-rgb), 0.8);
 }
 
 .content-section .counter-bar.active {
   flex-grow: 1; /* Allow active bar to grow and fill space */
   width: auto; /* Width is now flexible */
-  background-color: var(--color-counter-bar-active);
+  background-color: rgba(var(--color-white-rgb), 0.9);
 }
 
 /* --- Component: Coordinate System --- */
@@ -466,13 +459,18 @@ onUnmounted(() => {
   max-width: 100%;
 }
 
+.vertical-line,
+.horizontal-line,
+.triangle {
+  background-color: rgb(var(--color-white-rgb));
+}
+
 .vertical-line {
   position: absolute;
   left: 0;
   bottom: calc(-1 * var(--axis-cross-length));
   width: 1px;
   height: calc(100% + var(--axis-cross-length));
-  background-color: rgb(var(--v-theme-on-background));
   transition: height var(--transition-duration) ease;
 }
 
@@ -482,14 +480,12 @@ onUnmounted(() => {
   left: calc(-1 * var(--axis-cross-length));
   width: calc(100% + var(--axis-cross-length));
   height: 1px;
-  background-color: rgb(var(--v-theme-on-background));
 }
 
 .triangle {
   position: absolute;
   width: calc(var(--axis-cross-length) * 0.3);
   height: calc(var(--axis-cross-length) * 0.3);
-  background-color: rgb(var(--v-theme-on-background));
   clip-path: polygon(100% 0, 0 0, 100% 100%);
   bottom: calc(var(--axis-cross-length) * -0.3 - 2px);
   right: calc(100% + 2px);
@@ -544,11 +540,11 @@ onUnmounted(() => {
   left: 0;
   width: 100%;
   aspect-ratio: 49 / 32;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(var(--color-white-rgb), 0.2);
   backdrop-filter: blur(10px) saturate(120%);
   -webkit-backdrop-filter: blur(10px) saturate(120%);
   border-radius: var(--border-radius-feature-glass);
-  border: 1px solid var(--color-text-translucent-stroke);
+  border: 1px solid rgba(var(--color-white-rgb), 0.1);
 }
 
 .feature-img {
@@ -629,14 +625,14 @@ onUnmounted(() => {
   .coordinate-system .counter-bar {
     width: var(--w-tablet);
     height: var(--mobile-counter-height-tablet);
-    background-color: var(--color-counter-bar-inactive);
+    background-color: rgba(var(--color-grey-rgb), 0.5);
     cursor: pointer;
     transition: all var(--transition-duration) ease;
   }
 
   .coordinate-system .counter-bar.active {
     width: var(--w-active-tablet);
-    background-color: var(--color-counter-bar-active);
+    background-color: rgba(var(--color-white-rgb), 0.9);
   }
 
   .vertical-line {
