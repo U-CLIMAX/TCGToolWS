@@ -371,7 +371,7 @@ onUnmounted(() => {
 /* Coordinate System */
 .coordinate-system {
   position: relative;
-  height: 60vh;
+  height: 35.6rem;
   aspect-ratio: 16 / 9;
   width: 100%;
   max-width: 100%;
