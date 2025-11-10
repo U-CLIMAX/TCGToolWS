@@ -476,7 +476,7 @@ onUnmounted(() => {
 
 .feature-item {
   /* flex: 0 0 clamp(220px, 35vw, 280px); */
-  flex: 0 0 clamp(500px, 35vw, 700px);
+  flex: 0 0 clamp(440px, 35vw, 560px);
   display: flex;
   flex-direction: column;
   align-items: center;
