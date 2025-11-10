@@ -84,7 +84,7 @@
             density="compact"
             variant="outlined"
             hide-details
-            :menu-props="uiStore.glassMenuProps"
+            :menu-props="uiStore.menuProps"
           ></v-select>
         </v-col>
       </v-row>

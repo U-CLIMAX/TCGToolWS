@@ -33,11 +33,12 @@ export const useUIStore = defineStore(
 
     const backgroundImage = ref(null)
 
-    const glassMenuProps = computed(() => {
+    const menuProps = computed(() => {
+      const classes = ['themed-scrollbar']
       if (backgroundImage.value) {
-        return { contentClass: 'glass-menu' }
+        classes.unshift('glass-menu')
       }
-      return {}
+      return { contentClass: classes.join(' ') }
     })
 
     const restoreBackgroundImage = async () => {
@@ -112,7 +113,7 @@ export const useUIStore = defineStore(
       updateBackgroundImage,
       clearBackgroundImage,
       restoreBackgroundImage,
-      glassMenuProps,
+      menuProps,
     }
   },
   {

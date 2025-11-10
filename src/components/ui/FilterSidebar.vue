@@ -80,7 +80,7 @@
           clearable
           v-model="filterStore.selectedCardTypes"
           variant="outlined"
-          :menu-props="uiStore.glassMenuProps"
+          :menu-props="uiStore.menuProps"
           :disabled="props.disabled"
         ></v-select>
 
@@ -98,7 +98,7 @@
           clearable
           v-model="filterStore.selectedColors"
           variant="outlined"
-          :menu-props="uiStore.glassMenuProps"
+          :menu-props="uiStore.menuProps"
           :disabled="props.disabled"
         ></v-select>
 
@@ -109,7 +109,7 @@
           clearable
           v-model="filterStore.selectedProductName"
           variant="outlined"
-          :menu-props="uiStore.glassMenuProps"
+          :menu-props="uiStore.menuProps"
           :disabled="props.disabled"
         ></v-select>
 
@@ -122,7 +122,7 @@
           clearable
           v-model="filterStore.selectedRarities"
           variant="outlined"
-          :menu-props="uiStore.glassMenuProps"
+          :menu-props="uiStore.menuProps"
           :disabled="props.disabled"
         ></v-select>
 
@@ -135,7 +135,7 @@
           clearable
           v-model="filterStore.selectedTraits"
           variant="outlined"
-          :menu-props="uiStore.glassMenuProps"
+          :menu-props="uiStore.menuProps"
           :disabled="props.disabled"
         ></v-select>
 
@@ -148,7 +148,7 @@
           clearable
           v-model="filterStore.selectedLevels"
           variant="outlined"
-          :menu-props="uiStore.glassMenuProps"
+          :menu-props="uiStore.menuProps"
           :disabled="props.disabled"
         ></v-select>
 

@@ -4,19 +4,22 @@
 
 /* Chrome / Edge / Safari */
 .themed-scrollbar::-webkit-scrollbar,
-.themed-scrollbar textarea::-webkit-scrollbar {
+.themed-scrollbar textarea::-webkit-scrollbar,
+.themed-scrollbar .v-list::-webkit-scrollbar {
   width: var(--sb-size);
   height: var(--sb-size);
 }
 
 .themed-scrollbar::-webkit-scrollbar-track,
-.themed-scrollbar textarea::-webkit-scrollbar-track {
+.themed-scrollbar textarea::-webkit-scrollbar-track,
+.themed-scrollbar .v-list::-webkit-scrollbar-track {
   background: var(--sb-track-color);
   border-radius: 10px;
 }
 
 .themed-scrollbar::-webkit-scrollbar-thumb,
-.themed-scrollbar textarea::-webkit-scrollbar-thumb {
+.themed-scrollbar textarea::-webkit-scrollbar-thumb,
+.themed-scrollbar .v-list::-webkit-scrollbar-thumb {
   background: var(--sb-thumb-color);
   border-radius: 10px;
 }
@@ -24,7 +27,8 @@
 /* Firefox fallback */
 @supports not selector(::-webkit-scrollbar) {
   .themed-scrollbar,
-  .themed-scrollbar textarea {
+  .themed-scrollbar textarea,
+  .themed-scrollbar .v-list {
     scrollbar-width: thin;
     scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
   }
