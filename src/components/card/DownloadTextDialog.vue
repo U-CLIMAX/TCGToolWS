@@ -3,7 +3,7 @@
     <v-card title="下载效果文本设定">
       <v-card-text class="pb-0">
         <v-row dense>
-          <v-col cols="12" sm="4">
+          <v-col cols="12" sm="3">
             <v-text-field
               v-model.number="localWidth"
               label="寬度"
@@ -14,7 +14,7 @@
               variant="outlined"
             />
           </v-col>
-          <v-col cols="12" sm="4">
+          <v-col cols="12" sm="3">
             <v-text-field
               v-model.number="localBorderRadius"
               label="边角圆弧"
@@ -25,10 +25,21 @@
               variant="outlined"
             />
           </v-col>
-          <v-col cols="12" sm="4">
+          <v-col cols="12" sm="3">
             <v-text-field
               v-model.number="localFontSize"
               label="字体大小"
+              type="number"
+              suffix="px"
+              class="hide-number-input-arrows"
+              hide-spin-buttons
+              variant="outlined"
+            />
+          </v-col>
+          <v-col cols="12" sm="3">
+            <v-text-field
+              v-model.number="localLineHeight"
+              label="行间距"
               type="number"
               suffix="px"
               class="hide-number-input-arrows"
@@ -71,6 +82,7 @@ const localWidth = ref(800)
 const localBgColor = ref('#FFFFFF')
 const localBorderRadius = ref(16)
 const localFontSize = ref(20)
+const localLineHeight = ref(28)
 
 watch(
   () => props.modelValue,
@@ -81,6 +93,7 @@ watch(
       localBgColor.value = downloadStore.textBgColor
       localBorderRadius.value = downloadStore.textBorderRadius
       localFontSize.value = downloadStore.textFontSize
+      localLineHeight.value = downloadStore.textLineHeight
     }
   }
 )
@@ -91,6 +104,7 @@ const confirmDownload = () => {
   downloadStore.textBgColor = localBgColor.value
   downloadStore.textBorderRadius = localBorderRadius.value
   downloadStore.textFontSize = localFontSize.value
+  downloadStore.textLineHeight = localLineHeight.value
   emit('confirm')
 }
 

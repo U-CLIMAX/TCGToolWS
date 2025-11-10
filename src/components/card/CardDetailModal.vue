@@ -292,7 +292,7 @@ const executeDownloadText = async () => {
   const effectText = document.createElement('div')
   effectText.innerHTML = formattedEffect.value
   effectText.style.fontSize = `${downloadStore.textFontSize}px`
-  effectText.style.lineHeight = '1.5'
+  effectText.style.lineHeight = `${downloadStore.textLineHeight}px`
   effectText.style.wordBreak = 'break-word'
   effectText.style.textAlign = 'justify'
   effectText.style.width = '100%'

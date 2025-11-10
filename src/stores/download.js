@@ -8,12 +8,14 @@ export const useDownloadStore = defineStore(
     const textBgColor = ref('#FFFFFF')
     const textBorderRadius = ref(16)
     const textFontSize = ref(20)
+    const textLineHeight = ref(28)
 
     return {
       textWidth,
       textBgColor,
       textBorderRadius,
       textFontSize,
+      textLineHeight,
     }
   },
   {
