@@ -1,5 +1,6 @@
 <template>
   <v-app id="app" class="grid-background" :style="appStyle">
+    <HomeBackground v-show="isHomeRoute" />
     <v-app-bar
       scroll-behavior="elevate"
       scroll-threshold="160"
@@ -142,6 +143,7 @@ import { useSnackbar } from '@/composables/useSnackbar'
 import { usePerformanceManager } from '@/composables/usePerformanceManager'
 import AuthDialog from '@/components/ui/AuthDialog.vue'
 import SettingsModal from '@/components/ui/SettingsModal.vue'
+import HomeBackground from '@/components/common/HomeBackground.vue'
 
 import titleDarkImg from '@/assets/ui/title-dark.webp'
 import titleLightImg from '@/assets/ui/title-light.webp'
@@ -159,6 +161,8 @@ const titleImg = computed(() => {
   const isLightTheme = vuetifyTheme.global.name.value === 'light'
   return isLightTheme ? titleLightImg : titleDarkImg
 })
+
+const isHomeRoute = computed(() => route.name === 'Home')
 
 const isInSpecialFlow = computed(() => {
   return !!route.meta.isSpecialFlow
@@ -209,6 +213,13 @@ const titleImgStyle = computed(() => {
 })
 
 const appStyle = computed(() => {
+  // If on the home route, hide the custom background to show the HomeBackground component
+  if (isHomeRoute.value) {
+    return {
+      '--bg-image': 'none',
+    }
+  }
+
   const bg = uiStore.backgroundImage
   if (bg && bg.src) {
     return {
