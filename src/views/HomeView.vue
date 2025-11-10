@@ -233,7 +233,7 @@ onUnmounted(() => {
   /* Borders */
   --border-radius-image: 4px;
   --border-radius-card: 8px;
-  --border-radius-feature-glass: 16px;
+  --border-radius-feature-glass: clamp(36px, 4vw, 52px);
 
   /* Transitions */
   --transition-duration: 0.3s;
@@ -394,13 +394,13 @@ onUnmounted(() => {
 
 .feature-text {
   font-size: var(--font-size-feature-text);
-  font-weight: 300;
+  font-weight: bold;
   color: rgba(var(--color-white-rgb), 0.9);
 }
 
 .pc-phone-text {
   font-size: var(--font-size-pc-phone-text);
-  font-weight: 500;
+  font-weight: bold;
   color: rgba(var(--color-white-rgb), 0.9);
   text-align: center;
 }
@@ -644,6 +644,10 @@ onUnmounted(() => {
   .horizontal-line {
     left: calc(-1 * var(--axis-cross-length));
     width: calc(100% + var(--axis-cross-length) + 3rem); /* Extending to the edge of the screen */
+  }
+
+  .pc-phone-content {
+    width: clamp(26.5rem, 90vw, 61.25rem);;
   }
 }
 
