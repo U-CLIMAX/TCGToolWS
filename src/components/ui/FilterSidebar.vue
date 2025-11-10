@@ -102,7 +102,7 @@
           :disabled="props.disabled"
         ></v-select>
 
-        <v-autocomplete
+        <v-select
           label="产品"
           :items="filterStore.productNames"
           hide-details
@@ -111,9 +111,9 @@
           variant="outlined"
           :menu-props="uiStore.glassMenuProps"
           :disabled="props.disabled"
-        ></v-autocomplete>
+        ></v-select>
 
-        <v-autocomplete
+        <v-select
           label="稀有度"
           :items="filterStore.rarities"
           hide-details
@@ -124,9 +124,9 @@
           variant="outlined"
           :menu-props="uiStore.glassMenuProps"
           :disabled="props.disabled"
-        ></v-autocomplete>
+        ></v-select>
 
-        <v-autocomplete
+        <v-select
           label="特征"
           :items="filterStore.traits"
           hide-details
@@ -137,7 +137,7 @@
           variant="outlined"
           :menu-props="uiStore.glassMenuProps"
           :disabled="props.disabled"
-        ></v-autocomplete>
+        ></v-select>
 
         <v-select
           label="等级"
