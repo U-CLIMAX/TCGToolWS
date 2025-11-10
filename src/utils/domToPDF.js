@@ -20,7 +20,7 @@ const createPrintStyles = () => {
       position: absolute;
       display: block;
       overflow: hidden;
-      font-family: 'LXGW WenKai Lite', system-ui, sans-serif;
+      font-family: system-ui, sans-serif;
       font-size: 7pt;
     }
   `
@@ -193,22 +193,12 @@ export const convertDeckToPDF = async (cards, name, language) => {
       await new Promise((resolve) => requestAnimationFrame(resolve))
 
       const options = {
-        embedFonts: true,
         width: pageWidth,
         height: pageHeight,
         dpr: window.devicePixelRatio,
         quality: 0.6,
         scale: 2,
       }
-
-      // eslint-disable-next-line no-unused-vars
-      const _ = await snapdom.toCanvas(renderContent, {
-        embedFonts: true,
-        width: 1,
-        height: 1,
-        dpr: 1,
-        cache: 'disabled',
-      })
 
       const imgData = await snapdom.toJpg(renderContent, options)
 
