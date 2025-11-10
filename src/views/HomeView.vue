@@ -107,6 +107,35 @@
         <p>3. 一旦发现违规使用资料的行为，U CLIMAX有权要求立即撤回相关内容；根据情节严重程度，我方将采取列入黑名单、追究法律责任等进一步措施。</p><br></br>
         <p>我们致力于积极维护国内ws社区的健康环境，感谢您的理解与支持！</p>
       </div>
+
+      <!-- Support Section -->
+      <div class="support-section">
+        <!-- Left Block -->
+        <div class="glass-block support-left-block">
+          <div class="support-left-block-content">
+            <div class="support-main-content">
+              <div class="support-us">
+                <h3>支持我们</h3>
+                <div class="placeholder"></div>
+              </div>
+              <div class="support-community">
+                <h3>相关社群</h3>
+                <div class="placeholder"></div>
+              </div>
+            </div>
+            <div class="afd-section">
+              <h2>爱发电</h2>
+            </div>
+          </div>
+        </div>
+        <!-- Right Block -->
+        <div class="glass-block support-right-block">
+          <h3>问题反馈</h3>
+          <div class="feedback-email">
+            <p>uclimax@xxx.com</p>
+          </div>
+        </div>
+      </div>
     </div>
   </v-container>
 </template>
@@ -249,6 +278,7 @@ onUnmounted(() => {
   --border-radius-image: 4px;
   --border-radius-card: 8px;
   --border-radius-feature-glass: clamp(36px, 4vw, 52px);
+  --border-radius-glass-block: clamp(36px, 4vw, 52px);
 
   /* Transitions */
   --transition-duration: 0.3s;
@@ -589,7 +619,7 @@ onUnmounted(() => {
 /* --- Copyright Section --- */
 .copyright-section {
   width: clamp(30rem, 60vw, 70rem);
-  margin: 12rem auto 9vh auto;
+  margin: 12rem auto 0 auto;
   color: rgba(var(--color-white-rgb), 0.8);
   text-align: left;
 }
@@ -599,6 +629,84 @@ onUnmounted(() => {
   font-weight: bold;
   line-height: 1.7;
   color: rgba(var(--color-white-rgb), 0.7);
+}
+
+/* --- Support Section --- */
+.support-section {
+  width: 100%;
+  max-width: var(--max-layout-width);
+  margin: 12rem auto 4rem auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 1fr 0.73fr;
+  gap: 3.5rem;
+  color: rgba(var(--color-white-rgb), 0.9);
+}
+
+.glass-block {
+  background: rgba(var(--color-white-rgb), 0.1);
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  border-radius: var(--border-radius-glass-block);
+  border: 1px solid rgba(var(--color-white-rgb), 0.1);
+  padding: 2rem;
+}
+
+.support-left-block-content {
+  display: grid;
+  grid-template-columns: 5fr 3fr;
+  gap: 1.5rem;
+  height: 100%;
+}
+
+.support-main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.support-us,
+.support-community {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.placeholder {
+  height: 60px; /* Placeholder height */
+  background: rgba(var(--color-white-rgb), 0.1);
+  border-radius: var(--border-radius-card);
+}
+
+.afd-section {
+  text-align: center;
+}
+
+.afd-section h2 {
+  font-size: clamp(3.24rem, 5.4vw, 4.5rem);
+  font-family: var(--font-family-subtitle);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.support-right-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.support-right-block h3 {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-family: var(--font-family-subtitle);
+  font-weight: 500;
+  margin-bottom: 3rem;
+}
+
+.feedback-email p {
+  font-size: clamp(1.44rem, 2.4vw, 2rem);
+  font-weight: bold;
 }
 
 /* --- Transitions --- */
@@ -683,6 +791,11 @@ onUnmounted(() => {
     width: 75%;
     margin-top: 8rem;
   }
+
+  .support-section {
+    grid-template-columns: 1fr;
+    margin-top: 4rem;
+  }
 }
 
 @media (max-width: 599.98px) {
@@ -734,6 +847,21 @@ onUnmounted(() => {
 
   .copyright-section {
     margin-top: 6rem;
+    padding: 0 1rem;
+    width: 100%;
+  }
+
+  .support-section {
+    padding: 0 1rem;
+  }
+
+  .support-left-block-content {
+    grid-template-columns: 1fr;
+  }
+
+  .afd-section {
+    text-align: left;
+    margin-top: 1.5rem;
   }
 }
 </style>
