@@ -420,10 +420,10 @@ onMounted(async () => {
 
     cards.value = Object.values(initialCards).reduce((acc, card) => {
       const baseId = card.id.replace(/[A-Za-z]+$/, '')
-      if (acc[baseId]) {
-        acc[baseId].quantity += card.quantity
+      if (acc[card.id]) {
+        acc[card.id].quantity += card.quantity
       } else {
-        acc[baseId] = { ...card, baseId }
+        acc[card.id] = { ...card, baseId }
       }
 
       return acc
