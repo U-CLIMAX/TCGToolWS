@@ -313,7 +313,7 @@ onUnmounted(() => {
   white-space: nowrap; /* Prevent wrapping */
   overflow: hidden; /* Hide overflow */
   text-overflow: ellipsis; /* Show ellipsis for overflowed text */
-  line-height: 0.8;
+  line-height: 0.9;
   margin-bottom: 3px;
   opacity: 1; /* Keep the element opaque as a whole */
   -webkit-text-stroke: 1px rgb(var(--v-theme-on-background)); /* Set an opaque stroke. */
