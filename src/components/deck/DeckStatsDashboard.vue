@@ -1,7 +1,7 @@
 <template>
   <div v-if="allCards.length > 0" class="d-flex py-4 align-center justify-center">
     <v-card
-      rounded="lg"
+      rounded="xxl"
       elevation="2"
       :class="{ 'glass-sheet': hasBackgroundImage, 'px-10': smAndUp, 'w-100': !smAndUp }"
     >
@@ -25,7 +25,7 @@
           >
             <template #center>
               <div class="text-center">
-                <div class="text-h2 font-weight-black">
+                <div class="font-DINCond text-h2 font-weight-black">
                   {{ totalCardCount }}
                 </div>
                 <div class="text-disabled text-body-2 mt-1">张卡</div>
@@ -44,7 +44,7 @@
                   </template>
                   <v-list-item-title>{{ item.title }}</v-list-item-title>
                   <template #append>
-                    <div class="font-weight-bold">{{ item.value }}</div>
+                    <div class="font-DINCond font-weight-bold">{{ item.value }}</div>
                   </template>
                 </v-list-item>
               </v-list>
@@ -57,17 +57,17 @@
         <!-- 右側：統計數據 -->
         <div class="d-flex flex-column justify-center pa-6" style="min-width: 180px">
           <div class="text-center px-4 py-4">
-            <div class="text-h5 font-weight-bold mb-1">{{ eventCardCount }}</div>
+            <div class="font-DINCond text-h5 mb-1">{{ eventCardCount }}</div>
             <div class="text-body-2 text-disabled">事件卡</div>
           </div>
           <v-divider></v-divider>
           <div class="text-center px-4 py-4">
-            <div class="text-h5 font-weight-bold mb-1">{{ climaxCardCount }}</div>
+            <div class="font-DINCond text-h5 mb-1">{{ climaxCardCount }}</div>
             <div class="text-body-2 text-disabled">高潮卡</div>
           </div>
           <v-divider></v-divider>
           <div class="text-center px-4 py-4">
-            <div class="text-h5 font-weight-bold mb-1">{{ totalSoulCount }}</div>
+            <div class="font-DINCond text-h5 mb-1">{{ totalSoulCount }}</div>
             <div class="text-body-2 text-disabled">触发魂标</div>
           </div>
         </div>

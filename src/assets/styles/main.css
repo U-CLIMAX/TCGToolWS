@@ -16,17 +16,25 @@
 
 /* 字體樣式 */
 @import './fonts/LXGWWenKaiLite/fonts.css';
-@import './fonts/NotoSansSC/fonts.css';
-@import './fonts/NotoSansJP/fonts.css';
-@import './fonts/NotoSans/fonts.css';
+@import './fonts/Xiaolai/fonts.css';
+@import './fonts/ChillRoundGothic_Bold/fonts.css';
+@import './fonts/ChillRoundGothic_ExtraLight/fonts.css';
+@import './fonts/ChillRoundGothic_Heavy/fonts.css';
+@import './fonts/ChillRoundGothic_Light/fonts.css';
+@import './fonts/ChillRoundGothic_Medium/fonts.css';
+@import './fonts/ChillRoundGothic_Normal/fonts.css';
+@import './fonts/ChillRoundGothic_Regular/fonts.css';
+@import './fonts/DINCond-Regular/fonts.css';
+@import './fonts/DINCond-Bold/fonts.css';
 
 :root {
-  --font-noto: 'Noto Sans', 'Noto Sans SC', 'Noto Sans JP', sans-serif;
   --font-wenkai: 'LXGW WenKai Lite', sans-serif;
 }
-.font-noto {
-  font-family: var(--font-noto);
-}
+
 .font-wenkai {
   font-family: var(--font-wenkai) !important;
+}
+
+.font-DINCond {
+  font-family: 'DINCond-Bold', 'DINCond-Regular', sans-serif !important;
 }
