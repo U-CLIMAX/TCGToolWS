@@ -65,6 +65,7 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { useSnackbar } from '@/composables/useSnackbar'
+import { sortDeckCards } from '@/utils/deckSort.js'
 
 const props = defineProps({
   modelValue: {
@@ -84,12 +85,17 @@ const selectedLanguage = ref('jp')
 
 const deckBaseIds = computed(() => {
   if (!props.cards) return ''
+
+  const cardList = Object.values(props.cards)
+  const sortedCards = sortDeckCards(cardList)
+
   const allBaseIds = []
-  Object.values(props.cards).forEach((card) => {
+  sortedCards.forEach((card) => {
     for (let i = 0; i < card.quantity; i++) {
       allBaseIds.push(card.baseId)
     }
   })
+
   return allBaseIds.join('\n')
 })
 

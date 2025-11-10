@@ -48,6 +48,7 @@
 import { useCardImage } from '@/composables/useCardImage.js'
 import { computed, ref, watch, readonly } from 'vue'
 import { QR } from '@/components/common/QR.js'
+import { sortDeckCards } from '@/utils/deckSort.js'
 
 import logoUrl from '@/assets/ui/logo.webp'
 
@@ -74,42 +75,12 @@ const toggleQrCode = (state) => {
 const shareUrl = `${window.location.origin}/share-decks/${props.deckKey}`
 
 // 排序
-const SORT_ORDER = {
-  type: { 事件卡: 1, 高潮卡: 2, default: 0 },
-  color: { 红色: 1, 黄色: 2, 绿色: 3, 蓝色: 4, default: 99 },
-}
-const getSortValue = (card) => {
-  const typeOrder = SORT_ORDER.type[card.type] ?? SORT_ORDER.type.default
-  const colorOrder = SORT_ORDER.color[card.color] ?? SORT_ORDER.color.default
-
-  // 將 '-' 視為 0
-  const level = card.level === '-' ? 0 : parseInt(card.level, 10) || 0
-
-  return {
-    type: typeOrder,
-    level: level,
-    color: colorOrder,
-    id: card.id,
-  }
-}
 const sortedAndFlatCardList = computed(() => {
   if (!props.deckCards || Object.keys(props.deckCards).length === 0) {
     return []
   }
-
   const cardList = Object.values(props.deckCards)
-
-  return cardList.sort((a, b) => {
-    const sortA = getSortValue(a)
-    const sortB = getSortValue(b)
-
-    return (
-      sortA.type - sortB.type ||
-      sortA.level - sortB.level ||
-      sortA.color - sortB.color ||
-      sortA.id.localeCompare(sortB.id)
-    )
-  })
+  return sortDeckCards(cardList)
 })
 
 const loadedImagesCount = ref(0)
