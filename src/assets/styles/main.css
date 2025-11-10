@@ -16,7 +16,6 @@
 
 /* 字體樣式 */
 @import './fonts/LXGWWenKaiLite/fonts.css';
-@import './fonts/Xiaolai/fonts.css';
 @import './fonts/ChillRoundGothic_Bold/fonts.css';
 @import './fonts/ChillRoundGothic_ExtraLight/fonts.css';
 @import './fonts/ChillRoundGothic_Heavy/fonts.css';
@@ -27,12 +26,8 @@
 @import './fonts/DINCond-Regular/fonts.css';
 @import './fonts/DINCond-Bold/fonts.css';
 
-:root {
-  --font-wenkai: 'LXGW WenKai Lite', sans-serif;
-}
-
 .font-wenkai {
-  font-family: var(--font-wenkai) !important;
+  font-family: 'LXGW WenKai Lite', sans-serif !important;
 }
 
 .font-DINCond {
