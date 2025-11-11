@@ -62,8 +62,8 @@ onUnmounted(() => {
   position: absolute;
   top: 0;
   left: 0;
-  width: 600px; /* Smaller width */
-  height: 600px; /* Smaller height */
+  width: clamp(400px, 50vw, 600px);
+  height: clamp(400px, 50vw, 600px);
   /* Lottie animation will fill this container */
 }
 
