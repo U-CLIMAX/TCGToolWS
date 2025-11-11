@@ -147,7 +147,7 @@
         <div class="glass-block support-right-block">
           <h3>问题反馈</h3>
           <div class="feedback-email">
-            <p>uclimax@xxx.com</p>
+            <a href="mailto:issues@uclimax.cn">issues@uclimax.cn</a>
           </div>
         </div>
       </div>
@@ -685,9 +685,11 @@ onUnmounted(() => {
   margin-bottom: 3rem;
 }
 
-.feedback-email p {
+.feedback-email a {
   font-size: clamp(1.44rem, 2.4vw, 2rem);
   font-weight: bold;
+  color: inherit;
+  text-decoration: underline;
 }
 
 /* --- Animation on Scroll --- */
