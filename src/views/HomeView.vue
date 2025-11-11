@@ -178,6 +178,7 @@ const handleSplashFinished = () => {
   if (typeof window !== 'undefined') {
     sessionStorage.setItem('splashShown', 'true')
   }
+  startAutoScroll()
 }
 
 const images = ref([
@@ -286,9 +287,8 @@ onMounted(() => {
   // One-time splash animation logic
   if (typeof window !== 'undefined' && sessionStorage.getItem('splashShown')) {
     splashStatus.value = 'finished'
+    startAutoScroll()
   }
-
-  startAutoScroll()
 
   // Layout and scroll logic
   updateScrollPadding()
