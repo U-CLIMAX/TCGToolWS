@@ -1,4 +1,13 @@
 .rwd-text-wapper {
+  background: rgb(var(--v-theme-surface));
+  border-radius: clamp(0.6rem, 2.5vw, 1.5rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(0.6rem, 2.5vw, 2rem);
+}
+
+.glass_wapper {
   background: linear-gradient(
     135deg,
     rgba(var(--v-theme-surface), 0.7),
@@ -7,14 +16,9 @@
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: clamp(0.6rem, 2.5vw, 1.5rem);
   box-shadow:
     0 8px 32px 0 rgba(0, 0, 0, 0.1),
     inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: clamp(0.6rem, 2.5vw, 2rem);
 }
 
 .rwd-text {

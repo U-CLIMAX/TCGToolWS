@@ -124,7 +124,7 @@
           v-else-if="displayEmptySearchMessage"
           class="d-flex align-center justify-center text-grey h-100 w-100"
         >
-          <div class="rwd-text-wapper">
+          <div class="rwd-text-wapper" :class="{ glass_wapper: hasBackgroundImage }">
             <h1 class="rwd-text">{{ currentEmptyText }}</h1>
           </div>
         </v-container>
@@ -223,6 +223,7 @@ const deckStore = useDeckStore()
 const cardListRef = ref(null)
 const headerRef = ref(null)
 const { isFilterOpen, isTableModeActive, isCardDeckOpen, isPerformanceMode } = storeToRefs(uiStore)
+const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 const { searchCountDetails, hasActiveFilters, searchResults } = storeToRefs(globalSearchStore)
 const rawHeaderHeight = ref(0)
 

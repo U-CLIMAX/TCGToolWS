@@ -4,7 +4,7 @@
     class="d-flex align-center justify-center text-grey h-100 w-100"
     :="$attrs"
   >
-    <div class="rwd-text-wapper">
+    <div class="rwd-text-wapper" :class="{ glass_wapper: hasBackgroundImage }">
       <h1 class="rwd-text">{{ emptyText }}</h1>
     </div>
   </v-container>
@@ -112,6 +112,7 @@ const props = defineProps({
 const { smAndDown, smAndUp, xs } = useDisplay()
 const uiStore = useUIStore()
 const { isPerformanceMode } = storeToRefs(uiStore)
+const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 // Handle edge case: In xs layout, when the infinite scroll content is less than or equal to one row,
 // the load function won't be triggered automatically. Therefore, v-progress-circular must be manually hidden.
