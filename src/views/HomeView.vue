@@ -1,12 +1,12 @@
 <template>
   <v-container fluid class="home-view fill-height themed-scrollbar">
-    <IntroAnimation
-      v-if="introStatus !== 'finished'"
-      :status="introStatus"
-      @start-exit="handleStartExit"
-      @animation-finished="handleAnimationFinished"
+    <SplashAnimation
+      v-if="splashStatus !== 'finished'"
+      :status="splashStatus"
+      @start-exit="handleSplashExit"
+      @animation-finished="handleSplashFinished"
     />
-    <div class="main-content-wrapper" :class="{ 'intro-active': introStatus !== 'finished' }">
+    <div class="main-content-wrapper" :class="{ 'splash-active': splashStatus !== 'finished' }">
       <div ref="homeLayout" class="home-layout animated-section">
         <!-- Left Section -->
         <div class="content-section">
@@ -164,19 +164,19 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useIntersectionObserver } from '@/composables/useIntersectionObserver'
-import IntroAnimation from '@/components/common/IntroAnimation.vue'
+import SplashAnimation from '@/components/common/SplashAnimation.vue'
 
-// --- Intro Animation State ---
-const introStatus = ref('active') // 'active', 'animating-out', 'finished'
+// --- Splash Animation State ---
+const splashStatus = ref('active') // 'active', 'animating-out', 'finished'
 
-const handleStartExit = () => {
-  introStatus.value = 'animating-out'
+const handleSplashExit = () => {
+  splashStatus.value = 'animating-out'
 }
 
-const handleAnimationFinished = () => {
-  introStatus.value = 'finished'
+const handleSplashFinished = () => {
+  splashStatus.value = 'finished'
   if (typeof window !== 'undefined') {
-    sessionStorage.setItem('introShown', 'true')
+    sessionStorage.setItem('splashShown', 'true')
   }
 }
 
@@ -283,9 +283,9 @@ const setupObserver = (target) => {
 }
 
 onMounted(() => {
-  // One-time intro animation logic
-  if (typeof window !== 'undefined' && sessionStorage.getItem('introShown')) {
-    introStatus.value = 'finished'
+  // One-time splash animation logic
+  if (typeof window !== 'undefined' && sessionStorage.getItem('splashShown')) {
+    splashStatus.value = 'finished'
   }
 
   startAutoScroll()
@@ -372,7 +372,7 @@ onUnmounted(() => {
     opacity 0.4s ease-out;
 }
 
-.main-content-wrapper.intro-active {
+.main-content-wrapper.splash-active {
   transform: translateY(100px);
   opacity: 0;
 }

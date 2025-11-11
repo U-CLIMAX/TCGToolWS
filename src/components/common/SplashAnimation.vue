@@ -1,6 +1,6 @@
 <template>
   <div
-    class="intro-overlay"
+    class="splash-overlay"
     :class="{ 'animating-out': status === 'animating-out' }"
     @click="handleClick"
   >
@@ -40,7 +40,7 @@ watch(
 </script>
 
 <style scoped>
-.intro-overlay {
+.splash-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -75,11 +75,11 @@ watch(
 }
 
 /* Animation states */
-.intro-overlay.animating-out {
+.splash-overlay.animating-out {
   background-color: rgba(0, 0, 0, 0);
 }
 
-.intro-overlay.animating-out .animated-title {
+.splash-overlay.animating-out .animated-title {
   transform: scale(500);
   opacity: 0;
   filter: blur(5px) brightness(1);
