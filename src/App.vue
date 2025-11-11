@@ -98,7 +98,7 @@
 
     <v-main :scrollable="true">
       <router-view v-slot="{ Component }">
-        <transition name="slide-y-in" mode="out-in">
+        <transition :name="transitionName" mode="out-in">
           <component :is="Component" />
         </transition>
       </router-view>
@@ -239,6 +239,19 @@ const goToHome = () => {
   router.push({ name: 'Home' })
 }
 
+const transitionName = ref('slide-y-in')
+watch(
+  () => route.name,
+  (toName) => {
+    if (toName === 'Home') {
+      transitionName.value = 'slide-y-out-only'
+    } else {
+      transitionName.value = 'slide-y-in'
+    }
+  },
+  { immediate: true }
+)
+
 watch(
   () => uiStore.theme,
   (newTheme) => {
@@ -296,6 +309,16 @@ watch(
 }
 
 .slide-y-in-leave-to {
+  transform: translateY(-20px);
+  opacity: 0;
+}
+
+/* Transition for navigating to Home: only animates the leaving component */
+.slide-y-out-only-leave-active {
+  transition: all 0.2s cubic-bezier(0.4, 0, 1, 1);
+}
+
+.slide-y-out-only-leave-to {
   transform: translateY(-20px);
   opacity: 0;
 }

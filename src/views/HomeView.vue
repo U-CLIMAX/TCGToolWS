@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="home-view fill-height themed-scrollbar">
     <div class="main-content-wrapper">
-      <div ref="homeLayout" class="home-layout">
+      <div ref="homeLayout" class="home-layout animated-section">
         <!-- Left Section -->
         <div class="content-section">
           <div class="title-area">
@@ -59,7 +59,7 @@
         </div>
       </div>
       <!-- Features Section -->
-      <div class="features-section">
+      <div ref="featuresSection" class="features-section animated-section">
         <h2 class="features-title">工具特色</h2>
         <div
           ref="scrollContainer"
@@ -80,7 +80,7 @@
       </div>
 
       <!-- PC and Phone Support Section -->
-      <div class="pc-phone-section">
+      <div ref="pcPhoneSection" class="pc-phone-section animated-section">
         <div class="pc-phone-content">
           <v-img src="/pc_and_ph.webp" class="pc-phone-img" cover></v-img>
           <p class="pc-phone-text">支持网页端与手机端</p>
@@ -88,7 +88,7 @@
       </div>
 
       <!-- Copyright Section -->
-      <div class="copyright-section">
+      <div ref="copyrightSection" class="copyright-section animated-section">
         <p>版权声明</p>
         <br />
         <p>
@@ -124,7 +124,7 @@
       </div>
 
       <!-- Support Section -->
-      <div class="support-section">
+      <div ref="supportSection" class="support-section animated-section">
         <!-- Left Block -->
         <div class="glass-block support-left-block">
           <div class="support-left-block-content">
@@ -157,6 +157,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import { useIntersectionObserver } from '@/composables/useIntersectionObserver'
 
 const images = ref([
   '/intro/series_card_list.webp',
@@ -242,12 +243,37 @@ const updateScrollPadding = () => {
   }
 }
 
+// --- Animation on Scroll ---
+const featuresSection = ref(null)
+const pcPhoneSection = ref(null)
+const copyrightSection = ref(null)
+const supportSection = ref(null)
+
+const setupObserver = (target) => {
+  const { start, stop } = useIntersectionObserver(
+    target,
+    (element) => {
+      element.classList.add('is-visible')
+      stop() // Stop observing once visible
+    },
+    { threshold: 0.1 }
+  )
+  start()
+}
+
 onMounted(() => {
   startAutoScroll()
 
   // Layout and scroll logic
   updateScrollPadding()
   window.addEventListener('resize', updateScrollPadding)
+
+  // Animation logic
+  setupObserver(homeLayout)
+  setupObserver(featuresSection)
+  setupObserver(pcPhoneSection)
+  setupObserver(copyrightSection)
+  setupObserver(supportSection)
 })
 
 onUnmounted(() => {
@@ -662,6 +688,18 @@ onUnmounted(() => {
 .feedback-email p {
   font-size: clamp(1.44rem, 2.4vw, 2rem);
   font-weight: bold;
+}
+
+/* --- Animation on Scroll --- */
+.animated-section {
+  opacity: 0;
+  transform: translateY(80px);
+  transition: transform 0.6s ease-out;
+}
+
+.animated-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* --- Transitions --- */
