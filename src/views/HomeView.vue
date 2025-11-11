@@ -48,8 +48,9 @@
               <v-img
                 :key="currentIndex"
                 :src="images[currentIndex]"
-                class="display-image"
+                class="display-image clickable-image"
                 cover
+                @click="openImageDialog"
               ></v-img>
             </transition>
 
@@ -162,6 +163,14 @@
         </div>
       </div>
     </div>
+
+    <ImageZoomViewer
+      v-model="dialogImage"
+      :images="images"
+      :initial-index="currentIndex"
+      @dialog-opened="stopAutoScroll"
+      @dialog-closed="startAutoScroll"
+    />
   </v-container>
 </template>
 
@@ -169,6 +178,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useIntersectionObserver } from '@/composables/useIntersectionObserver'
 import SplashAnimation from '@/components/common/SplashAnimation.vue'
+import ImageZoomViewer from '@/components/ui/ImageZoomViewer.vue'
 
 // --- Splash Animation State ---
 const splashStatus = ref('active') // 'active', 'animating-out', 'finished'
@@ -197,6 +207,12 @@ const features = ref([
   { id: 2, image: '/feature/deck-edit.webp', text: '卡组编辑可视化' },
   { id: 3, image: '/feature/global-search.webp', text: '支持全局搜索' },
 ])
+
+const dialogImage = ref(false)
+
+const openImageDialog = () => {
+  dialogImage.value = true
+}
 
 const currentIndex = ref(0)
 let intervalId = null
