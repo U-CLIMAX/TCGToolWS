@@ -777,6 +777,10 @@ onUnmounted(() => {
     padding-right: 1rem;
   }
 
+  .feature-item {
+    flex: 0 0 clamp(244px, 75vw, 311px);
+  }
+
   .coordinate-system {
     --w-phone: calc(var(--mobile-counter-height-phone) / 2.5);
     --w-active-phone: calc(var(--w-phone) * 4);
