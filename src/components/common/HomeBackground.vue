@@ -2,7 +2,7 @@
   <div class="home-background">
     <div class="solid-background-layer"></div>
     <div id="lottie-animation" class="lottie-animation-layer"></div>
-    <div class="glass-layer"></div>
+    <div class="glass-layer" :class="{ 'has-blur': isHardwareAccelerated === true }"></div>
     <div class="texture-layer"></div>
   </div>
 </template>
@@ -11,6 +11,9 @@
 import { onMounted, onUnmounted } from 'vue'
 import lottie from 'lottie-web'
 import bgAnimationData from '@/assets/animations/bg_anime.json'
+import { useHardwareAcceleration } from '@/composables/useHardwareAcceleration'
+
+const { isHardwareAccelerated } = useHardwareAcceleration()
 
 let anim
 
@@ -70,9 +73,11 @@ onUnmounted(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  backdrop-filter: blur(160px) saturate(180%) brightness(1.1);
-  -webkit-backdrop-filter: blur(160px) saturate(180%);
-  background: linear-gradient(135deg, rgba(18, 18, 18, 0.1) 0%, rgba(18, 18, 18, 0.3) 100%);
+  /* Fallback background for when blur is off */
+  background: linear-gradient(135deg, rgba(18, 18, 18, 0.4) 0%, rgba(18, 18, 18, 0.6) 100%);
+  transition:
+    backdrop-filter 0.3s ease,
+    background 0.3s ease; /* Smooth transition if check is slow */
 }
 
 .texture-layer {
@@ -84,5 +89,12 @@ onUnmounted(() => {
   background-image: url('/texture.webp'); /* Texture image */
   background-size: cover;
   background-position: center;
+}
+
+.glass-layer.has-blur {
+  backdrop-filter: blur(160px) saturate(180%) brightness(1.1);
+  -webkit-backdrop-filter: blur(160px) saturate(180%);
+  /* Background for when blur is on */
+  background: linear-gradient(135deg, rgba(18, 18, 18, 0.1) 0%, rgba(18, 18, 18, 0.3) 100%);
 }
 </style>

@@ -20,6 +20,7 @@
   "dependencies": {
     "@zumer/snapdom": "^2.0.0-dev.1",
     "comlink": "^4.4.2",
+    "detect-gpu": "^5.0.70",
     "dompurify": "^3.2.7",
     "es-toolkit": "^1.41.0",
     "flexsearch": "^0.8.212",

@@ -82,7 +82,10 @@
         >
           <div v-for="feature in features" :key="feature.id" class="feature-item">
             <div class="feature-card">
-              <div class="feature-glass-bg"></div>
+              <div
+                class="feature-glass-bg"
+                :class="{ 'has-blur': isHardwareAccelerated === true }"
+              ></div>
               <v-img :src="feature.image" class="feature-img" cover></v-img>
             </div>
             <p class="feature-text">{{ feature.text }}</p>
@@ -137,7 +140,10 @@
       <!-- Support Section -->
       <div ref="supportSection" class="support-section animated-section">
         <!-- Left Block -->
-        <div class="glass-block support-left-block">
+        <div
+          class="glass-block support-left-block"
+          :class="{ 'has-blur': isHardwareAccelerated === true }"
+        >
           <div class="support-left-block-content">
             <div class="support-main-content">
               <div class="support-us">
@@ -155,7 +161,10 @@
           </div>
         </div>
         <!-- Right Block -->
-        <div class="glass-block support-right-block">
+        <div
+          class="glass-block support-right-block"
+          :class="{ 'has-blur': isHardwareAccelerated === true }"
+        >
           <h3>问题反馈</h3>
           <div class="feedback-email">
             <a href="mailto:issues@uclimax.cn">issues@uclimax.cn</a>
@@ -179,6 +188,9 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import { useIntersectionObserver } from '@/composables/useIntersectionObserver'
 import SplashAnimation from '@/components/common/SplashAnimation.vue'
 import ImageZoomViewer from '@/components/ui/ImageZoomViewer.vue'
+import { useHardwareAcceleration } from '@/composables/useHardwareAcceleration'
+
+const { isHardwareAccelerated } = useHardwareAcceleration()
 
 // --- Splash Animation State ---
 const splashStatus = ref('active') // 'active', 'animating-out', 'finished'
@@ -619,11 +631,20 @@ onUnmounted(() => {
   left: 0;
   width: 100%;
   aspect-ratio: 49 / 32;
-  background: rgba(var(--color-white-rgb), 0.2);
-  backdrop-filter: blur(10px) saturate(120%);
-  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  /* Fallback background for when blur is off */
+  background: rgba(var(--color-white-rgb), 0.4); /* Slightly more opaque */
   border-radius: var(--border-radius-feature-glass);
   border: 1px solid rgba(var(--color-white-rgb), 0.1);
+  transition:
+    backdrop-filter 0.3s ease,
+    background 0.3s ease;
+}
+
+.feature-glass-bg.has-blur {
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  /* Original background for when blur is on */
+  background: rgba(var(--color-white-rgb), 0.2);
 }
 
 .feature-img {
@@ -679,12 +700,21 @@ onUnmounted(() => {
 }
 
 .glass-block {
-  background: rgba(var(--color-white-rgb), 0.1);
-  backdrop-filter: blur(10px) saturate(120%);
-  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  /* Fallback background for when blur is off */
+  background: rgba(var(--color-white-rgb), 0.2); /* Slightly more opaque */
   border-radius: var(--border-radius-glass-block);
   border: 1px solid rgba(var(--color-white-rgb), 0.1);
   padding: 2rem;
+  transition:
+    backdrop-filter 0.3s ease,
+    background 0.3s ease;
+}
+
+.glass-block.has-blur {
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  /* Original background for when blur is on */
+  background: rgba(var(--color-white-rgb), 0.1);
 }
 
 .support-left-block-content {
