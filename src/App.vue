@@ -164,12 +164,11 @@ const authDialog = ref(null)
 const { show, text, color, triggerSnackbar } = useSnackbar()
 const route = useRoute()
 const isSettingsModalOpen = ref(false)
+const isHomeRoute = computed(() => route.name === 'Home')
 const titleImg = computed(() => {
   const isLightTheme = vuetifyTheme.global.name.value === 'light'
   return isHomeRoute.value ? titleMonochrome : isLightTheme ? titleLightImg : titleDarkImg
 })
-
-const isHomeRoute = computed(() => route.name === 'Home')
 
 const isInSpecialFlow = computed(() => {
   return !!route.meta.isSpecialFlow
