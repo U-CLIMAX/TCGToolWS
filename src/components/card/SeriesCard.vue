@@ -115,7 +115,7 @@ const isLightWithBg = computed(() => {
 })
 
 const iconUrl = computed(() => {
-  return `series-icons/${props.seriesData.id}.webp`
+  return `series-icons/${props.seriesData.icon}.webp`
 })
 </script>
 
