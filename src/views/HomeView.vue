@@ -1,6 +1,12 @@
 <template>
   <v-container fluid class="home-view fill-height themed-scrollbar">
-    <div class="main-content-wrapper">
+    <IntroAnimation
+      v-if="introStatus !== 'finished'"
+      :status="introStatus"
+      @start-exit="handleStartExit"
+      @animation-finished="handleAnimationFinished"
+    />
+    <div class="main-content-wrapper" :class="{ 'intro-active': introStatus !== 'finished' }">
       <div ref="homeLayout" class="home-layout animated-section">
         <!-- Left Section -->
         <div class="content-section">
@@ -158,6 +164,21 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useIntersectionObserver } from '@/composables/useIntersectionObserver'
+import IntroAnimation from '@/components/common/IntroAnimation.vue'
+
+// --- Intro Animation State ---
+const introStatus = ref('active') // 'active', 'animating-out', 'finished'
+
+const handleStartExit = () => {
+  introStatus.value = 'animating-out'
+}
+
+const handleAnimationFinished = () => {
+  introStatus.value = 'finished'
+  if (typeof window !== 'undefined') {
+    sessionStorage.setItem('introShown', 'true')
+  }
+}
 
 const images = ref([
   '/intro/series_card_list.webp',
@@ -262,6 +283,11 @@ const setupObserver = (target) => {
 }
 
 onMounted(() => {
+  // One-time intro animation logic
+  if (typeof window !== 'undefined' && sessionStorage.getItem('introShown')) {
+    introStatus.value = 'finished'
+  }
+
   startAutoScroll()
 
   // Layout and scroll logic
@@ -341,6 +367,14 @@ onUnmounted(() => {
   flex-direction: column;
   width: 100%;
   align-items: center;
+  transition:
+    transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.4s ease-out;
+}
+
+.main-content-wrapper.intro-active {
+  transform: translateY(100px);
+  opacity: 0;
 }
 
 .home-layout {
