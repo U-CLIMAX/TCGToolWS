@@ -6,7 +6,7 @@
       scroll-threshold="160"
       height="50"
       :color="vuetifyTheme.global.current.value.dark ? 'grey-darken-3' : 'grey-lighten-3'"
-      :elevation="5"
+      :elevation="isHomeRoute? 0 : 5"
     >
       <template #prepend>
         <v-app-bar-nav-icon class="d-md-none" @click="drawer = !drawer"></v-app-bar-nav-icon>
