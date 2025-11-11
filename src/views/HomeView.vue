@@ -1,5 +1,9 @@
 <template>
-  <v-container fluid class="home-view fill-height themed-scrollbar">
+  <v-container
+    fluid
+    class="home-view fill-height themed-scrollbar"
+    :class="{ 'overflow-hidden': splashStatus !== 'finished' }"
+  >
     <SplashAnimation
       v-if="splashStatus !== 'finished'"
       :status="splashStatus"
