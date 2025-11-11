@@ -33,7 +33,7 @@ watch(
       // Corresponds to the animation duration
       setTimeout(() => {
         emit('animation-finished')
-      }, 600) // Animation duration is 0.6s
+      }, 400) // Animation duration is 0.4s
     }
   }
 )
@@ -80,7 +80,7 @@ watch(
 }
 
 .intro-overlay.animating-out .animated-title {
-  transform: scale(1000);
+  transform: scale(500);
   opacity: 0;
   filter: blur(5px) brightness(1);
 }
