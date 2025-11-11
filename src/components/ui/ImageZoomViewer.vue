@@ -150,6 +150,7 @@ onUnmounted(() => {
 }
 
 .dialog-image {
+  aspect-ratio: 16 / 9;
   max-height: 90vh;
   border-radius: 8px;
 }
