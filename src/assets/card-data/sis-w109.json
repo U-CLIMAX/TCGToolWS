@@ -216,7 +216,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\">：这张卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到费用区）",
+    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\">：这张卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
     "all_cards": [
       {
         "id": "SIS/W109-032",
@@ -239,7 +239,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\">：这张卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到费用区）",
+    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\">：这张卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
     "all_cards": [
       {
         "id": "SIS/W109-033",
@@ -680,7 +680,7 @@
     "trait": ["音楽"],
     "color": "蓝色",
     "soul": 1,
-    "effect": "【永】这张卡不能侧面攻击。<br/>【自】这张卡从手牌放置到舞台时，你其他《音楽》的角色有4个以上的话，你可以从自己的休息室选择1张《音楽》的角色卡放置到费用区。",
+    "effect": "【永】这张卡不能侧面攻击。<br/>【自】这张卡从手牌放置到舞台时，你其他《音楽》的角色有4个以上的话，你可以从自己的休息室选择1张《音楽》的角色卡放置到库存区。",
     "all_cards": [
       {
         "id": "SIS/W109-130",

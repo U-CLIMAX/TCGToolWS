@@ -74,7 +74,7 @@
     "trait": ["ホロライブ"],
     "color": "绿色",
     "soul": 1,
-    "effect": "【自】这张卡从手牌放置到舞台时，你有其他《ホロライブ》的角色的话，你选择自己至多2张手牌按喜欢的顺序放置到费用区。<br/>【自】这张卡从手牌放置到舞台时，那个回合中，这张卡的战斗力+1500。",
+    "effect": "【自】这张卡从手牌放置到舞台时，你有其他《ホロライブ》的角色的话，你选择自己至多2张手牌按喜欢的顺序放置到库存区。<br/>【自】这张卡从手牌放置到舞台时，那个回合中，这张卡的战斗力+1500。",
     "all_cards": [
       {
         "id": "HOL/W104-P04",
@@ -139,7 +139,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\">：这张卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到费用区）",
+    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\">：这张卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
     "all_cards": [
       {
         "id": "HOL/W104-146",
@@ -158,7 +158,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\">：这张卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到费用区）",
+    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\">：这张卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
     "all_cards": [
       {
         "id": "HOL/W104-147",
@@ -177,7 +177,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\">：这张卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到费用区）",
+    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\">：这张卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
     "all_cards": [
       {
         "id": "HOL/W104-148",
@@ -196,7 +196,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\">：这张卡被触发时，你将这张卡返回手牌。你可以将自己卡组顶1张卡放置到费用区）",
+    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\">：这张卡被触发时，你将这张卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
     "all_cards": [
       {
         "id": "HOL/W104-149",
@@ -215,7 +215,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\">：这张卡被触发时，你将这张卡返回手牌。你可以将自己卡组顶1张卡放置到费用区）",
+    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\">：这张卡被触发时，你将这张卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
     "all_cards": [
       {
         "id": "HOL/W104-150",
@@ -234,7 +234,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\">：这张卡被触发时，你将这张卡返回手牌。你可以将自己卡组顶1张卡放置到费用区）",
+    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\">：这张卡被触发时，你将这张卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
     "all_cards": [
       {
         "id": "HOL/W104-151",
@@ -253,7 +253,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\">：这张卡被触发时，你将这张卡返回手牌。你可以将自己卡组顶1张卡放置到费用区）",
+    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\">：这张卡被触发时，你将这张卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
     "all_cards": [
       {
         "id": "HOL/W104-152",
