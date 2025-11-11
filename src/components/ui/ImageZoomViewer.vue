@@ -1,7 +1,39 @@
 <template>
   <!-- 放大對話框 -->
-  <v-dialog v-model="internalDialog" max-width="90vw" @click:outside="closeDialog">
-    <v-card color="transparent" elevation="0">
+  <v-dialog
+    v-model="internalDialog"
+    :fullscreen="smAndDown"
+    max-width="90vw"
+    @click:outside="closeDialog"
+  >
+    <!-- Mobile Layout -->
+    <v-card v-if="smAndDown" color="black" elevation="0" class="mobile-viewer">
+      <div class="mobile-viewer__image-container">
+        <v-img :src="images[currentImageIndex]" contain class="mobile-viewer__image"></v-img>
+      </div>
+      <div class="mobile-viewer__controls">
+        <v-btn v-if="images.length > 1" icon variant="text" @click.stop="prevImage">
+          <v-icon size="large">mdi-chevron-left</v-icon>
+        </v-btn>
+        <v-spacer v-if="images.length > 1"></v-spacer>
+        <div v-if="images.length > 1" class="mobile-viewer__indicator">
+          {{ currentImageIndex + 1 }} / {{ images.length }}
+        </div>
+        <v-spacer v-if="images.length > 1"></v-spacer>
+        <v-btn v-if="images.length > 1" icon variant="text" @click.stop="nextImage">
+          <v-icon size="large">mdi-chevron-right</v-icon>
+        </v-btn>
+
+        <!-- 佔位，確保關閉按鈕在最右邊 -->
+        <v-spacer v-if="images.length <= 1"></v-spacer>
+        <v-btn icon variant="text" @click="closeDialog">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+      </div>
+    </v-card>
+
+    <!-- Desktop Layout -->
+    <v-card v-else color="transparent" elevation="0">
       <!-- 關閉按鈕 -->
       <v-btn icon class="dialog-close-btn" @click="closeDialog">
         <v-icon>mdi-close</v-icon>
@@ -30,6 +62,7 @@
 
 <script setup>
 import { ref, watch, onMounted, onUnmounted } from 'vue'
+import { useDisplay } from 'vuetify'
 
 const props = defineProps({
   modelValue: {
@@ -48,6 +81,8 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['update:modelValue', 'dialog-opened', 'dialog-closed'])
+
+const { smAndDown } = useDisplay()
 
 const internalDialog = ref(false)
 const currentImageIndex = ref(0)
@@ -114,7 +149,7 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-/* Dialog styles */
+/* Desktop styles */
 .dialog-close-btn {
   position: absolute;
   top: 1rem;
@@ -168,30 +203,42 @@ onUnmounted(() => {
   font-weight: 500;
 }
 
-/* Responsive adjustments */
-@media (max-width: 599.98px) {
-  .dialog-nav-btn {
-    width: 40px;
-    height: 40px;
-  }
+/* Mobile Layout Styles */
+.mobile-viewer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  border-radius: 0;
+}
 
-  .dialog-nav-prev {
-    left: 0.5rem;
-  }
+.mobile-viewer__image-container {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+}
 
-  .dialog-nav-next {
-    right: 0.5rem;
-  }
+.mobile-viewer__image {
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+}
 
-  .dialog-close-btn {
-    top: 0.5rem;
-    right: 0.5rem;
-  }
+.mobile-viewer__controls {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: #1e1e1e;
+  flex-shrink: 0;
+}
 
-  .dialog-indicator {
-    bottom: 0.5rem;
-    font-size: 0.8rem;
-    padding: 0.4rem 0.8rem;
-  }
+.mobile-viewer__indicator {
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
 }
 </style>
