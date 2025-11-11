@@ -70,9 +70,9 @@ onUnmounted(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  backdrop-filter: blur(120px) saturate(160%); /* Glass effect */
-  -webkit-backdrop-filter: blur(120px) saturate(160%);
-  background: rgba(18, 18, 18, 0.2); /* --color-dark-black-rgb */
+  backdrop-filter: blur(160px) saturate(180%) brightness(1.1);
+  -webkit-backdrop-filter: blur(160px) saturate(180%);
+  background: linear-gradient(135deg, rgba(18, 18, 18, 0.1) 0%, rgba(18, 18, 18, 0.3) 100%);
 }
 
 .texture-layer {
