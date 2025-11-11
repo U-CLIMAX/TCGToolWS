@@ -199,6 +199,7 @@
 
 <script setup>
 import { computed, ref, onUnmounted } from 'vue'
+import { useDisplay } from 'vuetify'
 import LinkedCard from './LinkedCard.vue'
 import DownloadTextDialog from './DownloadTextDialog.vue'
 import DOMPurify from 'dompurify'
@@ -211,6 +212,7 @@ import { useDevice } from '@/composables/useDevice'
 import { formatEffectToHtml } from '@/utils/cardEffectFormatter'
 
 const { triggerSnackbar } = useSnackbar()
+const { smAndUp } = useDisplay()
 const uiStore = useUIStore()
 const downloadStore = useDownloadStore()
 
@@ -235,7 +237,7 @@ const showOnTap = ref(false)
 let hideTimeout = null
 
 const navButtonsVisible = computed(() => {
-  return !isTouch.value || showOnTap.value
+  return smAndUp.value || showOnTap.value
 })
 
 const handleModalClick = () => {
