@@ -5,7 +5,13 @@
       scroll-behavior="elevate"
       scroll-threshold="160"
       height="50"
-      :color="isHomeRoute ? '#212121' : vuetifyTheme.global.current.value.dark ? 'grey-darken-3' : 'grey-lighten-3'"
+      :color="
+        isHomeRoute
+          ? '#212121'
+          : vuetifyTheme.global.current.value.dark
+            ? 'grey-darken-3'
+            : 'grey-lighten-3'
+      "
       :elevation="isHomeRoute ? 0 : 5"
     >
       <template #prepend>
