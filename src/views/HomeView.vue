@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="home-view fill-height">
+  <v-container fluid class="home-view fill-height themed-scrollbar">
     <div class="main-content-wrapper">
       <div ref="homeLayout" class="home-layout">
         <!-- Left Section -->
