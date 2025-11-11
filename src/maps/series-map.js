@@ -1069,6 +1069,12 @@ export const seriesMap = {
     prefixes: ['KJ8'],
     latestReleaseDate: '2025-08-08',
   },
+  '黄金拼图': {
+    id: 'kms',
+    icon: 'kms',
+    prefixes: ['KMS'],
+    latestReleaseDate: '2025-11-14',
+  },
   '其他': {
     id: 'ws',
     icon: 'ws',
