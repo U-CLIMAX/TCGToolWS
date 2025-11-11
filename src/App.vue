@@ -5,8 +5,8 @@
       scroll-behavior="elevate"
       scroll-threshold="160"
       height="50"
-      :color="vuetifyTheme.global.current.value.dark ? 'grey-darken-3' : 'grey-lighten-3'"
-      :elevation="isHomeRoute? 0 : 5"
+      :color="isHomeRoute ? '#212121' : vuetifyTheme.global.current.value.dark ? 'grey-darken-3' : 'grey-lighten-3'"
+      :elevation="isHomeRoute ? 0 : 5"
     >
       <template #prepend>
         <v-app-bar-nav-icon class="d-md-none" @click="drawer = !drawer"></v-app-bar-nav-icon>
@@ -147,6 +147,7 @@ import HomeBackground from '@/components/common/HomeBackground.vue'
 
 import titleDarkImg from '@/assets/ui/title-dark.webp'
 import titleLightImg from '@/assets/ui/title-light.webp'
+import titleMonochrome from '@/assets/ui/title-monochrome.webp'
 import HomeIcon from '@/assets/ui/home.svg'
 import SeriesCardTableIcon from '@/assets/ui/series-card-table.svg'
 import DeckIcon from '@/assets/ui/deck.svg'
@@ -159,7 +160,7 @@ const route = useRoute()
 const isSettingsModalOpen = ref(false)
 const titleImg = computed(() => {
   const isLightTheme = vuetifyTheme.global.name.value === 'light'
-  return isLightTheme ? titleLightImg : titleDarkImg
+  return isHomeRoute.value ? titleMonochrome : isLightTheme ? titleLightImg : titleDarkImg
 })
 
 const isHomeRoute = computed(() => route.name === 'Home')
