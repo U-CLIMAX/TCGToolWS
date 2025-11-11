@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, watch } from 'vue'
+import { defineEmits, watch } from 'vue'
 
 const props = defineProps({
   status: {
