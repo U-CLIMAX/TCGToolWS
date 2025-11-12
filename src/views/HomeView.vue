@@ -655,7 +655,7 @@ onUnmounted(() => {
   bottom: 5.4%;
   left: 50%;
   transform: translateX(-50%) translateZ(0);
-  width: 75.7%;
+  width: 75.7%; /* (100 - 5.4 * 2.25 *2)% */
   aspect-ratio: 1 / 1;
   pointer-events: none;
   z-index: 10;
