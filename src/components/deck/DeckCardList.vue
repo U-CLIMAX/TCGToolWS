@@ -54,7 +54,7 @@
                 md="2"
                 :style="{ '--stagger-index': itemIndex }"
               >
-                <v-tooltip :text="item.id" location="top center">
+                <v-tooltip :text="item.id" location="top center" :disabled="isTouch ? true : false">
                   <template v-slot:activator="{ props }">
                     <div
                       v-bind="props"
@@ -145,6 +145,7 @@ import { computed, ref, watch } from 'vue'
 import { useTheme } from 'vuetify'
 import { useDisplay } from 'vuetify'
 import { useCardImage } from '@/composables/useCardImage.js'
+import { useDevice } from '@/composables/useDevice'
 import CardDetailModal from '@/components/card/CardDetailModal.vue'
 import DeckStatsDashboard from '@/components/deck/DeckStatsDashboard.vue'
 import WsIcon from '@/assets/ui/ws-icon.svg?url'
@@ -190,6 +191,7 @@ defineEmits(['card-click', 'update:isModalVisible', 'show-new-card', 'prev-card'
 const { xs, smAndDown } = useDisplay()
 const theme = useTheme()
 const uiStore = useUIStore()
+const { isTouch } = useDevice()
 
 const showCards = ref(true)
 
