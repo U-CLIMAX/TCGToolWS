@@ -353,7 +353,7 @@ onUnmounted(() => {
   /* Typography */
   --font-family-title: 'DINCond-Black';
   --font-family-subtitle: 'DINPro-Light';
-  --font-size-title: clamp(2rem, 6vw, 5rem);
+  --font-size-title: clamp(2.7rem, 6vw, 5rem);
   --font-size-subtitle: clamp(1.4rem, 2.8vw, 2.1rem);
   --font-size-feature-title: clamp(1.2rem, 2.2vw, 1.7rem);
   --font-size-feature-text: clamp(0.9rem, 1.5vw, 1rem);
@@ -460,7 +460,7 @@ onUnmounted(() => {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  -webkit-text-stroke: 1px rgb(var(--color-white-rgb));
+  -webkit-text-stroke: 0.06vw rgb(var(--color-white-rgb));
   color: rgba(var(--color-white-rgb), 0.8); /* Set the text color (Fill) to 0.8 transparency. */
 }
 
@@ -471,7 +471,7 @@ onUnmounted(() => {
   line-height: 0.9;
   margin: 0;
   color: rgb(var(--color-white-rgb));
-  -webkit-text-stroke: 1px rgba(var(--color-white-rgb), 0.1);
+  -webkit-text-stroke: 0.1vw rgba(var(--color-white-rgb), 0.15);
 }
 
 .features-title {
@@ -479,7 +479,7 @@ onUnmounted(() => {
   font-size: var(--font-size-feature-title);
   font-weight: 700;
   color: rgb(var(--color-white-rgb));
-  -webkit-text-stroke: 1px rgba(var(--color-white-rgb), 0.1);
+  -webkit-text-stroke: 0.1vw rgba(var(--color-white-rgb), 0.15);
   max-width: var(--max-layout-width);
   margin: 0 auto 1.5rem auto;
   padding: 0 2rem;
