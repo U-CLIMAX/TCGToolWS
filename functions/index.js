@@ -8,6 +8,7 @@ import {
   handleResetPassword,
   authMiddleware,
   handleAfdianWebhook,
+  handleRefreshUserToken,
 } from '../lib/auth.js'
 import {
   handleCreateDeck,
@@ -59,6 +60,8 @@ authRoutes.post('/login', authActionLimiter, handleLogin)
 authRoutes.post('/session/refresh', handleRefreshSession) // No rate limit on refresh for now
 authRoutes.post('/password/forgot', authCodeLimiter, handleForgotPasswordRequest)
 authRoutes.post('/password/reset', authActionLimiter, handleResetPassword)
+
+authRoutes.get('/refresh-token', authMiddleware, apiUserLimiter, handleRefreshUserToken)
 
 // === 受保護的 Deck 路由 ===
 const deckRoutes = new Hono()

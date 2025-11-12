@@ -63,6 +63,16 @@
           </template>
         </v-tooltip>
 
+        <v-tooltip v-if="authStore.isAuthenticated" text="账号资料" location="bottom">
+          <template v-slot:activator="{ props }">
+            <v-btn
+              v-bind="props"
+              @click="isUserProfileModalOpen = true"
+              icon="mdi-account-circle"
+            ></v-btn>
+          </template>
+        </v-tooltip>
+
         <template v-if="!isInSpecialFlow">
           <v-tooltip :text="authStore.isAuthenticated ? '登出' : '登录/注册'" location="bottom">
             <template v-slot:activator="{ props }">
@@ -116,6 +126,7 @@
 
     <AuthDialog ref="authDialog" />
     <SettingsModal v-model="isSettingsModalOpen" />
+    <UserProfileModal v-model="isUserProfileModalOpen" />
 
     <v-dialog v-model="isLogoutDialogVisible" max-width="320" persistent>
       <v-card title="确认登出" text="您确定要登出目前的帐号吗？">
@@ -149,6 +160,7 @@ import { useSnackbar } from '@/composables/useSnackbar'
 import { usePerformanceManager } from '@/composables/usePerformanceManager'
 import AuthDialog from '@/components/ui/AuthDialog.vue'
 import SettingsModal from '@/components/ui/SettingsModal.vue'
+import UserProfileModal from '@/components/UserProfileModal.vue'
 import HomeBackground from '@/components/common/HomeBackground.vue'
 
 import titleDarkImg from '@/assets/ui/title-dark.webp'
@@ -164,6 +176,7 @@ const authDialog = ref(null)
 const { show, text, color, triggerSnackbar } = useSnackbar()
 const route = useRoute()
 const isSettingsModalOpen = ref(false)
+const isUserProfileModalOpen = ref(false)
 const isHomeRoute = computed(() => route.name === 'Home')
 const titleImg = computed(() => {
   const isLightTheme = vuetifyTheme.global.name.value === 'light'
