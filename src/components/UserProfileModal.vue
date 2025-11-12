@@ -106,10 +106,10 @@ const handleRefreshToken = async () => {
   try {
     await authStore.refreshUserToken()
     userData.value = await authStore.getUserStatus()
-    triggerSnackbar('Token 已成功刷新！')
+    triggerSnackbar('已成功刷新！')
   } catch (error) {
-    console.error('Token 刷新失敗:', error)
-    triggerSnackbar('Token 刷新失敗，請稍後再試。', 'error')
+    console.error('刷新失敗:', error)
+    triggerSnackbar('刷新失败，请稍后再试。', 'error')
   } finally {
     isRefreshing.value = false
   }
