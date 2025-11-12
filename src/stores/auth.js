@@ -17,7 +17,11 @@ export const useAuthStore = defineStore('auth', () => {
         const parsed = JSON.parse(stored)
         // Version check
         if (parsed.version === codeVersion) {
-          return { token: parsed.token, rememberMe: parsed.rememberMe ?? true }
+          return {
+            token: parsed.token,
+            user: parsed.user || null,
+            rememberMe: parsed.rememberMe ?? true,
+          }
         }
         // eslint-disable-next-line no-unused-vars
       } catch (e) {
@@ -27,11 +31,12 @@ export const useAuthStore = defineStore('auth', () => {
       }
     }
     // If no stored value or version mismatch, return default
-    return { token: null, rememberMe: true }
+    return { token: null, user: null, rememberMe: true }
   }
 
-  const { token: initToken, rememberMe: initRemember } = initState()
+  const { token: initToken, user: initUser, rememberMe: initRemember } = initState()
   const token = ref(initToken)
+  const user = ref(initUser)
   const rememberMe = ref(initRemember)
   const isAuthenticated = computed(() => !!token.value)
 
@@ -43,7 +48,12 @@ export const useAuthStore = defineStore('auth', () => {
       const storage = rememberMe.value ? localStorage : sessionStorage
       storage.setItem(
         'auth',
-        JSON.stringify({ token: token.value, rememberMe: rememberMe.value, version: codeVersion })
+        JSON.stringify({
+          token: token.value,
+          user: user.value,
+          rememberMe: rememberMe.value,
+          version: codeVersion,
+        })
       )
     }
   }
@@ -79,12 +89,14 @@ export const useAuthStore = defineStore('auth', () => {
     const data = await response.json()
     if (!response.ok) throw new Error(data.error || 'Login failed.')
     token.value = data.token
+    user.value = data.user
     saveToStorage()
     return data
   }
 
   const logout = () => {
     token.value = null
+    user.value = null
     localStorage.removeItem('auth')
     sessionStorage.removeItem('auth')
 
@@ -144,6 +156,37 @@ export const useAuthStore = defineStore('auth', () => {
     return data
   }
 
+  const initiatePayment = async () => {
+    if (!token.value) {
+      throw new Error('請先登入。')
+    }
+
+    try {
+      const response = await fetch('/api/payments/initiate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token.value}`,
+        },
+      })
+
+      const data = await response.json()
+      if (!response.ok) {
+        throw new Error(data.error || '創建訂單失敗。')
+      }
+
+      if (data.success && data.url) {
+        // 成功，執行跳轉
+        window.open(data.url, '_blank', 'noopener,noreferrer')
+      } else {
+        throw new Error('無法獲取支付 URL。')
+      }
+    } catch (error) {
+      console.error('Payment initiation error:', error)
+      throw error // 讓 UI 層可以捕獲並顯示
+    }
+  }
+
   watch(isAuthenticated, (isAuth, wasAuth) => {
     if (wasAuth && !isAuth) {
       const currentRoute = router.currentRoute.value
@@ -155,8 +198,10 @@ export const useAuthStore = defineStore('auth', () => {
 
   return {
     token,
+    user,
     isAuthenticated,
     rememberMe,
+    initiatePayment,
     sendVerificationCode,
     verifyAndRegister,
     login,

@@ -150,7 +150,16 @@
             <div class="support-main-content">
               <div class="support-us">
                 <h3>支持我们</h3>
-                <div class="placeholder"></div>
+                <v-btn
+                  color="primary"
+                  variant="elevated"
+                  @click="handleSupportClick"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  prepend-icon="mdi-heart"
+                >
+                  支持我们
+                </v-btn>
               </div>
               <div class="support-community">
                 <h3>相关社群</h3>
@@ -182,17 +191,48 @@
       @dialog-opened="stopAutoScroll"
       @dialog-closed="startAutoScroll"
     />
+
+    <!-- Auth Alert Dialog -->
+    <v-dialog v-model="isAuthAlertOpen" max-width="400px">
+      <v-card>
+        <v-card-title> 需要登入</v-card-title>
+        <v-card-text> 赞助功能需要登入后才能使用。 </v-card-text>
+        <v-card-actions>
+          <v-btn color="primary" text @click="isAuthAlertOpen = false">确认</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import { useAuthStore } from '@/stores/auth'
+import { useUIStore } from '@/stores/ui'
 import { useIntersectionObserver } from '@/composables/useIntersectionObserver'
 import SplashAnimation from '@/components/common/SplashAnimation.vue'
 import ImageZoomViewer from '@/components/ui/ImageZoomViewer.vue'
 import { useHardwareAcceleration } from '@/composables/useHardwareAcceleration'
 
 const { isHardwareAccelerated } = useHardwareAcceleration()
+const authStore = useAuthStore()
+const uiStore = useUIStore()
+const isAuthAlertOpen = ref(false)
+
+const handleSupportClick = async () => {
+  if (!authStore.isAuthenticated) {
+    isAuthAlertOpen.value = true
+    return
+  }
+  uiStore.setLoading(true)
+  try {
+    await authStore.initiatePayment()
+  } catch (err) {
+    console.error(err)
+  } finally {
+    uiStore.setLoading(false)
+  }
+}
 
 // --- Splash Animation State ---
 const splashStatus = ref('active') // 'active', 'animating-out', 'finished'

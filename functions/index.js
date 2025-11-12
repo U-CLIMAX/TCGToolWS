@@ -7,6 +7,7 @@ import {
   handleForgotPasswordRequest,
   handleResetPassword,
   authMiddleware,
+  handleAfdianWebhook,
 } from '../lib/auth.js'
 import {
   handleCreateDeck,
@@ -21,6 +22,7 @@ import {
   ipKeyExtractor,
   userIdFromJwtKeyExtractor,
 } from '../lib/ratelimit.js'
+import { handleInitiatePayment } from '../lib/payments.js'
 
 const app = new Hono().basePath('/api')
 
@@ -71,9 +73,20 @@ const publicDeckRoutes = new Hono()
 publicDeckRoutes.use('/*', publicReadLimiter)
 publicDeckRoutes.get('/:key', handleGetDeckByKey)
 
+// === 受保護的 Payment 路由 ===
+const paymentRoutes = new Hono()
+paymentRoutes.use('/*', authMiddleware, apiUserLimiter) // 必須登入才能創建訂單
+paymentRoutes.post('/initiate', handleInitiatePayment)
+
+// === Webhook 路由 (公開, 但受簽名保護) ===
+const webhookRoutes = new Hono()
+webhookRoutes.post('/afdian', handleAfdianWebhook)
+
 // === 組合所有路由 ===
 app.route('/', authRoutes)
 app.route('/decks', deckRoutes)
 app.route('/shared-decks', publicDeckRoutes)
+app.route('/webhooks', webhookRoutes)
+app.route('/payments', paymentRoutes)
 
 export default app
