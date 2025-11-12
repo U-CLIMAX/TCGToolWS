@@ -640,6 +640,7 @@ onUnmounted(() => {
   transition:
     backdrop-filter 0.3s ease,
     background 0.3s ease;
+  z-index: 1;
 }
 
 .feature-glass-bg.has-blur {
@@ -653,7 +654,7 @@ onUnmounted(() => {
   position: absolute;
   bottom: 5.4%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateZ(0);
   width: 75.7%;
   aspect-ratio: 1 / 1;
   pointer-events: none;
