@@ -252,13 +252,40 @@
           v-if="deckStore.editingDeckKey"
           color="secondary"
           variant="tonal"
-          @click="handleUpdateDeck"
+          @click="promptForHistoryAndUpdate"
           :disabled="!deckName.trim() || !selectedCoverCardId"
           >更新卡组
         </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
+
+  <!-- History Note Dialog -->
+  <v-dialog v-model="isHistoryDialogOpen" max-width="400px" persistent>
+    <v-card>
+      <v-card-title>新增更新纪录</v-card-title>
+      <v-card-text>
+        <v-form ref="historyForm" @submit.prevent="handleUpdateDeckWithHistory">
+          <v-text-field
+            v-model="historyText"
+            label="本次更新摘要"
+            :counter="20"
+            :rules="[v => !!v || '必须填写摘要', v => (v && v.length <= 20) || '摘要不能超过20个字']"
+            maxlength="20"
+            variant="outlined"
+            density="compact"
+            autofocus
+          ></v-text-field>
+        </v-form>
+      </v-card-text>
+      <v-card-actions>
+        <v-btn text @click="isHistoryDialogOpen = false">取消</v-btn>
+        <v-spacer></v-spacer>
+        <v-btn color="primary" variant="tonal" @click="handleUpdateDeckWithHistory">确认更新</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
+
   <!-- Clear Confirm Dialog -->
   <v-dialog v-model="isClearConfirmDialogOpen" max-width="400">
     <v-card>
@@ -325,6 +352,11 @@ const isAuthAlertOpen = ref(false)
 const isSaveDialogOpen = ref(false)
 const deckName = ref('')
 const selectedCoverCardId = ref(null)
+
+// History Dialog State
+const isHistoryDialogOpen = ref(false)
+const historyText = ref('')
+const historyForm = ref(null)
 
 const isClearConfirmDialogOpen = ref(false)
 
@@ -416,20 +448,80 @@ const handleCreateDeck = async () => {
   }
 }
 
-const handleUpdateDeck = async () => {
+const calculateDiff = (originalCards, currentCards) => {
+  const diff = []
+  const allCardIds = new Set([...Object.keys(originalCards), ...Object.keys(currentCards)])
+
+  allCardIds.forEach(cardId => {
+    const originalCard = originalCards[cardId]
+    const currentCard = currentCards[cardId]
+
+    if (!originalCard && currentCard) {
+      // Added
+      diff.push({ cardId, status: 'added', quantity: currentCard.quantity })
+    } else if (originalCard && !currentCard) {
+      // Removed
+      diff.push({ cardId, status: 'removed', quantity: originalCard.quantity })
+    } else if (originalCard && currentCard && originalCard.quantity !== currentCard.quantity) {
+      // Modified
+      diff.push({
+        cardId,
+        status: 'modified',
+        from: originalCard.quantity,
+        to: currentCard.quantity,
+      })
+    }
+  })
+
+  return diff
+}
+
+const promptForHistoryAndUpdate = async () => {
+  const userStatus = await authStore.getUserStatus()
+  if (userStatus && userStatus.role !== 0) {
+    historyText.value = ''
+    isHistoryDialogOpen.value = true
+  } else {
+    await handleUpdateDeck()
+  }
+}
+
+const handleUpdateDeckWithHistory = async () => {
+  const { valid } = await historyForm.value.validate()
+  if (valid) {
+    await handleUpdateDeck(historyText.value)
+    isHistoryDialogOpen.value = false
+  }
+}
+
+const handleUpdateDeck = async (historyText = '') => {
   if (!deckStore.editingDeckKey) {
     triggerSnackbar('缺少卡组标识，无法更新', 'error')
     return
   }
   deckStore.updateDominantSeriesId()
   uiStore.setLoading(true)
+
   try {
+    const diff = calculateDiff(deckStore.originalCardsInDeck, deckStore.cardsInDeck)
+    const newHistoryEntry = {
+      time: Date.now(),
+      text: historyText,
+      diff: diff,
+    }
+
+    const updatedHistory = [newHistoryEntry, ...toRaw(deckStore.deckHistory)]
+    if (updatedHistory.length > 10) {
+      updatedHistory.pop()
+    }
+
     const deckData = {
       name: deckName.value,
       version: deckStore.version,
       cards: toRaw(deckStore.cardsInDeck),
       seriesId: deckStore.seriesId,
       coverCardId: selectedCoverCardId.value,
+      history: updatedHistory,
     }
 
     const { key } = await encodeDeck(deckData, { existingKey: deckStore.editingDeckKey })

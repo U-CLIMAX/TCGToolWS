@@ -13,6 +13,8 @@ export const useDeckStore = defineStore(
     const deckName = ref('')
     const coverCardId = ref('')
     const editingDeckKey = ref('')
+    const deckHistory = ref([])
+    const originalCardsInDeck = ref({})
     const savedDecks = ref({})
     const maxDeckSize = 50
 
@@ -70,10 +72,13 @@ export const useDeckStore = defineStore(
     }
 
     const setEditingDeck = (deck, key) => {
+      // Deep copy for diffing later
+      originalCardsInDeck.value = JSON.parse(JSON.stringify(deck.cards))
       cardsInDeck.value = deck.cards
       seriesId.value = deck.seriesId
       deckName.value = deck.name
       coverCardId.value = deck.coverCardId
+      deckHistory.value = deck.history || []
       editingDeckKey.value = key
     }
 
@@ -81,6 +86,8 @@ export const useDeckStore = defineStore(
       deckName.value = ''
       coverCardId.value = ''
       editingDeckKey.value = ''
+      deckHistory.value = []
+      originalCardsInDeck.value = {}
     }
 
     const updateDominantSeriesId = () => {
@@ -251,6 +258,8 @@ export const useDeckStore = defineStore(
       deckName,
       coverCardId,
       editingDeckKey,
+      deckHistory,
+      originalCardsInDeck,
       addCard,
       removeCard,
       clearDeck,
