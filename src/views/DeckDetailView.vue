@@ -103,8 +103,8 @@
 
             <!-- 右側 -->
             <div class="header-right mt-2">
-              <template v-if="smAndUp && !isViewingHistory">
-                <v-tooltip :text="showDifferences ? '隐藏差异' : '显示差异'" location="bottom">
+              <template v-if="smAndUp">
+                <v-tooltip v-if="!isViewingHistory" :text="showDifferences ? '隐藏差异' : '显示差异'" location="bottom">
                   <template v-slot:activator="{ props }">
                     <v-btn
                       v-if="isEditing && deckStore.editingDeckKey"
@@ -215,7 +215,7 @@
           <v-list-item-title v-else>隐藏统计</v-list-item-title>
         </v-list-item>
         <v-list-item
-          v-if="isEditing && deckStore.editingDeckKey"
+          v-if="isEditing && deckStore.editingDeckKey && !isViewingHistory"
           @click="handleShowDifferencesClick"
         >
           <template #prepend>
