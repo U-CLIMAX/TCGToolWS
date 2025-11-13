@@ -4,7 +4,7 @@
       <div class="d-flex justify-center pt-3 px-3">
         <v-sheet
           class="search-container"
-          :class="{ 'glass-sheet': hasBackgroundImage && !transparent }"
+          :class="{ 'glass-sheet': hasBackgroundImage }"
           rounded="lg"
           elevation="2"
         >
