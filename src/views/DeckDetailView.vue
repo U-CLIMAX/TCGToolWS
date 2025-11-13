@@ -56,6 +56,7 @@
                 <v-tooltip text="卡组历史" location="bottom">
                   <template v-slot:activator="{ props }">
                     <v-btn
+                      v-if="!isRegularUser"
                       v-bind="props"
                       :size="resize"
                       icon="mdi-history"
@@ -231,7 +232,7 @@
           </template>
           <v-list-item-title>编辑卡组</v-list-item-title>
         </v-list-item>
-        <v-list-item @click="handleHistoryClick">
+        <v-list-item v-if="!isRegularUser" @click="handleHistoryClick">
           <template #prepend>
             <v-icon>mdi-history</v-icon>
           </template>
@@ -334,6 +335,7 @@ import { convertDeckToPDF } from '@/utils/domToPDF'
 import DeckShareImage from '@/components/deck/DeckShareImage.vue'
 import DeckCardList from '@/components/deck/DeckCardList.vue'
 import DeckExportDialog from '@/components/deck/DeckExportDialog.vue'
+import { useAuthStore } from '@/stores/auth'
 
 const { smAndUp } = useDisplay()
 const resize = computed(() => {
@@ -345,6 +347,12 @@ const { decodeDeck } = useDeckEncoder()
 const { triggerSnackbar } = useSnackbar()
 const uiStore = useUIStore()
 const deckStore = useDeckStore()
+const authStore = useAuthStore()
+
+const isRegularUser = computed(async () => {
+  const userStatus = await authStore.getUserStatus()
+  return userStatus && userStatus.role === 0
+})
 
 const deckKey = route.params.key
 const isLocalDeck = computed(() => deckKey === 'local')
