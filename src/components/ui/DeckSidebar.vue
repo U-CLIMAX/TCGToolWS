@@ -270,7 +270,10 @@
             v-model="historyText"
             label="本次更新摘要"
             :counter="20"
-            :rules="[v => !!v || '必须填写摘要', v => (v && v.length <= 20) || '摘要不能超过20个字']"
+            :rules="[
+              (v) => !!v || '必须填写摘要',
+              (v) => (v && v.length <= 20) || '摘要不能超过20个字',
+            ]"
             maxlength="20"
             variant="outlined"
             density="compact"
@@ -452,7 +455,7 @@ const calculateDiff = (originalCards, currentCards) => {
   const diff = []
   const allCardIds = new Set([...Object.keys(originalCards), ...Object.keys(currentCards)])
 
-  allCardIds.forEach(cardId => {
+  allCardIds.forEach((cardId) => {
     const originalCard = originalCards[cardId]
     const currentCard = currentCards[cardId]
 
@@ -476,13 +479,15 @@ const calculateDiff = (originalCards, currentCards) => {
   return diff
 }
 
+const userStatusForUpdate = ref(null)
+
 const promptForHistoryAndUpdate = async () => {
-  const userStatus = await authStore.getUserStatus()
-  if (userStatus && userStatus.role !== 0) {
+  userStatusForUpdate.value = await authStore.getUserStatus()
+  if (userStatusForUpdate.value && userStatusForUpdate.value.role !== 0) {
     historyText.value = ''
     isHistoryDialogOpen.value = true
   } else {
-    await handleUpdateDeck()
+    await handleUpdateDeck() // For users with role 0, proceed without history text
   }
 }
 
@@ -503,16 +508,23 @@ const handleUpdateDeck = async (historyText = '') => {
   uiStore.setLoading(true)
 
   try {
-    const diff = calculateDiff(deckStore.originalCardsInDeck, deckStore.cardsInDeck)
-    const newHistoryEntry = {
-      time: Date.now(),
-      text: historyText,
-      diff: diff,
-    }
+    let updatedHistory = toRaw(deckStore.deckHistory) || []
+    const role = userStatusForUpdate.value?.role
 
-    const updatedHistory = [newHistoryEntry, ...toRaw(deckStore.deckHistory)]
-    if (updatedHistory.length > 10) {
-      updatedHistory.pop()
+    // Only users with role !== 0 can add a new history entry
+    if (role !== 0) {
+      const diff = calculateDiff(deckStore.originalCardsInDeck, deckStore.cardsInDeck)
+      if (diff.length > 0) {
+        const newHistoryEntry = {
+          time: Date.now(),
+          text: historyText,
+          diff: diff,
+        }
+        updatedHistory = [newHistoryEntry, ...updatedHistory]
+        if (updatedHistory.length > 10) {
+          updatedHistory.pop()
+        }
+      }
     }
 
     const deckData = {
