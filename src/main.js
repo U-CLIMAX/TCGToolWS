@@ -7,7 +7,6 @@ import router from './router'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import { piniaVersioningPlugin } from '@/plugins/pinia-versioning.js'
 import { useUIStore } from './stores/ui'
-import { useAuthStore } from './stores/auth'
 import { registerSW } from 'virtual:pwa-register'
 
 import '@/assets/styles/main.css'
@@ -44,10 +43,6 @@ const bootstrap = async () => {
   pinia.use(piniaPluginPersistedstate)
 
   app.use(pinia)
-
-  // 在 App 初始化時檢查一次 Token 狀態
-  const authStore = useAuthStore()
-  await authStore.getUserStatus()
 
   const uiStore = useUIStore()
 
