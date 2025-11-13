@@ -153,7 +153,7 @@ import { useSnackbar } from '@/composables/useSnackbar'
 import { usePerformanceManager } from '@/composables/usePerformanceManager'
 import AuthDialog from '@/components/ui/AuthDialog.vue'
 import SettingsModal from '@/components/ui/SettingsModal.vue'
-import UserProfileModal from '@/components/UserProfileModal.vue'
+import UserProfileModal from '@/components/ui/UserProfileModal.vue'
 import HomeBackground from '@/components/common/HomeBackground.vue'
 
 import titleDarkImg from '@/assets/ui/title-dark.webp'
