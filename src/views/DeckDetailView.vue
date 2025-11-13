@@ -82,7 +82,7 @@
             <div class="header-center d-flex align-center">
               <div
                 v-if="isViewingHistory && viewingHistoryIndex !== null"
-                class="d-flex align-center justify-center flex-grow-1"
+                class="d-flex align-center justify-center flex-grow-1 text-truncate"
               >
                 <h1
                   class="text-h6 text-sm-h5 text-truncate text-warning"
@@ -90,7 +90,7 @@
                 >
                   检视变更: {{ history[viewingHistoryIndex - 1].text }}
                 </h1>
-                <v-btn small color="warning" variant="text" @click="exitHistoryView" class="ml-2"
+                <v-btn small color="warning" variant="tonal" @click="exitHistoryView" class="ml-2"
                   >退出</v-btn
                 >
               </div>
