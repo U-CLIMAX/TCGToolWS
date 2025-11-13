@@ -213,6 +213,10 @@ export const useAuthStore = defineStore('auth', () => {
       return null // 未登入
     }
 
+    // 定義 Token 必須包含的鍵，用於結構驗證
+    const REQUIRED_TOKEN_KEYS = ['sub', 'exp', 'role', 'p_exp']
+    const hasAllKeys = (decoded) => REQUIRED_TOKEN_KEYS.every((key) => key in decoded)
+
     let decodedToken
     try {
       decodedToken = jwtDecode(token.value)
@@ -222,11 +226,26 @@ export const useAuthStore = defineStore('auth', () => {
       return null
     }
 
-    // 檢查 Token 結構
-    if (decodedToken.role === undefined || decodedToken.p_exp === undefined) {
-      console.error('Token payload is missing role/p_exp. Logging out.')
-      logout()
-      return null
+    // 如果結構不完整，嘗試刷新以獲取最新結構的 Token
+    if (!hasAllKeys(decodedToken)) {
+      console.log('Token structure is outdated. Refreshing from server...')
+      try {
+        await refreshUserToken()
+        // 重新解碼 *新* 的 Token
+        decodedToken = jwtDecode(token.value)
+
+        // 再次檢查，如果結構仍然不完整，避免無限刷新循環強制登出
+        if (!hasAllKeys(decodedToken)) {
+          console.error('Refreshed token still has invalid structure. Logging out.')
+          logout()
+          return null
+        }
+        console.log('Token refreshed and structure is now valid.')
+      } catch (e) {
+        // 刷新失敗（例如401），已在 refreshUserToken 中處理登出
+        console.error('Token refresh failed while updating structure:', e)
+        return null
+      }
     }
 
     const now = Math.floor(Date.now() / 1000)
@@ -255,7 +274,7 @@ export const useAuthStore = defineStore('auth', () => {
       }
     }
 
-    // 根據您的要求：如果時間已過期，回傳 null
+    // 如果 p_exp 存在但已過期，將其視為 null
     if (effectivePremiumTime && effectivePremiumTime < now) {
       effectivePremiumTime = null
     }
