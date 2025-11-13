@@ -484,7 +484,8 @@ const userStatusForUpdate = ref(null)
 const promptForHistoryAndUpdate = async () => {
   userStatusForUpdate.value = await authStore.getUserStatus()
   if (userStatusForUpdate.value && userStatusForUpdate.value.role !== 0) {
-    historyText.value = ''
+    const editCount = (deckStore.deckHistory || []).length + 1
+    historyText.value = `${deckName.value} #${editCount}`
     isHistoryDialogOpen.value = true
   } else {
     await handleUpdateDeck() // For users with role 0, proceed without history text
