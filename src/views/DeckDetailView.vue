@@ -86,6 +86,7 @@
               >
                 <h1
                   class="text-h6 text-sm-h5 text-truncate text-warning"
+                  v-tooltip:bottom="检视变更"
                   :title="history[viewingHistoryIndex - 1].text"
                 >
                   检视变更: {{ history[viewingHistoryIndex - 1].text }}
