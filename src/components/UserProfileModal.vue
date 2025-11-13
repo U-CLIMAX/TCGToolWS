@@ -47,8 +47,8 @@
         </v-list>
       </v-card-text>
       <v-card-actions>
-        <v-spacer></v-spacer>
         <v-btn text="關閉" @click="isDialogOpen = false"></v-btn>
+        <v-btn text="登出" @click="handleLogout" color="red-lighten-1"></v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -66,7 +66,12 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue', 'logout'])
+
+const handleLogout = () => {
+  emit('update:modelValue', false) // Close the modal
+  emit('logout')
+}
 
 const authStore = useAuthStore()
 const { triggerSnackbar } = useSnackbar()
