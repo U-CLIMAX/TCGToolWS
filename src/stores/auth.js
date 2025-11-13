@@ -226,53 +226,58 @@ export const useAuthStore = defineStore('auth', () => {
       return null
     }
 
-    // 如果結構不完整，嘗試刷新以獲取最新結構的 Token
-    if (!hasAllKeys(decodedToken)) {
-      console.log('Token structure is outdated. Refreshing from server...')
+    const now = Math.floor(Date.now() / 1000)
+
+    // 立即過期檢查
+    if (decodedToken.exp < now) {
+      console.log('Token is expired. Logging out.')
+      logout()
+      return null
+    }
+
+    // 檢查資料是否過時 (結構不符或 Premium 過期)
+    const isTokenStale = (token) => {
+      return !hasAllKeys(token) || (token.role === 1 && token.p_exp && token.p_exp < now)
+    }
+
+    if (isTokenStale(decodedToken)) {
+      console.log(
+        'Token is stale (outdated structure or expired premium). Refreshing from server...'
+      )
       try {
         await refreshUserToken()
-        // 重新解碼 *新* 的 Token
-        decodedToken = jwtDecode(token.value)
+        decodedToken = jwtDecode(token.value) // 刷新後重新解碼
 
-        // 再次檢查，如果結構仍然不完整，避免無限刷新循環強制登出
-        if (!hasAllKeys(decodedToken)) {
-          console.error('Refreshed token still has invalid structure. Logging out.')
+        // 再次檢查，如果資料仍然過時，避免無限刷新循環強制登出
+        if (isTokenStale(decodedToken)) {
+          console.error('Refreshed token is already expired. Logging out.')
           logout()
           return null
         }
-        console.log('Token refreshed and structure is now valid.')
+        console.log('Token refreshed and data is now valid.')
       } catch (e) {
         // 刷新失敗（例如401），已在 refreshUserToken 中處理登出
-        console.error('Token refresh failed while updating structure:', e)
+        console.error('Token refresh failed while updating data:', e)
         return null
+      }
+    } else {
+      // 如果資料沒問題，再檢查是否需要主動延長 Session
+      const oneDayInSeconds = 24 * 60 * 60
+      if (decodedToken.exp < now + oneDayInSeconds) {
+        console.log('Token is nearing expiration. Refreshing session...')
+        try {
+          await refreshSession()
+          decodedToken = jwtDecode(token.value) // 刷新後重新解碼
+        } catch (e) {
+          // refreshSession 內部已處理登出
+          console.error('Proactive session refresh failed:', e)
+          return null
+        }
       }
     }
 
-    const now = Math.floor(Date.now() / 1000)
     let effectiveRole = decodedToken.role
     let effectivePremiumTime = decodedToken.p_exp
-
-    // 核心邏輯：如果 Token 宣稱是 Premium 但已過期
-    if (
-      decodedToken.role === 1 && //
-      decodedToken.p_exp &&
-      decodedToken.p_exp < now
-    ) {
-      console.log('Token is stale (Premium Expired). Refreshing from server...')
-      try {
-        // 觸發 API 刷新，獲取一個 role: 0 的新 Token
-        await refreshUserToken()
-
-        // 重新解碼 *新* 的 Token
-        decodedToken = jwtDecode(token.value)
-        effectiveRole = decodedToken.role // 這現在應該是 0
-        effectivePremiumTime = decodedToken.p_exp
-      } catch (e) {
-        // 刷新失敗（例如401），已在 refreshUserToken 中處理登出
-        console.error('Token refresh failed:', e)
-        return null
-      }
-    }
 
     // 如果 p_exp 存在但已過期，將其視為 null
     if (effectivePremiumTime && effectivePremiumTime < now) {
