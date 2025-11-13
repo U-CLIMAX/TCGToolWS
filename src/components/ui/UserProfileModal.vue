@@ -1,18 +1,6 @@
 <template>
   <v-dialog v-model="isDialogOpen" max-width="400">
-    <v-card>
-      <v-card-title class="d-flex align-center">
-        <v-icon>mdi-account</v-icon>
-        账号资料
-        <v-spacer></v-spacer>
-        <v-btn
-          text="刷新"
-          @click="handleRefreshToken"
-          :loading="isRefreshing"
-          color="primary"
-          variant="text"
-        ></v-btn>
-      </v-card-title>
+    <v-card prepend-icon="mdi-account" title="账号资料">
       <v-card-text>
         <div v-if="!userData" class="text-center">
           <v-progress-circular indeterminate color="primary"></v-progress-circular>
@@ -39,8 +27,8 @@
             </template>
           </v-list-item>
           <v-list-item title="角色">
-             <template #subtitle>
-              <div class="d-flex align-center" style="min-height: 32px;">
+            <template #subtitle>
+              <div class="d-flex align-center" style="min-height: 32px">
                 <span>{{ userRoleText }}</span>
               </div>
             </template>
@@ -82,7 +70,6 @@ const handleLogout = () => {
 const authStore = useAuthStore()
 const { triggerSnackbar } = useSnackbar()
 const userData = ref(null)
-const isRefreshing = ref(false)
 
 const isDialogOpen = computed({
   get: () => props.modelValue,
@@ -111,20 +98,6 @@ const formattedExpireTime = computed(() => {
     minute: '2-digit',
   })
 })
-
-const handleRefreshToken = async () => {
-  isRefreshing.value = true
-  try {
-    await authStore.refreshUserToken()
-    userData.value = await authStore.getUserStatus()
-    triggerSnackbar('已成功刷新！')
-  } catch (error) {
-    console.error('刷新失敗:', error)
-    triggerSnackbar('刷新失败，请稍后再试。', 'error')
-  } finally {
-    isRefreshing.value = false
-  }
-}
 
 const copyUserId = async (id) => {
   try {
