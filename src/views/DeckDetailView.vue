@@ -348,11 +348,17 @@ const { triggerSnackbar } = useSnackbar()
 const uiStore = useUIStore()
 const deckStore = useDeckStore()
 const authStore = useAuthStore()
+const isRegularUser = ref(true)
 
-const isRegularUser = computed(async () => {
-  const userStatus = await authStore.getUserStatus()
-  return userStatus && userStatus.role === 0
-})
+const checkUserStatus = async () => {
+  try {
+    const userStatus = await authStore.getUserStatus()
+    isRegularUser.value = userStatus && userStatus.role === 0
+  } catch (error) {
+    console.error('Failed to fetch user status:', error)
+    isRegularUser.value = true
+  }
+}
 
 const deckKey = route.params.key
 const isLocalDeck = computed(() => deckKey === 'local')
@@ -472,6 +478,8 @@ const updateEditedCards = async () => {
 onMounted(async () => {
   uiStore.setLoading(true)
   isDataReady.value = false
+
+  await checkUserStatus()
 
   try {
     let initialCards = {}
