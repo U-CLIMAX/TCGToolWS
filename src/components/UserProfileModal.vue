@@ -38,7 +38,13 @@
               </div>
             </template>
           </v-list-item>
-          <v-list-item title="角色" :subtitle="userRoleText"></v-list-item>
+          <v-list-item title="角色">
+             <template #subtitle>
+              <div class="d-flex align-center" style="min-height: 32px;">
+                <span>{{ userRoleText }}</span>
+              </div>
+            </template>
+          </v-list-item>
           <v-list-item
             v-if="userData.role === 1 && userData.premium_expire_time"
             title="Premium 到期日"
