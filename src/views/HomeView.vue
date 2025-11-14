@@ -152,6 +152,14 @@
                     编辑卡组时可超过50张卡片限制
                   </v-list-item-subtitle>
                 </v-list-item>
+                <v-list-item class="px-0 mb-3">
+                  <template v-slot:prepend>
+                    <v-icon color="green-accent-2" size="20">mdi-check-circle</v-icon>
+                  </template>
+                  <v-list-item-title class="text-body-1 text-white font-weight-medium">
+                    更多功能开发中...
+                  </v-list-item-title>
+                </v-list-item>
               </v-list>
             </v-col>
             <v-col
@@ -192,7 +200,7 @@
           class="glass-block support-right-block"
           :class="{ 'has-blur': isHardwareAccelerated === true }"
         >
-          <h3>问题反馈</h3>
+          <h3>问题反馈邮箱</h3>
           <div class="feedback-email">
             <a href="mailto:issues@uclimax.cn">issues@uclimax.cn</a>
           </div>
