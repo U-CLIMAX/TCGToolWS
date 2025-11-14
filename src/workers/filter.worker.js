@@ -191,6 +191,9 @@ const CardFilterService = {
     }
 
     return results.filter((card) => {
+      const cardCost = card.cost === '-' ? 0 : Number(card.cost)
+      const cardPower = card.power === '-' ? 0 : Number(card.power)
+
       if (filters.selectedCardTypes.length > 0 && !filters.selectedCardTypes.includes(card.type))
         return false
       if (filters.selectedColors.length > 0 && !filters.selectedColors.includes(card.color))
@@ -205,9 +208,9 @@ const CardFilterService = {
       if (mappedLevels && !mappedLevels.has(toLevel(card.level))) return false
       if (filters.selectedRarities.length > 0 && !filters.selectedRarities.includes(card.rarity))
         return false
-      if (card.cost < filters.selectedCostRange[0] || card.cost > filters.selectedCostRange[1])
+      if (cardCost < filters.selectedCostRange[0] || cardCost > filters.selectedCostRange[1])
         return false
-      if (card.power < filters.selectedPowerRange[0] || card.power > filters.selectedPowerRange[1])
+      if (cardPower < filters.selectedPowerRange[0] || cardPower > filters.selectedPowerRange[1])
         return false
       return true
     })
