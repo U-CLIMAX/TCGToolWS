@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref, computed, watch } from 'vue'
+import { ref, computed } from 'vue'
 import router from '@/router'
 import { useDeckStore } from './deck'
 import { jwtDecode } from 'jwt-decode'
@@ -167,7 +167,7 @@ export const useAuthStore = defineStore('auth', () => {
 
       if (data.success && data.url) {
         // 成功，執行跳轉
-        window.open(data.url, '_blank', 'noopener,noreferrer')
+        window.open(data.url, '_blank')
       } else {
         throw new Error('無法獲取支付 URL。')
       }
