@@ -387,7 +387,7 @@
 </template>
 
 <script setup>
-import { computed, ref, onUnmounted, onMounted, nextTick } from 'vue'
+import { computed, ref, onUnmounted, onMounted, nextTick, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useDeckEncoder } from '@/composables/useDeckEncoder'
 import { useDisplay } from 'vuetify'
