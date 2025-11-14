@@ -599,7 +599,18 @@ const getGroupName = (groupName) => {
 }
 
 // UI State
-const activeMode = ref('none') // 'add', 'remove', 'none'
+const _activeMode = ref('none')
+const activeMode = computed({
+  get() {
+    if (deckStore.totalCardCount >= 50 && userRole.value === 0 && _activeMode.value === 'add') {
+      _activeMode.value = 'none'
+    }
+    return _activeMode.value
+  },
+  set(val) {
+    _activeMode.value = val
+  },
+})
 const isModalVisible = ref(false)
 
 // Card Data for Modal
