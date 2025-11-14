@@ -95,58 +95,91 @@ try {
 // 處理卡片連結（效果文字中提到的其他卡片）
 console.log('     - Processing card links...')
 
-allCards.forEach((card) => (card.link = []))
+/**
+ * 卡片連結處理函式
+ * @param {Array<Object>} cards - 所有的卡片物件陣列
+ * @returns {Array<Object>} - 處理過連結的卡片陣列
+ */
+const processCardLinks = (cards) => {
+  cards.forEach((card) => (card.link = []))
 
-const nameToCardBaseIds = new Map()
-const baseIdToCardsMap = new Map()
-
-for (const card of allCards) {
-  if (!nameToCardBaseIds.has(card.name)) {
-    nameToCardBaseIds.set(card.name, new Set())
+  // 建立卡片名稱 -> Set[baseId] 的映射
+  const nameToCardBaseIds = new Map()
+  for (const card of cards) {
+    if (!nameToCardBaseIds.has(card.name)) {
+      nameToCardBaseIds.set(card.name, new Set())
+    }
+    nameToCardBaseIds.get(card.name).add(card.baseId)
   }
-  nameToCardBaseIds.get(card.name).add(card.baseId)
 
-  if (!baseIdToCardsMap.has(card.baseId)) {
-    baseIdToCardsMap.set(card.baseId, [])
+  // 建立 baseId -> 代表卡片 的映射，用於減少效果文的掃描次數
+  const baseIdToRepCard = new Map()
+  for (const card of cards) {
+    if (!baseIdToRepCard.has(card.baseId)) {
+      baseIdToRepCard.set(card.baseId, card)
+    }
   }
-  baseIdToCardsMap.get(card.baseId).push(card)
-}
 
-const escapeRegex = (str) => {
-  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-}
+  const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const allNamesPattern = [...nameToCardBaseIds.keys()].map(escapeRegex).join('|')
+  const nameMatcherRegex = new RegExp(`「(${allNamesPattern})」`, 'g')
 
-const allNamesPattern = [...nameToCardBaseIds.keys()].map(escapeRegex).join('|')
-const nameMatcherRegex = new RegExp(`「(${allNamesPattern})」`, 'g')
+  // Stage 1: One-Way Link Detection (僅掃描唯一卡片)
+  const oneWayLinks = new Map()
+  for (const targetCard of baseIdToRepCard.values()) {
+    const effectText = targetCard.effect || ''
+    if (!effectText) continue
 
-for (const targetCard of allCards) {
-  const effectText = targetCard.effect || ''
-  if (!effectText) continue
+    const matches = effectText.matchAll(nameMatcherRegex)
+    const targetBaseId = targetCard.baseId
 
-  const matches = effectText.matchAll(nameMatcherRegex)
-
-  for (const match of matches) {
-    const foundName = match[1]
-    const sourceBaseIds = nameToCardBaseIds.get(foundName)
-
-    if (sourceBaseIds) {
-      for (const sourceBaseId of sourceBaseIds) {
-        if (!targetCard.link.includes(sourceBaseId)) {
-          targetCard.link.push(sourceBaseId)
+    for (const match of matches) {
+      const foundName = match[1]
+      const sourceBaseIds = nameToCardBaseIds.get(foundName)
+      if (sourceBaseIds) {
+        if (!oneWayLinks.has(targetBaseId)) {
+          oneWayLinks.set(targetBaseId, new Set())
         }
-        const sourceCardsToUpdate = baseIdToCardsMap.get(sourceBaseId)
-        if (sourceCardsToUpdate) {
-          for (const sourceCard of sourceCardsToUpdate) {
-            if (!sourceCard.link.includes(targetCard.baseId)) {
-              sourceCard.link.push(targetCard.baseId)
-            }
-          }
+        const targetLinks = oneWayLinks.get(targetBaseId)
+        for (const sourceBaseId of sourceBaseIds) {
+          targetLinks.add(sourceBaseId)
         }
       }
     }
   }
+
+  // Stage 2: Create Bidirectional Links (在小型的 Map 上操作)
+  const bidirectionalLinks = new Map()
+  for (const [targetId, sourceIds] of oneWayLinks.entries()) {
+    for (const sourceId of sourceIds) {
+      // Add forward link
+      if (!bidirectionalLinks.has(targetId)) {
+        bidirectionalLinks.set(targetId, new Set())
+      }
+      bidirectionalLinks.get(targetId).add(sourceId)
+      // Add reverse link
+      if (!bidirectionalLinks.has(sourceId)) {
+        bidirectionalLinks.set(sourceId, new Set())
+      }
+      bidirectionalLinks.get(sourceId).add(targetId)
+    }
+  }
+
+  // Stage 3: Apply Links to All Cards (一次性賦值)
+  for (const card of cards) {
+    const links = bidirectionalLinks.get(card.baseId)
+    if (links) {
+      card.link = [...links]
+    }
+  }
+
+  return cards
 }
 
+// --- Processing ---
+processCardLinks(allCards)
+
+// Final Step: Convert baseIds in links to full card IDs
 const baseIdToFullIdsMap = new Map()
 for (const card of allCards) {
   if (!baseIdToFullIdsMap.has(card.baseId)) {

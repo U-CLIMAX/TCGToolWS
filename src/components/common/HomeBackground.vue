@@ -1,7 +1,11 @@
 <template>
   <div class="home-background">
     <div class="solid-background-layer"></div>
-    <div id="lottie-animation" class="lottie-animation-layer"></div>
+    <div
+      v-show="isHardwareAccelerated === true"
+      id="lottie-animation"
+      class="lottie-animation-layer"
+    ></div>
     <div class="glass-layer" :class="{ 'has-blur': isHardwareAccelerated === true }"></div>
     <div class="texture-layer"></div>
   </div>

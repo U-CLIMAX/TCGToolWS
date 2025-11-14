@@ -57,7 +57,7 @@
           ></v-divider>
         </template>
 
-        <v-tooltip text="设定" location="bottom">
+        <v-tooltip text="设定" location="bottom" :disabled="isTouch ? true : false">
           <template v-slot:activator="{ props }">
             <v-btn v-bind="props" @click="isSettingsModalOpen = true" icon="mdi-cog"></v-btn>
           </template>
@@ -148,6 +148,7 @@ import { ref, watch, computed } from 'vue'
 import { useTheme, useDisplay } from 'vuetify'
 import { useRoute, useRouter } from 'vue-router'
 import { useUIStore } from '@/stores/ui'
+import { useDevice } from '@/composables/useDevice'
 import { useAuthStore } from '@/stores/auth'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { usePerformanceManager } from '@/composables/usePerformanceManager'
@@ -168,6 +169,7 @@ const authStore = useAuthStore()
 const authDialog = ref(null)
 const { show, text, color, triggerSnackbar } = useSnackbar()
 const route = useRoute()
+const { isTouch } = useDevice()
 const isSettingsModalOpen = ref(false)
 const isUserProfileModalOpen = ref(false)
 const isHomeRoute = computed(() => route.name === 'Home')

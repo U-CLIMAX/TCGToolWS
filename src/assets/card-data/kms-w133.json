@@ -1571,10 +1571,6 @@
       {
         "id": "KMS/W133-065S",
         "rarity": "SR"
-      },
-      {
-        "id": "KMS/W133-065SP",
-        "rarity": "SP"
       }
     ]
   },
@@ -1598,6 +1594,10 @@
       {
         "id": "KMS/W133-066S",
         "rarity": "SR"
+      },
+      {
+        "id": "KMS/W133-066SP",
+        "rarity": "SP"
       }
     ]
   },
