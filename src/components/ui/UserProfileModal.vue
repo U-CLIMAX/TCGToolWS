@@ -48,8 +48,13 @@
           <v-list-item
             v-if="userData.role === 1 && userData.premium_expire_time"
             title="Premium 到期日"
-            :subtitle="formattedExpireTime"
-          ></v-list-item>
+          >
+            <template #subtitle>
+              <div class="d-flex align-center" style="min-height: 32px">
+                <span>{{ formattedExpireTime }}</span>
+              </div>
+            </template>
+          </v-list-item>
         </v-list>
       </v-card-text>
       <v-card-actions>
