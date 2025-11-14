@@ -25,7 +25,7 @@
           >
           </v-btn>
           <h2 class="text-h6">当前卡组</h2>
-          <v-chip pill size="small">
+          <v-chip pill size="small" :color="deckStore.totalCardCount > 50 ? 'warning' : undefined">
             <v-icon start icon="mdi-cards-diamond-outline"></v-icon>
             {{ deckStore.totalCardCount }} / 50
           </v-chip>
@@ -48,7 +48,7 @@
           variant="text"
           color="primary"
           density="compact"
-          :disabled="deckStore.totalCardCount === 0"
+          :disabled="deckStore.totalCardCount === 0 || deckStore.totalCardCount > 50"
           @click="openSaveDialog"
         >
         </v-btn>
@@ -71,7 +71,12 @@
             <v-btn value="none" class="flex-1-1" style="min-width: 0">
               <v-icon icon="mdi-cursor-default-click-outline"></v-icon>
             </v-btn>
-            <v-btn value="add" class="flex-1-1" style="min-width: 0">
+            <v-btn
+              value="add"
+              class="flex-1-1"
+              style="min-width: 0"
+              :disabled="deckStore.totalCardCount >= 50 && userRole === 0"
+            >
               <v-icon icon="mdi-plus"></v-icon>
             </v-btn>
           </v-btn-toggle>
@@ -307,7 +312,7 @@
 </template>
 
 <script setup>
-import { ref, computed, toRaw } from 'vue'
+import { ref, computed, toRaw, onMounted, watch } from 'vue'
 import { useDeckStore } from '@/stores/deck'
 import { useCardImage } from '@/composables/useCardImage'
 import { fetchCardByIdAndPrefix, fetchCardsByBaseIdAndPrefix } from '@/utils/card'
@@ -347,6 +352,28 @@ const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 // Loading State
 const authStore = useAuthStore()
+const userRole = ref(0)
+
+onMounted(async () => {
+  const status = await authStore.getUserStatus()
+  if (status) {
+    userRole.value = status.role
+  }
+})
+
+watch(
+  () => authStore.isAuthenticated,
+  async (newVal) => {
+    if (newVal) {
+      const status = await authStore.getUserStatus()
+      if (status) {
+        userRole.value = status.role
+      }
+    } else {
+      userRole.value = 0 // Reset role if not authenticated
+    }
+  }
+)
 
 // Auth Alert Dialog State
 const isAuthAlertOpen = ref(false)

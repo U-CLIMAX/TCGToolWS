@@ -16,7 +16,6 @@ export const useDeckStore = defineStore(
     const deckHistory = ref([])
     const originalCardsInDeck = ref({})
     const savedDecks = ref({})
-    const maxDeckSize = 50
 
     const authStore = useAuthStore()
 
@@ -29,15 +28,8 @@ export const useDeckStore = defineStore(
       return Object.values(cardsInDeck.value).reduce((sum, item) => sum + item.quantity, 0)
     })
 
-    const isDeckFull = computed(() => totalCardCount.value >= maxDeckSize)
-
     // --- 同步操作 (Actions) ---
     const addCard = (card) => {
-      if (isDeckFull.value) {
-        console.warn('卡组已满，无法添加更多卡片。')
-        return false
-      }
-
       const cardId = card.id
       if (cardsInDeck.value[cardId]) {
         cardsInDeck.value[cardId].quantity++
@@ -263,7 +255,6 @@ export const useDeckStore = defineStore(
       addCard,
       removeCard,
       clearDeck,
-      isDeckFull,
       setEditingDeck,
       clearEditingDeck,
       updateDominantSeriesId,
