@@ -58,7 +58,7 @@
         </v-list>
       </v-card-text>
       <v-card-actions>
-        <v-btn text="關閉" @click="isDialogOpen = false"></v-btn>
+        <v-btn text="关闭" @click="isDialogOpen = false"></v-btn>
         <v-btn text="登出" @click="handleLogout" color="red-lighten-1"></v-btn>
       </v-card-actions>
     </v-card>
