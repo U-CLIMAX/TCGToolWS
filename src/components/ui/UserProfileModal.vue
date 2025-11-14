@@ -38,7 +38,7 @@
               </div>
             </template>
           </v-list-item>
-          <v-list-item title="角色">
+          <v-list-item title="帐号身份">
             <template #subtitle>
               <div class="d-flex align-center" style="min-height: 32px">
                 <span>{{ userRoleText }}</span>
