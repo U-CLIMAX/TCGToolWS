@@ -63,7 +63,7 @@
           </template>
         </v-tooltip>
 
-        <v-tooltip v-if="authStore.isAuthenticated" text="账号资料" location="bottom">
+        <v-tooltip v-if="authStore.isAuthenticated" text="账号资料" location="bottom" :disabled="isTouch">
           <template v-slot:activator="{ props }">
             <v-btn
               v-bind="props"
