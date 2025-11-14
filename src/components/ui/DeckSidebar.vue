@@ -480,27 +480,34 @@ const calculateDiff = (originalCards, currentCards) => {
 }
 
 const userStatusForUpdate = ref(null)
+const diffForUpdate = ref(null)
 
 const promptForHistoryAndUpdate = async () => {
   userStatusForUpdate.value = await authStore.getUserStatus()
-  if (userStatusForUpdate.value && userStatusForUpdate.value.role !== 0) {
+  const diff = calculateDiff(deckStore.originalCardsInDeck, deckStore.cardsInDeck)
+  diffForUpdate.value = diff
+
+  // Only prompt for history if there are actual card changes and user has the right role
+  if (diff.length > 0 && userStatusForUpdate.value && userStatusForUpdate.value.role !== 0) {
     const editCount = (deckStore.deckHistory || []).length + 1
     historyText.value = `${deckName.value} #${editCount}`
     isHistoryDialogOpen.value = true
   } else {
-    await handleUpdateDeck() // For users with role 0, proceed without history text
+    // If no diff or user is role 0, update directly
+    await handleUpdateDeck('', diff)
   }
 }
 
 const handleUpdateDeckWithHistory = async () => {
   const { valid } = await historyForm.value.validate()
   if (valid) {
-    await handleUpdateDeck(historyText.value)
+    // Use the stored diff instead of recalculating
+    await handleUpdateDeck(historyText.value, toRaw(diffForUpdate.value))
     isHistoryDialogOpen.value = false
   }
 }
 
-const handleUpdateDeck = async (historyText = '') => {
+const handleUpdateDeck = async (historyText = '', diff = []) => {
   if (!deckStore.editingDeckKey) {
     triggerSnackbar('缺少卡组标识，无法更新', 'error')
     return
@@ -513,18 +520,15 @@ const handleUpdateDeck = async (historyText = '') => {
     const role = userStatusForUpdate.value?.role
 
     // Only users with role !== 0 can add a new history entry
-    if (role !== 0) {
-      const diff = calculateDiff(deckStore.originalCardsInDeck, deckStore.cardsInDeck)
-      if (diff.length > 0) {
-        const newHistoryEntry = {
-          time: Date.now(),
-          text: historyText,
-          diff: diff,
-        }
-        updatedHistory = [newHistoryEntry, ...updatedHistory]
-        if (updatedHistory.length > 10) {
-          updatedHistory.pop()
-        }
+    if (role !== 0 && diff.length > 0) {
+      const newHistoryEntry = {
+        time: Date.now(),
+        text: historyText,
+        diff: diff,
+      }
+      updatedHistory = [newHistoryEntry, ...updatedHistory]
+      if (updatedHistory.length > 10) {
+        updatedHistory.pop()
       }
     }
 
