@@ -1,7 +1,7 @@
 /**
  * 輔助函數：將 Base64 字符串解碼為 ArrayBuffer
  */
-function base64ToArrayBuffer(b64) {
+const base64ToArrayBuffer = (b64) => {
   const binaryStr = atob(b64)
   const len = binaryStr.length
   const bytes = new Uint8Array(len)
@@ -14,7 +14,7 @@ function base64ToArrayBuffer(b64) {
 /**
  * 輔助函數：導入愛發電的公鑰
  */
-async function importAfdianPublicKey(pemKey) {
+const importAfdianPublicKey = async (pemKey) => {
   const pemHeader = '-----BEGIN PUBLIC KEY-----'
   const pemFooter = '-----END PUBLIC KEY-----'
   const pemContents = pemKey.replace(pemHeader, '').replace(pemFooter, '').replace(/\s/g, '')
@@ -40,7 +40,7 @@ async function importAfdianPublicKey(pemKey) {
  * @param {string} sign - 來自 payload 的 'sign' 字段
  * @returns {Promise<boolean>} - 簽名是否有效
  */
-export async function verifyAfdianSignature(publicKeyPem, payload, sign) {
+export const verifyAfdianSignature = async (publicKeyPem, payload, sign) => {
   if (!publicKeyPem) {
     console.error('AFDIAN_PUBLIC_KEY is not set in environment variables.')
     return false

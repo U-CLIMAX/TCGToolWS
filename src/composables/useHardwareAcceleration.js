@@ -5,7 +5,7 @@ import { getGPUTier } from 'detect-gpu'
 const isHardwareAccelerated = ref(null) // null: unknown, true: yes, false: no
 let hasChecked = false
 
-export function useHardwareAcceleration() {
+export const useHardwareAcceleration = () => {
   const check = async () => {
     // Make the check function async
     if (hasChecked || typeof window === 'undefined') {

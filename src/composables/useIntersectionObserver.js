@@ -1,6 +1,6 @@
 import { onUnmounted } from 'vue'
 
-export function useIntersectionObserver(target, onIntersect, options = { threshold: 0.1 }) {
+export const useIntersectionObserver = (target, onIntersect, options = { threshold: 0.1 }) => {
   let observer
 
   const stop = () => {

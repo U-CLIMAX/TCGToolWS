@@ -14,7 +14,7 @@ import 'vuetify/styles'
 
 const bootstrap = async () => {
   // 避免 Safari 的 bfcache 導致無法獲取最新的 index.html
-  window.addEventListener('pageshow', function (event) {
+  window.addEventListener('pageshow', (event) => {
     if (event.persisted) {
       window.location.reload()
     }
