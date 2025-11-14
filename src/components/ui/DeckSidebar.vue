@@ -312,7 +312,7 @@
 </template>
 
 <script setup>
-import { ref, computed, toRaw, onMounted, watch } from 'vue'
+import { ref, computed, toRaw, onMounted } from 'vue'
 import { useDeckStore } from '@/stores/deck'
 import { useCardImage } from '@/composables/useCardImage'
 import { fetchCardByIdAndPrefix, fetchCardsByBaseIdAndPrefix } from '@/utils/card'
@@ -326,6 +326,7 @@ import { useSnackbar } from '@/composables/useSnackbar'
 import { useUIStore } from '@/stores/ui'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import collator from '@/utils/collator.js'
+import { getUserRole } from '@/composables/useUserRole'
 
 defineProps({
   headerOffsetHeight: {
@@ -355,25 +356,8 @@ const authStore = useAuthStore()
 const userRole = ref(0)
 
 onMounted(async () => {
-  const status = await authStore.getUserStatus()
-  if (status) {
-    userRole.value = status.role
-  }
+  userRole.value = await getUserRole()
 })
-
-watch(
-  () => authStore.isAuthenticated,
-  async (newVal) => {
-    if (newVal) {
-      const status = await authStore.getUserStatus()
-      if (status) {
-        userRole.value = status.role
-      }
-    } else {
-      userRole.value = 0 // Reset role if not authenticated
-    }
-  }
-)
 
 // Auth Alert Dialog State
 const isAuthAlertOpen = ref(false)

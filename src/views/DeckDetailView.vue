@@ -56,7 +56,7 @@
                 <v-tooltip text="卡组历史" location="bottom">
                   <template v-slot:activator="{ props }">
                     <v-btn
-                      v-if="!isRegularUser && !isLocalDeck"
+                      v-if="userRole !== 0 && !isLocalDeck"
                       v-bind="props"
                       :size="resize"
                       icon="mdi-history"
@@ -237,7 +237,7 @@
           </template>
           <v-list-item-title>编辑卡组</v-list-item-title>
         </v-list-item>
-        <v-list-item v-if="!isRegularUser && !isLocalDeck" @click="handleHistoryClick">
+        <v-list-item v-if="userRole !== 0 && !isLocalDeck" @click="handleHistoryClick">
           <template #prepend>
             <v-icon>mdi-history</v-icon>
           </template>
@@ -387,7 +387,7 @@
 </template>
 
 <script setup>
-import { computed, ref, onUnmounted, onMounted, watch, nextTick } from 'vue'
+import { computed, ref, onUnmounted, onMounted, nextTick } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useDeckEncoder } from '@/composables/useDeckEncoder'
 import { useDisplay } from 'vuetify'
@@ -404,7 +404,7 @@ import { convertDeckToPDF } from '@/utils/domToPDF'
 import DeckShareImage from '@/components/deck/DeckShareImage.vue'
 import DeckCardList from '@/components/deck/DeckCardList.vue'
 import DeckExportDialog from '@/components/deck/DeckExportDialog.vue'
-import { useAuthStore } from '@/stores/auth'
+import { getUserRole } from '@/composables/useUserRole'
 
 const { smAndUp } = useDisplay()
 const resize = computed(() => {
@@ -416,18 +416,7 @@ const { decodeDeck } = useDeckEncoder()
 const { triggerSnackbar } = useSnackbar()
 const uiStore = useUIStore()
 const deckStore = useDeckStore()
-const authStore = useAuthStore()
-const isRegularUser = ref(true)
-
-const checkUserStatus = async () => {
-  try {
-    const userStatus = await authStore.getUserStatus()
-    isRegularUser.value = userStatus && userStatus.role === 0
-  } catch (error) {
-    console.error('Failed to fetch user status:', error)
-    isRegularUser.value = true
-  }
-}
+const userRole = ref(0)
 
 const deckKey = route.params.key
 const isLocalDeck = computed(() => deckKey === 'local')
@@ -550,7 +539,7 @@ onMounted(async () => {
   uiStore.setLoading(true)
   isDataReady.value = false
 
-  await checkUserStatus()
+  userRole.value = await getUserRole()
 
   try {
     let initialCards = {}

@@ -90,6 +90,7 @@ export const useAuthStore = defineStore('auth', () => {
     sessionStorage.removeItem('auth')
 
     deckStore.reset()
+    router.push({ name: 'Home' })
   }
 
   const refreshSession = async () => {
@@ -291,14 +292,7 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  watch(isAuthenticated, (isAuth, wasAuth) => {
-    if (wasAuth && !isAuth) {
-      const currentRoute = router.currentRoute.value
-      if (currentRoute.meta.requiresAuth) {
-        router.push({ name: 'Home' })
-      }
-    }
-  })
+
 
   return {
     token,

@@ -319,41 +319,23 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, watch } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { useUIStore } from '@/stores/ui'
 import { useIntersectionObserver } from '@/composables/useIntersectionObserver'
 import SplashAnimation from '@/components/common/SplashAnimation.vue'
 import ImageZoomViewer from '@/components/ui/ImageZoomViewer.vue'
 import { useHardwareAcceleration } from '@/composables/useHardwareAcceleration'
+import { getUserRole } from '@/composables/useUserRole'
 
 const { isHardwareAccelerated } = useHardwareAcceleration()
 const authStore = useAuthStore()
 
 const userRole = ref(0)
 
-// ---------開發測試用------------------
 onMounted(async () => {
-  const status = await authStore.getUserStatus()
-  if (status) {
-    userRole.value = status.role
-  }
+  userRole.value = await getUserRole()
 })
-
-watch(
-  () => authStore.isAuthenticated,
-  async (newVal) => {
-    if (newVal) {
-      const status = await authStore.getUserStatus()
-      if (status) {
-        userRole.value = status.role
-      }
-    } else {
-      userRole.value = 0 // Reset role if not authenticated
-    }
-  }
-)
-// ------------------------------------
 
 const uiStore = useUIStore()
 const isAuthAlertOpen = ref(false)
