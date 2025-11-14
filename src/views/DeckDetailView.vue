@@ -278,7 +278,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn text="取消" @click="isConfirmEditDialogVisible = false"></v-btn>
-          <v-btn color="primary" variant="flat" text="确认" @click="confirmAndEditDeck"></v-btn>
+          <v-btn color="primary" variant="flat" text="确定" @click="confirmAndEditDeck"></v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>

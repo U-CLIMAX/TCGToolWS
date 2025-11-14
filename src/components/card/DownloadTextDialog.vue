@@ -60,7 +60,7 @@
 
       <v-card-actions>
         <v-spacer />
-        <v-btn text="确认" color="primary" @click="confirmDownload" />
+        <v-btn text="确定" color="primary" @click="confirmDownload" />
       </v-card-actions>
     </v-card>
   </v-dialog>

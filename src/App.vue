@@ -126,11 +126,11 @@
     <UserProfileModal v-model="isUserProfileModalOpen" @logout="handleLogoutClick" />
 
     <v-dialog v-model="isLogoutDialogVisible" max-width="320" persistent>
-      <v-card title="确认登出" text="您确定要登出目前的帐号吗？">
+      <v-card title="确定登出" text="您确定要登出目前的帐号吗？">
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn text="取消" @click="isLogoutDialogVisible = false"></v-btn>
-          <v-btn color="primary" variant="flat" text="确认" @click="confirmLogout"></v-btn>
+          <v-btn color="primary" variant="flat" text="确定" @click="confirmLogout"></v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>

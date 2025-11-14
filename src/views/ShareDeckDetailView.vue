@@ -162,7 +162,7 @@
             variant="tonal"
             @click="handleSaveDeck"
             :disabled="!deckName.trim() || !selectedCoverCardId"
-            >确认
+            >确定
           </v-btn>
         </v-card-actions>
       </v-card>

@@ -64,7 +64,7 @@
               <v-text-field
                 v-if="!isLoginMode"
                 v-model="passwordConfirm"
-                label="确认密码"
+                label="确定密码"
                 type="password"
                 variant="outlined"
                 :readonly="loading"

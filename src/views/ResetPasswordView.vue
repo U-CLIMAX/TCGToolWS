@@ -34,7 +34,7 @@
                 ></v-text-field>
                 <v-text-field
                   v-model="passwordConfirm"
-                  label="确认新密码"
+                  label="确定新密码"
                   type="password"
                   variant="outlined"
                   :readonly="loading"
@@ -49,7 +49,7 @@
                   size="large"
                   :loading="loading"
                   :disabled="!isFormValid"
-                  >确认重置</v-btn
+                  >确定重置</v-btn
                 >
               </template>
             </v-form>

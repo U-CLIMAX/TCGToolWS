@@ -289,7 +289,7 @@
       <v-card-actions>
         <v-btn text @click="isHistoryDialogOpen = false">取消</v-btn>
         <v-spacer></v-spacer>
-        <v-btn color="primary" variant="tonal" @click="handleUpdateDeckWithHistory">确认更新</v-btn>
+        <v-btn color="primary" variant="tonal" @click="handleUpdateDeckWithHistory">确定更新</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -305,7 +305,7 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn text="取消" @click="isClearConfirmDialogOpen = false"></v-btn>
-        <v-btn color="primary" variant="flat" text="确认" @click="confirmClearAction"></v-btn>
+        <v-btn color="primary" variant="flat" text="确定" @click="confirmClearAction"></v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
