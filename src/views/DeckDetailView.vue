@@ -56,7 +56,7 @@
                 <v-tooltip text="卡组历史" location="bottom">
                   <template v-slot:activator="{ props }">
                     <v-btn
-                      v-if="!isRegularUser"
+                      v-if="!isRegularUser && !isLocalDeck"
                       v-bind="props"
                       :size="resize"
                       icon="mdi-history"
@@ -237,7 +237,7 @@
           </template>
           <v-list-item-title>编辑卡组</v-list-item-title>
         </v-list-item>
-        <v-list-item v-if="!isRegularUser" @click="handleHistoryClick">
+        <v-list-item v-if="!isRegularUser && !isLocalDeck" @click="handleHistoryClick">
           <template #prepend>
             <v-icon>mdi-history</v-icon>
           </template>
