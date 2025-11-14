@@ -32,7 +32,7 @@
           </div>
 
           <!-- Desktop Counter -->
-          <div class="counter-area d-none d-md-block">
+          <div class="counter-area d-none d-lg-block">
             <div class="counter-container">
               <div
                 v-for="(image, index) in images"
@@ -67,7 +67,7 @@
             </transition>
 
             <!-- Mobile Counter -->
-            <div class="counter-area d-block d-md-none">
+            <div class="counter-area d-block d-xl-none">
               <div class="counter-container">
                 <div
                   v-for="(image, index) in images"
@@ -1016,7 +1016,7 @@ onUnmounted(() => {
 }
 
 /* --- Responsive Adjustments --- */
-@media (max-width: 959.98px) {
+@media (max-width: 1280px) {
   .home-layout {
     grid-template-columns: 1fr; /* Stack columns */
     gap: 2rem;
