@@ -290,32 +290,96 @@
       @download-pdf="handleDownloadDeckPDF"
     />
 
-    <v-dialog v-model="isHistoryDialogVisible" max-width="600" scrollable>
-      <v-card>
-        <v-card-title>卡组历史纪录</v-card-title>
+    <v-dialog v-model="isHistoryDialogVisible" max-width="650" scrollable>
+      <v-card elevation="0" class="rounded-xl">
+        <!-- 头部 -->
+        <v-card-title class="px-6 py-5 d-flex align-center">
+          <v-icon icon="mdi-history" size="24" class="mr-3 text-primary"></v-icon>
+          <span class="text-h6">卡组历史纪录</span>
+          <v-spacer></v-spacer>
+          <v-btn
+            icon="mdi-close"
+            variant="text"
+            size="small"
+            @click="isHistoryDialogVisible = false"
+          ></v-btn>
+        </v-card-title>
+
         <v-divider></v-divider>
-        <v-card-text style="max-height: 60vh">
-          <v-list v-if="history.length > 0">
-            <v-list-item v-for="(item, index) in history" :key="item.time">
-              <v-list-item-title>{{ item.text }}</v-list-item-title>
-              <v-list-item-subtitle>{{
-                new Date(item.time).toLocaleString()
-              }}</v-list-item-subtitle>
+
+        <!-- 内容区域 -->
+        <v-card-text class="pa-0 overflow-y-auto themed-scrollbar" style="max-height: 65vh">
+          <v-list v-if="history.length > 0" class="py-2">
+            <v-list-item
+              v-for="(item, index) in history"
+              :key="item.time"
+              class="px-6 py-3 my-1"
+              rounded="lg"
+              elevation="0"
+            >
+              <template #prepend>
+                <v-icon icon="mdi-card-text" size="20" class="text-medium-emphasis mr-3"></v-icon>
+              </template>
+
+              <v-list-item-title
+                class="text-body-1 mb-2 cursor-pointer"
+                @click="showTextModal(item.text)"
+              >
+                {{ item.text }}
+              </v-list-item-title>
+
+              <v-list-item-subtitle class="text-caption">
+                {{
+                  new Date(item.time).toLocaleString('zh-CN', {
+                    month: 'short',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                  })
+                }}
+              </v-list-item-subtitle>
+
               <template #append>
-                <v-btn variant="tonal" size="small" @click="viewHistoryState(index + 1)"
-                  >检视</v-btn
+                <v-btn
+                  color="primary"
+                  variant="text"
+                  size="small"
+                  @click="viewHistoryState(index + 1)"
                 >
+                  检视
+                </v-btn>
               </template>
             </v-list-item>
           </v-list>
-          <div v-else class="text-center pa-4">
-            <p>没有历史纪录</p>
+
+          <!-- 空状态 -->
+          <div v-else class="text-center py-16">
+            <v-icon icon="mdi-history" size="64" class="text-disabled mb-4"></v-icon>
+            <p class="text-body-1 text-medium-emphasis">暂无历史纪录</p>
           </div>
         </v-card-text>
+
         <v-divider></v-divider>
+
+        <!-- 底部 -->
+        <v-card-actions class="px-6 py-4">
+          <span v-if="history.length > 0" class="text-caption text-medium-emphasis">
+            共 {{ history.length }} 条记录
+          </span>
+          <v-spacer></v-spacer>
+          <v-btn variant="text" @click="isHistoryDialogVisible = false"> 关闭 </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+    <v-dialog v-model="isTextModalVisible" max-width="500" class="overflow-y-auto themed-scrollbar">
+      <v-card>
+        <v-card-text>
+          {{ modalTextContent }}
+        </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn text @click="isHistoryDialogVisible = false">关闭</v-btn>
+          <v-btn color="primary" text @click="isTextModalVisible = false">关闭</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -371,6 +435,8 @@ const deck = ref(null)
 const cards = ref({})
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 const isConfirmEditDialogVisible = ref(false)
+const isTextModalVisible = ref(false)
+const modalTextContent = ref('')
 
 const isHistoryDialogVisible = ref(false)
 const viewingHistoryIndex = ref(null)
@@ -909,6 +975,11 @@ const exitHistoryView = () => {
 const handleHistoryClick = () => {
   isHistoryDialogVisible.value = true
   showMoreActionsBottomSheet.value = false
+}
+
+const showTextModal = (text) => {
+  modalTextContent.value = text
+  isTextModalVisible.value = true
 }
 </script>
 
