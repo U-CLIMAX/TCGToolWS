@@ -58,7 +58,10 @@ export async function verifyAfdianSignature(publicKeyPem, payload, sign) {
 
     // 驗證
     const isValid = await crypto.subtle.verify(
-      'RSASSA-PKCS1-v1_5',
+      {
+        name: 'RSASSA-PKCS1-v1_5',
+        hash: 'SHA-256',
+      },
       key,
       signatureBuffer,
       dataBuffer
