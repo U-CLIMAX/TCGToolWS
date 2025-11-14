@@ -38,7 +38,7 @@
                 variant="flat"
                 color="grey-darken-3"
                 class="disabled-button"
-                :disabled="deckStore.isDeckFull"
+                :disabled="deckStore.totalCardCount >= 50 && userRole === 0"
                 @click.stop="deckStore.addCard(card)"
               ></v-btn>
               <v-btn
@@ -76,7 +76,7 @@
               icon="mdi-plus"
               color="grey-darken-3"
               class="disabled-button"
-              :disabled="deckStore.isDeckFull"
+              :disabled="deckStore.totalCardCount >= 50 && userRole === 0"
               @click.stop="deckStore.addCard(card)"
               @mousedown.stop
               @touchstart.stop
@@ -144,11 +144,12 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, ref, onMounted, watch } from 'vue'
 import { useDisplay, useTheme } from 'vuetify'
 import { useCardImage } from '@/composables/useCardImage.js'
 import { useDeckStore } from '@/stores/deck'
 import { useUIStore } from '@/stores/ui'
+import { useAuthStore } from '@/stores/auth'
 import { useDevice } from '@/composables/useDevice'
 
 const props = defineProps({
@@ -160,9 +161,33 @@ const emit = defineEmits(['show-details'])
 
 const deckStore = useDeckStore()
 const uiStore = useUIStore()
+const authStore = useAuthStore()
 const { smAndDown, lgAndUp } = useDisplay()
 const { isTouch } = useDevice()
 const theme = useTheme()
+
+const userRole = ref(0)
+
+onMounted(async () => {
+  const status = await authStore.getUserStatus()
+  if (status) {
+    userRole.value = status.role
+  }
+})
+
+watch(
+  () => authStore.isAuthenticated,
+  async (newVal) => {
+    if (newVal) {
+      const status = await authStore.getUserStatus()
+      if (status) {
+        userRole.value = status.role
+      }
+    } else {
+      userRole.value = 0 // Reset role if not authenticated
+    }
+  }
+)
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 const isLightWithBg = computed(() => {

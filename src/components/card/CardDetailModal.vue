@@ -104,7 +104,7 @@
               variant="tonal"
               color="primary"
               @click="deckStore.addCard(card)"
-              :disabled="deckStore.isDeckFull"
+              :disabled="deckStore.totalCardCount >= 50 && userRole === 0"
             ></v-btn>
           </v-card-actions>
         </div>
@@ -198,7 +198,7 @@
 </template>
 
 <script setup>
-import { computed, ref, onUnmounted } from 'vue'
+import { computed, ref, onUnmounted, onMounted, watch } from 'vue'
 import { useDisplay } from 'vuetify'
 import LinkedCard from './LinkedCard.vue'
 import DownloadTextDialog from './DownloadTextDialog.vue'
@@ -210,6 +210,7 @@ import { useSnackbar } from '@/composables/useSnackbar'
 import { useUIStore } from '@/stores/ui'
 import { useDevice } from '@/composables/useDevice'
 import { formatEffectToHtml } from '@/utils/cardEffectFormatter'
+import { useAuthStore } from '@/stores/auth'
 
 const { triggerSnackbar } = useSnackbar()
 const { smAndUp } = useDisplay()
@@ -228,8 +229,32 @@ const props = defineProps({
   totalCards: { type: Number, default: 1 },
 })
 const deckStore = useDeckStore()
+const authStore = useAuthStore()
 const { isTouch } = useDevice()
 const isLightMode = computed(() => uiStore.theme === 'light')
+
+const userRole = ref(0)
+
+onMounted(async () => {
+  const status = await authStore.getUserStatus()
+  if (status) {
+    userRole.value = status.role
+  }
+})
+
+watch(
+  () => authStore.isAuthenticated,
+  async (newVal) => {
+    if (newVal) {
+      const status = await authStore.getUserStatus()
+      if (status) {
+        userRole.value = status.role
+      }
+    } else {
+      userRole.value = 0 // Reset role if not authenticated
+    }
+  }
+)
 
 const isDownloadTextDialogOpen = ref(false)
 

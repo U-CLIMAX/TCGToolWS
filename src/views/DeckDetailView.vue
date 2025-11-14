@@ -53,6 +53,18 @@
                     ></v-btn>
                   </template>
                 </v-tooltip>
+                <v-tooltip text="卡组历史" location="bottom">
+                  <template v-slot:activator="{ props }">
+                    <v-btn
+                      v-if="!isRegularUser"
+                      v-bind="props"
+                      :size="resize"
+                      icon="mdi-history"
+                      variant="text"
+                      @click="isHistoryDialogVisible = true"
+                    ></v-btn>
+                  </template>
+                </v-tooltip>
               </template>
               <template v-if="!smAndUp">
                 <v-btn
@@ -68,16 +80,37 @@
 
             <!-- 中間 -->
             <div class="header-center d-flex align-center">
-              <h1 v-if="deck" class="text-h6 text-sm-h5 text-truncate">
-                {{ deck.name }}
-              </h1>
-              <h1 v-else class="text-h6 text-sm-h5 text-truncate">N/A</h1>
+              <div
+                v-if="isViewingHistory && viewingHistoryIndex !== null"
+                class="d-flex align-center justify-center flex-grow-1 text-truncate"
+              >
+                <h1
+                  class="text-h6 text-sm-h5 text-truncate text-warning"
+                  v-tooltip:bottom="检视变更"
+                  :title="history[viewingHistoryIndex - 1].text"
+                >
+                  检视变更: {{ history[viewingHistoryIndex - 1].text }}
+                </h1>
+                <v-btn small color="warning" variant="tonal" @click="exitHistoryView" class="ml-2"
+                  >退出</v-btn
+                >
+              </div>
+              <template v-else>
+                <h1 v-if="deck" class="text-h6 text-sm-h5 text-truncate">
+                  {{ deck.name }}
+                </h1>
+                <h1 v-else class="text-h6 text-sm-h5 text-truncate">N/A</h1>
+              </template>
             </div>
 
             <!-- 右側 -->
             <div class="header-right mt-2">
               <template v-if="smAndUp">
-                <v-tooltip :text="showDifferences ? '隐藏差异' : '显示差异'" location="bottom">
+                <v-tooltip
+                  v-if="!isViewingHistory"
+                  :text="showDifferences ? '隐藏差异' : '显示差异'"
+                  location="bottom"
+                >
                   <template v-slot:activator="{ props }">
                     <v-btn
                       v-if="isEditing && deckStore.editingDeckKey"
@@ -188,7 +221,7 @@
           <v-list-item-title v-else>隐藏统计</v-list-item-title>
         </v-list-item>
         <v-list-item
-          v-if="isEditing && deckStore.editingDeckKey"
+          v-if="isEditing && deckStore.editingDeckKey && !isViewingHistory"
           @click="handleShowDifferencesClick"
         >
           <template #prepend>
@@ -203,6 +236,12 @@
             <v-icon>mdi-pencil</v-icon>
           </template>
           <v-list-item-title>编辑卡组</v-list-item-title>
+        </v-list-item>
+        <v-list-item v-if="!isRegularUser" @click="handleHistoryClick">
+          <template #prepend>
+            <v-icon>mdi-history</v-icon>
+          </template>
+          <v-list-item-title>卡组历史</v-list-item-title>
         </v-list-item>
         <v-list-item v-if="!isLocalDeck" @click="handleShareClick">
           <template #prepend>
@@ -250,6 +289,36 @@
       @download-image="handleDownloadDeckImage"
       @download-pdf="handleDownloadDeckPDF"
     />
+
+    <v-dialog v-model="isHistoryDialogVisible" max-width="600" scrollable>
+      <v-card>
+        <v-card-title>卡组历史纪录</v-card-title>
+        <v-divider></v-divider>
+        <v-card-text style="max-height: 60vh">
+          <v-list v-if="history.length > 0">
+            <v-list-item v-for="(item, index) in history" :key="item.time">
+              <v-list-item-title>{{ item.text }}</v-list-item-title>
+              <v-list-item-subtitle>{{
+                new Date(item.time).toLocaleString()
+              }}</v-list-item-subtitle>
+              <template #append>
+                <v-btn variant="tonal" size="small" @click="viewHistoryState(index + 1)"
+                  >检视</v-btn
+                >
+              </template>
+            </v-list-item>
+          </v-list>
+          <div v-else class="text-center pa-4">
+            <p>没有历史纪录</p>
+          </div>
+        </v-card-text>
+        <v-divider></v-divider>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn text @click="isHistoryDialogVisible = false">关闭</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -271,6 +340,7 @@ import { convertDeckToPDF } from '@/utils/domToPDF'
 import DeckShareImage from '@/components/deck/DeckShareImage.vue'
 import DeckCardList from '@/components/deck/DeckCardList.vue'
 import DeckExportDialog from '@/components/deck/DeckExportDialog.vue'
+import { useAuthStore } from '@/stores/auth'
 
 const { smAndUp } = useDisplay()
 const resize = computed(() => {
@@ -282,6 +352,18 @@ const { decodeDeck } = useDeckEncoder()
 const { triggerSnackbar } = useSnackbar()
 const uiStore = useUIStore()
 const deckStore = useDeckStore()
+const authStore = useAuthStore()
+const isRegularUser = ref(true)
+
+const checkUserStatus = async () => {
+  try {
+    const userStatus = await authStore.getUserStatus()
+    isRegularUser.value = userStatus && userStatus.role === 0
+  } catch (error) {
+    console.error('Failed to fetch user status:', error)
+    isRegularUser.value = true
+  }
+}
 
 const deckKey = route.params.key
 const isLocalDeck = computed(() => deckKey === 'local')
@@ -289,6 +371,12 @@ const deck = ref(null)
 const cards = ref({})
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 const isConfirmEditDialogVisible = ref(false)
+
+const isHistoryDialogVisible = ref(false)
+const viewingHistoryIndex = ref(null)
+const historicalCards = ref([])
+const isViewingHistory = ref(false)
+const history = computed(() => deck.value?.history || [])
 
 const originalCards = ref([])
 const editedCards = ref([])
@@ -395,6 +483,8 @@ const updateEditedCards = async () => {
 onMounted(async () => {
   uiStore.setLoading(true)
   isDataReady.value = false
+
+  await checkUserStatus()
 
   try {
     let initialCards = {}
@@ -514,6 +604,9 @@ const cardsForDisplay = computed(() => {
 })
 
 const cardsForStats = computed(() => {
+  if (isViewingHistory.value) {
+    return historicalCards.value.filter((c) => c.quantity > 0)
+  }
   // When showing diffs, stats are for the EDITED deck.
   if (isEditing.value && showDifferences.value) {
     return editedCards.value.filter((c) => c.quantity > 0)
@@ -522,7 +615,14 @@ const cardsForStats = computed(() => {
   return originalCards.value.filter((c) => c.quantity > 0)
 })
 
-const { groupedCards: displayGroupedCards } = useDeckGrouping(cardsForDisplay, groupBy)
+const cardsToDisplayOrGroup = computed(() => {
+  if (isViewingHistory.value) {
+    return historicalCards.value
+  }
+  return cardsForDisplay.value
+})
+
+const { groupedCards: displayGroupedCards } = useDeckGrouping(cardsToDisplayOrGroup, groupBy)
 const { groupedCards: statsGroupedCards } = useDeckGrouping(cardsForStats, groupBy)
 
 const flattenedDisplayCards = computed(() => {
@@ -703,6 +803,111 @@ const handleShareClick = () => {
 }
 const handleCopyClick = () => {
   handleCopyDeckKey()
+  showMoreActionsBottomSheet.value = false
+}
+
+const viewHistoryState = async (index) => {
+  uiStore.setLoading(true)
+  try {
+    const historyIndex = index - 1
+    const targetHistoryEntry = history.value[historyIndex]
+    if (!targetHistoryEntry) return
+
+    viewingHistoryIndex.value = index
+    isViewingHistory.value = true
+    isHistoryDialogVisible.value = false
+
+    // Step 1: Calculate the full deck state at that point in time by reverting changes.
+    // The history is newest first (index 0), so we revert changes from 0 to historyIndex - 1.
+    const cardMap = new Map(JSON.parse(JSON.stringify(originalCards.value)).map((c) => [c.id, c]))
+
+    for (let i = 0; i < historyIndex; i++) {
+      const entry = history.value[i]
+      if (!entry.diff) continue
+
+      for (const change of entry.diff) {
+        const cardId = change.cardId
+        const card = cardMap.get(cardId)
+        const prefix = change.cardId.split('/')[0].toLowerCase()
+
+        switch (change.status) {
+          case 'added': // Revert an add = remove
+            if (card) {
+              card.quantity -= change.quantity
+              if (card.quantity <= 0) {
+                cardMap.delete(cardId)
+              }
+            }
+            break
+          case 'removed': // Revert a remove = add back
+            // eslint-disable-next-line no-case-declarations
+            const fullCardData = await fetchCardByIdAndPrefix(cardId, prefix)
+            if (fullCardData) {
+              if (card) {
+                card.quantity += change.quantity
+              } else {
+                cardMap.set(cardId, { ...fullCardData, quantity: change.quantity })
+              }
+            }
+            break
+          case 'modified': // Revert a modification = set back to 'from'
+            if (card) {
+              card.quantity = change.from
+            }
+            break
+        }
+      }
+    }
+    // Now `cardMap` holds the complete deck state right AFTER the target change.
+
+    // Step 2: Apply diffStatus to the calculated state based on the target change.
+    const targetDiffMap = new Map((targetHistoryEntry.diff || []).map((d) => [d.cardId, d]))
+
+    const finalCards = Array.from(cardMap.values()).map((card) => {
+      const change = targetDiffMap.get(card.id)
+      if (change) {
+        let diffStatus = change.status
+        if (change.status === 'modified') {
+          diffStatus = change.to > change.from ? 'increased' : 'decreased'
+        }
+        return { ...card, diffStatus }
+      } else {
+        return { ...card, diffStatus: 'unchanged' }
+      }
+    })
+
+    // Step 3: Add back any cards that were 'removed' in this specific change, so they appear in the list.
+    for (const change of targetHistoryEntry.diff || []) {
+      if (change.status === 'removed') {
+        const fullCardData = await fetchCardByIdAndPrefix(change.cardId, deck.value.seriesId)
+        if (fullCardData) {
+          finalCards.push({
+            ...fullCardData,
+            quantity: 0, // Show quantity as 0 as it was removed.
+            diffStatus: 'removed',
+          })
+        }
+      }
+    }
+
+    historicalCards.value = finalCards
+  } catch (error) {
+    triggerSnackbar('加载历史记录失败', 'error')
+    console.error(error)
+    exitHistoryView() // Reset state on error
+  } finally {
+    uiStore.setLoading(false)
+  }
+}
+
+const exitHistoryView = () => {
+  isViewingHistory.value = false
+  viewingHistoryIndex.value = null
+  historicalCards.value = []
+}
+
+const handleHistoryClick = () => {
+  isHistoryDialogVisible.value = true
   showMoreActionsBottomSheet.value = false
 }
 </script>

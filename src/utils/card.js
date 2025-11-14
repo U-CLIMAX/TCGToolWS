@@ -41,9 +41,7 @@ export const fetchCardByIdAndPrefix = (id, prefix) => {
       })
 
       const uniqueCards = Array.from(uniqueCardsMap.values())
-      const matchedCards = uniqueCards.filter(
-        (c) => (c.id === id || c.baseId === id) && c.cardIdPrefix === prefix
-      )
+      const matchedCards = uniqueCards.filter((c) => c.id === id || c.baseId === id)
 
       if (matchedCards.length === 0) {
         console.warn(`Card with ID "${id}" not found in prefix "${prefix}"`)

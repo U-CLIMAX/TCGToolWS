@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { useUIStore } from '@/stores/ui'
-import { jwtDecode } from 'jwt-decode'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
@@ -76,29 +75,17 @@ router.beforeEach(async (to, from, next) => {
   NProgress.start()
 
   const authStore = useAuthStore()
-  const token = authStore.token
 
-  if (token) {
-    try {
-      const decodedToken = jwtDecode(token)
-      const expiry = decodedToken.exp * 1000
-      const oneDay = 24 * 60 * 60 * 1000
-
-      // 檢查是否已過期或24小時內即將過期
-      if (expiry < Date.now()) {
-        authStore.logout()
-      } else if (expiry < Date.now() + oneDay) {
-        await authStore.refreshSession()
-      }
-      // eslint-disable-next-line no-unused-vars
-    } catch (error) {
-      authStore.logout()
-    }
-  }
+  // 透過 getUserStatus 實現自動刷新
+  // 1. Token 結構過期 -> 自動刷新
+  // 2. Premium 過期 -> 自動刷新
+  // 3. Token 無效或解碼失敗 -> 自動登出
+  await authStore.getUserStatus()
 
   const isAuthenticated = authStore.isAuthenticated
   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth)
   const requiresGuest = to.matched.some((record) => record.meta.requiresGuest)
+
   if (requiresAuth && !isAuthenticated) {
     next({ name: 'Home' })
   } else if (requiresGuest && isAuthenticated) {

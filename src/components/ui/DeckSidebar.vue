@@ -25,7 +25,7 @@
           >
           </v-btn>
           <h2 class="text-h6">当前卡组</h2>
-          <v-chip pill size="small">
+          <v-chip pill size="small" :color="deckStore.totalCardCount > 50 ? 'warning' : undefined">
             <v-icon start icon="mdi-cards-diamond-outline"></v-icon>
             {{ deckStore.totalCardCount }} / 50
           </v-chip>
@@ -48,7 +48,7 @@
           variant="text"
           color="primary"
           density="compact"
-          :disabled="deckStore.totalCardCount === 0"
+          :disabled="deckStore.totalCardCount === 0 || deckStore.totalCardCount > 50"
           @click="openSaveDialog"
         >
         </v-btn>
@@ -71,7 +71,12 @@
             <v-btn value="none" class="flex-1-1" style="min-width: 0">
               <v-icon icon="mdi-cursor-default-click-outline"></v-icon>
             </v-btn>
-            <v-btn value="add" class="flex-1-1" style="min-width: 0">
+            <v-btn
+              value="add"
+              class="flex-1-1"
+              style="min-width: 0"
+              :disabled="deckStore.totalCardCount >= 50 && userRole === 0"
+            >
               <v-icon icon="mdi-plus"></v-icon>
             </v-btn>
           </v-btn-toggle>
@@ -252,13 +257,43 @@
           v-if="deckStore.editingDeckKey"
           color="secondary"
           variant="tonal"
-          @click="handleUpdateDeck"
+          @click="promptForHistoryAndUpdate"
           :disabled="!deckName.trim() || !selectedCoverCardId"
           >更新卡组
         </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
+
+  <!-- History Note Dialog -->
+  <v-dialog v-model="isHistoryDialogOpen" max-width="400px" persistent>
+    <v-card>
+      <v-card-title>新增更新纪录</v-card-title>
+      <v-card-text>
+        <v-form ref="historyForm" @submit.prevent="handleUpdateDeckWithHistory">
+          <v-text-field
+            v-model="historyText"
+            label="本次更新摘要"
+            :counter="20"
+            :rules="[
+              (v) => !!v || '必须填写摘要',
+              (v) => (v && v.length <= 20) || '摘要不能超过20个字',
+            ]"
+            maxlength="20"
+            variant="outlined"
+            density="compact"
+            autofocus
+          ></v-text-field>
+        </v-form>
+      </v-card-text>
+      <v-card-actions>
+        <v-btn text @click="isHistoryDialogOpen = false">取消</v-btn>
+        <v-spacer></v-spacer>
+        <v-btn color="primary" variant="tonal" @click="handleUpdateDeckWithHistory">确认更新</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
+
   <!-- Clear Confirm Dialog -->
   <v-dialog v-model="isClearConfirmDialogOpen" max-width="400">
     <v-card>
@@ -277,7 +312,7 @@
 </template>
 
 <script setup>
-import { ref, computed, toRaw } from 'vue'
+import { ref, computed, toRaw, onMounted, watch } from 'vue'
 import { useDeckStore } from '@/stores/deck'
 import { useCardImage } from '@/composables/useCardImage'
 import { fetchCardByIdAndPrefix, fetchCardsByBaseIdAndPrefix } from '@/utils/card'
@@ -317,6 +352,28 @@ const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 // Loading State
 const authStore = useAuthStore()
+const userRole = ref(0)
+
+onMounted(async () => {
+  const status = await authStore.getUserStatus()
+  if (status) {
+    userRole.value = status.role
+  }
+})
+
+watch(
+  () => authStore.isAuthenticated,
+  async (newVal) => {
+    if (newVal) {
+      const status = await authStore.getUserStatus()
+      if (status) {
+        userRole.value = status.role
+      }
+    } else {
+      userRole.value = 0 // Reset role if not authenticated
+    }
+  }
+)
 
 // Auth Alert Dialog State
 const isAuthAlertOpen = ref(false)
@@ -325,6 +382,11 @@ const isAuthAlertOpen = ref(false)
 const isSaveDialogOpen = ref(false)
 const deckName = ref('')
 const selectedCoverCardId = ref(null)
+
+// History Dialog State
+const isHistoryDialogOpen = ref(false)
+const historyText = ref('')
+const historyForm = ref(null)
 
 const isClearConfirmDialogOpen = ref(false)
 
@@ -416,20 +478,94 @@ const handleCreateDeck = async () => {
   }
 }
 
-const handleUpdateDeck = async () => {
+const calculateDiff = (originalCards, currentCards) => {
+  const diff = []
+  const allCardIds = new Set([...Object.keys(originalCards), ...Object.keys(currentCards)])
+
+  allCardIds.forEach((cardId) => {
+    const originalCard = originalCards[cardId]
+    const currentCard = currentCards[cardId]
+
+    if (!originalCard && currentCard) {
+      // Added
+      diff.push({ cardId, status: 'added', quantity: currentCard.quantity })
+    } else if (originalCard && !currentCard) {
+      // Removed
+      diff.push({ cardId, status: 'removed', quantity: originalCard.quantity })
+    } else if (originalCard && currentCard && originalCard.quantity !== currentCard.quantity) {
+      // Modified
+      diff.push({
+        cardId,
+        status: 'modified',
+        from: originalCard.quantity,
+        to: currentCard.quantity,
+      })
+    }
+  })
+
+  return diff
+}
+
+const userStatusForUpdate = ref(null)
+const diffForUpdate = ref(null)
+
+const promptForHistoryAndUpdate = async () => {
+  userStatusForUpdate.value = await authStore.getUserStatus()
+  const diff = calculateDiff(deckStore.originalCardsInDeck, deckStore.cardsInDeck)
+  diffForUpdate.value = diff
+
+  // Only prompt for history if there are actual card changes and user has the right role
+  if (diff.length > 0 && userStatusForUpdate.value && userStatusForUpdate.value.role !== 0) {
+    const editCount = (deckStore.deckHistory || []).length + 1
+    historyText.value = `${deckName.value} #${editCount}`
+    isHistoryDialogOpen.value = true
+  } else {
+    // If no diff or user is role 0, update directly
+    await handleUpdateDeck('', diff)
+  }
+}
+
+const handleUpdateDeckWithHistory = async () => {
+  const { valid } = await historyForm.value.validate()
+  if (valid) {
+    // Use the stored diff instead of recalculating
+    await handleUpdateDeck(historyText.value, toRaw(diffForUpdate.value))
+    isHistoryDialogOpen.value = false
+  }
+}
+
+const handleUpdateDeck = async (historyText = '', diff = []) => {
   if (!deckStore.editingDeckKey) {
     triggerSnackbar('缺少卡组标识，无法更新', 'error')
     return
   }
   deckStore.updateDominantSeriesId()
   uiStore.setLoading(true)
+
   try {
+    let updatedHistory = toRaw(deckStore.deckHistory) || []
+    const role = userStatusForUpdate.value?.role
+
+    // Only users with role !== 0 can add a new history entry
+    if (role !== 0 && diff.length > 0) {
+      const newHistoryEntry = {
+        time: Date.now(),
+        text: historyText,
+        diff: diff,
+      }
+      updatedHistory = [newHistoryEntry, ...updatedHistory]
+      if (updatedHistory.length > 10) {
+        updatedHistory.pop()
+      }
+    }
+
     const deckData = {
       name: deckName.value,
       version: deckStore.version,
       cards: toRaw(deckStore.cardsInDeck),
       seriesId: deckStore.seriesId,
       coverCardId: selectedCoverCardId.value,
+      history: updatedHistory,
     }
 
     const { key } = await encodeDeck(deckData, { existingKey: deckStore.editingDeckKey })

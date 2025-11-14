@@ -1,0 +1,93 @@
+# ----------------------------------------------------
+# 測試 Part 1: 創建支付訂單 (模擬用戶)
+# ----------------------------------------------------
+
+# @name login
+# 1. 登入以獲取 Token
+# (替換成您本地資料庫的測試用戶)
+POST http://localhost:5173/api/login
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "your-test-password"
+}
+
+###
+
+# @name initiatePayment
+# 2. 使用上面獲取的 Token 來創建訂單
+# 變數 {{token}} 是由 REST Client 擴充套件自動注入的
+POST http://localhost:5173/api/payments/initiate
+Authorization: Bearer {{login.response.body.token}}
+Content-Type: application/json
+
+# 執行此請求後，請檢查您的 afdian_orders 資料表
+# 應該會有一筆新的 'pending' 訂單
+# 
+# ⚠️ 請手動複製該訂單的 'id' (UUID)，
+# 並將其貼到下面 Part 2 的 "YOUR_GENERATED_ORDER_ID" 處
+
+###
+
+# ----------------------------------------------------
+# 測試 Part 2: 模擬愛發電 Webhook 回調
+# ----------------------------------------------------
+
+# @name testWebhook
+# 3. 模擬 Webhook (記得先到 lib\auth.js 將 line 311 註解掉避免簽名驗證，並將 line 314 啟用)
+POST http://localhost:5173/api/webhooks/afdian
+Content-Type: application/json
+
+{
+  "ec": 200,
+  "em": "ok",
+  "data": {
+    "type": "order",
+    "order": {
+      "out_trade_no": "real_afdian_trade_no_98765", 
+      "user_id": "afdian_user_id_abc",
+      "plan_id": "your_plan_id_xyz",
+      "month": 1,
+      "total_amount": "5.00",
+      "status": 2,
+      "remark": "",
+      "custom_order_id": "YOUR_GENERATED_ORDER_ID" 
+    }
+  },
+  "sign": "dev_sign_bypass_123" 
+}
+
+# 執行後檢查：
+# 1. 'users' 表 中的 'role' 應變為 1
+# 2. 'afdian_orders' 表 中的 'status' 應變為 'completed'
+
+###
+
+# @name testIdempotency
+# 4. 測試冪等性 (使用完全相同的 payload)
+POST http://localhost:5173/api/webhooks/afdian
+Content-Type: application/json
+
+{
+  "ec": 200,
+  "em": "ok",
+  "data": {
+    "type": "order",
+    "order": {
+      "out_trade_no": "real_afdian_trade_no_98765", 
+      "user_id": "afdian_user_id_abc",
+      "plan_id": "your_plan_id_xyz",
+      "month": 1,
+      "total_amount": "5.00",
+      "status": 2,
+      "remark": "",
+      "custom_order_id": "YOUR_GENERATED_ORDER_ID" 
+    }
+  },
+  "sign": "dev_sign_bypass_123"
+}
+
+# 執行後檢查：
+# 1. 響應應為 {"ec":200,"em":"Already processed"}
+# 2. 'users' 表 中的 'premium_expire_time' 不應再次增加
