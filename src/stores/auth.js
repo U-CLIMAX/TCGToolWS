@@ -167,7 +167,11 @@ export const useAuthStore = defineStore('auth', () => {
 
       if (data.success && data.url) {
         // 成功，執行跳轉
-        window.open(data.url, '_blank')
+        const a = document.createElement('a')
+        a.href = data.url
+        a.target = '_blank'
+        a.rel = 'noopener noreferrer'
+        a.click()
       } else {
         throw new Error('無法獲取支付 URL。')
       }
