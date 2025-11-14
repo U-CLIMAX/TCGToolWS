@@ -333,10 +333,6 @@ const authStore = useAuthStore()
 
 const userRole = ref(0)
 
-onMounted(async () => {
-  userRole.value = await getUserRole()
-})
-
 const uiStore = useUIStore()
 const isAuthAlertOpen = ref(false)
 const isSponsorNoticeOpen = ref(false)
@@ -491,6 +487,28 @@ const setupObserver = (target) => {
   )
   start()
 }
+
+onMounted(async () => {
+  userRole.value = await getUserRole()
+})
+
+// ---------開發測試用------------------
+onMounted(async () => {
+  watch(
+    () => authStore.isAuthenticated,
+    async (newVal) => {
+      if (newVal) {
+        const status = await authStore.getUserStatus()
+        if (status) {
+          userRole.value = status.role
+        }
+      } else {
+        userRole.value = 0 // Reset role if not authenticated
+      }
+    }
+  )
+})
+// ------------------------------------
 
 onMounted(() => {
   // One-time splash animation logic
