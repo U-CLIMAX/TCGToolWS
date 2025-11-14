@@ -4,7 +4,10 @@
     :class="{ 'animating-out': status === 'animating-out' }"
     @click="handleClick"
   >
-    <h1 class="animated-title">U CLIMAX</h1>
+    <div class="content-wrapper">
+      <h1 class="animated-title">U CLIMAX</h1>
+      <p class="click-hint" v-if="status === 'active'">点击进入</p>
+    </div>
   </div>
 </template>
 
@@ -55,6 +58,13 @@ watch(
   transition: background-color 0.8s ease-in-out;
 }
 
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
 .animated-title {
   font-family: 'DINCond-Black', sans-serif;
   font-size: clamp(3rem, 10vw, 8rem);
@@ -74,6 +84,24 @@ watch(
     opacity 1s ease-out;
 }
 
+.click-hint {
+  font-family: 'DINCond-Black', sans-serif;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.3em;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 /* Animation states */
 .splash-overlay.animating-out {
   background-color: rgba(0, 0, 0, 0);
@@ -83,5 +111,10 @@ watch(
   transform: scale(500);
   opacity: 0;
   filter: blur(5px) brightness(1);
+}
+
+.splash-overlay.animating-out .click-hint {
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
 }
 </style>
