@@ -106,7 +106,11 @@
             <!-- 右側 -->
             <div class="header-right mt-2">
               <template v-if="smAndUp">
-                <v-tooltip v-if="!isViewingHistory" :text="showDifferences ? '隐藏差异' : '显示差异'" location="bottom">
+                <v-tooltip
+                  v-if="!isViewingHistory"
+                  :text="showDifferences ? '隐藏差异' : '显示差异'"
+                  location="bottom"
+                >
                   <template v-slot:activator="{ props }">
                     <v-btn
                       v-if="isEditing && deckStore.editingDeckKey"
