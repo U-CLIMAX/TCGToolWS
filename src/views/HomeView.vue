@@ -173,9 +173,8 @@
                 prepend-icon="mdi-heart"
                 class="mb-4"
                 min-width="160"
-                :disabled="userRole !== 2"
               >
-                立即赞助 (beta)
+                立即赞助
               </v-btn>
               <div class="text-caption text-grey-lighten-5 mb-3">
                 赞助周期以 1 个月计算，每笔赞助最多 1 个月
@@ -319,19 +318,16 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, watch } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { useUIStore } from '@/stores/ui'
 import { useIntersectionObserver } from '@/composables/useIntersectionObserver'
 import SplashAnimation from '@/components/common/SplashAnimation.vue'
 import ImageZoomViewer from '@/components/ui/ImageZoomViewer.vue'
 import { useHardwareAcceleration } from '@/composables/useHardwareAcceleration'
-import { getUserRole } from '@/composables/useUserRole'
 
 const { isHardwareAccelerated } = useHardwareAcceleration()
 const authStore = useAuthStore()
-
-const userRole = ref(0)
 
 const uiStore = useUIStore()
 const isAuthAlertOpen = ref(false)
@@ -487,28 +483,6 @@ const setupObserver = (target) => {
   )
   start()
 }
-
-onMounted(async () => {
-  userRole.value = await getUserRole()
-})
-
-// ---------開發測試用------------------
-onMounted(async () => {
-  watch(
-    () => authStore.isAuthenticated,
-    async (newVal) => {
-      if (newVal) {
-        const status = await authStore.getUserStatus()
-        if (status) {
-          userRole.value = status.role
-        }
-      } else {
-        userRole.value = 0 // Reset role if not authenticated
-      }
-    }
-  )
-})
-// ------------------------------------
 
 onMounted(() => {
   // One-time splash animation logic
