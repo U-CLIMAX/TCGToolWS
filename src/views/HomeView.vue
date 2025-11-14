@@ -103,6 +103,99 @@
         </div>
       </div>
 
+      <!-- Support Section -->
+      <div ref="supportSection" class="support-section animated-section">
+        <!-- Left Block -->
+        <div
+          class="glass-block support-left-block"
+          :class="{ 'has-blur': isHardwareAccelerated === true }"
+        >
+          <v-row class="pa-4 fill-height" align="center">
+            <v-col cols="12" md="7" class="d-flex flex-column align-center justify-center">
+              <div class="d-flex align-center mb-4">
+                <v-icon color="light-blue-lighten-3" size="small" class="mr-2">
+                  mdi-star-circle
+                </v-icon>
+                <span class="text-h6 font-weight-bold text-white">赞助会员特权</span>
+              </div>
+              <v-list bg-color="transparent" class="flex-grow-1">
+                <v-list-item class="px-0 mb-3">
+                  <template v-slot:prepend>
+                    <v-icon color="green-accent-2" size="20">mdi-check-circle</v-icon>
+                  </template>
+                  <v-list-item-title class="text-body-1 text-white font-weight-medium">
+                    无限卡组数量
+                  </v-list-item-title>
+                  <v-list-item-subtitle class="text-caption text-grey-lighten-5">
+                    创建任意数量的卡组，不受限制
+                  </v-list-item-subtitle>
+                </v-list-item>
+                <v-list-item class="px-0 mb-3">
+                  <template v-slot:prepend>
+                    <v-icon color="green-accent-2" size="20">mdi-check-circle</v-icon>
+                  </template>
+                  <v-list-item-title class="text-body-1 text-white font-weight-medium">
+                    卡组历史记录
+                  </v-list-item-title>
+                  <v-list-item-subtitle class="text-caption text-grey-lighten-5">
+                    随时查看历史版本
+                  </v-list-item-subtitle>
+                </v-list-item>
+                <v-list-item class="px-0 mb-3">
+                  <template v-slot:prepend>
+                    <v-icon color="green-accent-2" size="20">mdi-check-circle</v-icon>
+                  </template>
+                  <v-list-item-title class="text-body-1 text-white font-weight-medium">
+                    解除编辑卡组限制
+                  </v-list-item-title>
+                  <v-list-item-subtitle class="text-caption text-grey-lighten-5">
+                    编辑卡组时可超过50张卡片限制
+                  </v-list-item-subtitle>
+                </v-list-item>
+              </v-list>
+            </v-col>
+            <v-col
+              cols="12"
+              md="5"
+              class="d-flex flex-column align-center justify-center text-center pa-6"
+            >
+              <v-icon color="light-blue-lighten-3" size="48" class="mb-3">mdi-heart-circle</v-icon>
+              <div class="text-h5 font-weight-bold text-white mb-2">成为赞助者</div>
+              <div class="d-flex align-baseline mb-4">
+                <span class="text-h3 font-weight-bold text-green-lighten-1">5</span>
+                <span class="text-body-1 text-white ml-1">/月</span>
+              </div>
+              <v-btn
+                color="orange-darken-1"
+                size="large"
+                variant="elevated"
+                @click="handleSupportClick"
+                prepend-icon="mdi-heart"
+                class="mb-4"
+                min-width="160"
+              >
+                立即赞助
+              </v-btn>
+              <v-divider class="my-3" width="60%" opacity="30"></v-divider>
+              <div class="d-flex align-center justify-center">
+                <v-icon size="16" class="mr-1" color="warning">mdi-lightning-bolt</v-icon>
+                <span class="text-caption text-white">由爱发电平台提供支付服务</span>
+              </div>
+            </v-col>
+          </v-row>
+        </div>
+        <!-- Right Block -->
+        <div
+          class="glass-block support-right-block"
+          :class="{ 'has-blur': isHardwareAccelerated === true }"
+        >
+          <h3>问题反馈</h3>
+          <div class="feedback-email">
+            <a href="mailto:issues@uclimax.cn">issues@uclimax.cn</a>
+          </div>
+        </div>
+      </div>
+
       <!-- Copyright Section -->
       <div ref="copyrightSection" class="copyright-section animated-section">
         <p>版权声明</p>
@@ -139,49 +232,22 @@
         <p>我们致力于积极维护国内ws社区的健康环境，感谢您的理解与支持！</p>
       </div>
 
-      <!-- Support Section -->
-      <div ref="supportSection" class="support-section animated-section">
-        <!-- Left Block -->
-        <div
-          class="glass-block support-left-block"
-          :class="{ 'has-blur': isHardwareAccelerated === true }"
-        >
-          <div class="support-left-block-content">
-            <div class="support-main-content">
-              <div class="support-us">
-                <h3>支持我们</h3>
-                <v-btn
-                  color="primary"
-                  variant="elevated"
-                  @click="handleSupportClick"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  prepend-icon="mdi-heart"
-                >
-                  支持我们
-                </v-btn>
-              </div>
-              <div class="support-community">
-                <h3>相关社群</h3>
-                <div class="placeholder"></div>
-              </div>
-            </div>
-            <div class="ifd-section">
-              <h2>爱发电</h2>
-            </div>
+      <v-sheet color="transparent" class="pa-4 mt-8">
+        <v-divider class="mb-4"></v-divider>
+
+        <v-col cols="12" class="text-caption text-grey-darken-1 text-center">
+          <div>
+            U CLIMAX 是一个非官方粉丝工具，所有卡牌资料版权归 Bushiroad (武士道) 所有，本网站与
+            Bushiroad 并无任何官方合作或授权关系。
           </div>
-        </div>
-        <!-- Right Block -->
-        <div
-          class="glass-block support-right-block"
-          :class="{ 'has-blur': isHardwareAccelerated === true }"
-        >
-          <h3>问题反馈</h3>
-          <div class="feedback-email">
-            <a href="mailto:issues@uclimax.cn">issues@uclimax.cn</a>
+          <div class="mt-1">
+            © {{ new Date().getFullYear() }} U CLIMAX. All rights reserved. |
+            <a href="mailto:issues@uclimax.cn" class="text-grey-darken-1 text-decoration-underline">
+              问题反馈
+            </a>
           </div>
-        </div>
-      </div>
+        </v-col>
+      </v-sheet>
     </div>
 
     <ImageZoomViewer
@@ -766,43 +832,6 @@ onUnmounted(() => {
   background: rgba(var(--color-white-rgb), 0.1);
 }
 
-.support-left-block-content {
-  display: grid;
-  grid-template-columns: 5fr 3fr;
-  gap: 1.5rem;
-  height: 100%;
-}
-
-.support-main-content {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.support-us,
-.support-community {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.placeholder {
-  height: 60px; /* Placeholder height */
-  background: rgba(var(--color-white-rgb), 0.1);
-  border-radius: var(--border-radius-card);
-}
-
-.ifd-section {
-  text-align: center;
-}
-
-.ifd-section h2 {
-  font-size: clamp(3.24rem, 5.4vw, 4.5rem);
-  font-family: var(--font-family-subtitle);
-  font-weight: 700;
-  line-height: 1.35;
-}
-
 .support-right-block {
   display: flex;
   flex-direction: column;
@@ -993,11 +1022,6 @@ onUnmounted(() => {
 
   .support-left-block-content {
     grid-template-columns: 1fr;
-  }
-
-  .ifd-section {
-    text-align: left;
-    margin-top: 1.5rem;
   }
 }
 </style>
