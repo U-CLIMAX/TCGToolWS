@@ -117,6 +117,25 @@
         </div>
       </div>
 
+      <!-- Promo Section -->
+      <div ref="promoSection" class="promo-section animated-section">
+        <div class="promo-content">
+          <div class="video-wrapper">
+            <iframe
+              src="//player.bilibili.com/player.html?isOutside=true&aid=115552085345391&bvid=BV1zaCCBaEds&cid=34016988267&p=1&autoplay=0"
+              scrolling="no"
+              border="0"
+              frameborder="no"
+              framespacing="0"
+              allowfullscreen="true"
+            ></iframe>
+          </div>
+          <div style="min-height: 2em">
+            <p class="promo-text">使用教程视频</p>
+          </div>
+        </div>
+      </div>
+
       <!-- Support Section -->
       <div ref="supportSection" class="support-section animated-section">
         <!-- Left Block -->
@@ -530,6 +549,7 @@ const updateScrollPadding = () => {
 // --- Animation on Scroll ---
 const featuresSection = ref(null)
 const pcPhoneSection = ref(null)
+const promoSection = ref(null)
 const copyrightSection = ref(null)
 const supportSection = ref(null)
 
@@ -594,6 +614,7 @@ onMounted(() => {
   setupObserver(homeLayout)
   setupObserver(featuresSection)
   setupObserver(pcPhoneSection)
+  setupObserver(promoSection)
   setupObserver(copyrightSection)
   setupObserver(supportSection)
 })
@@ -757,7 +778,8 @@ onUnmounted(() => {
   color: rgba(var(--color-white-rgb), 0.9);
 }
 
-.pc-phone-text {
+.pc-phone-text,
+.promo-text {
   font-size: var(--font-size-pc-phone-text);
   font-weight: bold;
   color: rgba(var(--color-white-rgb), 0.9);
@@ -947,6 +969,40 @@ onUnmounted(() => {
   border-radius: var(--border-radius-card);
 }
 
+/* --- Promo Section --- */
+.promo-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 12rem;
+}
+
+.promo-content {
+  width: clamp(26.5rem, 50vw, 61.25rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  border-radius: var(--border-radius-card);
+  overflow: hidden;
+  background-color: #000;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 /* --- Copyright Section --- */
 .copyright-section {
   width: clamp(30rem, 60vw, 70rem);
@@ -1119,11 +1175,13 @@ onUnmounted(() => {
     width: calc(100% + var(--axis-cross-length) + 3rem); /* Extending to the edge of the screen */
   }
 
-  .pc-phone-section {
+  .pc-phone-section,
+  .promo-section {
     margin-top: 8rem;
   }
 
-  .pc-phone-content {
+  .pc-phone-content,
+  .promo-content {
     width: clamp(26.5rem, 90vw, 61.25rem);
   }
 
@@ -1187,6 +1245,11 @@ onUnmounted(() => {
 
   .vertical-line {
     height: calc(100% + var(--mobile-counter-gap) + var(--mobile-counter-height-phone));
+  }
+
+  .pc-phone-section,
+  .promo-section {
+    margin-top: 6rem;
   }
 
   .copyright-section {
