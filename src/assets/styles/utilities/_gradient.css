@@ -1,0 +1,46 @@
+:root {
+  --golden-gradirnt-light: linear-gradient(
+    90deg, 
+    #b8860b, 
+    #daa520, 
+    #fff8dc, 
+    #daa520, 
+    #b8860b);
+  --golden-gradirnt-dark: linear-gradient(
+    90deg, 
+    #daa520, 
+    #ffd700, 
+    #ffffe0, 
+    #ffd700, 
+    #daa520);
+  --rainbow-gradirnt-light: linear-gradient(
+    90deg, 
+    #ff6b6b,
+    #ff9966,
+    #feca57,
+    #a8e6cf,
+    #48dbfb,
+    #b19cd9,
+    #ff9ff3,
+    #ff6b6b);
+  --rainbow-gradirnt-dark: linear-gradient(
+    90deg,
+    #ffb3ba,
+    #ffdfba,
+    #ffffba,
+    #baffc9,
+    #bae1ff,
+    #d4baff,
+    #ffb3f0,
+    #ffb3ba
+  );
+}
+
+@keyframes gradient-loop {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}

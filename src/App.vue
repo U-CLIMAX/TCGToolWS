@@ -180,8 +180,14 @@ const authStore = useAuthStore()
 const { userRole } = storeToRefs(authStore)
 
 const accountIconClass = computed(() => {
-  if (userRole.value !== null && userRole.value !== 0) {
-    return 'premium-user-icon'
+  const role = userRole.value
+  const isDark = vuetifyTheme.global.current.value.dark || isHomeRoute.value
+
+  if (role === 1) {
+    return isDark ? 'premium-user-icon-dark' : 'premium-user-icon-light'
+  }
+  if (role === 2) {
+    return isDark ? 'developer-user-icon-dark' : 'developer-user-icon-light'
   }
   return null
 })
@@ -357,32 +363,44 @@ watch(
   opacity: 0;
 }
 
-@keyframes rainbow {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 200% 50%;
-  }
-}
-
-.premium-user-icon .v-icon {
-  background: linear-gradient(
-    90deg,
-    #ffb3ba,
-    #ffdfba,
-    #ffffba,
-    #baffc9,
-    #bae1ff,
-    #d4baff,
-    #ffb3f0,
-    #ffb3ba
-  );
+/* Premium User (Role 1) - Light Theme */
+.premium-user-icon-light .v-icon {
+  background: var(--golden-gradirnt-light);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: rainbow 3s linear infinite;
+  animation: gradient-loop 3s linear infinite;
+}
+
+/* Premium User (Role 1) - Dark Theme */
+.premium-user-icon-dark .v-icon {
+  background: var(--golden-gradirnt-dark);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-loop 3s linear infinite;
+}
+
+/* Developer User (Role 2) - Light Theme */
+.developer-user-icon-light .v-icon {
+  background: var(--rainbow-gradirnt-light);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-loop 3s linear infinite;
+}
+
+/* Developer User (Role 2) - Dark Theme */
+.developer-user-icon-dark .v-icon {
+  background: var(--rainbow-gradirnt-dark);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-loop 3s linear infinite;
 }
 
 /* 設定給效果小圖標用的樣式 */
