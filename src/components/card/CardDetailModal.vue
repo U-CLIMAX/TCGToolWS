@@ -198,11 +198,13 @@
 </template>
 
 <script setup>
-import { computed, ref, onUnmounted, onMounted } from 'vue'
+import { computed, ref, onUnmounted } from 'vue'
 import { useDisplay } from 'vuetify'
+import { storeToRefs } from 'pinia'
 import LinkedCard from './LinkedCard.vue'
 import DownloadTextDialog from './DownloadTextDialog.vue'
 import DOMPurify from 'dompurify'
+import { useAuthStore } from '@/stores/auth'
 import { useDeckStore } from '@/stores/deck'
 import { useDownloadStore } from '@/stores/download'
 import { convertElementToPng } from '@/utils/domToImage.js'
@@ -210,7 +212,6 @@ import { useSnackbar } from '@/composables/useSnackbar'
 import { useUIStore } from '@/stores/ui'
 import { useDevice } from '@/composables/useDevice'
 import { formatEffectToHtml } from '@/utils/cardEffectFormatter'
-import { getUserRole } from '@/composables/useUserRole'
 
 const { triggerSnackbar } = useSnackbar()
 const { smAndUp } = useDisplay()
@@ -228,15 +229,11 @@ const props = defineProps({
   cardIndex: { type: Number, default: 0 },
   totalCards: { type: Number, default: 1 },
 })
+const authStore = useAuthStore()
+const { userRole } = storeToRefs(authStore)
 const deckStore = useDeckStore()
 const { isTouch } = useDevice()
 const isLightMode = computed(() => uiStore.theme === 'light')
-
-const userRole = ref(0)
-
-onMounted(async () => {
-  userRole.value = await getUserRole()
-})
 
 const isDownloadTextDialogOpen = ref(false)
 

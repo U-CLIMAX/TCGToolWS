@@ -154,15 +154,15 @@
 </template>
 
 <script setup>
-import { ref, watch, computed, onMounted } from 'vue'
+import { ref, watch, computed } from 'vue'
 import { useTheme, useDisplay } from 'vuetify'
 import { useRoute, useRouter } from 'vue-router'
+import { storeToRefs } from 'pinia'
 import { useUIStore } from '@/stores/ui'
 import { useDevice } from '@/composables/useDevice'
 import { useAuthStore } from '@/stores/auth'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { usePerformanceManager } from '@/composables/usePerformanceManager'
-import { getUserRole } from '@/composables/useUserRole'
 import AuthDialog from '@/components/ui/AuthDialog.vue'
 import SettingsModal from '@/components/ui/SettingsModal.vue'
 import UserProfileModal from '@/components/ui/UserProfileModal.vue'
@@ -177,7 +177,7 @@ import DeckIcon from '@/assets/ui/deck.svg'
 import SearchIcon from '@/assets/ui/search.svg'
 
 const authStore = useAuthStore()
-const userRole = ref(0)
+const { userRole } = storeToRefs(authStore)
 
 const accountIconClass = computed(() => {
   if (userRole.value !== null && userRole.value !== 0) {
@@ -272,10 +272,6 @@ const router = useRouter()
 const goToHome = () => {
   router.push({ name: 'Home' })
 }
-
-onMounted(async () => {
-  userRole.value = await getUserRole()
-})
 
 const transitionName = ref('slide-y-in')
 watch(

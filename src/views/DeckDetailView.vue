@@ -391,12 +391,14 @@ import { computed, ref, onUnmounted, onMounted, nextTick, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useDeckEncoder } from '@/composables/useDeckEncoder'
 import { useDisplay } from 'vuetify'
+import { storeToRefs } from 'pinia'
 import { useDeckGrouping } from '@/composables/useDeckGrouping'
 import { useCardImage } from '@/composables/useCardImage'
 import { fetchCardByIdAndPrefix, fetchCardsByBaseIdAndPrefix } from '@/utils/card'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useUIStore } from '@/stores/ui'
 import { useDeckStore } from '@/stores/deck'
+import { useAuthStore } from '@/stores/auth'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import collator from '@/utils/collator.js'
 import { convertElementToPng } from '@/utils/domToImage.js'
@@ -404,7 +406,6 @@ import { convertDeckToPDF } from '@/utils/domToPDF'
 import DeckShareImage from '@/components/deck/DeckShareImage.vue'
 import DeckCardList from '@/components/deck/DeckCardList.vue'
 import DeckExportDialog from '@/components/deck/DeckExportDialog.vue'
-import { getUserRole } from '@/composables/useUserRole'
 
 const { smAndUp } = useDisplay()
 const resize = computed(() => {
@@ -415,8 +416,9 @@ const router = useRouter()
 const { decodeDeck } = useDeckEncoder()
 const { triggerSnackbar } = useSnackbar()
 const uiStore = useUIStore()
+const authStore = useAuthStore()
+const { userRole } = storeToRefs(authStore)
 const deckStore = useDeckStore()
-const userRole = ref(0)
 
 const deckKey = route.params.key
 const isLocalDeck = computed(() => deckKey === 'local')
@@ -538,8 +540,6 @@ const updateEditedCards = async () => {
 onMounted(async () => {
   uiStore.setLoading(true)
   isDataReady.value = false
-
-  userRole.value = await getUserRole()
 
   try {
     let initialCards = {}

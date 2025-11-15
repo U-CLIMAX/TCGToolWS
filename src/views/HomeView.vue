@@ -25,7 +25,9 @@
             <p
               class="sub-title"
               :class="{ 'ciallo-animation': isCialloActive }"
-              :style="{fontFamily: isCialloActive ? 'Chill Round Gothic' : 'var(--font-family-subtitle)'}"
+              :style="{
+                fontFamily: isCialloActive ? 'Chill Round Gothic' : 'var(--font-family-subtitle)',
+              }"
             >
               {{ subTitleText }}
             </p>
