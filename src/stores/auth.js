@@ -311,11 +311,6 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  // Init
-  if (isAuthenticated.value) {
-    fetchUserStatus()
-  }
-
   return {
     token,
     isAuthenticated,
