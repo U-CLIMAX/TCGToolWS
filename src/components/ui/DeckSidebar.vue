@@ -312,12 +312,13 @@
 </template>
 
 <script setup>
-import { ref, computed, toRaw, onMounted } from 'vue'
+import { ref, computed, toRaw } from 'vue'
 import { useDeckStore } from '@/stores/deck'
 import { useCardImage } from '@/composables/useCardImage'
 import { fetchCardByIdAndPrefix, fetchCardsByBaseIdAndPrefix } from '@/utils/card'
 import CardDetailModal from '@/components/card/CardDetailModal.vue'
 import { useDisplay } from 'vuetify'
+import { storeToRefs } from 'pinia'
 import { useDeckGrouping } from '@/composables/useDeckGrouping'
 import { useDeckEncoder } from '@/composables/useDeckEncoder'
 import { useAuthStore } from '@/stores/auth'
@@ -326,7 +327,6 @@ import { useSnackbar } from '@/composables/useSnackbar'
 import { useUIStore } from '@/stores/ui'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import collator from '@/utils/collator.js'
-import { getUserRole } from '@/composables/useUserRole'
 
 defineProps({
   headerOffsetHeight: {
@@ -353,11 +353,7 @@ const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 // Loading State
 const authStore = useAuthStore()
-const userRole = ref(0)
-
-onMounted(async () => {
-  userRole.value = await getUserRole()
-})
+const { userRole, userStatus } = storeToRefs(authStore)
 
 // Auth Alert Dialog State
 const isAuthAlertOpen = ref(false)
@@ -490,16 +486,14 @@ const calculateDiff = (originalCards, currentCards) => {
   return diff
 }
 
-const userStatusForUpdate = ref(null)
 const diffForUpdate = ref(null)
 
 const promptForHistoryAndUpdate = async () => {
-  userStatusForUpdate.value = await authStore.getUserStatus()
   const diff = calculateDiff(deckStore.originalCardsInDeck, deckStore.cardsInDeck)
   diffForUpdate.value = diff
 
   // Only prompt for history if there are actual card changes and user has the right role
-  if (diff.length > 0 && userStatusForUpdate.value && userStatusForUpdate.value.role !== 0) {
+  if (diff.length > 0 && userStatus.value && userStatus.value.role !== 0) {
     const editCount = (deckStore.deckHistory || []).length + 1
     historyText.value = `${deckName.value} #${editCount}`
     isHistoryDialogOpen.value = true
@@ -528,7 +522,7 @@ const handleUpdateDeck = async (historyText = '', diff = []) => {
 
   try {
     let updatedHistory = toRaw(deckStore.deckHistory) || []
-    const role = userStatusForUpdate.value?.role
+    const role = userStatus.value?.role
 
     // Only users with role !== 0 can add a new history entry
     if (role !== 0 && diff.length > 0) {

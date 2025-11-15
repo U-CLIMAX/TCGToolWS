@@ -144,13 +144,14 @@
 </template>
 
 <script setup>
-import { computed, ref, onMounted } from 'vue'
+import { computed } from 'vue'
 import { useDisplay, useTheme } from 'vuetify'
+import { storeToRefs } from 'pinia'
 import { useCardImage } from '@/composables/useCardImage.js'
+import { useAuthStore } from '@/stores/auth'
 import { useDeckStore } from '@/stores/deck'
 import { useUIStore } from '@/stores/ui'
 import { useDevice } from '@/composables/useDevice'
-import { getUserRole } from '@/composables/useUserRole'
 
 const props = defineProps({
   card: { type: Object, required: true },
@@ -159,17 +160,13 @@ const props = defineProps({
 
 const emit = defineEmits(['show-details'])
 
+const authStore = useAuthStore()
+const { userRole } = storeToRefs(authStore)
 const deckStore = useDeckStore()
 const uiStore = useUIStore()
 const { smAndDown, lgAndUp } = useDisplay()
 const { isTouch } = useDevice()
 const theme = useTheme()
-
-const userRole = ref(0)
-
-onMounted(async () => {
-  userRole.value = await getUserRole()
-})
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 const isLightWithBg = computed(() => {

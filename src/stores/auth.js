@@ -34,6 +34,8 @@ export const useAuthStore = defineStore('auth', () => {
   const { token: initToken, rememberMe: initRemember } = initState()
   const token = ref(initToken)
   const rememberMe = ref(initRemember)
+  const userRole = ref(0)
+  const userStatus = ref(null)
   const isAuthenticated = computed(() => !!token.value)
 
   // 儲存到 storage
@@ -81,11 +83,14 @@ export const useAuthStore = defineStore('auth', () => {
     if (!response.ok) throw new Error(data.error || 'Login failed.')
     token.value = data.token
     saveToStorage()
+    await fetchUserStatus()
     return data
   }
 
   const logout = () => {
     token.value = null
+    userRole.value = 0
+    userStatus.value = null
     localStorage.removeItem('auth')
     sessionStorage.removeItem('auth')
 
@@ -107,6 +112,7 @@ export const useAuthStore = defineStore('auth', () => {
       if (response.ok && data.token) {
         token.value = data.token
         saveToStorage()
+        await fetchUserStatus()
         console.log('Session refreshed successfully.')
       } else if (data.error) {
         console.error('Failed to refresh session:', data.error)
@@ -197,6 +203,7 @@ export const useAuthStore = defineStore('auth', () => {
       if (data.success && data.token) {
         token.value = data.token
         saveToStorage()
+        await fetchUserStatus()
         console.log('Token refreshed.')
       } else {
         throw new Error('Invalid data from refresh token endpoint')
@@ -208,87 +215,99 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  // 獲取用戶狀態
-  const getUserStatus = async () => {
-    if (!token.value) {
-      return null // 未登入
-    }
+  const fetchUserStatus = async () => {
+    // 獲取用戶狀態
+    const getUserStatus = async () => {
+      if (!token.value) {
+        return null // 未登入
+      }
 
-    // 定義 Token 必須包含的鍵，用於結構驗證
-    const REQUIRED_TOKEN_KEYS = ['sub', 'exp', 'role', 'p_exp']
-    const hasAllKeys = (decoded) => REQUIRED_TOKEN_KEYS.every((key) => key in decoded)
+      // 定義 Token 必須包含的鍵，用於結構驗證
+      const REQUIRED_TOKEN_KEYS = ['sub', 'exp', 'role', 'p_exp']
+      const hasAllKeys = (decoded) => REQUIRED_TOKEN_KEYS.every((key) => key in decoded)
 
-    let decodedToken
-    try {
-      decodedToken = jwtDecode(token.value)
-    } catch (error) {
-      console.error('Invalid token, logging out.', error)
-      logout()
-      return null
-    }
-
-    const now = Math.floor(Date.now() / 1000)
-
-    // 立即過期檢查
-    if (decodedToken.exp < now) {
-      console.log('Token is expired. Logging out.')
-      logout()
-      return null
-    }
-
-    // 檢查資料是否過時 (結構不符或 Premium 過期)
-    const isTokenStale = (token) => {
-      return !hasAllKeys(token) || (token.role === 1 && token.p_exp && token.p_exp < now)
-    }
-
-    if (isTokenStale(decodedToken)) {
-      console.log(
-        'Token is stale (outdated structure or expired premium). Refreshing from server...'
-      )
+      let decodedToken
       try {
-        await refreshUserToken()
-        decodedToken = jwtDecode(token.value) // 刷新後重新解碼
-
-        // 再次檢查，如果資料仍然過時，避免無限刷新循環強制登出
-        if (isTokenStale(decodedToken)) {
-          console.error('Refreshed token is already expired. Logging out.')
-          logout()
-          return null
-        }
-        console.log('Token refreshed and data is now valid.')
-      } catch (e) {
-        // 刷新失敗（例如401），已在 refreshUserToken 中處理登出
-        console.error('Token refresh failed while updating data:', e)
+        decodedToken = jwtDecode(token.value)
+      } catch (error) {
+        console.error('Invalid token, logging out.', error)
+        logout()
         return null
       }
-    } else {
-      // 如果資料沒問題，再檢查是否需要主動延長 Session
-      const oneDayInSeconds = 24 * 60 * 60
-      if (decodedToken.exp < now + oneDayInSeconds) {
-        console.log('Token is nearing expiration. Refreshing session...')
+
+      const now = Math.floor(Date.now() / 1000)
+
+      // 立即過期檢查
+      if (decodedToken.exp < now) {
+        console.log('Token is expired. Logging out.')
+        logout()
+        return null
+      }
+
+      // 檢查資料是否過時 (結構不符或 Premium 過期)
+      const isTokenStale = (token) => {
+        return !hasAllKeys(token) || (token.role === 1 && token.p_exp && token.p_exp < now)
+      }
+
+      if (isTokenStale(decodedToken)) {
+        console.log(
+          'Token is stale (outdated structure or expired premium). Refreshing from server...'
+        )
         try {
-          await refreshSession()
+          await refreshUserToken()
           decodedToken = jwtDecode(token.value) // 刷新後重新解碼
+
+          // 再次檢查，如果資料仍然過時，避免無限刷新循環強制登出
+          if (isTokenStale(decodedToken)) {
+            console.error('Refreshed token is already expired. Logging out.')
+            logout()
+            return null
+          }
+          console.log('Token refreshed and data is now valid.')
         } catch (e) {
-          // refreshSession 內部已處理登出
-          console.error('Proactive session refresh failed:', e)
+          // 刷新失敗（例如401），已在 refreshUserToken 中處理登出
+          console.error('Token refresh failed while updating data:', e)
           return null
         }
+      } else {
+        // 如果資料沒問題，再檢查是否需要主動延長 Session
+        const oneDayInSeconds = 24 * 60 * 60
+        if (decodedToken.exp < now + oneDayInSeconds) {
+          console.log('Token is nearing expiration. Refreshing session...')
+          try {
+            await refreshSession()
+            decodedToken = jwtDecode(token.value) // 刷新後重新解碼
+          } catch (e) {
+            // refreshSession 內部已處理登出
+            console.error('Proactive session refresh failed:', e)
+            return null
+          }
+        }
+      }
+
+      let effectiveRole = decodedToken.role
+      let effectivePremiumTime = decodedToken.p_exp
+
+      // 如果 p_exp 存在但已過期，將其視為 null
+      if (effectivePremiumTime && effectivePremiumTime < now) {
+        effectivePremiumTime = null
+      }
+
+      return {
+        id: decodedToken.sub,
+        role: effectiveRole,
+        premium_expire_time: effectivePremiumTime,
       }
     }
 
-    let effectiveRole = decodedToken.role
-    let effectivePremiumTime = decodedToken.p_exp
-
-    // 如果 p_exp 存在但已過期，將其視為 null
-    if (effectivePremiumTime && effectivePremiumTime < now) {
-      effectivePremiumTime = null
-    }
-
-    return {
-      id: decodedToken.sub,
-      role: effectiveRole,
-      premium_expire_time: effectivePremiumTime,
+    try {
+      const status = await getUserStatus()
+      userStatus.value = status
+      userRole.value = status ? status.role : 0
+    } catch (error) {
+      console.error('Failed to fetch user status:', error)
+      userStatus.value = null
+      userRole.value = 0
     }
   }
 
@@ -296,6 +315,8 @@ export const useAuthStore = defineStore('auth', () => {
     token,
     isAuthenticated,
     rememberMe,
+    userRole,
+    userStatus,
     initiatePayment,
     sendVerificationCode,
     verifyAndRegister,
@@ -305,6 +326,6 @@ export const useAuthStore = defineStore('auth', () => {
     forgotPassword,
     resetPassword,
     refreshUserToken,
-    getUserStatus,
+    fetchUserStatus,
   }
 })

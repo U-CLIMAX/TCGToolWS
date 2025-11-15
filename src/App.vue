@@ -74,6 +74,7 @@
               v-bind="props"
               @click="isUserProfileModalOpen = true"
               icon="mdi-account-circle"
+              :class="accountIconClass"
             ></v-btn>
           </template>
         </v-tooltip>
@@ -156,6 +157,7 @@
 import { ref, watch, computed } from 'vue'
 import { useTheme, useDisplay } from 'vuetify'
 import { useRoute, useRouter } from 'vue-router'
+import { storeToRefs } from 'pinia'
 import { useUIStore } from '@/stores/ui'
 import { useDevice } from '@/composables/useDevice'
 import { useAuthStore } from '@/stores/auth'
@@ -175,6 +177,20 @@ import DeckIcon from '@/assets/ui/deck.svg'
 import SearchIcon from '@/assets/ui/search.svg'
 
 const authStore = useAuthStore()
+const { userRole } = storeToRefs(authStore)
+
+const accountIconClass = computed(() => {
+  const role = userRole.value
+  const isDark = vuetifyTheme.global.current.value.dark || isHomeRoute.value
+
+  if (role === 1) {
+    return isDark ? 'premium-user-icon-dark' : 'premium-user-icon-light'
+  }
+  if (role === 2) {
+    return isDark ? 'developer-user-icon-dark' : 'developer-user-icon-light'
+  }
+  return null
+})
 const authDialog = ref(null)
 const { show, text, color, triggerSnackbar } = useSnackbar()
 const route = useRoute()
@@ -345,6 +361,46 @@ watch(
 .slide-y-out-only-leave-to {
   transform: translateY(-20px);
   opacity: 0;
+}
+
+/* Premium User (Role 1) - Light Theme */
+.premium-user-icon-light .v-icon {
+  background: var(--golden-gradirnt-light);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-loop 3s linear infinite;
+}
+
+/* Premium User (Role 1) - Dark Theme */
+.premium-user-icon-dark .v-icon {
+  background: var(--golden-gradirnt-dark);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-loop 3s linear infinite;
+}
+
+/* Developer User (Role 2) - Light Theme */
+.developer-user-icon-light .v-icon {
+  background: var(--rainbow-gradirnt-light);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-loop 3s linear infinite;
+}
+
+/* Developer User (Role 2) - Dark Theme */
+.developer-user-icon-dark .v-icon {
+  background: var(--rainbow-gradirnt-dark);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-loop 3s linear infinite;
 }
 
 /* 設定給效果小圖標用的樣式 */

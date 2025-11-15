@@ -15,12 +15,26 @@
         <!-- Left Section -->
         <div class="content-section">
           <div class="title-area">
-            <h1 class="main-title">U CLIMAX</h1>
-            <p class="sub-title">ws卡查工具</p>
+            <h1
+              class="main-title"
+              :class="{ 'ciallo-animation': isCialloActive }"
+              @click="handleTitleClick"
+            >
+              {{ mainTitleText }}
+            </h1>
+            <p
+              class="sub-title"
+              :class="{ 'ciallo-animation': isCialloActive }"
+              :style="{
+                fontFamily: isCialloActive ? 'Chill Round Gothic' : 'var(--font-family-subtitle)',
+              }"
+            >
+              {{ subTitleText }}
+            </p>
           </div>
 
           <!-- Desktop Counter -->
-          <div class="counter-area d-none d-md-block">
+          <div class="counter-area d-none d-lg-block">
             <div class="counter-container">
               <div
                 v-for="(image, index) in images"
@@ -55,7 +69,7 @@
             </transition>
 
             <!-- Mobile Counter -->
-            <div class="counter-area d-block d-md-none">
+            <div class="counter-area d-block d-xl-none">
               <div class="counter-container">
                 <div
                   v-for="(image, index) in images"
@@ -531,6 +545,40 @@ const setupObserver = (target) => {
   start()
 }
 
+// --- Ciallo～(∠・ω< )⌒☆ ---
+const mainTitleText = ref('U CLIMAX')
+const subTitleText = ref('ws卡查工具')
+const titleClickCount = ref(0)
+let titleClickTimer = null
+const isCialloActive = ref(false)
+
+const handleTitleClick = () => {
+  titleClickCount.value++
+
+  if (titleClickTimer) {
+    clearTimeout(titleClickTimer)
+  }
+
+  if (titleClickCount.value >= 10) {
+    mainTitleText.value = 'U Ciallo～'
+    subTitleText.value = '(∠・ω< )⌒☆'
+    isCialloActive.value = true
+    titleClickCount.value = 0 // Reset count immediately after trigger
+
+    // Revert back after a while
+    setTimeout(() => {
+      mainTitleText.value = 'U CLIMAX'
+      subTitleText.value = 'ws卡查工具'
+      isCialloActive.value = false
+    }, 2000) // Keep the new text for 2 seconds
+  } else {
+    // Reset counter if clicks are too slow
+    titleClickTimer = setTimeout(() => {
+      titleClickCount.value = 0
+    }, 1500) // Reset after 1.5 seconds of inactivity
+  }
+}
+
 onMounted(() => {
   // One-time splash animation logic
   if (typeof window !== 'undefined' && sessionStorage.getItem('splashShown')) {
@@ -676,16 +724,20 @@ onUnmounted(() => {
   text-overflow: ellipsis;
   -webkit-text-stroke: 0.06vw rgb(var(--color-white-rgb));
   color: rgba(var(--color-white-rgb), 0.8); /* Set the text color (Fill) to 0.8 transparency. */
+  user-select: none;
+  cursor: auto;
+  transform-origin: left center;
 }
 
 .sub-title {
-  font-family: var(--font-family-subtitle);
   font-size: var(--font-size-subtitle);
   font-weight: 100;
   line-height: 0.9;
   margin: 0;
   color: rgb(var(--color-white-rgb));
   -webkit-text-stroke: 0.1vw rgba(var(--color-white-rgb), 0.15);
+  user-select: none;
+  transform-origin: left center;
 }
 
 .features-title {
@@ -985,8 +1037,27 @@ onUnmounted(() => {
   opacity: 0;
 }
 
+.ciallo-animation {
+  animation: ciallo-reveal 0.5s ease-in-out;
+}
+
+@keyframes ciallo-reveal {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
 /* --- Responsive Adjustments --- */
-@media (max-width: 959.98px) {
+@media (max-width: 1280px) {
   .home-layout {
     grid-template-columns: 1fr; /* Stack columns */
     gap: 2rem;

@@ -14,7 +14,7 @@
         ></v-btn>
       </v-card-title>
       <v-card-text>
-        <div v-if="!userData" class="text-center">
+        <div v-if="!userStatus" class="text-center">
           <v-progress-circular indeterminate color="primary"></v-progress-circular>
           <p class="mt-2">讀取中...</p>
         </div>
@@ -22,7 +22,7 @@
           <v-list-item title="账号 ID">
             <template #subtitle>
               <div class="d-flex align-center">
-                <span>{{ userData.id }}</span>
+                <span>{{ userStatus.id }}</span>
                 <v-tooltip text="复制 ID" location="bottom">
                   <template v-slot:activator="{ props: tooltipProps }">
                     <v-btn
@@ -31,7 +31,7 @@
                       variant="text"
                       size="x-small"
                       class="ml-2"
-                      @click.stop="copyUserId(userData.id)"
+                      @click.stop="copyUserId(userStatus.id)"
                     ></v-btn>
                   </template>
                 </v-tooltip>
@@ -46,7 +46,7 @@
             </template>
           </v-list-item>
           <v-list-item
-            v-if="userData.role === 1 && userData.premium_expire_time"
+            v-if="userStatus.role === 1 && userStatus.premium_expire_time"
             title="Premium 到期日"
           >
             <template #subtitle>
@@ -66,7 +66,8 @@
 </template>
 
 <script setup>
-import { ref, watch, computed } from 'vue'
+import { ref, computed } from 'vue'
+import { storeToRefs } from 'pinia'
 import { useAuthStore } from '@/stores/auth'
 import { useSnackbar } from '@/composables/useSnackbar'
 
@@ -85,8 +86,8 @@ const handleLogout = () => {
 }
 
 const authStore = useAuthStore()
+const { userStatus } = storeToRefs(authStore)
 const { triggerSnackbar } = useSnackbar()
-const userData = ref(null)
 const isRefreshing = ref(false)
 
 const isDialogOpen = computed({
@@ -101,13 +102,13 @@ const roleMap = {
 }
 
 const userRoleText = computed(() => {
-  if (!userData.value) return ''
-  return roleMap[userData.value.role] || '未知角色'
+  if (!userStatus.value) return ''
+  return roleMap[userStatus.value.role] || '未知角色'
 })
 
 const formattedExpireTime = computed(() => {
-  if (!userData.value || !userData.value.premium_expire_time) return ''
-  const date = new Date(userData.value.premium_expire_time * 1000)
+  if (!userStatus.value || !userStatus.value.premium_expire_time) return ''
+  const date = new Date(userStatus.value.premium_expire_time * 1000)
   return date.toLocaleString('zh-TW', {
     year: 'numeric',
     month: 'long',
@@ -121,7 +122,6 @@ const handleRefreshToken = async () => {
   isRefreshing.value = true
   try {
     await authStore.refreshUserToken()
-    userData.value = await authStore.getUserStatus()
     triggerSnackbar('已成功刷新！')
   } catch (error) {
     console.error('刷新失敗:', error)
@@ -140,15 +140,4 @@ const copyUserId = async (id) => {
     triggerSnackbar('复制失败，请手动复制。', 'error')
   }
 }
-
-watch(
-  () => props.modelValue,
-  async (isOpen) => {
-    if (isOpen) {
-      userData.value = null // Reset on open for loading indicator
-      userData.value = await authStore.getUserStatus()
-    }
-  },
-  { immediate: true }
-)
 </script>

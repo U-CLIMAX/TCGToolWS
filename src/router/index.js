@@ -76,11 +76,12 @@ router.beforeEach(async (to, from, next) => {
 
   const authStore = useAuthStore()
 
-  // 透過 getUserStatus 實現自動刷新
+  // 透過 fetchUserStatus 實現自動刷新
   // 1. Token 結構過期 -> 自動刷新
   // 2. Premium 過期 -> 自動刷新
   // 3. Token 無效或解碼失敗 -> 自動登出
-  await authStore.getUserStatus()
+  // 4. 更新 Store 中的 userRole 和 userStatus
+  await authStore.fetchUserStatus()
 
   const isAuthenticated = authStore.isAuthenticated
   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth)
