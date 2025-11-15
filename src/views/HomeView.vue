@@ -277,7 +277,7 @@
       </div>
 
       <v-sheet color="transparent" class="pa-4 mt-8">
-        <v-divider class="mb-4"></v-divider>
+        <v-divider class="mb-4" color="white"></v-divider>
 
         <v-col cols="12" class="text-caption text-grey-darken-1 text-center">
           <div>
