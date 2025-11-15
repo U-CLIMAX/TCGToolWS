@@ -258,6 +258,45 @@
             </a>
           </div>
         </v-col>
+
+        <v-col
+          cols="12"
+          class="d-flex justify-center align-center ga-3 mt-4 text-grey-darken-1 text-body-2"
+        >
+          <v-img
+            src="/github.svg"
+            width="20"
+            height="20"
+            alt="GitHub Icon"
+            class="flex-grow-0"
+            style="filter: invert(1) brightness(0.5)"
+          ></v-img>
+          <div>
+            Developed by
+            <a
+              href="https://github.com/FuseFairy"
+              target="_blank"
+              class="text-grey-darken-1 text-decoration-underline"
+            >
+              Zhuang
+            </a>
+            &
+            <a
+              href="https://github.com/Yuuzi261"
+              target="_blank"
+              class="text-grey-darken-1 text-decoration-underline"
+            >
+              Yuuzi
+            </a>
+          </div>
+
+          <div class="d-flex align-center ga-2">
+            <v-icon icon="mdi-palette" :size="20"></v-icon>
+            <div>
+              <a class="text-grey-darken-1"> Kamomim </a>
+            </div>
+          </div>
+        </v-col>
       </v-sheet>
     </div>
 
