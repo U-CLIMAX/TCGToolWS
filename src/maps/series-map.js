@@ -169,6 +169,7 @@ export const seriesMap = {
   },
   'DARLING in the FRANXX': {
     id: 'fxx',
+    icon: 'fxx',
     prefixes: ['FXX'],
     latestReleaseDate: '2018-09-21',
   },
