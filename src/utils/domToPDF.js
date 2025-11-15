@@ -1,6 +1,7 @@
 import { formatEffectToHtml } from '@/utils/cardEffectFormatter'
 import { jsPDF } from 'jspdf'
 import { snapdom } from '@zumer/snapdom'
+import { sortDeckCards } from '@/utils/deckSort.js'
 
 const createPrintStyles = () => {
   const style = document.createElement('style')
@@ -108,6 +109,7 @@ const calculateCardPosition = (index, cardsOnPage) => {
 }
 
 export const convertDeckToPDF = async (cards, name, language) => {
+  const sortedCards = sortDeckCards(cards)
   const oldStyles = document.getElementById('deck-print-styles')
   const oldRenderContainer = document.getElementById('pdf-render-content')
 
@@ -127,7 +129,7 @@ export const convertDeckToPDF = async (cards, name, language) => {
 
   const allCards = []
   try {
-    for (const card of cards) {
+    for (const card of sortedCards) {
       if (!card.imgUrl) {
         console.warn('Card is missing imgUrl, skipping:', card.id)
         continue
