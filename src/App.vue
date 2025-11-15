@@ -74,6 +74,7 @@
               v-bind="props"
               @click="isUserProfileModalOpen = true"
               icon="mdi-account-circle"
+              :class="accountIconClass"
             ></v-btn>
           </template>
         </v-tooltip>
@@ -153,7 +154,7 @@
 </template>
 
 <script setup>
-import { ref, watch, computed } from 'vue'
+import { ref, watch, computed, onMounted } from 'vue'
 import { useTheme, useDisplay } from 'vuetify'
 import { useRoute, useRouter } from 'vue-router'
 import { useUIStore } from '@/stores/ui'
@@ -161,6 +162,7 @@ import { useDevice } from '@/composables/useDevice'
 import { useAuthStore } from '@/stores/auth'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { usePerformanceManager } from '@/composables/usePerformanceManager'
+import { getUserRole } from '@/composables/useUserRole'
 import AuthDialog from '@/components/ui/AuthDialog.vue'
 import SettingsModal from '@/components/ui/SettingsModal.vue'
 import UserProfileModal from '@/components/ui/UserProfileModal.vue'
@@ -175,6 +177,14 @@ import DeckIcon from '@/assets/ui/deck.svg'
 import SearchIcon from '@/assets/ui/search.svg'
 
 const authStore = useAuthStore()
+const userRole = ref(0)
+
+const accountIconClass = computed(() => {
+  if (userRole.value !== null && userRole.value !== 0) {
+    return 'premium-user-icon'
+  }
+  return null
+})
 const authDialog = ref(null)
 const { show, text, color, triggerSnackbar } = useSnackbar()
 const route = useRoute()
@@ -263,6 +273,10 @@ const goToHome = () => {
   router.push({ name: 'Home' })
 }
 
+onMounted(async () => {
+  userRole.value = await getUserRole()
+})
+
 const transitionName = ref('slide-y-in')
 watch(
   () => route.name,
@@ -345,6 +359,34 @@ watch(
 .slide-y-out-only-leave-to {
   transform: translateY(-20px);
   opacity: 0;
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.premium-user-icon .v-icon {
+  background: linear-gradient(
+    90deg,
+    #ffb3ba,
+    #ffdfba,
+    #ffffba,
+    #baffc9,
+    #bae1ff,
+    #d4baff,
+    #ffb3f0,
+    #ffb3ba
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow 3s linear infinite;
 }
 
 /* 設定給效果小圖標用的樣式 */
