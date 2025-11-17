@@ -56,12 +56,32 @@
             </template>
           </v-list-item>
         </v-list>
+
+        <v-divider v-if="userStatus.role === 0" class="my-2"></v-divider>
+
+        <div v-if="userStatus.role === 0" ref="supportSection" class="text-center pa-2">
+          <p class="text-body-2">
+            您的支持是本站持续营运的关键！<br />
+            升级 Premium 可解锁更多强大功能。
+          </p>
+          <v-btn
+            @click="handleUpgradeClick"
+            variant="outlined"
+            :color="theme === 'dark' ? 'yellow-accent-4' : 'amber-accent-4'"
+            class="ma-3"
+            rounded
+          >
+            升级 Premium
+            <v-icon end icon="mdi-arrow-up-bold-circle-outline"></v-icon>
+          </v-btn>
+        </div>
       </v-card-text>
       <v-card-actions>
         <v-btn text="关闭" @click="isDialogOpen = false"></v-btn>
         <v-btn text="登出" @click="handleLogout" color="red-lighten-1"></v-btn>
       </v-card-actions>
     </v-card>
+    <SponsorNoticeDialog v-model="isSponsorNoticeOpen" @confirm="proceedToPayment" />
   </v-dialog>
 </template>
 
@@ -69,7 +89,9 @@
 import { ref, computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useAuthStore } from '@/stores/auth'
+import { useUIStore } from '@/stores/ui'
 import { useSnackbar } from '@/composables/useSnackbar'
+import SponsorNoticeDialog from '@/components/ui/SponsorNoticeDialog.vue'
 
 const props = defineProps({
   modelValue: {
@@ -79,6 +101,10 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['update:modelValue', 'logout'])
+const uiStore = useUIStore()
+const { theme } = storeToRefs(uiStore)
+
+const isSponsorNoticeOpen = ref(false)
 
 const handleLogout = () => {
   emit('update:modelValue', false) // Close the modal
@@ -89,6 +115,22 @@ const authStore = useAuthStore()
 const { userStatus } = storeToRefs(authStore)
 const { triggerSnackbar } = useSnackbar()
 const isRefreshing = ref(false)
+
+const handleUpgradeClick = () => {
+  isSponsorNoticeOpen.value = true
+}
+
+const proceedToPayment = async () => {
+  isDialogOpen.value = false // Close the profile modal
+  uiStore.setLoading(true)
+  try {
+    await authStore.initiatePayment()
+  } catch (err) {
+    console.error(err)
+  } finally {
+    uiStore.setLoading(false)
+  }
+}
 
 const isDialogOpen = computed({
   get: () => props.modelValue,

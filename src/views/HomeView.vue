@@ -203,7 +203,7 @@
               <v-icon color="light-blue-lighten-3" size="48" class="mb-3">mdi-heart-circle</v-icon>
               <div class="text-h5 font-weight-bold text-white mb-2">成为赞助者</div>
               <div class="d-flex align-baseline mb-4">
-                <span class="text-h3 font-weight-bold text-green-lighten-1">5</span>
+                <span class="text-h3 font-weight-bold text-green-lighten-1">¥5</span>
                 <span class="text-body-1 text-white ml-1">/月</span>
               </div>
               <v-btn
@@ -352,48 +352,7 @@
       </v-card>
     </v-dialog>
 
-    <v-dialog v-model="isSponsorNoticeOpen" max-width="500px">
-      <v-card>
-        <v-card-title class="d-flex align-center">
-          <v-icon color="warning" class="mr-2">mdi-alert-circle-outline</v-icon>
-          赞助使用须知
-        </v-card-title>
-
-        <v-card-text>
-          <p class="mb-4">感谢您的支持！在您完成付款后，请注意以下事项：</p>
-
-          <v-list density="compact" bg-color="transparent" class="py-0">
-            <v-list-item prepend-icon="mdi-numeric-1-circle-outline" class="px-1">
-              <v-list-item-title class="text-wrap">
-                付款完成後，请前往<b>「账号资料」</b>，点击<b>「刷新」</b>按钮以更新您的帐号身份。
-              </v-list-item-title>
-            </v-list-item>
-
-            <v-list-item prepend-icon="mdi-numeric-2-circle-outline" class="px-1">
-              <v-list-item-title class="text-wrap">
-                可能存在<b>时间延迟</b>，如果第一次刷新未成功，请<b>等待约 1 分钟</b>后再试。。
-              </v-list-item-title>
-            </v-list-item>
-
-            <v-list-item prepend-icon="mdi-numeric-3-circle-outline" class="px-1">
-              <v-list-item-title class="text-wrap">
-                若多次刷新仍无效，请将您的 <b>「帐号 ID」</b> 复制后，发送至
-                <a href="mailto:issues@uclimax.cn">issues@uclimax.cn</a>
-                联系我们，我们会协助您解决问题。
-              </v-list-item-title>
-            </v-list-item>
-          </v-list>
-        </v-card-text>
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn text="取消" @click="isSponsorNoticeOpen = false"></v-btn>
-          <v-btn color="primary" variant="elevated" @click="handleNoticeConfirm">
-            我了解了，继续
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+    <SponsorNoticeDialog v-model="isSponsorNoticeOpen" @confirm="proceedToPayment" />
   </v-container>
 </template>
 
@@ -404,6 +363,7 @@ import { useUIStore } from '@/stores/ui'
 import { useIntersectionObserver } from '@/composables/useIntersectionObserver'
 import SplashAnimation from '@/components/common/SplashAnimation.vue'
 import ImageZoomViewer from '@/components/ui/ImageZoomViewer.vue'
+import SponsorNoticeDialog from '@/components/ui/SponsorNoticeDialog.vue'
 import { useHardwareAcceleration } from '@/composables/useHardwareAcceleration'
 
 const { isHardwareAccelerated } = useHardwareAcceleration()
@@ -433,12 +393,6 @@ const handleSupportClick = async () => {
 
   // 不直接付款，而是打開「須知 Modal」
   isSponsorNoticeOpen.value = true
-}
-
-// 4. 這是「須知 Modal」中「確認」按鈕呼叫的函數
-const handleNoticeConfirm = async () => {
-  isSponsorNoticeOpen.value = false
-  await proceedToPayment()
 }
 
 // --- Splash Animation State ---

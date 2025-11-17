@@ -70,12 +70,21 @@
           :disabled="isTouch"
         >
           <template v-slot:activator="{ props }">
-            <v-btn
-              v-bind="props"
-              @click="isUserProfileModalOpen = true"
-              icon="mdi-account-circle"
-              :class="accountIconClass"
-            ></v-btn>
+            <v-badge
+              :model-value="userRole === 0"
+              color="red"
+              dot
+              location="top end"
+              offset-x="12"
+              offset-y="11"
+            >
+              <v-btn
+                v-bind="props"
+                @click="isUserProfileModalOpen = true"
+                icon="mdi-account-circle"
+                :class="accountIconClass"
+              ></v-btn>
+            </v-badge>
           </template>
         </v-tooltip>
 
