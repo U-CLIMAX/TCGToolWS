@@ -122,6 +122,17 @@
           </v-list-item>
         </template>
       </v-list>
+      <template v-slot:append>
+        <div v-if="!authStore.isAuthenticated || userRole === 0" class="pa-4">
+          <v-btn
+            @click="isSponsorNoticeOpen = true"
+            text="赞助我们"
+            prepend-icon="mdi-heart"
+            color="red-accent-2"
+            class="w-100"
+          ></v-btn>
+        </div>
+      </template>
     </v-navigation-drawer>
 
     <v-main :scrollable="true">
@@ -139,6 +150,7 @@
     <AuthDialog ref="authDialog" />
     <SettingsModal v-model="isSettingsModalOpen" />
     <UserProfileModal v-model="isUserProfileModalOpen" @logout="handleLogoutClick" />
+    <SponsorNoticeDialog v-model="isSponsorNoticeOpen" @confirm="proceedToPayment" />
 
     <v-dialog v-model="isLogoutDialogVisible" max-width="320" persistent>
       <v-card title="确定登出" text="您确定要登出目前的帐号吗？">
@@ -176,6 +188,7 @@ import AuthDialog from '@/components/ui/AuthDialog.vue'
 import SettingsModal from '@/components/ui/SettingsModal.vue'
 import UserProfileModal from '@/components/ui/UserProfileModal.vue'
 import HomeBackground from '@/components/common/HomeBackground.vue'
+import SponsorNoticeDialog from '@/components/ui/SponsorNoticeDialog.vue'
 
 import titleDarkImg from '@/assets/ui/title-dark.webp'
 import titleLightImg from '@/assets/ui/title-light.webp'
@@ -216,8 +229,21 @@ const isInSpecialFlow = computed(() => {
   return !!route.meta.isSpecialFlow
 })
 
+const isSponsorNoticeOpen = ref(false)
+
 const handleLogin = () => {
   authDialog.value?.open()
+}
+
+const proceedToPayment = async () => {
+  uiStore.setLoading(true)
+  try {
+    await authStore.initiatePayment()
+  } catch (err) {
+    console.error(err)
+  } finally {
+    uiStore.setLoading(false)
+  }
 }
 
 const isLogoutDialogVisible = ref(false)
