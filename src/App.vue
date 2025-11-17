@@ -122,8 +122,8 @@
           </v-list-item>
         </template>
       </v-list>
-      <template v-slot:append>
-        <div v-if="!authStore.isAuthenticated || userRole === 0" class="pa-4">
+      <template v-if="authStore.isAuthenticated && userRole === 0" v-slot:append>
+        <div class="pa-4">
           <v-btn
             @click="isSponsorNoticeOpen = true"
             text="赞助我们"
