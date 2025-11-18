@@ -175,24 +175,12 @@ const CardFilterService = {
     const mappedLevels =
       filters.selectedLevels.length > 0 ? new Set(filters.selectedLevels.map(toLevel)) : null
 
-    if (filters.showUniqueCards) {
-      const bestCards = new Map()
-      for (const card of results) {
-        if (!bestCards.has(card.baseId)) {
-          bestCards.set(card.baseId, card)
-        } else {
-          const existingCard = bestCards.get(card.baseId)
-          if (card.id.length < existingCard.id.length) {
-            bestCards.set(card.baseId, card)
-          }
-        }
-      }
-      results = Array.from(bestCards.values())
-    }
-
     return results.filter((card) => {
       const cardCost = card.cost === '-' ? 0 : Number(card.cost)
 
+      if (filters.showUniqueCards && !card.isLowestRarity) {
+        return false
+      }
       if (filters.selectedCardTypes.length > 0 && !filters.selectedCardTypes.includes(card.type))
         return false
       if (filters.selectedColors.length > 0 && !filters.selectedColors.includes(card.color))

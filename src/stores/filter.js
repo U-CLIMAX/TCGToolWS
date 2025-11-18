@@ -101,13 +101,19 @@ export const useFilterStore = defineStore('filter', () => {
 
           const { all_cards, ...baseCardData } = cardData
           if (all_cards && Array.isArray(all_cards)) {
+            const minIdLength =
+              all_cards.length > 0 ? Math.min(...all_cards.map((c) => c.id.length)) : 0
+
             all_cards.forEach((cardVersion) => {
               if (cardVersion.rarity) raritiesSet.add(cardVersion.rarity)
+              const isLowest = cardVersion.id.length === minIdLength
+
               fetchedCards.push({
                 ...baseCardData,
                 ...cardVersion,
                 baseId,
                 cardIdPrefix: file.cardIdPrefix,
+                isLowestRarity: isLowest,
               })
             })
           }
