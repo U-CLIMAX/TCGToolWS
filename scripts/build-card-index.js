@@ -54,13 +54,18 @@ files.forEach((filename) => {
     const { all_cards, ...baseCardData } = cardData
 
     if (all_cards && Array.isArray(all_cards)) {
+      const minIdLength = all_cards.length > 0 ? Math.min(...all_cards.map((c) => c.id.length)) : 0
+
       all_cards.forEach((cardVersion) => {
         if (cardVersion.rarity) raritiesSet.add(cardVersion.rarity)
+        const isLowest = cardVersion.id.length === minIdLength
+
         allCards.push({
           ...baseCardData,
           ...cardVersion,
           baseId,
           cardIdPrefix,
+          isLowestRarity: isLowest,
         })
         cardCount++
       })
@@ -230,9 +235,7 @@ const CHUNK_SIZE = 512 * 1024 // 512 KB
 const chunkCount = Math.ceil(gzippedContent.length / CHUNK_SIZE)
 const chunkFiles = []
 
-console.log(
-  `📦 Total size: ${totalSizeMB} MB, splitting into ${chunkCount} chunks of ~512 KB...`
-)
+console.log(`📦 Total size: ${totalSizeMB} MB, splitting into ${chunkCount} chunks of ~512 KB...`)
 
 for (let i = 0; i < chunkCount; i++) {
   const start = i * CHUNK_SIZE
@@ -245,9 +248,9 @@ for (let i = 0; i < chunkCount; i++) {
   fs.writeFileSync(chunkFilePath, chunk)
   chunkFiles.push(chunkFileName)
   console.log(
-    `     - Created chunk ${i + 1}/${chunkCount}: ${chunkFileName} (${(
-      chunk.length / 1024
-    ).toFixed(2)} KB)`
+    `     - Created chunk ${i + 1}/${chunkCount}: ${chunkFileName} (${(chunk.length / 1024).toFixed(
+      2
+    )} KB)`
   )
 }
 console.log('💾 Index chunks created.')
