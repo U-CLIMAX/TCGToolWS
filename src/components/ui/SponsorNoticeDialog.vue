@@ -41,7 +41,7 @@
 
           <v-list-item prepend-icon="mdi-numeric-3-circle-outline" class="px-1">
             <v-list-item-title class="text-wrap">
-              若多次刷新仍无效，请将您的 <b>「帐号 ID」</b> 复制后，发送至
+              若多次刷新仍无效，请将您的 <b>「帐号 ID」和 爱发电的「订单号」</b> 复制后，发送至
               <a href="mailto:issues@uclimax.cn">issues@uclimax.cn</a>
               联系我们，我们会协助您解决问题。
             </v-list-item-title>
