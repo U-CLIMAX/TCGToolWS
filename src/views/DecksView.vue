@@ -258,7 +258,7 @@ watch(
 @media (min-width: 600px) {
   .series-select {
     width: auto;
-    min-width: 140px;
+    min-width: 100px;
     max-width: 250px;
   }
 }
