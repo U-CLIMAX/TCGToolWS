@@ -8,16 +8,34 @@
           rounded="lg"
           elevation="2"
         >
-          <v-text-field
-            v-model="deckNameSearchTerm"
-            label="搜索卡组名称"
-            variant="solo-filled"
-            density="compact"
-            append-inner-icon="mdi-magnify"
-            hide-details
-            flat
-            class="mb-3"
-          />
+          <!-- 搜尋與篩選區域 -->
+          <div class="d-flex flex-column flex-sm-row mb-3">
+            <v-text-field
+              v-model="deckNameSearchTerm"
+              label="搜索卡组名称"
+              variant="solo-filled"
+              density="compact"
+              append-inner-icon="mdi-magnify"
+              hide-details
+              flat
+              class="flex-grow-1 mr-sm-2 mb-2 mb-sm-0"
+            />
+            <v-select
+              v-model="selectedSeries"
+              :items="availableSeriesOptions"
+              item-title="title"
+              item-value="value"
+              label="筛选系列"
+              variant="solo-filled"
+              density="compact"
+              hide-details
+              flat
+              clearable
+              class="flex-shrink-0 series-select"
+              :menu-props="uiStore.menuProps"
+            />
+          </div>
+
           <v-btn block variant="tonal" prepend-icon="mdi-import" @click="showDeckCodeDialog = true">
             通过卡组代码查看
           </v-btn>
@@ -69,6 +87,7 @@ import { useDeckEncoder } from '@/composables/useDeckEncoder'
 import DeckCard from '@/components/deck/DeckCard.vue'
 import { useUIStore } from '@/stores/ui'
 import { useSnackbar } from '@/composables/useSnackbar'
+import { seriesMap } from '@/maps/series-map'
 
 const router = useRouter()
 const deckStore = useDeckStore()
@@ -78,20 +97,58 @@ const { triggerSnackbar } = useSnackbar()
 
 const deckCode = ref('')
 const deckNameSearchTerm = ref('')
+const selectedSeries = ref(null)
 const decodedDecks = ref({})
 const initialLoadingComplete = ref(false)
 const showDeckCodeDialog = ref(false)
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
+// 計算可用的系列選項並包含數量
+const availableSeriesOptions = computed(() => {
+  const counts = {}
+
+  // 遍歷所有已解碼的牌組來統計數量
+  Object.values(decodedDecks.value).forEach((deck) => {
+    if (deck.seriesId) {
+      const foundEntry = Object.entries(seriesMap).find(([, info]) => info.id === deck.seriesId)
+
+      if (foundEntry) {
+        const seriesName = foundEntry[0]
+        counts[seriesName] = (counts[seriesName] || 0) + 1
+      }
+    }
+  })
+
+  return Object.keys(counts)
+    .sort()
+    .map((name) => ({
+      title: `${name} (${counts[name]})`,
+      value: name,
+    }))
+})
+
 const filteredDecks = computed(() => {
   const searchTerm = deckNameSearchTerm.value.toLowerCase()
-  if (!searchTerm) {
+  const seriesFilter = selectedSeries.value // 這裡拿到的仍然是純系列名稱 (value)
+
+  if (!searchTerm && !seriesFilter) {
     return decodedDecks.value
   }
+
   return Object.fromEntries(
-    Object.entries(decodedDecks.value).filter(([, deck]) =>
-      deck.name.toLowerCase().includes(searchTerm)
-    )
+    Object.entries(decodedDecks.value).filter(([, deck]) => {
+      // 名稱篩選邏輯
+      const matchesName = !searchTerm || deck.name.toLowerCase().includes(searchTerm)
+
+      // 系列篩選邏輯
+      let matchesSeries = true
+      if (seriesFilter) {
+        const targetSeriesId = seriesMap[seriesFilter]?.id
+        matchesSeries = deck.seriesId === targetSeriesId
+      }
+
+      return matchesName && matchesSeries
+    })
   )
 })
 
@@ -193,5 +250,16 @@ watch(
 .deck-fade-enter-from {
   opacity: 0;
   transform: scale(0.9);
+}
+.series-select {
+  width: 100%; /* 手機版預設佔滿整行 */
+}
+
+@media (min-width: 600px) {
+  .series-select {
+    width: auto;
+    min-width: 140px;
+    max-width: 250px;
+  }
 }
 </style>
