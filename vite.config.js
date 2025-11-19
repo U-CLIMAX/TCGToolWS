@@ -70,6 +70,7 @@ export default defineConfig({
         manualChunks: {
           vendor: ['vue', 'vue-router'],
           ui: ['vuetify'],
+          lottie: ['lottie-web'],
         },
       },
     },
