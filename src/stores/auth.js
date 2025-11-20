@@ -1,12 +1,13 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import router from '@/router'
+import { useRouter } from 'vue-router'
 import { useDeckStore } from './deck'
 import { jwtDecode } from 'jwt-decode'
 
 export const useAuthStore = defineStore('auth', () => {
   const codeVersion = 1
   const deckStore = useDeckStore()
+  const router = useRouter()
 
   // 初始化:從 storage 讀取
   const initState = () => {
