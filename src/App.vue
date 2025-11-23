@@ -137,15 +137,17 @@
           </v-list-item>
         </template>
       </v-list>
-      <template v-if="authStore.isAuthenticated && userRole === 0" v-slot:append>
+      <template v-slot:append>
         <div class="pa-4">
           <v-btn
+            v-if="authStore.isAuthenticated && userRole === 0"
             @click="isSponsorNoticeOpen = true"
             text="赞助我们"
             prepend-icon="mdi-heart"
             color="red-accent-2"
             class="w-100 mb-3"
           ></v-btn>
+
           <v-btn
             href="https://github.com/U-CLIMAX/TCGToolWS"
             target="_blank"
@@ -159,7 +161,7 @@
                 src="/github.svg"
                 width="20"
                 height="20"
-                :style="githubIconStyle"
+                :style="drawerGithubIconStyle"
                 class="mr-2"
               ></v-img>
             </template>
@@ -238,6 +240,9 @@ const { userRole } = storeToRefs(authStore)
 const githubIconStyle = computed(() => {
   const isDark = vuetifyTheme.global.current.value.dark || isHomeRoute.value
   return isDark ? { filter: 'invert(1)' } : {}
+})
+const drawerGithubIconStyle = computed(() => {
+  return vuetifyTheme.global.current.value.dark ? { filter: 'invert(1)' } : {}
 })
 
 const accountIconClass = computed(() => {
