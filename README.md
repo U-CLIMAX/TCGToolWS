@@ -126,8 +126,8 @@
     - **Email**: `admin@example.com`
     - **Password**: `12345678`
 
-    > [!IMPORTANT]
-    > 雖然是測試帳號，但後端仍需要 `JWT_SECRET` 來簽發登入 Token。請確保您的 `.env` 檔案中包含該變數（開發環境可設為任意值，如 `dev_secret`），否則登入將會失敗。
+> [!IMPORTANT]
+> 雖然是測試帳號，但後端仍需要 `JWT_SECRET` 來簽發登入 Token。請確保您的 `.env` 檔案中包含該變數（開發環境可設為任意值，如 `dev_secret`），否則登入將會失敗。
 
 ### 安裝與執行
 
