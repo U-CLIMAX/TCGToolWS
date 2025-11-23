@@ -296,14 +296,16 @@
           cols="12"
           class="d-flex justify-center align-center ga-3 mt-4 text-grey-darken-1 text-body-2"
         >
-          <v-img
-            src="/github.svg"
-            width="20"
-            height="20"
-            alt="GitHub Icon"
-            class="flex-grow-0"
-            style="filter: invert(1) brightness(0.5)"
-          ></v-img>
+          <a href="https://github.com/U-CLIMAX/TCGToolWS" target="_blank">
+            <v-img
+              src="/github.svg"
+              width="20"
+              height="20"
+              alt="GitHub Icon"
+              class="flex-grow-0"
+              style="filter: invert(1) brightness(0.5)"
+            ></v-img>
+          </a>
           <div>
             Developed by
             <a

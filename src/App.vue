@@ -105,6 +105,21 @@
             </template>
           </v-tooltip>
         </template>
+
+        <v-btn
+          icon
+          href="https://github.com/U-CLIMAX/TCGToolWS"
+          target="_blank"
+          class="d-none d-md-flex mr-1"
+        >
+          <v-img
+            src="/github.svg"
+            width="24"
+            height="24"
+            :style="githubIconStyle"
+            alt="GitHub"
+          ></v-img>
+        </v-btn>
       </template>
     </v-app-bar>
 
@@ -129,8 +144,27 @@
             text="赞助我们"
             prepend-icon="mdi-heart"
             color="red-accent-2"
-            class="w-100"
+            class="w-100 mb-3"
           ></v-btn>
+          <v-btn
+            href="https://github.com/U-CLIMAX/TCGToolWS"
+            target="_blank"
+            size="small"
+            block
+            variant="text"
+            class="text-grey-darken-1"
+          >
+            <template #prepend>
+              <v-img
+                src="/github.svg"
+                width="20"
+                height="20"
+                :style="githubIconStyle"
+                class="mr-2"
+              ></v-img>
+            </template>
+            GitHub
+          </v-btn>
         </div>
       </template>
     </v-navigation-drawer>
@@ -200,6 +234,11 @@ import SearchIcon from '@/assets/ui/search.svg'
 
 const authStore = useAuthStore()
 const { userRole } = storeToRefs(authStore)
+
+const githubIconStyle = computed(() => {
+  const isDark = vuetifyTheme.global.current.value.dark || isHomeRoute.value
+  return isDark ? { filter: 'invert(1)' } : {}
+})
 
 const accountIconClass = computed(() => {
   const role = userRole.value
