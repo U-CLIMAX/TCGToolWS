@@ -21,7 +21,7 @@ try {
 
   // 克隆圖片倉庫到臨時目錄
   console.log('📦 Cloning images repository...')
-  execSync(`git clone git@github.com:FuseFairy/ws-image-data.git ${tempDir}`, {
+  execSync(`git clone git@github.com:U-CLIMAX/ws-image-data.git ${tempDir}`, {
     stdio: 'inherit',
   })
 
