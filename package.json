@@ -15,7 +15,7 @@
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
     "format:card": "prettier --write src/assets/card-data/",
-    "db:init": "wrangler d1 execute ws-account-db --local --file=./schema.sql"
+    "db:init": "npx wrangler d1 execute ws-account-db --local --file=./schema.sql"
   },
   "dependencies": {
     "@zumer/snapdom": "^2.0.0",
@@ -59,7 +59,6 @@
     "vite-plugin-pwa": "^1.1.0",
     "vite-plugin-vue-devtools": "^8.0.0",
     "vite-plugin-vuetify": "^2.1.2",
-    "vite-svg-loader": "^5.1.0",
-    "wrangler": "^4.40.2"
+    "vite-svg-loader": "^5.1.0"
   }
 }
