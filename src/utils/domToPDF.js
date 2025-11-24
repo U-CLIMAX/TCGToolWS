@@ -76,6 +76,7 @@ export const convertDeckToPDF = async (cards, name, language) => {
         })
         .join('')
 
+      await new Promise((r) => setTimeout(r, 100))
       await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)))
 
       const imgData = await snapdom.toJpg(container, {
