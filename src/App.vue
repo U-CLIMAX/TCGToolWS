@@ -154,7 +154,7 @@
             size="small"
             block
             variant="text"
-            class="text-grey-darken-1"
+            class="text-grey-darken-1 text-none"
           >
             <template #prepend>
               <v-img
