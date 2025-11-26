@@ -369,19 +369,11 @@ const historyText = ref('')
 const historyForm = ref(null)
 
 const isClearConfirmDialogOpen = ref(false)
+const clearDialogTitle = ref('')
+const clearDialogContent = ref('')
 
 const clearButtonIcon = computed(() => {
   return deckStore.editingDeckKey ? 'mdi-exit-run' : 'mdi-delete-sweep-outline'
-})
-
-const clearDialogTitle = computed(() => {
-  return deckStore.editingDeckKey ? '退出编辑' : '清除卡组'
-})
-
-const clearDialogContent = computed(() => {
-  return deckStore.editingDeckKey
-    ? '确定要退出编辑吗？未储存的内容将丢失。'
-    : '确定要清除卡组内容吗？将会清除目前编辑的所有资讯。'
 })
 
 const flattenedDisplayCards = computed(() => {
@@ -415,6 +407,13 @@ const closeSaveDialog = (value) => {
 }
 
 const openClearConfirmDialog = () => {
+  if (deckStore.editingDeckKey) {
+    clearDialogTitle.value = '退出编辑'
+    clearDialogContent.value = '确定要退出编辑吗？未储存的内容将丢失。'
+  } else {
+    clearDialogTitle.value = '清除卡组'
+    clearDialogContent.value = '确定要清除卡组内容吗？将会清除目前编辑的所有资讯。'
+  }
   isClearConfirmDialogOpen.value = true
 }
 
