@@ -4,6 +4,17 @@ import { findSeriesDataFileName } from '@/maps/series-card-map.js'
 import { getAssetsFile } from '@/utils/getAssetsFile.js'
 import { useCardFiltering } from '@/composables/useCardFiltering.js'
 
+// 分批執行，避免一下過多請求導置瀏覽器崩潰
+const processInBatches = async (items, handler, batchSize = 5) => {
+  const results = []
+  for (let i = 0; i < items.length; i += batchSize) {
+    const chunk = items.slice(i, i + batchSize)
+    const chunkResults = await Promise.all(chunk.map((item) => handler(item)))
+    results.push(...chunkResults)
+  }
+  return results
+}
+
 const cache = new Map()
 
 export const useFilterStore = defineStore('filter', () => {
@@ -62,17 +73,26 @@ export const useFilterStore = defineStore('filter', () => {
 
     try {
       const dataFilePaths = findSeriesDataFileName(prefixes)
-      const allFileContents = await Promise.all(
-        dataFilePaths.map(async (path) => {
-          const url = await getAssetsFile(path)
-          const response = await fetch(url, { priority: 'high' })
+      const fetchFileHandler = async (path) => {
+        const url = await getAssetsFile(path)
+        try {
+          const response = await fetch(url)
           if (!response.ok) throw new Error(`Failed to fetch ${path}`)
           return {
             content: await response.json(),
             cardIdPrefix: path.split('/').pop().replace('.json', ''),
           }
-        })
-      )
+        } catch (err) {
+          console.warn(`Error loading ${path}:`, err)
+          return null // 返回 null 表示這個檔案下載失敗
+        }
+      }
+
+      // 使用分批處理取代原本的 Promise.all ---
+      const rawResults = await processInBatches(dataFilePaths, fetchFileHandler, 15)
+
+      // 過濾掉失敗的請求
+      const allFileContents = rawResults.filter((item) => item !== null)
 
       const fetchedCards = []
       const productNamesSet = new Set()
