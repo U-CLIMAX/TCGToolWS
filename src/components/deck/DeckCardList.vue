@@ -3,7 +3,7 @@
     <div class="px-4 pb-4 w-100 h-100 centered-content">
       <v-fab-transition>
         <DeckStatsDashboard
-          v-if="uiStore.showStatsDashboard"
+          v-if="uiStore.showStatsDashboard || shouldForceDashboardOpen"
           :grouped-cards="statsGroupedCards"
           :group-by="groupBy"
         />
@@ -142,6 +142,7 @@
 
 <script setup>
 import { computed, ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import { useTheme } from 'vuetify'
 import { useDisplay } from 'vuetify'
 import { useCardImage } from '@/composables/useCardImage.js'
@@ -192,6 +193,11 @@ const { xs, smAndDown } = useDisplay()
 const theme = useTheme()
 const uiStore = useUIStore()
 const { isTouch } = useDevice()
+const route = useRoute()
+
+const shouldForceDashboardOpen = computed(() => {
+  return ['DeckLog', 'ShareDeckDetail'].includes(route.name)
+})
 
 const showCards = ref(true)
 
