@@ -15,6 +15,18 @@
       :style="containerHeight ? { height: `${containerHeight}px` } : undefined"
     >
       <div class="d-flex flex-column ga-4">
+        <div class="d-flex justify-end">
+          <v-btn
+            size="small"
+            variant="text"
+            color="primary"
+            density="compact"
+            prepend-icon="mdi-filter-remove"
+            text="清空筛选"
+            @click="filterStore.resetFilters()"
+            :disabled="props.disabled"
+          ></v-btn>
+        </div>
         <div class="d-flex ga-2 align-center">
           <v-text-field
             class="flex-grow-1"
@@ -23,6 +35,7 @@
             hide-details="auto"
             v-model="keywordInput"
             variant="underlined"
+            density="compact"
             :rules="[(v) => !v || v.length >= 2 || '关键字至少输入2个字符']"
             :disabled="props.disabled"
           >
@@ -62,6 +75,7 @@
           hide-details
           v-model="filterStore.showUniqueCards"
           color="primary"
+          density="compact"
           :disabled="props.disabled || (!filterStore.hasActiveFilters && globalFilter)"
         ></v-switch>
 
@@ -183,7 +197,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { computed } from 'vue'
 import { useDisplay } from 'vuetify'
 import { debounce } from 'es-toolkit'
 import { useUIStore } from '@/stores/ui'
@@ -221,14 +235,15 @@ const uiStore = useUIStore()
 
 const filterStore = props.globalFilter ? useGlobalSearchStore() : useFilterStore()
 
-const keywordInput = ref(filterStore.keyword)
-
-const updateKeyword = debounce((val) => {
+const updateStoreKeyword = debounce((val) => {
   filterStore.keyword = val
 }, 300)
 
-watch(keywordInput, (val) => {
-  updateKeyword(val)
+const keywordInput = computed({
+  get: () => filterStore.keyword,
+  set: (val) => {
+    updateStoreKeyword(val)
+  },
 })
 
 const toggleSearchMode = () => {
