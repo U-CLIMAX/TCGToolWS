@@ -107,7 +107,7 @@
             v-model="deckName"
             label="卡组名称"
             :counter="10"
-            maxlength="10"
+            maxlength="20"
             variant="outlined"
             density="compact"
             hide-details="auto"
@@ -252,7 +252,7 @@ const openSaveDialog = () => {
   if (!authStore.isAuthenticated) {
     isAuthAlertOpen.value = true
   } else if (deck.value) {
-    deckName.value = deck.value.title || ''
+    deckName.value = deck.value.title.slice(0, 20) || ''
     selectedCoverCardId.value = deck.value.coverCardId || Object.values(cards.value)[0]?.id
     isSaveDialogOpen.value = true
   }

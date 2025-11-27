@@ -107,7 +107,7 @@
             v-model="deckName"
             label="卡组名称"
             :counter="10"
-            maxlength="10"
+            maxlength="20"
             variant="outlined"
             density="compact"
             hide-details="auto"
