@@ -205,6 +205,21 @@ export const useDeckStore = defineStore(
     }
 
     /**
+     * 從後端獲取 Decklog 的 JSON 資料
+     */
+    const fetchDecklog = async (key) => {
+      const response = await fetch(`/api/decklog/${key}`)
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}))
+        throw new Error(errorData.error || '获取 Decklog 资料失败')
+      }
+
+      const payload = await response.json()
+
+      return payload.data
+    }
+
+    /**
      * 删除一个卡组。
      */
     const deleteDeck = async (key) => {
@@ -265,6 +280,7 @@ export const useDeckStore = defineStore(
       fetchDeckByKey,
       deleteDeck,
       reset,
+      fetchDecklog,
     }
   },
   {

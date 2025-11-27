@@ -46,15 +46,31 @@
         <v-card>
           <v-card-title>输入卡组代码</v-card-title>
           <v-card-text>
-            <v-text-field
-              v-model="deckCode"
-              label="卡组代码"
-              variant="outlined"
-              density="compact"
-              hide-details
-              autofocus
-              @keydown.enter="navigateToSharedDeck"
-            />
+            <v-row dense>
+              <v-col cols="7">
+                <v-select
+                  v-model="deckCodeSource"
+                  :items="sourceOptions"
+                  item-title="title"
+                  item-value="value"
+                  label="代码来源"
+                  variant="outlined"
+                  density="compact"
+                  hide-details
+                />
+              </v-col>
+              <v-col cols="5">
+                <v-text-field
+                  v-model="deckCode"
+                  label="卡组代码"
+                  variant="outlined"
+                  density="compact"
+                  hide-details
+                  autofocus
+                  @keydown.enter="navigateToSharedDeck"
+                />
+              </v-col>
+            </v-row>
           </v-card-text>
           <v-card-actions>
             <v-spacer />
@@ -102,6 +118,21 @@ const decodedDecks = ref({})
 const initialLoadingComplete = ref(false)
 const showDeckCodeDialog = ref(false)
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
+
+// 卡組代碼來源
+const deckCodeSource = ref('uclimax') // 默認選擇 U CLIMAX
+const sourceOptions = [
+  {
+    title: 'U CLIMAX',
+    value: 'uclimax',
+    routeName: 'ShareDeckDetail',
+  },
+  {
+    title: 'DeckLog JP',
+    value: 'decklog',
+    routeName: 'DeckLog',
+  },
+]
 
 // 計算可用的系列選項並包含數量
 const availableSeriesOptions = computed(() => {
@@ -155,8 +186,9 @@ const filteredDecks = computed(() => {
 const navigateToSharedDeck = () => {
   const code = deckCode.value.trim()
   if (code) {
+    const selectedOption = sourceOptions.find((opt) => opt.value === deckCodeSource.value)
     router.push({
-      name: 'ShareDeckDetail',
+      name: selectedOption.routeName,
       params: { key: code },
     })
     showDeckCodeDialog.value = false

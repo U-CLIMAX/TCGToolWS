@@ -47,6 +47,12 @@ const routes = [
     props: true,
   },
   {
+    path: '/decklog/:key',
+    name: 'DeckLog',
+    component: () => import('@/views/DeckLogView.vue'),
+    props: true,
+  },
+  {
     path: '/forgot-password',
     name: 'ForgotPassword',
     component: () => import('@/views/ForgotPasswordView.vue'),

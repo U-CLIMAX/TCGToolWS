@@ -16,6 +16,7 @@ import {
   handleGetDeckByKey,
   handleDeleteDeck,
   handleUpdateDeck,
+  handleGetDecklogData,
 } from '../lib/decks.js'
 import {
   createRateLimiter,
@@ -76,6 +77,11 @@ const publicDeckRoutes = new Hono()
 publicDeckRoutes.use('/*', publicReadLimiter)
 publicDeckRoutes.get('/:key', handleGetDeckByKey)
 
+// === 公開的 Decklog 路由 ===
+const decklogRoutes = new Hono()
+decklogRoutes.use('/*', publicReadLimiter)
+decklogRoutes.get('/:key', handleGetDecklogData)
+
 // === 受保護的 Payment 路由 ===
 const paymentRoutes = new Hono()
 paymentRoutes.use('/*', authMiddleware, apiUserLimiter) // 必須登入才能創建訂單
@@ -89,6 +95,7 @@ webhookRoutes.post('/afdian', handleAfdianWebhook)
 app.route('/', authRoutes)
 app.route('/decks', deckRoutes)
 app.route('/shared-decks', publicDeckRoutes)
+app.route('/decklog', decklogRoutes)
 app.route('/webhooks', webhookRoutes)
 app.route('/payments', paymentRoutes)
 
