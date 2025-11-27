@@ -1,24 +1,68 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { ref, shallowRef } from 'vue'
 import { findSeriesDataFileName } from '@/maps/series-card-map.js'
 import { getAssetsFile } from '@/utils/getAssetsFile.js'
 import { useCardFiltering } from '@/composables/useCardFiltering.js'
 
-// 分批執行，避免一下過多請求導置瀏覽器崩潰
-const processInBatches = async (items, handler, batchSize = 5) => {
-  const results = []
-  for (let i = 0; i < items.length; i += batchSize) {
-    const chunk = items.slice(i, i + batchSize)
-    const chunkResults = await Promise.all(chunk.map((item) => handler(item)))
-    results.push(...chunkResults)
-  }
-  return results
-}
-
-const cache = new Map()
-
 export const useFilterStore = defineStore('filter', () => {
   // --- State ---
+
+  // Cache for series data to prevent re-fetching
+  const seriesDataCache = shallowRef({})
+
+  // 用於記錄所有已加入過 Queue 的路徑歷史，避免重複處理
+  const processedPathsHistory = new Set()
+
+  // Queue system for fetching files
+  const fetchQueue = []
+  const activeFetchPromises = new Map()
+  let isProcessingQueue = false
+
+  const processFetchQueue = async () => {
+    if (isProcessingQueue) return
+    isProcessingQueue = true
+
+    try {
+      while (fetchQueue.length > 0) {
+        const batch = fetchQueue.splice(0, 30)
+        await Promise.all(
+          batch.map(async (path) => {
+            const deferred = activeFetchPromises.get(path)
+            if (!deferred) return
+
+            try {
+              if (seriesDataCache.value[path]) {
+                deferred.resolve(seriesDataCache.value[path])
+                return
+              }
+
+              const url = await getAssetsFile(path)
+              const response = await fetch(url)
+              if (!response.ok) throw new Error(`Failed to fetch ${path}`)
+
+              const result = {
+                content: await response.json(),
+                cardIdPrefix: path.split('/').pop().replace('.json', ''),
+              }
+
+              seriesDataCache.value = {
+                ...seriesDataCache.value,
+                [path]: result,
+              }
+              deferred.resolve(result)
+            } catch (err) {
+              console.warn(`Error loading ${path}:`, err)
+              deferred.resolve(null)
+            } finally {
+              activeFetchPromises.delete(path)
+            }
+          })
+        )
+      }
+    } finally {
+      isProcessingQueue = false
+    }
+  }
 
   // Raw data from API
   const allCards = ref([])
@@ -47,7 +91,7 @@ export const useFilterStore = defineStore('filter', () => {
     selectedPowerRange,
     resetFilters,
     filteredCards,
-    terminateWorker, // Extract terminateWorker
+    terminateWorker,
     initializeWorker,
   } = useCardFiltering(productNames, traits, rarities, costRange, powerRange)
 
@@ -64,35 +108,63 @@ export const useFilterStore = defineStore('filter', () => {
       }
     }
 
-    const cacheKey = prefixes.join(',')
-    if (cache.has(cacheKey)) {
-      return cache.get(cacheKey)
-    }
-
     error.value = null
 
     try {
+      // 取得所有需要的檔案路徑
       const dataFilePaths = findSeriesDataFileName(prefixes)
-      const fetchFileHandler = async (path) => {
-        const url = await getAssetsFile(path)
-        try {
-          const response = await fetch(url)
-          if (!response.ok) throw new Error(`Failed to fetch ${path}`)
-          return {
-            content: await response.json(),
-            cardIdPrefix: path.split('/').pop().replace('.json', ''),
+
+      // 過濾出尚未存在於歷史紀錄中的新路徑
+      const newPathsToFetch = dataFilePaths.filter((path) => !processedPathsHistory.has(path))
+
+      console.group('🔍 請求過濾檢查')
+      console.log('1. 這次需要的全部檔案:', dataFilePaths.length)
+      console.log('2. 歷史已記錄的檔案:', [...processedPathsHistory].length)
+      console.log('3. 過濾後，真正要下載的新檔案:', newPathsToFetch.length)
+      console.groupEnd()
+
+      // 將新路徑加入歷史紀錄，並建立 Fetch 任務
+      if (newPathsToFetch.length > 0) {
+        newPathsToFetch.forEach((path) => {
+          processedPathsHistory.add(path) // 記錄到歷史變數
+
+          // 雙重檢查：雖然 history 過濾了，但保險起見檢查 Cache 和進行中的 Promise
+          if (seriesDataCache.value[path] || activeFetchPromises.has(path)) {
+            return
           }
-        } catch (err) {
-          console.warn(`Error loading ${path}:`, err)
-          return null // 返回 null 表示這個檔案下載失敗
-        }
+
+          let resolve, reject
+          const promise = new Promise((res, rej) => {
+            resolve = res
+            reject = rej
+          })
+
+          activeFetchPromises.set(path, { resolve, reject, promise })
+          fetchQueue.push(path)
+        })
+
+        // 啟動 Queue 處理
+        processFetchQueue()
       }
 
-      // 使用分批處理取代原本的 Promise.all ---
-      const rawResults = await processInBatches(dataFilePaths, fetchFileHandler, 15)
+      // 收集結果：這裡必須對「原本請求的所有路徑 (dataFilePaths)」進行等待
+      // 因為舊的路徑雖然沒加入 Queue，但仍需要它的資料 (從 Cache 或正在進行的 Promise)
+      const fetchTasks = dataFilePaths.map((path) => {
+        // Case A: 已經在 Cache 中
+        if (seriesDataCache.value[path]) {
+          return Promise.resolve(seriesDataCache.value[path])
+        }
 
-      // 過濾掉失敗的請求
-      const allFileContents = rawResults.filter((item) => item !== null)
+        // Case B: 正在下載中 (包含剛剛加入 Queue 的)
+        if (activeFetchPromises.has(path)) {
+          return activeFetchPromises.get(path).promise
+        }
+
+        // Case C: 異常狀況 (理論上不應發生，除非下載失敗且沒在 Cache)
+        return Promise.resolve(null)
+      })
+
+      const allFileContents = (await Promise.all(fetchTasks)).filter((item) => item !== null)
 
       const fetchedCards = []
       const productNamesSet = new Set()
@@ -158,7 +230,7 @@ export const useFilterStore = defineStore('filter', () => {
       }
 
       const escapeRegex = (str) => {
-        return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+        return str.replace(/[.*+?^${}()|[\\]/g, '\\$&')
       }
 
       const allNamesPattern = [...nameToCardBaseIds.keys()].map(escapeRegex).join('|')
@@ -208,7 +280,6 @@ export const useFilterStore = defineStore('filter', () => {
         },
       }
 
-      cache.set(cacheKey, result)
       return result
     } catch (e) {
       console.error('Failed to load series cards in filter store:', e)
@@ -253,7 +324,8 @@ export const useFilterStore = defineStore('filter', () => {
   }
 
   const reset = () => {
-    terminateWorker() // Terminate worker when store is reset
+    terminateWorker()
+    processedPathsHistory.clear() // [新增] Reset 時也清空歷史紀錄
     allCards.value = []
     productNames.value = []
     traits.value = []

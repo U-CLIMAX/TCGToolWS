@@ -244,9 +244,13 @@ const seriesName = computed(() => {
 })
 const prefixes = computed(() => seriesMap[seriesName.value]?.prefixes ?? [])
 
-watchEffect(() => {
-  filterStore.initialize(prefixes.value)
-})
+watch(
+  prefixes,
+  (newPrefixes) => {
+    filterStore.initialize(newPrefixes)
+  },
+  { immediate: true }
+)
 
 watch([() => filterStore.filteredCards, isTableModeActive], () => {
   if (listRef.value) {

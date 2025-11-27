@@ -186,13 +186,14 @@
       </div>
     </v-container>
 
-    <DeckShareImage
-      ref="deckShareImageRef"
-      v-if="deck"
-      :deck-cards="cards"
-      :deck-key="deckKey"
-      :deck-name="deck.name"
-    />
+    <div v-if="renderShareImage && deck">
+      <DeckShareImage
+        ref="deckShareImageRef"
+        :deck-cards="cards"
+        :deck-key="deckKey"
+        :deck-name="deck.name"
+      />
+    </div>
 
     <v-bottom-sheet v-model="showBottomSheet">
       <v-list :class="{ 'glass-sheet': hasBackgroundImage }" rounded="t-xl">
@@ -428,6 +429,7 @@ const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 const isConfirmEditDialogVisible = ref(false)
 const isTextModalVisible = ref(false)
 const modalTextContent = ref('')
+const renderShareImage = ref(false)
 
 const isHistoryDialogVisible = ref(false)
 const viewingHistoryIndex = ref(null)
@@ -769,20 +771,22 @@ const openExportDialog = () => {
   exportDialog.value = true
 }
 
-const handleDownloadDeckImage = () => {
+const handleDownloadDeckImage = async () => {
   if (!deck.value) {
     triggerSnackbar('无法生成图片，卡组数据缺失。', 'error')
     return
   }
   // 立即启动加载状态，给用户即时反馈
   uiStore.setLoading(true)
+  renderShareImage.value = true
+  await nextTick()
   isGenerationTriggered.value = true
 }
 
 watch(
   [isGenerationTriggered, () => deckShareImageRef.value?.allImagesLoaded],
   async ([triggered, loaded]) => {
-    if (triggered && loaded) {
+    if (triggered && loaded && deckShareImageRef.value) {
       const imageRef = deckShareImageRef.value
       try {
         isGenerationTriggered.value = false
@@ -803,6 +807,7 @@ watch(
           imageRef.toggleQrCode(!isLocalDeck.value)
         }
         uiStore.setLoading(false)
+        renderShareImage.value = false
       }
     } else if (triggered && !loaded) {
       console.log('Waiting for images to load...')
