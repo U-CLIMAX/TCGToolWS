@@ -29,28 +29,20 @@
 </template>
 
 <script setup>
-import { ref, nextTick, computed, onMounted, onUnmounted, watch } from 'vue'
-import { storeToRefs } from 'pinia'
+import { ref, nextTick, computed, onMounted, onUnmounted } from 'vue'
 import { useUIStore } from '@/stores/ui'
 import { debounce } from 'es-toolkit'
 
 const uiStore = useUIStore()
-const { seriesSearchTerm } = storeToRefs(uiStore)
-
-const localSearchTerm = ref(seriesSearchTerm.value)
-
-const debouncedUpdateStore = debounce((newValue) => {
-  uiStore.seriesSearchTerm = newValue
+const updateStoreTerm = debounce((val) => {
+  uiStore.seriesSearchTerm = val
 }, 300)
 
-watch(localSearchTerm, (newValue) => {
-  debouncedUpdateStore(newValue)
-})
-
-watch(seriesSearchTerm, (newValue) => {
-  if (localSearchTerm.value !== newValue) {
-    localSearchTerm.value = newValue
-  }
+const localSearchTerm = computed({
+  get: () => uiStore.seriesSearchTerm,
+  set: (val) => {
+    updateStoreTerm(val)
+  },
 })
 
 const isExpanded = ref(false)
@@ -134,15 +126,18 @@ const stopDrag = () => {
   window.removeEventListener('touchend', stopDrag, { passive: false })
 }
 
+const collapse = () => {
+  isExpanded.value = false
+}
+
 const toggleExpand = async () => {
   if (movedDuringDrag.value) {
     return
   }
-  if (isExpanded.value && !seriesSearchTerm.value) {
+  if (isExpanded.value && !localSearchTerm.value) {
     isExpanded.value = false
   } else if (!isExpanded.value) {
-    // Adjust position before expanding to prevent going off-screen
-    const expandedWidth = 350 // Corresponds to the CSS width
+    const expandedWidth = 350
     if (draggableContainer.value) {
       const parentRect = draggableContainer.value.parentElement.getBoundingClientRect()
       const viewportWidth = parentRect.width
@@ -160,10 +155,6 @@ const toggleExpand = async () => {
   } else {
     collapse()
   }
-}
-
-const collapse = () => {
-  isExpanded.value = false
 }
 
 const handleTap = () => {
