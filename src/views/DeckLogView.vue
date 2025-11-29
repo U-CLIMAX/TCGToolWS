@@ -200,7 +200,7 @@ import { useSnackbar } from '@/composables/useSnackbar'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import collator from '@/utils/collator.js'
 import DeckCardList from '@/components/deck/DeckCardList.vue'
-import { seriesMap } from '@/maps/series-map.js'
+import { findDeckSeriesId } from '@/utils/findDeckSeriesId'
 
 const { smAndUp } = useDisplay()
 const resize = computed(() => {
@@ -232,21 +232,6 @@ const flattenedDisplayCards = computed(() => {
   const cardGroups = Array.from(groupedCards.value.values())
   return cardGroups.flat()
 })
-
-// 判斷卡組的系列
-const getDominantSeriesId = () => {
-  const prefixCounts = Object.values(cards.value).reduce((acc, card) => {
-    const prefix = card.id.split('/')[0]
-    acc[prefix] = (acc[prefix] || 0) + card.quantity
-    return acc
-  }, {})
-  const mostFrequentPrefix = Object.entries(prefixCounts).reduce((a, b) => (a[1] > b[1] ? a : b))[0]
-  const seriesEntry = Object.values(seriesMap).find((series) =>
-    series.prefixes.includes(mostFrequentPrefix)
-  )
-
-  return seriesEntry ? seriesEntry.id : null
-}
 
 const openSaveDialog = () => {
   if (!authStore.isAuthenticated) {
@@ -284,7 +269,7 @@ const handleSaveDeck = async () => {
       }
       return acc
     }, {})
-    const deckSeriesId = getDominantSeriesId()
+    const deckSeriesId = findDeckSeriesId(Object.keys(cards.value))
     const deckData = {
       name: deckName.value,
       version: deckStore.version,

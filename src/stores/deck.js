@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { useAuthStore } from './auth'
-import { seriesMap } from '@/maps/series-map.js'
+import { findDeckSeriesId } from '@/utils/findDeckSeriesId'
 
 export const useDeckStore = defineStore(
   'deck',
@@ -83,31 +83,8 @@ export const useDeckStore = defineStore(
     }
 
     const updateDominantSeriesId = () => {
-      if (Object.keys(cardsInDeck.value).length === 0) {
-        seriesId.value = null
-        return
-      }
-
-      const prefixCounts = Object.keys(cardsInDeck.value).reduce((acc, cardId) => {
-        const prefix = cardId.split('/')[0]
-        acc[prefix] = (acc[prefix] || 0) + cardsInDeck.value[cardId].quantity
-        return acc
-      }, {})
-
-      if (Object.keys(prefixCounts).length === 0) {
-        seriesId.value = null
-        return
-      }
-
-      const mostFrequentPrefix = Object.entries(prefixCounts).reduce((a, b) =>
-        a[1] > b[1] ? a : b
-      )[0]
-
-      const seriesEntry = Object.values(seriesMap).find((series) =>
-        series.prefixes.includes(mostFrequentPrefix)
-      )
-
-      seriesId.value = seriesEntry ? seriesEntry.id : null
+      const currentCardIds = Object.keys(cardsInDeck.value)
+      seriesId.value = findDeckSeriesId(currentCardIds)
     }
 
     // --- 非同步操作 (Async Actions) ---
