@@ -235,13 +235,18 @@ output.version = version
 // 將最終 output 物件轉換為 JSON 字串以供壓縮
 const content = JSON.stringify(output)
 
-// 進行 gzip 壓縮
-const gzippedContent = zlib.gzipSync(content)
-const totalSizeMB = (gzippedContent.length / 1024 / 1024).toFixed(2)
+// 進行 brotli 壓縮
+const brotliOptions = {
+  params: {
+    [zlib.constants.BROTLI_PARAM_QUALITY]: zlib.constants.BROTLI_MAX_QUALITY,
+  },
+}
+const zippedContent = zlib.brotliCompressSync(content, brotliOptions)
+const totalSizeMB = (zippedContent.length / 1024 / 1024).toFixed(2)
 
 // --- 分片邏輯 ---
 const CHUNK_SIZE = 512 * 1024 // 512 KB
-const chunkCount = Math.ceil(gzippedContent.length / CHUNK_SIZE)
+const chunkCount = Math.ceil(zippedContent.length / CHUNK_SIZE)
 const chunkFiles = []
 
 console.log(`📦 Total size: ${totalSizeMB} MB, splitting into ${chunkCount} chunks of ~512 KB...`)
@@ -249,7 +254,7 @@ console.log(`📦 Total size: ${totalSizeMB} MB, splitting into ${chunkCount} ch
 for (let i = 0; i < chunkCount; i++) {
   const start = i * CHUNK_SIZE
   const end = start + CHUNK_SIZE
-  const chunk = gzippedContent.subarray(start, end)
+  const chunk = zippedContent.subarray(start, end)
 
   const chunkFileName = `all_cards_db.${hash}.part${i + 1}.bin`
   const chunkFilePath = path.join(OUTPUT_DIR, chunkFileName)

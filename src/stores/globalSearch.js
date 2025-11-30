@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
 import { ref, watch, nextTick } from 'vue'
-import { inflate } from 'pako'
 import { useCardFiltering } from '@/composables/useCardFiltering.js'
 import { openDB, saveData, loadData } from '@/utils/db.js'
+import brotliPromise from 'brotli-wasm'
 
 const dbName = 'CardDataDB'
 const storeName = 'cardStore'
@@ -87,39 +87,85 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
   }
 
   const fetchAndStoreData = async (manifest) => {
+    const brotli = await brotliPromise
+
     isLoading.value = true
     error.value = null
     let db
     try {
       const { version, chunked, chunks, fileName } = manifest
-      let compressedBuffer
 
-      if (chunked) {
-        console.log(`📥 Fetching ${chunks.length} card database chunks from remote...`)
-        const responses = await Promise.all(chunks.map((chunkFile) => fetch(`/${chunkFile}`)))
+      // 建立一個來源串流，依序抓取 chunks
+      const fileStream = new ReadableStream({
+        async start(controller) {
+          if (chunked) {
+            console.log(`📥 Streaming ${chunks.length} chunks...`)
+            for (const chunkFile of chunks) {
+              const response = await fetch(`/${chunkFile}`)
+              if (!response.ok) throw new Error(`Fetch error: ${chunkFile}`)
 
-        for (const response of responses) {
-          if (!response.ok) {
-            throw new Error(`Failed to fetch a card database chunk: ${response.statusText}`)
+              const reader = response.body.getReader()
+              while (true) {
+                const { done, value } = await reader.read()
+                if (done) break
+                controller.enqueue(value)
+              }
+            }
+          } else {
+            // 單一檔案模式
+            const response = await fetch(`/${fileName}`)
+            const reader = response.body.getReader()
+            while (true) {
+              const { done, value } = await reader.read()
+              if (done) break
+              controller.enqueue(value)
+            }
           }
-        }
+          controller.close()
+        },
+      })
 
-        const buffers = await Promise.all(responses.map((res) => res.arrayBuffer()))
+      // 設定 Brotli 解壓縮串流
+      const decompressStream = new brotli.DecompressStream()
+      const decompressionTransformer = new TransformStream({
+        transform(chunk, controller) {
+          let resultCode
+          let inputOffset = 0
+          const chunkSize = 4096
 
-        // Concatenate buffers
-        const blob = new Blob(buffers)
-        compressedBuffer = await blob.arrayBuffer()
-      } else {
-        console.log(`📥 Fetching card database from remote: ${fileName}`)
-        const response = await fetch(`/${fileName}`)
-        if (!response.ok) {
-          throw new Error(`Failed to fetch card database: ${response.statusText}`)
-        }
-        compressedBuffer = await response.arrayBuffer()
+          do {
+            const input = chunk.slice(inputOffset)
+            const result = decompressStream.decompress(input, chunkSize)
+            controller.enqueue(result.buf)
+            resultCode = result.code
+            inputOffset += result.input_offset
+          } while (resultCode === brotli.BrotliStreamResultCode.NeedsMoreOutput)
+
+          if (
+            resultCode !== brotli.BrotliStreamResultCode.NeedsMoreInput &&
+            resultCode !== brotli.BrotliStreamResultCode.ResultSuccess
+          ) {
+            controller.error(`Decompression failed with code ${resultCode}`)
+          }
+        },
+      })
+
+      // 串接pipeline：下載 -> 解壓縮 -> 轉字串
+      const jsonStream = fileStream
+        .pipeThrough(decompressionTransformer)
+        .pipeThrough(new TextDecoderStream())
+
+      // 讀取最終字串
+      const reader = jsonStream.getReader()
+      let jsonString = ''
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+        jsonString += value
       }
 
-      const decompressed = inflate(new Uint8Array(compressedBuffer), { to: 'string' })
-      const data = JSON.parse(decompressed)
+      console.log('Hz Decoding complete, parsing JSON...')
+      const data = JSON.parse(jsonString)
 
       db = await openDB(dbName, storeName, 'key')
       await saveData(db, storeName, { key: dbKey, data })
