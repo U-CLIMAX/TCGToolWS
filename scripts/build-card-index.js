@@ -58,7 +58,16 @@ files.forEach((filename) => {
 
       all_cards.forEach((cardVersion) => {
         if (cardVersion.rarity) raritiesSet.add(cardVersion.rarity)
-        const isLowest = cardVersion.id.length === minIdLength
+
+        // 如果只有一張卡且最後是英文 -> 強制 false (代表是異圖)
+        const lastChar = cardVersion.id.slice(-1)
+        const isLastCharLetter =
+          (lastChar >= 'A' && lastChar <= 'Z') || (lastChar >= 'a' && lastChar <= 'z')
+
+        // 判斷卡號是否等於最短長度
+        const isShortestLength = cardVersion.id.length === minIdLength
+
+        const isLowest = all_cards.length === 1 && isLastCharLetter ? false : isShortestLength
 
         allCards.push({
           ...baseCardData,
