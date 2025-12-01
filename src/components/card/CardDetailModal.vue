@@ -157,8 +157,29 @@
             </div>
             <div v-if="card.trait && card.trait.length > 0 && card.trait[0] !== '-'" class="mt-4">
               <div class="text-body-2 mb-2 text-grey">特征</div>
-              <v-chip v-for="r in card.trait" :key="r" class="font-wenkai mr-2 mb-2" label>
+              <v-chip
+                v-for="r in card.trait"
+                :key="r"
+                class="font-wenkai mr-2 mb-2"
+                label
+                :link="isFilterable"
+                @click="isFilterable ? handleTraitClick(r) : undefined"
+                :color="
+                  isFilterable && activeFilterStore.selectedTraits.includes(r)
+                    ? isLightMode
+                      ? 'indigo-darken-3'
+                      : 'indigo-lighten-3'
+                    : undefined
+                "
+              >
                 {{ r }}
+                <v-tooltip v-if="isFilterable" activator="parent" location="top">
+                  {{
+                    activeFilterStore.selectedTraits.includes(r)
+                      ? '移除此特征筛选'
+                      : '添加此特征筛选'
+                  }}
+                </v-tooltip>
               </v-chip>
             </div>
             <div v-if="linkedCards && linkedCards.length > 0" class="mt-4">
@@ -209,13 +230,19 @@ import { useDeckStore } from '@/stores/deck'
 import { useDownloadStore } from '@/stores/download'
 import { convertElementToPng } from '@/utils/domToImage.js'
 import { useSnackbar } from '@/composables/useSnackbar'
+import { useRoute } from 'vue-router'
 import { useUIStore } from '@/stores/ui'
+import { useFilterStore } from '@/stores/filter'
+import { useGlobalSearchStore } from '@/stores/globalSearch'
 import { useDevice } from '@/composables/useDevice'
 import { formatEffectToHtml } from '@/utils/cardEffectFormatter'
 
 const { triggerSnackbar } = useSnackbar()
 const { smAndUp } = useDisplay()
+const route = useRoute()
 const uiStore = useUIStore()
+const filterStore = useFilterStore()
+const globalSearchStore = useGlobalSearchStore()
 const downloadStore = useDownloadStore()
 
 const emit = defineEmits(['close', 'show-new-card', 'prev-card', 'next-card', 'load-more'])
@@ -235,6 +262,11 @@ const deckStore = useDeckStore()
 const { isTouch } = useDevice()
 const isLightMode = computed(() => uiStore.theme === 'light')
 
+const isFilterable = computed(() => ['SeriesDetail', 'GlobalSearch'].includes(route.name))
+const activeFilterStore = computed(() =>
+  route.name === 'GlobalSearch' ? globalSearchStore : filterStore
+)
+
 const isDownloadTextDialogOpen = ref(false)
 
 const showOnTap = ref(false)
@@ -253,6 +285,17 @@ const handleModalClick = () => {
     hideTimeout = setTimeout(() => {
       showOnTap.value = false
     }, 1000)
+  }
+}
+
+const handleTraitClick = (trait) => {
+  if (!isFilterable.value) return
+
+  const index = activeFilterStore.value.selectedTraits.indexOf(trait)
+  if (index === -1) {
+    activeFilterStore.value.selectedTraits.push(trait)
+  } else {
+    activeFilterStore.value.selectedTraits.splice(index, 1)
   }
 }
 
