@@ -294,8 +294,10 @@ const handleTraitClick = (trait) => {
   const index = activeFilterStore.value.selectedTraits.indexOf(trait)
   if (index === -1) {
     activeFilterStore.value.selectedTraits.push(trait)
+    triggerSnackbar(`已添加特征筛选: ${trait}`)
   } else {
     activeFilterStore.value.selectedTraits.splice(index, 1)
+    triggerSnackbar(`已移除特征筛选: ${trait}`)
   }
 }
 
