@@ -58,7 +58,7 @@
           <v-tabs
             v-model="seriesGameFilter"
             class="w-fit d-inline-flex"
-            :class="{ 'glass rounded-pill': hasBackgroundImage }"
+            :class="{ 'glass rounded-pill px-4': hasBackgroundImage }"
             density="compact"
           >
             <v-tab value="ws" class="font-weight-bold"> WS </v-tab>
