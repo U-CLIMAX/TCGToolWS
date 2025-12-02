@@ -79,6 +79,30 @@
           :disabled="props.disabled || (!filterStore.hasActiveFilters && globalFilter)"
         ></v-switch>
 
+        <v-switch
+          label="魂标筛选"
+          hide-details
+          v-model="filterStore.showTriggerSoul"
+          color="primary"
+          density="compact"
+          :disabled="props.disabled"
+        >
+          <template v-slot:label>
+            <div class="d-flex align-center">
+              <span class="mr-2">魂标筛选</span>
+              <v-img
+                :src="WsIcon"
+                width="16"
+                height="16"
+                :style="{
+                  filter: theme.global.name.value === 'dark' ? 'none' : 'invert(1)',
+                  opacity: 0.7,
+                }"
+              ></v-img>
+            </div>
+          </template>
+        </v-switch>
+
         <v-divider></v-divider>
 
         <v-select
@@ -166,6 +190,19 @@
           :disabled="props.disabled"
         ></v-select>
 
+        <v-select
+          label="魂伤"
+          :items="['1', '2', '3']"
+          hide-details
+          multiple
+          chips
+          clearable
+          v-model="filterStore.selectedSoul"
+          variant="outlined"
+          :menu-props="uiStore.menuProps"
+          :disabled="props.disabled"
+        ></v-select>
+
         <div>
           <div class="text-caption text-disabled">费用</div>
           <v-range-slider
@@ -200,9 +237,11 @@
 import { computed } from 'vue'
 import { useDisplay } from 'vuetify'
 import { debounce } from 'es-toolkit'
+import { useTheme } from 'vuetify'
 import { useUIStore } from '@/stores/ui'
 import { useFilterStore } from '@/stores/filter'
 import { useGlobalSearchStore } from '@/stores/globalSearch'
+import WsIcon from '@/assets/ui/ws-icon.svg?url'
 
 import preciseIcon from '@/assets/ui/precise.svg'
 import fuzzyIcon from '@/assets/ui/fuzzy.svg'
@@ -232,6 +271,7 @@ const props = defineProps({
 
 const { smAndUp } = useDisplay()
 const uiStore = useUIStore()
+const theme = useTheme()
 
 const filterStore = props.globalFilter ? useGlobalSearchStore() : useFilterStore()
 

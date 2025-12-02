@@ -89,6 +89,8 @@ export const useFilterStore = defineStore('filter', () => {
     showUniqueCards,
     selectedCostRange,
     selectedPowerRange,
+    showTriggerSoul,
+    selectedSoul,
     resetFilters,
     filteredCards,
     terminateWorker,
@@ -365,6 +367,8 @@ export const useFilterStore = defineStore('filter', () => {
     showUniqueCards,
     selectedCostRange,
     selectedPowerRange,
+    showTriggerSoul,
+    selectedSoul,
     // Getters
     filteredCards,
     // Actions

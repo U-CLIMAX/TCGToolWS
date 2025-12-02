@@ -35,6 +35,8 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     showUniqueCards,
     selectedCostRange,
     selectedPowerRange,
+    showTriggerSoul,
+    selectedSoul,
     resetFilters,
     filteredCards,
     initializeWorker,
@@ -68,6 +70,8 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
         selectedCostRange.value[1] !== costRange.value.max,
       selectedPowerRange.value[0] !== powerRange.value.min ||
         selectedPowerRange.value[1] !== powerRange.value.max,
+      showTriggerSoul.value,
+      selectedSoul.value.length > 0,
     ].some(Boolean)
 
     hasActiveFilters.value = hasAnyActiveFilters
@@ -293,6 +297,8 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     showUniqueCards,
     selectedCostRange,
     selectedPowerRange,
+    showTriggerSoul,
+    selectedSoul,
     // Results
     searchResults,
     searchCountDetails,

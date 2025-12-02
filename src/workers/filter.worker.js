@@ -174,6 +174,10 @@ const CardFilterService = {
 
     const mappedLevels =
       filters.selectedLevels.length > 0 ? new Set(filters.selectedLevels.map(toLevel)) : null
+    const mappedSoul =
+      filters.selectedSoul && filters.selectedSoul.length > 0
+        ? new Set(filters.selectedSoul.map((s) => Number(s)))
+        : null
 
     return results.filter((card) => {
       const cardCost = card.cost === '-' ? 0 : Number(card.cost)
@@ -199,6 +203,9 @@ const CardFilterService = {
         return false
       if (card.power < filters.selectedPowerRange[0] || card.power > filters.selectedPowerRange[1])
         return false
+      if (filters.showTriggerSoul && (!card.trigger_soul_count || card.trigger_soul_count < 1))
+        return false
+      if (mappedSoul && !mappedSoul.has(Number(card.soul))) return false
       return true
     })
   },

@@ -21,6 +21,8 @@ export const useCardFiltering = (
   const showUniqueCards = ref(false)
   const selectedCostRange = ref([0, 0])
   const selectedPowerRange = ref([0, 0])
+  const showTriggerSoul = ref(false)
+  const selectedSoul = ref([])
 
   const workerResults = shallowRef([])
   const filteredCards = computed(() => workerResults.value)
@@ -58,6 +60,8 @@ export const useCardFiltering = (
       showUniqueCards: toRaw(showUniqueCards.value),
       selectedCostRange: toRaw(selectedCostRange.value),
       selectedPowerRange: toRaw(selectedPowerRange.value),
+      showTriggerSoul: toRaw(showTriggerSoul.value),
+      selectedSoul: toRaw(selectedSoul.value),
     }
     const results = await workerApiInstance.filterByAttributes(attributeFilters)
     workerResults.value = results
@@ -103,6 +107,8 @@ export const useCardFiltering = (
       showUniqueCards,
       selectedCostRange,
       selectedPowerRange,
+      showTriggerSoul,
+      selectedSoul,
     ],
     applyAttributeFilters,
     { deep: true }
@@ -120,6 +126,8 @@ export const useCardFiltering = (
     showUniqueCards.value = false
     selectedCostRange.value = [costRangeRef.value.min, costRangeRef.value.max]
     selectedPowerRange.value = [powerRangeRef.value.min, powerRangeRef.value.max]
+    showTriggerSoul.value = false
+    selectedSoul.value = []
   }
 
   // Automatically terminate the worker when the component using this composable is unmounted.
@@ -141,6 +149,8 @@ export const useCardFiltering = (
     showUniqueCards,
     selectedCostRange,
     selectedPowerRange,
+    showTriggerSoul,
+    selectedSoul,
     // Getters
     filteredCards,
     // Actions
