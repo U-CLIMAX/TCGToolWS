@@ -31,7 +31,7 @@
             mandatory
             density="compact"
             variant="tonal"
-            :class="isLightWithBg ? 'text-white' : ''"
+            :class="{ glass: hasBackgroundImage }"
           >
             <v-btn value="date" size="small">
               <v-icon start>mdi-calendar</v-icon>
@@ -45,15 +45,33 @@
 
           <v-btn
             @click="seriesSortAscending = !seriesSortAscending"
-            density="compact"
             variant="tonal"
             class="ml-4"
-            :class="isLightWithBg ? 'text-white' : ''"
+            :class="{ glass: hasBackgroundImage }"
           >
             <v-icon start>{{ seriesSortAscending ? 'mdi-arrow-up' : 'mdi-arrow-down' }}</v-icon>
             {{ seriesSortAscending ? 'Asc' : 'Desc' }}
           </v-btn>
         </v-row>
+
+        <div class="d-flex justify-center my-4">
+          <v-tabs
+            v-model="seriesGameFilter"
+            class="w-fit d-inline-flex"
+            :class="{ 'glass rounded-pill': hasBackgroundImage }"
+            density="compact"
+          >
+            <v-tab value="ws" class="font-weight-bold"> WS </v-tab>
+            <v-tab
+              value="wsr"
+              class="font-weight-bold"
+              :color="isLightTheme ? '#e85a6a' : '#FF8391'"
+            >
+              WSR
+            </v-tab>
+          </v-tabs>
+        </div>
+
         <v-row>
           <v-col
             v-for="item in displayedSeries"
@@ -103,7 +121,8 @@ const displayedSeries = ref([])
 const infiniteScrollRef = ref(null)
 
 const uiStore = useUIStore()
-const { seriesSearchTerm, seriesSortBy, seriesSortAscending } = storeToRefs(uiStore)
+const { seriesSearchTerm, seriesSortBy, seriesSortAscending, seriesGameFilter } =
+  storeToRefs(uiStore)
 
 const recentStore = useRecentStore()
 const { seriesIds } = storeToRefs(recentStore)
@@ -120,19 +139,26 @@ const recentlyViewed = computed(() => {
 const theme = useTheme()
 const { smAndDown } = useDisplay()
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
+const isLightTheme = computed(() => {
+  return theme.global.name.value === 'light'
+})
 const isLightWithBg = computed(() => {
   return hasBackgroundImage.value && theme.global.name.value === 'light'
 })
 
 const filteredSeries = computed(() => {
   const term = seriesSearchTerm.value.trim().toLowerCase()
-  const list = term
-    ? allSeries.value.filter(
-        (item) =>
-          item.name.toLowerCase().includes(term) ||
-          item.data.prefixes.some((prefix) => prefix.toLowerCase().includes(term))
-      )
-    : allSeries.value.slice()
+  const game = seriesGameFilter.value
+
+  let list = allSeries.value.filter((item) => item.data.game === game)
+
+  if (term) {
+    list = list.filter(
+      (item) =>
+        item.name.toLowerCase().includes(term) ||
+        item.data.prefixes.some((prefix) => prefix.toLowerCase().includes(term))
+    )
+  }
 
   return list.sort((a, b) => {
     let comparison = 0
@@ -166,7 +192,7 @@ const load = async ({ done }) => {
 }
 
 watch(
-  [seriesSearchTerm, seriesSortBy, seriesSortAscending],
+  [seriesSearchTerm, seriesSortBy, seriesSortAscending, seriesGameFilter],
   async () => {
     displayedSeries.value = []
     await nextTick()
@@ -210,3 +236,13 @@ onMounted(() => {
   scrollContainer.value = infiniteScrollRef.value?.$el
 })
 </script>
+
+<style scoped>
+.glass.v-tabs,
+.glass.v-btn-group,
+.glass.v-btn {
+  background: rgba(var(--v-theme-surface), 0.6) !important;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+</style>
