@@ -82,9 +82,8 @@
 
       <div v-if="initialLoadingComplete && displayedDecks.length > 0" class="px-3 mt-3">
         <div class="group-header">
-          <span>已保存卡组</span>
           <div class="d-flex align-center ga-2">
-            <v-icon size="14">mdi-cards-playing-outline</v-icon>
+            <v-icon :icon="DeckIcon" size="24"></v-icon>
             <span>{{ deckCount }} / {{ maxDecks === Infinity ? '∞' : maxDecks }}</span>
             <span
               v-if="maxDecks !== Infinity && deckCount >= maxDecks"
@@ -121,6 +120,8 @@ import DeckCard from '@/components/deck/DeckCard.vue'
 import { useUIStore } from '@/stores/ui'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { seriesMap } from '@/maps/series-map'
+
+import DeckIcon from '@/assets/ui/deck.svg'
 
 const router = useRouter()
 const deckStore = useDeckStore()
