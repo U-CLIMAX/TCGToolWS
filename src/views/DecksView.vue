@@ -80,6 +80,22 @@
         </v-card>
       </v-dialog>
 
+      <div v-if="initialLoadingComplete && displayedDecks.length > 0" class="px-3 mt-3">
+        <div class="group-header">
+          <span>已保存卡组</span>
+          <div class="d-flex align-center ga-2">
+            <v-icon size="14">mdi-cards-playing-outline</v-icon>
+            <span>{{ deckCount }} / {{ maxDecks === Infinity ? '∞' : maxDecks }}</span>
+            <span
+              v-if="maxDecks !== Infinity && deckCount >= maxDecks"
+              class="text-error font-weight-bold"
+            >
+              已达上限
+            </span>
+          </div>
+        </div>
+      </div>
+
       <transition-group
         v-if="initialLoadingComplete"
         tag="div"
@@ -99,6 +115,7 @@
 import { ref, onMounted, watch, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useDeckStore } from '@/stores/deck'
+import { useAuthStore } from '@/stores/auth'
 import { useDeckEncoder } from '@/composables/useDeckEncoder'
 import DeckCard from '@/components/deck/DeckCard.vue'
 import { useUIStore } from '@/stores/ui'
@@ -107,6 +124,7 @@ import { seriesMap } from '@/maps/series-map'
 
 const router = useRouter()
 const deckStore = useDeckStore()
+const authStore = useAuthStore()
 const { decodeDeck } = useDeckEncoder()
 const uiStore = useUIStore()
 const { triggerSnackbar } = useSnackbar()
@@ -182,6 +200,9 @@ const filteredDecks = computed(() => {
     })
   )
 })
+
+const deckCount = computed(() => Object.keys(deckStore.savedDecks).length)
+const maxDecks = computed(() => (authStore.userRole === 0 ? 15 : Infinity))
 
 const navigateToSharedDeck = () => {
   const code = deckCode.value.trim()
@@ -293,5 +314,20 @@ watch(
     min-width: 100px;
     max-width: 250px;
   }
+}
+
+.group-header {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background-color: rgba(var(--v-theme-surface), 0.7);
+  backdrop-filter: blur(4px) saturate(180%);
+  -webkit-backdrop-filter: blur(4px) saturate(180%); /* Safari 支援 */
+  padding: 4px 12px;
+  border-radius: 16px;
+  margin-bottom: 4px;
+  border: 1px solid rgba(var(--v-border-color), var(--v-border-opacity));
+  color: rgb(var(--v-theme-on-surface));
+  font-size: 0.875rem;
 }
 </style>
