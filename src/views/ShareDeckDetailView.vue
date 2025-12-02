@@ -410,42 +410,6 @@ const showBottomSheet = ref(false)
 </script>
 
 <style scoped>
-.card-container {
-  position: relative;
-  cursor: pointer;
-  transition: transform 0.2s ease-in-out;
-}
-
-.card-container:hover {
-  transform: translateY(-5px);
-}
-
-.image-container {
-  position: relative;
-  border: 2px solid transparent;
-  border-radius: 6px;
-  transition: border-color 0.2s ease-in-out;
-}
-
-.quantity-badge {
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-  background-color: rgb(var(--v-theme-primary));
-  color: white;
-  border-radius: 12px;
-  padding: 0 6px;
-  font-size: 0.8rem;
-  font-weight: bold;
-  border: 2px solid white;
-  min-width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-}
-
 .cover-card-container .clickable {
   cursor: pointer;
   border: 2px solid transparent;
@@ -457,16 +421,5 @@ const showBottomSheet = ref(false)
 .cover-card-container .selected-cover {
   border-color: rgb(216, 102, 102);
   box-shadow: 0 0 10px 3px rgba(223, 137, 137, 0.6);
-}
-
-.centered-content {
-  margin: 0 auto;
-  max-width: 1200px;
-}
-
-@media (max-width: 1200px) {
-  .centered-content {
-    max-width: 100%;
-  }
 }
 </style>

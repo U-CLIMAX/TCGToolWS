@@ -285,13 +285,13 @@ const getGroupName = (groupName) => {
   right: 8px;
   background-color: rgb(var(--v-theme-primary));
   color: white;
-  border-radius: 12px;
+  border-radius: 50%;
   padding: 0 6px;
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: bold;
   border: 2px solid white !important;
-  min-width: 24px;
-  height: 24px;
+  width: 28px;
+  aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
