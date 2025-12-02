@@ -17,12 +17,12 @@ const routes = [
     component: () => import('@/views/HomeView.vue'),
   },
   {
-    path: '/series-card-table',
+    path: '/series',
     name: 'SeriesCardTable',
     component: () => import('@/views/SeriesCardTableView.vue'),
   },
   {
-    path: '/series-card-table/:seriesId',
+    path: '/series/:seriesId',
     name: 'SeriesDetail',
     component: () => import('@/views/SeriesDetailView.vue'),
     props: true,
