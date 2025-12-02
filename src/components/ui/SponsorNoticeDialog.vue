@@ -100,7 +100,6 @@
             </v-expansion-panel-text>
           </v-expansion-panel>
         </v-expansion-panels>
-        <div class="text-caption text-center mb-3">赞助周期以 1 个月计算，每笔赞助最多 1 个月</div>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>

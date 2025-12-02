@@ -217,9 +217,6 @@
               >
                 立即赞助
               </v-btn>
-              <div class="text-caption text-grey-lighten-5 mb-3">
-                赞助周期以 1 个月计算，每笔赞助最多 1 个月
-              </div>
               <v-divider class="my-3" width="60%" opacity="30"></v-divider>
               <div class="d-flex align-center justify-center">
                 <v-icon size="16" class="mr-1" color="warning">mdi-lightning-bolt</v-icon>
