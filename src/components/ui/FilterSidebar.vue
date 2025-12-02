@@ -28,16 +28,22 @@
           ></v-btn>
         </div>
         <div class="d-flex ga-2 align-center">
-          <v-text-field
+          <v-combobox
             class="flex-grow-1"
             label="关键字"
             placeholder="卡号、卡名、效果"
+            :items="defaultKeywords"
             hide-details="auto"
             v-model="keywordInput"
             variant="underlined"
             density="compact"
             :rules="[(v) => !v || v.length >= 2 || '关键字至少输入2个字符']"
             :disabled="props.disabled"
+            hide-no-data
+            :return-object="false"
+            :auto-select-first="false"
+            menu-icon=""
+            :menu-props="uiStore.menuProps"
           >
             <template v-slot:append-inner>
               <v-tooltip location="bottom">
@@ -67,7 +73,7 @@
                 <span>{{ filterStore.searchMode === 'fuzzy' ? '模糊搜索' : '精准搜索' }}</span>
               </v-tooltip>
             </template>
-          </v-text-field>
+          </v-combobox>
         </div>
 
         <v-switch
@@ -274,6 +280,7 @@ const uiStore = useUIStore()
 const theme = useTheme()
 
 const filterStore = props.globalFilter ? useGlobalSearchStore() : useFilterStore()
+const defaultKeywords = ['CX联动', '警铃', 'shift', '再演', '集中', '加速', '助太刀', '应援']
 
 const updateStoreKeyword = debounce((val) => {
   filterStore.keyword = val
@@ -282,7 +289,7 @@ const updateStoreKeyword = debounce((val) => {
 const keywordInput = computed({
   get: () => filterStore.keyword,
   set: (val) => {
-    updateStoreKeyword(val)
+    updateStoreKeyword(val || null)
   },
 })
 

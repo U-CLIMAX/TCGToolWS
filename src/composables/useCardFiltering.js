@@ -10,7 +10,7 @@ export const useCardFiltering = (
   powerRangeRef
 ) => {
   // User-selected filter values
-  const keyword = ref('')
+  const keyword = ref(null)
   const searchMode = ref('precise') // precise or fuzzy
   const selectedCardTypes = ref([])
   const selectedColors = ref([])
@@ -115,7 +115,7 @@ export const useCardFiltering = (
   )
 
   const resetFilters = () => {
-    keyword.value = ''
+    keyword.value = null
     searchMode.value = 'precise'
     selectedCardTypes.value = []
     selectedColors.value = []
