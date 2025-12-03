@@ -272,33 +272,45 @@ const processGameData = (game, cards) => {
   const CHUNK_SIZE = 512 * 1024 // 512 KB
   const chunkCount = Math.ceil(zippedContent.length / CHUNK_SIZE)
   const chunkFiles = []
+  let singleFileName = null
 
-  console.log(`📦 Total size: ${totalSizeMB} MB, splitting into ${chunkCount} chunks of ~512 KB...`)
-
-  for (let i = 0; i < chunkCount; i++) {
-    const start = i * CHUNK_SIZE
-    const end = start + CHUNK_SIZE
-    const chunk = zippedContent.subarray(start, end)
-
-    const chunkFileName = `${game}_cards_db.${hash}.part${i + 1}.bin`
-    const chunkFilePath = path.join(OUTPUT_DIR, chunkFileName)
-
-    fs.writeFileSync(chunkFilePath, chunk)
-    chunkFiles.push(chunkFileName)
+  if (chunkCount <= 1) {
+    // 單一檔案模式
+    singleFileName = `${game}_cards_db.${hash}.bin`
+    const singleFilePath = path.join(OUTPUT_DIR, singleFileName)
+    fs.writeFileSync(singleFilePath, zippedContent)
+    console.log(`📦 Total size: ${totalSizeMB} MB, no splitting needed.`)
+    console.log(`     - Created file: ${singleFileName}`)
+  } else {
+    // 分片模式
     console.log(
-      `     - Created chunk ${i + 1}/${chunkCount}: ${chunkFileName} (${(
-        chunk.length / 1024
-      ).toFixed(2)} KB)`
+      `📦 Total size: ${totalSizeMB} MB, splitting into ${chunkCount} chunks of ~512 KB...`
     )
+
+    for (let i = 0; i < chunkCount; i++) {
+      const start = i * CHUNK_SIZE
+      const end = start + CHUNK_SIZE
+      const chunk = zippedContent.subarray(start, end)
+
+      const chunkFileName = `${game}_cards_db.${hash}.part${i + 1}.bin`
+      const chunkFilePath = path.join(OUTPUT_DIR, chunkFileName)
+
+      fs.writeFileSync(chunkFilePath, chunk)
+      chunkFiles.push(chunkFileName)
+      console.log(
+        `     - Created chunk ${i + 1}/${chunkCount}: ${chunkFileName} (${(
+          chunk.length / 1024
+        ).toFixed(2)} KB)`
+      )
+    }
+    console.log('💾 Index chunks created.')
   }
-  console.log('💾 Index chunks created.')
 
   // 建立 manifest 檔案
   const manifest = {
     version,
     hash,
-    chunked: true,
-    chunks: chunkFiles,
+    chunked: chunkCount > 1,
     totalSize: `${totalSizeMB} MB`,
     cardCount: cards.length,
     filterOptions: {
@@ -310,14 +322,21 @@ const processGameData = (game, cards) => {
     },
   }
 
+  if (chunkCount > 1) {
+    manifest.chunks = chunkFiles
+  } else {
+    manifest.fileName = singleFileName
+  }
+
   fs.writeFileSync(manifestFile, JSON.stringify(manifest, null, 2))
   console.log(`     - Manifest file created: ${manifestFile}`)
 
   // 清理舊的帶 hash 的檔案（包括舊的單體檔案和舊分片）
+  const currentFiles = chunkCount > 1 ? chunkFiles : [singleFileName]
   const oldFiles = fs
     .readdirSync(OUTPUT_DIR)
     .filter(
-      (f) => f.startsWith(`${game}_cards_db.`) && f.endsWith('.bin') && !chunkFiles.includes(f)
+      (f) => f.startsWith(`${game}_cards_db.`) && f.endsWith('.bin') && !currentFiles.includes(f)
     )
 
   oldFiles.forEach((oldFile) => {
