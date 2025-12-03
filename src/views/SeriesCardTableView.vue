@@ -62,13 +62,7 @@
             density="compact"
           >
             <v-tab value="ws" class="font-weight-bold"> WS </v-tab>
-            <v-tab
-              value="wsr"
-              class="font-weight-bold"
-              :color="isLightTheme ? '#e85a6a' : '#FF8391'"
-            >
-              WSR
-            </v-tab>
+            <v-tab value="wsr" class="font-weight-bold" color="ws-rose"> WSR </v-tab>
           </v-tabs>
         </div>
 
@@ -139,9 +133,6 @@ const recentlyViewed = computed(() => {
 const theme = useTheme()
 const { smAndDown } = useDisplay()
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
-const isLightTheme = computed(() => {
-  return theme.global.name.value === 'light'
-})
 const isLightWithBg = computed(() => {
   return hasBackgroundImage.value && theme.global.name.value === 'light'
 })
