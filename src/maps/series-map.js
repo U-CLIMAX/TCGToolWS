@@ -1110,11 +1110,47 @@ const wsSeriesMap = {
 }
 
 const wsrSeriesMap = {
-  sprite: {
+  'sprite': {
     id: 'os05',
     icon: 'os05',
     prefixes: ['OS05'],
     latestReleaseDate: '2025-10-31',
+  },
+  '异种族风俗娘': {
+    id: 'os04',
+    icon: 'os04',
+    prefixes: ['OS04'],
+    latestReleaseDate: '2025-8-29',
+  },
+  'HARUKAZE': {
+    id: 'os03',
+    icon: 'os03',
+    prefixes: ['OS03'],
+    latestReleaseDate: '2025-6-27',
+  },
+  '柚子社': {
+    id: 'os01',
+    icon: 'os01',
+    prefixes: ['OS01'],
+    latestReleaseDate: '2025-4-25',
+  },
+  '梦想成为魔法少女': {
+    id: 'os02',
+    icon: 'os02',
+    prefixes: ['OS02'],
+    latestReleaseDate: '2025-4-25',
+  },
+  '枕': {
+    id: 'os06',
+    icon: 'os06',
+    prefixes: ['OS06'],
+    latestReleaseDate: '2025-12-26',
+  },
+  ' 其他': {
+    id: 'wsr',
+    icon: 'wsr',
+    prefixes: ['OS00', 'WSR'],
+    latestReleaseDate: '-',
   },
 }
 
