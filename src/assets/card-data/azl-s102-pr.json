@@ -32,7 +32,7 @@
     "trait": ["艦船", "重桜"],
     "color": "绿色",
     "soul": 1,
-    "effect": "【自】这张卡攻击时，你公开自己卡组顶1张卡。那张卡是《艦船》的角色卡的话，你可以选择对手前列1个等级0以下的角色放置到休息室。（公开的卡放回原处）<br/>【自】这张卡倒置时，这张卡的战斗对手的等级是0级以下的话，你可以将对手时计区顶1张卡放置到休息室。这样做的话，你将那个角色放置到时计区。",
+    "effect": "【自】这张卡攻击时，你公开自己卡组顶1张卡。那张卡是《艦船》的角色卡的话，你可以选择对手前列1个等级0以下的角色放置到休息室。（公开的卡放回原处）<br/>【自】这张卡【倒置】时，这张卡的战斗对手的等级是0级以下的话，你可以将对手时计区顶1张卡放置到休息室。这样做的话，你将那个角色放置到时计区。",
     "all_cards": [
       {
         "id": "AZL/S102-P02",
@@ -245,7 +245,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【自】这张卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br/>（<img src=\"/effect-icons/standby.webp\">：这张卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，横置放置到舞台任意位置）",
+    "effect": "【自】这张卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br/>（<img src=\"/effect-icons/standby.webp\">：这张卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，【横置】放置到舞台任意位置）",
     "all_cards": [
       {
         "id": "AZL/S102-150",
@@ -283,7 +283,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【自】这张卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br/>（<img src=\"/effect-icons/standby.webp\">：这张卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，横置放置到舞台任意位置）",
+    "effect": "【自】这张卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br/>（<img src=\"/effect-icons/standby.webp\">：这张卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，【横置】放置到舞台任意位置）",
     "all_cards": [
       {
         "id": "AZL/S102-152",
@@ -302,7 +302,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【自】这张卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br/>（<img src=\"/effect-icons/standby.webp\">：这张卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，横置放置到舞台任意位置）",
+    "effect": "【自】这张卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br/>（<img src=\"/effect-icons/standby.webp\">：这张卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，【横置】放置到舞台任意位置）",
     "all_cards": [
       {
         "id": "AZL/S102-153",
