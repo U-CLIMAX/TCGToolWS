@@ -21,7 +21,8 @@
 
           <div class="header-center d-flex align-center">
             <h1
-              class="text-h6 text-sm-h5 text-truncate text-center px-2 flex-grow-1 text-ws-rose font-weight-bold"
+              class="text-h6 text-sm-h5 text-truncate text-center px-2 flex-grow-1 font-weight-bold"
+              :class="{ 'text-ws-rose': game === 'wsr' }"
               style="min-width: 0"
             >
               {{ game.toUpperCase() }} 搜索结果
