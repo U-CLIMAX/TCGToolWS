@@ -6,7 +6,6 @@ import brotliPromise from 'brotli-wasm'
 
 const dbName = 'CardDataDB'
 const storeName = 'cardStore'
-const dbKey = 'card-data'
 
 export const useGlobalSearchStore = defineStore('globalSearch', () => {
   // --- State ---
@@ -14,6 +13,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
   const isInitialSetup = ref(false)
   const isLoading = ref(false)
   const error = ref(null)
+  const currentGame = ref('ws')
 
   // --- Filter Options ---
   const productNames = ref([])
@@ -86,7 +86,10 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     costRange.value = data.filterOptions.costRange
     powerRange.value = data.filterOptions.powerRange
     resetFilters()
-    await initializeWorker(data.cards, { cacheKey: 'global-search-index', version })
+    await initializeWorker(data.cards, {
+      cacheKey: `global-search-index-${currentGame.value}`,
+      version,
+    })
     console.log(`✅ Successfully loaded ${data.cards.length} cards from ${source}`)
   }
 
@@ -172,12 +175,12 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
       const data = JSON.parse(jsonString)
 
       db = await openDB(dbName, storeName, 'key')
-      await saveData(db, storeName, { key: dbKey, data })
+      await saveData(db, storeName, { key: `card-data-${currentGame.value}`, data })
       console.log('💾 Card data has been stored in the local database (IndexedDB)')
 
       await setCardData(data, 'remote server', version)
 
-      localStorage.setItem('global_search_index_version', version)
+      localStorage.setItem(`global_search_index_version_${currentGame.value}`, version)
       console.log(`📌 Version updated: ${version}`)
     } catch (e) {
       console.error('❌ Error loading or saving card data:', e)
@@ -194,7 +197,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     let db
     try {
       db = await openDB(dbName, storeName, 'key')
-      const result = await loadData(db, storeName, dbKey)
+      const result = await loadData(db, storeName, `card-data-${currentGame.value}`)
       const cachedData = result?.data
       if (!cachedData) {
         console.warn('⚠️ Local cache is empty or invalid.')
@@ -210,20 +213,24 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     }
   }
 
-  const initialize = async () => {
-    console.log('🔍 Checking card database version...')
+  const initialize = async (game = 'ws') => {
+    if (game !== currentGame.value) {
+      currentGame.value = game
+      isReady.value = false
+    }
+    console.log(`🔍 Checking card database version for ${currentGame.value}...`)
     isLoading.value = true
     error.value = null
 
     try {
-      const manifestResponse = await fetch('/card-db-manifest.json')
+      const manifestResponse = await fetch(`/card-db-manifest-${currentGame.value}.json`)
       if (!manifestResponse.ok) throw new Error('Failed to load manifest file')
 
       const manifest = await manifestResponse.json()
       const currentVersion = manifest.version
       console.log(`📌 Current version: ${currentVersion}`)
 
-      const storedVersion = localStorage.getItem('global_search_index_version')
+      const storedVersion = localStorage.getItem(`global_search_index_version_${currentGame.value}`)
       console.log(`📌 Local version: ${storedVersion || 'None'}`)
 
       let loadedFromLocal = false
@@ -275,6 +282,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
 
   return {
     // State
+    currentGame,
     isReady,
     isInitialSetup,
     isLoading,

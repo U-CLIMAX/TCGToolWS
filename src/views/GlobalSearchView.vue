@@ -21,10 +21,10 @@
 
           <div class="header-center d-flex align-center">
             <h1
-              class="text-h6 text-sm-h5 text-truncate text-center px-2 flex-grow-1"
+              class="text-h6 text-sm-h5 text-truncate text-center px-2 flex-grow-1 text-ws-rose font-weight-bold"
               style="min-width: 0"
             >
-              搜索结果
+              {{ game.toUpperCase() }} 搜索结果
             </h1>
             <v-chip
               :size="resize"
@@ -206,6 +206,7 @@
 
 <script setup>
 import { onMounted, ref, watch, computed, watchEffect, onUnmounted } from 'vue'
+import { useRoute } from 'vue-router'
 import { useDisplay } from 'vuetify'
 import { storeToRefs } from 'pinia'
 import { useGlobalSearchStore } from '@/stores/globalSearch'
@@ -216,6 +217,9 @@ import CardInfiniteScrollList from '@/components/card/CardInfiniteScrollList.vue
 import BaseFilterSidebar from '@/components/ui/FilterSidebar.vue'
 import DeckSidebar from '@/components/ui/DeckSidebar.vue'
 import DraggableBottomSheet from '@/components/ui/DraggableBottomSheet.vue'
+
+const route = useRoute()
+const game = computed(() => route.params.game || 'ws')
 
 const globalSearchStore = useGlobalSearchStore()
 const uiStore = useUIStore()
@@ -297,7 +301,11 @@ const chipContent = computed(() => {
 })
 
 onMounted(() => {
-  globalSearchStore.initialize()
+  globalSearchStore.initialize(game.value)
+})
+
+watch(game, (newGame) => {
+  globalSearchStore.initialize(newGame)
 })
 
 watch(
@@ -313,7 +321,7 @@ onUnmounted(() => {
   globalSearchStore.terminate()
 })
 
-const storageKey = computed(() => `globalSearchViewState`)
+const storageKey = computed(() => `globalSearchViewState_${game.value}`)
 
 useInfiniteScrollState({
   storageKey,

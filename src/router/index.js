@@ -66,9 +66,10 @@ const routes = [
     meta: { requiresGuest: true, isSpecialFlow: true },
   },
   {
-    path: '/search',
+    path: '/search/:game',
     name: 'GlobalSearch',
     component: () => import('@/views/GlobalSearchView.vue'),
+    props: true,
   },
 ]
 

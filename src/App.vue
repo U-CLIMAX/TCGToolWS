@@ -35,8 +35,34 @@
         <template v-if="!isInSpecialFlow">
           <div class="d-none d-md-block h-100">
             <template v-for="item in navItems" :key="item.to">
+              <!-- Search Dropdown -->
+              <v-menu v-if="item.name === 'GlobalSearch'" open-on-hover>
+                <template v-slot:activator="{ props }">
+                  <v-btn variant="text" class="h-100 rounded-0" v-bind="props">
+                    <template #prepend>
+                      <v-icon :icon="navIcons[item.icon]" size="24"></v-icon>
+                    </template>
+                    {{ item.text }}
+                  </v-btn>
+                </template>
+                <v-list density="compact" :class="{ 'glass-menu': hasBackgroundImage }">
+                  <v-list-item
+                    :to="{ name: 'GlobalSearch', params: { game: 'ws' } }"
+                    title="Weiẞ Schwarz"
+                  >
+                  </v-list-item>
+                  <v-list-item
+                    color="ws-rose"
+                    :to="{ name: 'GlobalSearch', params: { game: 'wsr' } }"
+                    title="Weiβ Schwarz Rose"
+                  >
+                  </v-list-item>
+                </v-list>
+              </v-menu>
+
+              <!-- Standard Buttons -->
               <v-btn
-                v-if="!item.requiresAuth || authStore.isAuthenticated"
+                v-else-if="!item.requiresAuth || authStore.isAuthenticated"
                 variant="text"
                 :to="{ name: item.name }"
                 :text="item.text"
@@ -126,8 +152,29 @@
     <v-navigation-drawer v-model="drawer" temporary>
       <v-list class="py-0">
         <template v-for="item in navItems" :key="item.to">
+          <!-- Search Group -->
+          <v-list-group v-if="item.name === 'GlobalSearch'" value="search">
+            <template v-slot:activator="{ props }">
+              <v-list-item v-bind="props" :title="item.text">
+                <template #prepend>
+                  <v-icon :icon="navIcons[item.icon]" size="24"></v-icon>
+                </template>
+              </v-list-item>
+            </template>
+            <v-list-item
+              :to="{ name: 'GlobalSearch', params: { game: 'ws' } }"
+              title="Weiẞ Schwarz"
+            ></v-list-item>
+            <v-list-item
+              color="ws-rose"
+              :to="{ name: 'GlobalSearch', params: { game: 'wsr' } }"
+              title="Weiβ Schwarz Rose"
+            ></v-list-item>
+          </v-list-group>
+
+          <!-- Standard Items -->
           <v-list-item
-            v-if="!item.requiresAuth || authStore.isAuthenticated"
+            v-else-if="!item.requiresAuth || authStore.isAuthenticated"
             :to="{ name: item.name }"
             :title="item.text"
           >
@@ -268,6 +315,7 @@ const titleImg = computed(() => {
   const isLightTheme = vuetifyTheme.global.name.value === 'light'
   return isHomeRoute.value ? titleMonochrome : isLightTheme ? titleLightImg : titleDarkImg
 })
+const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 const isInSpecialFlow = computed(() => {
   return !!route.meta.isSpecialFlow

@@ -3,62 +3,61 @@ import path from 'path'
 import crypto from 'crypto'
 import { fileURLToPath } from 'url'
 import zlib from 'zlib'
+import { seriesMap } from '../src/maps/series-map.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 const CARD_DATA_DIR = path.join(__dirname, '../src/assets/card-data')
 const OUTPUT_DIR = path.join(__dirname, '../public')
-const MANIFEST_FILE = path.join(OUTPUT_DIR, 'card-db-manifest.json')
 
 console.log('🔍 Starting to build card index...')
+
+// Build prefix map
+const prefixToGameMap = new Map()
+Object.values(seriesMap).forEach((series) => {
+  if (series.prefixes && Array.isArray(series.prefixes)) {
+    series.prefixes.forEach((prefix) => {
+      prefixToGameMap.set(prefix.toLowerCase(), series.game)
+    })
+  }
+})
 
 // 讀取所有 JSON 檔案
 const files = fs.readdirSync(CARD_DATA_DIR).filter((f) => f.endsWith('.json'))
 console.log(`📁 Found ${files.length} card data files.`)
 
-const allCards = []
-let cardCount = 0
+const cardsByGame = {
+  ws: [],
+  wsr: [],
+}
 
-const productNamesSet = new Set()
-const traitsSet = new Set()
-const raritiesSet = new Set()
-let minCost = Infinity,
-  maxCost = -Infinity,
-  minPower = Infinity,
-  maxPower = -Infinity
+let totalCardCount = 0
 
 files.forEach((filename) => {
   const filePath = path.join(CARD_DATA_DIR, filename)
   const content = JSON.parse(fs.readFileSync(filePath, 'utf-8'))
   const cardIdPrefix = filename.replace('.json', '')
 
+  // Determine game
+  const prefix = filename.split('-')[0].toLowerCase()
+  // Default to 'ws' if not found (or handle logic as needed), but map should cover it.
+  // Special case handling if needed, but based on map it should be fine.
+  const game = prefixToGameMap.get(prefix) || 'ws'
+
+  if (!cardsByGame[game]) {
+    cardsByGame[game] = []
+  }
+
   // 轉換資料結構：從 { "ID": {...} } 變成陣列
   for (const baseId in content) {
     const cardData = content[baseId]
-
-    // 收集篩選選項
-    if (cardData.product_name) productNamesSet.add(cardData.product_name)
-    if (cardData.trait && Array.isArray(cardData.trait)) {
-      cardData.trait.forEach((t) => traitsSet.add(t))
-    }
-    if (typeof cardData.cost === 'number') {
-      minCost = Math.min(minCost, cardData.cost)
-      maxCost = Math.max(maxCost, cardData.cost)
-    }
-    if (typeof cardData.power === 'number') {
-      minPower = Math.min(minPower, cardData.power)
-      maxPower = Math.max(maxPower, cardData.power)
-    }
-
     const { all_cards, ...baseCardData } = cardData
 
     if (all_cards && Array.isArray(all_cards)) {
       const minIdLength = all_cards.length > 0 ? Math.min(...all_cards.map((c) => c.id.length)) : 0
 
       all_cards.forEach((cardVersion) => {
-        if (cardVersion.rarity) raritiesSet.add(cardVersion.rarity)
-
         // 如果只有一張卡且最後是英文 -> 強制 false (代表是異圖)
         const lastChar = cardVersion.id.slice(-1)
         const isLastCharLetter =
@@ -69,45 +68,21 @@ files.forEach((filename) => {
 
         const isLowest = all_cards.length === 1 && isLastCharLetter ? false : isShortestLength
 
-        allCards.push({
+        cardsByGame[game].push({
           ...baseCardData,
           ...cardVersion,
           baseId,
           cardIdPrefix,
           isLowestRarity: isLowest,
         })
-        cardCount++
+        totalCardCount++
       })
     }
   }
 })
 
-console.log(`     - Processed a total of ${cardCount} cards.`)
-
-// 計算基礎卡片資料的 hash，這步不包含 link
-const cardDataContent = JSON.stringify(allCards)
-const hash = crypto.createHash('sha256').update(cardDataContent).digest('hex').substring(0, 8)
-const version = `v${hash}`
-
-console.log(`     - Data Hash: ${hash}`)
-
-// 檢測內容變化，並判斷是否需要重新產生檔案
-try {
-  const nowManifest = JSON.parse(fs.readFileSync(MANIFEST_FILE, 'utf-8'))
-  if (version === nowManifest.version) {
-    console.log('⏭️ The content has not changed, skip the remaining steps...')
-    process.exit(0)
-  }
-} catch (error) {
-  if (error.code === 'ENOENT') {
-    console.log('⚒️ Manifest file not found, start creating files...')
-  } else {
-    throw error
-  }
-}
-
-// 處理卡片連結（效果文字中提到的其他卡片）
-console.log('     - Processing card links...')
+console.log(`     - Processed a total of ${totalCardCount} cards.`)
+console.log(`     - WS: ${cardsByGame.ws.length}, WSR: ${cardsByGame.wsr.length}`)
 
 /**
  * 卡片連結處理函式
@@ -187,117 +162,173 @@ const processCardLinks = (cards) => {
     }
   }
 
+  // Final Step: Convert baseIds in links to full card IDs
+  const baseIdToFullIdsMap = new Map()
+  for (const card of cards) {
+    if (!baseIdToFullIdsMap.has(card.baseId)) {
+      baseIdToFullIdsMap.set(card.baseId, [])
+    }
+    baseIdToFullIdsMap.get(card.baseId).push(card.id)
+  }
+
+  for (const card of cards) {
+    if (card.link && Array.isArray(card.link) && card.link.length > 0) {
+      card.link = card.link.flatMap((linkBaseId) => baseIdToFullIdsMap.get(linkBaseId) || [])
+    }
+  }
+
   return cards
 }
 
+const processGameData = (game, cards) => {
+  console.log(`\n🚀 Processing ${game.toUpperCase()} data...`)
+  const manifestFile = path.join(OUTPUT_DIR, `card-db-manifest-${game}.json`)
+
+  const productNamesSet = new Set()
+  const traitsSet = new Set()
+  const raritiesSet = new Set()
+  let minCost = Infinity,
+    maxCost = -Infinity,
+    minPower = Infinity,
+    maxPower = -Infinity
+
+  cards.forEach((card) => {
+    if (card.product_name) productNamesSet.add(card.product_name)
+    if (card.trait && Array.isArray(card.trait)) {
+      card.trait.forEach((t) => traitsSet.add(t))
+    }
+    if (card.rarity) raritiesSet.add(card.rarity)
+    if (typeof card.cost === 'number') {
+      minCost = Math.min(minCost, card.cost)
+      maxCost = Math.max(maxCost, card.cost)
+    }
+    if (typeof card.power === 'number') {
+      minPower = Math.min(minPower, card.power)
+      maxPower = Math.max(maxPower, card.power)
+    }
+  })
+
+  // 計算基礎卡片資料的 hash，這步不包含 link
+  const cardDataContent = JSON.stringify(cards)
+  const hash = crypto.createHash('sha256').update(cardDataContent).digest('hex').substring(0, 8)
+  const version = `v${hash}`
+
+  console.log(`     - Data Hash: ${hash}`)
+
+  // 檢測內容變化，並判斷是否需要重新產生檔案
+  try {
+    const nowManifest = JSON.parse(fs.readFileSync(manifestFile, 'utf-8'))
+    if (version === nowManifest.version) {
+      console.log('⏭️ The content has not changed, skip...')
+      return
+    }
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      console.log('⚒️ Manifest file not found, start creating files...')
+    } else {
+      throw error
+    }
+  }
+
+  // 處理卡片連結
+  console.log('     - Processing card links...')
+  processCardLinks(cards)
+
+  // 建立篩選選項
+  const filterOptions = {
+    productNames: [...productNamesSet],
+    traits: [...traitsSet],
+    rarities: [...raritiesSet].sort(),
+    costRange: {
+      min: minCost === Infinity ? 0 : minCost,
+      max: maxCost === -Infinity ? 0 : maxCost,
+    },
+    powerRange: {
+      min: minPower === Infinity ? 0 : Math.floor(minPower / 500) * 500,
+      max: maxPower === -Infinity ? 0 : maxPower,
+    },
+  }
+
+  // 建立最終輸出
+  const output = {
+    filterOptions,
+    cards: cards,
+    version,
+  }
+
+  // 將最終 output 物件轉換為 JSON 字串以供壓縮
+  const content = JSON.stringify(output)
+
+  // 進行 brotli 壓縮
+  const brotliOptions = {
+    params: {
+      [zlib.constants.BROTLI_PARAM_QUALITY]: zlib.constants.BROTLI_MAX_QUALITY,
+    },
+  }
+  const zippedContent = zlib.brotliCompressSync(content, brotliOptions)
+  const totalSizeMB = (zippedContent.length / 1024 / 1024).toFixed(2)
+
+  // --- 分片邏輯 ---
+  const CHUNK_SIZE = 512 * 1024 // 512 KB
+  const chunkCount = Math.ceil(zippedContent.length / CHUNK_SIZE)
+  const chunkFiles = []
+
+  console.log(`📦 Total size: ${totalSizeMB} MB, splitting into ${chunkCount} chunks of ~512 KB...`)
+
+  for (let i = 0; i < chunkCount; i++) {
+    const start = i * CHUNK_SIZE
+    const end = start + CHUNK_SIZE
+    const chunk = zippedContent.subarray(start, end)
+
+    const chunkFileName = `${game}_cards_db.${hash}.part${i + 1}.bin`
+    const chunkFilePath = path.join(OUTPUT_DIR, chunkFileName)
+
+    fs.writeFileSync(chunkFilePath, chunk)
+    chunkFiles.push(chunkFileName)
+    console.log(
+      `     - Created chunk ${i + 1}/${chunkCount}: ${chunkFileName} (${(
+        chunk.length / 1024
+      ).toFixed(2)} KB)`
+    )
+  }
+  console.log('💾 Index chunks created.')
+
+  // 建立 manifest 檔案
+  const manifest = {
+    version,
+    hash,
+    chunked: true,
+    chunks: chunkFiles,
+    totalSize: `${totalSizeMB} MB`,
+    cardCount: cards.length,
+    filterOptions: {
+      productCount: filterOptions.productNames.length,
+      traitCount: filterOptions.traits.length,
+      rarityCount: filterOptions.rarities.length,
+      costRange: filterOptions.costRange,
+      powerRange: filterOptions.powerRange,
+    },
+  }
+
+  fs.writeFileSync(manifestFile, JSON.stringify(manifest, null, 2))
+  console.log(`     - Manifest file created: ${manifestFile}`)
+
+  // 清理舊的帶 hash 的檔案（包括舊的單體檔案和舊分片）
+  const oldFiles = fs
+    .readdirSync(OUTPUT_DIR)
+    .filter(
+      (f) => f.startsWith(`${game}_cards_db.`) && f.endsWith('.bin') && !chunkFiles.includes(f)
+    )
+
+  oldFiles.forEach((oldFile) => {
+    const oldFilePath = path.join(OUTPUT_DIR, oldFile)
+    fs.unlinkSync(oldFilePath)
+    console.log(`     - Deleted old file: ${oldFile}`)
+  })
+}
+
 // --- Processing ---
-processCardLinks(allCards)
-
-// Final Step: Convert baseIds in links to full card IDs
-const baseIdToFullIdsMap = new Map()
-for (const card of allCards) {
-  if (!baseIdToFullIdsMap.has(card.baseId)) {
-    baseIdToFullIdsMap.set(card.baseId, [])
-  }
-  baseIdToFullIdsMap.get(card.baseId).push(card.id)
-}
-
-for (const card of allCards) {
-  if (card.link && Array.isArray(card.link) && card.link.length > 0) {
-    card.link = card.link.flatMap((linkBaseId) => baseIdToFullIdsMap.get(linkBaseId) || [])
-  }
-}
-
-// 建立篩選選項
-const filterOptions = {
-  productNames: [...productNamesSet],
-  traits: [...traitsSet],
-  rarities: [...raritiesSet].sort(),
-  costRange: {
-    min: minCost === Infinity ? 0 : minCost,
-    max: maxCost === -Infinity ? 0 : maxCost,
-  },
-  powerRange: {
-    min: minPower === Infinity ? 0 : Math.floor(minPower / 500) * 500,
-    max: maxPower === -Infinity ? 0 : maxPower,
-  },
-}
-
-// 建立最終輸出
-const output = {
-  filterOptions,
-  cards: allCards,
-}
-
-// 加入版本號到輸出
-output.version = version
-
-// 將最終 output 物件轉換為 JSON 字串以供壓縮
-const content = JSON.stringify(output)
-
-// 進行 brotli 壓縮
-const brotliOptions = {
-  params: {
-    [zlib.constants.BROTLI_PARAM_QUALITY]: zlib.constants.BROTLI_MAX_QUALITY,
-  },
-}
-const zippedContent = zlib.brotliCompressSync(content, brotliOptions)
-const totalSizeMB = (zippedContent.length / 1024 / 1024).toFixed(2)
-
-// --- 分片邏輯 ---
-const CHUNK_SIZE = 512 * 1024 // 512 KB
-const chunkCount = Math.ceil(zippedContent.length / CHUNK_SIZE)
-const chunkFiles = []
-
-console.log(`📦 Total size: ${totalSizeMB} MB, splitting into ${chunkCount} chunks of ~512 KB...`)
-
-for (let i = 0; i < chunkCount; i++) {
-  const start = i * CHUNK_SIZE
-  const end = start + CHUNK_SIZE
-  const chunk = zippedContent.subarray(start, end)
-
-  const chunkFileName = `all_cards_db.${hash}.part${i + 1}.bin`
-  const chunkFilePath = path.join(OUTPUT_DIR, chunkFileName)
-
-  fs.writeFileSync(chunkFilePath, chunk)
-  chunkFiles.push(chunkFileName)
-  console.log(
-    `     - Created chunk ${i + 1}/${chunkCount}: ${chunkFileName} (${(chunk.length / 1024).toFixed(
-      2
-    )} KB)`
-  )
-}
-console.log('💾 Index chunks created.')
-
-// 建立 manifest 檔案
-const manifest = {
-  version,
-  hash,
-  chunked: true,
-  chunks: chunkFiles,
-  totalSize: `${totalSizeMB} MB`,
-  cardCount,
-  filterOptions: {
-    productCount: filterOptions.productNames.length,
-    traitCount: filterOptions.traits.length,
-    rarityCount: filterOptions.rarities.length,
-    costRange: filterOptions.costRange,
-    powerRange: filterOptions.powerRange,
-  },
-}
-
-fs.writeFileSync(MANIFEST_FILE, JSON.stringify(manifest, null, 2))
-console.log(`     - Manifest file created: ${MANIFEST_FILE}`)
-
-// 清理舊的帶 hash 的檔案（包括舊的單體檔案和舊分片）
-const oldFiles = fs
-  .readdirSync(OUTPUT_DIR)
-  .filter((f) => f.startsWith('all_cards_db.') && f.endsWith('.bin') && !chunkFiles.includes(f))
-
-oldFiles.forEach((oldFile) => {
-  const oldFilePath = path.join(OUTPUT_DIR, oldFile)
-  fs.unlinkSync(oldFilePath)
-  console.log(`     - Deleted old file: ${oldFile}`)
-})
+processGameData('ws', cardsByGame.ws)
+processGameData('wsr', cardsByGame.wsr)
 
 console.log('✨ Done!')
