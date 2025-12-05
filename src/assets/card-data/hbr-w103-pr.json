@@ -9,7 +9,7 @@
     "trait": ["セラフ", "第31A部隊"],
     "color": "红色",
     "soul": 1,
-    "effect": "【自】这张卡从手牌放置到舞台时，那个回合中，这张卡的战斗力+X。X是你《セラフ》的角色的数量×1000。<br/>【自】加速 [你卡组顶1张卡放置到时计区] 你的攻击阶段开始时，你可以支付费用。支付了的话，那个回合中，这张卡的战斗力+1000，这张卡获得以下能力。『【自】这张卡的战斗对手倒置时，你从自己的卡组找至多1张《セラフ》的角色卡展示给对手后加入手牌，卡组洗切』",
+    "effect": "【自】这张卡从手牌放置到舞台时，那个回合中，这张卡的战斗力+X。X是你《セラフ》的角色的数量×1000。<br/>【自】加速 [你卡组顶1张卡放置到时计区] 你的攻击阶段开始时，你可以支付费用。支付了的话，那个回合中，这张卡的战斗力+1000，这张卡获得以下能力。『【自】这张卡的战斗对手【倒置】时，你从自己的卡组找至多1张《セラフ》的角色卡展示给对手后加入手牌，卡组洗切』",
     "all_cards": [
       {
         "id": "HBR/W103-P01S",
@@ -55,7 +55,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【自】这张卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br/>（<img src=\"/effect-icons/standby.webp\">：这张卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，横置放置到舞台任意位置）",
+    "effect": "【自】这张卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br/>（<img src=\"/effect-icons/standby.webp\">：这张卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，【横置】放置到舞台任意位置）",
     "all_cards": [
       {
         "id": "HBR/W103-106",
@@ -74,7 +74,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【自】这张卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br/>（<img src=\"/effect-icons/standby.webp\">：这张卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，横置放置到舞台任意位置）",
+    "effect": "【自】这张卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br/>（<img src=\"/effect-icons/standby.webp\">：这张卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，【横置】放置到舞台任意位置）",
     "all_cards": [
       {
         "id": "HBR/W103-107",
@@ -93,7 +93,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【自】这张卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br/>（<img src=\"/effect-icons/standby.webp\">：这张卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，横置放置到舞台任意位置）",
+    "effect": "【自】这张卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br/>（<img src=\"/effect-icons/standby.webp\">：这张卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，【横置】放置到舞台任意位置）",
     "all_cards": [
       {
         "id": "HBR/W103-108",
@@ -112,7 +112,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【自】这张卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br/>（<img src=\"/effect-icons/standby.webp\">：这张卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，横置放置到舞台任意位置）",
+    "effect": "【自】这张卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br/>（<img src=\"/effect-icons/standby.webp\">：这张卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，【横置】放置到舞台任意位置）",
     "all_cards": [
       {
         "id": "HBR/W103-109",
@@ -131,7 +131,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【自】这张卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br/>（<img src=\"/effect-icons/standby.webp\">：这张卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，横置放置到舞台任意位置）",
+    "effect": "【自】这张卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br/>（<img src=\"/effect-icons/standby.webp\">：这张卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，【横置】放置到舞台任意位置）",
     "all_cards": [
       {
         "id": "HBR/W103-110",
@@ -150,7 +150,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【自】这张卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br/>（<img src=\"/effect-icons/standby.webp\">：这张卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，横置放置到舞台任意位置）",
+    "effect": "【自】这张卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br/>（<img src=\"/effect-icons/standby.webp\">：这张卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，【横置】放置到舞台任意位置）",
     "all_cards": [
       {
         "id": "HBR/W103-111",

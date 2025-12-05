@@ -53,7 +53,9 @@ icon_crawler.py
 
 .wrangler/
 
-public/all_cards_db.*.bin
-public/card-db-manifest.json
+public/ws_cards_db.*.bin
+public/wsr_cards_db.*.bin
+public/card-db-manifest-ws.json
+public/card-db-manifest-wsr.json
 
 test-webhook.http

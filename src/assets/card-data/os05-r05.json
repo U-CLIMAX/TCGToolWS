@@ -1,0 +1,2358 @@
+{
+  "OS05/R05-001": {
+    "name": "甘えんぼうな恋人 真白",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "黄色",
+    "effect": "【自】这张卡从手牌登场时，那个回合中，这张卡的战斗力+1500。<br/>【自】[1张手牌放置到休息室] 这张卡从手牌登场时，你可以支付费用。支付了的话，你公开自己卡组顶1张卡，从自己的休息室选择1张等级X以下的角色卡返回手牌。X是公开的卡的等级。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-001",
+        "rarity": "RR"
+      },
+      {
+        "id": "OS05/R05-001OFR",
+        "rarity": "OFR"
+      },
+      {
+        "id": "OS05/R05-001SSP",
+        "rarity": "SSP"
+      }
+    ]
+  },
+  "OS05/R05-002": {
+    "name": "がんばる子猫様 真白",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "黄色",
+    "effect": "【自】这张卡从手牌登场时，那个回合中，这张卡的战斗力+1500。<br/>【自】【CX联动】这张卡的战斗对手【倒置】时，你的高潮区有「猫耳メイドのお仕事」的话，你看自己卡组顶至多2张卡，选择至多2张〈同OS〉的角色卡或「ねこじゃらし！」展示给对手后加入手牌，其余的卡放置到休息室。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-002",
+        "rarity": "RR"
+      },
+      {
+        "id": "OS05/R05-002OFR",
+        "rarity": "OFR"
+      },
+      {
+        "id": "OS05/R05-002SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "OS05/R05-003": {
+    "name": "ファイター初級者 真白",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "黄色",
+    "effect": "【永】你的回合中，你有其他的〈同OS〉的角色的话，这张卡的战斗力+1500。<br/>【自】这张卡从手牌登场的回合中，这张卡的战斗对手【倒置】时，这张卡【横置】，你可以将这张卡移动到后列没有角色的位置。<br/>【自】变身 [这张卡放置到休息室] 你的抽卡阶段开始时，你可以支付费用。支付了的话，你从自己的休息室选择1张「- BLUE HORIZON - 真白」，放置到这张卡原来的位置。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-003",
+        "rarity": "R"
+      },
+      {
+        "id": "OS05/R05-003S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-004": {
+    "name": "- BLUE HORIZON - 真白",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 1,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["sprite", "FC"],
+    "color": "黄色",
+    "effect": "【永】你有其他的〈同OS〉的角色的话，这张卡获得以下2个能力。『【永】这张卡不会被对手的效果选择。』『【永】你的回合中，你其他全部〈同OS〉的角色，战斗力+1000。』<br/>【自】你的高潮阶段开始时，这张卡的下标记有2个以上的话，你选择自己的1个角色，那个回合中，灵魂值+1。<br/>【自】【一回合1次】你角色造成的伤害没有被取消时，你标记区的卡合计在1张以下的话，你从自己的休息室选择至多1张〈同OS〉的角色卡，正面朝上作为这张卡的标记。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-004",
+        "rarity": "R"
+      },
+      {
+        "id": "OS05/R05-004S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-005": {
+    "name": "牙を隠した淑女 繭",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 2,
+    "power": 3000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["sprite", "FC"],
+    "color": "黄色",
+    "effect": "【自】这张卡攻击时，那个回合中，这张卡的战斗力+10000。<br/>【自】这张卡的战斗对手【倒置】时，你可以将那个角色放置到库存区。这样做的话，你将对手的库存区底1张卡放置到休息室。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-005",
+        "rarity": "R"
+      },
+      {
+        "id": "OS05/R05-005OFR",
+        "rarity": "OFR"
+      },
+      {
+        "id": "OS05/R05-005SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "OS05/R05-006": {
+    "name": "ハッピートゥモロー 真白",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 2,
+    "power": 8000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["sprite", "FC"],
+    "color": "黄色",
+    "effect": "【自】这张卡从手牌登场时，你的卡组在6张以下的话，你可以将自己休息室的全部卡返回卡组。这样做的话，卡组洗切。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-006",
+        "rarity": "R"
+      },
+      {
+        "id": "OS05/R05-006S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-007": {
+    "name": "わたしだって、戦いたい 真白",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["sprite", "FC"],
+    "color": "黄色",
+    "effect": "【永】你其他全部的「- BLUE HORIZON - 真白」下方的标记合计在2个以上的话，这张卡的战斗力+2000。<br/>【自】这张卡从手牌登场时，你抽至多1张卡，那个回合中，这张卡的战斗力+2000。<br/>【自】【CX联动】这张卡攻击时，高潮区有「Millions of You」的话，你看对手卡组顶至多2张卡，选择至多2张卡，按喜欢的顺序放置到卡组顶，其余的卡放置到休息室，那个回合中，这张卡的战斗力+1000。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-007",
+        "rarity": "R"
+      },
+      {
+        "id": "OS05/R05-007S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-008": {
+    "name": "愛しい時間 真白",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["sprite", "FC"],
+    "color": "黄色",
+    "effect": "【永】你的休息室的高潮卡在2张以下的话，你手牌中这张卡的等级-1。<br/>【自】[1张手牌放置到休息室] 这张卡从手牌登场时，你可以支付费用。支付了的话，你将自己时计区顶1张卡放置到库存区。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-008",
+        "rarity": "R"
+      },
+      {
+        "id": "OS05/R05-008S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-009": {
+    "name": "翼の休息 真白",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "黄色",
+    "effect": "【自】这张卡从手牌登场时，对手前列的角色在1个以下的话，你可以选择对手前列的1个费用0以下的角色，放置到卡组底。<br/>【自】[(2)] 这张卡从舞台放置到休息室时，你可以支付费用。支付了的话，你从自己的卡组搜索至多1张卡名包含「真白」的角色卡加入手牌。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-009",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-009S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-010": {
+    "name": "小さくても勇気 真白",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "黄色",
+    "effect": "【自】这张卡从手牌登场时，<br/>所有玩家将自己卡组顶3张卡放置到休息室，<br/>你的手牌是0张、1张、2张、3张<br/>或4张的话、那个回合中，这张卡不会因为侧击而<br/>减少灵魂值。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-010",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-010S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-011": {
+    "name": "追いかけっこの結末 真白",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "黄色",
+    "effect": "【自】[手牌中1张触发标记是<img src=\"/effect-icons/choice.webp\">的高潮卡放置到休息室] 这张卡从手牌出现时，你可以支付费用。支付了的话，你从自己的休息室选择1张触发标记是<img src=\"/effect-icons/choice.webp\">的高潮卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-011",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-011S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-012": {
+    "name": "いちゃいちゃ温泉旅行 真白＆明日香",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "黄色",
+    "effect": "【自】这张卡从手牌登场时，你看自己卡组顶1张卡，放置到卡组顶或休息室。<br/>【起】集中 [(1) 这张卡【横置】] 你将自己卡组顶4张卡放置到休息室。那些卡中每有1张高潮卡，执行以下行动。『你看自己卡组顶至多3张卡，选择至多1张卡加入手牌，其余的卡放置到休息室。』",
+    "all_cards": [
+      {
+        "id": "OS05/R05-012",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-012S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-013": {
+    "name": "とっとこ邪神ちゃん",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "マスコット"],
+    "color": "黄色",
+    "effect": "【永】你其他全部的「どたばたの初恋 真白」，战斗力+2000。<br/>【自】[1张手牌的〈同OS〉的角色卡放置到休息室] 这张卡从手牌登场时，你可以支付费用。支付了的话，你从自己的卡组搜索至多1张「どたばたの初恋 真白」加入手牌。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-013",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-013S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-014": {
+    "name": "はずむフリル 真白",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "黄色",
+    "effect": "【自】这张卡从手牌登场时，你将自己卡组顶2张卡放置到休息室，那个回合中，这张卡的战斗力+X。X是那些卡中〈同OS〉的角色卡的数量×1000。<br/>【自】【CX联动】对手等级升级时，你的高潮区有「向日葵の香り」的话，你看自己卡组顶至多4张卡，选择至多1张〈同OS〉的角色卡或「ねこじゃらし！」展示给对手后加入手牌，其余的卡放置到休息室。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-014",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-014S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-015": {
+    "name": "どたばたの初恋 真白",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 3000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "黄色",
+    "effect": "",
+    "all_cards": [
+      {
+        "id": "OS05/R05-015",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-015S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-016": {
+    "name": "白熱実況 実里",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite"],
+    "color": "黄色",
+    "effect": "【永】 应援 所有此卡前的角色卡，力量＋500。<br/>【起】［这张卡【横置】］ 你检视对手的卡组顶至多2张卡，将那些卡以任意顺序放置到卡组顶。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-016",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-016S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-017": {
+    "name": "あっち側の「妹」 有梨華",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "黄色",
+    "effect": "【自】 绊／「あっち側の「お姉さま」 繭」 [1张手牌放置到休息室]<br/>【自】 共鸣 [手牌的1张「あっち側の「お姉さま」 繭」公开」] 你的高潮阶段开始时，前列有这张卡的话，你可以支付费用。支付了的话，你选择自己其他1个角色和这张卡，那个回合中，战斗力+2000。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-017",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-017S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-018": {
+    "name": "あっち側の「お姉さま」 繭",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "黄色",
+    "effect": "【自】 绊／「あっち側の「妹」 有梨華」 [1张手牌放置到休息室] <br/>【自】 共鸣 [手牌的1张「あっち側の「妹」 有梨華」公开] 你的高潮阶段开始时，你可以支付费用。支付了的话，那个回合中，这张卡的战斗力+4000。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-018",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-018S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-019": {
+    "name": "跳ねる水しぶき 真白",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "黄色",
+    "effect": "【自】这张卡从舞台放置到休息室时，你可以公开自己卡组顶至多3张卡。公开1张以上的话，你选择那些卡中至多1张〈同OS〉的角色卡或「ねこじゃらし！」，加入手牌，其余的卡放置到休息室，选择自己的1张手牌放置到休息室。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-019",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-019S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-020": {
+    "name": "転がる子猫様 真白",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "黄色",
+    "effect": "【永】你其他〈同OS〉的角色有2个以上的话，这张卡的战斗力+1500，这张卡获得『【自】再演 [手牌中1张角色卡放置到休息室]』。<br/>【自】[(1)] 这张卡攻击时，你可以支付费用。支付了的话，那次攻击中，你在触发步骤执行2次触发判定。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-020",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-020S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-021": {
+    "name": "娘の応援 牡丹",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["sprite"],
+    "color": "黄色",
+    "effect": "【永】 应援 所有此卡前的你的卡名含有「真白」的角色卡，力量＋1500。<br/>【起】［这张卡【横置】］ 你选择自己的1张手牌，放置到库存区。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-021",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-021S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-022": {
+    "name": "ねこじゃらし！",
+    "product_name": "ブースターパック sprite",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 2,
+    "soul": 0,
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【反击】你选择1个战斗中的角色，那个回合中，灵魂值+6。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-022",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-022S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-023": {
+    "name": "猫耳メイドのお仕事",
+    "product_name": "ブースターパック sprite",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": 0,
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你全部的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\">：这张卡触发时，你从休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "all_cards": [
+      {
+        "id": "OS05/R05-023",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-023S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-024": {
+    "name": "Millions of You",
+    "product_name": "ブースターパック sprite",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": 0,
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你全部的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\">：这张卡触发时，你从休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "all_cards": [
+      {
+        "id": "OS05/R05-024",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-024S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-025": {
+    "name": "向日葵の香り",
+    "product_name": "ブースターパック sprite",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": 0,
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你全部的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\">：这张卡触发时，你从休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "all_cards": [
+      {
+        "id": "OS05/R05-025",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-025S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-026": {
+    "name": "届いた２人の真剣勝負 みさき",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "绿色",
+    "effect": "【自】这张卡从手牌登场时，你看自己卡组顶至多2张卡，以喜欢的顺序放置到卡组顶。<br/>【自】[(1) 你将自己卡组顶1张卡放置到时计区] 这张卡从手牌登场时，你可以支付费用。支付了的话，你从自己的卡组搜索至多1张等级1以下的角色卡加入手牌。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-026",
+        "rarity": "RR"
+      },
+      {
+        "id": "OS05/R05-026OFR",
+        "rarity": "OFR"
+      },
+      {
+        "id": "OS05/R05-026SEC",
+        "rarity": "SEC"
+      }
+    ]
+  },
+  "OS05/R05-027": {
+    "name": "誓いの言葉 みさき",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "绿色",
+    "effect": "【自】这张卡从手牌登场时，你公开自己卡组顶1张卡。那张卡是〈同OS〉的角色卡的话，那个回合中，这张卡的战斗力+2000。<br/>【自】[1张手牌放置到休息室] 这张卡从舞台放置到休息室时，你可以支付费用。支付了的话，你看自己卡组顶至多4张卡，选择至多1张等级1以上的卡展示给对手后加入手牌，其余的卡放置到休息室。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-027",
+        "rarity": "RR"
+      },
+      {
+        "id": "OS05/R05-027OFR",
+        "rarity": "OFR"
+      },
+      {
+        "id": "OS05/R05-027SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "OS05/R05-028": {
+    "name": "届いた場所 みさき",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["sprite", "FC"],
+    "color": "绿色",
+    "effect": "【永】这张卡造成的伤害从卡组底处理。<br/>【自】这张卡从手牌登场时，你可以将自己时计区顶1张卡放置到休息室。<br/>【自】【CX联动】[(2) 1张手牌放置到休息室] 这张卡的攻击结束时，高潮区有「Sense of Life」，你其他「- Fly me to your sky ! - みさき」下方的标记的总数在3个以上，这张卡正面没有角色或【倒置】的话，你可以支付费用。支付了的话，给对手造成1点伤害，给对手造成3点伤害。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-028",
+        "rarity": "RR"
+      },
+      {
+        "id": "OS05/R05-028OFR",
+        "rarity": "OFR"
+      },
+      {
+        "id": "OS05/R05-028SSP",
+        "rarity": "SSP"
+      }
+    ]
+  },
+  "OS05/R05-029": {
+    "name": "負けたくない気持ち みさき",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "绿色",
+    "effect": "【永】记忆 思出区有这张卡的话，你全部的「- Fly me to your sky ! - みさき」获得以下能力。『【永】这张卡不会被对手的效果选择。』<br/>【自】[手牌中1张〈同OS〉的角色卡放置到休息室，这张卡放置到思出区] 这张卡【倒置】时，你可以支付费用。支付了的话，你从自己卡组搜索至多1张「- Fly me to your sky ! - みさき」，将这张卡【横置】放置到原来的位置。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-029",
+        "rarity": "R"
+      },
+      {
+        "id": "OS05/R05-029S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-030": {
+    "name": "脱ぎ捨てた覆面 みなも",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "绿色",
+    "effect": "【永】对手的回合中，你的手牌在5张以上的话，这张卡的等级+1，战斗力+1500。<br/>【自】对手的攻击阶段开始时，你可以将这张卡移动到前列没有角色，正面有对手角色的格子。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-030",
+        "rarity": "R"
+      },
+      {
+        "id": "OS05/R05-030OFR",
+        "rarity": "OFR"
+      },
+      {
+        "id": "OS05/R05-030SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "OS05/R05-031": {
+    "name": "帰ってきた神童 晶也",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "绿色",
+    "effect": "【自】这张卡从手牌登场时，你看自己卡组顶至多3张卡，选择至多1张事件卡展示给对手后加入手牌，其余的卡放置到休息室。加入手牌的话，你选择自己的1张手牌放置到休息室。<br/>【自】这张卡从手牌登场时，你有其他〈同OS〉的角色的话，那个回合中，这张卡的战斗力+2000。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-031",
+        "rarity": "R"
+      },
+      {
+        "id": "OS05/R05-031S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-032": {
+    "name": "- Fly me to your sky ! - みさき",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "绿色",
+    "effect": "【自】你的高潮卡放置到高潮区时，你选择自己的至多2个角色，那个回合中，战斗力+1000。<br/>【自】你的再演步骤开始时，对手前列没有角色或对手的前列的角色全部【倒置】，你标记区的卡合计在2张以下的话，你从自己的休息室选择至多1张〈同OS〉的角色卡，正面朝上作为这张卡的标记。<br/>【自】[这张卡底的3个标记放置到休息室] 你的再演步骤开始时，你可以支付费用。支付了的话，你从自己的休息室选择1张卡，返回卡组，卡组洗切。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-032",
+        "rarity": "R"
+      },
+      {
+        "id": "OS05/R05-032S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-033": {
+    "name": "one of a kind みさき",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["sprite", "FC"],
+    "color": "绿色",
+    "effect": "【自】这张卡从手牌登场时，你选择自己手牌中至多1张自己的等级以下的角色卡，放置到舞台任意位置，那个回合中，那个角色的战斗力+2000。<br/>【自】[(1) 1张手牌放置到休息室] 这张卡从手牌登场时，你可以支付费用。支付了的话，对手选择自己的休息室的1张高潮卡，将除那张卡以外的休息室的卡全部返回卡组，卡组洗切。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-033",
+        "rarity": "R"
+      },
+      {
+        "id": "OS05/R05-033S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-034": {
+    "name": "“わたしのを食べてください”みなも",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "绿色",
+    "effect": "【永】 应援 所有此卡前的你的角色卡，力量＋500。<br/>【起】［这张卡【横置】］ 你选择自己1个〈同OS〉的角色卡，该回合中，力量＋1000，给予《犬テイン》。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-034",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-034S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-035": {
+    "name": "愛しい時間 みさき",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "绿色",
+    "effect": "【自】这张卡从手牌登场时，你有其他的〈同OS〉的角色的话，直到下一个对手的回合结束为止，这张卡的战斗力+2000。<br/>【自】[(1) 1张手牌放置到休息室] 这张卡从手牌登场时，你可以支付费用。支付了的话，你选择对手的1个角色，返回手牌。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-035",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-035S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-036": {
+    "name": "翼の休息 みさき",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "绿色",
+    "effect": "【自】[1张手牌放置到休息室] 你的触发标记是<img src=\"/effect-icons/treasure.webp\">的高潮卡触发时，你可以支付费用。支付了的话，你选择自己时计区的1张卡，返回手牌，将自己卡组顶1张卡，放置到时计区。<br/>【起】集中 [(1) 这张卡【横置】] 你将自己卡组顶4张卡，放置到休息室。那些卡中每有1张高潮卡，你选择至多1张自己休息室的卡名包含「みさき」的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-036",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-036S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-037": {
+    "name": "貸し切りビーチ みさき",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "绿色",
+    "effect": "【自】你使用这张卡的『助太刀』时，你有〈同OS〉的角色的话，你选择自己战斗中的1个角色，那个回合中，战斗力+1000。<br/>【起】【反击】助太刀1000 等级1 [将手牌的这张卡放置到休息室]",
+    "all_cards": [
+      {
+        "id": "OS05/R05-037",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-037S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-038": {
+    "name": "高まる胸と食欲 みさき",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "绿色",
+    "effect": "【自】这张卡从手牌登场时，你选择自己的1个〈同OS〉的角色，那个回合中，战斗力+1500。<br/>【自】这张卡【倒置】时，这张卡的战斗对手的费用是0以下的话，你可以将对手时计区顶1张卡放置到休息室。这样做的话，你将那个角色放置时计区。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-038",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-038S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-039": {
+    "name": "愛のぶつけかた みさき",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "绿色",
+    "effect": "【永】你其他〈同OS〉的角色有2个以上的话，这张卡的战斗力+1000。<br/>【自】【CX联动】这张卡的战斗对手【倒置】时，你的高潮区有「初めて本気になれたもの」的话，你可以从自己的休息室选择1张角色卡或「バランス勝負！」返回手牌。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-039",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-039S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-040": {
+    "name": "天才を見上げて みさき",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "绿色",
+    "effect": "【自】这张卡从手牌登场时，你有其他的〈同OS〉的角色的话，那个回合中，这张卡的战斗力+2000。<br/>【自】这张卡攻击时，你有其他的〈同OS〉的角色，这张卡正面的角色是2级的话，那个回合中，这张卡的战斗力+4500。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-040",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-040S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-041": {
+    "name": "永年の恋 みなも",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "绿色",
+    "effect": "【永】你每有1个其他的〈同OS〉的角色，这张卡的战斗力+500。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-041",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-041S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-042": {
+    "name": "いちゃいちゃ温泉旅行 みさき＆莉佳",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["sprite", "FC"],
+    "color": "绿色",
+    "effect": "【自】[(2)] 你使用这张卡的『助太刀』时，你的〈同OS〉的角色有4个以上的话，你可以支付费用。支付了的话，你选择对手的1个等级比对手等级高的角色，放置到休息室。<br/>【起】【反击】 助太刀2500 等级2 [(1) 手牌的这张卡放置到休息室]",
+    "all_cards": [
+      {
+        "id": "OS05/R05-042",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-042S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-043": {
+    "name": "謎に包まれた存在 覆面選手",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 2,
+    "power": 3500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["sprite", "FC"],
+    "color": "绿色",
+    "effect": "【永】这张卡的下方有指示物的话，这张卡的战斗力+7500。<br/>【自】这张卡从手牌登场时，你可以选择自己的休息室的1张「脱ぎ捨てた覆面 みなも」，正面朝上作为这张卡的指示物。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-043",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-043S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-044": {
+    "name": "“あたしのを食べて”みさき",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 2,
+    "power": 4000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["sprite", "FC"],
+    "color": "绿色",
+    "effect": "【永】 应援 所有此卡前的你的角色卡，力量＋Ｘ。Ｘ为那个角色的等级×500。<br/>【自】 【一回合1次】 你使用【起】时，你选择1张自己的持有〈同OS〉特征的角色卡，这个回合中，力量＋1000。<br/>【起】［这张卡【横置】］ 你选择1张自己的角色卡，该回合中，给予以下能力。『【自】 此卡的战斗对手【倒置】时，你可以将对手时计区顶1张卡放置到休息室。这么做的话，你将那个角色卡放置到时计区。』",
+    "all_cards": [
+      {
+        "id": "OS05/R05-044",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-044S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-045": {
+    "name": "取り残された２人 みさき",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["sprite", "FC"],
+    "color": "绿色",
+    "effect": "【自】这张卡攻击时，这张卡正面的角色的等级是3级以上的话，那个回合中，这张卡的战斗力+6000。<br/>【自】【CX联动】这张卡的战斗对手【倒置】时，你的高潮区有「２人だけの世界から」的话，你从自己的休息室选择至多1张〈同OS〉的角色卡放置到库存区，从自己的卡组找至多1张〈同OS〉的角色卡加入手牌。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-045",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-045S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-046": {
+    "name": "最速への挑戦 紫苑",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 2,
+    "power": 8000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["sprite", "FC"],
+    "color": "绿色",
+    "effect": "【永】这张卡不能侧击。<br/>【自】这张卡攻击时，那个回合中，这张卡的战斗力+X。X是你其他〈同OS〉的角色卡的数量×1000。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-046",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-046S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-047": {
+    "name": "バランス勝負！",
+    "product_name": "ブースターパック sprite",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 1,
+    "soul": 0,
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "【反击】你看自己卡组顶至多2张卡，将这些卡按原顺序放置到卡组顶，你看对手卡组顶至多2张卡，将这些卡按原顺序放置到卡组顶，从自己的休息室选择至多1张持有〈同OS〉特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-047",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-047S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-048": {
+    "name": "Sense of Life",
+    "product_name": "ブースターパック sprite",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": 0,
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "【永】你的全部角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\">：这张卡触发时，这张卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
+    "all_cards": [
+      {
+        "id": "OS05/R05-048",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-048S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-049": {
+    "name": "初めて本気になれたもの",
+    "product_name": "ブースターパック sprite",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": 0,
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "【永】你的全部角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\">：这张卡触发时，这张卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
+    "all_cards": [
+      {
+        "id": "OS05/R05-049",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-049S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-050": {
+    "name": "２人だけの世界から",
+    "product_name": "ブースターパック sprite",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": 0,
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "【永】你的全部角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\">：这张卡触发时，这张卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
+    "all_cards": [
+      {
+        "id": "OS05/R05-050",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-050S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-051": {
+    "name": "空に恋した少女 明日香",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "红色",
+    "effect": "【永】你的回合中，这张卡的战斗力+2000。<br/>【自】[1张手牌放置到休息室] 这张卡从舞台放置到休息室时，你可以支付费用。支付了的话，你将自己卡组顶2张卡放置到休息室，从自己的休息室选择1张等级X以下的〈同OS〉的角色卡返回手牌。X是那些卡的等级之合。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-051",
+        "rarity": "RR"
+      },
+      {
+        "id": "OS05/R05-051S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-052": {
+    "name": "『青空の魔術師』 明日香",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["sprite", "FC"],
+    "color": "红色",
+    "effect": "【自】这张卡从手牌登场时，你可以将自己时计区顶1张卡放置到休息室。<br/>【自】【CX联动】【一回合1次】[你将自己舞台的其他1个〈同OS〉的角色卡放置到休息室] 这张卡攻击时，高潮区有「空恋-sorakoi-」，你其他全部的「特別なご褒美 明日香」下方的标记的合计数量在3个以上的话，你可以支付费用。支付了的话，那个回合中，这张卡获得以下能力。『【自】 【一回合1次】这张卡造成的伤害被取消时，这张卡【竖置】，移动到舞台的其他没有角色的区域。』 （移动的话，不会发生战斗）",
+    "all_cards": [
+      {
+        "id": "OS05/R05-052",
+        "rarity": "RR"
+      },
+      {
+        "id": "OS05/R05-052OFR",
+        "rarity": "OFR"
+      },
+      {
+        "id": "OS05/R05-052SSP",
+        "rarity": "SSP"
+      }
+    ]
+  },
+  "OS05/R05-053": {
+    "name": "マジ☆メインヒロイン 窓果",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "红色",
+    "effect": "【永】前列的中央的格子有这张卡的话，这张卡的战斗力+3000。<br/>【起】[(1) 这张卡放置到休息室] 你看自己卡组顶至多4张卡，选择至多1张〈同OS〉的角色卡展示给对手后加入手牌，其余的卡放置到休息室。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-053",
+        "rarity": "R"
+      },
+      {
+        "id": "OS05/R05-053OFR",
+        "rarity": "OFR"
+      },
+      {
+        "id": "OS05/R05-053SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "OS05/R05-054": {
+    "name": "きらめく少女たち みさき＆明日香",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "红色",
+    "effect": "【自】[(1) 1张手牌的高潮卡放置到休息室] 这张卡从手牌登场时，你可以支付费用。支付了的话，你从自己的休息室选择1张高潮卡返回手牌。<br/>【自】这张卡【倒置】时，这张卡的战斗对手的等级是0级以下的话，你可以将那个角色【倒置】。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-054",
+        "rarity": "R"
+      },
+      {
+        "id": "OS05/R05-054S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-055": {
+    "name": "幸せな気持ち 明日香",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "红色",
+    "effect": "【自】【CX联动】这张卡的战斗对手【倒置】时，你的高潮区有「はじめてのFly」的话，直到下一个对手的回合结束为止，这张卡的等级＋1，战斗力＋2500，你公开自己卡组顶1张卡。那张卡是〈同OS〉的角色卡或「大切な思い出」的话加入手牌。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-055",
+        "rarity": "R"
+      },
+      {
+        "id": "OS05/R05-055S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-056": {
+    "name": "言いたかった言葉 葵",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 2,
+    "power": 3000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["sprite", "FC"],
+    "color": "红色",
+    "effect": "【自】[(2) 1张手牌的〈同OS〉的角色卡放置到休息室] 你使用这张卡的『助太刀』时，你可以支付费用。支付了的话，你选择对手的1个角色，那个回合中，灵魂值-2。<br/>【起】【反击】助太刀2500 等级2 [(1) 手牌中的这张卡放置到休息室]",
+    "all_cards": [
+      {
+        "id": "OS05/R05-056",
+        "rarity": "R"
+      },
+      {
+        "id": "OS05/R05-056S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-057": {
+    "name": "四島に咲く一輪の薔薇 佐藤院",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["sprite", "FC"],
+    "color": "红色",
+    "effect": "【自】这张卡攻击时，那个回合中，这张卡的战斗力+X。X是你其他〈同OS〉的角色卡的数量×1000。<br/>【自】这张卡的战斗对手【倒置】时，你公开自己卡组顶1张卡。那张卡是〈同OS〉的角色卡的话加入手牌。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-057",
+        "rarity": "R"
+      },
+      {
+        "id": "OS05/R05-057OFR",
+        "rarity": "OFR"
+      },
+      {
+        "id": "OS05/R05-057SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "OS05/R05-058": {
+    "name": "蒼の彼方へ 明日香",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["sprite", "FC"],
+    "color": "红色",
+    "effect": "【永】经验 你的回合中，你的等级区有3张背面的卡的话，这张卡的战斗力+3000。<br/>【自】这张卡从手牌登场时，你将自己卡组顶5张卡放置到休息室，给对手造成X点伤害。X是那些卡中高潮卡的数量。<br/>【自】[1张手牌放置到休息室，你等级区的3张正面的卡背面表示] 这张卡攻击时，你可以支付费用。支付了的话，给对手造成1点伤害。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-058",
+        "rarity": "R"
+      },
+      {
+        "id": "OS05/R05-058S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-059": {
+    "name": "“空を見ろ 空を見続けろ”葵",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "红色",
+    "effect": "【永】你其他全部的「“答えはそこにある”晶也」，灵魂值+1。<br/>【自】 绊／「“答えはそこにある”晶也」 [(1)]",
+    "all_cards": [
+      {
+        "id": "OS05/R05-059",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-059S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-060": {
+    "name": "虫の知らせ 窓果",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "红色",
+    "effect": "【自】这张卡从手牌登场时，所有玩家执行以下行动。『你的思出区有5张以上的话，你从自己的思出区选择4张卡，将那些卡以外的全部卡片放置到休息室。』<br/>【自】[手牌中1张〈同OS〉的角色卡放置到时计区] 这张卡从手牌登场时，你可以支付费用。支付了的话，你看自己卡组顶至多4张卡，选择至多1张卡加入手牌，其余的卡放置到休息室。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-060",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-060S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-061": {
+    "name": "愛しい時間 明日香",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "红色",
+    "effect": "【永】记忆 思出区有这张卡的话，你全部的「特別なご褒美 明日香」，获得以下能力。『【永】这张卡不会被对手的效果选择。』<br/>【自】这张卡【倒置】时，你的思出区有2张以下的话，你可以将这张卡放置到思出区。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-061",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-061S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-062": {
+    "name": "翼の休息 明日香",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "红色",
+    "effect": "【自】对手的攻击阶段开始时，你可以将这张卡移动到前列没有角色的位置。<br/>【自】[(1) 你将自己卡组顶1张卡放置到时计区] 这张卡从舞台放置到休息室时，你可以支付费用。支付了的话，你从自己的休息室选择1张卡名包含「明日香」的角色卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-062",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-062S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-063": {
+    "name": "果たし状 佐藤院",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "红色",
+    "effect": "【永】舞台有这张卡的话，这张卡的卡名也可以是「佐藤」。<br/>【永】你其他前列中央的〈同OS〉的角色，战斗力+1500。<br/>【自】这张卡被正面攻击时，你选择自己其他1个〈同OS〉的角色，那个回合中，灵魂值+1。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-063",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-063S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-064": {
+    "name": "“答えはそこにある”晶也",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "红色",
+    "effect": "【永】你的回合中，你有其他「“空を見ろ 空を見続けろ”葵」的话，这张卡的战斗力+2000。<br/>【自】这张卡被正面攻击时，你公开自己卡组顶1张卡。那张卡是高潮卡的话，这张卡放置到休息室。<br/>【自】 絆／「“空を見ろ 空を見続けろ”葵」 [1张手牌放置到休息室]",
+    "all_cards": [
+      {
+        "id": "OS05/R05-064",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-064S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-065": {
+    "name": "大きな空の下で 明日香",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "红色",
+    "effect": "【自】[(1) 1张手牌放置到休息室] 这张卡从舞台放置到休息室时，你可以支付费用。支付了的话，你搜索自己卡组至多1张触发标记是<img src=\"/effect-icons/salvage.webp\">的高潮卡加入手牌。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-065",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-065S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-066": {
+    "name": "『院』の称号 佐藤院",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "红色",
+    "effect": "【自】这张卡的战斗对手【倒置】时，你从自己的休息室选择1张〈同OS〉的角色卡，返回手牌，选择自己的1张手牌，放置到休息室，对手的全部角色，那个回合中，失去全部《院》。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-066",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-066S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-067": {
+    "name": "特別なご褒美 明日香",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["sprite", "FC"],
+    "color": "红色",
+    "effect": "【永】应援 此卡前的全部〈同OS〉的角色，战斗力+X。X是那个角色的等级×500。<br/>【自】你的高潮阶段开始时，你选择自己的1个角色，那个回合中，战斗力+X。X是这张卡下方的标记的个数×500。<br/>【自】【一回合1次】你的回合中，你角色造成的伤害没有被取消，或者你其他角色的战斗对手【倒置】时，你标记区的卡合计在2张以下的话，你从自己的休息室选择至多1张〈同OS〉的角色卡，正面朝上作为这张卡的标记。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-067",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-067S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-068": {
+    "name": "見守る行方 隼人",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["sprite", "FC"],
+    "color": "红色",
+    "effect": "【自】这张卡【倒置】时，这张卡的战斗对手的等级比对手的等级高的话，你可以将那个角色【倒置】。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-068",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-068S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-069": {
+    "name": "ワクワクを見つけて 明日香",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["sprite", "FC"],
+    "color": "红色",
+    "effect": "【永】你每有1个其他的〈同OS〉的角色，这张卡的战斗力+1000。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-069",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-069S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-070": {
+    "name": "負けるな兄ちゃん 窓果",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["sprite", "FC"],
+    "color": "红色",
+    "effect": "【自】这张卡从手牌登场时，你看自己卡组顶至多4张卡，选择至多1张高潮卡展示给对手后加入手牌，其余的卡放置到休息室。加入手牌的话，你选择自己的1张手牌放置到休息室。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-070",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-070S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-071": {
+    "name": "本気の勝負 葵",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["sprite", "FC"],
+    "color": "红色",
+    "effect": "【自】这张卡从手牌登场时，你抽至多1张卡，选择对手的1个角色，那个回合中，给予以下能力。『【永】这张卡的战斗中，你不能从手牌中使用事件卡或『助太刀』。』<br/>【自】【CX联动】你的「空を見ろ 空を見続けろ 答えはそこにある」放置到高潮区时，这张卡在前列，你其他的〈同OS〉的角色有2个以上的话，直到下一个对手的回合结束为止，这张卡获得以下2个能力。『【永】这张卡正面的角色的魂－2。』『【永】这张卡正面的角色不能移动到其他区域。』",
+    "all_cards": [
+      {
+        "id": "OS05/R05-071",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-071S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-072": {
+    "name": "大切な思い出",
+    "product_name": "ブースターパック sprite",
+    "type": "事件卡",
+    "level": 3,
+    "power": "-",
+    "cost": 1,
+    "soul": 0,
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "你从自己的休息室选择至多1张角色卡返回手牌，你可以执行以下效果。『对手将自己库存区的全部卡，放置回卡组，卡组洗切，将自己卡组顶相同张数的卡放置到库存区。』",
+    "all_cards": [
+      {
+        "id": "OS05/R05-072",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-072S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-073": {
+    "name": "空恋-sorakoi-",
+    "product_name": "ブースターパック sprite",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": 0,
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "【永】你全部的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\">：这张卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "OS05/R05-073",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-073A",
+        "rarity": "AGR"
+      },
+      {
+        "id": "OS05/R05-073S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-074": {
+    "name": "はじめてのFly",
+    "product_name": "ブースターパック sprite",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": 0,
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "【永】你全部的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\">：这张卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "OS05/R05-074",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-074S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-075": {
+    "name": "空を見ろ 空を見続けろ 答えはそこにある",
+    "product_name": "ブースターパック sprite",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": 0,
+    "trigger_soul_count": 2,
+    "trait": "-",
+    "color": "红色",
+    "effect": "【自】这张卡从手牌放置到高潮区时，你从自己的休息室选择至多1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌，你选择自己的至多2个角色，那个回合中，灵魂值+1。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-075",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-075S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-076": {
+    "name": "海デート 莉佳",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "蓝色",
+    "effect": "【自】你的高潮卡触发时，你看自己卡组顶1张卡，放置到卡组顶或休息室，你选择自己的1个角色，那个回合中，战斗力+1000。<br/>【起】集中 [(1) 这张卡【横置】] 你将自己卡组顶4张卡放置到休息室。那些卡中每有1张高潮卡，你从自己的休息室选择至多1张角色卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-076",
+        "rarity": "RR"
+      },
+      {
+        "id": "OS05/R05-076OFR",
+        "rarity": "OFR"
+      },
+      {
+        "id": "OS05/R05-076SSP",
+        "rarity": "SSP"
+      }
+    ]
+  },
+  "OS05/R05-077": {
+    "name": "お隣さん 莉佳",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "蓝色",
+    "effect": "【自】【CX联动】[1张手牌放置到休息室] 这张卡的战斗对手【倒置】时，你的高潮区有「NIGHT FLIGHT」，你其他〈同OS〉的角色有2个以上的话，你可以支付费用。支付了的话，你从自己的卡组搜索至多2张〈同OS〉的角色卡加入手牌。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-077",
+        "rarity": "RR"
+      },
+      {
+        "id": "OS05/R05-077S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-078": {
+    "name": "心躍る空 沙希",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 3,
+    "power": 8500,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["sprite", "FC"],
+    "color": "蓝色",
+    "effect": "【永】你〈同OS〉的角色有4个以上的话，你手牌中这张卡的等级-1。<br/>【自】这张卡从手牌登场时，你有其他〈同OS〉的角色的话，直到下一个对手的回合结束为止，这张卡的战斗力+1500，这张卡获得以下能力。『【永】这张卡不会被对手的效果选择。』<br/>【自】这张卡从手牌登场时，你可以将自己时计区顶1张卡放置到休息室。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-078",
+        "rarity": "RR"
+      },
+      {
+        "id": "OS05/R05-078OFR",
+        "rarity": "OFR"
+      },
+      {
+        "id": "OS05/R05-078SEC",
+        "rarity": "SEC"
+      }
+    ]
+  },
+  "OS05/R05-079": {
+    "name": "窓越しのおしゃべり 莉佳",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "蓝色",
+    "effect": "【永】你有其他的〈同OS〉的角色的话，这张卡获得以下2个能力。『【永】这张卡不会被对手的效果选择。』『【永】你其他的〈同OS〉的角色，战斗力+500。』<br/>【自】对手的攻击阶段中，你受到的伤害被取消时，你标记区的卡合计在2张以下的话，你从自己的休息室选择至多1张〈同OS〉的角色卡正面朝上，这张卡的标记。<br/>【起】[这张卡【横置】] 这张卡的下标记有3个以上的话，你抽1张卡，选择自己的1张手牌放置到休息室。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-079",
+        "rarity": "R"
+      },
+      {
+        "id": "OS05/R05-079S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-080": {
+    "name": "お着替え中 莉佳＆真白",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "蓝色",
+    "effect": "【永】你的手牌有5张以上的话，这张卡的战斗力+2000。<br/>【起】[1张手牌放置到休息室，这张卡放置到休息室] 你从自己的休息室选择1张〈同OS〉的角色卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-080",
+        "rarity": "R"
+      },
+      {
+        "id": "OS05/R05-080S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-081": {
+    "name": "可愛い一面 沙希",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "蓝色",
+    "effect": "【自】[(1) 1张手牌放置到休息室] 这张卡从手牌登场时，你可以支付费用。支付了的话，你从自己的卡组搜索至多1张〈同OS〉的角色卡加入手牌。<br/>【自】这张卡攻击时，你的手牌有5张以上的话，你选择自己的1个〈同OS〉的角色，那个回合中，战斗力+1500。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-081",
+        "rarity": "R"
+      },
+      {
+        "id": "OS05/R05-081S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-082": {
+    "name": "飛び立った優等生 莉佳",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["sprite", "FC"],
+    "color": "蓝色",
+    "effect": "【永】你的「窓越しのおしゃべり 莉佳」下方标记的合计大于等于3个的话，你手牌中这张卡的等级-1。<br/>【自】【CX联动】[(1) 1张手牌放置到休息室] 这张卡攻击时，高潮区有「これからも一歩ずつ」，你其他的〈同OS〉的角色有2个以上的话，你可以支付费用。支付了的话，给对手造成3点伤害，你将自己时计区顶至多1张卡放置到休息室。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-082",
+        "rarity": "R"
+      },
+      {
+        "id": "OS05/R05-082S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-083": {
+    "name": "孤高の最強 沙希",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 3,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["sprite", "FC"],
+    "color": "蓝色",
+    "effect": "【永】你没有其他角色的话，这张卡的战斗力+5000，这张卡获得以下2个能力。『【永】这张卡不会被对手的效果选择。』『【自】【CX联动】[(4) 手牌中3张〈同OS〉的角色卡放置到休息室] 你的高潮区有「『空域の支配者』」时，你可以支付费用。支付了的话，你选择对手的至多2个角色，以任意顺序放置到时计区，执行以下行动2次。『给对手造成5点伤害。』』<br/>【自】[你其他舞台的1张〈同OS〉的角色卡放置到休息室] 这张卡从手牌出现时，你可以支付费用。支付了的话，你将自己时计区顶1张卡放置到库存区。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-083",
+        "rarity": "R"
+      },
+      {
+        "id": "OS05/R05-083OFR",
+        "rarity": "OFR"
+      },
+      {
+        "id": "OS05/R05-083SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "OS05/R05-084": {
+    "name": "ハプニングの再来 莉佳",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "蓝色",
+    "effect": "【自】这张卡从手牌登场时，你将自己卡组顶2张卡放置到休息室，那个回合中，这张卡的战斗力+X。X是那些卡中〈同OS〉的角色卡或「お礼は水着エプロン」的数量×1000。<br/>【自】这张卡被正面攻击时，你有其他的「窓越しのおしゃべり 莉佳」的话，你看自己卡组顶1张卡，放置到卡组顶或休息室。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-084",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-084S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-085": {
+    "name": "翼の休息 沙希",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "蓝色",
+    "effect": "【永】你其他全部的「FCの楽しさ 沙希」，战斗力+1000。<br/>【永】你其他全部的持有『经验』特征的角色，战斗力+500。<br/>【起】[这张卡【横置】] 你有其他持有『经验』特征的角色的话，你从自己的等级区和休息室各选择1张卡，替换。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-085",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-085S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-086": {
+    "name": "新生堂ヶ浦FC部 霞",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "蓝色",
+    "effect": "【自】这张卡从手牌登场时，你公开自己卡组顶1张卡。那张卡的等级是1级以上的话，你选择对手1个等级1级以下的角色，那个回合中，等级-1。<br/>【自】这张卡【倒置】时，这张卡的战斗对手的等级是0级以下的话，你可以将那个角色放置到卡组底。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-086",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-086S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-087": {
+    "name": "愛しい時間 莉佳",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "蓝色",
+    "effect": "【永】你其他〈同OS〉的角色有2个以上的话，这张卡的战斗力+1000。<br/>【自】[1张手牌中的触发标记是<img src=\"/effect-icons/gate.webp\">的高潮卡放置到休息室] 这张卡从手牌登场时，你可以支付费用。支付了的话，你看自己卡组顶至多6张卡，选择至多1张〈同OS〉的角色卡或「お礼は水着エプロン」展示给对手后加入手牌，其余的卡放置到休息室。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-087",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-087S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-088": {
+    "name": "スカイウォーカー潰し 霞",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 1,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "蓝色",
+    "effect": "【自】这张卡从手牌登场时，你选择对手的1个等级1以下的角色。那个角色在对手的下一个竖置阶段不能【竖置】。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-088",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-088S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-089": {
+    "name": "FCの楽しさ イリーナ",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "蓝色",
+    "effect": "【自】你使用这张卡的『助太刀』时，你从自己的等级区选择1张卡和休息室的1张高潮卡，替换。<br/>【起】【反击】助太刀3000 等级1 [将手牌的这张卡放置到休息室]",
+    "all_cards": [
+      {
+        "id": "OS05/R05-089",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-089S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-090": {
+    "name": "FCの楽しさ 沙希",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "蓝色",
+    "effect": "【永】你其他〈同OS〉的角色有2个以上的话，这张卡的战斗力+1000。<br/>【永】经验 你的等级区有高潮卡的话，这张卡的战斗力+2000。<br/>【自】这张卡从手牌登场时，你可以从自己的等级区和休息室各选择1张卡，替换。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-090",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-090S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-091": {
+    "name": "恐いライバル 沙希",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "蓝色",
+    "effect": "【自】这张卡从手牌登场或攻击时，你选择自己1个〈同OS〉的角色，那个回合中，战斗力+1500。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-091",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-091S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-092": {
+    "name": "翼の休息 莉佳",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["sprite", "FC"],
+    "color": "蓝色",
+    "effect": "【永】你的回合中，你全部的角色卡名包含「莉佳」的话，这张卡的战斗力+2000，这张卡获得以下能力。『【自】[(1)] 这张卡攻击时，你可以支付费用。支付了的话，那次攻击中，你在触发步骤执行2次触发判定。』",
+    "all_cards": [
+      {
+        "id": "OS05/R05-092",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-092S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-093": {
+    "name": "殻の中の小鳥 莉佳",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 2,
+    "power": 5000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["sprite", "FC"],
+    "color": "蓝色",
+    "effect": "【永】 应援 所有此卡前的你的角色卡，力量＋Ｘ。Ｘ为该角色的等级×500。<br/>【起】 集中 [(1) 你2个角色卡【横置】] 你将自己卡组顶4张卡放置入休息室。那些卡中每有1张高潮卡，你选择至多1张自己的休息室的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-093",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-093S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-094": {
+    "name": "四島のヒーロー 真藤",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["sprite", "FC"],
+    "color": "蓝色",
+    "effect": "【自】[(1) 你将自己卡组顶1张卡放置到时计区，1张手牌放置到休息室] 这张卡从手牌登场时，你可以支付费用。支付了的话，你选择对手后列的1个等级3以下的角色，放置到卡组底。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-094",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-094S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-095": {
+    "name": "的確に冷酷に イリーナ",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 2,
+    "power": 8000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["sprite", "FC"],
+    "color": "蓝色",
+    "effect": "【起】[你将自己舞台的其他1个〈同OS〉的角色卡放置到休息室，这张卡放置到休息室] 你选择自己手牌中至多1张自己的等级以下的角色卡，放置到舞台的任意位置，那个回合中，那个角色的战斗力+3000。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-095",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-095S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-096": {
+    "name": "料理で伝える気持ち 莉佳",
+    "product_name": "ブースターパック sprite",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["sprite", "FC"],
+    "color": "蓝色",
+    "effect": "【自】[1张手牌放置到休息室] 这张卡从手牌登场时，你可以支付费用。支付了的话，你从自己的卡组搜索至多1张事件卡加入手牌。<br/>【自】这张卡攻击时，你选择自己的1个〈同OS〉的角色，那个回合中，战斗力+1500，给予《料理》。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-096",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-096S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-097": {
+    "name": "お礼は水着エプロン",
+    "product_name": "ブースターパック sprite",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 0,
+    "soul": 0,
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "集中 你将自己卡组顶3张卡放置到休息室。你从自己的休息室选择1张等级X以下的〈同OS〉的角色卡，返回手牌。X是那些卡中〈同OS〉的角色卡的数量。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-097",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-097S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-098": {
+    "name": "NIGHT FLIGHT",
+    "product_name": "ブースターパック sprite",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": 0,
+    "trigger_soul_count": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【永】你全部的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/gate.webp\">：这张卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "OS05/R05-098",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-098S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-099": {
+    "name": "これからも一歩ずつ",
+    "product_name": "ブースターパック sprite",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": 0,
+    "trigger_soul_count": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【永】你全部的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/gate.webp\">：这张卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "OS05/R05-099",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-099S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "OS05/R05-100": {
+    "name": "『空域の支配者』",
+    "product_name": "ブースターパック sprite",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": 0,
+    "trigger_soul_count": 2,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【自】这张卡从手牌放置到高潮区时，你从自己的休息室选择至多1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌，你选择自己的至多2个角色，那个回合中，灵魂值+1。",
+    "all_cards": [
+      {
+        "id": "OS05/R05-100",
+        "rarity": "C"
+      },
+      {
+        "id": "OS05/R05-100S",
+        "rarity": "SR"
+      }
+    ]
+  }
+}

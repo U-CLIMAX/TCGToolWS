@@ -30,6 +30,7 @@ export const useUIStore = defineStore(
     const seriesSearchTerm = ref('')
     const seriesSortBy = ref('date') // 'date' or 'name'
     const seriesSortAscending = ref(false)
+    const seriesGameFilter = ref('ws')
 
     const backgroundImage = ref(null)
 
@@ -108,6 +109,7 @@ export const useUIStore = defineStore(
       seriesSearchTerm,
       seriesSortBy,
       seriesSortAscending,
+      seriesGameFilter,
       backgroundImage,
       setBackgroundImage,
       updateBackgroundImage,
@@ -128,6 +130,7 @@ export const useUIStore = defineStore(
         'seriesSearchTerm',
         'seriesSortBy',
         'seriesSortAscending',
+        'seriesGameFilter',
       ],
     },
   }

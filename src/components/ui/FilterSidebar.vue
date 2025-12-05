@@ -198,7 +198,7 @@
 
         <v-select
           label="魂伤"
-          :items="['1', '2', '3']"
+          :items="filterStore.souls"
           hide-details
           multiple
           chips

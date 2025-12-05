@@ -32,7 +32,19 @@ const bootstrap = async () => {
   const pinia = createPinia()
   const vuetify = createVuetify({
     theme: {
-      defaultTheme: 'system',
+      defaultTheme: 'dark',
+      themes: {
+        light: {
+          colors: {
+            'ws-rose': '#e85a6a',
+          },
+        },
+        dark: {
+          colors: {
+            'ws-rose': '#FF8391',
+          },
+        },
+      },
     },
     components: {
       VPie,

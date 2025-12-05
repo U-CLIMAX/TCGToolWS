@@ -73,6 +73,7 @@ export const useFilterStore = defineStore('filter', () => {
   const productNames = ref([])
   const traits = ref([])
   const rarities = ref([])
+  const souls = ref([])
   const costRange = ref({ min: 0, max: 0 })
   const powerRange = ref({ min: 0, max: 0 })
 
@@ -105,6 +106,7 @@ export const useFilterStore = defineStore('filter', () => {
         allCards: [],
         productNames: [],
         traits: [],
+        souls: [],
         costRange: { min: 0, max: 0 },
         powerRange: { min: 0, max: 0 },
       }
@@ -172,6 +174,7 @@ export const useFilterStore = defineStore('filter', () => {
       const productNamesSet = new Set()
       const traitsSet = new Set()
       const raritiesSet = new Set()
+      const soulsSet = new Set()
       let minCost = Infinity,
         maxCost = -Infinity,
         minPower = Infinity,
@@ -191,6 +194,10 @@ export const useFilterStore = defineStore('filter', () => {
           if (typeof cardData.power === 'number') {
             minPower = Math.min(minPower, cardData.power)
             maxPower = Math.max(maxPower, cardData.power)
+          }
+          const soulValue = cardData.soul === '-' ? 0 : cardData.soul
+          if (typeof soulValue === 'number') {
+            soulsSet.add(soulValue)
           }
 
           const { all_cards, ...baseCardData } = cardData
@@ -281,6 +288,7 @@ export const useFilterStore = defineStore('filter', () => {
         productNames: [...productNamesSet],
         traits: [...traitsSet],
         rarities: [...raritiesSet].sort(),
+        souls: [...soulsSet].sort((a, b) => a - b),
         costRange: {
           min: minCost === Infinity ? 0 : minCost,
           max: maxCost === -Infinity ? 0 : maxCost,
@@ -299,6 +307,7 @@ export const useFilterStore = defineStore('filter', () => {
         allCards: [],
         productNames: [],
         traits: [],
+        souls: [],
         costRange: { min: 0, max: 0 },
         powerRange: { min: 0, max: 0 },
       }
@@ -314,6 +323,7 @@ export const useFilterStore = defineStore('filter', () => {
         productNames: fetchedProductNames,
         traits: fetchedTraits,
         rarities: fetchedRarities,
+        souls: fetchedSouls,
         costRange: fetchedCostRange,
         powerRange: fetchedPowerRange,
       } = await fetchAndProcessCards(prefixes)
@@ -322,6 +332,7 @@ export const useFilterStore = defineStore('filter', () => {
       productNames.value = fetchedProductNames
       traits.value = fetchedTraits
       rarities.value = fetchedRarities
+      souls.value = fetchedSouls
       costRange.value = fetchedCostRange
       powerRange.value = fetchedPowerRange
       resetFilters()
@@ -341,6 +352,7 @@ export const useFilterStore = defineStore('filter', () => {
     productNames.value = []
     traits.value = []
     rarities.value = []
+    souls.value = []
     costRange.value = { min: 0, max: 0 }
     powerRange.value = { min: 0, max: 0 }
     resetFilters()
@@ -354,6 +366,8 @@ export const useFilterStore = defineStore('filter', () => {
     productNames,
     traits,
     rarities,
+    souls,
+
     costRange,
     powerRange,
     keyword,

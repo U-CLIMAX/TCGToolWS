@@ -1,0 +1,439 @@
+{
+  "OS02/R02-P18": {
+    "name": "ぷちマジアアズール&マジアマゼンタ&マジアサルファ",
+    "product_name": "PRカード",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["まほあこ", "トレスマジア"],
+    "color": "红色",
+    "effect": "【永】你其他〈同OS〉的角色有2个以上的话，这张卡的战斗力+1000。<br/>【永】【CX联动】你的高潮区有「街を守る魔法少女」，你其他〈同OS〉的角色有3个以上的话，你其他所有领域的「聖なるクリスマス マジアマゼンタ」、「聖なるクリスマス マジアアズール」、「聖なるクリスマス マジアサルファ」获得触发标记<img src=\"/effect-icons/salvage.webp\">。",
+    "all_cards": [
+      {
+        "id": "OS02/R02-P18",
+        "rarity": "PR"
+      },
+      {
+        "id": "OS02/R02-P18S",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "OS02/R02-P16": {
+    "name": "ぷちネロアリス",
+    "product_name": "PRカード",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["まほあこ", "エノルミータ"],
+    "color": "黄色",
+    "effect": "【自】这张卡直接攻击时，你选择自己其他1个卡名包含「こりす」或「ネロアリス」的角色，那个回合中，灵魂值+1。<br/>【起】[你2个角色【横置】] 你选择1个自己的〈同OS〉的角色，那个回合中，灵魂值+1。",
+    "all_cards": [
+      {
+        "id": "OS02/R02-P16",
+        "rarity": "PR"
+      },
+      {
+        "id": "OS02/R02-P16S",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "OS02/R02-P17": {
+    "name": "ぷちロコムジカ&ルベルブルーメ",
+    "product_name": "PRカード",
+    "type": "角色卡",
+    "level": 2,
+    "power": 5000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["まほあこ", "ロード団"],
+    "color": "蓝色",
+    "effect": "【自】变身 [(2) 这张卡放置到休息室] 你的高潮阶段开始时，你可以支付费用。支付了的话，你从自己的手牌中选择至多1张「全裸アイドル ロコムジカ」或「連携攻撃 ルベルブルーメ」，放置到这张卡原来的位置，那个回合中，那个角色的战斗力+1000。<br/>【起】[这张卡放置到休息室] 你选择对手的1个角色，【竖置】移动到对手舞台的其他没有角色的位置，或你选择对手的1个角色，各自【竖置】替换。",
+    "all_cards": [
+      {
+        "id": "OS02/R02-P17",
+        "rarity": "PR"
+      },
+      {
+        "id": "OS02/R02-P17S",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "OS02/R02-P19": {
+    "name": "溢れ出す熱情 マジアベーゼ",
+    "product_name": "PRカード",
+    "type": "角色卡",
+    "level": 2,
+    "power": 5000,
+    "cost": 1,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["まほあこ", "エノルミータ"],
+    "color": "红色",
+    "effect": "【永】 应援 所有此卡前面的你的〈同OS〉的角色卡，力量＋1500。<br/>【自】 变身 ［(2) 将1张手牌放置入休息室，将此卡放置入休息室］ 你的高潮阶段开始之际，你可以支付费用。支付的话，则你选择1张自己休息室的「悪の女幹部 マジアベーゼ」，放置入这张卡曾经存在的格子。<br/>【起】［【横置】此卡］ 你选择1张其他的自己的「月明かりに照らされて マジアベーゼ」，将该角色卡的2个标记放置入休息室。若放置入2个标记，则给予对方1点伤害。",
+    "all_cards": [
+      {
+        "id": "OS02/R02-P19",
+        "rarity": "PR"
+      },
+      {
+        "id": "OS02/R02-P19S",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "OS02/R02-P15": {
+    "name": "魔法少女にあこがれて",
+    "product_name": "PRカード",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 0,
+    "soul": 0,
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "【反击】你没有卡名包含「マジア」的角色的话，这张卡不能从手牌中使用。这张卡可以不满足颜色条件从手牌中使用。<br/>你看自己卡组顶至多4张卡，选择至多1张《まほあこ》的角色卡展示给对手后加入手牌，其余的卡放置到休息室。",
+    "all_cards": [
+      {
+        "id": "OS02/R02-P15",
+        "rarity": "PR"
+      },
+      {
+        "id": "OS02/R02-P15S",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "OS02/R02-P13": {
+    "name": "ぷちマジアベーゼ",
+    "product_name": "PRカード",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["まほあこ", "エノルミータ"],
+    "color": "红色",
+    "effect": "【自】[1张手牌放置到休息室] 这张卡从手牌登场时，你可以支付费用。支付了的话，你从自己的休息室选择1张「魔法少女にあこがれて」，返回手牌。<br/>【自】这张卡【倒置】时，这张卡的战斗对手的等级是0级以下的话，你可以将那个角色【倒置】。",
+    "all_cards": [
+      {
+        "id": "OS02/R02-P13",
+        "rarity": "PR"
+      },
+      {
+        "id": "OS02/R02-P13S",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "OS02/R02-P14": {
+    "name": "ぷちレオパルト",
+    "product_name": "PRカード",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["まほあこ", "エノルミータ"],
+    "color": "绿色",
+    "effect": "【自】这张卡攻击时，你公开自己卡组顶1张卡。那张卡是〈同OS〉的角色卡或事件卡的话，你可以给对手造成1点伤害。<br/>【自】变身 [这张卡放置到休息室] 你的高潮阶段开始时，你可以支付费用。支付了的话，你从自己的休息室选择1张「本気モード レオパルト」，放置到这张卡原来的位置。",
+    "all_cards": [
+      {
+        "id": "OS02/R02-P14",
+        "rarity": "PR"
+      },
+      {
+        "id": "OS02/R02-P14S",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "OS02/R02-P01": {
+    "name": "ぬるぬるタコさん",
+    "product_name": "PRカード",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": 0,
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\">：这张卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "all_cards": [
+      {
+        "id": "OS02/R02-P01",
+        "rarity": "PR"
+      },
+      {
+        "id": "OS02/R02-P01S",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "OS02/R02-P02": {
+    "name": "ミルクの時間ですよ",
+    "product_name": "PRカード",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": 0,
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\">：这张卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "all_cards": [
+      {
+        "id": "OS02/R02-P02",
+        "rarity": "PR"
+      },
+      {
+        "id": "OS02/R02-P02S",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "OS02/R02-P03": {
+    "name": "おもちゃの行進",
+    "product_name": "PRカード",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": 0,
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\">：这张卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "all_cards": [
+      {
+        "id": "OS02/R02-P03",
+        "rarity": "PR"
+      },
+      {
+        "id": "OS02/R02-P03S",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "OS02/R02-P04": {
+    "name": "戦う理由",
+    "product_name": "PRカード",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": 0,
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\">：这张卡被触发时，这张卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
+    "all_cards": [
+      {
+        "id": "OS02/R02-P04",
+        "rarity": "PR"
+      },
+      {
+        "id": "OS02/R02-P04S",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "OS02/R02-P05": {
+    "name": "アタシはホテルに行くんだよ！",
+    "product_name": "PRカード",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": 0,
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\">：这张卡被触发时，这张卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
+    "all_cards": [
+      {
+        "id": "OS02/R02-P05",
+        "rarity": "PR"
+      },
+      {
+        "id": "OS02/R02-P05S",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "OS02/R02-P06": {
+    "name": "アイドルにあこがれて",
+    "product_name": "PRカード",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": 0,
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\">：这张卡被触发时，这张卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
+    "all_cards": [
+      {
+        "id": "OS02/R02-P06",
+        "rarity": "PR"
+      },
+      {
+        "id": "OS02/R02-P06S",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "OS02/R02-P07": {
+    "name": "ごめんなさいは？",
+    "product_name": "PRカード",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": 0,
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\">：这张卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "OS02/R02-P07",
+        "rarity": "PR"
+      },
+      {
+        "id": "OS02/R02-P07S",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "OS02/R02-P08": {
+    "name": "街を守る魔法少女",
+    "product_name": "PRカード",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": 0,
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\">：这张卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "OS02/R02-P08",
+        "rarity": "PR"
+      },
+      {
+        "id": "OS02/R02-P08S",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "OS02/R02-P09": {
+    "name": "才能の開花",
+    "product_name": "PRカード",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": 0,
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\">：这张卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "OS02/R02-P09",
+        "rarity": "PR"
+      },
+      {
+        "id": "OS02/R02-P09S",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "OS02/R02-P10": {
+    "name": "スライム攻撃",
+    "product_name": "PRカード",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": 0,
+    "trigger_soul_count": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/gate.webp\">：这张卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "OS02/R02-P10",
+        "rarity": "PR"
+      },
+      {
+        "id": "OS02/R02-P10S",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "OS02/R02-P11": {
+    "name": "影繰り",
+    "product_name": "PRカード",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": 0,
+    "trigger_soul_count": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/gate.webp\">：这张卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "OS02/R02-P11",
+        "rarity": "PR"
+      },
+      {
+        "id": "OS02/R02-P11S",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "OS02/R02-P12": {
+    "name": "愛のアヴァランチ",
+    "product_name": "PRカード",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": 0,
+    "trigger_soul_count": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/gate.webp\">：这张卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "OS02/R02-P12",
+        "rarity": "PR"
+      },
+      {
+        "id": "OS02/R02-P12S",
+        "rarity": "PR"
+      }
+    ]
+  }
+}
