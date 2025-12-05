@@ -9,7 +9,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\">：这张卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
     "all_cards": [
       {
         "id": "WS/WSPR-P01",
@@ -28,7 +28,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\">：这张卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
     "all_cards": [
       {
         "id": "WS/WSPR-P02",
@@ -51,7 +51,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\">：这张卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
     "all_cards": [
       {
         "id": "WS/WSPR-P03",
@@ -70,7 +70,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\">：这张卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
     "all_cards": [
       {
         "id": "WS/WSPR-P04",
@@ -89,7 +89,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\">：这张卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
     "all_cards": [
       {
         "id": "WS/WSPR-P05",
@@ -112,7 +112,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\">：这张卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
     "all_cards": [
       {
         "id": "WS/WSPR-P06",
@@ -131,7 +131,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\">：这张卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
     "all_cards": [
       {
         "id": "WS/WSPR-P07",
@@ -150,7 +150,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】你的全部角色，灵魂值+2。",
+    "effect": "【永】你全部的角色，灵魂值+2。",
     "all_cards": [
       {
         "id": "WS/WSPR-P08",
@@ -173,7 +173,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】你的全部角色，灵魂值+2。",
+    "effect": "【永】你全部的角色，灵魂值+2。",
     "all_cards": [
       {
         "id": "WS/WSPR-P09",
@@ -192,7 +192,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】你的全部角色，灵魂值+2。",
+    "effect": "【永】你全部的角色，灵魂值+2。",
     "all_cards": [
       {
         "id": "WS/WSPR-P10",
@@ -211,7 +211,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】你的全部角色，灵魂值+2。",
+    "effect": "【永】你全部的角色，灵魂值+2。",
     "all_cards": [
       {
         "id": "WS/WSPR-P11",
@@ -234,7 +234,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/draw.webp\">：这张卡被触发时，你可以抽1张卡）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/draw.webp\">：此卡被触发时，你可以抽1张卡）",
     "all_cards": [
       {
         "id": "WS/WSPR-P12",
@@ -253,7 +253,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\">：这张卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "effect": "永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
     "all_cards": [
       {
         "id": "WS/WSPR-P13",
@@ -276,7 +276,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】你的全部角色，灵魂值+2。",
+    "effect": "【永】你全部的角色，灵魂值+2。",
     "all_cards": [
       {
         "id": "WS/WSPR-P14a",
@@ -307,7 +307,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/gate.webp\">：这张卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/gate.webp\">：此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
     "all_cards": [
       {
         "id": "WS/WSPR-P15",
@@ -330,7 +330,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/gate.webp\">：这张卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/gate.webp\">：此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
     "all_cards": [
       {
         "id": "WS/WSPR-P16",
@@ -368,7 +368,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】你的全部角色，灵魂值+2。",
+    "effect": "【永】你全部的角色，灵魂值+2。",
     "all_cards": [
       {
         "id": "WS/WSPR-P18",
@@ -391,7 +391,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】你的全部角色，灵魂值+2。",
+    "effect": "【永】你全部的角色，灵魂值+2。",
     "all_cards": [
       {
         "id": "WS/WSPR-P20a",
@@ -422,7 +422,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "永】你的全部角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\">：这张卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "effect": "永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
     "all_cards": [
       {
         "id": "WS/WSPR-P19",
