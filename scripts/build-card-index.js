@@ -187,6 +187,7 @@ const processGameData = (game, cards) => {
   const productNamesSet = new Set()
   const traitsSet = new Set()
   const raritiesSet = new Set()
+  const soulsSet = new Set()
   let minCost = Infinity,
     maxCost = -Infinity,
     minPower = Infinity,
@@ -198,6 +199,12 @@ const processGameData = (game, cards) => {
       card.trait.forEach((t) => traitsSet.add(t))
     }
     if (card.rarity) raritiesSet.add(card.rarity)
+
+    let soulValue = card.soul === '-' ? 0 : card.soul
+    if (typeof soulValue === 'number') {
+      soulsSet.add(soulValue)
+    }
+
     if (typeof card.cost === 'number') {
       minCost = Math.min(minCost, card.cost)
       maxCost = Math.max(maxCost, card.cost)
@@ -239,6 +246,7 @@ const processGameData = (game, cards) => {
     productNames: [...productNamesSet],
     traits: [...traitsSet],
     rarities: [...raritiesSet].sort(),
+    souls: [...soulsSet].sort((a, b) => a - b),
     costRange: {
       min: minCost === Infinity ? 0 : minCost,
       max: maxCost === -Infinity ? 0 : maxCost,
@@ -313,13 +321,6 @@ const processGameData = (game, cards) => {
     chunked: chunkCount > 1,
     totalSize: `${totalSizeMB} MB`,
     cardCount: cards.length,
-    filterOptions: {
-      productCount: filterOptions.productNames.length,
-      traitCount: filterOptions.traits.length,
-      rarityCount: filterOptions.rarities.length,
-      costRange: filterOptions.costRange,
-      powerRange: filterOptions.powerRange,
-    },
   }
 
   if (chunkCount > 1) {

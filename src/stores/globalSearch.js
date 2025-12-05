@@ -19,6 +19,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
   const productNames = ref([])
   const traits = ref([])
   const rarities = ref([])
+  const souls = ref([])
   const costRange = ref({ min: 0, max: 0 })
   const powerRange = ref({ min: 0, max: 0 })
 
@@ -83,6 +84,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     productNames.value = data.filterOptions.productNames
     traits.value = data.filterOptions.traits
     rarities.value = data.filterOptions.rarities
+    souls.value = data.filterOptions.souls
     costRange.value = data.filterOptions.costRange
     powerRange.value = data.filterOptions.powerRange
     resetFilters()
@@ -291,6 +293,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     productNames,
     traits,
     rarities,
+    souls,
     costRange,
     powerRange,
     // Selected Filters

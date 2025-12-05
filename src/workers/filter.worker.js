@@ -5,7 +5,7 @@ import { openDB, saveData, loadData } from '@/utils/db.js'
 const dbName = 'FlexSearchCacheDB'
 const storeName = 'flexsearch-indexes'
 
-const toLevel = (level) => (level === '-' ? 0 : +level)
+const toZero = (val) => (val === '-' ? 0 : +val)
 
 let allCards = []
 let keywordResultsCache = null
@@ -173,11 +173,9 @@ const CardFilterService = {
     if (!results) results = allCards // Keyword search results cache is empty. Filtering all cards.
 
     const mappedLevels =
-      filters.selectedLevels.length > 0 ? new Set(filters.selectedLevels.map(toLevel)) : null
+      filters.selectedLevels.length > 0 ? new Set(filters.selectedLevels.map(toZero)) : null
     const mappedSoul =
-      filters.selectedSoul && filters.selectedSoul.length > 0
-        ? new Set(filters.selectedSoul.map((s) => Number(s)))
-        : null
+      filters.selectedSoul.length > 0 ? new Set(filters.selectedSoul.map(toZero)) : null
 
     return results.filter((card) => {
       const cardCost = card.cost === '-' ? 0 : Number(card.cost)
@@ -196,7 +194,7 @@ const CardFilterService = {
         !filters.selectedTraits.every((trait) => card.trait && card.trait.includes(trait))
       )
         return false
-      if (mappedLevels && !mappedLevels.has(toLevel(card.level))) return false
+      if (mappedLevels && !mappedLevels.has(toZero(card.level))) return false
       if (filters.selectedRarities.length > 0 && !filters.selectedRarities.includes(card.rarity))
         return false
       if (cardCost < filters.selectedCostRange[0] || cardCost > filters.selectedCostRange[1])
@@ -205,7 +203,7 @@ const CardFilterService = {
         return false
       if (filters.showTriggerSoul && (!card.trigger_soul_count || card.trigger_soul_count < 1))
         return false
-      if (mappedSoul && !mappedSoul.has(Number(card.soul))) return false
+      if (mappedSoul && !mappedSoul.has(toZero(card.soul))) return false
       return true
     })
   },

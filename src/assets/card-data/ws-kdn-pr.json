@@ -9,7 +9,7 @@
     "trait": ["カードゲーム", "ブシロード"],
     "color": "红色",
     "soul": 3,
-    "effect": "【永】给予所有人《カードゲーム》。 <br/>（<img src=\"/effect-icons/bushi.webp\"/>：这张卡触发时，放置到舞台你喜欢的位置）<br/><font color=\"crimson\">※このカードは公式・公認大会では使用できません。</font>",
+    "effect": "【永】给予所有人《カードゲーム》。 <br/>（<img src=\"/effect-icons/bushi.webp\"/>：这张卡触发时，放置到舞台你喜欢的位置）<br/><font color=\"crimson\">※这张卡在官方、公认比赛中不能使用。</font>",
     "all_cards": [
       {
         "id": "WS/KDN-246",
