@@ -33,14 +33,6 @@
             <!-- 右側 -->
             <div class="header-right mt-2 ga-2">
               <template v-if="smAndUp">
-                <v-btn
-                  v-if="!uiStore.isTableModeActive"
-                  :size="resize"
-                  :icon="uiStore.showStatsDashboard ? 'mdi-chart-pie' : 'mdi-chart-pie-outline'"
-                  :title="uiStore.showStatsDashboard ? '隐藏统计' : '显示统计'"
-                  variant="text"
-                  @click="uiStore.showStatsDashboard = !uiStore.showStatsDashboard"
-                ></v-btn>
                 <div style="width: 120px">
                   <v-select
                     v-model="groupBy"
