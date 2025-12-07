@@ -125,6 +125,7 @@
         >
           <div class="pa-4">
             <v-card-subtitle class="pb-1 text-body-2 pa-0">
+              <v-icon size="18" class="mr-1">mdi-cube-outline</v-icon>
               {{ card.product_name }}
             </v-card-subtitle>
             <v-card-title class="pt-0 text-h5 text-wrap pa-0">{{ card.name }}</v-card-title>
@@ -152,11 +153,17 @@
             </v-row>
             <v-divider class="mb-4"></v-divider>
             <div>
-              <div class="text-body-2 mb-2 text-grey">效果</div>
+              <div class="text-body-2 mb-2 text-grey d-flex align-center">
+                <v-icon size="18" class="mr-1">mdi-information-outline</v-icon>
+                效果
+              </div>
               <div class="font-wenkai text-body-1" v-html="formattedEffect"></div>
             </div>
             <div v-if="card.trait && card.trait.length > 0 && card.trait[0] !== '-'" class="mt-4">
-              <div class="text-body-2 mb-2 text-grey">特征</div>
+              <div class="text-body-2 mb-2 text-grey">
+                <v-icon size="18" class="mr-1">mdi-feather</v-icon>
+                特征
+              </div>
               <v-chip
                 v-for="r in card.trait"
                 :key="r"
@@ -183,7 +190,10 @@
               </v-chip>
             </div>
             <div v-if="linkedCards && linkedCards.length > 0" class="mt-4">
-              <div class="text-body-2 mb-2 text-grey">关联卡片</div>
+              <div class="text-body-2 mb-2 text-grey">
+                <v-icon size="18" class="mr-1">mdi-link-variant</v-icon>
+                关联卡片
+              </div>
               <div v-if="isLoadingLinks" class="d-flex justify-center align-center pa-4">
                 <v-progress-circular indeterminate color="primary"></v-progress-circular>
               </div>
