@@ -219,7 +219,7 @@
 </template>
 
 <script setup>
-import { computed, ref, onUnmounted } from 'vue'
+import { computed, ref, onUnmounted, onMounted } from 'vue'
 import { useDisplay } from 'vuetify'
 import { storeToRefs } from 'pinia'
 import LinkedCard from './LinkedCard.vue'
@@ -301,7 +301,46 @@ const handleTraitClick = (trait) => {
   }
 }
 
+const handleKeydown = (e) => {
+  if (isDownloadTextDialogOpen.value) return
+
+  switch (e.key) {
+    case 'ArrowLeft':
+      if (props.cardIndex > 0) {
+        emit('prev-card')
+      }
+      break
+    case 'ArrowRight':
+      if (props.cardIndex < props.totalCards - 1) {
+        handleNextCard()
+      }
+      break
+    case 'ArrowUp':
+      if (props.showActions) {
+        e.preventDefault()
+        const isDeckFull = deckStore.totalCardCount >= 50 && userRole.value === 0
+        if (!isDeckFull) {
+          deckStore.addCard(props.card)
+        }
+      }
+      break
+    case 'ArrowDown':
+      if (props.showActions) {
+        e.preventDefault()
+        if (cardCount.value > 0) {
+          deckStore.removeCard(props.card.id)
+        }
+      }
+      break
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('keydown', handleKeydown)
+})
+
 onUnmounted(() => {
+  window.removeEventListener('keydown', handleKeydown)
   if (hideTimeout) {
     clearTimeout(hideTimeout)
   }
