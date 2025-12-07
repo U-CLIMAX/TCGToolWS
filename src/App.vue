@@ -134,7 +134,7 @@
       </template>
     </v-app-bar>
 
-    <v-navigation-drawer v-model="drawer" temporary>
+    <v-navigation-drawer v-model="drawer" temporary touchless>
       <v-list class="py-0">
         <template v-for="item in navItems" :key="item.to">
           <!-- Search Group -->
