@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
-import { useUIStore } from '@/stores/ui'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
@@ -105,14 +104,6 @@ router.beforeEach(async (to, from, next) => {
 
 // eslint-disable-next-line no-unused-vars
 router.afterEach((to, from) => {
-  const uiStore = useUIStore()
-  if (to.name == 'GlobalSearch') {
-    uiStore.isFilterOpen = true
-  } else {
-    uiStore.isFilterOpen = false
-  }
-
-  uiStore.isCardDeckOpen = false
   NProgress.done()
 })
 
