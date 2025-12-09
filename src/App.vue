@@ -232,12 +232,13 @@
 
     <!-- Global Loading Overlay -->
     <v-overlay v-model="uiStore.isLoading" class="d-flex align-center justify-center" persistent>
-      <v-progress-circular
+      <!-- spinner 用 v-if 再次判斷是因為 v-overlay 在火狐瀏覽器上有機會沒法按照預期完全銷毀 -->
+      <half-circle-spinner
         v-if="uiStore.isLoading"
-        color="primary"
-        indeterminate
-        size="64"
-      ></v-progress-circular>
+        :animation-duration="1000"
+        :size="64"
+        :color="spinnerColor"
+      />
     </v-overlay>
   </v-app>
 </template>
@@ -257,6 +258,7 @@ import SettingsModal from '@/components/ui/SettingsModal.vue'
 import UserProfileModal from '@/components/ui/UserProfileModal.vue'
 import HomeBackground from '@/components/common/HomeBackground.vue'
 import SponsorNoticeDialog from '@/components/ui/SponsorNoticeDialog.vue'
+import { HalfCircleSpinner } from 'epic-spinners'
 
 import titleDarkImg from '@/assets/ui/title-dark.webp'
 import titleLightImg from '@/assets/ui/title-light.webp'
@@ -266,8 +268,19 @@ import SeriesCardTableIcon from '@/assets/ui/series-card-table.svg'
 import DeckIcon from '@/assets/ui/deck.svg'
 import SearchIcon from '@/assets/ui/search.svg'
 
+usePerformanceManager()
+
 const authStore = useAuthStore()
 const { userRole } = storeToRefs(authStore)
+const vuetifyTheme = useTheme()
+const uiStore = useUIStore()
+const { mdAndDown, smAndDown } = useDisplay()
+
+const titleImgStyle = computed(() => {
+  return {
+    maxWidth: mdAndDown.value ? '140px' : '170px',
+  }
+})
 
 const drawerGithubIconStyle = computed(() => {
   return vuetifyTheme.global.current.value.dark ? { filter: 'invert(1)' } : {}
@@ -297,6 +310,9 @@ const titleImg = computed(() => {
   return isHomeRoute.value ? titleMonochrome : isLightTheme ? titleLightImg : titleDarkImg
 })
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
+const spinnerColor = computed(() => {
+  return vuetifyTheme.current.value.colors.primary
+})
 
 const isInSpecialFlow = computed(() => {
   return !!route.meta.isSpecialFlow
@@ -346,19 +362,6 @@ const navItems = [
   { text: '系列卡表', name: 'SeriesCardTable', requiresAuth: false, icon: 'series-card-table.svg' },
   { text: '我的卡组', name: 'Decks', requiresAuth: true, icon: 'deck.svg' },
 ]
-
-const vuetifyTheme = useTheme()
-const uiStore = useUIStore()
-
-usePerformanceManager()
-
-const { mdAndDown, smAndDown } = useDisplay()
-
-const titleImgStyle = computed(() => {
-  return {
-    maxWidth: mdAndDown.value ? '140px' : '170px',
-  }
-})
 
 const appStyle = computed(() => {
   // If on the home route, hide the custom background to show the HomeBackground component

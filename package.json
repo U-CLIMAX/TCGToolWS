@@ -23,6 +23,7 @@
     "comlink": "^4.4.2",
     "detect-gpu": "^5.0.70",
     "dompurify": "^3.2.7",
+    "epic-spinners": "^2.0.0",
     "es-toolkit": "^1.41.0",
     "flexsearch": "^0.8.212",
     "hono": "^4.9.9",
