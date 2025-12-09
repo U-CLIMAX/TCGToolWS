@@ -1,6 +1,6 @@
 <template>
   <v-dialog :model-value="modelValue" @update:model-value="closeDialog" max-width="500">
-    <v-card title="下载效果文本设定">
+    <v-card title="下载效果文本">
       <v-card-text class="pb-0">
         <v-row dense>
           <v-col cols="12" sm="3">
