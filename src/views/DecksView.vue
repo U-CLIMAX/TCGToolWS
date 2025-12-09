@@ -1,117 +1,123 @@
 <template>
-  <div class="fill-height d-flex overflow-y-auto themed-scrollbar">
-    <v-container class="h-100 pa-0">
-      <div class="d-flex justify-center pt-3 px-3">
-        <v-sheet
-          class="search-container"
-          :class="{ 'glass-sheet': hasBackgroundImage }"
-          rounded="lg"
-          elevation="2"
-        >
-          <!-- 搜尋與篩選區域 -->
-          <div class="d-flex flex-column flex-sm-row mb-3">
-            <v-text-field
-              v-model="deckNameSearchTerm"
-              label="搜索卡组名称"
-              variant="solo-filled"
-              density="compact"
-              append-inner-icon="mdi-magnify"
-              hide-details
-              flat
-              class="flex-grow-1 mr-sm-2 mb-2 mb-sm-0"
-            />
-            <v-select
-              v-model="selectedSeries"
-              :items="availableSeriesOptions"
-              item-title="title"
-              item-value="value"
-              label="筛选系列"
-              variant="solo-filled"
-              density="compact"
-              hide-details
-              flat
-              clearable
-              class="flex-shrink-0 series-select"
-              :menu-props="uiStore.menuProps"
-            />
-          </div>
+  <v-container fluid class="h-100 pa-0">
+    <v-infinite-scroll
+      ref="infiniteScrollRef"
+      @load="load"
+      empty-text=""
+      class="h-100 themed-scrollbar"
+    >
+      <v-container class="pa-0">
+        <div class="d-flex justify-center pt-3 px-3">
+          <v-sheet
+            class="search-container"
+            :class="{ 'glass-sheet': hasBackgroundImage }"
+            rounded="lg"
+            elevation="2"
+          >
+            <!-- 搜尋與篩選區域 -->
+            <div class="d-flex flex-column flex-sm-row mb-3">
+              <v-text-field
+                v-model="deckNameSearchTerm"
+                label="搜索卡组名称"
+                variant="solo-filled"
+                density="compact"
+                append-inner-icon="mdi-magnify"
+                hide-details
+                flat
+                class="flex-grow-1 mr-sm-2 mb-2 mb-sm-0"
+              />
+              <v-select
+                v-model="selectedSeries"
+                :items="availableSeriesOptions"
+                item-title="title"
+                item-value="value"
+                label="筛选系列"
+                variant="solo-filled"
+                density="compact"
+                hide-details
+                flat
+                clearable
+                class="flex-shrink-0 series-select"
+                :menu-props="uiStore.menuProps"
+              />
+            </div>
 
-          <v-btn block variant="tonal" prepend-icon="mdi-import" @click="showDeckCodeDialog = true">
-            通过卡组代码查看
-          </v-btn>
-        </v-sheet>
-      </div>
-
-      <v-dialog v-model="showDeckCodeDialog" max-width="500px">
-        <v-card>
-          <v-card-title>输入卡组代码</v-card-title>
-          <v-card-text>
-            <v-row dense>
-              <v-col cols="7">
-                <v-select
-                  v-model="deckCodeSource"
-                  :items="sourceOptions"
-                  item-title="title"
-                  item-value="value"
-                  label="代码来源"
-                  variant="outlined"
-                  density="compact"
-                  hide-details
-                />
-              </v-col>
-              <v-col cols="5">
-                <v-text-field
-                  v-model="deckCode"
-                  label="卡组代码"
-                  variant="outlined"
-                  density="compact"
-                  hide-details
-                  autofocus
-                  @keydown.enter="navigateToSharedDeck"
-                />
-              </v-col>
-            </v-row>
-          </v-card-text>
-          <v-card-actions>
-            <v-spacer />
-            <v-btn variant="text" @click="showDeckCodeDialog = false">取消</v-btn>
-            <v-btn color="primary" variant="flat" @click="navigateToSharedDeck">确定</v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
-
-      <div v-if="initialLoadingComplete && displayedDecks.length > 0" class="px-3 mt-3">
-        <div class="group-header">
-          <div class="d-flex align-center ga-2">
-            <v-icon :icon="DeckIcon" size="24"></v-icon>
-            <span>{{ deckCount }} / {{ maxDecks === Infinity ? '∞' : maxDecks }}</span>
-            <span
-              v-if="maxDecks !== Infinity && deckCount >= maxDecks"
-              class="text-error font-weight-bold"
+            <v-btn
+              block
+              variant="tonal"
+              prepend-icon="mdi-import"
+              @click="showDeckCodeDialog = true"
             >
-              已达上限
-            </span>
+              通过卡组代码查看
+            </v-btn>
+          </v-sheet>
+        </div>
+
+        <v-dialog v-model="showDeckCodeDialog" max-width="500px">
+          <v-card>
+            <v-card-title>输入卡组代码</v-card-title>
+            <v-card-text>
+              <v-row dense>
+                <v-col cols="7">
+                  <v-select
+                    v-model="deckCodeSource"
+                    :items="sourceOptions"
+                    item-title="title"
+                    item-value="value"
+                    label="代码来源"
+                    variant="outlined"
+                    density="compact"
+                    hide-details
+                  />
+                </v-col>
+                <v-col cols="5">
+                  <v-text-field
+                    v-model="deckCode"
+                    label="卡组代码"
+                    variant="outlined"
+                    density="compact"
+                    hide-details
+                    autofocus
+                    @keydown.enter="navigateToSharedDeck"
+                  />
+                </v-col>
+              </v-row>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer />
+              <v-btn variant="text" @click="showDeckCodeDialog = false">取消</v-btn>
+              <v-btn color="primary" variant="flat" @click="navigateToSharedDeck">确定</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+
+        <div v-if="initialLoadingComplete && visibleDecks.length > 0" class="px-3 mt-3">
+          <div class="group-header">
+            <div class="d-flex align-center ga-2">
+              <v-icon :icon="DeckIcon" size="24"></v-icon>
+              <span>{{ deckCount }} / {{ maxDecks === Infinity ? '∞' : maxDecks }}</span>
+              <span
+                v-if="maxDecks !== Infinity && deckCount >= maxDecks"
+                class="text-error font-weight-bold"
+              >
+                已达上限
+              </span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <transition-group
-        v-if="initialLoadingComplete"
-        tag="div"
-        class="v-row ma-1 pt-3"
-        name="deck-fade"
-        appear
-      >
-        <v-col v-for="item in displayedDecks" :key="item.key" class="pa-2" cols="4" sm="2">
-          <DeckCard :deck="item.deck" :deckKey="item.key" :is-editing="item.isEditing" />
-        </v-col>
-      </transition-group>
-    </v-container>
-  </div>
+        <v-row v-if="initialLoadingComplete" class="ma-1 pt-3">
+          <v-col v-for="item in visibleDecks" :key="item.key" class="pa-2" cols="4" sm="2">
+            <DeckCard :deck="item.deck" :deckKey="item.key" :is-editing="item.isEditing" />
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-infinite-scroll>
+  </v-container>
 </template>
 
 <script setup>
-import { ref, onMounted, watch, computed } from 'vue'
+import { ref, onMounted, watch, computed, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { useDeckStore } from '@/stores/deck'
 import { useAuthStore } from '@/stores/auth'
@@ -129,6 +135,10 @@ const authStore = useAuthStore()
 const { decodeDeck } = useDeckEncoder()
 const uiStore = useUIStore()
 const { triggerSnackbar } = useSnackbar()
+
+const itemsPerLoad = 24
+const infiniteScrollRef = ref(null)
+const visibleDecks = ref([])
 
 const deckCode = ref('')
 const deckNameSearchTerm = ref('')
@@ -231,7 +241,7 @@ const localDeck = computed(() => {
   return null
 })
 
-const displayedDecks = computed(() => {
+const allDecks = computed(() => {
   if (!initialLoadingComplete.value) {
     return []
   }
@@ -256,6 +266,36 @@ const displayedDecks = computed(() => {
 
   return items
 })
+
+const load = async ({ done }) => {
+  const currentLength = visibleDecks.value.length
+  const totalLength = allDecks.value.length
+
+  if (currentLength >= totalLength) {
+    return done('empty')
+  }
+
+  const newItems = allDecks.value.slice(currentLength, currentLength + itemsPerLoad)
+
+  // Simulate a small delay for smoother UX if needed, or remove if strictly local.
+  // SeriesCardTableView has 100ms.
+  await new Promise((resolve) => setTimeout(resolve, 100))
+
+  visibleDecks.value.push(...newItems)
+  done('ok')
+}
+
+watch(
+  [deckNameSearchTerm, selectedSeries, initialLoadingComplete],
+  async () => {
+    visibleDecks.value = []
+    await nextTick()
+    if (infiniteScrollRef.value) {
+      infiniteScrollRef.value.reset()
+    }
+  },
+  { deep: true }
+)
 
 const loadDecodedDecks = async () => {
   const decks = {}
@@ -297,14 +337,6 @@ watch(
   padding: 16px;
 }
 
-.deck-fade-enter-active {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.deck-fade-enter-from {
-  opacity: 0;
-  transform: scale(0.9);
-}
 .series-select {
   width: 100%; /* 手機版預設佔滿整行 */
 }
