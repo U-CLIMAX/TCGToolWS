@@ -192,6 +192,7 @@
         :deck-cards="cards"
         :deck-key="deckKey"
         :deck-name="deck.name"
+        :mode="imageExportMode"
       />
     </div>
 
@@ -762,6 +763,7 @@ const handleCardClick = async (item) => {
 const deckShareImageRef = ref(null)
 const isGenerationTriggered = ref(false)
 const exportDialog = ref(false)
+const imageExportMode = ref('u_climax')
 
 const openExportDialog = () => {
   if (!deck.value) {
@@ -771,11 +773,12 @@ const openExportDialog = () => {
   exportDialog.value = true
 }
 
-const handleDownloadDeckImage = async () => {
+const handleDownloadDeckImage = async (mode = 'u_climax') => {
   if (!deck.value) {
     triggerSnackbar('无法生成图片，卡组数据缺失。', 'error')
     return
   }
+  imageExportMode.value = mode
   // 立即启动加载状态，给用户即时反馈
   uiStore.setLoading(true)
   renderShareImage.value = true

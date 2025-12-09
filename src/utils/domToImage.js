@@ -1,4 +1,5 @@
 import { snapdom } from '@zumer/snapdom'
+import { normalizeFileName } from './sanitizeFilename'
 
 export const convertElementToPng = async (elementId, name, scale = 1, embedFonts = false) => {
   const element = document.getElementById(elementId)
@@ -30,12 +31,15 @@ export const convertElementToPng = async (elementId, name, scale = 1, embedFonts
       height: 1,
       dpr: 1,
       cache: 'disabled',
+      filter: (el) => el.tagName !== 'IMG',
+      filterMode: 'hide',
     })
 
     // 2. The actual capture, now running with a clean cache.
     const result = await snapdom(element, options)
 
-    await result.download({ format: 'png', filename: name })
+    const deckName = normalizeFileName(name)
+    await result.download({ format: 'png', filename: deckName })
   } catch (error) {
     console.error('Error during PNG conversion:', error)
     throw error

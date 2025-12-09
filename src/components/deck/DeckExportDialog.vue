@@ -6,21 +6,36 @@
         <v-btn icon="mdi-close" variant="text" @click="closeDialog"></v-btn>
       </v-card-title>
       <v-card-text class="pt-0">
-        <v-btn
-          block
-          color="primary"
-          prepend-icon="mdi-image-outline"
-          class="mb-5"
-          @click="onDownloadImage"
-        >
-          下载图片
-        </v-btn>
         <div class="d-flex mb-5">
           <v-btn
             color="primary"
-            class="flex-grow-1"
+            class="mw-200"
+            prepend-icon="mdi-image-outline"
+            @click="onDownloadImage"
+            elevation="0"
+          >
+            下载图片
+          </v-btn>
+
+          <v-btn-toggle
+            density="compact"
+            v-model="selectedImageMode"
+            mandatory
+            color="primary"
+            variant="outlined"
+            class="ml-2 flex-grow-1"
+          >
+            <v-btn value="u_climax" class="flex-grow-1">U CLIMAX</v-btn>
+            <v-btn value="tts" class="flex-grow-1">TTS</v-btn>
+          </v-btn-toggle>
+        </div>
+        <div class="d-flex mb-5">
+          <v-btn
+            color="primary"
+            class="mw-200"
             prepend-icon="mdi-file-pdf-box"
             @click="onDownloadPDF"
+            elevation="0"
           >
             下载PDF
           </v-btn>
@@ -31,10 +46,10 @@
             mandatory
             color="primary"
             variant="outlined"
-            class="ml-2"
+            class="ml-2 flex-grow-1"
           >
-            <v-btn value="jp">日</v-btn>
-            <v-btn value="zh">中</v-btn>
+            <v-btn value="jp" class="flex-grow-1">日</v-btn>
+            <v-btn value="zh" class="flex-grow-1">中</v-btn>
           </v-btn-toggle>
         </div>
         <div class="position-relative">
@@ -82,6 +97,7 @@ const emit = defineEmits(['update:modelValue', 'download-image', 'download-pdf']
 const { triggerSnackbar } = useSnackbar()
 
 const selectedLanguage = ref('jp')
+const selectedImageMode = ref('u_climax')
 
 const deckBaseIds = computed(() => {
   if (!props.cards) return ''
@@ -114,7 +130,7 @@ const closeDialog = () => {
 }
 
 const onDownloadImage = () => {
-  emit('download-image')
+  emit('download-image', selectedImageMode.value)
   closeDialog()
 }
 

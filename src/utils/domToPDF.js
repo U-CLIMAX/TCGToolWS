@@ -1,7 +1,8 @@
-import { formatEffectToHtml } from '@/utils/cardEffectFormatter'
 import { jsPDF } from 'jspdf'
 import { snapdom } from '@zumer/snapdom'
-import { sortDeckCards } from '@/utils/deckSort.js'
+import { formatEffectToHtml } from './cardEffectFormatter'
+import { sortDeckCards } from './deckSort.js'
+import { normalizeFileName } from './sanitizeFilename'
 
 const PAGE_OPTS = { w: 595, h: 842, cardW: 178.58, cardH: 249.45, gap: 2.83, cols: 3, rows: 3 }
 const PRINT_CSS = `
@@ -90,7 +91,8 @@ export const convertDeckToPDF = async (cards, name, language) => {
       pdf.addImage(imgData, 'JPG', 0, 0, PAGE_OPTS.w, PAGE_OPTS.h)
     }
 
-    pdf.save(`${name || 'deck'}_${language}.pdf`)
+    const deckName = normalizeFileName(name)
+    pdf.save(`${deckName || 'deck'}_${language}.pdf`)
   } catch (e) {
     console.error(e)
   } finally {
