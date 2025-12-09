@@ -131,11 +131,9 @@ const closeDialog = () => {
 
 const onDownloadImage = () => {
   emit('download-image', selectedImageMode.value)
-  closeDialog()
 }
 
 const onDownloadPDF = () => {
   emit('download-pdf', selectedLanguage.value)
-  closeDialog()
 }
 </script>
