@@ -29,19 +29,15 @@
             <v-icon start icon="mdi-cards-diamond-outline"></v-icon>
             {{ deckStore.totalCardCount }} / 50
           </v-chip>
-          <v-tooltip text="前往卡组页面" location="top center">
-            <template v-slot:activator="{ props }">
-              <v-btn
-                v-bind="props"
-                :disabled="deckStore.totalCardCount <= 0"
-                icon="mdi-open-in-new"
-                variant="text"
-                color="teal-lighten-1"
-                density="compact"
-                @click="navigateToDeckDetail"
-              ></v-btn>
-            </template>
-          </v-tooltip>
+          <v-btn
+            :disabled="deckStore.totalCardCount <= 0"
+            icon="mdi-open-in-new"
+            variant="text"
+            color="teal-lighten-1"
+            density="compact"
+            @click="navigateToDeckDetail"
+            v-tooltip:top-center="'前往卡组页面'"
+          ></v-btn>
         </div>
         <v-btn
           icon="mdi-content-save-outline"

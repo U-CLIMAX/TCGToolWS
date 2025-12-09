@@ -7,64 +7,44 @@
             <!-- 左側 -->
             <div class="header-left">
               <template v-if="smAndUp">
-                <v-tooltip text="汇出卡组" location="bottom">
-                  <template v-slot:activator="{ props }">
-                    <v-btn
-                      v-bind="props"
-                      :size="resize"
-                      icon="mdi-export-variant"
-                      variant="text"
-                      @click="openExportDialog"
-                    ></v-btn>
-                  </template>
-                </v-tooltip>
-                <v-tooltip text="分享卡组" location="bottom">
-                  <template v-slot:activator="{ props }">
-                    <v-btn
-                      v-bind="props"
-                      :size="resize"
-                      icon="mdi-share-variant"
-                      variant="text"
-                      :disabled="isLocalDeck"
-                      @click="handleShareCard"
-                    ></v-btn>
-                  </template>
-                </v-tooltip>
-                <v-tooltip text="复制卡组代码" location="bottom">
-                  <template v-slot:activator="{ props }">
-                    <v-btn
-                      v-bind="props"
-                      :size="resize"
-                      icon="mdi-link-variant"
-                      variant="text"
-                      :disabled="isLocalDeck"
-                      @click="handleCopyDeckKey"
-                    ></v-btn>
-                  </template>
-                </v-tooltip>
-                <v-tooltip text="编辑卡组" location="bottom">
-                  <template v-slot:activator="{ props }">
-                    <v-btn
-                      v-bind="props"
-                      :size="resize"
-                      icon="mdi-pencil"
-                      variant="text"
-                      @click="handleEditDeck"
-                    ></v-btn>
-                  </template>
-                </v-tooltip>
-                <v-tooltip text="卡组历史" location="bottom">
-                  <template v-slot:activator="{ props }">
-                    <v-btn
-                      v-if="userRole !== 0 && !isLocalDeck"
-                      v-bind="props"
-                      :size="resize"
-                      icon="mdi-history"
-                      variant="text"
-                      @click="isHistoryDialogVisible = true"
-                    ></v-btn>
-                  </template>
-                </v-tooltip>
+                <v-btn
+                  :size="resize"
+                  icon="mdi-export-variant"
+                  variant="text"
+                  @click="openExportDialog"
+                  v-tooltip:bottom="'汇出卡组'"
+                ></v-btn>
+                <v-btn
+                  :size="resize"
+                  icon="mdi-share-variant"
+                  variant="text"
+                  :disabled="isLocalDeck"
+                  @click="handleShareCard"
+                  v-tooltip:bottom="'分享卡组'"
+                ></v-btn>
+                <v-btn
+                  :size="resize"
+                  icon="mdi-link-variant"
+                  variant="text"
+                  :disabled="isLocalDeck"
+                  @click="handleCopyDeckKey"
+                  v-tooltip:bottom="'复制卡组代码'"
+                ></v-btn>
+                <v-btn
+                  :size="resize"
+                  icon="mdi-pencil"
+                  variant="text"
+                  @click="handleEditDeck"
+                  v-tooltip:bottom="'编辑卡组'"
+                ></v-btn>
+                <v-btn
+                  v-if="userRole !== 0 && !isLocalDeck"
+                  :size="resize"
+                  icon="mdi-history"
+                  variant="text"
+                  @click="isHistoryDialogVisible = true"
+                  v-tooltip:bottom="'卡组历史'"
+                ></v-btn>
               </template>
               <template v-if="!smAndUp">
                 <v-btn
@@ -86,8 +66,7 @@
               >
                 <h1
                   class="text-h6 text-sm-h5 text-truncate text-warning"
-                  v-tooltip:bottom
-                  :title="history[viewingHistoryIndex - 1].text"
+                  v-tooltip:bottom="history[viewingHistoryIndex - 1].text"
                 >
                   检视变更: {{ history[viewingHistoryIndex - 1].text }}
                 </h1>
@@ -124,21 +103,14 @@
                     ></v-btn>
                   </template>
                 </v-tooltip>
-                <v-tooltip
-                  :text="uiStore.showStatsDashboard ? '隐藏统计' : '显示统计'"
-                  location="bottom"
-                >
-                  <template v-slot:activator="{ props }">
-                    <v-btn
-                      v-bind="props"
-                      :size="resize"
-                      :icon="uiStore.showStatsDashboard ? 'mdi-chart-pie' : 'mdi-chart-pie-outline'"
-                      class="mr-2"
-                      variant="text"
-                      @click="uiStore.showStatsDashboard = !uiStore.showStatsDashboard"
-                    ></v-btn>
-                  </template>
-                </v-tooltip>
+                <v-btn
+                  :size="resize"
+                  :icon="uiStore.showStatsDashboard ? 'mdi-chart-pie' : 'mdi-chart-pie-outline'"
+                  class="mr-2"
+                  variant="text"
+                  @click="uiStore.showStatsDashboard = !uiStore.showStatsDashboard"
+                  v-tooltip:bottom="uiStore.showStatsDashboard ? '隐藏统计' : '显示统计'"
+                ></v-btn>
                 <div style="width: 120px">
                   <v-select
                     v-model="groupBy"

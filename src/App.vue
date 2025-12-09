@@ -83,11 +83,7 @@
           ></v-divider>
         </template>
 
-        <v-tooltip text="设定" location="bottom" :disabled="isTouch ? true : false">
-          <template v-slot:activator="{ props }">
-            <v-btn v-bind="props" @click="isSettingsModalOpen = true" icon="mdi-cog"></v-btn>
-          </template>
-        </v-tooltip>
+        <v-btn @click="isSettingsModalOpen = true" icon="mdi-cog" v-tooltip:bottom="'设定'"></v-btn>
 
         <v-tooltip
           v-if="authStore.isAuthenticated"

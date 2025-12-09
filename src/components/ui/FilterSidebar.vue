@@ -46,32 +46,25 @@
             :menu-props="uiStore.menuProps"
           >
             <template v-slot:append-inner>
-              <v-tooltip location="bottom">
-                <template v-slot:activator="{ props: tooltipProps }">
-                  <v-btn
-                    icon
-                    v-bind="tooltipProps"
-                    size="x-small"
-                    variant="text"
-                    class="mr-2"
-                    @click="toggleSearchMode"
-                    @mousedown.stop
-                    @touchstart.stop
-                    :color="
-                      filterStore.searchMode === 'fuzzy'
-                        ? 'orange-lighten-2'
-                        : 'light-blue-lighten-2'
-                    "
-                    :disabled="props.disabled"
-                  >
-                    <v-icon
-                      :icon="filterStore.searchMode === 'fuzzy' ? fuzzyIcon : preciseIcon"
-                      size="17"
-                    ></v-icon>
-                  </v-btn>
-                </template>
-                <span>{{ filterStore.searchMode === 'fuzzy' ? '模糊搜索' : '精准搜索' }}</span>
-              </v-tooltip>
+              <v-btn
+                icon
+                size="x-small"
+                variant="text"
+                class="mr-2"
+                @click="toggleSearchMode"
+                @mousedown.stop
+                @touchstart.stop
+                :color="
+                  filterStore.searchMode === 'fuzzy' ? 'orange-lighten-2' : 'light-blue-lighten-2'
+                "
+                :disabled="!keywordInput || keywordInput.length < 2"
+                v-tooltip:bottom="filterStore.searchMode === 'fuzzy' ? '模糊搜索' : '精准搜索'"
+              >
+                <v-icon
+                  :icon="filterStore.searchMode === 'fuzzy' ? fuzzyIcon : preciseIcon"
+                  size="17"
+                ></v-icon>
+              </v-btn>
             </template>
           </v-combobox>
         </div>

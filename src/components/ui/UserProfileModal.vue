@@ -23,18 +23,14 @@
             <template #subtitle>
               <div class="d-flex align-center">
                 <span>{{ userStatus.id }}</span>
-                <v-tooltip text="复制 ID" location="bottom">
-                  <template v-slot:activator="{ props: tooltipProps }">
-                    <v-btn
-                      v-bind="tooltipProps"
-                      icon="mdi-content-copy"
-                      variant="text"
-                      size="x-small"
-                      class="ml-2"
-                      @click.stop="copyUserId(userStatus.id)"
-                    ></v-btn>
-                  </template>
-                </v-tooltip>
+                <v-btn
+                  icon="mdi-content-copy"
+                  variant="text"
+                  size="x-small"
+                  class="ml-2"
+                  @click.stop="copyUserId(userStatus.id)"
+                  v-tooltip:bottom="'复制 ID'"
+                ></v-btn>
               </div>
             </template>
           </v-list-item>

@@ -1,38 +1,34 @@
 <template>
-  <v-tooltip :text="card.name" location="top center">
-    <template v-slot:activator="{ props }">
-      <v-card
-        v-bind="props"
-        variant="tonal"
-        class="linked-card"
-        rounded="lg"
-        @click="handleCardClick"
-      >
-        <v-img
-          :src="imageUrl"
-          :aspect-ratio="400 / 559"
-          rounded="lg"
-          lazy-src="/empty-placehold.webp"
-          cover
-        >
-          <template #placeholder>
-            <div class="d-flex align-center justify-center fill-height">
-              <v-progress-circular color="grey-lighten-4" indeterminate></v-progress-circular>
-            </div>
-          </template>
-          <template #error>
-            <v-img src="/placehold.webp" rounded="lg" :aspect-ratio="400 / 559" cover />
-          </template>
-        </v-img>
-        <div class="pa-2" style="width: 100%">
-          <div class="text-caption text-grey text-truncate">{{ card.id }}</div>
-          <div class="text-subtitle-2 font-weight-bold text-truncate" style="height: 24px">
-            <span>{{ card.name }}</span>
-          </div>
+  <v-card
+    variant="tonal"
+    class="linked-card"
+    rounded="lg"
+    @click="handleCardClick"
+    v-tooltip:top-center="card.name"
+  >
+    <v-img
+      :src="imageUrl"
+      :aspect-ratio="400 / 559"
+      rounded="lg"
+      lazy-src="/empty-placehold.webp"
+      cover
+    >
+      <template #placeholder>
+        <div class="d-flex align-center justify-center fill-height">
+          <v-progress-circular color="grey-lighten-4" indeterminate></v-progress-circular>
         </div>
-      </v-card>
-    </template>
-  </v-tooltip>
+      </template>
+      <template #error>
+        <v-img src="/placehold.webp" rounded="lg" :aspect-ratio="400 / 559" cover />
+      </template>
+    </v-img>
+    <div class="pa-2" style="width: 100%">
+      <div class="text-caption text-grey text-truncate">{{ card.id }}</div>
+      <div class="text-subtitle-2 font-weight-bold text-truncate" style="height: 24px">
+        <span>{{ card.name }}</span>
+      </div>
+    </div>
+  </v-card>
 </template>
 
 <script setup>
