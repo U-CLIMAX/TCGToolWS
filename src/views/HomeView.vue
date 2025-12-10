@@ -61,7 +61,8 @@
             <transition name="fade" mode="out-in">
               <v-img
                 :key="currentIndex"
-                :src="images[currentIndex]"
+                :src="images[currentIndex].src"
+                :lazy-src="images[currentIndex].lqip"
                 class="display-image clickable-image"
                 cover
                 @click="openImageDialog"
@@ -101,7 +102,12 @@
                 :class="{ 'has-blur': isHardwareAccelerated === true }"
               ></div>
               <div class="feature-img-wrapper">
-                <v-img :src="feature.image" class="feature-img" cover></v-img>
+                <v-img
+                  :src="feature.image.src"
+                  :lazy-src="feature.image.lqip"
+                  class="feature-img"
+                  cover
+                ></v-img>
               </div>
             </div>
             <p class="feature-text">{{ feature.text }}</p>
@@ -112,7 +118,12 @@
       <!-- PC and Phone Support Section -->
       <div ref="pcPhoneSection" class="pc-phone-section animated-section">
         <div class="pc-phone-content">
-          <v-img src="/pc_and_ph.webp" class="pc-phone-img" cover></v-img>
+          <v-img
+            :src="pcPhoneImg.src"
+            :lazy-src="pcPhoneImg.lqip"
+            class="pc-phone-img"
+            cover
+          ></v-img>
           <p class="pc-phone-text">支持网页端与手机端</p>
         </div>
       </div>
@@ -365,6 +376,16 @@ import ImageZoomViewer from '@/components/ui/ImageZoomViewer.vue'
 import SponsorNoticeDialog from '@/components/ui/SponsorNoticeDialog.vue'
 import { useHardwareAcceleration } from '@/composables/useHardwareAcceleration'
 
+// 使用 ?lqip 後綴，插件返回 Object：{ lqip, src, width, height }
+import seriesCardImg from '@/assets/intro/series_card_list.webp?lqip'
+import featuresImg from '@/assets/intro/features_intro.webp?lqip'
+import singleCardImg from '@/assets/intro/single_card.webp?lqip'
+import deckFeaturesImg from '@/assets/intro/deck_features.webp?lqip'
+import featurePdfImg from '@/assets/feature/export-pdf.webp?lqip'
+import featureDeckImg from '@/assets/feature/deck-edit.webp?lqip'
+import featureSearchImg from '@/assets/feature/global-search.webp?lqip'
+import pcPhoneImg from '@/assets/pc_and_ph.webp?lqip'
+
 const { isHardwareAccelerated } = useHardwareAcceleration()
 const authStore = useAuthStore()
 
@@ -409,17 +430,23 @@ const handleSplashFinished = () => {
   startAutoScroll()
 }
 
-const images = ref([
-  '/intro/series_card_list.webp',
-  '/intro/features_intro.webp',
-  '/intro/single_card.webp',
-  '/intro/deck_features.webp',
-])
-
+const images = ref([seriesCardImg, featuresImg, singleCardImg, deckFeaturesImg])
 const features = ref([
-  { id: 1, image: '/feature/export-pdf.webp', text: '支持导出卡组pdf' },
-  { id: 2, image: '/feature/deck-edit.webp', text: '卡组编辑可视化' },
-  { id: 3, image: '/feature/global-search.webp', text: '支持全局搜索' },
+  {
+    id: 1,
+    image: featurePdfImg,
+    text: '支持导出卡组pdf',
+  },
+  {
+    id: 2,
+    image: featureDeckImg,
+    text: '卡组编辑可视化',
+  },
+  {
+    id: 3,
+    image: featureSearchImg,
+    text: '支持全局搜索',
+  },
 ])
 
 const dialogImage = ref(false)
