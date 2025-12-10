@@ -63,7 +63,7 @@
                 :key="currentIndex"
                 :src="images[currentIndex].src"
                 :lazy-src="images[currentIndex].lqip"
-                class="display-image clickable-image"
+                class="display-image clickable-image preload-img"
                 cover
                 @click="openImageDialog"
               ></v-img>
@@ -105,7 +105,7 @@
                 <v-img
                   :src="feature.image.src"
                   :lazy-src="feature.image.lqip"
-                  class="feature-img"
+                  class="feature-img preload-img"
                   cover
                 ></v-img>
               </div>
@@ -121,7 +121,7 @@
           <v-img
             :src="pcPhoneImg.src"
             :lazy-src="pcPhoneImg.lqip"
-            class="pc-phone-img"
+            class="pc-phone-img preload-img"
             cover
           ></v-img>
           <p class="pc-phone-text">支持网页端与手机端</p>
