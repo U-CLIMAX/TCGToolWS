@@ -392,7 +392,7 @@ const executeDownloadText = async () => {
   effectText.style.wordBreak = 'break-word'
   effectText.style.textAlign = 'justify'
   effectText.style.width = '100%'
-  effectText.style.color = 'black'
+  effectText.style.color = downloadStore.textColor
 
   effectText.querySelectorAll('img').forEach((icon) => {
     let src = icon.getAttribute('src')

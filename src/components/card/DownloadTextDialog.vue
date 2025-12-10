@@ -1,6 +1,6 @@
 <template>
   <v-dialog :model-value="modelValue" @update:model-value="closeDialog" max-width="500">
-    <v-card title="下载效果文本">
+    <v-card title="下载效果文本" class="h-100 themed-scrollbar">
       <v-card-text class="pb-0">
         <v-row dense>
           <v-col cols="12" sm="3">
@@ -48,9 +48,20 @@
             />
           </v-col>
         </v-row>
+
+        <div class="text-subtitle-2 mb-2">背景颜色</div>
         <v-color-picker
           v-model="localBgColor"
-          label="背景颜色"
+          swatches-max-height="100"
+          width="100%"
+          elevation="0"
+          flat
+          class="mb-4"
+        />
+
+        <div class="text-subtitle-2 mb-2">文字颜色</div>
+        <v-color-picker
+          v-model="localTextColor"
           swatches-max-height="100"
           width="100%"
           elevation="0"
@@ -60,6 +71,7 @@
 
       <v-card-actions>
         <v-spacer />
+        <v-btn text="取消" variant="text" @click="closeDialog" />
         <v-btn text="确定" color="primary" @click="confirmDownload" />
       </v-card-actions>
     </v-card>
@@ -80,6 +92,7 @@ const downloadStore = useDownloadStore()
 
 const localWidth = ref(800)
 const localBgColor = ref('#FFFFFF')
+const localTextColor = ref('#000000')
 const localBorderRadius = ref(16)
 const localFontSize = ref(20)
 const localLineHeight = ref(28)
@@ -91,6 +104,7 @@ watch(
       // Sync from store to local state when dialog opens
       localWidth.value = downloadStore.textWidth
       localBgColor.value = downloadStore.textBgColor
+      localTextColor.value = downloadStore.textColor
       localBorderRadius.value = downloadStore.textBorderRadius
       localFontSize.value = downloadStore.textFontSize
       localLineHeight.value = downloadStore.textLineHeight
@@ -102,6 +116,7 @@ const confirmDownload = () => {
   // Commit local state to store
   downloadStore.textWidth = localWidth.value
   downloadStore.textBgColor = localBgColor.value
+  downloadStore.textColor = localTextColor.value
   downloadStore.textBorderRadius = localBorderRadius.value
   downloadStore.textFontSize = localFontSize.value
   downloadStore.textLineHeight = localLineHeight.value
