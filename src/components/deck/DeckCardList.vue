@@ -78,20 +78,13 @@
                         <span v-else-if="item.diffStatus === 'decreased'">↓</span>
                       </div>
                       <v-img
-                        :src="useCardImage(item.cardIdPrefix, item.id).value"
+                        :src="getCardUrls(item.cardIdPrefix, item.id).base"
+                        :lazy-src="getCardUrls(item.cardIdPrefix, item.id).blur"
                         :aspect-ratio="400 / 559"
                         cover
-                        lazy-src="/empty-placehold.webp"
                         rounded="3md"
+                        class="preload-img"
                       >
-                        <template #placeholder>
-                          <div class="d-flex align-center justify-center fill-height">
-                            <v-progress-circular
-                              color="grey-lighten-4"
-                              indeterminate
-                            ></v-progress-circular>
-                          </div>
-                        </template>
                         <template #error>
                           <v-img src="/placehold.webp" :aspect-ratio="400 / 559" cover />
                         </template>
@@ -126,9 +119,10 @@
     >
       <CardDetailModal
         :card="selectedCard"
-        :imgUrl="modalCardImageUrl"
-        :linkedCards="linkedCards"
-        :showActions="false"
+        :img-url="modalCardImageUrl.base"
+        :blur-url="modalCardImageUrl.blur"
+        :linked-cards="linkedCards"
+        :show-actions="false"
         :card-index="selectedCardIndex"
         :total-cards="totalCards"
         @close="$emit('update:isModalVisible', false)"
@@ -145,7 +139,7 @@ import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useTheme } from 'vuetify'
 import { useDisplay } from 'vuetify'
-import { useCardImage } from '@/composables/useCardImage.js'
+import { useCardImage, getCardUrls } from '@/composables/useCardImage.js'
 import { useDevice } from '@/composables/useDevice'
 import CardDetailModal from '@/components/card/CardDetailModal.vue'
 import DeckStatsDashboard from '@/components/deck/DeckStatsDashboard.vue'
@@ -217,9 +211,17 @@ const iconFilterStyle = computed(() => {
 
 const modalCardImageUrl = computed(() => {
   if (props.selectedCard) {
-    return useCardImage(props.selectedCard.cardIdPrefix, props.selectedCard.id).value
+    const { base, blur } = useCardImage(
+      computed(() => props.selectedCard.cardIdPrefix),
+      computed(() => props.selectedCard.id)
+    )
+    return {
+      base: base.value,
+      blur: blur.value,
+    }
   }
-  return ''
+
+  return { base: '/empty-placehold.webp', blur: '/empty-placehold.webp' }
 })
 
 const colorMap = {

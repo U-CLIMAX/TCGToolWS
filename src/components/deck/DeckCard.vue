@@ -10,18 +10,13 @@
       >
         <v-img
           :src="imageUrl"
-          class="align-end"
+          class="align-end preload-img"
           style="transform: scale(1.1)"
           aspect-ratio="1"
           cover
           position="top"
-          lazy-src="/empty-placehold.webp"
+          :lazy-src="blurUrl"
         >
-          <template #placeholder>
-            <div class="d-flex align-center justify-center fill-height">
-              <v-progress-circular color="grey-lighten-4" indeterminate></v-progress-circular>
-            </div>
-          </template>
           <template #error>
             <v-img src="/placehold.webp" aspect-ratio="1" cover />
           </template>
@@ -112,7 +107,7 @@ const coverCard = computed(() => {
   )
 })
 
-const imageUrl = useCardImage(
+const { base: imageUrl, blur: blurUrl } = useCardImage(
   computed(() => coverCard.value.cardIdPrefix),
   computed(() => coverCard.value.id)
 )

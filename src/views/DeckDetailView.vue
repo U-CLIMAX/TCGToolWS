@@ -797,10 +797,10 @@ const handleDownloadDeckPDF = async (language) => {
   uiStore.setLoading(true)
   try {
     const cardsWithImages = originalCards.value.map((card) => {
-      const imgUrl = useCardImage(card.cardIdPrefix, card.id)
+      const { base } = useCardImage(card.cardIdPrefix, card.id)
       return {
         ...card,
-        imgUrl: imgUrl.value,
+        imgUrl: base.value,
       }
     })
 

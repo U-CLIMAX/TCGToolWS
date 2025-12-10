@@ -77,15 +77,16 @@
 
 **關鍵變數說明：**
 
-| 變數名稱              | 描述                          | 範例 / 備註                     |
-| :-------------------- | :---------------------------- | :------------------------------ |
-| `VITE_IMAGE_BASE_URL` | **(核心)** 卡片圖片的來源路徑 | 見下方詳細說明                  |
-| `JWT_SECRET`          | JWT 簽名密鑰                  | **必填** (開發環境可填任意字串) |
-| `BREVO_API_KEY`       | Brevo 郵件服務 API Key        | 用於發送系統郵件                |
-| `FRONTEND_URL`        | 前端部署網址                  | 用於生成郵件內的連結            |
-| `AFDIAN_PUBLIC_KEY`   | 愛發電支付公鑰                | 處理贊助與支付邏輯              |
+| 變數名稱                   | 描述                          | 範例 / 備註                     |
+| :------------------------- | :---------------------------- | :------------------------------ |
+| `VITE_IMAGE_BASE_URL`      | **(核心)** 卡片圖片的來源路徑 | 見下方圖片來源詳細說明          |
+| `VITE_BLUR_IMAGE_BASE_URL` | **(核心)** 卡片縮圖的來源路徑 | 見下方圖片來源詳細說明          |
+| `JWT_SECRET`               | JWT 簽名密鑰                  | **必填** (開發環境可填任意字串) |
+| `BREVO_API_KEY`            | Brevo 郵件服務 API Key        | 用於發送系統郵件                |
+| `FRONTEND_URL`             | 前端部署網址                  | 用於生成郵件內的連結            |
+| `AFDIAN_PUBLIC_KEY`        | 愛發電支付公鑰                | 處理贊助與支付邏輯              |
 
-#### 關於 `VITE_IMAGE_BASE_URL` 的設定
+#### 關於圖片來源的設定
 
 您可以選擇以下兩種方式之一來設定圖片來源：
 
@@ -95,6 +96,7 @@
 
     ```properties
     VITE_IMAGE_BASE_URL=https://media.githubusercontent.com/media/U-CLIMAX/ws-image-data/main/ws-image-data
+    VITE_BLUR_IMAGE_BASE_URL=https://media.githubusercontent.com/media/U-CLIMAX/ws-image-data/main/ws-blur-image-data
     ```
 
 2.  **使用本地圖片**
@@ -105,6 +107,7 @@
     - 第二步：修改環境變數
       ```properties
       VITE_IMAGE_BASE_URL=ws-image-data
+      VITE_BLUR_IMAGE_BASE_URL=ws-blur-image-data
       ```
 
 ### 開發環境資料庫設定

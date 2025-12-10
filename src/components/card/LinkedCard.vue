@@ -8,16 +8,12 @@
   >
     <v-img
       :src="imageUrl"
+      :lazy-src="blurUrl"
       :aspect-ratio="400 / 559"
       rounded="lg"
-      lazy-src="/empty-placehold.webp"
       cover
+      class="preload-img"
     >
-      <template #placeholder>
-        <div class="d-flex align-center justify-center fill-height">
-          <v-progress-circular color="grey-lighten-4" indeterminate></v-progress-circular>
-        </div>
-      </template>
       <template #error>
         <v-img src="/placehold.webp" rounded="lg" :aspect-ratio="400 / 559" cover />
       </template>
@@ -44,12 +40,13 @@ const emit = defineEmits(['show-details'])
 const cardId = toRefs(props.card).id
 const cardIdPrefix = toRefs(props.card).cardIdPrefix
 
-const imageUrl = useCardImage(cardIdPrefix, cardId)
+const { base: imageUrl, blur: blurUrl } = useCardImage(cardIdPrefix, cardId)
 
 const handleCardClick = () => {
   emit('show-details', {
     card: props.card,
     imageUrl: imageUrl.value,
+    blurUrl: blurUrl.value,
   })
 }
 </script>

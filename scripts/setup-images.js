@@ -5,48 +5,54 @@ import process from 'process'
 import { execSync } from 'child_process'
 
 const tempDir = 'temp-images'
-const targetDir = 'public/ws-image-data'
-const sourceFolder = 'ws-image-data'
+const directories = [
+  {
+    source: 'ws-image-data',
+    target: 'public/ws-image-data',
+  },
+  {
+    source: 'ws-blur-image-data',
+    target: 'public/ws-blur-image-data',
+  },
+]
 
 console.log('🖼️  Setting up local images...')
 
 try {
-  // 清理既有的目標目錄和臨時目錄
-  if (fs.existsSync(targetDir)) {
-    fs.rmSync(targetDir, { recursive: true, force: true })
-  }
+  directories.forEach(({ target }) => {
+    if (fs.existsSync(target)) {
+      console.log(`🧹 Cleaning existing directory: ${target}`)
+      fs.rmSync(target, { recursive: true, force: true })
+    }
+  })
+
   if (fs.existsSync(tempDir)) {
     fs.rmSync(tempDir, { recursive: true, force: true })
   }
 
-  // 克隆圖片倉庫到臨時目錄
   console.log('📦 Cloning images repository...')
   execSync(`git clone git@github.com:U-CLIMAX/ws-image-data.git ${tempDir}`, {
     stdio: 'inherit',
   })
 
-  // 檢查源文件夾是否存在
-  const sourcePath = path.join(tempDir, sourceFolder)
-  if (!fs.existsSync(sourcePath)) {
-    throw new Error(`Source folder "${sourceFolder}" not found in repository`)
-  }
+  directories.forEach(({ source, target }) => {
+    const sourcePath = path.join(tempDir, source)
+    if (fs.existsSync(sourcePath)) {
+      console.log(`📁 Copying ${source} to public directory...`)
+      fs.mkdirSync(path.dirname(target), { recursive: true })
+      fs.cpSync(sourcePath, target, { recursive: true })
+    } else {
+      console.warn(`⚠️  Warning: Source folder "${source}" not found in repository. Skipping.`)
+    }
+  })
 
-  // 創建目標目錄的父文件夾
-  fs.mkdirSync(path.dirname(targetDir), { recursive: true })
-
-  // 複製需要的文件夾
-  console.log('📁 Copying images to public directory...')
-  fs.cpSync(sourcePath, targetDir, { recursive: true })
-
-  // 清理臨時目錄
   fs.rmSync(tempDir, { recursive: true, force: true })
 
   console.log('✅ Images setup complete!')
-  console.log(`📍 Images available at: ${targetDir}`)
+  console.log(`📍 Images available at: public/`)
 } catch (error) {
   console.error('❌ Error setting up images:', error.message)
 
-  // 清理臨時目錄
   if (fs.existsSync(tempDir)) {
     fs.rmSync(tempDir, { recursive: true, force: true })
   }

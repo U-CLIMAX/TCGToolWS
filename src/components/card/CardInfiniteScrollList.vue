@@ -147,19 +147,23 @@ const isTableMode = computed(() => props.isTableModeActive || !smAndUp.value)
 const onPrevCard = () => {
   const prevCard = getPrevCard()
   if (prevCard) {
+    const { base, blur } = useCardImage(prevCard.cardIdPrefix, prevCard.id)
     onShowDetails({
       card: prevCard,
-      imageUrl: useCardImage(prevCard.cardIdPrefix, prevCard.id).value,
+      imageUrl: base.value,
+      blurUrl: blur.value,
     })
   }
 }
 
 const onNextCard = () => {
   const nextCard = getNextCard()
+  const { base, blur } = useCardImage(nextCard.cardIdPrefix, nextCard.id)
   if (nextCard) {
     onShowDetails({
       card: nextCard,
-      imageUrl: useCardImage(nextCard.cardIdPrefix, nextCard.id).value,
+      imageUrl: base.value,
+      blurUrl: blur.value,
     })
   }
 }

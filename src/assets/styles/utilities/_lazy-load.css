@@ -1,0 +1,5 @@
+.preload-img .v-img__img--preload {
+  filter: blur(10px);
+  transform: scale(1.1);
+  transition: opacity 0.3s ease-in-out;
+}

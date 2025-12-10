@@ -15,13 +15,9 @@
           :aspect-ratio="400 / 559"
           cover
           rounded="3md"
-          lazy-src="/empty-placehold.webp"
+          :lazy-src="blurUrl"
+          class="preload-img"
         >
-          <template #placeholder>
-            <div class="d-flex align-center justify-center fill-height">
-              <v-progress-circular color="grey-lighten-4" indeterminate></v-progress-circular>
-            </div>
-          </template>
           <template #error>
             <v-img src="/placehold.webp" :aspect-ratio="400 / 559" cover rounded="3md" />
           </template>
@@ -173,7 +169,7 @@ const isLightWithBg = computed(() => {
   return hasBackgroundImage.value && theme.global.name.value === 'light'
 })
 
-const imageUrl = useCardImage(
+const { base: imageUrl, blur: blurUrl } = useCardImage(
   computed(() => props.card.cardIdPrefix),
   computed(() => props.card.id)
 )
@@ -187,6 +183,7 @@ const handleCardClick = () => {
   emit('show-details', {
     card: props.card,
     imageUrl: imageUrl.value,
+    blurUrl: blurUrl.value,
   })
 }
 </script>

@@ -111,24 +111,16 @@
               <v-col v-for="card in Object.values(cards)" :key="card.id" cols="4" lg="3">
                 <div class="cover-card-container" @click="selectedCoverCardId = card.id">
                   <v-img
-                    :src="useCardImage(card.cardIdPrefix, card.id).value"
+                    :src="getCardUrls(card.cardIdPrefix, card.id).base"
+                    :lazy-src="getCardUrls(card.cardIdPrefix, card.id).blur"
                     :aspect-ratio="400 / 559"
                     cover
-                    class="rounded-lg"
-                    lazy-src="/empty-placehold.webp"
+                    class="rounded-lg preload-img"
                     :class="{
                       'selected-cover': selectedCoverCardId === card.id,
                       'clickable': true,
                     }"
                   >
-                    <template #placeholder>
-                      <div class="d-flex align-center justify-center fill-height">
-                        <v-progress-circular
-                          color="grey-lighten-4"
-                          indeterminate
-                        ></v-progress-circular>
-                      </div>
-                    </template>
                     <template #error>
                       <v-img
                         src="/placehold.webp"
@@ -175,7 +167,7 @@
 
 <script setup>
 import { computed, ref, onUnmounted, onMounted } from 'vue'
-import { useCardImage } from '@/composables/useCardImage.js'
+import { getCardUrls } from '@/composables/useCardImage.js'
 import { useDisplay } from 'vuetify'
 import { useDeckGrouping } from '@/composables/useDeckGrouping'
 import { fetchCardsByBaseIdAndPrefix } from '@/utils/card'

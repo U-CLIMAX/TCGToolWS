@@ -44,15 +44,10 @@
               cover
               :aspect-ratio="400 / 559"
               :max-width="400"
-              lazy-src="/empty-placehold.webp"
-              class="card-image"
+              :lazy-src="blurUrl"
+              class="card-image preload-img"
               :class="{ 'hover-scale': isHovering }"
             >
-              <template #placeholder>
-                <div class="d-flex align-center justify-center fill-height">
-                  <v-progress-circular color="grey-lighten-4" indeterminate></v-progress-circular>
-                </div>
-              </template>
               <template #error>
                 <v-img
                   src="/placehold.webp"
@@ -260,6 +255,7 @@ const emit = defineEmits(['close', 'show-new-card', 'prev-card', 'next-card', 'l
 const props = defineProps({
   card: { type: Object, required: true },
   imgUrl: { type: String, required: true },
+  blurUrl: { type: String, required: true },
   linkedCards: { type: Array, default: () => [] },
   isLoadingLinks: { type: Boolean, default: false },
   showActions: { type: Boolean, default: false },

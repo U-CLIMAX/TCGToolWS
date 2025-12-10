@@ -117,20 +117,12 @@
                 <div class="card-container" @click="handleCardClick(item)">
                   <div class="image-container">
                     <v-img
-                      :src="useCardImage(item.cardIdPrefix, item.id).value"
+                      :src="getCardUrls(item.cardIdPrefix, item.id).base"
+                      :lazy-src="getCardUrls(item.cardIdPrefix, item.id).blur"
                       :aspect-ratio="400 / 559"
                       cover
-                      class="rounded"
-                      lazy-src="/empty-placehold.webp"
+                      class="rounded preload-img"
                     >
-                      <template #placeholder>
-                        <div class="d-flex align-center justify-center fill-height">
-                          <v-progress-circular
-                            color="grey-lighten-4"
-                            indeterminate
-                          ></v-progress-circular>
-                        </div>
-                      </template>
                       <template #error>
                         <v-img
                           src="/placehold.webp"
@@ -162,9 +154,10 @@
   >
     <CardDetailModal
       :card="selectedCardData"
-      :imgUrl="modalCardImageUrl"
-      :linkedCards="linkedCardsDetails"
-      :showActions="true"
+      :img-url="modalCardImageUrl.base"
+      :blur-url="modalCardImageUrl.blur"
+      :linked-cards="linkedCardsDetails"
+      :show-actions="true"
       :card-index="selectedCardIndex"
       :total-cards="deckCards.length"
       @close="isModalVisible = false"
@@ -210,21 +203,13 @@
             <v-col v-for="card in deckCards" :key="card.id" cols="4" lg="3">
               <div class="cover-card-container" @click="selectedCoverCardId = card.id">
                 <v-img
-                  :src="useCardImage(card.cardIdPrefix, card.id).value"
+                  :src="getCardUrls(card.cardIdPrefix, card.id).base"
+                  :lazy-src="getCardUrls(card.cardIdPrefix, card.id).blur"
                   :aspect-ratio="400 / 559"
                   cover
-                  class="rounded-lg"
-                  lazy-src="/empty-placehold.webp"
+                  class="rounded-lg preload-img"
                   :class="{ 'selected-cover': selectedCoverCardId === card.id, 'clickable': true }"
                 >
-                  <template #placeholder>
-                    <div class="d-flex align-center justify-center fill-height">
-                      <v-progress-circular
-                        color="grey-lighten-4"
-                        indeterminate
-                      ></v-progress-circular>
-                    </div>
-                  </template>
                   <template #error>
                     <v-img
                       src="/placehold.webp"
@@ -310,7 +295,7 @@
 <script setup>
 import { ref, computed, toRaw } from 'vue'
 import { useDeckStore } from '@/stores/deck'
-import { useCardImage } from '@/composables/useCardImage'
+import { useCardImage, getCardUrls } from '@/composables/useCardImage'
 import { fetchCardByIdAndPrefix, fetchCardsByBaseIdAndPrefix } from '@/utils/card'
 import CardDetailModal from '@/components/card/CardDetailModal.vue'
 import { useDisplay } from 'vuetify'
@@ -616,9 +601,16 @@ const onNextCard = () => {
 
 const modalCardImageUrl = computed(() => {
   if (selectedCardData.value) {
-    return useCardImage(selectedCardData.value.cardIdPrefix, selectedCardData.value.id).value
+    const { base, blur } = useCardImage(
+      selectedCardData.value.cardIdPrefix,
+      selectedCardData.value.id
+    )
+    return {
+      base: base.value,
+      blur: blur.value,
+    }
   }
-  return ''
+  return { base: '/empty-placehold.webp', blur: '/empty-placehold.webp' }
 })
 
 /**

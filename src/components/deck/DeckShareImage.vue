@@ -34,7 +34,7 @@
         <div v-for="item in sortedAndFlatCardList" :key="`${item.id}-${item.cardIdPrefix}`">
           <div class="position-relative">
             <v-img
-              :src="useCardImage(item.cardIdPrefix, item.id).value"
+              :src="getCardUrls(item.cardIdPrefix, item.id).base"
               :aspect-ratio="400 / 559"
               cover
               eager
@@ -60,7 +60,7 @@
           :key="`${item.id}-${item.cardIdPrefix}-${index}`"
         >
           <v-img
-            :src="useCardImage(item.cardIdPrefix, item.id).value"
+            :src="getCardUrls(item.cardIdPrefix, item.id).base"
             :aspect-ratio="400 / 559"
             cover
             eager
@@ -78,7 +78,7 @@
 </template>
 
 <script setup>
-import { useCardImage } from '@/composables/useCardImage.js'
+import { getCardUrls } from '@/composables/useCardImage.js'
 import { computed, ref, watch, readonly } from 'vue'
 import { QR } from '@/components/common/QR.js'
 import { sortDeckCards } from '@/utils/deckSort.js'
