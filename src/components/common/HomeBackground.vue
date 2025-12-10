@@ -13,7 +13,7 @@
 
 <script setup>
 import { onMounted, onUnmounted } from 'vue'
-import lottie from 'lottie-web'
+import lottie from 'lottie-web/build/player/lottie_light'
 import bgAnimationData from '@/assets/animations/bg_anime.json'
 import { useHardwareAcceleration } from '@/composables/useHardwareAcceleration'
 
