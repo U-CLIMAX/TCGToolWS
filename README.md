@@ -1,7 +1,7 @@
 # TCGToolWS
 
 <p align="center">
-  <img src="public/pc_and_ph.webp" alt="TCGToolWS Preview" width="600">
+  <img src="src/assets/pc_and_ph.webp" alt="TCGToolWS Preview" width="600">
 </p>
 
 <p align="center">
