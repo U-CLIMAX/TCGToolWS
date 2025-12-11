@@ -53,6 +53,7 @@
     <CardDetailModal
       :card="selectedCardData.card"
       :img-url="selectedCardData.imageUrl"
+      :blur-url="selectedCardData.blurUrl"
       :linked-cards="selectedLinkedCards"
       :is-loading-links="isLoadingLinks"
       :showActions="true"
