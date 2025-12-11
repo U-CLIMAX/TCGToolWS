@@ -91,12 +91,12 @@
           v-if="globalSearchStore.isLoading"
           class="d-flex flex-column justify-center align-center h-100 w-100"
         >
-          <v-progress-circular
-            indeterminate
-            :color="globalSearchStore.isInitialSetup ? 'blue-accent-1' : 'primary'"
-            size="64"
+          <half-circle-spinner
+            :color="spinnerColor"
+            :size="64"
+            :animation-duration="1000"
             class="mb-4"
-          ></v-progress-circular>
+          />
           <div
             v-if="globalSearchStore.isInitialSetup"
             class="text-subtitle-1 text-sm-h6 text-blue-accent-1 text-center text-no-wrap"
@@ -193,19 +193,24 @@
 <script setup>
 import { onMounted, ref, watch, computed, watchEffect, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
-import { useDisplay } from 'vuetify'
+import { useDisplay, useTheme } from 'vuetify'
 import { storeToRefs } from 'pinia'
 import { useGlobalSearchStore } from '@/stores/globalSearch'
 import { useUIStore } from '@/stores/ui'
 import { useDeckStore } from '@/stores/deck'
 import { useInfiniteScrollState } from '@/composables/useInfiniteScrollState.js'
+import { HalfCircleSpinner } from 'epic-spinners'
 import CardInfiniteScrollList from '@/components/card/CardInfiniteScrollList.vue'
 import BaseFilterSidebar from '@/components/ui/FilterSidebar.vue'
 import DeckSidebar from '@/components/ui/DeckSidebar.vue'
 import DraggableBottomSheet from '@/components/ui/DraggableBottomSheet.vue'
 
 const route = useRoute()
+const theme = useTheme()
 const game = computed(() => route.params.game || 'ws')
+const spinnerColor = computed(() => {
+  return globalSearchStore.isInitialSetup ? '#82B1FF' : theme.global.current.value.colors.primary
+})
 
 const globalSearchStore = useGlobalSearchStore()
 const uiStore = useUIStore()
