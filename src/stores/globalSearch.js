@@ -80,7 +80,14 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
 
   // --- Data Loading Logic ---
 
-  const setCardData = async (data, source, version) => {
+  /**
+   * 設定卡片資料並初始化 Worker
+   * @param {Object} data - 卡片資料物件
+   * @param {String} source - 資料來源 (log 用)
+   * @param {String} version - 版本號
+   * @param {Object} indexFiles - 預先建立的索引檔案路徑 Map
+   */
+  const setCardData = async (data, source, version, indexFiles) => {
     productNames.value = data.filterOptions.productNames
     traits.value = data.filterOptions.traits
     rarities.value = data.filterOptions.rarities
@@ -89,8 +96,9 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     powerRange.value = data.filterOptions.powerRange
     resetFilters()
     await initializeWorker(data.cards, {
-      cacheKey: `global-search-index-${currentGame.value}`,
+      game: currentGame.value,
       version,
+      indexFiles,
     })
     console.log(`✅ Successfully loaded ${data.cards.length} cards from ${source}`)
   }
@@ -102,7 +110,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     error.value = null
     let db
     try {
-      const { version, chunked, chunks, fileName } = manifest
+      const { version, chunked, chunks, fileName, indexFiles } = manifest
 
       // 建立一個來源串流，依序抓取 chunks
       const fileStream = new ReadableStream({
@@ -180,7 +188,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
       await saveData(db, storeName, { key: `card-data-${currentGame.value}`, data })
       console.log('💾 Card data has been stored in the local database (IndexedDB)')
 
-      await setCardData(data, 'remote server', version)
+      await setCardData(data, 'remote server', version, indexFiles)
 
       localStorage.setItem(`global_search_index_version_${currentGame.value}`, version)
       console.log(`📌 Version updated: ${version}`)
@@ -194,7 +202,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     }
   }
 
-  const loadDataFromLocal = async (version) => {
+  const loadDataFromLocal = async (version, indexFiles) => {
     isLoading.value = true
     let db
     try {
@@ -205,7 +213,8 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
         console.warn('⚠️ Local cache is empty or invalid.')
         throw new Error('Local cache is empty.') // Trigger fallback
       }
-      await setCardData(cachedData, 'local database (IndexedDB)', version)
+      // 傳入 indexFiles
+      await setCardData(cachedData, 'local database (IndexedDB)', version, indexFiles)
     } catch (e) {
       console.error('❌ Failed to load from local database:', e)
       throw e // Re-throw to be caught by initialize for fallback
@@ -230,6 +239,8 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
 
       const manifest = await manifestResponse.json()
       const currentVersion = manifest.version
+      const indexFiles = manifest.indexFiles || null
+
       console.log(`📌 Current version: ${currentVersion}`)
 
       const storedVersion = localStorage.getItem(`global_search_index_version_${currentGame.value}`)
@@ -239,7 +250,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
       if (storedVersion === currentVersion) {
         console.log('✅ Versions match, trying to load from local database...')
         try {
-          await loadDataFromLocal(currentVersion)
+          await loadDataFromLocal(currentVersion, indexFiles)
           loadedFromLocal = true
           // eslint-disable-next-line no-unused-vars
         } catch (e) {

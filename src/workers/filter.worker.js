@@ -1,9 +1,5 @@
 import { Document, Charset } from 'flexsearch'
 import { expose } from 'comlink'
-import { openDB, saveData, loadData } from '@/utils/db.js'
-
-const dbName = 'FlexSearchCacheDB'
-const storeName = 'flexsearch-indexes'
 
 const toZero = (val) => (val === '-' ? 0 : +val)
 
@@ -22,11 +18,12 @@ const createNewIndex = () => {
   })
 }
 
+// Fallback: 舊的客戶端索引建立邏輯 (僅在沒有預先生成的索引檔時使用)
 const addAllToIndex = (cards, index) => {
-  // 將卡片加入索引
+  console.log('⚠️ No pre-built index found. Building index on client side (this may be slow)...')
   cards.forEach((card, idx) => {
     index.add({
-      index: idx, // 使用陣列索引作為 ID
+      index: idx,
       name: card.name || '',
       effect: card.effect || '',
       id: card.id || '',
@@ -40,67 +37,46 @@ const CardFilterService = {
    * @param {Array} cards - 所有的卡片資料
    * @param {object} options - 初始化選項
    * @param {string} options.version - 版本號
-   * @param {string} options.cacheKey - 索引緩存鍵
+   * @param {string} options.game - 遊戲類型 (ws/wsr)
+   * @param {object} options.indexFiles - 預先建立的索引檔案對照表 { name: 'file.json', ... }
    */
   init: async (cards, options = {}) => {
-    const { version, cacheKey } = options
+    const { version, game, indexFiles } = options
     allCards = cards
     keywordResultsCache = null
+    searchIndex = createNewIndex()
 
-    if (!cacheKey) {
-      console.log('Cache key not provided, creating temporary index.')
-      searchIndex = createNewIndex()
-      addAllToIndex(allCards, searchIndex)
-      console.log(`FlexSearch is ready for ${allCards.length} cards.`)
-      return
-    }
+    // 載入預先建立的索引
+    if (indexFiles && Object.keys(indexFiles).length > 0) {
+      console.log(`Initializing FlexSearch for ${game} (v${version}) with pre-built indexes...`)
+      console.time('Index Loading')
 
-    console.log(`Initializing with cacheKey: ${cacheKey}, version: ${version}`)
-    console.time('Index Initialization')
+      try {
+        const loadPromises = Object.entries(indexFiles).map(async ([key, filename]) => {
+          const res = await fetch(`/${filename}`)
+          if (!res.ok) throw new Error(`Failed to fetch index file: ${filename}`)
 
-    let db
-    try {
-      db = await openDB(dbName, storeName, 'cacheKey')
-      const stored = await loadData(db, storeName, cacheKey)
-
-      if (stored && stored.version === version) {
-        console.log('Found valid cached index. Importing...')
-        console.time('Index Import')
-        searchIndex = createNewIndex()
-        // FlexSearch's import is synchronous in this context
-        for (const key in stored.indexParts) {
-          searchIndex.import(key, stored.indexParts[key])
-        }
-        console.timeEnd('Index Import')
-      } else {
-        console.log('No valid cached index found or version mismatch. Creating new index...')
-        console.time('Index Creation')
-        searchIndex = createNewIndex()
-        addAllToIndex(allCards, searchIndex)
-        console.timeEnd('Index Creation')
-
-        console.log('Exporting and caching new index...')
-        console.time('Index Export & Cache')
-        const indexParts = {}
-        // FlexSearch's export is synchronous and uses a callback
-        searchIndex.export((key, data) => {
-          indexParts[key] = data
+          const data = await res.json()
+          searchIndex.import(key, data)
         })
-        await saveData(db, storeName, { cacheKey, version, indexParts })
-        console.timeEnd('Index Export & Cache')
+
+        await Promise.all(loadPromises)
+        console.timeEnd('Index Loading')
+        console.log(`✅ FlexSearch is ready for ${allCards.length} cards (Loaded from Pre-built).`)
+        return
+      } catch (e) {
+        console.error(
+          '❌ Error loading pre-built indexes, falling back to client-side indexing:',
+          e
+        )
       }
-    } catch (e) {
-      console.error(
-        'Error during index initialization with cache, falling back to temporary index:',
-        e
-      )
-      searchIndex = createNewIndex()
-      addAllToIndex(allCards, searchIndex)
-    } finally {
-      if (db) db.close()
-      console.timeEnd('Index Initialization')
-      console.log(`FlexSearch is ready for ${allCards.length} cards.`)
     }
+
+    // 若無 indexFiles 或下載失敗，則在前端建立
+    console.time('Client-side Index Creation')
+    addAllToIndex(allCards, searchIndex)
+    console.timeEnd('Client-side Index Creation')
+    console.log(`FlexSearch is ready for ${allCards.length} cards (Client-side built).`)
   },
 
   /**

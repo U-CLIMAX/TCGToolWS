@@ -3,6 +3,7 @@ import path from 'path'
 import crypto from 'crypto'
 import { fileURLToPath } from 'url'
 import zlib from 'zlib'
+import { Document, Charset } from 'flexsearch'
 import { seriesMap } from '../src/maps/series-map.js'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -12,6 +13,53 @@ const CARD_DATA_DIR = path.join(__dirname, '../src/assets/card-data')
 const OUTPUT_DIR = path.join(__dirname, '../public')
 
 console.log('🔍 Starting to build card index...')
+
+// --- FlexSearch 配置與生成函式 ---
+const createIndexConfig = () => ({
+  tokenize: 'forward',
+  encoder: Charset.CJK,
+  document: {
+    id: 'index',
+    index: ['name', 'effect', 'id'],
+  },
+})
+
+/**
+ * 建立並儲存 FlexSearch 索引檔案
+ * @param {string} game - 遊戲代號 (ws/wsr)
+ * @param {Array} cards - 卡片資料陣列
+ * @param {string} hash - 資料版本 hash
+ * @returns {Promise<Object>} - 回傳索引檔案對照表 { field: filename }
+ */
+const buildAndSaveSearchIndex = async (game, cards, hash) => {
+  console.log(`     - Building FlexSearch index for ${cards.length} cards...`)
+  const index = new Document(createIndexConfig())
+
+  cards.forEach((card, idx) => {
+    index.add({
+      index: idx,
+      name: card.name || '',
+      effect: card.effect || '',
+      id: card.id || '',
+    })
+  })
+
+  const indexFiles = {}
+
+  await new Promise((resolve) => {
+    index.export((key, data) => {
+      const filename = `${game}_index_${key}.${hash}.json`
+      const filePath = path.join(OUTPUT_DIR, filename)
+
+      fs.writeFileSync(filePath, data || '')
+      indexFiles[key] = filename
+    })
+    resolve()
+  })
+
+  console.log(`     - Search Index built and saved: ${Object.keys(indexFiles).join(', ')}`)
+  return indexFiles
+}
 
 // Build prefix map
 const prefixToGameMap = new Map()
@@ -180,7 +228,7 @@ const processCardLinks = (cards) => {
   return cards
 }
 
-const processGameData = (game, cards) => {
+const processGameData = async (game, cards) => {
   console.log(`\n🚀 Processing ${game.toUpperCase()} data...`)
   const manifestFile = path.join(OUTPUT_DIR, `card-db-manifest-${game}.json`)
 
@@ -225,7 +273,7 @@ const processGameData = (game, cards) => {
   // 檢測內容變化，並判斷是否需要重新產生檔案
   try {
     const nowManifest = JSON.parse(fs.readFileSync(manifestFile, 'utf-8'))
-    if (version === nowManifest.version) {
+    if (version === nowManifest.version && nowManifest.indexFiles) {
       console.log('⏭️ The content has not changed, skip...')
       return
     }
@@ -240,6 +288,8 @@ const processGameData = (game, cards) => {
   // 處理卡片連結
   console.log('     - Processing card links...')
   processCardLinks(cards)
+
+  const indexFiles = await buildAndSaveSearchIndex(game, cards, hash)
 
   // 建立篩選選項
   const filterOptions = {
@@ -321,6 +371,7 @@ const processGameData = (game, cards) => {
     chunked: chunkCount > 1,
     totalSize: `${totalSizeMB} MB`,
     cardCount: cards.length,
+    indexFiles: indexFiles,
   }
 
   if (chunkCount > 1) {
@@ -332,13 +383,16 @@ const processGameData = (game, cards) => {
   fs.writeFileSync(manifestFile, JSON.stringify(manifest, null, 2))
   console.log(`     - Manifest file created: ${manifestFile}`)
 
-  // 清理舊的帶 hash 的檔案（包括舊的單體檔案和舊分片）
+  // 清理舊的帶 hash 的檔案（包括舊的單體檔案、舊分片、以及舊的索引檔）
   const currentFiles = chunkCount > 1 ? chunkFiles : [singleFileName]
-  const oldFiles = fs
-    .readdirSync(OUTPUT_DIR)
-    .filter(
-      (f) => f.startsWith(`${game}_cards_db.`) && f.endsWith('.bin') && !currentFiles.includes(f)
-    )
+  const currentIndexFiles = Object.values(indexFiles)
+  const allCurrentFiles = [...currentFiles, ...currentIndexFiles]
+
+  const oldFiles = fs.readdirSync(OUTPUT_DIR).filter((f) => {
+    const isGameDb = f.startsWith(`${game}_cards_db.`) && f.endsWith('.bin')
+    const isGameIndex = f.startsWith(`${game}_index_`) && f.endsWith('.json')
+    return (isGameDb || isGameIndex) && !allCurrentFiles.includes(f)
+  })
 
   oldFiles.forEach((oldFile) => {
     const oldFilePath = path.join(OUTPUT_DIR, oldFile)
@@ -347,8 +401,9 @@ const processGameData = (game, cards) => {
   })
 }
 
-// --- Processing ---
-processGameData('ws', cardsByGame.ws)
-processGameData('wsr', cardsByGame.wsr)
+;(async () => {
+  await processGameData('ws', cardsByGame.ws)
+  await processGameData('wsr', cardsByGame.wsr)
 
-console.log('✨ Done!')
+  console.log('✨ Done!')
+})()
