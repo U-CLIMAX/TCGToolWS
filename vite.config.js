@@ -78,10 +78,18 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['vue', 'vue-router'],
-          ui: ['vuetify'],
-          lottie: ['lottie-web'],
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('lottie-web')) {
+              return 'lottie'
+            }
+            if (id.includes('vuetify')) {
+              return 'ui'
+            }
+            if (id.includes('vue') || id.includes('vue-router')) {
+              return 'vendor'
+            }
+          }
         },
       },
     },
