@@ -9,9 +9,6 @@ import vuetify from 'vite-plugin-vuetify'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import svgLoader from 'vite-svg-loader'
 import lqip from 'vite-plugin-lqip'
-import Sitemap from 'vite-plugin-sitemap'
-
-const staticRoutes = ['/', '/home', '/series', '/search/ws', '/search/wsr']
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -27,13 +24,6 @@ export default defineConfig({
     vue(),
     vueDevTools(),
     lqip(),
-    Sitemap({
-      hostname: 'https://uclimax.cn',
-      dynamicRoutes: staticRoutes,
-      generateRobotsTxt: true,
-      exclude: ['/client', '/client/stats', '/tcgtoolws/stats'],
-      readable: false,
-    }),
     svgLoader({
       svgoConfig: {
         multipass: true,

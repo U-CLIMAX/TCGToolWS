@@ -60,7 +60,6 @@
     "vite": "^7.1.11",
     "vite-plugin-lqip": "^0.0.5",
     "vite-plugin-pwa": "^1.1.0",
-    "vite-plugin-sitemap": "^0.8.2",
     "vite-plugin-vue-devtools": "^8.0.0",
     "vite-plugin-vuetify": "^2.1.2",
     "vite-svg-loader": "^5.1.0"
