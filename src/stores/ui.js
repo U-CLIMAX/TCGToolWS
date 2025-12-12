@@ -130,17 +130,6 @@ export const useUIStore = defineStore(
   {
     persist: {
       storage: localStorage,
-      paths: [
-        'theme',
-        'isFilterOpen',
-        'isCardDeckOpen',
-        'performanceThreshold',
-        'showStatsDashboard',
-        'seriesSearchTerm',
-        'seriesSortBy',
-        'seriesSortAscending',
-        'seriesGameFilter',
-      ],
     },
   }
 )
