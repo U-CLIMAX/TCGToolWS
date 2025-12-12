@@ -67,8 +67,17 @@ export const useUIStore = defineStore(
 
     const setBackgroundImage = ({ canvas }) => {
       if (!canvas) return
+      let dataURL = canvas.toDataURL('image/webp', 0.9)
+
+      const sizeInBytes = dataURL.length * 0.75
+      const sizeInMB = sizeInBytes / (1024 * 1024)
+
+      if (sizeInMB > 2) {
+        dataURL = canvas.toDataURL('image/webp', 0.6)
+      }
+
       const newImage = {
-        src: canvas.toDataURL('image/webp', 0.9),
+        src: dataURL,
         width: canvas.width,
         height: canvas.height,
         maskOpacity: 0.3,
