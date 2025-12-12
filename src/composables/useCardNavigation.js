@@ -18,14 +18,14 @@ export const useCardNavigation = (cards, selectedCard) => {
     if (selectedCardIndex.value > 0) {
       return cards.value[selectedCardIndex.value - 1]
     }
-    return null
+    return cards.value[0]
   }
 
   const getNextCard = () => {
     if (selectedCardIndex.value < cards.value.length - 1) {
       return cards.value[selectedCardIndex.value + 1]
     }
-    return null
+    return cards.value[0]
   }
 
   return {
