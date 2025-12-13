@@ -228,13 +228,7 @@
 
     <!-- Global Loading Overlay -->
     <v-overlay v-model="uiStore.isLoading" class="d-flex align-center justify-center" persistent>
-      <!-- spinner 用 v-if 再次判斷是因為 v-overlay 在火狐瀏覽器上有機會沒法按照預期完全銷毀 -->
-      <half-circle-spinner
-        v-if="uiStore.isLoading"
-        :animation-duration="1000"
-        :size="64"
-        :color="spinnerColor"
-      />
+      <half-circle-spinner :animation-duration="1000" :size="64" :color="spinnerColor" />
     </v-overlay>
   </v-app>
 </template>
