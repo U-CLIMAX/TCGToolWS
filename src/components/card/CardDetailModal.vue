@@ -184,13 +184,13 @@
                 </v-tooltip>
               </v-chip>
             </div>
-            <div v-if="card.link && card.link.length > 0" class="mt-4">
+            <div v-if="card.link && card.link.length > 0" :key="`${card.id}-links`" class="mt-4">
               <div class="text-body-2 mb-2 text-grey">
                 <v-icon size="18" class="mr-1">mdi-link-variant</v-icon>
                 关联卡片
               </div>
               <div v-if="isLoadingLinks" class="d-flex justify-center align-center pa-4">
-                <v-progress-circular indeterminate color="primary"></v-progress-circular>
+                <v-progress-linear indeterminate color="primary" />
               </div>
               <v-row v-else dense>
                 <v-col v-for="card in linkedCards" :key="card.id" cols="6" sm="4" md="3" lg="2">
