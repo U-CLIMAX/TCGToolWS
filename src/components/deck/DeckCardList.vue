@@ -122,6 +122,7 @@
         :img-url="modalCardImageUrl.base"
         :blur-url="modalCardImageUrl.blur"
         :linked-cards="linkedCards"
+        :is-loading-links="isLoadingLinks"
         :show-actions="false"
         :card-index="selectedCardIndex"
         :total-cards="totalCards"
@@ -170,6 +171,10 @@ const props = defineProps({
   linkedCards: {
     type: Array,
     default: () => [],
+  },
+  isLoadingLinks: {
+    type: Boolean,
+    default: false,
   },
   selectedCardIndex: {
     type: Number,

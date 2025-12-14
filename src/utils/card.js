@@ -19,6 +19,7 @@ const findAllPrefixesByCardPrefix = (prefix) => {
 }
 
 const cardCache = new Map()
+const filterStore = useFilterStore()
 
 export const fetchCardByIdAndPrefix = (id, prefix) => {
   const cacheKey = `${prefix}-${id}`
@@ -32,30 +33,14 @@ export const fetchCardByIdAndPrefix = (id, prefix) => {
       const seriesPrefixes = findAllPrefixesByCardPrefix(prefix)
       const { allCards } = await filterStore.fetchAndProcessCards(seriesPrefixes)
 
-      const uniqueCardsMap = new Map()
-      allCards.forEach((card) => {
-        const key = `${card.cardIdPrefix}-${card.id}`
-        if (!uniqueCardsMap.has(key)) {
-          uniqueCardsMap.set(key, card)
-        }
-      })
+      let matchedCard = allCards.find((c) => c.id === id)
 
-      const uniqueCards = Array.from(uniqueCardsMap.values())
-      const matchedCards = uniqueCards.filter((c) => c.id === id || c.baseId === id)
-
-      if (matchedCards.length === 0) {
+      if (!matchedCard) {
         console.warn(`Card with ID "${id}" not found in prefix "${prefix}"`)
         return null
       }
 
-      if (matchedCards.length > 1) {
-        console.warn(
-          `Multiple cards found with ID "${id}" and prefix "${prefix}". Returning the first one.`,
-          matchedCards
-        )
-      }
-
-      return matchedCards[0]
+      return matchedCard
     } catch (e) {
       console.error(`Failed to load card ${id} with prefix ${prefix}:`, e)
       cardCache.delete(cacheKey)
@@ -69,22 +54,12 @@ export const fetchCardByIdAndPrefix = (id, prefix) => {
 
 export const fetchCardsByBaseIdAndPrefix = async (baseId, prefix) => {
   try {
-    const filterStore = useFilterStore()
     const seriesPrefixes = findAllPrefixesByCardPrefix(prefix)
     const { allCards } = await filterStore.fetchAndProcessCards(seriesPrefixes)
-
-    const uniqueCardsMap = new Map()
-    allCards.forEach((card) => {
-      const key = `${card.cardIdPrefix}-${card.id}`
-      if (!uniqueCardsMap.has(key)) {
-        uniqueCardsMap.set(key, card)
-      }
-    })
-    const uniqueCards = Array.from(uniqueCardsMap.values())
-    const cards = uniqueCards.filter((c) => c.baseId === baseId)
+    const cards = allCards.filter((c) => c.baseId === baseId)
 
     if (cards.length === 0) {
-      console.warn(`Base card with ID "${baseId}" not found in prefix "${prefix}"`)
+      console.warn(`Base card with ID "${baseId}" not found in prefix "${prefix}" `)
     }
 
     return cards

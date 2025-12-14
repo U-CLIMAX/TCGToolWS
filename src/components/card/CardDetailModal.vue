@@ -184,7 +184,7 @@
                 </v-tooltip>
               </v-chip>
             </div>
-            <div v-if="linkedCards && linkedCards.length > 0" class="mt-4">
+            <div v-if="card.link && card.link.length > 0" class="mt-4">
               <div class="text-body-2 mb-2 text-grey">
                 <v-icon size="18" class="mr-1">mdi-link-variant</v-icon>
                 关联卡片
@@ -262,6 +262,7 @@ const props = defineProps({
   cardIndex: { type: Number, default: 0 },
   totalCards: { type: Number, default: 1 },
 })
+
 const authStore = useAuthStore()
 const { userRole } = storeToRefs(authStore)
 const deckStore = useDeckStore()

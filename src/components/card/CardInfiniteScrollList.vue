@@ -171,34 +171,40 @@ const onNextCard = () => {
 
 const fetchLinkedCards = async (card) => {
   try {
-    isLoadingLinks.value = true
-
     const cardToDisplay = await fetchCardByIdAndPrefix(card.id, card.cardIdPrefix)
-    // sanitize all link IDs to get clean base IDs.
-    const baseIds = [
-      ...new Set(cardToDisplay.link.map((linkId) => linkId.replace(/[a-zA-Z]+$/, ''))),
-    ]
-    const linkRequests = baseIds.map(
-      async (baseId) => await fetchCardsByBaseIdAndPrefix(baseId, cardToDisplay.cardIdPrefix)
-    )
 
-    const linkedCardsData = await Promise.all(linkRequests)
-    selectedLinkedCards.value = sortCards(linkedCardsData.flat().filter(Boolean))
+    if (cardToDisplay && cardToDisplay.link && cardToDisplay.link.length > 0) {
+      const baseIds = [
+        ...new Set(cardToDisplay.link.map((linkId) => linkId.replace(/[a-zA-Z]+$/, ''))),
+      ]
+
+      const linkRequests = baseIds.map(
+        async (baseId) => await fetchCardsByBaseIdAndPrefix(baseId, cardToDisplay.cardIdPrefix)
+      )
+
+      const linkedCardsData = await Promise.all(linkRequests)
+      if (selectedCardData.value?.card?.id === card.id) {
+        selectedLinkedCards.value = sortCards(linkedCardsData.flat().filter(Boolean))
+      }
+    }
   } catch (error) {
     console.error('Failed to fetch linked cards:', error)
-    selectedLinkedCards.value = []
   } finally {
     isLoadingLinks.value = false
   }
 }
 
 const onShowDetails = async (payload) => {
+  isLoadingLinks.value = true
+  selectedLinkedCards.value = []
   selectedCardData.value = payload
   isModalVisible.value = true
   await fetchLinkedCards(payload.card)
 }
 
 const onShowNewCard = async (payload) => {
+  isLoadingLinks.value = true
+  selectedLinkedCards.value = []
   selectedCardData.value = payload
   await fetchLinkedCards(payload.card)
 }

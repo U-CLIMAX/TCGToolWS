@@ -28,7 +28,7 @@
 </template>
 
 <script setup>
-import { toRefs } from 'vue'
+import { computed } from 'vue'
 import { useCardImage } from '@/composables/useCardImage.js'
 
 const props = defineProps({
@@ -37,8 +37,8 @@ const props = defineProps({
 
 const emit = defineEmits(['show-details'])
 
-const cardId = toRefs(props.card).id
-const cardIdPrefix = toRefs(props.card).cardIdPrefix
+const cardId = computed(() => props.card.id)
+const cardIdPrefix = computed(() => props.card.cardIdPrefix)
 
 const { base: imageUrl, blur: blurUrl } = useCardImage(cardIdPrefix, cardId)
 

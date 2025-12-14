@@ -157,6 +157,7 @@
       :img-url="modalCardImageUrl.base"
       :blur-url="modalCardImageUrl.blur"
       :linked-cards="linkedCardsDetails"
+      :is-loading-links="isLoadingLinkedCards"
       :show-actions="true"
       :card-index="selectedCardIndex"
       :total-cards="deckCards.length"
@@ -579,6 +580,7 @@ const isModalVisible = ref(false)
 // Card Data for Modal
 const selectedCardData = ref(null)
 const linkedCardsDetails = ref([])
+const isLoadingLinkedCards = ref(false)
 
 const { selectedCardIndex, getPrevCard, getNextCard } = useCardNavigation(
   flattenedDisplayCards,
@@ -627,6 +629,10 @@ const handleShowNewCard = async (cardPayload) => {
       console.error('Failed to fetch card details for', cardToDisplay.id)
       return
     }
+    linkedCardsDetails.value = []
+    isLoadingLinkedCards.value = true
+    selectedCardData.value = card
+    isModalVisible.value = true
 
     if (card.link && Array.isArray(card.link) && card.link.length > 0) {
       // Sanitize and deduplicate link IDs to prevent redundant fetches.
@@ -636,15 +642,15 @@ const handleShowNewCard = async (cardPayload) => {
           async (baseId) => await fetchCardsByBaseIdAndPrefix(baseId, cardToDisplay.cardIdPrefix)
         )
       )
-      linkedCardsDetails.value = sortCards(fetchedLinks.flat().filter(Boolean))
-    } else {
-      linkedCardsDetails.value = []
+      if (selectedCardData.value && selectedCardData.value.id === card.id) {
+        linkedCardsDetails.value = sortCards(fetchedLinks.flat().filter(Boolean))
+      }
     }
-    isModalVisible.value = true
-    selectedCardData.value = card
   } catch (error) {
     console.error('Error handling show new card:', error)
     // Optionally, show a snackbar or other user-facing error message
+  } finally {
+    isLoadingLinkedCards.value = false
   }
 }
 

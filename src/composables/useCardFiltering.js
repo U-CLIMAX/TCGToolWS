@@ -29,14 +29,23 @@ export const useCardFiltering = (
   let workerInstance = null
   let workerApiInstance = null
 
-  const initializeWorker = async (cards, options) => {
-    // Terminate existing worker if any, to ensure a clean state
-    terminateWorker()
-
-    if (cards && cards.length > 0) {
-      console.log('正在建立並初始化新的 Worker...')
+  const ensureWorker = () => {
+    if (!workerInstance) {
+      console.log('正在建立 Worker...')
       workerInstance = new FilterWorker()
       workerApiInstance = wrap(workerInstance)
+    }
+  }
+
+  const processRawDataInWorker = async (rawFiles) => {
+    ensureWorker()
+    return await workerApiInstance.processRawData(rawFiles)
+  }
+
+  const initializeWorker = async (cards, options) => {
+    ensureWorker()
+
+    if (cards && cards.length > 0) {
       await workerApiInstance.init(toRaw(cards), toRaw(options))
       await applyKeywordSearchAndFilter() // Trigger initial filtering after worker is ready
     } else {
@@ -156,6 +165,7 @@ export const useCardFiltering = (
     // Actions
     resetFilters,
     terminateWorker,
-    initializeWorker, // Expose initializeWorker
+    initializeWorker,
+    processRawDataInWorker,
   }
 }

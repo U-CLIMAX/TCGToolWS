@@ -65,7 +65,7 @@ export const useFilterStore = defineStore('filter', () => {
   }
 
   // Raw data from API
-  const allCards = ref([])
+  const allCards = shallowRef([]) // Optimized: shallowRef for large dataset
   const isLoading = ref(false)
   const error = ref(null)
 
@@ -96,6 +96,7 @@ export const useFilterStore = defineStore('filter', () => {
     filteredCards,
     terminateWorker,
     initializeWorker,
+    processRawDataInWorker,
   } = useCardFiltering(productNames, traits, rarities, costRange, powerRange)
 
   // --- Actions ---
@@ -168,136 +169,21 @@ export const useFilterStore = defineStore('filter', () => {
         return Promise.resolve(null)
       })
 
+      // Wait for all fetches to complete (Main thread network I/O)
       const allFileContents = (await Promise.all(fetchTasks)).filter((item) => item !== null)
 
-      const fetchedCards = []
-      const productNamesSet = new Set()
-      const traitsSet = new Set()
-      const raritiesSet = new Set()
-      const soulsSet = new Set()
-      let minCost = Infinity,
-        maxCost = -Infinity,
-        minPower = Infinity,
-        maxPower = -Infinity
-
-      for (const file of allFileContents) {
-        for (const baseId in file.content) {
-          const cardData = file.content[baseId]
-
-          if (cardData.product_name) productNamesSet.add(cardData.product_name)
-          if (cardData.trait && Array.isArray(cardData.trait))
-            cardData.trait.forEach((t) => traitsSet.add(t))
-          if (typeof cardData.cost === 'number') {
-            minCost = Math.min(minCost, cardData.cost)
-            maxCost = Math.max(maxCost, cardData.cost)
-          }
-          if (typeof cardData.power === 'number') {
-            minPower = Math.min(minPower, cardData.power)
-            maxPower = Math.max(maxPower, cardData.power)
-          }
-          const soulValue = cardData.soul === '-' ? 0 : cardData.soul
-          if (typeof soulValue === 'number') {
-            soulsSet.add(soulValue)
-          }
-
-          const { all_cards, ...baseCardData } = cardData
-          if (all_cards && Array.isArray(all_cards)) {
-            const minIdLength =
-              all_cards.length > 0 ? Math.min(...all_cards.map((c) => c.id.length)) : 0
-
-            all_cards.forEach((cardVersion) => {
-              if (cardVersion.rarity) raritiesSet.add(cardVersion.rarity)
-
-              // 如果只有一張卡 且 最後是英文 -> 強制 false (代表是異圖)
-              const lastChar = cardVersion.id.slice(-1)
-              const isLastCharLetter =
-                (lastChar >= 'A' && lastChar <= 'Z') || (lastChar >= 'a' && lastChar <= 'z')
-
-              // 判斷卡號是否等於最短長度
-              const isShortestLength = cardVersion.id.length === minIdLength
-
-              const isLowest = all_cards.length === 1 && isLastCharLetter ? false : isShortestLength
-
-              fetchedCards.push({
-                ...baseCardData,
-                ...cardVersion,
-                baseId,
-                cardIdPrefix: file.cardIdPrefix,
-                isLowestRarity: isLowest,
-              })
-            })
-          }
+      if (allFileContents.length === 0) {
+        return {
+          allCards: [],
+          productNames: [],
+          traits: [],
+          souls: [],
+          costRange: { min: 0, max: 0 },
+          powerRange: { min: 0, max: 0 },
         }
       }
 
-      fetchedCards.forEach((card) => (card.link = []))
-
-      const nameToCardBaseIds = new Map()
-      const baseIdToCardsMap = new Map()
-
-      for (const card of fetchedCards) {
-        if (!nameToCardBaseIds.has(card.name)) {
-          nameToCardBaseIds.set(card.name, new Set())
-        }
-        nameToCardBaseIds.get(card.name).add(card.baseId)
-
-        if (!baseIdToCardsMap.has(card.baseId)) {
-          baseIdToCardsMap.set(card.baseId, [])
-        }
-        baseIdToCardsMap.get(card.baseId).push(card)
-      }
-
-      const escapeRegex = (str) => {
-        return str.replace(/[.*+?^${}()|[\\]/g, '\\$&')
-      }
-
-      const allNamesPattern = [...nameToCardBaseIds.keys()].map(escapeRegex).join('|')
-
-      const nameMatcherRegex = new RegExp(`「(${allNamesPattern})」`, 'g')
-
-      for (const targetCard of fetchedCards) {
-        const effectText = targetCard.effect || ''
-        if (!effectText) continue
-
-        const matches = effectText.matchAll(nameMatcherRegex)
-
-        for (const match of matches) {
-          const foundName = match[1]
-          const sourceBaseIds = nameToCardBaseIds.get(foundName)
-
-          if (sourceBaseIds) {
-            for (const sourceBaseId of sourceBaseIds) {
-              if (!targetCard.link.includes(sourceBaseId)) {
-                targetCard.link.push(sourceBaseId)
-              }
-              const sourceCardsToUpdate = baseIdToCardsMap.get(sourceBaseId)
-              if (sourceCardsToUpdate) {
-                for (const sourceCard of sourceCardsToUpdate) {
-                  if (!sourceCard.link.includes(targetCard.baseId)) {
-                    sourceCard.link.push(targetCard.baseId)
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-
-      const result = {
-        allCards: fetchedCards,
-        productNames: [...productNamesSet],
-        traits: [...traitsSet],
-        rarities: [...raritiesSet].sort(),
-        souls: [...soulsSet].sort((a, b) => a - b),
-        costRange: {
-          min: minCost === Infinity ? 0 : minCost,
-          max: maxCost === -Infinity ? 0 : maxCost,
-        },
-        powerRange: {
-          min: minPower === Infinity ? 0 : minPower,
-          max: maxPower === -Infinity ? 0 : maxPower,
-        },
-      }
+      const result = await processRawDataInWorker(allFileContents)
 
       return result
     } catch (e) {
@@ -347,7 +233,7 @@ export const useFilterStore = defineStore('filter', () => {
 
   const reset = () => {
     terminateWorker()
-    processedPathsHistory.clear() // [新增] Reset 時也清空歷史紀錄
+    processedPathsHistory.clear() // Reset history
     allCards.value = []
     productNames.value = []
     traits.value = []

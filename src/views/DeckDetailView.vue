@@ -146,6 +146,7 @@
             :selected-card="selectedCardData"
             :is-modal-visible="isModalVisible"
             :linked-cards="linkedCardsDetails"
+            :is-loading-links="isLoadingLinkedCards"
             :selected-card-index="selectedCardIndex"
             :total-cards="flattenedDisplayCards.length"
             @card-click="handleCardClick"
@@ -684,6 +685,7 @@ onUnmounted(() => {
 const isModalVisible = ref(false)
 const selectedCardData = ref(null)
 const linkedCardsDetails = ref([])
+const isLoadingLinkedCards = ref(false)
 
 const { selectedCardIndex, getPrevCard, getNextCard } = useCardNavigation(
   flattenedDisplayCards,
@@ -709,19 +711,24 @@ const handleShowNewCard = async (cardPayload) => {
     const card = cardPayload.card || cardPayload
     if (!card) return
 
+    linkedCardsDetails.value = []
+    isLoadingLinkedCards.value = true
+    selectedCardData.value = card
+    isModalVisible.value = true
+
     if (card.link && Array.isArray(card.link) && card.link.length > 0) {
       const baseIds = [...new Set(card.link.map((linkId) => linkId.replace(/[a-zA-Z]+$/, '')))]
       const fetchedLinks = await Promise.all(
         baseIds.map(async (baseId) => await fetchCardsByBaseIdAndPrefix(baseId, card.cardIdPrefix))
       )
-      linkedCardsDetails.value = sortCards(fetchedLinks.flat().filter(Boolean))
-    } else {
-      linkedCardsDetails.value = []
+      if (selectedCardData.value && selectedCardData.value.id === card.id) {
+        linkedCardsDetails.value = sortCards(fetchedLinks.flat().filter(Boolean))
+      }
     }
-    selectedCardData.value = card
-    isModalVisible.value = true
   } catch (error) {
     console.error('Error handling show new card:', error)
+  } finally {
+    isLoadingLinkedCards.value = false
   }
 }
 
