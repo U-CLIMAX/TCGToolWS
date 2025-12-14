@@ -15,10 +15,11 @@ const getSortValue = (card) => {
     level: level,
     color: colorOrder,
     id: card.id,
+    baseId: card.baseId,
   }
 }
 
-export const sortDeckCards = (cardList) => {
+export const sortCards = (cardList) => {
   if (!cardList || cardList.length === 0) {
     return []
   }
@@ -31,7 +32,8 @@ export const sortDeckCards = (cardList) => {
       sortA.type - sortB.type ||
       sortA.level - sortB.level ||
       sortA.color - sortB.color ||
-      sortA.id.localeCompare(sortB.id)
+      sortA.baseId.localeCompare(sortB.baseId) ||
+      sortA.id.length - sortB.id.length
     )
   })
 }

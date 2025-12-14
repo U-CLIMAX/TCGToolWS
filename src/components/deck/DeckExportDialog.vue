@@ -80,7 +80,7 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { useSnackbar } from '@/composables/useSnackbar'
-import { sortDeckCards } from '@/utils/deckSort.js'
+import { sortCards } from '@/utils/cardsSort.js'
 
 const props = defineProps({
   modelValue: {
@@ -103,7 +103,7 @@ const deckBaseIds = computed(() => {
   if (!props.cards) return ''
 
   const cardList = Object.values(props.cards)
-  const sortedCards = sortDeckCards(cardList)
+  const sortedCards = sortCards(cardList)
 
   const allBaseIds = []
   sortedCards.forEach((card) => {

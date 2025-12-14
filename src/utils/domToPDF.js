@@ -1,7 +1,7 @@
 import { jsPDF } from 'jspdf'
 import { snapdom } from '@zumer/snapdom'
 import { formatEffectToHtml } from './cardEffectFormatter'
-import { sortDeckCards } from './deckSort.js'
+import { sortCards } from './cardsSort.js'
 import { normalizeFileName } from './sanitizeFilename'
 
 const PAGE_OPTS = { w: 595, h: 842, cardW: 178.58, cardH: 249.45, gap: 2.83, cols: 3, rows: 3 }
@@ -26,7 +26,7 @@ const getCardHtml = (card, x, y, lang) => {
 }
 
 export const convertDeckToPDF = async (cards, name, language) => {
-  const flatCards = sortDeckCards(cards)
+  const flatCards = sortCards(cards)
     .flatMap((c) => Array(c.quantity || 1).fill(c))
     .filter((c) => c.imgUrl)
   if (flatCards.length === 0) return

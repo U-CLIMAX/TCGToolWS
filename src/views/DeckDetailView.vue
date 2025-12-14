@@ -374,7 +374,7 @@ import { useUIStore } from '@/stores/ui'
 import { useDeckStore } from '@/stores/deck'
 import { useAuthStore } from '@/stores/auth'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
-import collator from '@/utils/collator.js'
+import { sortCards } from '@/utils/cardsSort'
 import { convertElementToPng } from '@/utils/domToImage.js'
 import { convertDeckToPDF } from '@/utils/domToPDF'
 import DeckShareImage from '@/components/deck/DeckShareImage.vue'
@@ -714,10 +714,7 @@ const handleShowNewCard = async (cardPayload) => {
       const fetchedLinks = await Promise.all(
         baseIds.map(async (baseId) => await fetchCardsByBaseIdAndPrefix(baseId, card.cardIdPrefix))
       )
-      linkedCardsDetails.value = fetchedLinks
-        .flat()
-        .filter(Boolean)
-        .sort((a, b) => collator.compare(a.name, b.name))
+      linkedCardsDetails.value = sortCards(fetchedLinks.flat().filter(Boolean))
     } else {
       linkedCardsDetails.value = []
     }

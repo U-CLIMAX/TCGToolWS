@@ -4,7 +4,7 @@
     class="linked-card"
     rounded="lg"
     @click="handleCardClick"
-    v-tooltip:top-center="card.name"
+    v-tooltip:top-center="card.id"
   >
     <v-img
       :src="imageUrl"

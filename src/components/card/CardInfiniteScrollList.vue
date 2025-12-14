@@ -81,7 +81,7 @@ import { useCardImage } from '@/composables/useCardImage.js'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import { useUIStore } from '@/stores/ui'
 import { storeToRefs } from 'pinia'
-import collator from '@/utils/collator.js'
+import { sortCards } from '@/utils/cardsSort'
 
 const props = defineProps({
   cards: {
@@ -183,10 +183,7 @@ const fetchLinkedCards = async (card) => {
     )
 
     const linkedCardsData = await Promise.all(linkRequests)
-    selectedLinkedCards.value = linkedCardsData
-      .flat()
-      .filter(Boolean)
-      .sort((a, b) => collator.compare(a.name, b.name))
+    selectedLinkedCards.value = sortCards(linkedCardsData.flat().filter(Boolean))
   } catch (error) {
     console.error('Failed to fetch linked cards:', error)
     selectedLinkedCards.value = []

@@ -174,8 +174,8 @@ import { fetchCardsByBaseIdAndPrefix } from '@/utils/card'
 import { useAuthStore } from '@/stores/auth'
 import { useUIStore } from '@/stores/ui'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
-import collator from '@/utils/collator.js'
 import DeckCardList from '@/components/deck/DeckCardList.vue'
+import { sortCards } from '@/utils/cardsSort'
 
 const props = defineProps({
   deck: {
@@ -317,10 +317,7 @@ const handleShowNewCard = async (cardPayload) => {
       const fetchedLinks = await Promise.all(
         baseIds.map(async (baseId) => await fetchCardsByBaseIdAndPrefix(baseId, card.cardIdPrefix))
       )
-      linkedCardsDetails.value = fetchedLinks
-        .flat()
-        .filter(Boolean)
-        .sort((a, b) => collator.compare(a.name, b.name))
+      linkedCardsDetails.value = sortCards(fetchedLinks.flat().filter(Boolean))
     } else {
       linkedCardsDetails.value = []
     }

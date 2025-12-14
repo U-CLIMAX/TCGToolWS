@@ -81,7 +81,7 @@
 import { getCardUrls } from '@/composables/useCardImage.js'
 import { computed, ref, watch, readonly } from 'vue'
 import { QR } from '@/components/common/QR.js'
-import { sortDeckCards } from '@/utils/deckSort.js'
+import { sortCards } from '@/utils/cardsSort.js'
 
 import logoUrl from '@/assets/ui/logo.webp'
 
@@ -117,7 +117,7 @@ const sortedAndFlatCardList = computed(() => {
     return []
   }
   const cardList = Object.values(props.deckCards)
-  return sortDeckCards(cardList)
+  return sortCards(cardList)
 })
 
 // TTS Mode: Expand cards based on quantity

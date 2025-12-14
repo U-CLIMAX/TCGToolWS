@@ -307,7 +307,7 @@ import { useRouter } from 'vue-router'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useUIStore } from '@/stores/ui'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
-import collator from '@/utils/collator.js'
+import { sortCards } from '@/utils/cardsSort'
 
 defineProps({
   headerOffsetHeight: {
@@ -636,10 +636,7 @@ const handleShowNewCard = async (cardPayload) => {
           async (baseId) => await fetchCardsByBaseIdAndPrefix(baseId, cardToDisplay.cardIdPrefix)
         )
       )
-      linkedCardsDetails.value = fetchedLinks
-        .flat()
-        .filter(Boolean)
-        .sort((a, b) => collator.compare(a.name, b.name))
+      linkedCardsDetails.value = sortCards(fetchedLinks.flat().filter(Boolean))
     } else {
       linkedCardsDetails.value = []
     }
