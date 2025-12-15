@@ -134,7 +134,10 @@
 
         <div
           class="h-100 overflow-y-auto themed-scrollbar"
-          :style="{ paddingTop: `${headerOffsetHeight}px` }"
+          :style="{
+            'paddingTop': `${headerOffsetHeight}px`,
+            '--sb-margin-top': `${headerOffsetHeight - 18}px`,
+          }"
           style="position: relative"
         >
           <!-- 只在資料準備好後才渲染 -->
