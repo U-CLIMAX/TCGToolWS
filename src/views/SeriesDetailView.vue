@@ -91,6 +91,7 @@
           :is-table-mode-active="isTableModeActive"
           margin="300"
           class="flex-grow-1 themed-scrollbar pl-4 pr-4"
+          :style="{ '--sb-margin-top': `${headerOffsetHeight}px` }"
         />
         <template v-if="smAndUp">
           <div class="sidebar-container" :class="{ 'right-sidebar-open': isCardDeckOpen }">

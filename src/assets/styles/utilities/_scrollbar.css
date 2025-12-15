@@ -15,6 +15,7 @@
 .themed-scrollbar .v-list::-webkit-scrollbar-track {
   background: var(--sb-track-color);
   border-radius: 10px;
+  margin-top: var(--sb-margin-top, 0px);
 }
 
 .themed-scrollbar::-webkit-scrollbar-thumb,
