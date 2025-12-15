@@ -36,11 +36,13 @@ const bootstrap = async () => {
       themes: {
         light: {
           colors: {
+            'default': '#EEEEEE',
             'ws-rose': '#e85a6a',
           },
         },
         dark: {
           colors: {
+            'default': '#424242',
             'ws-rose': '#FF8391',
           },
         },

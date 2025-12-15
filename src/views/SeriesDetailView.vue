@@ -89,7 +89,7 @@
           :cards="filterStore.filteredCards"
           :header-offset-height="headerOffsetHeight"
           :is-table-mode-active="isTableModeActive"
-          margin=" 300"
+          margin="300"
           class="flex-grow-1 themed-scrollbar pl-4 pr-4"
         />
         <template v-if="smAndUp">

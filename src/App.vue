@@ -5,13 +5,7 @@
       scroll-behavior="elevate"
       scroll-threshold="160"
       height="50"
-      :color="
-        isHomeRoute
-          ? '#212121'
-          : vuetifyTheme.global.current.value.dark
-            ? 'grey-darken-3'
-            : 'grey-lighten-3'
-      "
+      :color="isHomeRoute ? '#212121' : 'default'"
       :elevation="isHomeRoute ? 0 : 5"
     >
       <template #prepend>
@@ -48,7 +42,7 @@
                 <v-list density="compact" :class="{ 'glass-menu': hasBackgroundImage }">
                   <v-list-item
                     :to="{ name: 'GlobalSearch', params: { game: 'ws' } }"
-                    title="Weiẞ Schwarz"
+                    title="Weiβ Schwarz"
                   >
                   </v-list-item>
                   <v-list-item
@@ -144,7 +138,7 @@
             </template>
             <v-list-item
               :to="{ name: 'GlobalSearch', params: { game: 'ws' } }"
-              title="Weiẞ Schwarz"
+              title="Weiβ Schwarz"
             ></v-list-item>
             <v-list-item
               color="ws-rose"

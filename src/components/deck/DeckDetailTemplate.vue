@@ -106,7 +106,7 @@
           <v-sheet
             class="overflow-y-auto pa-2 rounded themed-scrollbar"
             max-height="300px"
-            :color="$vuetify.theme.current.dark ? 'grey-darken-3' : 'grey-lighten-3'"
+            color="default"
           >
             <v-row dense>
               <v-col v-for="card in Object.values(cards)" :key="card.id" cols="4" lg="3">
