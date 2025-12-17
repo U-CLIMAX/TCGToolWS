@@ -349,7 +349,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】 あなたのキャラすべてに、パワーを＋1000し、ソウルを＋1。<br/>（<img src=\"/effect-icons/choice.webp\"/>：このカードがトリガーした時、あなたは自分の控え室のトリガーアイコンに<img src=\"/effect-icons/soul.webp\"/>があるキャラを1枚選び、手札に戻すかストック置場に置いてよい）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\">：此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
     "all_cards": [
       {
         "id": "WS/WSPR-P17",
