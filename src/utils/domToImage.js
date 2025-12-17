@@ -31,8 +31,6 @@ export const convertElementToPng = async (elementId, name, scale = 1, embedFonts
       height: 1,
       dpr: 1,
       cache: 'disabled',
-      filter: (el) => el.tagName !== 'IMG',
-      filterMode: 'hide',
     })
 
     // 2. The actual capture, now running with a clean cache.
