@@ -427,7 +427,7 @@
     "trait": ["MOVIE", "家族", "幼稚園"],
     "color": "黄色",
     "soul": 1,
-    "effect": "【永】应援 你此卡前全部《MOVIE》或《家族》的角色，战斗力+X。X是那个角色的等级×500。<br/>【自】你触发到触发标记是<img src=\"/effect-icons/soul.webp\"/><img src=\"/effect-icons/soul.webp\"/>的高潮卡时，你看对手卡组顶1张卡，放置到卡组顶或卡组底。。",
+    "effect": "【永】应援 你此卡前全部《MOVIE》或《家族》的角色，战斗力+X。X是那个角色的等级×500。<br/>【自】你触发到触发标记是<img src=\"/effect-icons/soul.webp\"/><img src=\"/effect-icons/soul.webp\"/>的高潮卡时，你看对手卡组顶1张卡，放置到卡组顶或卡组底。",
     "all_cards": [
       {
         "id": "CS/S114-019",
@@ -542,7 +542,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】 你全部的角色攻击力＋1000し，灵魂值＋1。<br/>（<img src=\"/effect-icons/choice.webp\"/>：此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\"/>的角色卡返回手牌或放置到库存区）",
+    "effect": "【永】 你全部的角色攻击力＋1000，灵魂值＋1。<br/>（<img src=\"/effect-icons/choice.webp\"/>：此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\"/>的角色卡返回手牌或放置到库存区）",
     "all_cards": [
       {
         "id": "CS/S114-024",

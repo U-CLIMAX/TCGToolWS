@@ -9,7 +9,7 @@
     "trait": ["NIKKE", "カウンターズ"],
     "color": "黄色",
     "soul": 1,
-    "effect": "【永】你的高潮区有触发标记含有<img src=\"/effect-icons/shot.webp\"/>的高潮卡的话，所有区域的此卡获得触发标记<img src=\"/effect-icons/shot.webp\"/>を得る。<br/>【起】[1张手牌放置到休息室，你将此卡放置到卡组底] 你从自己的卡组找至多1张《NIKKE》的角色卡展示给对手后加入手牌，卡组洗切。",
+    "effect": "【永】你的高潮区有触发标记含有<img src=\"/effect-icons/shot.webp\"/>的高潮卡的话，所有区域的此卡获得触发标记<img src=\"/effect-icons/shot.webp\"/>。<br/>【起】[1张手牌放置到休息室，你将此卡放置到卡组底] 你从自己的卡组找至多1张《NIKKE》的角色卡展示给对手后加入手牌，卡组洗切。",
     "all_cards": [
       {
         "id": "NIK/S117-P01",

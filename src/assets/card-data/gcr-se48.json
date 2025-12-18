@@ -1164,7 +1164,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】 所有你的角色力量＋1000、灵魂值＋1。<br/>（<img src=\"/effect-icons/salvage.webp\"/>：こ当此卡被触发时，你可以选择自己休息室中至多1张角色卡返回手牌）",
+    "effect": "【永】 所有你的角色力量＋1000、灵魂值＋1。<br/>（<img src=\"/effect-icons/salvage.webp\"/>：当此卡被触发时，你可以选择自己休息室中至多1张角色卡返回手牌）",
     "all_cards": [
       {
         "id": "GCR/SE48-50",

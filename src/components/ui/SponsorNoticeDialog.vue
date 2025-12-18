@@ -35,7 +35,7 @@
 
           <v-list-item prepend-icon="mdi-numeric-2-circle-outline" class="px-1">
             <v-list-item-title class="text-wrap">
-              可能存在<b>时间延迟</b>，如果第一次刷新未成功，请<b>等待约 1 分钟</b>后再试。。
+              可能存在<b>时间延迟</b>，如果第一次刷新未成功，请<b>等待约 1 分钟</b>后再试。
             </v-list-item-title>
           </v-list-item>
 
