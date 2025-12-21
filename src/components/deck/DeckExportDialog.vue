@@ -112,6 +112,7 @@ import { computed, ref } from 'vue'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { sortCards } from '@/utils/cardsSort.js'
 import { normalizeFileName } from '@/utils/sanitizeFilename'
+import { useUIStore } from '@/stores/ui'
 
 const props = defineProps({
   modelValue: {
@@ -137,6 +138,8 @@ const { triggerSnackbar } = useSnackbar()
 
 const selectedLanguage = ref('jp')
 const selectedImageMode = ref('u_climax')
+
+const uiStore = useUIStore()
 
 const deckBaseIds = computed(() => {
   if (!props.cards) return ''
@@ -172,39 +175,52 @@ const onGenerateImage = () => {
   emit('generate-image', selectedImageMode.value)
 }
 
+const canvasToBlob = (canvas) => {
+  return new Promise((resolve, reject) => {
+    canvas.toBlob((blob) => {
+      if (blob) {
+        resolve(blob)
+      } else {
+        reject(new Error('Canvas to Blob failed'))
+      }
+    }, 'image/png')
+  })
+}
+
 const handleDownloadResult = async () => {
   if (!props.generatedImageResult) return
+  uiStore.setLoading(true)
   try {
     const filename = normalizeFileName(props.deckName)
     await props.generatedImageResult.download({ format: 'png', filename })
-    triggerSnackbar('下载已开始', 'success')
+    triggerSnackbar('下载成功', 'success')
   } catch (error) {
     console.error('Download failed', error)
     triggerSnackbar('下载失败', 'error')
+  } finally {
+    uiStore.setLoading(false)
   }
 }
 
 const handleCopyResult = async () => {
   if (!props.generatedImageResult) return
+  uiStore.setLoading(true)
   try {
     const canvas = await props.generatedImageResult.toCanvas()
-    canvas.toBlob(async (blob) => {
-      if (!blob) {
-        triggerSnackbar('复制失败：无法生成图片数据', 'error')
-        return
-      }
-      try {
-        const data = [new ClipboardItem({ 'image/png': blob })]
-        await navigator.clipboard.write(data)
-        triggerSnackbar('图片已复制到剪贴板', 'success')
-      } catch (err) {
-        console.error('Clipboard write failed', err)
-        triggerSnackbar('复制失败', 'error')
-      }
-    }, 'image/png')
+    const blob = await canvasToBlob(canvas)
+
+    if (navigator.clipboard && navigator.clipboard.write) {
+      const item = new ClipboardItem({ [blob.type]: blob })
+      await navigator.clipboard.write([item])
+      triggerSnackbar('图片已复制到剪贴板', 'success')
+    } else {
+      throw new Error('Clipboard API unavailable')
+    }
   } catch (error) {
     console.error('Copy failed', error)
     triggerSnackbar('复制失败', 'error')
+  } finally {
+    uiStore.setLoading(false)
   }
 }
 
