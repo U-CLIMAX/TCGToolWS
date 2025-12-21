@@ -521,7 +521,7 @@ const handleDownloadCard = async () => {
     await new Promise((resolve) => requestAnimationFrame(resolve))
 
     const filename = props.card.id || 'card'
-    await convertElementToPng('temp-export-container', filename, 1, true)
+    await convertElementToPng('temp-export-container', filename, 2, true)
 
     triggerSnackbar('图片已成功汇出', 'success')
   } catch (error) {

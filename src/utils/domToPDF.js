@@ -85,7 +85,7 @@ export const convertDeckToPDF = async (cards, name, language) => {
         height: PAGE_OPTS.h,
         dpr: window.devicePixelRatio,
         quality: 0.6,
-        scale: 2,
+        scale: 2 / window.devicePixelRatio,
       })
       if (i > 0) pdf.addPage()
       pdf.addImage(imgData, 'JPG', 0, 0, PAGE_OPTS.w, PAGE_OPTS.h)

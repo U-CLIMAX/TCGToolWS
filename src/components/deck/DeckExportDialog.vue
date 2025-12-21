@@ -32,7 +32,7 @@
 
         <div v-if="generatedImageResult" class="mb-5">
           <v-img
-            :src="generatedImageResult.url"
+            :src="generatedImageResult.src"
             class="mb-2 border rounded"
             max-height="300"
             contain
@@ -175,24 +175,16 @@ const onGenerateImage = () => {
   emit('generate-image', selectedImageMode.value)
 }
 
-const canvasToBlob = (canvas) => {
-  return new Promise((resolve, reject) => {
-    canvas.toBlob((blob) => {
-      if (blob) {
-        resolve(blob)
-      } else {
-        reject(new Error('Canvas to Blob failed'))
-      }
-    }, 'image/png')
-  })
-}
-
 const handleDownloadResult = async () => {
   if (!props.generatedImageResult) return
   uiStore.setLoading(true)
   try {
     const filename = normalizeFileName(props.deckName)
-    await props.generatedImageResult.download({ format: 'png', filename })
+    const link = document.createElement('a')
+    link.href = props.generatedImageResult.src
+    console.log(link.href)
+    link.download = `${filename || 'image'}.png`
+    link.click()
     triggerSnackbar('下载成功', 'success')
   } catch (error) {
     console.error('Download failed', error)
@@ -206,8 +198,8 @@ const handleCopyResult = async () => {
   if (!props.generatedImageResult) return
   uiStore.setLoading(true)
   try {
-    const canvas = await props.generatedImageResult.toCanvas()
-    const blob = await canvasToBlob(canvas)
+    const response = await fetch(props.generatedImageResult.src)
+    const blob = await response.blob()
 
     if (navigator.clipboard && navigator.clipboard.write) {
       const item = new ClipboardItem({ [blob.type]: blob })
@@ -218,7 +210,7 @@ const handleCopyResult = async () => {
     }
   } catch (error) {
     console.error('Copy failed', error)
-    triggerSnackbar('复制失败', 'error')
+    triggerSnackbar('复制失败，请直接复制图片', 'error')
   } finally {
     uiStore.setLoading(false)
   }

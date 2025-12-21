@@ -15,12 +15,15 @@ export const convertElementToPng = async (
   }
   try {
     const rect = element.getBoundingClientRect()
+    const dpr = window.devicePixelRatio
+    const final_scale = scale / dpr
+
     const options = {
       embedFonts: embedFonts,
       width: rect.width,
       height: rect.height,
-      dpr: window.devicePixelRatio,
-      scale: scale,
+      dpr: dpr,
+      scale: final_scale,
     }
 
     // WORKAROUND: Force-clear snapdom's cache before the actual capture.
@@ -45,7 +48,7 @@ export const convertElementToPng = async (
       const deckName = normalizeFileName(name)
       await result.download({ format: 'png', filename: deckName })
     } else {
-      return result
+      return await result.toPng()
     }
   } catch (error) {
     console.error('Error during PNG conversion:', error)
