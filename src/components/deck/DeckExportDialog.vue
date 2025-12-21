@@ -1,6 +1,6 @@
 <template>
   <v-dialog :model-value="modelValue" max-width="500" @update:model-value="closeDialog">
-    <v-card>
+    <v-card class="themed-scrollbar">
       <v-card-title class="d-flex justify-space-between align-center">
         <span>汇出卡组</span>
         <v-btn icon="mdi-close" variant="text" @click="closeDialog"></v-btn>
@@ -11,10 +11,10 @@
             color="primary"
             class="mw-200"
             prepend-icon="mdi-image-outline"
-            @click="onDownloadImage"
+            @click="onGenerateImage"
             elevation="0"
           >
-            下载图片
+            生成图片
           </v-btn>
 
           <v-btn-toggle
@@ -29,6 +29,36 @@
             <v-btn value="tts" class="flex-grow-1">TTS</v-btn>
           </v-btn-toggle>
         </div>
+
+        <div v-if="generatedImageResult" class="mb-5">
+          <v-img
+            :src="generatedImageResult.url"
+            class="mb-2 border rounded"
+            max-height="300"
+            contain
+          ></v-img>
+          <div class="d-flex gap-2">
+            <v-btn
+              color="secondary"
+              prepend-icon="mdi-download"
+              variant="tonal"
+              class="flex-grow-1 mr-2"
+              @click="handleDownloadResult"
+            >
+              下载
+            </v-btn>
+            <v-btn
+              color="secondary"
+              prepend-icon="mdi-content-copy"
+              variant="tonal"
+              class="flex-grow-1"
+              @click="handleCopyResult"
+            >
+              复制
+            </v-btn>
+          </div>
+        </div>
+
         <div class="d-flex mb-5">
           <v-btn
             color="primary"
@@ -81,6 +111,7 @@
 import { computed, ref } from 'vue'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { sortCards } from '@/utils/cardsSort.js'
+import { normalizeFileName } from '@/utils/sanitizeFilename'
 
 const props = defineProps({
   modelValue: {
@@ -90,6 +121,14 @@ const props = defineProps({
   cards: {
     type: Object,
     default: () => ({}),
+  },
+  generatedImageResult: {
+    type: Object,
+    default: null,
+  },
+  deckName: {
+    type: String,
+    default: 'deck',
   },
 })
 
@@ -129,8 +168,44 @@ const closeDialog = () => {
   emit('update:modelValue', false)
 }
 
-const onDownloadImage = () => {
-  emit('download-image', selectedImageMode.value)
+const onGenerateImage = () => {
+  emit('generate-image', selectedImageMode.value)
+}
+
+const handleDownloadResult = async () => {
+  if (!props.generatedImageResult) return
+  try {
+    const filename = normalizeFileName(props.deckName)
+    await props.generatedImageResult.download({ format: 'png', filename })
+    triggerSnackbar('下载已开始', 'success')
+  } catch (error) {
+    console.error('Download failed', error)
+    triggerSnackbar('下载失败', 'error')
+  }
+}
+
+const handleCopyResult = async () => {
+  if (!props.generatedImageResult) return
+  try {
+    const canvas = await props.generatedImageResult.toCanvas()
+    canvas.toBlob(async (blob) => {
+      if (!blob) {
+        triggerSnackbar('复制失败：无法生成图片数据', 'error')
+        return
+      }
+      try {
+        const data = [new ClipboardItem({ 'image/png': blob })]
+        await navigator.clipboard.write(data)
+        triggerSnackbar('图片已复制到剪贴板', 'success')
+      } catch (err) {
+        console.error('Clipboard write failed', err)
+        triggerSnackbar('复制失败', 'error')
+      }
+    }, 'image/png')
+  } catch (error) {
+    console.error('Copy failed', error)
+    triggerSnackbar('复制失败', 'error')
+  }
 }
 
 const onDownloadPDF = () => {

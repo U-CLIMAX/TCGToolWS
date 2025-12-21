@@ -264,7 +264,9 @@
     <DeckExportDialog
       v-model="exportDialog"
       :cards="cards"
-      @download-image="handleDownloadDeckImage"
+      :deck-name="deck?.name || 'deck'"
+      :generated-image-result="generatedImageResult"
+      @generate-image="handleGenerateDeckImage"
       @download-pdf="handleDownloadDeckPDF"
     />
 
@@ -743,22 +745,25 @@ const deckShareImageRef = ref(null)
 const isGenerationTriggered = ref(false)
 const exportDialog = ref(false)
 const imageExportMode = ref('u_climax')
+const generatedImageResult = ref(null)
 
 const openExportDialog = () => {
   if (!deck.value) {
     triggerSnackbar('无法导出，卡组数据缺失。', 'error')
     return
   }
+  generatedImageResult.value = null
   exportDialog.value = true
 }
 
-const handleDownloadDeckImage = async (mode = 'u_climax') => {
+const handleGenerateDeckImage = async (mode = 'u_climax') => {
   if (!deck.value) {
     triggerSnackbar('无法生成图片，卡组数据缺失。', 'error')
     return
   }
+  generatedImageResult.value = null
   imageExportMode.value = mode
-  // 立即启动加载状态，给用户即时反馈
+
   uiStore.setLoading(true)
   renderShareImage.value = true
   await nextTick()
@@ -780,7 +785,14 @@ watch(
 
         await new Promise((resolve) => setTimeout(resolve, 300))
 
-        await convertElementToPng('deck-share-image-content', deck.value.name.trim(), 2)
+        const result = await convertElementToPng(
+          'deck-share-image-content',
+          deck.value.name.trim(),
+          2,
+          false,
+          false
+        )
+        generatedImageResult.value = result
       } catch (error) {
         console.error('生成图片失败:', error)
         triggerSnackbar('生成图片失败，请稍后再试。', 'error')

@@ -1,7 +1,13 @@
 import { snapdom } from '@zumer/snapdom'
 import { normalizeFileName } from './sanitizeFilename'
 
-export const convertElementToPng = async (elementId, name, scale = 1, embedFonts = false) => {
+export const convertElementToPng = async (
+  elementId,
+  name,
+  scale = 1,
+  embedFonts = false,
+  download = true
+) => {
   const element = document.getElementById(elementId)
   if (!element) {
     console.error(`Element with ID "${elementId}" not found.`)
@@ -15,7 +21,6 @@ export const convertElementToPng = async (elementId, name, scale = 1, embedFonts
       height: rect.height,
       dpr: window.devicePixelRatio,
       scale: scale,
-      type: 'png',
     }
 
     // WORKAROUND: Force-clear snapdom's cache before the actual capture.
@@ -36,8 +41,12 @@ export const convertElementToPng = async (elementId, name, scale = 1, embedFonts
     // 2. The actual capture, now running with a clean cache.
     const result = await snapdom(element, options)
 
-    const deckName = normalizeFileName(name)
-    await result.download({ format: 'png', filename: deckName })
+    if (download) {
+      const deckName = normalizeFileName(name)
+      await result.download({ format: 'png', filename: deckName })
+    } else {
+      return result
+    }
   } catch (error) {
     console.error('Error during PNG conversion:', error)
     throw error
