@@ -198,16 +198,14 @@ const handleCopyResult = async () => {
   if (!props.generatedImageResult) return
   uiStore.setLoading(true)
   try {
-    const response = await fetch(props.generatedImageResult.src)
-    const blob = await response.blob()
+    const imgPromise = fetch(props.generatedImageResult.src).then((response) => {
+      if (!response.ok) throw new Error('Network response was not ok')
+      return response.blob()
+    })
 
-    if (navigator.clipboard && navigator.clipboard.write) {
-      const item = new ClipboardItem({ [blob.type]: blob })
-      await navigator.clipboard.write([item])
-      triggerSnackbar('图片已复制到剪贴板', 'success')
-    } else {
-      throw new Error('Clipboard API unavailable')
-    }
+    const item = new ClipboardItem({ 'image/png': imgPromise })
+    await navigator.clipboard.write([item])
+    triggerSnackbar('图片已复制到剪贴板', 'success')
   } catch (error) {
     console.error('Copy failed', error)
     triggerSnackbar('复制失败，请直接复制图片', 'error')
