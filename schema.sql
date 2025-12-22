@@ -27,16 +27,17 @@ CREATE TABLE IF NOT EXISTS decks (
     key TEXT PRIMARY KEY,
     user_id TEXT NOT NULL,
     deck_data BLOB NOT NULL,
+    updated_at INTEGER,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 CREATE INDEX IF NOT EXISTS idx_decks_user_id ON decks(user_id);
 
 CREATE TABLE IF NOT EXISTS afdian_orders (
-  id TEXT PRIMARY KEY NOT NULL,           -- 我們自己生成的唯一訂單 ID (例如 UUID)
-  user_id TEXT NOT NULL,         -- 關聯的 user.id
+  id TEXT PRIMARY KEY NOT NULL,
+  user_id TEXT NOT NULL,
   status TEXT NOT NULL DEFAULT 'pending', -- 'pending', 'completed', 'failed'
-  afdian_trade_no TEXT UNIQUE,   -- 愛發電的 out_trade_no (成功後填入)
+  afdian_trade_no TEXT UNIQUE,
   created_at INTEGER NOT NULL,
-  processed_at INTEGER,          -- Webhook 處理的時間
+  processed_at INTEGER,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );

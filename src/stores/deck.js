@@ -162,6 +162,8 @@ export const useDeckStore = defineStore(
       }
 
       const decks = await response.json()
+      decks.sort((a, b) => b.updated_at - a.updated_at)
+
       savedDecks.value = decks.reduce((acc, deck) => {
         acc[deck.key] = deck.deck_data
         return acc
