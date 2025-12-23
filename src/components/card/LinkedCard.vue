@@ -4,7 +4,7 @@
     class="linked-card"
     rounded="lg"
     @click="handleCardClick"
-    v-tooltip:top-center="card.name"
+    v-tooltip:top-center="isTouch ? null : card.name"
   >
     <v-img
       :src="imageUrl"
@@ -30,6 +30,7 @@
 <script setup>
 import { computed } from 'vue'
 import { useCardImage } from '@/composables/useCardImage.js'
+import { useDevice } from '@/composables/useDevice'
 
 const props = defineProps({
   card: { type: Object, required: true },
@@ -37,6 +38,7 @@ const props = defineProps({
 
 const emit = defineEmits(['show-details'])
 
+const { isTouch } = useDevice()
 const cardId = computed(() => props.card.id)
 const cardIdPrefix = computed(() => props.card.cardIdPrefix)
 

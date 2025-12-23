@@ -9,7 +9,7 @@
     :to="{ name: 'SeriesDetail', params: { seriesId: seriesData.id } }"
     variant="flat"
     rounded="3md"
-    v-tooltip:top="seriesName"
+    v-tooltip:top="isTouch ? null : seriesName"
   >
     <div class="image-wrapper position-relative overflow-hidden rounded-3md mb-2">
       <v-img
@@ -86,6 +86,7 @@
 import { computed } from 'vue'
 import { useUIStore } from '@/stores/ui'
 import { useTheme } from 'vuetify'
+import { useDevice } from '@/composables/useDevice'
 
 const props = defineProps({
   seriesName: {
@@ -104,6 +105,7 @@ const props = defineProps({
 
 const uiStore = useUIStore()
 const theme = useTheme()
+const { isTouch } = useDevice()
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 const isLightWithBg = computed(() => {
