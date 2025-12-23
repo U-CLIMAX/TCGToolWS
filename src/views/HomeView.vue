@@ -257,31 +257,32 @@
         </p>
         <br />
         <p>
-          如您的行为存在侵犯官方版权的情况，U CLIMAX网站及相关人员对此不承担任何责任，亦无任何关联。
+          如您的行为存在侵犯官方版权的情况，U-CLIMAX
+          网站及相关人员对此不承担任何责任，亦无任何关联。
         </p>
         <br />
-        <p>U CLIMAX及相关人员对本声明内容拥有最终解释权。</p>
+        <p>U-CLIMAX 及相关人员对本声明内容拥有最终解释权。</p>
         <br />
 
         <p>附加说明</p>
         <br />
 
         <p>
-          1. 若您计划大面积使用我方资料，须事先与U
-          CLIMAX相关负责人取得联系，并获得书面同意后方可实施。
+          1. 若您计划大面积使用我方资料，须事先与 U-CLIMAX
+          相关负责人取得联系，并获得书面同意后方可实施。
         </p>
         <br />
         <p>
-          2. 对于會明确攻击、诋毁U
-          CLIMAX或其相关人员的组织/个人，以及其他不受UCLIMAX欢迎的组织/个人，我方有权拒绝其使用任何资料。
+          2. 对于會明确攻击、诋毁 U-CLIMAX 或其相关人员的组织/个人，以及其他不受 U-CLIMAX
+          欢迎的组织/个人，我方有权拒绝其使用任何资料。
         </p>
         <br />
         <p>
-          3. 一旦发现违规使用资料的行为，U
-          CLIMAX有权要求立即撤回相关内容；根据情节严重程度，我方将采取列入黑名单、追究法律责任等进一步措施。
+          3. 一旦发现违规使用资料的行为，U-CLIMAX
+          有权要求立即撤回相关内容；根据情节严重程度，我方将采取列入黑名单、追究法律责任等进一步措施。
         </p>
         <br />
-        <p>我们致力于积极维护国内ws社区的健康环境，感谢您的理解与支持！</p>
+        <p>我们致力于积极维护国内 ws 社区的健康环境，感谢您的理解与支持！</p>
       </div>
 
       <v-sheet color="transparent" class="pa-4 mt-8">
@@ -289,11 +290,11 @@
 
         <v-col cols="12" class="text-caption text-grey-darken-1 text-center">
           <div>
-            U CLIMAX 是一个非官方粉丝工具，所有卡牌资料版权归 Bushiroad (武士道) 所有，本网站与
+            U-CLIMAX 是一个非官方粉丝工具，所有卡牌资料版权归 Bushiroad (武士道) 所有，本网站与
             Bushiroad 并无任何官方合作或授权关系。
           </div>
           <div class="mt-1">
-            © {{ new Date().getFullYear() }} U CLIMAX. All rights reserved. |
+            © {{ new Date().getFullYear() }} U-CLIMAX. All rights reserved. |
             <a href="mailto:issues@uclimax.cn" class="text-grey-darken-1 text-decoration-underline">
               问题反馈
             </a>
@@ -302,19 +303,20 @@
 
         <v-col
           cols="12"
-          class="d-flex justify-center align-center ga-3 mt-4 text-grey-darken-1 text-body-2"
+          class="mt-4 text-grey-darken-1 align-center text-body-2"
+          :class="smAndDown ? 'd-flex flex-column  ga-2' : 'd-flex justify-center  ga-3'"
         >
-          <a href="https://github.com/U-CLIMAX/TCGToolWS" target="_blank">
-            <v-img
-              src="/github.svg"
-              width="20"
-              height="20"
-              alt="GitHub Icon"
-              class="flex-grow-0"
-              style="filter: invert(1) brightness(0.5)"
-            ></v-img>
-          </a>
-          <div>
+          <div class="d-flex align-center ga-1">
+            <a href="https://github.com/U-CLIMAX/TCGToolWS" target="_blank">
+              <v-img
+                src="/github.svg"
+                width="20"
+                height="20"
+                alt="GitHub Icon"
+                class="flex-grow-0"
+                style="filter: invert(1) brightness(0.5)"
+              ></v-img>
+            </a>
             Developed by
             <a
               href="https://github.com/FuseFairy"
@@ -333,11 +335,23 @@
             </a>
           </div>
 
-          <div class="d-flex align-center ga-2">
+          <div class="d-flex align-center ga-1">
             <v-icon icon="mdi-palette" :size="20"></v-icon>
             <div>
               <a class="text-grey-darken-1"> Kamomim </a>
             </div>
+          </div>
+
+          <div class="d-flex align-center ga-1">
+            <v-icon icon="mdi-translate" :size="20" />
+            <a
+              href="https://space.bilibili.com/3546826156280707"
+              target="_blank"
+              class="text-grey-darken-1 text-decoration-underline"
+              >Card-缪
+            </a>
+            &
+            <span>U-CLIMAX项目组</span>
           </div>
         </v-col>
       </v-sheet>
@@ -368,6 +382,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import { useDisplay } from 'vuetify'
 import { useAuthStore } from '@/stores/auth'
 import { useUIStore } from '@/stores/ui'
 import { useIntersectionObserver } from '@/composables/useIntersectionObserver'
@@ -388,8 +403,9 @@ import pcPhoneImg from '@/assets/pc_and_ph.webp?lqip'
 
 const { isHardwareAccelerated } = useHardwareAcceleration()
 const authStore = useAuthStore()
-
 const uiStore = useUIStore()
+const { smAndDown } = useDisplay()
+
 const isAuthAlertOpen = ref(false)
 const isSponsorNoticeOpen = ref(false)
 
@@ -567,7 +583,7 @@ const handleTitleClick = () => {
 
     // Revert back after a while
     setTimeout(() => {
-      mainTitleText.value = 'U CLIMAX'
+      mainTitleText.value = 'U-CLIMAX'
       subTitleText.value = 'ws卡查工具'
       isCialloActive.value = false
     }, 2000) // Keep the new text for 2 seconds
