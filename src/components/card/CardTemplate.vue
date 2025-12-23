@@ -83,7 +83,7 @@
           <div style="position: absolute; top: 8px; right: 8px">
             <v-avatar
               v-if="cardCount > 0"
-              :size="buttonSize"
+              :size="smAndDown ? 'x-small' : 'small'"
               color="primary"
               class="counter-avatar"
               >{{ cardCount }}</v-avatar
