@@ -9,7 +9,10 @@
     :to="{ name: 'SeriesDetail', params: { seriesId: seriesData.id } }"
     variant="flat"
     rounded="3md"
-    v-tooltip:top="isTouch ? null : seriesName"
+    v-tooltip:top-center="{
+      text: seriesName,
+      disabled: isTouch,
+    }"
   >
     <div class="image-wrapper position-relative overflow-hidden rounded-3md mb-2">
       <v-img

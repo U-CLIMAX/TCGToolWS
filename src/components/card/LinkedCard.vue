@@ -4,7 +4,10 @@
     class="linked-card"
     rounded="lg"
     @click="handleCardClick"
-    v-tooltip:top-center="isTouch ? null : card.name"
+    v-tooltip:top-center="{
+      text: card.name,
+      disabled: isTouch,
+    }"
   >
     <v-img
       :src="imageUrl"
