@@ -148,7 +148,15 @@
           variant="outlined"
           :menu-props="uiStore.menuProps"
           :disabled="props.disabled"
-        ></v-select>
+        >
+          <template v-slot:item="{ props, item }">
+            <v-list-item v-bind="props" :title="null">
+              <v-list-item-title style="white-space: normal">
+                {{ item.title }}
+              </v-list-item-title>
+            </v-list-item>
+          </template>
+        </v-select>
 
         <v-select
           label="稀有度"
