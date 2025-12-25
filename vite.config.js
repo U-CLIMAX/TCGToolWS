@@ -9,7 +9,6 @@ import vuetify from 'vite-plugin-vuetify'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import svgLoader from 'vite-svg-loader'
 import lqip from 'vite-plugin-lqip'
-import genVersion from './plugins/vite-plugin-gen-version'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -57,7 +56,6 @@ export default defineConfig({
         type: 'module',
       },
     }),
-    genVersion(),
   ],
   optimizeDeps: {
     exclude: ['brotli-wasm'],
@@ -70,6 +68,9 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
+        entryFileNames: 'assets/[name].[hash].js',
+        chunkFileNames: 'assets/[name].[hash].js',
+        assetFileNames: 'assets/[name].[hash].[ext]',
         manualChunks(id) {
           if (id.includes('node_modules')) {
             if (id.includes('lottie-web')) {

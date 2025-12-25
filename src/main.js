@@ -68,10 +68,11 @@ const bootstrap = async () => {
   app.use(vuetify)
 
   createVersionPolling({
-    vcType: 'versionJson',
+    vcType: 'chunkHash',
+    htmlFileUrl: `${window.location.origin}/index.html`,
+    chunkName: 'index',
     silent: import.meta.env.DEV,
     pollingInterval: 10 * 60 * 1000,
-    versionFileUrl: `${location.origin}/version.json`,
     onUpdate: (self) => {
       uiStore.triggerForceUpdate(self)
     },
