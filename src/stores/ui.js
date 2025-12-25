@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue'
+import { ref, shallowRef, computed } from 'vue'
 import { defineStore } from 'pinia'
 import localforage from 'localforage'
 
@@ -100,6 +100,23 @@ export const useUIStore = defineStore(
       backgroundStore.removeItem(BACKGROUND_IMAGE_KEY)
     }
 
+    // Update website
+    const showForceUpdate = ref(false)
+    const pollingWorker = shallowRef(null)
+
+    const triggerForceUpdate = (worker) => {
+      pollingWorker.value = worker
+      showForceUpdate.value = true
+    }
+
+    const confirmUpdate = () => {
+      if (pollingWorker.value) {
+        pollingWorker.value.onRefresh()
+      } else {
+        window.location.reload()
+      }
+    }
+
     return {
       version,
       theme,
@@ -125,11 +142,15 @@ export const useUIStore = defineStore(
       clearBackgroundImage,
       restoreBackgroundImage,
       menuProps,
+      showForceUpdate,
+      triggerForceUpdate,
+      confirmUpdate,
     }
   },
   {
     persist: {
       storage: localStorage,
+      omit: ['showForceUpdate', 'pollingWorker'],
     },
   }
 )

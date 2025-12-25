@@ -8,6 +8,7 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import { piniaVersioningPlugin } from '@/plugins/pinia-versioning.js'
 import { useUIStore } from './stores/ui'
 import { registerSW } from 'virtual:pwa-register'
+import { createVersionPolling } from 'version-polling'
 
 import '@/assets/styles/main.css'
 import 'vuetify/styles'
@@ -65,6 +66,15 @@ const bootstrap = async () => {
 
   app.use(router)
   app.use(vuetify)
+
+  createVersionPolling({
+    vcType: 'chunkHash',
+    silent: import.meta.env.DEV,
+    pollingInterval: 5 * 60 * 1000,
+    onUpdate: (self) => {
+      uiStore.triggerForceUpdate(self)
+    },
+  })
 
   app.mount('#app')
 }

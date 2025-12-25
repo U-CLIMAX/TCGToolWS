@@ -220,6 +220,8 @@
       </v-card>
     </v-dialog>
 
+    <AppUpdateDialog />
+
     <!-- Global Loading Overlay -->
     <v-overlay v-model="uiStore.isLoading" class="d-flex align-center justify-center" persistent>
       <half-circle-spinner :animation-duration="1000" :size="64" :color="spinnerColor" />
@@ -240,6 +242,7 @@ import { usePerformanceManager } from '@/composables/usePerformanceManager'
 import AuthDialog from '@/components/ui/AuthDialog.vue'
 import SettingsModal from '@/components/ui/SettingsModal.vue'
 import UserProfileModal from '@/components/ui/UserProfileModal.vue'
+import AppUpdateDialog from '@/components/ui/AppUpdateDialog.vue'
 import HomeBackground from '@/components/common/HomeBackground.vue'
 import SponsorNoticeDialog from '@/components/ui/SponsorNoticeDialog.vue'
 import { HalfCircleSpinner } from 'epic-spinners'
