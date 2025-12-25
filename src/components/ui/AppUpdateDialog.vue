@@ -10,7 +10,6 @@
       <v-card-title class="text-h5 font-weight-bold px-6 pt-4"> 网页已更新 </v-card-title>
 
       <v-card-text class="text-body-1 px-6 py-4 text-medium-emphasis">
-        系统已发布新版本。 <br />
         重新载入页面即可使用最新功能与修正内容。
       </v-card-text>
 
