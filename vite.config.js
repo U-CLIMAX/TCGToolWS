@@ -9,6 +9,7 @@ import vuetify from 'vite-plugin-vuetify'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import svgLoader from 'vite-svg-loader'
 import lqip from 'vite-plugin-lqip'
+import genVersion from './plugins/vite-plugin-gen-version'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -56,6 +57,7 @@ export default defineConfig({
         type: 'module',
       },
     }),
+    genVersion(),
   ],
   optimizeDeps: {
     exclude: ['brotli-wasm'],

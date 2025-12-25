@@ -19,3 +19,9 @@
   CF-Cache-Level: bypass
   Pragma: no-cache
   Expires: 0
+
+/version.json
+  Cache-Control: no-cache, no-store, must-revalidate
+  CF-Cache-Level: bypass
+  Pragma: no-cache
+  Expires: 0
