@@ -43,7 +43,6 @@ const CardFilterService = {
    * @returns {Promise<Object>} The processed cards and filter options
    */
   processRawData: async (rawFiles) => {
-    // 2. Process data (Flattening)
     const fetchedCards = []
     const productNamesSet = new Set()
     const traitsSet = new Set()
@@ -102,7 +101,7 @@ const CardFilterService = {
       }
     }
 
-    // 3. Link Logic (The Expensive Part)
+    // Link Logic
     const nameToCardBaseIds = new Map()
     const baseIdToCardsMap = new Map()
 
@@ -153,7 +152,6 @@ const CardFilterService = {
       }
     }
 
-    // 4. Return Result
     return {
       allCards: fetchedCards,
       productNames: [...productNamesSet],
