@@ -55,5 +55,32 @@
         "rarity": "PR"
       }
     ]
+  },
+  "KMS/W133-P02": {
+    "name": "イギリス人留学生 アリス",
+    "product_name": "PRカード【Wサイド】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["きんいろ", "金髪"],
+    "color": "黄色",
+    "effect": "【永】你全部的角色是《きんいろ》的话，此卡的战斗力+1000。<br/>【自】[(1)] 此卡攻击时，你可以支付费用。支付了的话，那次攻击中，你在触发步骤执行2次触发判定。",
+    "all_cards": [
+      {
+        "id": "KMS/W133-P02",
+        "rarity": "PR"
+      },
+      {
+        "id": "KMS/W133-P02EX",
+        "rarity": "PR+"
+      },
+      {
+        "id": "KMS/W133-P02S",
+        "rarity": "PR"
+      }
+    ]
   }
 }

@@ -1,0 +1,29 @@
+{
+  "Kab/WE50-P01": {
+    "name": "Keyヒロインズ",
+    "product_name": "PRカード【Wサイド】",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 1,
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "你从自己的卡组找至多2张《Anniversary》或《夏》或《死》或《能力者》的角色卡展示给对手后加入手牌，选择自己的1张手牌放置到休息室，卡组洗切。<br/>将此卡放置到思出区。",
+    "all_cards": [
+      {
+        "id": "Kab/WE50-P01",
+        "rarity": "PR"
+      },
+      {
+        "id": "Kab/WE50-P01EX",
+        "rarity": "PR+"
+      },
+      {
+        "id": "Kab/WE50-P01S",
+        "rarity": "PR"
+      }
+    ]
+  }
+}
