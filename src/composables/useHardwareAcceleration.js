@@ -14,7 +14,10 @@ export const useHardwareAcceleration = () => {
     hasChecked = true
 
     try {
-      const gpu = await getGPUTier()
+      const gpu = await getGPUTier({
+        // eslint-disable-next-line no-undef
+        benchmarksURL: `https://npm.onmicrosoft.cn/detect-gpu@${__DETECT_GPU_VERSION__}/dist/benchmarks`,
+      })
 
       if (gpu && gpu.tier >= 2) {
         // Tier 2 or higher generally indicates good GPU support
