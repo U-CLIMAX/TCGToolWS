@@ -150,7 +150,7 @@ export const useUIStore = defineStore(
   {
     persist: {
       storage: localStorage,
-      omit: ['showForceUpdate', 'pollingWorker'],
+      omit: ['showForceUpdate', 'pollingWorker', 'seriesSearchTerm'],
     },
   }
 )
