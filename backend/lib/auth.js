@@ -1,7 +1,7 @@
 import { sign, verify } from 'hono/jwt'
 import { sendVerificationEmail, sendPasswordResetEmail } from '../services/brevo.js'
 import { verifyAfdianSignature } from '../services/afdian.js'
-import { processAfdianOrder } from '../lib/payments.js'
+import { processAfdianOrder } from './payments.js'
 import { createErrorResponse } from './utils.js'
 
 const arrayBufferToHex = (buffer) => {
