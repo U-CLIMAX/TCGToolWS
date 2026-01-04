@@ -291,7 +291,7 @@
     "level": 2,
     "power": 8500,
     "cost": 1,
-    "trait": ["特徴なし"],
+    "trait": "-",
     "color": "蓝色",
     "soul": 1,
     "effect": "",

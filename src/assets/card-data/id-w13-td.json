@@ -120,7 +120,7 @@
     "level": 0,
     "power": 3000,
     "cost": 0,
-    "trait": ["特徴なし"],
+    "trait": "-",
     "color": "黄色",
     "soul": 1,
     "effect": "",
