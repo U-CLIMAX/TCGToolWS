@@ -25,6 +25,7 @@ export const useUIStore = defineStore(
     const renderedCardsCount = ref(0)
     const useAdaptiveColor = ref(true)
     const showStatsDashboard = ref(true)
+    const customKeywords = ref([])
 
     // State for SeriesCardTableView
     const seriesSearchTerm = ref('')
@@ -117,6 +118,19 @@ export const useUIStore = defineStore(
       }
     }
 
+    const addCustomKeyword = (keyword) => {
+      if (keyword && !customKeywords.value.includes(keyword)) {
+        customKeywords.value.unshift(keyword)
+      }
+    }
+
+    const removeCustomKeyword = (keyword) => {
+      const index = customKeywords.value.indexOf(keyword)
+      if (index > -1) {
+        customKeywords.value.splice(index, 1)
+      }
+    }
+
     return {
       version,
       theme,
@@ -132,6 +146,9 @@ export const useUIStore = defineStore(
       setRenderedCardsCount,
       useAdaptiveColor,
       showStatsDashboard,
+      customKeywords,
+      addCustomKeyword,
+      removeCustomKeyword,
       seriesSearchTerm,
       seriesSortBy,
       seriesSortAscending,

@@ -32,7 +32,7 @@
             class="flex-grow-1"
             label="关键字"
             placeholder="卡号、卡名、效果"
-            :items="defaultKeywords"
+            :items="allKeywords"
             hide-details="auto"
             v-model="keywordInput"
             variant="underlined"
@@ -45,6 +45,34 @@
             menu-icon=""
             :menu-props="uiStore.menuProps"
           >
+            <template v-slot:prepend-item>
+              <v-list-item :title="null" @click="openAddKeywordDialog">
+                <v-list-item-title class="text-green">
+                  新增关键字
+                  <v-icon icon="mdi-plus-circle" size="x-small"></v-icon>
+                </v-list-item-title>
+              </v-list-item>
+              <v-divider></v-divider>
+            </template>
+
+            <template v-slot:item="{ props, item }">
+              <v-list-item v-bind="props" :title="null">
+                <v-list-item-title>{{ item.raw }}</v-list-item-title>
+                <template v-slot:append>
+                  <v-btn
+                    v-if="uiStore.customKeywords.includes(item.raw)"
+                    icon
+                    variant="text"
+                    size="x-small"
+                    color="error"
+                    @click.stop.prevent="removeKeyword(item.raw)"
+                  >
+                    <v-icon icon="mdi-delete"></v-icon>
+                  </v-btn>
+                </template>
+              </v-list-item>
+            </template>
+
             <template v-slot:append-inner>
               <v-btn
                 icon
@@ -237,11 +265,33 @@
         </div>
       </div>
     </v-sheet>
+
+    <v-dialog v-model="addKeywordDialog" max-width="300">
+      <v-card>
+        <v-card-title>新增关键字</v-card-title>
+        <v-card-text>
+          <v-text-field
+            v-model="newKeyword"
+            label="关键字"
+            :counter="10"
+            :rules="[(v) => (v && v.length >= 1 && v.length <= 10) || '长度需在1-10之間']"
+            @keydown.enter="saveNewKeyword"
+            autofocus
+            variant="underlined"
+          ></v-text-field>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="grey" variant="text" @click="addKeywordDialog = false">取消</v-btn>
+          <v-btn color="primary" variant="text" @click="saveNewKeyword">保存</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </aside>
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useDisplay } from 'vuetify'
 import { debounce } from 'es-toolkit'
 import { useTheme } from 'vuetify'
@@ -282,6 +332,29 @@ const theme = useTheme()
 
 const filterStore = props.globalFilter ? useGlobalSearchStore() : useFilterStore()
 const defaultKeywords = ['CX联动', '警铃', 'shift', '再演', '集中', '加速', '助太刀', '应援']
+
+const allKeywords = computed(() => {
+  return [...uiStore.customKeywords, ...defaultKeywords]
+})
+
+const addKeywordDialog = ref(false)
+const newKeyword = ref('')
+
+const openAddKeywordDialog = () => {
+  newKeyword.value = ''
+  addKeywordDialog.value = true
+}
+
+const saveNewKeyword = () => {
+  if (newKeyword.value && newKeyword.value.length >= 1 && newKeyword.value.length <= 10) {
+    uiStore.addCustomKeyword(newKeyword.value)
+    addKeywordDialog.value = false
+  }
+}
+
+const removeKeyword = (keyword) => {
+  uiStore.removeCustomKeyword(keyword)
+}
 
 const updateStoreKeyword = debounce((val) => {
   filterStore.keyword = val
