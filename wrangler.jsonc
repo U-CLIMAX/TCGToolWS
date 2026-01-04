@@ -1,7 +1,7 @@
 {
   "name": "tcgtoolws",
   "compatibility_date": "2025-09-24",
-  "main": "./functions/index.js",
+  "main": "./backend/index.js",
   "workers_dev": false,
   "placement": {
     "mode": "smart"

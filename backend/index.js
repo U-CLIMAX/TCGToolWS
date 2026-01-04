@@ -9,7 +9,7 @@ import {
   authMiddleware,
   handleAfdianWebhook,
   handleRefreshUserToken,
-} from '../lib/auth.js'
+} from './lib/auth.js'
 import {
   handleCreateDeck,
   handleGetDecks,
@@ -17,14 +17,14 @@ import {
   handleDeleteDeck,
   handleUpdateDeck,
   handleGetDecklogData,
-} from '../lib/decks.js'
+} from './lib/decks.js'
 import {
   createRateLimiter,
   emailBodyKeyExtractor,
   ipKeyExtractor,
   userIdFromJwtKeyExtractor,
-} from '../lib/ratelimit.js'
-import { handleInitiatePayment } from '../lib/payments.js'
+} from './lib/ratelimit.js'
+import { handleInitiatePayment } from './lib/payments.js'
 
 const app = new Hono().basePath('/api')
 
