@@ -330,12 +330,7 @@ const processGameData = async (game, cards) => {
   // 檢測內容變化，並判斷是否需要重新產生檔案
   try {
     const nowManifest = JSON.parse(fs.readFileSync(manifestFile, 'utf-8'))
-    if (
-      version === nowManifest.version &&
-      nowManifest.indexFiles &&
-      nowManifest.schema &&
-      nowManifest.valueMaps
-    ) {
+    if (version === nowManifest.version && nowManifest.schema && nowManifest.valueMaps) {
       console.log('⏭️ The content has not changed, skip...')
       return
     }
