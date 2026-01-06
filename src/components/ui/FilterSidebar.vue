@@ -156,6 +156,7 @@
             { title: '绿', value: '绿色' },
             { title: '红', value: '红色' },
             { title: '蓝', value: '蓝色' },
+            { title: '紫', value: '紫色' },
           ]"
           hide-details
           multiple
