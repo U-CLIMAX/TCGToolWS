@@ -86,11 +86,7 @@ files.forEach((filename) => {
   const filePath = path.join(CARD_DATA_DIR, filename)
   const content = JSON.parse(fs.readFileSync(filePath, 'utf-8'))
   const cardIdPrefix = filename.replace('.json', '')
-
-  // Determine game
   const prefix = filename.split('-')[0].toLowerCase()
-  // Default to 'ws' if not found (or handle logic as needed), but map should cover it.
-  // Special case handling if needed, but based on map it should be fine.
   const game = prefixToGameMap.get(prefix) || 'ws'
 
   if (!cardsByGame[game]) {
@@ -132,11 +128,7 @@ files.forEach((filename) => {
 console.log(`     - Processed a total of ${totalCardCount} cards.`)
 console.log(`     - WS: ${cardsByGame.ws.length}, WSR: ${cardsByGame.wsr.length}`)
 
-/**
- * 卡片連結處理函式
- * @param {Array<Object>} cards - 所有的卡片物件陣列
- * @returns {Array<Object>} - 處理過連結的卡片陣列
- */
+// 卡片連結處理函式
 const processCardLinks = (cards) => {
   cards.forEach((card) => (card.link = []))
 
@@ -189,15 +181,9 @@ const processCardLinks = (cards) => {
   const bidirectionalLinks = new Map()
   for (const [targetId, sourceIds] of oneWayLinks.entries()) {
     for (const sourceId of sourceIds) {
-      // Add forward link
-      if (!bidirectionalLinks.has(targetId)) {
-        bidirectionalLinks.set(targetId, new Set())
-      }
+      if (!bidirectionalLinks.has(targetId)) bidirectionalLinks.set(targetId, new Set())
       bidirectionalLinks.get(targetId).add(sourceId)
-      // Add reverse link
-      if (!bidirectionalLinks.has(sourceId)) {
-        bidirectionalLinks.set(sourceId, new Set())
-      }
+      if (!bidirectionalLinks.has(sourceId)) bidirectionalLinks.set(sourceId, new Set())
       bidirectionalLinks.get(sourceId).add(targetId)
     }
   }
@@ -228,6 +214,83 @@ const processCardLinks = (cards) => {
   return cards
 }
 
+// 資料優化
+const collectValueMaps = (cards) => {
+  const colorSet = new Set()
+  const typeSet = new Set()
+  const traitSet = new Set()
+
+  cards.forEach((card) => {
+    if (card.color) colorSet.add(card.color)
+    if (card.type) typeSet.add(card.type)
+    if (card.trait && Array.isArray(card.trait)) {
+      card.trait.forEach((t) => traitSet.add(t))
+    }
+  })
+
+  return {
+    colorMap: [...colorSet].sort(),
+    typeMap: [...typeSet].sort(),
+    traitMap: [...traitSet].sort(),
+  }
+}
+
+const applyValueOptimizations = (cards, maps) => {
+  return cards.map((card) => {
+    const optimized = { ...card }
+
+    // Color -> Index
+    if (optimized.color) {
+      optimized.color = maps.colorMap.indexOf(optimized.color)
+    }
+
+    // Type -> Index
+    if (optimized.type) {
+      optimized.type = maps.typeMap.indexOf(optimized.type)
+    }
+
+    // Trait -> Array of Indices
+    if (optimized.trait && Array.isArray(optimized.trait)) {
+      optimized.trait = optimized.trait.map((t) => maps.traitMap.indexOf(t))
+    }
+
+    // isLowestRarity -> 0/1
+    optimized.isLowestRarity = optimized.isLowestRarity ? 1 : 0
+
+    // Power -> Value / 500
+    if (typeof optimized.power === 'number') {
+      optimized.power = optimized.power / 500
+    }
+
+    return optimized
+  })
+}
+
+// 將物件陣列轉換為「Schema + 陣列」結構
+const transformToColumnar = (cards) => {
+  if (!cards || cards.length === 0) return { keys: [], data: [] }
+
+  // 抓出第一張卡片的所有 keys，作為基礎順序
+  const baseKeys = Object.keys(cards[0])
+
+  const allPossibleKeys = new Set(baseKeys)
+  cards.forEach((card) => {
+    Object.keys(card).forEach((key) => allPossibleKeys.add(key))
+  })
+  const extraKeys = [...allPossibleKeys].filter((k) => !baseKeys.includes(k))
+  const finalKeys = [...baseKeys, ...extraKeys]
+
+  console.log(`     - Schema detected: ${finalKeys.length} columns.`)
+
+  const data = cards.map((card) => {
+    return finalKeys.map((key) => {
+      const val = card[key]
+      return val === undefined ? null : val
+    })
+  })
+  return { keys: finalKeys, data: data }
+}
+
 const processGameData = async (game, cards) => {
   console.log(`\n🚀 Processing ${game.toUpperCase()} data...`)
   const manifestFile = path.join(OUTPUT_DIR, `card-db-manifest-${game}.json`)
@@ -243,16 +306,10 @@ const processGameData = async (game, cards) => {
 
   cards.forEach((card) => {
     if (card.product_name) productNamesSet.add(card.product_name)
-    if (card.trait && Array.isArray(card.trait)) {
-      card.trait.forEach((t) => traitsSet.add(t))
-    }
+    if (card.trait && Array.isArray(card.trait)) card.trait.forEach((t) => traitsSet.add(t))
     if (card.rarity) raritiesSet.add(card.rarity)
-
     let soulValue = card.soul === '-' ? 0 : card.soul
-    if (typeof soulValue === 'number') {
-      soulsSet.add(soulValue)
-    }
-
+    if (typeof soulValue === 'number') soulsSet.add(soulValue)
     if (typeof card.cost === 'number') {
       minCost = Math.min(minCost, card.cost)
       maxCost = Math.max(maxCost, card.cost)
@@ -273,16 +330,18 @@ const processGameData = async (game, cards) => {
   // 檢測內容變化，並判斷是否需要重新產生檔案
   try {
     const nowManifest = JSON.parse(fs.readFileSync(manifestFile, 'utf-8'))
-    if (version === nowManifest.version && nowManifest.indexFiles) {
+    if (
+      version === nowManifest.version &&
+      nowManifest.indexFiles &&
+      nowManifest.schema &&
+      nowManifest.valueMaps
+    ) {
       console.log('⏭️ The content has not changed, skip...')
       return
     }
   } catch (error) {
-    if (error.code === 'ENOENT') {
-      console.log('⚒️ Manifest file not found, start creating files...')
-    } else {
-      throw error
-    }
+    if (error.code !== 'ENOENT') throw error
+    console.log('⚒️ Manifest file not found, start creating files...')
   }
 
   // 處理卡片連結
@@ -307,10 +366,15 @@ const processGameData = async (game, cards) => {
     },
   }
 
-  // 建立最終輸出
+  console.log('     - Collecting value maps and optimizing data...')
+  const valueMaps = collectValueMaps(cards)
+  const optimizedCards = applyValueOptimizations(cards, valueMaps)
+  console.log('     - Converting to Columnar (Array of Arrays) format...')
+  const { keys: schemaKeys, data: rowsData } = transformToColumnar(optimizedCards)
+
   const output = {
     filterOptions,
-    cards: cards,
+    cards: rowsData,
     version,
   }
 
@@ -321,6 +385,9 @@ const processGameData = async (game, cards) => {
   const brotliOptions = {
     params: {
       [zlib.constants.BROTLI_PARAM_QUALITY]: zlib.constants.BROTLI_MAX_QUALITY,
+      [zlib.constants.BROTLI_PARAM_MODE]: zlib.constants.BROTLI_MODE_TEXT,
+      [zlib.constants.BROTLI_PARAM_LGWIN]: zlib.constants.BROTLI_MAX_WINDOW_BITS,
+      [zlib.constants.BROTLI_PARAM_SIZE_HINT]: Buffer.byteLength(content),
     },
   }
   const zippedContent = zlib.brotliCompressSync(content, brotliOptions)
@@ -371,6 +438,8 @@ const processGameData = async (game, cards) => {
     chunked: chunkCount > 1,
     totalSize: `${totalSizeMB} MB`,
     cardCount: cards.length,
+    schema: schemaKeys,
+    valueMaps: valueMaps,
     indexFiles: indexFiles,
   }
 

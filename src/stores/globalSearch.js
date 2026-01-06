@@ -103,6 +103,57 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     console.log(`✅ Successfully loaded ${data.cards.length} cards from ${source}`)
   }
 
+  /**
+   * 資料還原 helper：將 Columnar (Array) 轉回 Object，並解碼數值優化
+   * @param {Array} rows - 純資料陣列
+   * @param {Array} schema - 欄位名稱陣列
+   * @param {Object} valueMaps - 數值對照表 (colorMap, typeMap, traitMap)
+   */
+  const hydrateCards = (rows, schema, valueMaps) => {
+    if (!schema || !rows) return rows
+    console.log(`💧 Hydrating ${rows.length} cards using schema & value maps...`)
+
+    const colorIdx = schema.indexOf('color')
+    const typeIdx = schema.indexOf('type')
+    const traitIdx = schema.indexOf('trait')
+    const lowRarityIdx = schema.indexOf('isLowestRarity')
+    const powerIdx = schema.indexOf('power')
+    const { colorMap, typeMap, traitMap } = valueMaps
+
+    return rows.map((row) => {
+      const card = {}
+      row.forEach((val, idx) => {
+        // null 代表該欄位無值，跳過不存以省空間
+        if (val === null) return
+
+        let finalVal = val
+
+        // 如果有傳入對照表，則進行解碼 (Reverse Optimization)
+        if (valueMaps) {
+          if (idx === colorIdx) {
+            // Index -> String
+            finalVal = colorMap[val]
+          } else if (idx === typeIdx) {
+            // Index -> String
+            finalVal = typeMap[val]
+          } else if (idx === traitIdx && Array.isArray(val)) {
+            // Array<Index> -> Array<String>
+            finalVal = val.map((v) => traitMap[v])
+          } else if (idx === lowRarityIdx) {
+            // 0/1 -> Boolean
+            finalVal = val === 1
+          } else if (idx === powerIdx) {
+            // Value -> Value * 500
+            finalVal = val * 500
+          }
+        }
+
+        card[schema[idx]] = finalVal
+      })
+      return card
+    })
+  }
+
   const fetchAndStoreData = async (manifest) => {
     const brotli = await brotliPromise
 
@@ -110,7 +161,8 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     error.value = null
     let db
     try {
-      const { version, chunked, chunks, fileName, indexFiles } = manifest
+      // 1. 從 manifest 解構出 valueMaps
+      const { version, chunked, chunks, fileName, indexFiles, schema, valueMaps } = manifest
 
       // 建立一個來源串流，依序抓取 chunks
       const fileStream = new ReadableStream({
@@ -183,6 +235,9 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
 
       console.log('Hz Decoding complete, parsing JSON...')
       const data = JSON.parse(jsonString)
+
+      // 將 valueMaps 傳入 hydrateCards 進行還原
+      data.cards = hydrateCards(data.cards, schema, valueMaps)
 
       db = await openDB(dbName, storeName, 'key')
       await saveData(db, storeName, { key: `card-data-${currentGame.value}`, data })
