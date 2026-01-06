@@ -289,7 +289,7 @@
     "trait": ["防衛隊", "怪獣"],
     "color": "绿色",
     "soul": 1,
-    "effect": "-",
+    "effect": "",
     "all_cards": [
       {
         "id": "KJ8/S123-T13",

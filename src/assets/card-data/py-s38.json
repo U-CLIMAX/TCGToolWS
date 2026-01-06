@@ -417,7 +417,7 @@
     "trait": ["ぷよ", "ダンス"],
     "color": "黄色",
     "soul": 1,
-    "effect": "―",
+    "effect": "",
     "all_cards": [
       {
         "id": "PY/S38-021",
@@ -474,7 +474,7 @@
     "trait": ["ぷよ", "愛"],
     "color": "黄色",
     "soul": 1,
-    "effect": "―",
+    "effect": "",
     "all_cards": [
       {
         "id": "PY/S38-024",
@@ -984,7 +984,7 @@
     "trait": ["ぷよ", "カエル"],
     "color": "绿色",
     "soul": 1,
-    "effect": "―",
+    "effect": "",
     "all_cards": [
       {
         "id": "PY/S38-050",
@@ -1041,7 +1041,7 @@
     "trait": ["ぷよ", "王族"],
     "color": "绿色",
     "soul": 1,
-    "effect": "―",
+    "effect": "",
     "all_cards": [
       {
         "id": "PY/S38-053",
@@ -1098,7 +1098,7 @@
     "trait": ["ぷよ", "植物"],
     "color": "绿色",
     "soul": 1,
-    "effect": "―",
+    "effect": "",
     "all_cards": [
       {
         "id": "PY/S38-056",
@@ -1555,7 +1555,7 @@
     "trait": ["ぷよ", "本"],
     "color": "红色",
     "soul": 1,
-    "effect": "―",
+    "effect": "",
     "all_cards": [
       {
         "id": "PY/S38-079",
@@ -1593,7 +1593,7 @@
     "trait": ["ぷよ", "ツノ"],
     "color": "红色",
     "soul": 1,
-    "effect": "―",
+    "effect": "",
     "all_cards": [
       {
         "id": "PY/S38-081",
@@ -2103,7 +2103,7 @@
     "trait": ["ぷよ", "けん玉"],
     "color": "蓝色",
     "soul": 1,
-    "effect": "―",
+    "effect": "",
     "all_cards": [
       {
         "id": "PY/S38-107",
@@ -2141,7 +2141,7 @@
     "trait": ["ぷよ", "謎"],
     "color": "蓝色",
     "soul": 1,
-    "effect": "―",
+    "effect": "",
     "all_cards": [
       {
         "id": "PY/S38-109",
@@ -2217,7 +2217,7 @@
     "trait": ["ぷよ", "勇者"],
     "color": "蓝色",
     "soul": 1,
-    "effect": "―",
+    "effect": "",
     "all_cards": [
       {
         "id": "PY/S38-113",
@@ -2350,7 +2350,7 @@
     "trait": ["ぷよ"],
     "color": "紫色",
     "soul": 1,
-    "effect": "―",
+    "effect": "",
     "all_cards": [
       {
         "id": "PY/S38-120",

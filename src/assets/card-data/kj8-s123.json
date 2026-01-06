@@ -631,7 +631,7 @@
     "trait": ["防衛隊", "エリート"],
     "color": "黄色",
     "soul": 1,
-    "effect": "-",
+    "effect": "",
     "all_cards": [
       {
         "id": "KJ8/S123-027",
