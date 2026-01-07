@@ -254,7 +254,10 @@
             :min="filterStore.costRange.min"
             :max="filterStore.costRange.max"
             step="1"
-            v-model="filterStore.selectedCostRange"
+            :model-value="isDraggingCost ? localCost : filterStore.selectedCostRange"
+            @start="onCostStart"
+            @update:model-value="localCost = $event"
+            @end="onCostEnd"
             :disabled="props.disabled"
             thumb-size="15"
           ></v-range-slider>
@@ -273,7 +276,10 @@
             :min="Math.floor(filterStore.powerRange.min / 500) * 500"
             :max="filterStore.powerRange.max"
             step="500"
-            v-model="filterStore.selectedPowerRange"
+            :model-value="isDraggingPower ? localPower : filterStore.selectedPowerRange"
+            @start="onPowerStart"
+            @update:model-value="localPower = $event"
+            @end="onPowerEnd"
             :disabled="props.disabled"
             thumb-size="15"
           ></v-range-slider>
@@ -352,17 +358,44 @@ const allKeywords = computed(() => {
   return [...uiStore.customKeywords, ...defaultKeywords]
 })
 
+// Local state for sliders to prevent frequent store updates
+const isDraggingCost = ref(false)
+const localCost = ref(filterStore.selectedCostRange)
+
+const isDraggingPower = ref(false)
+const localPower = ref(filterStore.selectedPowerRange)
+
 const costRangeText = computed(() => {
-  const [min, max] = filterStore.selectedCostRange
+  const [min, max] = isDraggingCost.value ? localCost.value : filterStore.selectedCostRange
   if (min === max) return min
   return `${min} – ${max}`
 })
 
 const powerRangeText = computed(() => {
-  const [min, max] = filterStore.selectedPowerRange
+  const [min, max] = isDraggingPower.value ? localPower.value : filterStore.selectedPowerRange
   if (min === max) return min
   return `${min} – ${max}`
 })
+
+const onCostStart = () => {
+  localCost.value = filterStore.selectedCostRange
+  isDraggingCost.value = true
+}
+
+const onCostEnd = () => {
+  filterStore.selectedCostRange = localCost.value
+  isDraggingCost.value = false
+}
+
+const onPowerStart = () => {
+  localPower.value = filterStore.selectedPowerRange
+  isDraggingPower.value = true
+}
+
+const onPowerEnd = () => {
+  filterStore.selectedPowerRange = localPower.value
+  isDraggingPower.value = false
+}
 
 const addKeywordDialog = ref(false)
 const newKeyword = ref('')
