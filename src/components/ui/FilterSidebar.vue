@@ -240,7 +240,14 @@
         ></v-select>
 
         <div>
-          <div class="text-caption text-disabled">费用</div>
+          <div class="d-flex justify-space-between align-center mb-1">
+            <div class="text-caption text-disabled">
+              费用
+              <span class="pa-1 px-2 rounded-pill border-md">
+                {{ costRangeText }}
+              </span>
+            </div>
+          </div>
           <v-range-slider
             hide-details
             :thumb-label="true"
@@ -249,11 +256,17 @@
             step="1"
             v-model="filterStore.selectedCostRange"
             :disabled="props.disabled"
+            thumb-size="15"
           ></v-range-slider>
         </div>
 
         <div>
-          <div class="text-caption text-disabled">战斗力</div>
+          <div class="text-caption text-disabled">
+            战斗力
+            <span class="pa-1 px-2 rounded-pill border-md">
+              {{ powerRangeText }}
+            </span>
+          </div>
           <v-range-slider
             hide-details
             :thumb-label="true"
@@ -262,6 +275,7 @@
             step="500"
             v-model="filterStore.selectedPowerRange"
             :disabled="props.disabled"
+            thumb-size="15"
           ></v-range-slider>
         </div>
       </div>
@@ -336,6 +350,18 @@ const defaultKeywords = ['CX联动', '警铃', 'shift', '再演', '集中', '加
 
 const allKeywords = computed(() => {
   return [...uiStore.customKeywords, ...defaultKeywords]
+})
+
+const costRangeText = computed(() => {
+  const [min, max] = filterStore.selectedCostRange
+  if (min === max) return min
+  return `${min} – ${max}`
+})
+
+const powerRangeText = computed(() => {
+  const [min, max] = filterStore.selectedPowerRange
+  if (min === max) return min
+  return `${min} – ${max}`
 })
 
 const addKeywordDialog = ref(false)
