@@ -189,14 +189,21 @@
                 <v-icon size="18" class="mr-1">mdi-link-variant</v-icon>
                 关联卡片
               </div>
-              <div v-if="isLoadingLinks" class="d-flex justify-center align-center pa-4">
-                <v-progress-linear indeterminate color="primary" />
-              </div>
-              <v-row v-else dense>
-                <v-col v-for="card in linkedCards" :key="card.id" cols="6" sm="4" md="3" lg="2">
-                  <LinkedCard :card="card" @show-details="handleShowNewCard" />
-                </v-col>
-              </v-row>
+              <v-slide-y-reverse-transition mode="out-in">
+                <div :key="isLoadingLinks ? 'loading' : 'content'">
+                  <!-- Loading -->
+                  <div v-if="isLoadingLinks" class="d-flex justify-center align-center pa-4">
+                    <v-progress-linear indeterminate color="primary" />
+                  </div>
+
+                  <!-- Linked cards -->
+                  <v-row v-else dense>
+                    <v-col v-for="card in linkedCards" :key="card.id" cols="6" sm="4" md="3" lg="2">
+                      <LinkedCard :card="card" @show-details="handleShowNewCard" />
+                    </v-col>
+                  </v-row>
+                </div>
+              </v-slide-y-reverse-transition>
             </div>
           </div>
         </div>
