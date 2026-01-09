@@ -7,6 +7,7 @@ import {
   handleForgotPasswordRequest,
   handleResetPassword,
   authMiddleware,
+  optionalAuthMiddleware,
   handleAfdianWebhook,
   handleRefreshUserToken,
 } from './lib/auth.js'
@@ -18,6 +19,12 @@ import {
   handleUpdateDeck,
   handleGetDecklogData,
 } from './lib/decks.js'
+import {
+  handleCreateListing,
+  handleGetListings,
+  handleGetUserListings,
+  handleDeleteListing,
+} from './lib/market.js'
 import {
   createRateLimiter,
   emailBodyKeyExtractor,
@@ -82,6 +89,16 @@ const decklogRoutes = new Hono()
 decklogRoutes.use('/*', publicReadLimiter)
 decklogRoutes.get('/:key', handleGetDecklogData)
 
+// === Market 路由 ===
+const marketRoutes = new Hono()
+// 公開讀取 (支援可選認證)
+marketRoutes.get('/listings', publicReadLimiter, optionalAuthMiddleware, handleGetListings)
+// 需要驗證
+marketRoutes.use('/*', authMiddleware, apiUserLimiter)
+marketRoutes.post('/listings', handleCreateListing)
+marketRoutes.get('/my-listings', handleGetUserListings)
+marketRoutes.delete('/listings/:id', handleDeleteListing)
+
 // === 受保護的 Payment 路由 ===
 const paymentRoutes = new Hono()
 paymentRoutes.use('/*', authMiddleware, apiUserLimiter) // 必須登入才能創建訂單
@@ -96,6 +113,7 @@ app.route('/', authRoutes)
 app.route('/decks', deckRoutes)
 app.route('/shared-decks', publicDeckRoutes)
 app.route('/decklog', decklogRoutes)
+app.route('/market', marketRoutes)
 app.route('/webhooks', webhookRoutes)
 app.route('/payments', paymentRoutes)
 

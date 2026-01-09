@@ -41,3 +41,19 @@ CREATE TABLE IF NOT EXISTS afdian_orders (
   processed_at INTEGER,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS market_listings (
+    id TEXT PRIMARY KEY,
+    user_id TEXT NOT NULL,
+    series_name TEXT NOT NULL,      -- 系列名
+    cards_id TEXT NOT NULL,         -- 聯動人卡號 (存成 JSON 字串)
+    climax_types TEXT NOT NULL,     -- 潮種類 (存成 JSON 字串，例如 '["門", "枝"]')
+    tags TEXT,                      -- Tags (存成 JSON 字串，例如 '["賽場向", "娛樂"]')
+    price INTEGER NOT NULL,         -- 價格
+    shop_url TEXT NOT NULL,         -- 賣場連結
+    deck_code TEXT NOT NULL,        -- 卡組代碼
+    updated_at INTEGER,             -- 建立/更新時間
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+CREATE INDEX IF NOT EXISTS idx_listings_user_id ON market_listings(user_id);
+CREATE INDEX IF NOT EXISTS idx_listings_series ON market_listings(series_name);

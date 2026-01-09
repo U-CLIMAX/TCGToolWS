@@ -1,0 +1,248 @@
+import { defineStore } from 'pinia'
+import { ref } from 'vue'
+import { useAuthStore } from './auth'
+
+export const useMarketStore = defineStore(
+  'market',
+  () => {
+    const listings = ref([])
+    const userListings = ref([])
+    const isLoading = ref(false)
+    const pagination = ref({
+      page: 1,
+      limit: 20,
+      total: 0,
+      hasMore: true,
+    })
+
+    // 篩選條件
+    const filters = ref({
+      seriesId: null,
+      climaxType: [],
+      tag: [],
+      source: 'all', // 'all' or 'mine'
+      sort: 'newest',
+    })
+
+    const authStore = useAuthStore()
+
+    // Constants (Exposed for Components)
+    const climaxTypeOptions = [
+      { name: '爆', value: 'soul', icon: '/effect-icons/soul.webp' },
+      { name: '门', value: 'salvage', icon: '/effect-icons/salvage.webp' },
+      { name: '电', value: 'standby', icon: '/effect-icons/standby.webp' },
+      { name: '书', value: 'draw', icon: '/effect-icons/draw.webp' },
+      { name: '裤', value: 'gate', icon: '/effect-icons/gate.webp' },
+      { name: '袋', value: 'stock', icon: '/effect-icons/stock.webp' },
+      { name: '砖', value: 'treasure', icon: '/effect-icons/treasure.webp' },
+      { name: '风', value: 'bounce', icon: '/effect-icons/bounce.webp' },
+      { name: '火', value: 'shot', icon: '/effect-icons/shot.webp' },
+      { name: 'Y', value: 'choice', icon: '/effect-icons/choice.webp' },
+    ]
+    const tagOptions = [
+      { label: '全平', value: 0 },
+      { label: '有闪', value: 1 },
+      { label: '有签', value: 2 },
+      { label: '全闪', value: 3 },
+      { label: '顶罕', value: 4 },
+    ]
+
+    const tagLabels = tagOptions.reduce((acc, t) => {
+      acc[t.value] = t.label
+      return acc
+    }, [])
+
+    // Actions
+    const fetchListings = async (isLoadMore = false) => {
+      // 1. 如果不是加載更多，立即清空列表，防止切換時顯示舊資料
+      if (!isLoadMore) {
+        pagination.value.page = 1
+        listings.value = []
+        pagination.value.hasMore = true
+      }
+
+      if (isLoading.value) return
+
+      // 2. 檢查是否有篩選條件 (如果是 "我的賣場" 則忽略此檢查，直接允許獲取)
+      const isMine = filters.value.source === 'mine'
+      const hasActiveFilters =
+        filters.value.seriesId ||
+        (filters.value.climaxType && filters.value.climaxType.length > 0) ||
+        (filters.value.tag && filters.value.tag.length > 0)
+
+      // 如果既不是 "我的賣場" 也沒有任何篩選條件，則不發送請求 (保持空列表)
+      if (!isMine && !hasActiveFilters) {
+        isLoading.value = false
+        pagination.value.hasMore = false
+        pagination.value.total = 0
+        return
+      }
+
+      // 如果沒有更多數據，直接返回
+      if (isLoadMore && !pagination.value.hasMore) return
+
+      isLoading.value = true
+      try {
+        const queryParams = new URLSearchParams({
+          page: pagination.value.page,
+          limit: pagination.value.limit,
+          sort: filters.value.sort,
+        })
+
+        if (filters.value.seriesId) queryParams.append('series', filters.value.seriesId)
+        if (filters.value.climaxType && filters.value.climaxType.length > 0) {
+          filters.value.climaxType.forEach((c) => queryParams.append('climax', c))
+        }
+        if (filters.value.tag && filters.value.tag.length > 0) {
+          filters.value.tag.forEach((t) => queryParams.append('tag', t))
+        }
+        if (filters.value.source === 'mine') {
+          queryParams.append('mine', 'true')
+        }
+
+        const headers = {}
+        if (authStore.isAuthenticated) {
+          headers['Authorization'] = `Bearer ${authStore.token}`
+        }
+
+        const response = await fetch(`/api/market/listings?${queryParams.toString()}`, {
+          headers,
+        })
+
+        if (!response.ok) {
+          throw new Error('获取商品列表失败')
+        }
+
+        const data = await response.json()
+
+        if (isLoadMore) {
+          listings.value = [...listings.value, ...data.listings]
+        } else {
+          listings.value = data.listings
+        }
+
+        pagination.value.total = data.total
+        pagination.value.hasMore = listings.value.length < data.total
+
+        if (isLoadMore) {
+          pagination.value.page++
+        }
+      } catch (error) {
+        console.error('Failed to fetch listings:', error)
+        throw error
+      } finally {
+        isLoading.value = false
+      }
+    }
+
+    const fetchUserListings = async () => {
+      if (!authStore.isAuthenticated) return
+
+      isLoading.value = true
+      try {
+        const response = await fetch('/api/market/my-listings', {
+          headers: {
+            Authorization: `Bearer ${authStore.token}`,
+          },
+        })
+
+        if (!response.ok) throw new Error('获取用户商品失败')
+
+        const data = await response.json()
+        userListings.value = data.listings
+      } catch (error) {
+        console.error(error)
+        throw error
+      } finally {
+        isLoading.value = false
+      }
+    }
+
+    const createListing = async (listingData) => {
+      if (!authStore.isAuthenticated) throw new Error('请先登入')
+
+      isLoading.value = true
+      try {
+        const response = await fetch('/api/market/listings', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${authStore.token}`,
+          },
+          body: JSON.stringify(listingData),
+        })
+
+        if (!response.ok) {
+          const errorData = await response.json()
+          throw new Error(errorData.error || '发布商品失败')
+        }
+
+        return await response.json()
+      } finally {
+        isLoading.value = false
+      }
+    }
+
+    const deleteListing = async (listingId) => {
+      if (!authStore.isAuthenticated) throw new Error('请先登入')
+
+      try {
+        const response = await fetch(`/api/market/listings/${listingId}`, {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${authStore.token}`,
+          },
+        })
+
+        if (!response.ok) throw new Error('删除商品失败')
+
+        userListings.value = userListings.value.filter((l) => l.id !== listingId)
+        listings.value = listings.value.filter((l) => l.id !== listingId)
+      } catch (error) {
+        console.error(error)
+        throw error
+      }
+    }
+
+    const reset = () => {
+      listings.value = []
+      userListings.value = []
+      isLoading.value = false
+      pagination.value = {
+        page: 1,
+        limit: 20,
+        total: 0,
+        hasMore: true,
+      }
+      filters.value = {
+        seriesId: null,
+        climaxType: [],
+        tag: [],
+        source: 'all',
+        sort: 'newest',
+      }
+    }
+
+    return {
+      listings,
+      userListings,
+      isLoading,
+      pagination,
+      filters,
+      fetchListings,
+      fetchUserListings,
+      createListing,
+      deleteListing,
+      reset,
+      // Constants
+      climaxTypeOptions,
+      tagOptions,
+      tagLabels,
+    }
+  },
+  {
+    persist: {
+      storage: sessionStorage,
+    },
+  }
+)

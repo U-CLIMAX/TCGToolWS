@@ -345,6 +345,7 @@ const navIcons = {
 
 const navItems = [
   { text: '首页', name: 'Home', requiresAuth: false, icon: 'home.svg' },
+  { text: '集换大厅', name: 'Market', requiresAuth: false, icon: 'series-card-table.svg' },
   { text: '卡片搜索', name: 'GlobalSearch', requiresAuth: false, icon: 'search.svg' },
   { text: '系列卡表', name: 'SeriesCardTable', requiresAuth: false, icon: 'series-card-table.svg' },
   { text: '我的卡组', name: 'Decks', requiresAuth: true, icon: 'deck.svg' },
