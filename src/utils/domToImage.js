@@ -15,15 +15,12 @@ export const convertElementToPng = async (
   }
   try {
     const rect = element.getBoundingClientRect()
-    const dpr = window.devicePixelRatio
-    const final_scale = scale / dpr
-
     const options = {
       embedFonts: embedFonts,
       width: rect.width,
       height: rect.height,
-      dpr: dpr,
-      scale: final_scale,
+      dpr: 1,
+      scale: scale,
     }
 
     // WORKAROUND: Force-clear snapdom's cache before the actual capture.

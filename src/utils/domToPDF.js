@@ -83,9 +83,9 @@ export const convertDeckToPDF = async (cards, name, language) => {
       const imgData = await snapdom.toJpg(container, {
         width: PAGE_OPTS.w,
         height: PAGE_OPTS.h,
-        dpr: window.devicePixelRatio,
+        dpr: 1,
         quality: 0.6,
-        scale: 2 / window.devicePixelRatio,
+        scale: 2,
       })
       if (i > 0) pdf.addPage()
       pdf.addImage(imgData, 'JPG', 0, 0, PAGE_OPTS.w, PAGE_OPTS.h)
