@@ -102,6 +102,7 @@
                   :rules="[
                     (v) => !!v || '请输入链接',
                     (v) => v.includes('https://') || '链接必须包含 https://',
+                    (v) => v.length <= 255 || '链接长度不能超过 255 个字符',
                   ]"
                   variant="outlined"
                   density="comfortable"
