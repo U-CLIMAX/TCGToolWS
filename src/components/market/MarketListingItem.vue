@@ -18,7 +18,6 @@
         v-if="listing.cards_id && listing.cards_id.length > 0"
         hide-delimiters
         crossfade
-        cycle
         :show-arrows="listing.cards_id.length > 1 ? 'hover' : false"
         class="h-100"
       >
@@ -65,7 +64,10 @@
       <div class="text-h6 font-weight-bold text-error mb-2">¥ {{ listing.price }}</div>
 
       <!-- Climax Icons -->
-      <div v-if="listing.climax_types && listing.climax_types.length > 0" class="d-flex mt-1 align-center ga-1">
+      <div
+        v-if="listing.climax_types && listing.climax_types.length > 0"
+        class="d-flex mt-1 align-center ga-1"
+      >
         <v-avatar
           v-for="type in listing.climax_types.slice(0, 3)"
           :key="type"
@@ -74,7 +76,10 @@
         >
           <v-img :src="getClimaxIcon(type)" :alt="type" />
         </v-avatar>
-        <span v-if="listing.climax_types.length > 3" class="text-caption text-grey font-weight-bold">
+        <span
+          v-if="listing.climax_types.length > 3"
+          class="text-caption text-grey font-weight-bold"
+        >
           +{{ listing.climax_types.length - 3 }}
         </span>
       </div>
