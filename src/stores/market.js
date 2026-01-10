@@ -55,6 +55,7 @@ export const useMarketStore = defineStore(
       { label: '有签', value: 2 },
       { label: '全闪', value: 3 },
       { label: '顶罕', value: 4 },
+      { label: '大套', value: 5 },
     ]
 
     const tagLabels = tagOptions.reduce((acc, t) => {
