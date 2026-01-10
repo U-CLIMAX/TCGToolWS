@@ -18,23 +18,32 @@
             <!-- 篩選器區域 -->
             <v-row dense>
               <!-- 來源選擇 -->
-              <v-col cols="12" sm="6" md="3">
-                <v-select
+              <v-col cols="12" class="mb-2">
+                <v-btn-toggle
                   v-model="localFilters.source"
-                  :items="sourceOptions"
-                  item-title="title"
-                  item-value="value"
-                  label="商品来源"
+                  mandatory
+                  color="primary"
                   variant="outlined"
+                  divided
+                  class="d-flex w-100"
                   density="compact"
-                  hide-details
-                  prepend-inner-icon="mdi-store-outline"
-                  :menu-props="uiStore.menuProps"
-                />
+                  style="height: 40px"
+                  @update:model-value="handleSearch"
+                >
+                  <v-btn
+                    v-for="opt in sourceOptions"
+                    :key="opt.value"
+                    :value="opt.value"
+                    class="flex-grow-1"
+                    :prepend-icon="opt.value === 'mine' ? 'mdi-store' : 'mdi-shopping'"
+                  >
+                    {{ opt.title }}
+                  </v-btn>
+                </v-btn-toggle>
               </v-col>
 
               <!-- 系列選擇 -->
-              <v-col cols="12" sm="6" md="3">
+              <v-col cols="12" sm="4">
                 <v-autocomplete
                   v-model="localFilters.seriesId"
                   :items="seriesOptions"
@@ -50,7 +59,7 @@
               </v-col>
 
               <!-- 潮種類選擇 -->
-              <v-col cols="12" sm="6" md="3">
+              <v-col cols="12" sm="4">
                 <v-select
                   v-model="localFilters.climaxType"
                   :items="marketStore.climaxTypeOptions"
@@ -84,7 +93,7 @@
               </v-col>
 
               <!-- 標籤選擇 -->
-              <v-col cols="12" sm="6" md="3">
+              <v-col cols="12" sm="4">
                 <v-select
                   v-model="localFilters.tag"
                   :items="marketStore.tagOptions"
