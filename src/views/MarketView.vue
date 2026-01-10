@@ -73,7 +73,7 @@
                 <v-col cols="12" sm="4">
                   <v-autocomplete
                     v-model="localFilters.seriesId"
-                    :items="seriesOptions"
+                    :items="marketStore.seriesOptions"
                     item-title="title"
                     item-value="value"
                     label="选择系列"
@@ -215,7 +215,6 @@ import { ref, computed, onMounted, watch, nextTick } from 'vue'
 import { useMarketStore } from '@/stores/market'
 import { useUIStore } from '@/stores/ui'
 import { useAuthStore } from '@/stores/auth'
-import { seriesMap } from '@/maps/series-map'
 import MarketCreateDialog from '@/components/market/MarketCreateDialog.vue'
 import MarketListingItem from '@/components/market/MarketListingItem.vue'
 import AuthDialog from '@/components/ui/AuthDialog.vue'
@@ -250,15 +249,6 @@ const maxListings = computed(() => {
 
 const isLimitReached = computed(() => {
   return maxListings.value !== Infinity && marketStore.userListingCount >= maxListings.value
-})
-
-const seriesOptions = computed(() => {
-  return Object.keys(seriesMap)
-    .map((key) => ({
-      title: key,
-      value: seriesMap[key].id,
-    }))
-    .sort((a, b) => a.title.localeCompare(b.title, 'zh-CN'))
 })
 
 const openCreateDialog = () => {

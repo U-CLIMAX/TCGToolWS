@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useAuthStore } from './auth'
+import { seriesMap } from '@/maps/series-map'
 
 export const useMarketStore = defineStore(
   'market',
@@ -25,6 +26,17 @@ export const useMarketStore = defineStore(
     })
 
     const authStore = useAuthStore()
+
+    const seriesOptions = computed(() => {
+      return Object.keys(seriesMap)
+        .filter((key) => !['ws', 'wsr'].includes(seriesMap[key].id))
+        .map((key) => ({
+          title: key,
+          value: seriesMap[key].id,
+        }))
+        .sort((a, b) => a.title.localeCompare(b.title, 'zh-CN'))
+    })
+
     const climaxTypeOptions = [
       { name: '爆', value: 'soul', icon: '/effect-icons/soul.webp' },
       { name: '门', value: 'salvage', icon: '/effect-icons/salvage.webp' },
@@ -245,6 +257,7 @@ export const useMarketStore = defineStore(
       deleteListing,
       reset,
       // Constants
+      seriesOptions,
       climaxTypeOptions,
       tagOptions,
       tagLabels,

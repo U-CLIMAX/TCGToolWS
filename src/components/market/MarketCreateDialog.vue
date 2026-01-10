@@ -16,7 +16,7 @@
               <v-col cols="12" md="6">
                 <v-autocomplete
                   v-model="formData.seriesId"
-                  :items="seriesOptions"
+                  :items="marketStore.seriesOptions"
                   item-title="title"
                   item-value="value"
                   label="系列 *"
@@ -267,16 +267,6 @@ const displayedCards = computed(() => {
   if (!searchQuery.value) return availableCoverCards.value
   const q = searchQuery.value.toLowerCase()
   return availableCoverCards.value.filter((c) => c.id.toLowerCase().includes(q))
-})
-
-const seriesOptions = computed(() => {
-  return Object.keys(seriesMap)
-    .filter((key) => !['ws', 'wsr'].includes(seriesMap[key].id))
-    .map((key) => ({
-      title: key,
-      value: seriesMap[key].id,
-    }))
-    .sort((a, b) => a.title.localeCompare(b.title, 'zh-CN'))
 })
 
 const fetchSeriesCards = async (seriesId) => {
