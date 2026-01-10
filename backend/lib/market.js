@@ -17,10 +17,6 @@ export const handleCreateListing = async (c) => {
       return createErrorResponse(c, 400, '缺少必要参数')
     }
 
-    if (!shop_url.startsWith('https://')) {
-      return createErrorResponse(c, 400, '商品链接必须以 https:// 开头')
-    }
-
     // Check listing limit based on role
     const countResult = await c.env.DB.prepare(
       'SELECT COUNT(*) as total FROM market_listings WHERE user_id = ?'
@@ -93,10 +89,6 @@ export const handleUpdateListing = async (c) => {
     // Validation
     if (!series_name || !cards_id || !climax_types || price === undefined || !shop_url) {
       return createErrorResponse(c, 400, '缺少必要参数')
-    }
-
-    if (!shop_url.startsWith('https://')) {
-      return createErrorResponse(c, 400, '商品链接必须以 https:// 开头')
     }
 
     const ensureJsonString = (val) => (typeof val === 'string' ? val : JSON.stringify(val))
