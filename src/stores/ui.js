@@ -42,6 +42,9 @@ export const useUIStore = defineStore(
       }
       return { contentClass: classes.join(' ') }
     })
+    const menuPropsNoGlass = computed(() => {
+      return { contentClass: 'themed-scrollbar' }
+    })
 
     const restoreBackgroundImage = async () => {
       const storedImage = await backgroundStore.getItem(BACKGROUND_IMAGE_KEY)
@@ -159,6 +162,7 @@ export const useUIStore = defineStore(
       clearBackgroundImage,
       restoreBackgroundImage,
       menuProps,
+      menuPropsNoGlass,
       showForceUpdate,
       triggerForceUpdate,
       confirmUpdate,

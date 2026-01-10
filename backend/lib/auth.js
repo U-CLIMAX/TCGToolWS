@@ -21,6 +21,7 @@ const generateVerificationCode = () => {
   return Math.floor(100000 + Math.random() * 900000).toString()
 }
 
+// ... (Keep existing handlers mostly unchanged) ...
 export const handleSendVerificationCode = async (c) => {
   const db = c.env.DB
   const brevoApiKey = c.env.BREVO_API_KEY

@@ -71,6 +71,11 @@ const routes = [
     component: () => import('@/views/GlobalSearchView.vue'),
     props: true,
   },
+  {
+    path: '/market',
+    name: 'Market',
+    component: () => import('@/views/MarketView.vue'),
+  },
 ]
 
 const router = createRouter({
