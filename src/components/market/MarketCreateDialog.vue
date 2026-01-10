@@ -2,7 +2,7 @@
   <v-dialog v-model="dialog" max-width="900px" scrollable :fullscreen="smAndDown">
     <v-card>
       <v-toolbar color="primary" density="compact">
-        <v-toolbar-title>发布商品</v-toolbar-title>
+        <v-toolbar-title>{{ isEditing ? '编辑商品' : '发布商品' }}</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-btn icon="mdi-close" @click="dialog = false"></v-btn>
       </v-toolbar>
@@ -23,7 +23,7 @@
                   variant="outlined"
                   density="comfortable"
                   @update:model-value="onSeriesChange"
-                  :menu-props="uiStore.menuProps"
+                  :menu-props="uiStore.menuPropsNoGlass"
                 ></v-autocomplete>
               </v-col>
 
@@ -35,10 +35,12 @@
                   :rules="[
                     (v) => (v !== null && v !== undefined && v !== '') || '请输入价格',
                     (v) => v >= 0 || '价格不能为负数',
+                    (v) => Number.isInteger(v) || '价格必须是整数',
                   ]"
                   variant="outlined"
                   density="comfortable"
                   prefix="¥"
+                  hideSpinButtons
                 ></v-text-field>
               </v-col>
 
@@ -54,7 +56,7 @@
                   chips
                   variant="outlined"
                   density="comfortable"
-                  :menu-props="uiStore.menuProps"
+                  :menu-props="uiStore.menuPropsNoGlass"
                 >
                   <template #item="{ props, item }">
                     <v-list-item v-bind="props" :title="item.raw.name">
@@ -64,7 +66,7 @@
                     </v-list-item>
                   </template>
                   <template #chip="{ item }">
-                    <v-chip class="ma-1" size="small">
+                    <v-chip size="small">
                       <template #prepend>
                         <v-img :src="item.raw.icon" width="16" height="16" class="mr-1" />
                       </template>
@@ -87,7 +89,8 @@
                   variant="outlined"
                   density="comfortable"
                   placeholder="选择标签"
-                  :menu-props="uiStore.menuProps"
+                  prepend-inner-icon="mdi-tag-outline"
+                  :menu-props="uiStore.menuPropsNoGlass"
                 ></v-select>
               </v-col>
 
@@ -122,6 +125,18 @@
             <div class="text-subtitle-1 font-weight-bold mb-2">选择联动卡片 (最多3张) *</div>
             <div class="text-caption text-grey mb-3">仅显示该系列的联动角色卡 (已過濾高罕)。</div>
 
+            <v-text-field
+              v-if="formData.seriesId && !isLoadingCards"
+              v-model="searchQuery"
+              label="卡号搜索"
+              variant="outlined"
+              density="compact"
+              prepend-inner-icon="mdi-magnify"
+              class="mb-3"
+              clearable
+              hide-details
+            ></v-text-field>
+
             <div v-if="isLoadingCards" class="d-flex justify-center pa-4">
               <v-progress-circular indeterminate color="primary"></v-progress-circular>
             </div>
@@ -133,7 +148,7 @@
                 color="transparent"
               >
                 <v-row dense>
-                  <v-col v-for="card in availableCoverCards" :key="card.id" cols="4" sm="3" md="2">
+                  <v-col v-for="card in displayedCards" :key="card.id" cols="4" sm="3" md="2">
                     <div
                       class="cover-selection-item position-relative"
                       :class="{ selected: formData.selectedCardIds.includes(card.id) }"
@@ -157,6 +172,10 @@
                     </div>
                   </v-col>
                 </v-row>
+
+                <div v-if="displayedCards.length === 0" class="text-center pa-10 text-grey">
+                  没有找到匹配的卡片
+                </div>
               </v-sheet>
               <div class="text-right mt-2 text-caption">
                 已选择 {{ formData.selectedCardIds.length }} / 3
@@ -192,7 +211,7 @@
           :loading="isSubmitting"
           :disabled="!isValid || formData.selectedCardIds.length === 0"
         >
-          发布
+          {{ isEditing ? '更新' : '发布' }}
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -200,7 +219,7 @@
 </template>
 
 <script setup>
-import { ref, computed, reactive } from 'vue'
+import { ref, computed, reactive, watch } from 'vue'
 import { useDisplay } from 'vuetify'
 import { seriesMap } from '@/maps/series-map'
 import { useFilterStore } from '@/stores/filter'
@@ -209,8 +228,8 @@ import { useUIStore } from '@/stores/ui'
 import { useCardImage } from '@/composables/useCardImage'
 import { useSnackbar } from '@/composables/useSnackbar'
 
-const props = defineProps(['modelValue'])
-const emit = defineEmits(['update:modelValue', 'created'])
+const props = defineProps(['modelValue', 'editingListing'])
+const emit = defineEmits(['update:modelValue', 'created', 'updated'])
 const { smAndDown } = useDisplay()
 const filterStore = useFilterStore()
 const marketStore = useMarketStore()
@@ -222,11 +241,14 @@ const dialog = computed({
   set: (val) => emit('update:modelValue', val),
 })
 
+const isEditing = computed(() => !!props.editingListing)
+
 const form = ref(null)
 const isValid = ref(false)
 const isSubmitting = ref(false)
 const isLoadingCards = ref(false)
 const errorMsg = ref('')
+const searchQuery = ref('')
 
 const formData = reactive({
   seriesId: null,
@@ -240,6 +262,12 @@ const formData = reactive({
 
 const availableCoverCards = ref([])
 
+const displayedCards = computed(() => {
+  if (!searchQuery.value) return availableCoverCards.value
+  const q = searchQuery.value.toLowerCase()
+  return availableCoverCards.value.filter((c) => c.id.toLowerCase().includes(q))
+})
+
 const seriesOptions = computed(() => {
   return Object.keys(seriesMap)
     .map((key) => ({
@@ -249,15 +277,14 @@ const seriesOptions = computed(() => {
     .sort((a, b) => a.title.localeCompare(b.title, 'zh-CN'))
 })
 
-const onSeriesChange = async () => {
-  formData.selectedCardIds = []
+const fetchSeriesCards = async (seriesId) => {
   availableCoverCards.value = []
-
-  if (!formData.seriesId) return
+  searchQuery.value = ''
+  if (!seriesId) return
 
   isLoadingCards.value = true
   try {
-    const seriesEntry = Object.entries(seriesMap).find(([, val]) => val.id === formData.seriesId)
+    const seriesEntry = Object.entries(seriesMap).find(([, val]) => val.id === seriesId)
     if (!seriesEntry) throw new Error('系列未找到')
 
     const prefixes = seriesEntry[1].prefixes
@@ -273,7 +300,7 @@ const onSeriesChange = async () => {
       }
     })
 
-    // 4. Filter Cards
+    // Filter Cards
     availableCoverCards.value = allCards.filter((c) => {
       if (!c.isLowestRarity) return false
       const isComboChar = validComboIds.has(c.id)
@@ -287,6 +314,42 @@ const onSeriesChange = async () => {
     isLoadingCards.value = false
   }
 }
+
+const onSeriesChange = async () => {
+  formData.selectedCardIds = []
+  await fetchSeriesCards(formData.seriesId)
+}
+
+const resetForm = () => {
+  formData.seriesId = null
+  formData.price = null
+  formData.climaxTypes = []
+  formData.tags = []
+  formData.shopUrl = ''
+  formData.deckCode = ''
+  formData.selectedCardIds = []
+  availableCoverCards.value = []
+  if (form.value) form.value.resetValidation()
+}
+
+watch(dialog, async (newVal) => {
+  if (newVal) {
+    if (props.editingListing) {
+      const l = props.editingListing
+      formData.seriesId = l.series_name
+      formData.price = l.price
+      formData.climaxTypes = [...l.climax_types]
+      formData.tags = l.tags ? [...l.tags] : []
+      formData.shopUrl = l.shop_url
+      formData.deckCode = l.deck_code
+      formData.selectedCardIds = l.cards_id.map((c) => c.id)
+
+      await fetchSeriesCards(l.series_name)
+    } else {
+      resetForm()
+    }
+  }
+})
 
 const getCardImage = (card) => {
   const { base, blur } = useCardImage(card.cardIdPrefix, card.id)
@@ -320,38 +383,49 @@ const handleSubmit = async () => {
   try {
     const selectedCardsData = formData.selectedCardIds.map((id) => {
       const card = availableCoverCards.value.find((c) => c.id === id)
+      if (!card) {
+        const originalCard =
+          props.editingListing?.cards_id.find((c) => c.id === id) ||
+          availableCoverCards.value.find((c) => c.id === id)
+
+        if (originalCard) {
+          return {
+            id: originalCard.id,
+            cardIdPrefix: originalCard.cardIdPrefix,
+          }
+        }
+        throw new Error(`Card ${id} not found`)
+      }
       return {
         id: card.id,
         cardIdPrefix: card.cardIdPrefix,
       }
     })
 
-    await marketStore.createListing({
+    const payload = {
       series_name: formData.seriesId,
-      cards_id: selectedCardsData, // Array of objects {id, cardIdPrefix}
-      climax_types: formData.climaxTypes, // Array
-      tags: formData.tags, // Array
+      cards_id: selectedCardsData,
+      climax_types: formData.climaxTypes,
+      tags: formData.tags,
       price: formData.price,
       shop_url: formData.shopUrl,
       deck_code: formData.deckCode,
-    })
+    }
 
-    triggerSnackbar('发布成功！', 'success')
-    emit('created')
+    if (isEditing.value) {
+      await marketStore.updateListing(props.editingListing.id, payload)
+      triggerSnackbar('更新成功！', 'success')
+      emit('updated')
+    } else {
+      await marketStore.createListing(payload)
+      triggerSnackbar('发布成功！', 'success')
+      emit('created')
+    }
+
     dialog.value = false
-
-    // Reset form
-    formData.seriesId = null
-    formData.price = null
-    formData.climaxTypes = []
-    formData.tags = []
-    formData.shopUrl = ''
-    formData.deckCode = ''
-    formData.selectedCardIds = []
-    availableCoverCards.value = []
   } catch (err) {
     console.error(err)
-    errorMsg.value = err.message || '发布失败'
+    errorMsg.value = err.message || '操作失败'
   } finally {
     isSubmitting.value = false
   }

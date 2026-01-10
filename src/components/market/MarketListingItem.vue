@@ -81,6 +81,7 @@
     <v-divider></v-divider>
     <v-card-actions class="pa-0">
       <v-btn
+        v-if="marketStore.filters.source !== 'mine'"
         color="primary"
         variant="flat"
         size="small"
@@ -93,12 +94,24 @@
       </v-btn>
 
       <v-btn
+        v-else
+        color="secondary"
+        variant="outlined"
+        size="small"
+        prepend-icon="mdi-pencil"
+        class="flex-grow-1"
+        @click="emit('edit', listing)"
+      >
+        编辑
+      </v-btn>
+
+      <v-btn
         v-if="listing.deck_code"
-        icon="mdi-open-in-new"
+        :icon="DeckIcon"
         variant="text"
         size="small"
         color="teal-lighten-1"
-        v-tooltip:top="'前往卡组页面'"
+        v-tooltip:top="'  查看卡组'"
         density="compact"
         @click="navigateToDeckDetail"
       ></v-btn>
@@ -136,12 +149,16 @@ import { useCardImage } from '@/composables/useCardImage'
 import { useMarketStore } from '@/stores/market'
 import { useSnackbar } from '@/composables/useSnackbar'
 
+import DeckIcon from '@/assets/ui/deck.svg'
+
 const props = defineProps({
   listing: {
     type: Object,
     required: true,
   },
 })
+
+const emit = defineEmits(['edit'])
 
 const marketStore = useMarketStore()
 const { triggerSnackbar } = useSnackbar()
@@ -184,7 +201,7 @@ const timeAgo = computed(() => {
 })
 
 const navigateToDeckDetail = () => {
-  router.push({ name: 'DeckDetail', params: { key: props.listing.deck_code } })
+  router.push({ name: 'ShareDeckDetail', params: { key: props.listing.deck_code } })
 }
 
 const confirmDelete = () => {

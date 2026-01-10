@@ -365,89 +365,71 @@ export const handleAfdianWebhook = async (c) => {
   return processAfdianOrder(c, db, payload)
 }
 
-// 提取並驗證用戶的核心邏輯
-const processAuthToken = async (c) => {
+export const authMiddleware = async (c, next) => {
   const authHeader = c.req.header('Authorization')
   const secrets = [c.env.JWT_SECRET, c.env.JWT_OLD_SECRET].filter(Boolean)
 
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    throw new Error('No token provided')
+    return createErrorResponse(c, 401, 'Unauthorized: No token provided')
   }
 
   const token = authHeader.substring(7)
-  let payload = null
-  let lastError = null
 
-  for (const secret of secrets) {
-    try {
-      payload = await verify(token, secret)
-      break
-    } catch (e) {
-      lastError = e
-    }
-  }
-
-  if (!payload) {
-    throw lastError || new Error('Invalid token')
-  }
-
-  const user = await c.env.DB.prepare(
-    'SELECT id, role, premium_expire_time FROM users WHERE id = ?'
-  )
-    .bind(payload.sub)
-    .first()
-
-  if (!user) {
-    throw new Error('User not found')
-  }
-
-  // 檢查會籍是否過期
-  const now = Math.floor(Date.now() / 1000)
-  let effectiveRole = user.role // 預設為資料庫中的角色
-  let effectivePremiumTime = user.premium_expire_time
-
-  if (
-    user.role === 1 && // 1 = premium
-    user.premium_expire_time &&
-    user.premium_expire_time < now
-  ) {
-    // 會籍已過期！
-    effectiveRole = 0 // 在此請求中，將他視為普通用戶
-    effectivePremiumTime = null
-
-    // 異步將資料庫中的角色降級
-    c.executionCtx.waitUntil(
-      c.env.DB.prepare('UPDATE users SET role = 0 WHERE id = ?').bind(user.id).run()
-    )
-  }
-
-  c.set('user', {
-    id: user.id,
-    role: effectiveRole,
-    premium_expire_time: effectivePremiumTime,
-  })
-  c.set('jwtPayload', payload)
-
-  return c.get('user')
-}
-
-// 標準的強制認證 Middleware
-export const authMiddleware = async (c, next) => {
   try {
-    await processAuthToken(c)
+    let payload = null
+    let lastError = null
+
+    for (const secret of secrets) {
+      try {
+        payload = await verify(token, secret)
+        break
+      } catch (e) {
+        lastError = e
+      }
+    }
+
+    if (!payload) {
+      throw lastError || new Error('Invalid token')
+    }
+
+    const user = await c.env.DB.prepare(
+      'SELECT id, role, premium_expire_time FROM users WHERE id = ?'
+    )
+      .bind(payload.sub)
+      .first()
+
+    if (!user) {
+      return createErrorResponse(c, 401, 'Unauthorized: User not found')
+    }
+
+    // 檢查會籍是否過期
+    const now = Math.floor(Date.now() / 1000)
+    let effectiveRole = user.role // 預設為資料庫中的角色
+    let effectivePremiumTime = user.premium_expire_time
+
+    if (
+      user.role === 1 && // 1 = premium
+      user.premium_expire_time &&
+      user.premium_expire_time < now
+    ) {
+      // 會籍已過期！
+      effectiveRole = 0 // 在此請求中，將他視為普通用戶
+      effectivePremiumTime = null
+
+      // 異步將資料庫中的角色降級
+      c.executionCtx.waitUntil(
+        c.env.DB.prepare('UPDATE users SET role = 0 WHERE id = ?').bind(user.id).run()
+      )
+    }
+
+    c.set('user', {
+      id: user.id,
+      role: effectiveRole,
+      premium_expire_time: effectivePremiumTime,
+    })
+    c.set('jwtPayload', payload)
     await next()
   } catch (error) {
     return createErrorResponse(c, 401, `Unauthorized: ${error.message}`)
   }
-}
-
-// 可選的認證 Middleware (失敗不報錯，只會導致 user 為 undefined)
-export const optionalAuthMiddleware = async (c, next) => {
-  try {
-    await processAuthToken(c)
-    // eslint-disable-next-line no-unused-vars
-  } catch (error) {
-    // ignore error
-  }
-  await next()
 }

@@ -20,7 +20,7 @@
               <!-- 來源選擇 -->
               <v-col cols="12" sm="6" md="3">
                 <v-select
-                  v-model="marketStore.filters.source"
+                  v-model="localFilters.source"
                   :items="sourceOptions"
                   item-title="title"
                   item-value="value"
@@ -36,7 +36,7 @@
               <!-- 系列選擇 -->
               <v-col cols="12" sm="6" md="3">
                 <v-autocomplete
-                  v-model="marketStore.filters.seriesId"
+                  v-model="localFilters.seriesId"
                   :items="seriesOptions"
                   item-title="title"
                   item-value="value"
@@ -52,7 +52,7 @@
               <!-- 潮種類選擇 -->
               <v-col cols="12" sm="6" md="3">
                 <v-select
-                  v-model="marketStore.filters.climaxType"
+                  v-model="localFilters.climaxType"
                   :items="marketStore.climaxTypeOptions"
                   item-title="name"
                   item-value="value"
@@ -73,7 +73,7 @@
                     </v-list-item>
                   </template>
                   <template #chip="{ item }">
-                    <v-chip class="ma-1" size="small">
+                    <v-chip size="small">
                       <template #prepend>
                         <v-img :src="item.raw.icon" width="16" height="16" class="mr-1" />
                       </template>
@@ -86,7 +86,7 @@
               <!-- 標籤選擇 -->
               <v-col cols="12" sm="6" md="3">
                 <v-select
-                  v-model="marketStore.filters.tag"
+                  v-model="localFilters.tag"
                   :items="marketStore.tagOptions"
                   item-title="label"
                   item-value="value"
@@ -111,19 +111,17 @@
                 color="primary"
                 prepend-icon="mdi-plus"
                 @click="openCreateDialog"
+                :disabled="isLimitReached"
               >
                 发布商品
               </v-btn>
               <div class="ga-2 d-flex ml-auto">
-                <v-btn variant="text" color="grey" @click="resetFilters">重置</v-btn>
+                <v-btn variant="flat" color="grey" @click="resetFilters">重置</v-btn>
                 <v-btn
                   color="secondary"
-                  variant="tonal"
+                  variant="flat"
                   @click="handleSearch"
                   :loading="marketStore.isLoading"
-                  :disabled="
-                    marketStore.filters.seriesId === null && marketStore.filters.source === 'all'
-                  "
                 >
                   搜索
                 </v-btn>
@@ -134,6 +132,25 @@
       </v-container>
 
       <v-container class="pt-4 px-3">
+        <div
+          v-if="
+            authStore.isAuthenticated &&
+            marketStore.filters.source === 'mine' &&
+            marketStore.listings.length > 0
+          "
+        >
+          <div class="group-header">
+            <div class="d-flex align-center ga-2">
+              <v-icon icon="mdi-package-check" size="24"></v-icon>
+              <span
+                >{{ marketStore.userListingCount }} /
+                {{ maxListings === Infinity ? '∞' : maxListings }}</span
+              >
+              <span v-if="isLimitReached" class="text-error font-weight-bold"> 已达上限 </span>
+            </div>
+          </div>
+        </div>
+
         <div
           v-if="marketStore.listings.length === 0 && !marketStore.isLoading"
           class="text-center text-grey mt-10"
@@ -151,20 +168,25 @@
             lg="2"
             xl="1"
           >
-            <MarketListingItem :listing="item" />
+            <MarketListingItem :listing="item" @edit="handleEdit" />
           </v-col>
         </v-row>
       </v-container>
 
       <template v-slot:loading>
-        <v-row justify="center" class="my-4">
+        <div class="d-flex justify-center my-4 w-100">
           <v-progress-circular indeterminate color="primary" />
-        </v-row>
+        </div>
       </template>
     </v-infinite-scroll>
 
     <BackToTopButton :scroll-container="scrollContainer" />
-    <MarketCreateDialog v-model="showCreateDialog" @created="handleRefresh" />
+    <MarketCreateDialog
+      v-model="showCreateDialog"
+      :editing-listing="editingListing"
+      @created="handleRefresh"
+      @updated="handleRefresh"
+    />
     <AuthDialog ref="authDialog" />
   </v-container>
 </template>
@@ -197,8 +219,19 @@ const sourceOptions = computed(() => {
 })
 
 const showCreateDialog = ref(false)
+const editingListing = ref(null)
 const authDialog = ref(null)
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
+
+const maxListings = computed(() => {
+  if (authStore.userRole === 0) return 5
+  if (authStore.userRole === 1) return 50
+  return Infinity
+})
+
+const isLimitReached = computed(() => {
+  return maxListings.value !== Infinity && marketStore.userListingCount >= maxListings.value
+})
 
 const seriesOptions = computed(() => {
   return Object.keys(seriesMap)
@@ -214,10 +247,28 @@ const openCreateDialog = () => {
     authDialog.value?.open()
     return
   }
+  editingListing.value = null
   showCreateDialog.value = true
 }
 
+const handleEdit = (listing) => {
+  editingListing.value = listing
+  showCreateDialog.value = true
+}
+
+const localFilters = ref({
+  source: 'all',
+  seriesId: null,
+  climaxType: [],
+  tag: [],
+})
+
 const handleSearch = () => {
+  marketStore.filters.source = localFilters.value.source
+  marketStore.filters.seriesId = localFilters.value.seriesId
+  marketStore.filters.climaxType = [...localFilters.value.climaxType]
+  marketStore.filters.tag = [...localFilters.value.tag]
+
   marketStore.fetchListings()
   scrollKey.value++
 }
@@ -229,11 +280,10 @@ const handleRefresh = async () => {
 }
 
 const resetFilters = () => {
-  marketStore.filters.seriesId = null
-  marketStore.filters.climaxType = []
-  marketStore.filters.tag = []
-  marketStore.filters.source = 'all'
-  handleSearch()
+  localFilters.value.source = 'all'
+  localFilters.value.seriesId = null
+  localFilters.value.climaxType = []
+  localFilters.value.tag = []
 }
 
 const loadMore = async ({ done }) => {
@@ -251,8 +301,15 @@ const loadMore = async ({ done }) => {
 }
 
 onMounted(() => {
+  // Initialize local filters from store
+  localFilters.value.source = marketStore.filters.source
+  localFilters.value.seriesId = marketStore.filters.seriesId
+  localFilters.value.climaxType = [...marketStore.filters.climaxType]
+  localFilters.value.tag = [...marketStore.filters.tag]
+
   // 初始化加載
   marketStore.fetchListings()
+
   // 確保 scrollContainer 在組件掛載後更新 (因為使用了 key，可能需要 nextTick)
   nextTick(() => {
     scrollContainer.value = infiniteScrollRef.value?.$el
@@ -276,5 +333,20 @@ watch(scrollKey, () => {
 
 .gap-2 {
   gap: 8px;
+}
+
+.group-header {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background-color: rgba(var(--v-theme-surface), 0.7);
+  backdrop-filter: blur(4px) saturate(180%);
+  -webkit-backdrop-filter: blur(4px) saturate(180%); /* Safari 支援 */
+  padding: 4px 12px;
+  border-radius: 16px;
+  margin-bottom: 4px;
+  border: 1px solid rgba(var(--v-border-color), var(--v-border-opacity));
+  color: rgb(var(--v-theme-on-surface));
+  font-size: 0.875rem;
 }
 </style>

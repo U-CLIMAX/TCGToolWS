@@ -7,7 +7,6 @@ import {
   handleForgotPasswordRequest,
   handleResetPassword,
   authMiddleware,
-  optionalAuthMiddleware,
   handleAfdianWebhook,
   handleRefreshUserToken,
 } from './lib/auth.js'
@@ -24,6 +23,8 @@ import {
   handleGetListings,
   handleGetUserListings,
   handleDeleteListing,
+  handleUpdateListing,
+  handleGetMyListingCount,
 } from './lib/market.js'
 import {
   createRateLimiter,
@@ -91,12 +92,14 @@ decklogRoutes.get('/:key', handleGetDecklogData)
 
 // === Market 路由 ===
 const marketRoutes = new Hono()
-// 公開讀取 (支援可選認證)
-marketRoutes.get('/listings', publicReadLimiter, optionalAuthMiddleware, handleGetListings)
+// 公開讀取
+marketRoutes.get('/listings', publicReadLimiter, handleGetListings)
 // 需要驗證
 marketRoutes.use('/*', authMiddleware, apiUserLimiter)
 marketRoutes.post('/listings', handleCreateListing)
+marketRoutes.put('/listings/:id', handleUpdateListing)
 marketRoutes.get('/my-listings', handleGetUserListings)
+marketRoutes.get('/my-count', handleGetMyListingCount)
 marketRoutes.delete('/listings/:id', handleDeleteListing)
 
 // === 受保護的 Payment 路由 ===

@@ -51,8 +51,8 @@ CREATE TABLE IF NOT EXISTS market_listings (
     tags TEXT,                      -- Tags (存成 JSON 字串，例如 '["賽場向", "娛樂"]')
     price INTEGER NOT NULL,         -- 價格
     shop_url TEXT NOT NULL,         -- 賣場連結
-    deck_code TEXT NOT NULL,        -- 卡組代碼
-    updated_at INTEGER,             -- 建立/更新時間
+    deck_code TEXT,                 -- 卡組代碼
+    updated_at INTEGER NOT NULL,    -- 建立/更新時間
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 CREATE INDEX IF NOT EXISTS idx_listings_user_id ON market_listings(user_id);
