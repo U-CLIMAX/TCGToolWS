@@ -17,7 +17,6 @@
           >
             <div class="d-flex justify-space-between align-center mb-3 ga-2">
               <div class="text-caption text-grey-darken-1">
-                🛈
                 本平台仅提供商品信息展示，不参与交易过程，复制链接后在相应app内打开。请务必核实卖家身份，建议通过闲鱼等担保平台完成交易。最终解释权归
                 U-CLIMAX 所有。
               </div>
@@ -43,16 +42,15 @@
                   color="primary"
                   variant="outlined"
                   divided
-                  class="d-flex w-100"
+                  class="w-100"
                   density="compact"
-                  style="height: 40px"
                   @update:model-value="handleSearch"
                 >
                   <v-btn
                     v-for="opt in sourceOptions"
                     :key="opt.value"
                     :value="opt.value"
-                    class="flex-grow-1"
+                    class="flex-1-1"
                     :prepend-icon="opt.value === 'mine' ? 'mdi-store' : 'mdi-shopping'"
                   >
                     {{ opt.title }}
