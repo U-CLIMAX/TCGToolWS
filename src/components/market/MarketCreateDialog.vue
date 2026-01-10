@@ -271,6 +271,7 @@ const displayedCards = computed(() => {
 
 const seriesOptions = computed(() => {
   return Object.keys(seriesMap)
+    .filter((key) => !['ws', 'wsr'].includes(seriesMap[key].id))
     .map((key) => ({
       title: key,
       value: seriesMap[key].id,
