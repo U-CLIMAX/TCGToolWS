@@ -138,9 +138,12 @@ export const handleUpdateListing = async (c) => {
  */
 export const handleGetListings = async (c) => {
   try {
-    const { page = 1, limit = 20, series, sort = 'newest' } = c.req.query()
+    const { page, limit, series, sort = 'newest' } = c.req.query()
 
-    const offset = (page - 1) * limit
+    const pageNum = Math.max(1, parseInt(page) || 1)
+    const limitNum = Math.max(1, Math.min(100, parseInt(limit) || 20))
+    const offset = (pageNum - 1) * limitNum
+
     const conditions = []
     const params = []
 
@@ -181,7 +184,7 @@ export const handleGetListings = async (c) => {
 
     // Execute queries
     const { results } = await c.env.DB.prepare(query)
-      .bind(...params, parseInt(limit), parseInt(offset))
+      .bind(...params, limitNum, offset)
       .all()
 
     const totalResult = await c.env.DB.prepare(countQuery)
@@ -199,8 +202,8 @@ export const handleGetListings = async (c) => {
     return c.json({
       listings,
       total: totalResult.total,
-      page: parseInt(page),
-      limit: parseInt(limit),
+      page: pageNum,
+      limit: limitNum,
     })
   } catch (error) {
     console.error('Error fetching listings:', error)
@@ -216,9 +219,12 @@ export const handleGetListings = async (c) => {
 export const handleGetUserListings = async (c) => {
   try {
     const user = c.get('user')
-    const { page = 1, limit = 20, series, sort = 'newest' } = c.req.query()
+    const { page, limit, series, sort = 'newest' } = c.req.query()
 
-    const offset = (page - 1) * limit
+    const pageNum = Math.max(1, parseInt(page) || 1)
+    const limitNum = Math.max(1, Math.min(100, parseInt(limit) || 20))
+    const offset = (pageNum - 1) * limitNum
+
     const conditions = ['user_id = ?']
     const params = [user.id]
 
@@ -259,7 +265,7 @@ export const handleGetUserListings = async (c) => {
 
     // Execute queries
     const { results } = await c.env.DB.prepare(query)
-      .bind(...params, parseInt(limit), parseInt(offset))
+      .bind(...params, limitNum, offset)
       .all()
 
     const totalResult = await c.env.DB.prepare(countQuery)
@@ -277,8 +283,8 @@ export const handleGetUserListings = async (c) => {
     return c.json({
       listings,
       total: totalResult.total,
-      page: parseInt(page),
-      limit: parseInt(limit),
+      page: pageNum,
+      limit: limitNum,
     })
   } catch (error) {
     console.error('Error fetching user listings:', error)

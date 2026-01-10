@@ -79,8 +79,9 @@ export const useMarketStore = defineStore(
 
       isLoading.value = true
       try {
+        const targetPage = isLoadMore ? pagination.value.page + 1 : 1
         const queryParams = new URLSearchParams({
-          page: pagination.value.page,
+          page: targetPage,
           limit: pagination.value.limit,
           sort: filters.value.sort,
         })
@@ -123,10 +124,7 @@ export const useMarketStore = defineStore(
 
         pagination.value.total = data.total
         pagination.value.hasMore = listings.value.length < data.total
-
-        if (isLoadMore) {
-          pagination.value.page++
-        }
+        pagination.value.page = targetPage
       } catch (error) {
         console.error('Failed to fetch listings:', error)
         throw error
