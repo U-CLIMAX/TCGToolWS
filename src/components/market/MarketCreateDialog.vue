@@ -101,7 +101,7 @@
                   label="卖场链接 (闲鱼/淘宝等) *"
                   :rules="[
                     (v) => !!v || '请输入链接',
-                    (v) => /^https:\/\//.test(v) || '链接必须以 https:// 开头',
+                    (v) => v.includes('https://') || '链接必须包含 https://',
                   ]"
                   variant="outlined"
                   density="comfortable"
