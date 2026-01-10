@@ -85,12 +85,11 @@
         color="primary"
         variant="flat"
         size="small"
-        prepend-icon="mdi-cart"
-        :href="listing.shop_url"
-        target="_blank"
+        prepend-icon="mdi-content-copy"
         class="flex-grow-1"
+        @click="copyLink(listing.shop_url)"
       >
-        购买
+        复制购买链接
       </v-btn>
 
       <v-btn
@@ -206,6 +205,16 @@ const navigateToDeckDetail = () => {
 
 const confirmDelete = () => {
   showDeleteDialog.value = true
+}
+
+const copyLink = async (url) => {
+  try {
+    await navigator.clipboard.writeText(url)
+    triggerSnackbar('链接已复制', 'success')
+  } catch (err) {
+    console.error('Failed to copy: ', err)
+    triggerSnackbar('复制失败', 'error')
+  }
 }
 
 const handleDelete = async () => {
