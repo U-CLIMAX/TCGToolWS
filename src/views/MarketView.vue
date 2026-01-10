@@ -15,9 +15,27 @@
             rounded="lg"
             elevation="2"
           >
-            <!-- 篩選器區域 -->
+            <div class="d-flex justify-space-between align-center mb-3 ga-2">
+              <div class="text-caption text-grey-darken-1">
+                🛈
+                本平台仅提供商品信息展示，不参与交易过程，复制链接后在相应app内打开。请务必核实卖家身份，建议通过闲鱼等担保平台完成交易。最终解释权归
+                U-CLIMAX 所有。
+              </div>
+              <v-btn
+                v-if="authStore.isAuthenticated"
+                color="primary"
+                prepend-icon="mdi-plus"
+                @click="openCreateDialog"
+                :disabled="isLimitReached"
+              >
+                发布商品
+              </v-btn>
+            </div>
+
+            <v-divider class="mb-3"></v-divider>
+
+            <!-- 來源選擇 -->
             <v-row dense>
-              <!-- 來源選擇 -->
               <v-col cols="12" class="mb-2">
                 <v-btn-toggle
                   v-model="localFilters.source"
@@ -41,101 +59,93 @@
                   </v-btn>
                 </v-btn-toggle>
               </v-col>
-
-              <!-- 系列選擇 -->
-              <v-col cols="12" sm="4">
-                <v-autocomplete
-                  v-model="localFilters.seriesId"
-                  :items="seriesOptions"
-                  item-title="title"
-                  item-value="value"
-                  label="选择系列"
-                  variant="outlined"
-                  density="compact"
-                  hide-details
-                  clearable
-                  :menu-props="uiStore.menuProps"
-                />
-              </v-col>
-
-              <!-- 潮種類選擇 -->
-              <v-col cols="12" sm="4">
-                <v-select
-                  v-model="localFilters.climaxType"
-                  :items="marketStore.climaxTypeOptions"
-                  item-title="name"
-                  item-value="value"
-                  label="潮种类"
-                  variant="outlined"
-                  density="compact"
-                  hide-details
-                  clearable
-                  multiple
-                  chips
-                  :menu-props="uiStore.menuProps"
-                >
-                  <template #item="{ props, item }">
-                    <v-list-item v-bind="props" :title="item.raw.name">
-                      <template #prepend>
-                        <v-img :src="item.raw.icon" width="24" height="24" class="mr-2" contain />
-                      </template>
-                    </v-list-item>
-                  </template>
-                  <template #chip="{ item }">
-                    <v-chip size="small">
-                      <template #prepend>
-                        <v-img :src="item.raw.icon" width="16" height="16" class="mr-1" />
-                      </template>
-                      {{ item.raw.name }}
-                    </v-chip>
-                  </template>
-                </v-select>
-              </v-col>
-
-              <!-- 標籤選擇 -->
-              <v-col cols="12" sm="4">
-                <v-select
-                  v-model="localFilters.tag"
-                  :items="marketStore.tagOptions"
-                  item-title="label"
-                  item-value="value"
-                  label="标签"
-                  multiple
-                  chips
-                  closable-chips
-                  variant="outlined"
-                  density="compact"
-                  hide-details
-                  clearable
-                  prepend-inner-icon="mdi-tag-outline"
-                  :menu-props="uiStore.menuProps"
-                />
-              </v-col>
             </v-row>
 
-            <div class="d-flex align-center mt-4">
-              <v-btn
-                v-if="authStore.isAuthenticated"
-                class="mr-auto"
-                color="primary"
-                prepend-icon="mdi-plus"
-                @click="openCreateDialog"
-                :disabled="isLimitReached"
-              >
-                发布商品
-              </v-btn>
-              <div class="ga-2 d-flex ml-auto">
-                <v-btn variant="flat" color="grey" @click="resetFilters">重置</v-btn>
-                <v-btn
-                  color="secondary"
-                  variant="flat"
-                  @click="handleSearch"
-                  :loading="marketStore.isLoading"
-                >
-                  搜索
-                </v-btn>
+            <!-- 篩選條件區域 -->
+            <v-card variant="outlined" class="mt-3 pa-3" rounded="lg">
+              <div class="text-caption text-medium-emphasis mb-3 d-flex align-center">
+                <v-icon icon="mdi-filter-variant" size="18" class="mr-1"></v-icon>
+                筛选条件
               </div>
-            </div>
+
+              <v-row dense>
+                <!-- 系列選擇 -->
+                <v-col cols="12" sm="4">
+                  <v-autocomplete
+                    v-model="localFilters.seriesId"
+                    :items="seriesOptions"
+                    item-title="title"
+                    item-value="value"
+                    label="选择系列"
+                    variant="outlined"
+                    density="compact"
+                    hide-details
+                    clearable
+                    :menu-props="uiStore.menuProps"
+                  />
+                </v-col>
+
+                <!-- 潮種類選擇 -->
+                <v-col cols="12" sm="4">
+                  <v-select
+                    v-model="localFilters.climaxType"
+                    :items="marketStore.climaxTypeOptions"
+                    item-title="name"
+                    item-value="value"
+                    label="潮种类"
+                    variant="outlined"
+                    density="compact"
+                    hide-details
+                    clearable
+                    multiple
+                    chips
+                    :menu-props="uiStore.menuProps"
+                  >
+                    <template #item="{ props, item }">
+                      <v-list-item v-bind="props" :title="item.raw.name">
+                        <template #prepend>
+                          <v-img :src="item.raw.icon" width="24" height="24" class="mr-2" contain />
+                        </template>
+                      </v-list-item>
+                    </template>
+                    <template #chip="{ item }">
+                      <v-chip size="small">
+                        <template #prepend>
+                          <v-img :src="item.raw.icon" width="16" height="16" class="mr-1" />
+                        </template>
+                        {{ item.raw.name }}
+                      </v-chip>
+                    </template>
+                  </v-select>
+                </v-col>
+
+                <!-- 標籤選擇 -->
+                <v-col cols="12" sm="4">
+                  <v-select
+                    v-model="localFilters.tag"
+                    :items="marketStore.tagOptions"
+                    item-title="label"
+                    item-value="value"
+                    label="标签"
+                    multiple
+                    chips
+                    closable-chips
+                    variant="outlined"
+                    density="compact"
+                    hide-details
+                    clearable
+                    prepend-inner-icon="mdi-tag-outline"
+                    :menu-props="uiStore.menuProps"
+                  />
+                </v-col>
+              </v-row>
+
+              <!-- 篩選操作按鈕 -->
+              <div class="d-flex justify-end ga-2 mt-3">
+                <v-btn variant="flat" color="grey" @click="resetFilters">重置</v-btn>
+                <v-btn color="secondary" variant="flat" @click="handleSearch"> 搜索 </v-btn>
+              </div>
+            </v-card>
           </v-sheet>
         </div>
       </v-container>
