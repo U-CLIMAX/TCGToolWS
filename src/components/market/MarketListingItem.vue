@@ -65,16 +65,18 @@
       <div class="text-h6 font-weight-bold text-error mb-2">¥ {{ listing.price }}</div>
 
       <!-- Climax Icons -->
-      <div v-if="listing.climax_types && listing.climax_types.length > 0" class="d-flex mt-1">
+      <div v-if="listing.climax_types && listing.climax_types.length > 0" class="d-flex mt-1 align-center ga-1">
         <v-avatar
-          v-for="type in listing.climax_types"
+          v-for="type in listing.climax_types.slice(0, 3)"
           :key="type"
           size="24"
-          class="mr-1"
           rounded="0"
         >
           <v-img :src="getClimaxIcon(type)" :alt="type" />
         </v-avatar>
+        <span v-if="listing.climax_types.length > 3" class="text-caption text-grey font-weight-bold">
+          +{{ listing.climax_types.length - 3 }}
+        </span>
       </div>
     </v-card-text>
     <!-- Actions -->
