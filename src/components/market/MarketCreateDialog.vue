@@ -8,6 +8,7 @@
       </v-toolbar>
 
       <v-card-text class="pa-4 themed-scrollbar">
+        <div class="text-caption text-red mb-2 px-3">* 为必填项</div>
         <v-form ref="form" v-model="isValid">
           <v-container>
             <v-row dense>
