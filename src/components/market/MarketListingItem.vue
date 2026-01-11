@@ -186,7 +186,7 @@ const seriesInfo = computed(() => {
 
 const seriesIcon = computed(() => {
   if (!seriesInfo.value) return ''
-  return `/series-icons/${seriesInfo.value.icon}.webp`
+  return `/series-icons/${seriesInfo.value.id}.webp`
 })
 
 const getCardUrl = (card) => {
