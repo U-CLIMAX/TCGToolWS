@@ -234,7 +234,9 @@ import MarketCreateDialog from '@/components/market/MarketCreateDialog.vue'
 import MarketListingItem from '@/components/market/MarketListingItem.vue'
 import AuthDialog from '@/components/ui/AuthDialog.vue'
 import BackToTopButton from '@/components/ui/BackToTopButton.vue'
+import { useSnackbar } from '@/composables/useSnackbar'
 
+const { triggerSnackbar } = useSnackbar()
 const marketStore = useMarketStore()
 const uiStore = useUIStore()
 const authStore = useAuthStore()
@@ -301,14 +303,22 @@ const handleSearch = async () => {
   marketStore.filters.tag = [...localFilters.value.tag]
   marketStore.filters.sort = localFilters.value.sort
 
-  await marketStore.fetchListings()
-  scrollKey.value++
+  try {
+    await marketStore.fetchListings()
+    scrollKey.value++
+  } catch (error) {
+    triggerSnackbar(error.message || '搜索失败', 'error')
+  }
 }
 
 const handleRefresh = async () => {
   if (marketStore.filters.source === 'all') return
-  await marketStore.fetchListings()
-  scrollKey.value++
+  try {
+    await marketStore.fetchListings()
+    scrollKey.value++
+  } catch (error) {
+    triggerSnackbar(error.message || '刷新失败', 'error')
+  }
 }
 
 const resetFilters = () => {
@@ -324,8 +334,8 @@ const loadMore = async ({ done }) => {
     try {
       await marketStore.fetchListings(true)
       done('ok')
-      // eslint-disable-next-line no-unused-vars
     } catch (err) {
+      triggerSnackbar(err.message || '加载更多失败', 'error')
       done('error')
     }
   } else {
@@ -341,7 +351,12 @@ onMounted(async () => {
   localFilters.value.tag = [...marketStore.filters.tag]
   localFilters.value.sort = marketStore.filters.sort
 
-  await marketStore.fetchListings()
+  try {
+    await marketStore.fetchListings()
+  } catch (error) {
+    triggerSnackbar(error.message || '加载失败', 'error')
+  }
+
   nextTick(() => {
     scrollContainer.value = infiniteScrollRef.value?.$el
   })
