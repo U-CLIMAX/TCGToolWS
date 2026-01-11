@@ -375,6 +375,7 @@ const handleSubmit = async () => {
   errorMsg.value = ''
 
   try {
+    uiStore.setLoading(true)
     const selectedCardsData = formData.selectedCardIds.map((id) => {
       const card = availableCoverCards.value.find((c) => c.id === id)
       if (!card) {
@@ -421,6 +422,7 @@ const handleSubmit = async () => {
     console.error(err)
     errorMsg.value = err.message || '操作失败'
   } finally {
+    uiStore.setLoading(false)
     isSubmitting.value = false
   }
 }
