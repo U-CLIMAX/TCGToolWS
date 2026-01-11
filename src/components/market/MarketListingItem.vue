@@ -36,7 +36,7 @@
             size="x-small"
             variant="flat"
             color="rgba(0, 0, 0, 0.6)"
-            class="text-white border-white border-opacity-25"
+            class="text-white"
             style="border: 1px solid rgba(255, 255, 255, 0.3)"
           >
             {{ marketStore.tagLabels[tagIndex] || '未知标签' }}
