@@ -26,6 +26,7 @@
                 prepend-icon="mdi-plus"
                 @click="openCreateDialog"
                 :disabled="isLimitReached"
+                elevation="0"
               >
                 发布商品
               </v-btn>
