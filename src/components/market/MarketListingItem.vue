@@ -213,7 +213,16 @@ const timeAgo = computed(() => {
 })
 
 const navigateToDeckDetail = () => {
-  router.push({ name: 'ShareDeckDetail', params: { key: props.listing.deck_code } })
+  try {
+    const win = window.open()
+    const route = router.resolve({
+      name: 'ShareDeckDetail',
+      params: { key: props.listing.deck_code },
+    })
+    win.location.href = route.href
+  } catch {
+    router.push({ name: 'ShareDeckDetail', params: { key: props.listing.deck_code } })
+  }
 }
 
 const confirmDelete = () => {
