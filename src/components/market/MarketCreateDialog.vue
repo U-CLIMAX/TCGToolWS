@@ -36,6 +36,7 @@
                   :rules="[
                     (v) => (v !== null && v !== undefined && v !== '') || '请输入价格',
                     (v) => v >= 0 || '价格不能为负数',
+                    (v) => v <= 9999 || '价格不能超过9999',
                     (v) => Number.isInteger(v) || '价格必须是整数',
                   ]"
                   variant="outlined"
