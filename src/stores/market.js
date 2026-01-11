@@ -14,6 +14,7 @@ export const useMarketStore = defineStore(
       limit: 20,
       total: 0,
       hasMore: true,
+      nextCursor: null,
     })
 
     // 篩選條件
@@ -68,6 +69,7 @@ export const useMarketStore = defineStore(
       // 如果不是加載更多，立即清空列表，防止切換時顯示舊資料
       if (!isLoadMore) {
         pagination.value.page = 1
+        pagination.value.nextCursor = null
         listings.value = []
         pagination.value.hasMore = true
       }
@@ -79,12 +81,14 @@ export const useMarketStore = defineStore(
 
       isLoading.value = true
       try {
-        const targetPage = isLoadMore ? pagination.value.page + 1 : 1
         const queryParams = new URLSearchParams({
-          page: targetPage,
           limit: pagination.value.limit,
           sort: filters.value.sort,
         })
+
+        if (isLoadMore && pagination.value.nextCursor) {
+          queryParams.append('cursor', pagination.value.nextCursor)
+        }
 
         if (filters.value.seriesId) queryParams.append('series', filters.value.seriesId)
         if (filters.value.climaxType && filters.value.climaxType.length > 0) {
@@ -118,13 +122,20 @@ export const useMarketStore = defineStore(
 
         if (isLoadMore) {
           listings.value = [...listings.value, ...data.listings]
+          pagination.value.page += 1
         } else {
           listings.value = data.listings
+          pagination.value.page = 1
         }
 
-        pagination.value.total = data.total
-        pagination.value.hasMore = listings.value.length < data.total
-        pagination.value.page = targetPage
+        // Update cursor and hasMore status
+        pagination.value.nextCursor = data.nextCursor
+        pagination.value.hasMore = !!data.nextCursor
+        
+        // Update total only if returned (backend might skip it for optimization)
+        if (data.total !== undefined) {
+          pagination.value.total = data.total
+        }
       } catch (error) {
         console.error('Failed to fetch listings:', error)
         throw error
@@ -233,6 +244,7 @@ export const useMarketStore = defineStore(
         limit: 20,
         total: 0,
         hasMore: true,
+        nextCursor: null,
       }
       filters.value = {
         seriesId: null,

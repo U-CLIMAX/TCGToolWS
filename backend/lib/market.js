@@ -132,17 +132,18 @@ export const handleUpdateListing = async (c) => {
 }
 
 /**
- * Retrieves market listings with pagination and filters.
+ * Retrieves market listings with cursor-based pagination.
  * @param {object} c - Hono context object.
  * @returns {Response}
  */
 export const handleGetListings = async (c) => {
   try {
-    const { page, limit, series, sort = 'newest' } = c.req.query()
-
-    const pageNum = Math.max(1, parseInt(page) || 1)
+    const { limit, series, sort = 'newest', cursor } = c.req.query()
     const limitNum = Math.max(1, Math.min(100, parseInt(limit) || 20))
-    const offset = (pageNum - 1) * limitNum
+
+    // Decode cursor if present
+    let cursorObj = null
+    if (cursor) cursorObj = JSON.parse(atob(cursor))
 
     const conditions = []
     const params = []
@@ -166,9 +167,34 @@ export const handleGetListings = async (c) => {
       climaxQuery.forEach((c) => params.push(`%"${c}"%`))
     }
 
-    let orderBy = 'updated_at DESC'
-    if (sort === 'price_asc') orderBy = 'price ASC'
-    if (sort === 'price_desc') orderBy = 'price DESC'
+    let orderByClause = 'updated_at DESC, id DESC'
+    let cursorCondition = ''
+
+    // Apply cursor filter based on sort method
+    if (sort === 'price_asc') {
+      orderByClause = 'price ASC, id ASC'
+      if (cursorObj) {
+        cursorCondition = '(price, id) > (?, ?)'
+        params.push(cursorObj.p, cursorObj.i)
+      }
+    } else if (sort === 'price_desc') {
+      orderByClause = 'price DESC, id DESC'
+      if (cursorObj) {
+        cursorCondition = '(price, id) < (?, ?)'
+        params.push(cursorObj.p, cursorObj.i)
+      }
+    } else {
+      // Default: newest (updated_at DESC)
+      orderByClause = 'updated_at DESC, id DESC'
+      if (cursorObj) {
+        cursorCondition = '(updated_at, id) < (?, ?)'
+        params.push(cursorObj.t, cursorObj.i)
+      }
+    }
+
+    if (cursorCondition) {
+      conditions.push(cursorCondition)
+    }
 
     const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : ''
 
@@ -176,23 +202,35 @@ export const handleGetListings = async (c) => {
       SELECT id, user_id, series_name, cards_id, climax_types, tags, price, shop_url, deck_code, updated_at
       FROM market_listings
       ${whereClause}
-      ORDER BY ${orderBy}
-      LIMIT ? OFFSET ?
+      ORDER BY ${orderByClause}
+      LIMIT ?
     `
 
-    const countQuery = `SELECT COUNT(*) as total FROM market_listings ${whereClause}`
-
-    // Execute queries
+    // Fetch one extra item to check if there is a next page
     const { results } = await c.env.DB.prepare(query)
-      .bind(...params, limitNum, offset)
+      .bind(...params, limitNum + 1)
       .all()
 
-    const totalResult = await c.env.DB.prepare(countQuery)
-      .bind(...params)
-      .first()
+    const hasNextPage = results.length > limitNum
+    const listings = hasNextPage ? results.slice(0, limitNum) : results
+
+    // Generate next cursor
+    let nextCursor = null
+    if (hasNextPage && listings.length > 0) {
+      const lastItem = listings[listings.length - 1]
+      let nextCursorObj = {}
+
+      if (sort === 'price_asc' || sort === 'price_desc') {
+        nextCursorObj = { p: lastItem.price, i: lastItem.id }
+      } else {
+        nextCursorObj = { t: lastItem.updated_at, i: lastItem.id }
+      }
+
+      nextCursor = btoa(JSON.stringify(nextCursorObj))
+    }
 
     // Parse JSON fields for response
-    const listings = results.map((l) => ({
+    const parsedListings = listings.map((l) => ({
       ...l,
       cards_id: JSON.parse(l.cards_id),
       climax_types: JSON.parse(l.climax_types),
@@ -200,9 +238,8 @@ export const handleGetListings = async (c) => {
     }))
 
     return c.json({
-      listings,
-      total: totalResult.total,
-      page: pageNum,
+      listings: parsedListings,
+      nextCursor,
       limit: limitNum,
     })
   } catch (error) {
@@ -212,18 +249,20 @@ export const handleGetListings = async (c) => {
 }
 
 /**
- * Retrieves listings created by the authenticated user.
+ * Retrieves listings created by the authenticated user with cursor-based pagination.
  * @param {object} c - Hono context object.
  * @returns {Response}
  */
 export const handleGetUserListings = async (c) => {
   try {
     const user = c.get('user')
-    const { page, limit, series, sort = 'newest' } = c.req.query()
+    const { limit, series, sort = 'newest', cursor } = c.req.query()
 
-    const pageNum = Math.max(1, parseInt(page) || 1)
     const limitNum = Math.max(1, Math.min(100, parseInt(limit) || 20))
-    const offset = (pageNum - 1) * limitNum
+
+    // Decode cursor if present
+    let cursorObj = null
+    if (cursor) cursorObj = JSON.parse(atob(cursor))
 
     const conditions = ['user_id = ?']
     const params = [user.id]
@@ -247,9 +286,33 @@ export const handleGetUserListings = async (c) => {
       climaxQuery.forEach((c) => params.push(`%"${c}"%`))
     }
 
-    let orderBy = 'updated_at DESC'
-    if (sort === 'price_asc') orderBy = 'price ASC'
-    if (sort === 'price_desc') orderBy = 'price DESC'
+    let orderByClause = 'updated_at DESC, id DESC'
+    let cursorCondition = ''
+
+    if (sort === 'price_asc') {
+      orderByClause = 'price ASC, id ASC'
+      if (cursorObj) {
+        cursorCondition = '(price, id) > (?, ?)'
+        params.push(cursorObj.p, cursorObj.i)
+      }
+    } else if (sort === 'price_desc') {
+      orderByClause = 'price DESC, id DESC'
+      if (cursorObj) {
+        cursorCondition = '(price, id) < (?, ?)'
+        params.push(cursorObj.p, cursorObj.i)
+      }
+    } else {
+      // Default: newest
+      orderByClause = 'updated_at DESC, id DESC'
+      if (cursorObj) {
+        cursorCondition = '(updated_at, id) < (?, ?)'
+        params.push(cursorObj.t, cursorObj.i)
+      }
+    }
+
+    if (cursorCondition) {
+      conditions.push(cursorCondition)
+    }
 
     const whereClause = `WHERE ${conditions.join(' AND ')}`
 
@@ -257,23 +320,35 @@ export const handleGetUserListings = async (c) => {
       SELECT id, user_id, series_name, cards_id, climax_types, tags, price, shop_url, deck_code, updated_at
       FROM market_listings
       ${whereClause}
-      ORDER BY ${orderBy}
-      LIMIT ? OFFSET ?
+      ORDER BY ${orderByClause}
+      LIMIT ?
     `
 
-    const countQuery = `SELECT COUNT(*) as total FROM market_listings ${whereClause}`
-
-    // Execute queries
+    // Fetch one extra item
     const { results } = await c.env.DB.prepare(query)
-      .bind(...params, limitNum, offset)
+      .bind(...params, limitNum + 1)
       .all()
 
-    const totalResult = await c.env.DB.prepare(countQuery)
-      .bind(...params)
-      .first()
+    const hasNextPage = results.length > limitNum
+    const listings = hasNextPage ? results.slice(0, limitNum) : results
 
-    // Parse JSON fields for response
-    const listings = results.map((l) => ({
+    // Generate next cursor
+    let nextCursor = null
+    if (hasNextPage && listings.length > 0) {
+      const lastItem = listings[listings.length - 1]
+      let nextCursorObj = {}
+
+      if (sort === 'price_asc' || sort === 'price_desc') {
+        nextCursorObj = { p: lastItem.price, i: lastItem.id }
+      } else {
+        nextCursorObj = { t: lastItem.updated_at, i: lastItem.id }
+      }
+
+      nextCursor = btoa(JSON.stringify(nextCursorObj))
+    }
+
+    // Parse JSON fields
+    const parsedListings = listings.map((l) => ({
       ...l,
       cards_id: JSON.parse(l.cards_id),
       climax_types: JSON.parse(l.climax_types),
@@ -281,9 +356,8 @@ export const handleGetUserListings = async (c) => {
     }))
 
     return c.json({
-      listings,
-      total: totalResult.total,
-      page: pageNum,
+      listings: parsedListings,
+      nextCursor,
       limit: limitNum,
     })
   } catch (error) {

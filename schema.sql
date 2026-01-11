@@ -57,3 +57,6 @@ CREATE TABLE IF NOT EXISTS market_listings (
 );
 CREATE INDEX IF NOT EXISTS idx_listings_user_id ON market_listings(user_id);
 CREATE INDEX IF NOT EXISTS idx_listings_series ON market_listings(series_name);
+CREATE INDEX IF NOT EXISTS idx_listings_updated_id ON market_listings(updated_at DESC, id DESC);
+CREATE INDEX IF NOT EXISTS idx_listings_price_asc_id ON market_listings(price ASC, id ASC);
+CREATE INDEX IF NOT EXISTS idx_listings_price_desc_id ON market_listings(price DESC, id DESC);
