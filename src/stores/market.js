@@ -113,7 +113,7 @@ export const useMarketStore = defineStore(
         const data = await response.json()
 
         if (filters.value.source === 'mine') {
-          fetchUserListingCount()
+          await fetchUserListingCount()
         }
 
         if (isLoadMore) {
