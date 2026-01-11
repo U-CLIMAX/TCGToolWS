@@ -68,8 +68,24 @@
               </div>
 
               <v-row dense>
+                <!-- 排序選擇 -->
+                <v-col cols="12" sm="6" md="3">
+                  <v-select
+                    v-model="localFilters.sort"
+                    :items="sortOptions"
+                    item-title="title"
+                    item-value="value"
+                    label="排序"
+                    variant="outlined"
+                    density="compact"
+                    hide-details
+                    prepend-inner-icon="mdi-sort"
+                    :menu-props="uiStore.menuProps"
+                  />
+                </v-col>
+
                 <!-- 系列選擇 -->
-                <v-col cols="12" sm="4">
+                <v-col cols="12" sm="6" md="3">
                   <v-autocomplete
                     v-model="localFilters.seriesId"
                     :items="marketStore.seriesOptions"
@@ -85,7 +101,7 @@
                 </v-col>
 
                 <!-- 潮種類選擇 -->
-                <v-col cols="12" sm="4">
+                <v-col cols="12" sm="6" md="3">
                   <v-select
                     v-model="localFilters.climaxType"
                     :items="marketStore.climaxTypeOptions"
@@ -119,7 +135,7 @@
                 </v-col>
 
                 <!-- 標籤選擇 -->
-                <v-col cols="12" sm="4">
+                <v-col cols="12" sm="6" md="3">
                   <v-select
                     v-model="localFilters.tag"
                     :items="marketStore.tagOptions"
@@ -235,6 +251,12 @@ const sourceOptions = computed(() => {
   return options
 })
 
+const sortOptions = [
+  { title: '最新发布', value: 'newest' },
+  { title: '价格从低到高', value: 'price_asc' },
+  { title: '价格从高到低', value: 'price_desc' },
+]
+
 const showCreateDialog = ref(false)
 const editingListing = ref(null)
 const authDialog = ref(null)
@@ -269,15 +291,17 @@ const localFilters = ref({
   seriesId: null,
   climaxType: [],
   tag: [],
+  sort: 'newest',
 })
 
-const handleSearch = () => {
+const handleSearch = async () => {
   marketStore.filters.source = localFilters.value.source
   marketStore.filters.seriesId = localFilters.value.seriesId
   marketStore.filters.climaxType = [...localFilters.value.climaxType]
   marketStore.filters.tag = [...localFilters.value.tag]
+  marketStore.filters.sort = localFilters.value.sort
 
-  marketStore.fetchListings()
+  await marketStore.fetchListings()
   scrollKey.value++
 }
 
@@ -292,6 +316,7 @@ const resetFilters = () => {
   localFilters.value.seriesId = null
   localFilters.value.climaxType = []
   localFilters.value.tag = []
+  localFilters.value.sort = 'newest'
 }
 
 const loadMore = async ({ done }) => {
@@ -308,23 +333,20 @@ const loadMore = async ({ done }) => {
   }
 }
 
-onMounted(() => {
+onMounted(async () => {
   // Initialize local filters from store
   localFilters.value.source = marketStore.filters.source
   localFilters.value.seriesId = marketStore.filters.seriesId
   localFilters.value.climaxType = [...marketStore.filters.climaxType]
   localFilters.value.tag = [...marketStore.filters.tag]
+  localFilters.value.sort = marketStore.filters.sort
 
-  // 初始化加載
-  marketStore.fetchListings()
-
-  // 確保 scrollContainer 在組件掛載後更新 (因為使用了 key，可能需要 nextTick)
+  await marketStore.fetchListings()
   nextTick(() => {
     scrollContainer.value = infiniteScrollRef.value?.$el
   })
 })
 
-// 當 scrollKey 變化時重新獲取 scrollContainer
 watch(scrollKey, () => {
   nextTick(() => {
     scrollContainer.value = infiniteScrollRef.value?.$el

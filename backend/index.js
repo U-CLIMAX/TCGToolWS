@@ -66,7 +66,7 @@ const authRoutes = new Hono()
 authRoutes.post('/register/send-code', authCodeLimiter, handleSendVerificationCode)
 authRoutes.post('/register/verify', authActionLimiter, handleVerifyAndRegister)
 authRoutes.post('/login', authActionLimiter, handleLogin)
-authRoutes.post('/session/refresh', handleRefreshSession) // No rate limit on refresh for now
+authRoutes.post('/session/refresh', handleRefreshSession)
 authRoutes.post('/password/forgot', authCodeLimiter, handleForgotPasswordRequest)
 authRoutes.post('/password/reset', authActionLimiter, handleResetPassword)
 
