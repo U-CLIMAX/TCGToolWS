@@ -41,7 +41,7 @@ export const handleCreateListing = async (c) => {
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
     const nanoid = customAlphabet(alphabet, 8)
     const id = nanoid()
-    const now = Date.now()
+    const now = Math.floor(Date.now() / 1000)
 
     const info = await c.env.DB.prepare(
       `INSERT INTO market_listings (id, user_id, series_name, cards_id, climax_types, tags, price, shop_url, deck_code, updated_at)
@@ -95,7 +95,7 @@ export const handleUpdateListing = async (c) => {
     const cardsIdStr = ensureJsonString(cards_id)
     const climaxTypesStr = ensureJsonString(climax_types)
     const tagsStr = ensureJsonString(tags || [])
-    const now = Date.now()
+    const now = Math.floor(Date.now() / 1000)
 
     const info = await c.env.DB.prepare(
       `UPDATE market_listings

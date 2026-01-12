@@ -29,7 +29,7 @@ export const handleCreateDeck = async (c) => {
     }
 
     const deckDataArray = new Uint8Array(Object.values(deckData))
-    const now = Date.now()
+    const now = Math.floor(Date.now() / 1000)
 
     const info = await c.env.DB.prepare(
       `INSERT INTO decks (key, user_id, deck_data, updated_at)
@@ -148,7 +148,7 @@ export const handleUpdateDeck = async (c) => {
     const user = c.get('user')
     const deckDataArray = new Uint8Array(Object.values(deckData))
 
-    const now = Date.now()
+    const now = Math.floor(Date.now() / 1000)
     const info = await c.env.DB.prepare(
       `UPDATE decks SET deck_data = ?, updated_at = ? WHERE key = ? AND user_id = ?`
     )
