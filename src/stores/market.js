@@ -17,6 +17,12 @@ export const useMarketStore = defineStore(
       nextCursor: null,
     })
 
+    const rankingStats = ref({
+      updated_at: 0,
+      top5: [],
+    })
+    const isRankingLoading = ref(false)
+
     // 篩選條件
     const filters = ref({
       seriesId: null,
@@ -131,7 +137,7 @@ export const useMarketStore = defineStore(
         // Update cursor and hasMore status
         pagination.value.nextCursor = data.nextCursor
         pagination.value.hasMore = !!data.nextCursor
-        
+
         // Update total only if returned (backend might skip it for optimization)
         if (data.total !== undefined) {
           pagination.value.total = data.total
@@ -158,6 +164,23 @@ export const useMarketStore = defineStore(
         userListingCount.value = data.count
       } catch (error) {
         console.error(error)
+      }
+    }
+
+    const fetchRankingStats = async () => {
+      if (isRankingLoading.value) return
+      isRankingLoading.value = true
+      try {
+        const response = await fetch('/api/market/stats')
+        if (!response.ok) {
+          throw new Error('获取排行榜统计失败')
+        }
+        const data = await response.json()
+        rankingStats.value = data
+      } catch (error) {
+        console.error('Failed to fetch ranking stats:', error)
+      } finally {
+        isRankingLoading.value = false
       }
     }
 
@@ -261,8 +284,11 @@ export const useMarketStore = defineStore(
       isLoading,
       pagination,
       filters,
+      rankingStats,
+      isRankingLoading,
       fetchListings,
       fetchUserListingCount,
+      fetchRankingStats,
       createListing,
       updateListing,
       deleteListing,

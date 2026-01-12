@@ -23,6 +23,15 @@
       "database_id": "8368900c-fb02-483c-8f71-43882ec6ab6b"
     }
   ],
+  "kv_namespaces": [
+    {
+      "binding": "MARKET_KV",
+      "id": "661c290e76c34ba492ddf8299c6a21ac"
+    }
+  ],
+  "triggers": {
+    "crons": ["0 * * * *"]
+  },
   "ratelimits": [
     {
       "name": "AUTH_CODE_LIMITER",

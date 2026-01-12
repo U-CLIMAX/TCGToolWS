@@ -1,5 +1,6 @@
 import { customAlphabet } from 'nanoid'
 import { createErrorResponse } from './utils.js'
+import { getMarketStats } from '../services/market-stats.js'
 
 /**
  * Creates a new market listing.
@@ -411,4 +412,20 @@ export const handleDeleteListing = async (c) => {
     console.error('Error deleting listing:', error)
     return createErrorResponse(c, 500, '内部服务器错误')
   }
+}
+
+/**
+ * Retrieves market statistics.
+ * @param {object} c - Hono context object.
+ * @returns {Response}
+ */
+export const handleGetMarketStats = async (c) => {
+  const stats = await getMarketStats(c.env)
+  return c.json(
+    stats || {
+      updated_at: Math.floor(Date.now() / 1000),
+      total_series: 0,
+      top10: [],
+    }
+  )
 }

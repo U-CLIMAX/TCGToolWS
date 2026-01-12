@@ -25,6 +25,7 @@ import {
   handleDeleteListing,
   handleUpdateListing,
   handleGetMyListingCount,
+  handleGetMarketStats,
 } from './lib/market.js'
 import {
   createRateLimiter,
@@ -33,6 +34,7 @@ import {
   userIdFromJwtKeyExtractor,
 } from './lib/ratelimit.js'
 import { handleInitiatePayment } from './lib/payments.js'
+import { updateMarketStats } from './services/market-stats.js'
 
 const app = new Hono().basePath('/api')
 
@@ -94,6 +96,7 @@ decklogRoutes.get('/:key', handleGetDecklogData)
 const marketRoutes = new Hono()
 // 公開讀取
 marketRoutes.get('/listings', publicReadLimiter, handleGetListings)
+marketRoutes.get('/stats', publicReadLimiter, handleGetMarketStats)
 // 需要驗證
 marketRoutes.use('/*', authMiddleware, apiUserLimiter)
 marketRoutes.post('/listings', handleCreateListing)
@@ -120,4 +123,9 @@ app.route('/market', marketRoutes)
 app.route('/webhooks', webhookRoutes)
 app.route('/payments', paymentRoutes)
 
-export default app
+export default {
+  fetch: app.fetch,
+  scheduled: async (event, env, ctx) => {
+    ctx.waitUntil(updateMarketStats(env))
+  },
+}

@@ -202,7 +202,7 @@ const getClimaxIcon = (value) => {
 }
 
 const timeAgo = computed(() => {
-  const date = new Date(props.listing.updated_at)
+  const date = new Date(props.listing.updated_at * 1000)
   const now = new Date()
   const diffInSeconds = Math.floor((now - date) / 1000)
 
