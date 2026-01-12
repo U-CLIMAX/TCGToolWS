@@ -4,7 +4,7 @@ export const updateMarketStats = async (env) => {
       SELECT series_name, COUNT(*) as count
       FROM market_listings
       GROUP BY series_name
-      ORDER BY count DESC
+      ORDER BY count DESC, updated_at DESC
       LIMIT 5
     `
     const { results } = await env.DB.prepare(query).all()
