@@ -437,7 +437,7 @@ const handleShareCard = async () => {
   const shareUrl = `${window.location.origin}/share-decks/${deckKey}`
   try {
     await clipboard.writeText(shareUrl)
-    triggerSnackbar('分享链接已复制到剪贴板', 'success')
+    triggerSnackbar('分享链接已复制', 'success')
   } catch (err) {
     console.error('Failed to copy: ', err)
     triggerSnackbar('复制失败', 'error')
@@ -451,7 +451,7 @@ const handleCopyDeckKey = async () => {
   }
   try {
     await clipboard.writeText(deckKey)
-    triggerSnackbar('卡组代码已复制到剪贴板', 'success')
+    triggerSnackbar('卡组代码已复制', 'success')
   } catch (err) {
     console.error('Failed to copy: ', err)
     triggerSnackbar('复制失败', 'error')

@@ -233,7 +233,7 @@ const confirmDelete = () => {
 const copyLink = async (url) => {
   try {
     await clipboard.writeText(url)
-    triggerSnackbar('链接已复制', 'success')
+    triggerSnackbar('购买链接已复制', 'success')
   } catch (err) {
     console.error('Failed to copy: ', err)
     triggerSnackbar('复制失败', 'error')

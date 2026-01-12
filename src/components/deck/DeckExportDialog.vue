@@ -161,7 +161,7 @@ const deckBaseIds = computed(() => {
 const handleDeckTxtList = async () => {
   try {
     await clipboard.writeText(deckBaseIds.value)
-    triggerSnackbar('卡组txt已复制到剪贴板', 'success')
+    triggerSnackbar('卡组txt已复制', 'success')
   } catch (err) {
     console.error('Failed to copy: ', err)
     triggerSnackbar('复制失败', 'error')
@@ -206,7 +206,7 @@ const handleCopyResult = async () => {
 
     const item = new ClipboardItem({ 'image/png': imgPromise })
     await clipboard.write([item])
-    triggerSnackbar('图片已复制到剪贴板', 'success')
+    triggerSnackbar('图片已复制', 'success')
   } catch (error) {
     console.error('Copy failed', error)
     triggerSnackbar('复制失败，请直接复制图片', 'error')
