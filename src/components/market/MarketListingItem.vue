@@ -1,157 +1,164 @@
 <template>
-  <v-card class="h-100 d-flex flex-column rounded-3md overflow-hidden pa-2" elevation="2" hover>
-    <div class="position-relative rounded-3md overflow-hidden">
-      <v-carousel
-        v-if="listing.cards_id && listing.cards_id.length > 0"
-        hide-delimiters
-        crossfade
-        :show-arrows="listing.cards_id.length > 1 ? 'hover' : false"
-        class="h-100"
-      >
-        <v-carousel-item v-for="card in listing.cards_id" :key="card.id">
-          <v-img
-            :src="getCardUrl(card).base"
-            :lazy-src="getCardUrl(card).blur"
-            cover
-            class="preload-img"
-            :aspect-ratio="400 / 559"
-            style="transform: scale(1.05)"
-          >
-            <template #error>
-              <v-img src="/placehold.webp" :aspect-ratio="400 / 559" cover />
-            </template>
-          </v-img>
-        </v-carousel-item>
-      </v-carousel>
+  <v-hover v-slot="{ isHovering, props }">
+    <v-card
+      v-bind="props"
+      class="h-100 d-flex flex-column rounded-3md overflow-hidden pa-2 listing-card"
+      :class="{ 'is-lifted': isHovering && !isTouch }"
+      elevation="0"
+    >
+      <div class="position-relative rounded-3md overflow-hidden">
+        <v-carousel
+          v-if="listing.cards_id && listing.cards_id.length > 0"
+          hide-delimiters
+          crossfade
+          :show-arrows="listing.cards_id.length > 1 ? 'hover' : false"
+          class="h-100"
+        >
+          <v-carousel-item v-for="card in listing.cards_id" :key="card.id">
+            <v-img
+              :src="getCardUrl(card).base"
+              :lazy-src="getCardUrl(card).blur"
+              cover
+              class="preload-img"
+              :aspect-ratio="400 / 559"
+              style="transform: scale(1.05)"
+            >
+              <template #error>
+                <v-img src="/placehold.webp" :aspect-ratio="400 / 559" cover />
+              </template>
+            </v-img>
+          </v-carousel-item>
+        </v-carousel>
 
-      <!-- Tags Overlay -->
-      <div
-        v-if="listing.tags && listing.tags.length > 0"
-        class="title-background d-flex align-end pb-2 px-2"
-      >
-        <div class="d-flex flex-wrap gap-1">
-          <v-chip
-            v-for="tagIndex in listing.tags"
-            :key="tagIndex"
-            size="x-small"
-            variant="flat"
-            color="rgba(0, 0, 0, 0.6)"
-            class="text-white"
-            style="border: 1px solid rgba(255, 255, 255, 0.3)"
-          >
-            {{ marketStore.tagLabels[tagIndex] || '未知标签' }}
-          </v-chip>
+        <!-- Tags Overlay -->
+        <div
+          v-if="listing.tags && listing.tags.length > 0"
+          class="title-background d-flex align-end pb-2 px-2"
+        >
+          <div class="d-flex flex-wrap gap-1">
+            <v-chip
+              v-for="tagIndex in listing.tags"
+              :key="tagIndex"
+              size="x-small"
+              variant="flat"
+              color="rgba(0, 0, 0, 0.6)"
+              class="text-white"
+              style="border: 1px solid rgba(255, 255, 255, 0.3)"
+            >
+              {{ marketStore.tagLabels[tagIndex] || '未知标签' }}
+            </v-chip>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Content -->
-    <v-card-text class="pa-0 pt-2 flex-grow-1 d-flex align-center">
-      <v-row dense no-gutters class="align-center h-100">
-        <v-col cols="6" class="d-flex flex-column justify-center pr-2">
-          <div class="d-flex align-center text-grey-darken-1 text-truncate">
-            <v-avatar size="16" :image="seriesIcon" class="mr-1 rounded-0"></v-avatar>
-            <span style="font-size: 0.65rem">{{ timeAgo }}</span>
-          </div>
+      <!-- Content -->
+      <v-card-text class="pa-0 pt-2 flex-grow-1 d-flex align-center">
+        <v-row dense no-gutters class="align-center h-100">
+          <v-col cols="6" class="d-flex flex-column justify-center pr-2">
+            <div class="d-flex align-center text-grey-darken-1 text-truncate">
+              <v-avatar size="16" :image="seriesIcon" class="mr-1 rounded-0"></v-avatar>
+              <span style="font-size: 0.65rem">{{ timeAgo }}</span>
+            </div>
 
-          <div class="text-h5 font-weight-black font-DINCond text-red-accent-4 mb-0">
-            <span class="text-body-2 font-weight-bold mr-1">¥</span>{{ listing.price }}
-          </div>
+            <div class="text-h5 font-weight-black font-DINCond text-red-accent-4 mb-0">
+              <span class="text-body-2 font-weight-bold mr-1">¥</span>{{ listing.price }}
+            </div>
 
-          <div class="d-flex align-center" style="height: 24px">
-            <template v-if="listing.climax_types && listing.climax_types.length > 0">
-              <v-avatar
-                v-for="type in listing.climax_types.slice(0, 3)"
-                :key="type"
-                size="15"
-                rounded="0"
-                class="mr-1"
-              >
-                <v-img :src="getClimaxIcon(type)" :alt="type" />
-              </v-avatar>
-              <span
-                v-if="listing.climax_types.length > 3"
-                class="text-caption text-grey font-weight-bold"
-              >
-                +{{ listing.climax_types.length - 3 }}
-              </span>
-            </template>
-          </div>
-        </v-col>
+            <div class="d-flex align-center" style="height: 24px">
+              <template v-if="listing.climax_types && listing.climax_types.length > 0">
+                <v-avatar
+                  v-for="type in listing.climax_types.slice(0, 3)"
+                  :key="type"
+                  size="15"
+                  rounded="0"
+                  class="mr-1"
+                >
+                  <v-img :src="getClimaxIcon(type)" :alt="type" />
+                </v-avatar>
+                <span
+                  v-if="listing.climax_types.length > 3"
+                  class="text-caption text-grey font-weight-bold"
+                >
+                  +{{ listing.climax_types.length - 3 }}
+                </span>
+              </template>
+            </div>
+          </v-col>
 
-        <v-col
-          cols="6"
-          class="d-flex flex-column ga-1 justify-center"
-          :class="{
-            'h-100': listing.deck_code || marketStore.filters.source == 'mine',
-          }"
-        >
-          <v-btn
-            v-if="marketStore.filters.source !== 'mine'"
-            color="blue-darken-1"
-            variant="flat"
-            size="small"
-            class="font-weight-regular px-8"
-            :class="listing.deck_code ? 'rounded-t-2lg rounded-b-3sm' : 'rounded-pill'"
-            block
-            elevation="0"
-            @click.stop="copyLink(listing.shop_url)"
+          <v-col
+            cols="6"
+            class="d-flex flex-column ga-1 justify-center"
+            :class="{
+              'h-100': listing.deck_code || marketStore.filters.source == 'mine',
+            }"
           >
-            购买链接
-          </v-btn>
-          <v-btn
-            v-else
-            color="secondary"
-            variant="flat"
-            size="small"
-            prepend-icon="mdi-pencil"
-            class="font-weight-regular px-8 rounded-t-2lg rounded-b-3sm"
-            block
-            elevation="0"
-            @click.stop="emit('edit', listing)"
-          >
-            编辑
-          </v-btn>
+            <v-btn
+              v-if="marketStore.filters.source !== 'mine'"
+              color="blue-darken-1"
+              variant="flat"
+              size="small"
+              class="font-weight-regular px-8"
+              :class="listing.deck_code ? 'rounded-t-2lg rounded-b-3sm' : 'rounded-pill'"
+              block
+              elevation="0"
+              @click.stop="copyLink(listing.shop_url)"
+            >
+              购买链接
+            </v-btn>
+            <v-btn
+              v-else
+              color="secondary"
+              variant="flat"
+              size="small"
+              prepend-icon="mdi-pencil"
+              class="font-weight-regular px-8 rounded-t-2lg rounded-b-3sm"
+              block
+              elevation="0"
+              @click.stop="emit('edit', listing)"
+            >
+              编辑
+            </v-btn>
 
-          <v-btn
-            v-if="listing.deck_code && marketStore.filters.source !== 'mine'"
-            color="grey-darken-3"
-            variant="flat"
-            size="small"
-            class="font-weight-regular px-8 rounded-b-2lg rounded-t-3sm"
-            block
-            elevation="0"
-            @click.stop="navigateToDeckDetail"
-          >
-            查看卡组
-          </v-btn>
-          <v-btn
-            v-if="marketStore.filters.source === 'mine'"
-            color="error"
-            variant="tonal"
-            size="small"
-            prepend-icon="mdi-delete"
-            class="font-weight-regular px-8 rounded-b-2lg rounded-t-3sm"
-            block
-            elevation="0"
-            @click.stop="confirmDelete"
-          >
-            删除
-          </v-btn>
-        </v-col>
-      </v-row>
-    </v-card-text>
+            <v-btn
+              v-if="listing.deck_code && marketStore.filters.source !== 'mine'"
+              color="grey-darken-3"
+              variant="flat"
+              size="small"
+              class="font-weight-regular px-8 rounded-b-2lg rounded-t-3sm"
+              block
+              elevation="0"
+              @click.stop="navigateToDeckDetail"
+            >
+              查看卡组
+            </v-btn>
+            <v-btn
+              v-if="marketStore.filters.source === 'mine'"
+              color="error"
+              variant="tonal"
+              size="small"
+              prepend-icon="mdi-delete"
+              class="font-weight-regular px-8 rounded-b-2lg rounded-t-3sm"
+              block
+              elevation="0"
+              @click.stop="confirmDelete"
+            >
+              删除
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-card-text>
 
-    <v-dialog v-model="showDeleteDialog" max-width="300">
-      <v-card title="确认删除" text="确定要移除此商品吗？此操作无法撤销。">
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn text="取消" @click="showDeleteDialog = false"></v-btn>
-          <v-btn color="error" variant="flat" text="删除" @click="handleDelete"></v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </v-card>
+      <v-dialog v-model="showDeleteDialog" max-width="300">
+        <v-card title="确认删除" text="确定要移除此商品吗？此操作无法撤销。">
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn text="取消" @click="showDeleteDialog = false"></v-btn>
+            <v-btn color="error" variant="flat" text="删除" @click="handleDelete"></v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-card>
+  </v-hover>
 </template>
 
 <script setup>
@@ -161,6 +168,7 @@ import { seriesMap } from '@/maps/series-map'
 import { useCardImage } from '@/composables/useCardImage'
 import { useMarketStore } from '@/stores/market'
 import { useUIStore } from '@/stores/ui'
+import { useDevice } from '@/composables/useDevice'
 import { useSnackbar } from '@/composables/useSnackbar'
 import * as clipboard from 'clipboard-polyfill'
 
@@ -176,6 +184,7 @@ const emit = defineEmits(['edit'])
 const marketStore = useMarketStore()
 const uiStore = useUIStore()
 const { triggerSnackbar } = useSnackbar()
+const { isTouch } = useDevice()
 const router = useRouter()
 
 const showDeleteDialog = ref(false)
@@ -281,5 +290,13 @@ const handleDelete = async () => {
 :deep(.v-carousel .v-window__controls .v-btn .v-icon) {
   color: #fff !important;
   font-size: 24px !important;
+}
+
+.listing-card {
+  transition: transform 0.2s ease-in-out;
+}
+
+.listing-card.is-lifted {
+  transform: translateY(-6px);
 }
 </style>
