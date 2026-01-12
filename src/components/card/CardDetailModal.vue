@@ -192,7 +192,7 @@
               <v-slide-y-reverse-transition mode="out-in">
                 <div :key="isLoadingLinks ? 'loading' : 'content'">
                   <!-- Loading -->
-                  <div v-if="isLoadingLinks" class="d-flex justify-center align-center pa-4">
+                  <div v-if="isLoadingLinks" class="d-flex justify-center align-center pa-4 mx-4">
                     <v-progress-linear indeterminate color="primary" />
                   </div>
 
