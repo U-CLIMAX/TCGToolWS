@@ -20,6 +20,7 @@
   "dependencies": {
     "@zumer/snapdom": "^2.0.1",
     "brotli-wasm": "^3.0.1",
+    "clipboard-polyfill": "^4.1.1",
     "comlink": "^4.4.2",
     "detect-gpu": "^5.0.70",
     "dompurify": "^3.2.7",

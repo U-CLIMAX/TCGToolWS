@@ -162,6 +162,7 @@ import { useCardImage } from '@/composables/useCardImage'
 import { useMarketStore } from '@/stores/market'
 import { useUIStore } from '@/stores/ui'
 import { useSnackbar } from '@/composables/useSnackbar'
+import * as clipboard from 'clipboard-polyfill'
 
 const props = defineProps({
   listing: {
@@ -231,7 +232,7 @@ const confirmDelete = () => {
 
 const copyLink = async (url) => {
   try {
-    await navigator.clipboard.writeText(url)
+    await clipboard.writeText(url)
     triggerSnackbar('链接已复制', 'success')
   } catch (err) {
     console.error('Failed to copy: ', err)

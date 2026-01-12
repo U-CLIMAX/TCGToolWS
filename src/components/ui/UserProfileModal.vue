@@ -88,6 +88,7 @@ import { useAuthStore } from '@/stores/auth'
 import { useUIStore } from '@/stores/ui'
 import { useSnackbar } from '@/composables/useSnackbar'
 import SponsorNoticeDialog from '@/components/ui/SponsorNoticeDialog.vue'
+import * as clipboard from 'clipboard-polyfill'
 
 const props = defineProps({
   modelValue: {
@@ -171,7 +172,7 @@ const handleRefreshToken = async () => {
 
 const copyUserId = async (id) => {
   try {
-    await navigator.clipboard.writeText(id)
+    await clipboard.writeText(id)
     triggerSnackbar('使用者 ID 已复制！')
   } catch (err) {
     console.error('无法复制 ID:', err)

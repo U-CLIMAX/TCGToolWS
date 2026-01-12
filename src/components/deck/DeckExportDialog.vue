@@ -113,6 +113,7 @@ import { useSnackbar } from '@/composables/useSnackbar'
 import { sortCards } from '@/utils/cardsSort.js'
 import { normalizeFileName } from '@/utils/sanitizeFilename'
 import { useUIStore } from '@/stores/ui'
+import * as clipboard from 'clipboard-polyfill'
 
 const props = defineProps({
   modelValue: {
@@ -159,7 +160,7 @@ const deckBaseIds = computed(() => {
 
 const handleDeckTxtList = async () => {
   try {
-    await navigator.clipboard.writeText(deckBaseIds.value)
+    await clipboard.writeText(deckBaseIds.value)
     triggerSnackbar('卡组txt已复制到剪贴板', 'success')
   } catch (err) {
     console.error('Failed to copy: ', err)
@@ -204,7 +205,7 @@ const handleCopyResult = async () => {
     })
 
     const item = new ClipboardItem({ 'image/png': imgPromise })
-    await navigator.clipboard.write([item])
+    await clipboard.write([item])
     triggerSnackbar('图片已复制到剪贴板', 'success')
   } catch (error) {
     console.error('Copy failed', error)

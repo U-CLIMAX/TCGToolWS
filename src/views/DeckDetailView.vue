@@ -386,6 +386,7 @@ import { convertDeckToPDF } from '@/utils/domToPDF'
 import DeckShareImage from '@/components/deck/DeckShareImage.vue'
 import DeckCardList from '@/components/deck/DeckCardList.vue'
 import DeckExportDialog from '@/components/deck/DeckExportDialog.vue'
+import * as clipboard from 'clipboard-polyfill'
 
 const { smAndUp } = useDisplay()
 const resize = computed(() => {
@@ -435,7 +436,7 @@ const handleShareCard = async () => {
   }
   const shareUrl = `${window.location.origin}/share-decks/${deckKey}`
   try {
-    await navigator.clipboard.writeText(shareUrl)
+    await clipboard.writeText(shareUrl)
     triggerSnackbar('分享链接已复制到剪贴板', 'success')
   } catch (err) {
     console.error('Failed to copy: ', err)
@@ -449,7 +450,7 @@ const handleCopyDeckKey = async () => {
     return
   }
   try {
-    await navigator.clipboard.writeText(deckKey)
+    await clipboard.writeText(deckKey)
     triggerSnackbar('卡组代码已复制到剪贴板', 'success')
   } catch (err) {
     console.error('Failed to copy: ', err)
