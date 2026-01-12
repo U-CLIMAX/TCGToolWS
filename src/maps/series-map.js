@@ -622,7 +622,7 @@ const wsSeriesMap = {
   '偶像大师': {
     id: 'im',
     prefixes: ['IM', 'IAS'],
-    latestReleaseDate: '2022-06-24',
+    latestReleaseDate: '2025-07-26',
   },
   '妖精的尾巴': {
     id: 'ft',
