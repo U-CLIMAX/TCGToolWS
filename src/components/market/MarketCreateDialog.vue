@@ -189,17 +189,6 @@
               没有找到符合条件的卡片
             </div>
             <div v-else class="text-center pa-4 text-grey">请先选择系列</div>
-
-            <v-alert
-              v-if="errorMsg"
-              type="error"
-              density="compact"
-              class="mt-4"
-              closable
-              @click:close="errorMsg = ''"
-            >
-              {{ errorMsg }}
-            </v-alert>
           </v-container>
         </v-form>
       </v-card-text>
@@ -250,7 +239,6 @@ const form = ref(null)
 const isValid = ref(false)
 const isSubmitting = ref(false)
 const isLoadingCards = ref(false)
-const errorMsg = ref('')
 const searchQuery = ref('')
 
 const formData = reactive({
@@ -372,7 +360,6 @@ const handleSubmit = async () => {
   }
 
   isSubmitting.value = true
-  errorMsg.value = ''
 
   try {
     uiStore.setLoading(true)
@@ -420,7 +407,7 @@ const handleSubmit = async () => {
     dialog.value = false
   } catch (err) {
     console.error(err)
-    errorMsg.value = err.message || '操作失败'
+    triggerSnackbar(err.message, 'error')
   } finally {
     uiStore.setLoading(false)
     isSubmitting.value = false
