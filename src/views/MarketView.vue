@@ -230,7 +230,7 @@
                   </div>
                 </v-list>
                 <div
-                  v-if="!marketStore.isRankingLoading"
+                  v-if="marketStore.rankingStats.top5.length !== 0"
                   class="text-caption text-grey-darken-1 text-right"
                   style="font-size: 10px"
                 >

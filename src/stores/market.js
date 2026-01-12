@@ -172,9 +172,7 @@ export const useMarketStore = defineStore(
       isRankingLoading.value = true
       try {
         const response = await fetch('/api/market/stats')
-        if (!response.ok) {
-          throw new Error('获取排行榜统计失败')
-        }
+        if (!response.ok) throw new Error('获取排行榜统计失败')
         const data = await response.json()
         rankingStats.value = data
       } catch (error) {
