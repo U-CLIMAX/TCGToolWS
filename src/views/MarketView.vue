@@ -19,7 +19,8 @@
               >
                 <div class="d-flex justify-space-between align-center mb-3 ga-2">
                   <div class="text-caption text-grey-darken-1">
-                    本平台仅提供商品信息展示，不参与交易过程，复制链接后在相应app内打开。请务必核实卖家身份，建议通过闲鱼等担保平台完成交易。最终解释权归
+                    本平台仅提供商品信息展示，不参与交易过程，复制链接后在相应 app
+                    内打开。请务必核实卖家身份，建议通过闲鱼等担保平台完成交易。最终解释权归
                     U-CLIMAX 所有。
                   </div>
                   <v-btn
