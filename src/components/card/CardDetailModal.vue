@@ -552,12 +552,18 @@ const handleNextCard = () => {
 }
 
 const handleSwipeLeft = () => {
+  const selection = window.getSelection()
+  if (selection && selection.toString().length > 0) return
+
   if (isTouch.value && props.cardIndex < props.totalCards - 1) {
     handleNextCard()
   }
 }
 
 const handleSwipeRight = () => {
+  const selection = window.getSelection()
+  if (selection && selection.toString().length > 0) return
+
   if (isTouch.value && props.cardIndex > 0) {
     emit('prev-card')
   }
