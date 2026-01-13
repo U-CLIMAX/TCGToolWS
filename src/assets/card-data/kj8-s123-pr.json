@@ -36,7 +36,7 @@
     "trait": ["防衛隊", "隊長"],
     "color": "红色",
     "soul": 1,
-    "effect": "【永】 你手牌的「亜白ミナ専用武器 T-25101985」的费用-1。<br/>【永】 你<img src=\"/effect-icons/salvage.webp\"/>的效果可以选择休息室中的「亜白ミナ専用武器 T-25101985」。<br/>【永】 你其他全部的「次なる戦場 亜白ミナ」，赋予以下能力：『【自】 此卡攻击时，此卡正面的角色是2级以上的话，那个回合中，此卡的战斗力+3000。』",
+    "effect": "【永】 你手牌的「亜白ミナ専用武器 T-25101985」的费用-1。<br/>【永】 你<img src=\"/effect-icons/salvage.webp\">的效果可以选择休息室中的「亜白ミナ専用武器 T-25101985」。<br/>【永】 你其他全部的「次なる戦場 亜白ミナ」，赋予以下能力：『【自】 此卡攻击时，此卡正面的角色是2级以上的话，那个回合中，此卡的战斗力+3000。』",
     "all_cards": [
       {
         "id": "KJ8/S123-P02EX",
@@ -59,7 +59,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】 你所有的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\"/>：此卡触发时，你可以选择自己休息室中1张触发标记是<img src=\"/effect-icons/soul.webp\"/>的角色卡，返回手牌或放置到库存区）",
+    "effect": "【永】 你所有的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你可以选择自己休息室中1张触发标记是<img src=\"/effect-icons/soul.webp\">的角色卡，返回手牌或放置到库存区）",
     "all_cards": [
       {
         "id": "KJ8/S123-P03",
@@ -78,7 +78,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】 你所有的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\"/>：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
+    "effect": "【永】 你所有的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
     "all_cards": [
       {
         "id": "KJ8/S123-P04",
@@ -97,7 +97,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】 你所有的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/shot.webp\"/>：这个回合中，触发此卡的攻击角色下次给予的伤害被取消时，给予对手1点伤害）",
+    "effect": "【永】 你所有的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/shot.webp\">：这个回合中，触发此卡的攻击角色下次给予的伤害被取消时，给予对手1点伤害）",
     "all_cards": [
       {
         "id": "KJ8/S123-P05",
@@ -116,7 +116,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】 你所有的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/shot.webp\"/>：这个回合中，触发此卡的攻击角色下次给予的伤害被取消时，给予对手1点伤害）",
+    "effect": "【永】 你所有的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/shot.webp\">：这个回合中，触发此卡的攻击角色下次给予的伤害被取消时，给予对手1点伤害）",
     "all_cards": [
       {
         "id": "KJ8/S123-P06",
@@ -135,7 +135,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】 你所有的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\"/>：此卡触发时，你可以选择自己休息室中1张触发标记是<img src=\"/effect-icons/soul.webp\"/>的角色卡，返回手牌或放置到库存区）",
+    "effect": "【永】 你所有的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你可以选择自己休息室中1张触发标记是<img src=\"/effect-icons/soul.webp\">的角色卡，返回手牌或放置到库存区）",
     "all_cards": [
       {
         "id": "KJ8/S123-P07",
@@ -154,7 +154,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】 你所有的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\"/>：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
+    "effect": "【永】 你所有的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
     "all_cards": [
       {
         "id": "KJ8/S123-P08",
@@ -173,7 +173,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】 你所有的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\"/>：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
+    "effect": "【永】 你所有的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
     "all_cards": [
       {
         "id": "KJ8/S123-P09",
@@ -192,7 +192,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】 你所有的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\"/>：此卡触发时，你可以选择自己休息室的1张角色卡返回手牌）",
+    "effect": "【永】 你所有的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择自己休息室的1张角色卡返回手牌）",
     "all_cards": [
       {
         "id": "KJ8/S123-P10",

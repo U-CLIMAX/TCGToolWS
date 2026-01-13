@@ -278,7 +278,7 @@
     "trait": ["パイロット", "Δ小隊"],
     "color": "黄色",
     "soul": 1,
-    "effect": "【永】应援 你此卡前全部《音楽》或《パイロット》的角色，战斗力+X。X是那个角色的等级×500。<br/>【自】[(1) 2张手牌放置到休息室] 你的高潮阶段开始时，你其他《音楽》或《パイロット》的角色有2个以上的话，你可以支付费用。支付了的话，那个回合中，此卡获得以下能力。『【永】你没有其他「風に乗る少年 ハヤテ」的话，你执行了「“歌うことは生きること”フレイア＆ハヤテ」的【CX联动】选择的效果后，执行1次你没有选择的效果。』<br/>【自】[(1)] 你在触发步骤触发到触发标记是<img src=\"/effect-icons/choice.webp\"/>的高潮卡时，你可以支付费用。支付了的话，你抽1张卡。",
+    "effect": "【永】应援 你此卡前全部《音楽》或《パイロット》的角色，战斗力+X。X是那个角色的等级×500。<br/>【自】[(1) 2张手牌放置到休息室] 你的高潮阶段开始时，你其他《音楽》或《パイロット》的角色有2个以上的话，你可以支付费用。支付了的话，那个回合中，此卡获得以下能力。『【永】你没有其他「風に乗る少年 ハヤテ」的话，你执行了「“歌うことは生きること”フレイア＆ハヤテ」的【CX联动】选择的效果后，执行1次你没有选择的效果。』<br/>【自】[(1)] 你在触发步骤触发到触发标记是<img src=\"/effect-icons/choice.webp\">的高潮卡时，你可以支付费用。支付了的话，你抽1张卡。",
     "all_cards": [
       {
         "id": "MDE/SE45-12",
@@ -512,7 +512,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】【Link】 超時空ヴィーナス<br/>【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\"/>：此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\"/>的角色卡返回手牌或放置到库存区）",
+    "effect": "【永】【Link】 超時空ヴィーナス<br/>【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\">：此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
     "all_cards": [
       {
         "id": "MDE/SE45-22",
@@ -535,7 +535,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】【Link】 超時空ヴィーナス<br/>【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\"/>：此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\"/>的角色卡返回手牌或放置到库存区）",
+    "effect": "【永】【Link】 超時空ヴィーナス<br/>【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\">：此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
     "all_cards": [
       {
         "id": "MDE/SE45-23a",
@@ -562,7 +562,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】【Link】 超時空ヴィーナス<br/>【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\"/>：此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\"/>的角色卡返回手牌或放置到库存区）",
+    "effect": "【永】【Link】 超時空ヴィーナス<br/>【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\">：此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
     "all_cards": [
       {
         "id": "MDE/SE45-24a",
@@ -1393,7 +1393,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】【Link】 超時空ヴィーナス<br/>【自】此卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\"/>的效果。<br/>（<img src=\"/effect-icons/standby.webp\"/>：此卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，【横置】放置到舞台任意位置））",
+    "effect": "【永】【Link】 超時空ヴィーナス<br/>【自】此卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br/>（<img src=\"/effect-icons/standby.webp\">：此卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，【横置】放置到舞台任意位置））",
     "all_cards": [
       {
         "id": "MDE/SE45-57",
@@ -1416,7 +1416,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】【Link】 超時空ヴィーナス<br/>【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\"/>：此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "effect": "【永】【Link】 超時空ヴィーナス<br/>【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
     "all_cards": [
       {
         "id": "MDE/SE45-58a",
@@ -1474,7 +1474,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】【Link】 超時空ヴィーナス<br/>【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\"/>：此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "effect": "【永】【Link】 超時空ヴィーナス<br/>【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
     "all_cards": [
       {
         "id": "MDE/SE45-60a",

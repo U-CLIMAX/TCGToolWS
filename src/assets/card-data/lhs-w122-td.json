@@ -244,7 +244,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】 你所有的角色卡，攻击力+1000，灵魂值+1 <br/>（<img src=\"/effect-icons/choice.webp\"/>：此卡触发时，你可以选择1张自己休息室带有<img src=\"/effect-icons/soul.webp\"/>标记的角色卡，返回手牌或放置到库存区",
+    "effect": "【永】 你所有的角色卡，攻击力+1000，灵魂值+1 <br/>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你可以选择1张自己休息室带有<img src=\"/effect-icons/soul.webp\">标记的角色卡，返回手牌或放置到库存区",
     "all_cards": [
       {
         "id": "LHS/W122-T10",
@@ -440,7 +440,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】你所有的角色卡，攻击力+1000，灵魂值+1<br/>（<img src=\"/effect-icons/gate.webp\"/>：此卡触发时，你可以选择1张自己休息室的cx返回手牌。",
+    "effect": "【永】你所有的角色卡，攻击力+1000，灵魂值+1<br/>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的cx返回手牌。",
     "all_cards": [
       {
         "id": "LHS/W122-T18",

@@ -140,7 +140,7 @@
     "trait": ["音楽", "スリーズブーケ"],
     "color": "黄色",
     "soul": 1,
-    "effect": "【永】你高潮区存在触发标记带有<img src=\"/effect-icons/choice.webp\"/>的CX的话，所有区域的此卡获得触发标记<img src=\"/effect-icons/choice.webp\"/>。<br/>【自】此卡【倒置】时，你全部的角色是《音楽》角色，此卡的战斗对手的等级在0级以下的话，你可以将其放置到对方库存区。那样的话，将对方库存区底1张卡放置到休息室。",
+    "effect": "【永】你高潮区存在触发标记带有<img src=\"/effect-icons/choice.webp\">的CX的话，所有区域的此卡获得触发标记<img src=\"/effect-icons/choice.webp\">。<br/>【自】此卡【倒置】时，你全部的角色是《音楽》角色，此卡的战斗对手的等级在0级以下的话，你可以将其放置到对方库存区。那样的话，将对方库存区底1张卡放置到休息室。",
     "all_cards": [
       {
         "id": "LHS/W122-006",
@@ -635,7 +635,7 @@
     "trait": ["音楽", "みらくらぱーく！"],
     "color": "黄色",
     "soul": 2,
-    "effect": "【自】此卡攻击时，你将自己卡组顶2张卡放置到休息室，看对方卡组顶最多X张卡，选最多X张卡按任意顺序放回卡组顶，其余的放置到休息室。X等于因此效果放置到休息室的卡的触发标记<img src=\"/effect-icons/soul.webp\"/>的数量<br/>【自】【CX联动】 此卡攻击时，高潮区有「ココン東西」，你其他的《音楽》角色在2个以上的话，你选自己高潮区或休息室的最多1张CX返回卡组，卡组洗切。",
+    "effect": "【自】此卡攻击时，你将自己卡组顶2张卡放置到休息室，看对方卡组顶最多X张卡，选最多X张卡按任意顺序放回卡组顶，其余的放置到休息室。X等于因此效果放置到休息室的卡的触发标记<img src=\"/effect-icons/soul.webp\">的数量<br/>【自】【CX联动】 此卡攻击时，高潮区有「ココン東西」，你其他的《音楽》角色在2个以上的话，你选自己高潮区或休息室的最多1张CX返回卡组，卡组洗切。",
     "all_cards": [
       {
         "id": "LHS/W122-027",
@@ -681,7 +681,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】 你所有的角色卡，攻击力+1000，灵魂值+1 <br/>（<img src=\"/effect-icons/choice.webp\"/>：此卡触发时，你可以选择1张自己休息室带有<img src=\"/effect-icons/soul.webp\"/>标记的角色卡，返回手牌或放置到库存区",
+    "effect": "【永】 你所有的角色卡，攻击力+1000，灵魂值+1 <br/>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你可以选择1张自己休息室带有<img src=\"/effect-icons/soul.webp\">标记的角色卡，返回手牌或放置到库存区",
     "all_cards": [
       {
         "id": "LHS/W122-029",
@@ -712,7 +712,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】 你所有的角色卡，攻击力+1000，灵魂值+1 <br/>（<img src=\"/effect-icons/choice.webp\"/>：此卡触发时，你可以选择1张自己休息室带有<img src=\"/effect-icons/soul.webp\"/>标记的角色卡，返回手牌或放置到库存区",
+    "effect": "【永】 你所有的角色卡，攻击力+1000，灵魂值+1 <br/>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你可以选择1张自己休息室带有<img src=\"/effect-icons/soul.webp\">标记的角色卡，返回手牌或放置到库存区",
     "all_cards": [
       {
         "id": "LHS/W122-030",
@@ -735,7 +735,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】 你所有的角色卡，攻击力+1000，灵魂值+1 <br/>（<img src=\"/effect-icons/choice.webp\"/>：此卡触发时，你可以选择1张自己休息室带有<img src=\"/effect-icons/soul.webp\"/>标记的角色卡，返回手牌或放置到库存区",
+    "effect": "【永】 你所有的角色卡，攻击力+1000，灵魂值+1 <br/>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你可以选择1张自己休息室带有<img src=\"/effect-icons/soul.webp\">标记的角色卡，返回手牌或放置到库存区",
     "all_cards": [
       {
         "id": "LHS/W122-031",
@@ -808,7 +808,7 @@
     "trait": ["音楽", "みらくらぱーく！"],
     "color": "红色",
     "soul": 2,
-    "effect": "【自】此卡因<img src=\"/effect-icons/standby.webp\"/>的效果，或因「365 Days 藤島 慈」的【起】效果放置到舞台时，你可以将自己时计区顶1张卡放置到休息室。<br/>【自】【CX联动】 [(1) 手牌的1张《音楽》角色放置到休息室] 此卡攻击时，高潮区有「ド！ド！ド！」，你其他的《音楽》角色在2个以上的话，你可以支付费用。那样的话，给与对方3点伤害，你看自己卡组顶最多2张卡，按任意顺序放回卡组顶。",
+    "effect": "【自】此卡因<img src=\"/effect-icons/standby.webp\">的效果，或因「365 Days 藤島 慈」的【起】效果放置到舞台时，你可以将自己时计区顶1张卡放置到休息室。<br/>【自】【CX联动】 [(1) 手牌的1张《音楽》角色放置到休息室] 此卡攻击时，高潮区有「ド！ド！ド！」，你其他的《音楽》角色在2个以上的话，你可以支付费用。那样的话，给与对方3点伤害，你看自己卡组顶最多2张卡，按任意顺序放回卡组顶。",
     "all_cards": [
       {
         "id": "LHS/W122-034",
@@ -962,7 +962,7 @@
     "trait": ["音楽", "みらくらぱーく！"],
     "color": "红色",
     "soul": 1,
-    "effect": "【自】你触发到触发标记带有<img src=\"/effect-icons/soul.webp\"/>自己最多1张攻击中的角色，那个回合中，战斗力+3000，灵魂值-1。<br/>【自】你触发到触发标记带有<img src=\"/effect-icons/soul.webp\"/><img src=\"/effect-icons/soul.webp\"/>的CX时，你没有其他「みらくりえーしょん 藤島 慈」存在的话，你选自己最多1张攻击中的角色，那个回合中，灵魂值-2。选取了角色的话，你选自己休息室1张《みらくらぱーく！》角色放置到库存区底。<br/>【起】[(2) 此卡【横置】] 你选自己卡组最多1张《みらくらぱーく！》角色加入手牌。",
+    "effect": "【自】你触发到触发标记带有<img src=\"/effect-icons/soul.webp\">自己最多1张攻击中的角色，那个回合中，战斗力+3000，灵魂值-1。<br/>【自】你触发到触发标记带有<img src=\"/effect-icons/soul.webp\"><img src=\"/effect-icons/soul.webp\">的CX时，你没有其他「みらくりえーしょん 藤島 慈」存在的话，你选自己最多1张攻击中的角色，那个回合中，灵魂值-2。选取了角色的话，你选自己休息室1张《みらくらぱーく！》角色放置到库存区底。<br/>【起】[(2) 此卡【横置】] 你选自己卡组最多1张《みらくらぱーく！》角色加入手牌。",
     "all_cards": [
       {
         "id": "LHS/W122-040",
@@ -1541,7 +1541,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【自】 此卡从手牌放置入高潮区时，执行<img src=\"/effect-icons/standby.webp\"/>的效果。<br/>（<img src=\"/effect-icons/standby.webp\"/>：此卡触发时，你可以选择自己休息室中等级小于等于自己等级+1的角色卡一张，以【横置】状态放置入舞台任意位置。",
+    "effect": "【自】 此卡从手牌放置入高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br/>（<img src=\"/effect-icons/standby.webp\">：此卡触发时，你可以选择自己休息室中等级小于等于自己等级+1的角色卡一张，以【横置】状态放置入舞台任意位置。",
     "all_cards": [
       {
         "id": "LHS/W122-065",
@@ -1568,7 +1568,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】你所有的角色卡，攻击力+1000，灵魂值+1<br/>（<img src=\"/effect-icons/salvage.webp\"/>：此卡触发时，你可以选择自己休息室一张角色卡返回手牌。",
+    "effect": "【永】你所有的角色卡，攻击力+1000，灵魂值+1<br/>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择自己休息室一张角色卡返回手牌。",
     "all_cards": [
       {
         "id": "LHS/W122-066",
@@ -1591,7 +1591,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【自】 此卡从手牌放置入高潮区时，执行<img src=\"/effect-icons/standby.webp\"/>的效果<br/>（<img src=\"/effect-icons/standby.webp\"/>：此卡触发时，你可以选择自己休息室中等级小于等于自己等级+1的角色卡一张，以【横置】状态放置入舞台任意位置。",
+    "effect": "【自】 此卡从手牌放置入高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果<br/>（<img src=\"/effect-icons/standby.webp\">：此卡触发时，你可以选择自己休息室中等级小于等于自己等级+1的角色卡一张，以【横置】状态放置入舞台任意位置。",
     "all_cards": [
       {
         "id": "LHS/W122-067",
@@ -1637,7 +1637,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【自】 此卡从手牌放置入高潮区时，执行<img src=\"/effect-icons/standby.webp\"/>的效果<br/>（<img src=\"/effect-icons/standby.webp\"/>：此卡触发时，你可以选择自己休息室中等级小于等于自己等级+1的角色卡一张，以【横置】状态放置入舞台任意位置。",
+    "effect": "【自】 此卡从手牌放置入高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果<br/>（<img src=\"/effect-icons/standby.webp\">：此卡触发时，你可以选择自己休息室中等级小于等于自己等级+1的角色卡一张，以【横置】状态放置入舞台任意位置。",
     "all_cards": [
       {
         "id": "LHS/W122-069",
@@ -1795,7 +1795,7 @@
     "trait": ["音楽", "DOLLCHESTRA"],
     "color": "蓝色",
     "soul": 1,
-    "effect": "【自】[手牌的1张触发标记带有<img src=\"/effect-icons/salvage.webp\"/>的CX放置到休息室] 你使用此卡的「助太刀」时，你可以支付费用。那样的话，你选对方1个等级比对方等级高的角色，放置到休息室。 <br/>【起】【反击】助太刀1000 等级1 [手牌的此卡放置到休息室]",
+    "effect": "【自】[手牌的1张触发标记带有<img src=\"/effect-icons/salvage.webp\">的CX放置到休息室] 你使用此卡的「助太刀」时，你可以支付费用。那样的话，你选对方1个等级比对方等级高的角色，放置到休息室。 <br/>【起】【反击】助太刀1000 等级1 [手牌的此卡放置到休息室]",
     "all_cards": [
       {
         "id": "LHS/W122-075",
@@ -2094,7 +2094,7 @@
     "trait": ["音楽", "スリーズブーケ"],
     "color": "蓝色",
     "soul": 1,
-    "effect": "【自】【CX联动】 此卡攻击时，那个回合中，此卡的战斗力+X。X等于你高潮区和休息室触发标记带有<img src=\"/effect-icons/choice.webp\"/>的CX与「眩耀夜行」的合计数量×1000。",
+    "effect": "【自】【CX联动】 此卡攻击时，那个回合中，此卡的战斗力+X。X等于你高潮区和休息室触发标记带有<img src=\"/effect-icons/choice.webp\">的CX与「眩耀夜行」的合计数量×1000。",
     "all_cards": [
       {
         "id": "LHS/W122-088",
@@ -2140,7 +2140,7 @@
     "trait": ["音楽", "スリーズブーケ"],
     "color": "蓝色",
     "soul": 1,
-    "effect": "【永】应援 你此卡前全部的《音楽》角色，战斗力+X。X等于那个角色的等级×500。<br/>【起】[此卡【横置】] 你选自己1个《音楽》角色，获得以下能力。「【自】此卡攻击时，那个回合中，此卡的战斗力+X。X等于你高潮区和休息室触发标记带有<img src=\"/effect-icons/choice.webp\"/>的CX的合计数量×500。」",
+    "effect": "【永】应援 你此卡前全部的《音楽》角色，战斗力+X。X等于那个角色的等级×500。<br/>【起】[此卡【横置】] 你选自己1个《音楽》角色，获得以下能力。「【自】此卡攻击时，那个回合中，此卡的战斗力+X。X等于你高潮区和休息室触发标记带有<img src=\"/effect-icons/choice.webp\">的CX的合计数量×500。」",
     "all_cards": [
       {
         "id": "LHS/W122-090",
@@ -2186,7 +2186,7 @@
     "trait": ["音楽", "DOLLCHESTRA"],
     "color": "蓝色",
     "soul": 1,
-    "effect": "【自】[(1) 手牌的1张触发标记带有<img src=\"/effect-icons/choice.webp\"/> 的CX放置到休息室] 你使用此卡的「助太刀」时，你全部的角色是《音楽》角色的话，你可以支付费用。那样的话，你选对方1个角色，那个回合中，灵魂值-3。<br/>【起】【反击】助太刀2500 等级1 [(1) 手牌的此卡放置到休息室]",
+    "effect": "【自】[(1) 手牌的1张触发标记带有<img src=\"/effect-icons/choice.webp\"> 的CX放置到休息室] 你使用此卡的「助太刀」时，你全部的角色是《音楽》角色的话，你可以支付费用。那样的话，你选对方1个角色，那个回合中，灵魂值-3。<br/>【起】【反击】助太刀2500 等级1 [(1) 手牌的此卡放置到休息室]",
     "all_cards": [
       {
         "id": "LHS/W122-092",
@@ -2301,7 +2301,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】你所有的角色卡，攻击力+1000，灵魂值+1<br/>（<img src=\"/effect-icons/gate.webp\"/>：此卡触发时，你可以选择1张自己休息室的cx返回手牌。",
+    "effect": "【永】你所有的角色卡，攻击力+1000，灵魂值+1<br/>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的cx返回手牌。",
     "all_cards": [
       {
         "id": "LHS/W122-097",
@@ -2328,7 +2328,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】你所有的角色卡，攻击力+1000，灵魂值+1<br/>（<img src=\"/effect-icons/gate.webp\"/>：此卡触发时，你可以选择1张自己休息室的cx返回手牌。",
+    "effect": "【永】你所有的角色卡，攻击力+1000，灵魂值+1<br/>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的cx返回手牌。",
     "all_cards": [
       {
         "id": "LHS/W122-098",
@@ -2351,7 +2351,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】你所有的角色卡，攻击力+1000，灵魂值+1<br/>（<img src=\"/effect-icons/gate.webp\"/>：此卡触发时，你可以选择1张自己休息室的cx返回手牌。",
+    "effect": "【永】你所有的角色卡，攻击力+1000，灵魂值+1<br/>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的cx返回手牌。",
     "all_cards": [
       {
         "id": "LHS/W122-099",
@@ -2374,7 +2374,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】你所有的角色卡，攻击力+1000，灵魂值+1<br/>（<img src=\"/effect-icons/gate.webp\"/>：此卡触发时，你可以选择1张自己休息室的cx返回手牌。",
+    "effect": "【永】你所有的角色卡，攻击力+1000，灵魂值+1<br/>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的cx返回手牌。",
     "all_cards": [
       {
         "id": "LHS/W122-100",

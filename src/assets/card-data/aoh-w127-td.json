@@ -171,7 +171,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/salvage.webp\"/>：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
     "all_cards": [
       {
         "id": "AOH/W127-T07",
@@ -406,7 +406,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】 所有你的角色卡获得力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/gate.webp\"/>：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "effect": "【永】 所有你的角色卡获得力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
     "all_cards": [
       {
         "id": "AOH/W127-T16",

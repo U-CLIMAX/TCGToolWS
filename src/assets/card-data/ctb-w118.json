@@ -193,7 +193,7 @@
     "trait": ["サッカー", "日本代表"],
     "color": "黄色",
     "soul": 1,
-    "effect": "【自】你的高潮阶段开始时，你选择自己的1个角色，那个回合中，战斗力+500。<br/>【起】集中 [(1) 此卡【横置】] 你将自己卡组顶5张卡放置到休息室。那些卡中每有1张触发标记是<img src=\"/effect-icons/shot.webp\"/>的高潮卡，你从自己的休息室选择至多1张《サッカー》的角色卡返回手牌。",
+    "effect": "【自】你的高潮阶段开始时，你选择自己的1个角色，那个回合中，战斗力+500。<br/>【起】集中 [(1) 此卡【横置】] 你将自己卡组顶5张卡放置到休息室。那些卡中每有1张触发标记是<img src=\"/effect-icons/shot.webp\">的高潮卡，你从自己的休息室选择至多1张《サッカー》的角色卡返回手牌。",
     "all_cards": [
       {
         "id": "CTB/W118-009",
@@ -584,7 +584,7 @@
     "trait": ["サッカー", "日本代表"],
     "color": "黄色",
     "soul": 1,
-    "effect": "【永】你的高潮区有触发标记是<img src=\"/effect-icons/shot.webp\"/>的高潮卡的话，所有区域的此卡获得触发标记<img src=\"/effect-icons/shot.webp\"/>。<br/>【自】你触发到触发标记是<img src=\"/effect-icons/shot.webp\"/>的卡时，你选择自己1个《サッカー》的角色，那个回合中，战斗力+2000。<br/>【自】此卡的攻击结束时，你将此卡放置到卡组底。",
+    "effect": "【永】你的高潮区有触发标记是<img src=\"/effect-icons/shot.webp\">的高潮卡的话，所有区域的此卡获得触发标记<img src=\"/effect-icons/shot.webp\">。<br/>【自】你触发到触发标记是<img src=\"/effect-icons/shot.webp\">的卡时，你选择自己1个《サッカー》的角色，那个回合中，战斗力+2000。<br/>【自】此卡的攻击结束时，你将此卡放置到卡组底。",
     "all_cards": [
       {
         "id": "CTB/W118-026",
@@ -676,7 +676,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\"/>：此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\"/>的角色卡返回手牌或放置到库存区）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\">：此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
     "all_cards": [
       {
         "id": "CTB/W118-030",
@@ -699,7 +699,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/shot.webp\"/>：这个回合中，触发此卡的角色下次造成的伤害被取消时，给对手造成1点伤害",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/shot.webp\">：这个回合中，触发此卡的角色下次造成的伤害被取消时，给对手造成1点伤害",
     "all_cards": [
       {
         "id": "CTB/W118-031",
@@ -722,7 +722,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/shot.webp\"/>：这个回合中，触发此卡的角色下次造成的伤害被取消时，给对手造成1点伤害",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/shot.webp\">：这个回合中，触发此卡的角色下次造成的伤害被取消时，给对手造成1点伤害",
     "all_cards": [
       {
         "id": "CTB/W118-032",
@@ -1159,7 +1159,7 @@
     "trait": ["サッカー", "イタリア代表"],
     "color": "绿色",
     "soul": 1,
-    "effect": "【永】<br/>【自】应援 你此卡前全部《サッカー》的角色，战斗力+X。X是那个角色的等级×500。<br/>【自】你触发标记是<img src=\"/effect-icons/treasure.webp\"/>的高潮卡放置到高潮区时，你选择对手前列的1个角色，那个回合中，战斗力-1000。<br/>【自】 你触发到触发标记是<img src=\"/effect-icons/treasure.webp\"/>的高潮卡时，你可以抽1张卡。这样做的话，你选择自己的1张手牌放置到休息室。",
+    "effect": "【永】<br/>【自】应援 你此卡前全部《サッカー》的角色，战斗力+X。X是那个角色的等级×500。<br/>【自】你触发标记是<img src=\"/effect-icons/treasure.webp\">的高潮卡放置到高潮区时，你选择对手前列的1个角色，那个回合中，战斗力-1000。<br/>【自】 你触发到触发标记是<img src=\"/effect-icons/treasure.webp\">的高潮卡时，你可以抽1张卡。这样做的话，你选择自己的1张手牌放置到休息室。",
     "all_cards": [
       {
         "id": "CTB/W118-051",
@@ -1251,7 +1251,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\"/>：此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\">：此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
     "all_cards": [
       {
         "id": "CTB/W118-055",
@@ -1274,7 +1274,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\"/>：此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\">：此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
     "all_cards": [
       {
         "id": "CTB/W118-056",
@@ -1297,7 +1297,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\"/>：此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\">：此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
     "all_cards": [
       {
         "id": "CTB/W118-057",
@@ -1688,7 +1688,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\"/>此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\">此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
     "all_cards": [
       {
         "id": "CTB/W118-074",
@@ -1711,7 +1711,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【自】此卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\"/>的效果。<br/>（<img src=\"/effect-icons/standby.webp\"/>：此卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，【横置】放置到舞台任意位置）",
+    "effect": "【自】此卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br/>（<img src=\"/effect-icons/standby.webp\">：此卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，【横置】放置到舞台任意位置）",
     "all_cards": [
       {
         "id": "CTB/W118-075",
@@ -1734,7 +1734,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【自】此卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\"/>的效果。<br/>（<img src=\"/effect-icons/standby.webp\"/>：此卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，【横置】放置到舞台任意位置）",
+    "effect": "【自】此卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br/>（<img src=\"/effect-icons/standby.webp\">：此卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，【横置】放置到舞台任意位置）",
     "all_cards": [
       {
         "id": "CTB/W118-076",
@@ -2240,7 +2240,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/gate.webp\"/>：此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/gate.webp\">：此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
     "all_cards": [
       {
         "id": "CTB/W118-098",
@@ -2263,7 +2263,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/draw.webp\"/>：此卡被触发时，你可以抽1张卡）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/draw.webp\">：此卡被触发时，你可以抽1张卡）",
     "all_cards": [
       {
         "id": "CTB/W118-099",
@@ -2286,7 +2286,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。 <br/>（<img src=\"/effect-icons/gate.webp\"/>：此卡被触发时，你可以抽1张卡）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。 <br/>（<img src=\"/effect-icons/gate.webp\">：此卡被触发时，你可以抽1张卡）",
     "all_cards": [
       {
         "id": "CTB/W118-100",

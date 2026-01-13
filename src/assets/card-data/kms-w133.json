@@ -126,7 +126,7 @@
     "color": "黄色",
     "soul": 1,
     "trigger_soul_count": 0,
-    "effect": "【自】此卡的触发判定中触发到标记是<img src=\"/effect-icons/choice.webp\"/>的高潮卡时，你可以从自己的休息室选择1张角色卡，返回手牌。<br/>【自】[(1) 1张手牌放置到休息室，此卡放置到思出区] 此卡【倒置】时，你可以支付费用。支付了的话，你从自己的卡组找至多1张《きんいろ》的角色卡展示给对手后加入手牌，卡组洗切。",
+    "effect": "【自】此卡的触发判定中触发到标记是<img src=\"/effect-icons/choice.webp\">的高潮卡时，你可以从自己的休息室选择1张角色卡，返回手牌。<br/>【自】[(1) 1张手牌放置到休息室，此卡放置到思出区] 此卡【倒置】时，你可以支付费用。支付了的话，你从自己的卡组找至多1张《きんいろ》的角色卡展示给对手后加入手牌，卡组洗切。",
     "all_cards": [
       {
         "id": "KMS/W133-005",
@@ -333,7 +333,7 @@
     "color": "黄色",
     "soul": 1,
     "trigger_soul_count": 0,
-    "effect": "【自】你的高潮卡放置到高潮区时，你选择自己至多2个角色，那个回合中，战斗力+1000。<br/>【自】[1张手牌的高潮卡放置到休息室] 你的触发标记是<img src=\"/effect-icons/treasure.webp\"/>的高潮卡触发时，你可以支付费用。支付了的话，你抽1张卡。<br/>【起】【一回合3次】[你《きんいろ》的角色2个【横置】] 你抽1张卡，选择自己的1张手牌，放置到休息室。",
+    "effect": "【自】你的高潮卡放置到高潮区时，你选择自己至多2个角色，那个回合中，战斗力+1000。<br/>【自】[1张手牌的高潮卡放置到休息室] 你的触发标记是<img src=\"/effect-icons/treasure.webp\">的高潮卡触发时，你可以支付费用。支付了的话，你抽1张卡。<br/>【起】【一回合3次】[你《きんいろ》的角色2个【横置】] 你抽1张卡，选择自己的1张手牌，放置到休息室。",
     "all_cards": [
       {
         "id": "KMS/W133-014",
@@ -379,7 +379,7 @@
     "color": "黄色",
     "soul": 1,
     "trigger_soul_count": 0,
-    "effect": "【永】你的高潮区有触发标记是<img src=\"/effect-icons/choice.webp\"/>的高潮卡的话，所有区域的此卡获得触发标记<img src=\"/effect-icons/choice.webp\"/>。<br/>【永】你的回合中，你其他的《きんいろ》的角色有2个以上的话，此卡的战斗力+4000。",
+    "effect": "【永】你的高潮区有触发标记是<img src=\"/effect-icons/choice.webp\">的高潮卡的话，所有区域的此卡获得触发标记<img src=\"/effect-icons/choice.webp\">。<br/>【永】你的回合中，你其他的《きんいろ》的角色有2个以上的话，此卡的战斗力+4000。",
     "all_cards": [
       {
         "id": "KMS/W133-016",
@@ -402,7 +402,7 @@
     "color": "黄色",
     "soul": 1,
     "trigger_soul_count": 1,
-    "effect": "【自】[(1) 1张手牌放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。支付了的话，你从自己的卡组找至多1张触发标记是<img src=\"/effect-icons/choice.webp\"/>的高潮卡展示给对手后加入手牌，卡组洗切。<br/>【自】记忆 此卡从手牌放置到舞台时，你思出区的《きんいろ》的角色有2个以上的话，那个回合中，此卡的战斗力+3000，此卡获得以下能力。『【自】此卡的战斗对手【倒置】时，你可以从自己的休息室选择1张《きんいろ》的角色卡，放置到思出区。』",
+    "effect": "【自】[(1) 1张手牌放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。支付了的话，你从自己的卡组找至多1张触发标记是<img src=\"/effect-icons/choice.webp\">的高潮卡展示给对手后加入手牌，卡组洗切。<br/>【自】记忆 此卡从手牌放置到舞台时，你思出区的《きんいろ》的角色有2个以上的话，那个回合中，此卡的战斗力+3000，此卡获得以下能力。『【自】此卡的战斗对手【倒置】时，你可以从自己的休息室选择1张《きんいろ》的角色卡，放置到思出区。』",
     "all_cards": [
       {
         "id": "KMS/W133-017",
@@ -678,7 +678,7 @@
     "color": "黄色",
     "soul": "-",
     "trigger_soul_count": 0,
-    "effect": "【永】你所有角色卡，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\"/>：此卡触发时，你从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\"/>的角色卡，返回手牌或放置到费用区。）",
+    "effect": "【永】你所有角色卡，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡，返回手牌或放置到费用区。）",
     "all_cards": [
       {
         "id": "KMS/W133-029",
@@ -705,7 +705,7 @@
     "color": "黄色",
     "soul": "-",
     "trigger_soul_count": 0,
-    "effect": "【永】你所有角色卡，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\"/>：此卡触发时，你从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\"/>的角色卡，返回手牌或放置到费用区。）",
+    "effect": "【永】你所有角色卡，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡，返回手牌或放置到费用区。）",
     "all_cards": [
       {
         "id": "KMS/W133-030",
@@ -732,7 +732,7 @@
     "color": "黄色",
     "soul": "-",
     "trigger_soul_count": 0,
-    "effect": "【永】你所有角色卡，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\"/>：此卡触发时，你从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\"/>的角色卡，返回手牌或放置到费用区。）",
+    "effect": "【永】你所有角色卡，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡，返回手牌或放置到费用区。）",
     "all_cards": [
       {
         "id": "KMS/W133-031",
@@ -755,7 +755,7 @@
     "color": "黄色",
     "soul": "-",
     "trigger_soul_count": 0,
-    "effect": "【永】你所有角色卡，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\"/>：此卡触发时，你从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\"/>的角色卡，返回手牌或放置到费用区。）",
+    "effect": "【永】你所有角色卡，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡，返回手牌或放置到费用区。）",
     "all_cards": [
       {
         "id": "KMS/W133-032",
@@ -1047,7 +1047,7 @@
     "color": "绿色",
     "soul": 2,
     "trigger_soul_count": 1,
-    "effect": "【永】你休息室触发标记是<img src=\"/effect-icons/treasure.webp\"/>的高潮卡有3张以上的话，你手牌中此卡的等级-1。<br/>【永】你其他《きんいろ》的角色有2个以上的话，此卡的战斗力+2000。<br/>【自】记忆 此卡从手牌放置到舞台时，你思出区《きんいろ》的角色有3个以上的话，你抽至多2张卡，选择自己的1张手牌放置到费用区。",
+    "effect": "【永】你休息室触发标记是<img src=\"/effect-icons/treasure.webp\">的高潮卡有3张以上的话，你手牌中此卡的等级-1。<br/>【永】你其他《きんいろ》的角色有2个以上的话，此卡的战斗力+2000。<br/>【自】记忆 此卡从手牌放置到舞台时，你思出区《きんいろ》的角色有3个以上的话，你抽至多2张卡，选择自己的1张手牌放置到费用区。",
     "all_cards": [
       {
         "id": "KMS/W133-044",
@@ -1116,7 +1116,7 @@
     "color": "绿色",
     "soul": 1,
     "trigger_soul_count": 0,
-    "effect": "【自】此卡从手牌放置到舞台时，那个回合中，此卡的战斗力+3000。<br/>【自】此卡攻击时，高潮区有触发标记是<img src=\"/effect-icons/treasure.webp\"/>的高潮卡的话，你公开自己卡组顶1张卡。那张卡的等级是1级以上的话，那次攻击中，你在触发步骤进行2次判定。（高潮卡视为0级。公开的卡放回原处）",
+    "effect": "【自】此卡从手牌放置到舞台时，那个回合中，此卡的战斗力+3000。<br/>【自】此卡攻击时，高潮区有触发标记是<img src=\"/effect-icons/treasure.webp\">的高潮卡的话，你公开自己卡组顶1张卡。那张卡的等级是1级以上的话，那次攻击中，你在触发步骤进行2次判定。（高潮卡视为0级。公开的卡放回原处）",
     "all_cards": [
       {
         "id": "KMS/W133-047",
@@ -1231,7 +1231,7 @@
     "color": "绿色",
     "soul": "-",
     "trigger_soul_count": 0,
-    "effect": "【永】你所有的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\"/>：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到费用区）",
+    "effect": "【永】你所有的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到费用区）",
     "all_cards": [
       {
         "id": "KMS/W133-052",
@@ -1258,7 +1258,7 @@
     "color": "绿色",
     "soul": "-",
     "trigger_soul_count": 0,
-    "effect": "【永】你所有的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\"/>：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到费用区）",
+    "effect": "【永】你所有的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到费用区）",
     "all_cards": [
       {
         "id": "KMS/W133-053",
@@ -1281,7 +1281,7 @@
     "color": "绿色",
     "soul": "-",
     "trigger_soul_count": 0,
-    "effect": "【永】你所有的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\"/>：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到费用区）",
+    "effect": "【永】你所有的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到费用区）",
     "all_cards": [
       {
         "id": "KMS/W133-054",
@@ -1823,7 +1823,7 @@
     "color": "红色",
     "soul": "-",
     "trigger_soul_count": 1,
-    "effect": "【自】此卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\"/>的效果。<br/>（<img src=\"/effect-icons/standby.webp\"/>：此卡触发时，你可以选择自己休息室的自己等级+1以下等级的角色卡1张，【横置】放置到舞台的任意区域）",
+    "effect": "【自】此卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br/>（<img src=\"/effect-icons/standby.webp\">：此卡触发时，你可以选择自己休息室的自己等级+1以下等级的角色卡1张，【横置】放置到舞台的任意区域）",
     "all_cards": [
       {
         "id": "KMS/W133-076",
@@ -1850,7 +1850,7 @@
     "color": "红色",
     "soul": "-",
     "trigger_soul_count": 1,
-    "effect": "【自】此卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\"/>的效果。<br/>（<img src=\"/effect-icons/standby.webp\"/>：此卡触发时，你可以选择自己休息室的自己等级+1以下等级的角色卡1张，【横置】放置到舞台的任意区域）",
+    "effect": "【自】此卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br/>（<img src=\"/effect-icons/standby.webp\">：此卡触发时，你可以选择自己休息室的自己等级+1以下等级的角色卡1张，【横置】放置到舞台的任意区域）",
     "all_cards": [
       {
         "id": "KMS/W133-077",
@@ -1873,7 +1873,7 @@
     "color": "红色",
     "soul": "-",
     "trigger_soul_count": 0,
-    "effect": "【永】你所有角色卡的战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\"/>：此卡触发时，你可以选择自己休息室的1张角色卡，返回手牌）",
+    "effect": "【永】你所有角色卡的战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择自己休息室的1张角色卡，返回手牌）",
     "all_cards": [
       {
         "id": "KMS/W133-078",
@@ -2104,7 +2104,7 @@
     "color": "蓝色",
     "soul": 1,
     "trigger_soul_count": 0,
-    "effect": "【永】你的回合中，你有其他《きんいろ》的角色的话，此卡的战斗力+3000。<br/>【自】[1张手牌放置到休息室] 此卡攻击时，你可以支付费用。支付了的话，你将自己卡组顶至多4张卡放置到休息室，从自己的休息室选择至多1张等级X以下的《きんいろ》的角色卡返回手牌。X是通过这个效果放置到休息室的触发标记有<img src=\"/effect-icons/soul.webp\"/>的卡的数量。",
+    "effect": "【永】你的回合中，你有其他《きんいろ》的角色的话，此卡的战斗力+3000。<br/>【自】[1张手牌放置到休息室] 此卡攻击时，你可以支付费用。支付了的话，你将自己卡组顶至多4张卡放置到休息室，从自己的休息室选择至多1张等级X以下的《きんいろ》的角色卡返回手牌。X是通过这个效果放置到休息室的触发标记有<img src=\"/effect-icons/soul.webp\">的卡的数量。",
     "all_cards": [
       {
         "id": "KMS/W133-087",
@@ -2196,7 +2196,7 @@
     "color": "蓝色",
     "soul": 2,
     "trigger_soul_count": 1,
-    "effect": "【自】此卡通过<img src=\"/effect-icons/standby.webp\"/>的效果放置到舞台时，你选择自己的1个角色，那个回合中，战斗力+1000，灵魂值+1。<br/>【起】[此卡放置到思出区] 你看自己卡组顶至多3张卡，选择至多1张卡加入手牌，其余的卡放置到休息室。",
+    "effect": "【自】此卡通过<img src=\"/effect-icons/standby.webp\">的效果放置到舞台时，你选择自己的1个角色，那个回合中，战斗力+1000，灵魂值+1。<br/>【起】[此卡放置到思出区] 你看自己卡组顶至多3张卡，选择至多1张卡加入手牌，其余的卡放置到休息室。",
     "all_cards": [
       {
         "id": "KMS/W133-091",
@@ -2380,7 +2380,7 @@
     "color": "蓝色",
     "soul": "-",
     "trigger_soul_count": 1,
-    "effect": "【永】你所有的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/gate.webp\"/>：此卡触发时，你从自己的休息室选择1张高潮卡，你可以返回手牌）",
+    "effect": "【永】你所有的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你从自己的休息室选择1张高潮卡，你可以返回手牌）",
     "all_cards": [
       {
         "id": "KMS/W133-099",
@@ -2407,7 +2407,7 @@
     "color": "蓝色",
     "soul": "-",
     "trigger_soul_count": 1,
-    "effect": "【永】你所有的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/gate.webp\"/>：此卡触发时，你从自己的休息室选择1张高潮卡，你可以返回手牌）",
+    "effect": "【永】你所有的角色，战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你从自己的休息室选择1张高潮卡，你可以返回手牌）",
     "all_cards": [
       {
         "id": "KMS/W133-100",

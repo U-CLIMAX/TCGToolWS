@@ -105,7 +105,7 @@
     "trait": ["音楽", "トゲナシトゲアリ"],
     "color": "红色",
     "soul": 1,
-    "effect": "【永】 其他的《音楽》角色卡全部力量＋500。<br/>【自】 当触发到<img src=\"/effect-icons/salvage.webp\"/>的高潮卡时、选择1张自己的角色卡直到下个对方的回合结束为止力量+1000。",
+    "effect": "【永】 其他的《音楽》角色卡全部力量＋500。<br/>【自】 当触发到<img src=\"/effect-icons/salvage.webp\">的高潮卡时、选择1张自己的角色卡直到下个对方的回合结束为止力量+1000。",
     "all_cards": [
       {
         "id": "GCR/SE48-T05",
@@ -401,7 +401,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】 所有你的角色卡力量＋1000、灵魂值＋1。<br/>（<img src=\"/effect-icons/salvage.webp\"/>：当此卡被触发时，你可以选择自己休息室中至多1张角色卡返回手牌）",
+    "effect": "【永】 所有你的角色卡力量＋1000、灵魂值＋1。<br/>（<img src=\"/effect-icons/salvage.webp\">：当此卡被触发时，你可以选择自己休息室中至多1张角色卡返回手牌）",
     "all_cards": [
       {
         "id": "GCR/SE48-T17",
@@ -424,7 +424,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】 所有你的角色卡力量＋1000、灵魂值＋1。<br/>（<img src=\"/effect-icons/salvage.webp\"/>：当此卡被触发时，你可以选择自己休息室中至多1张角色卡返回手牌）",
+    "effect": "【永】 所有你的角色卡力量＋1000、灵魂值＋1。<br/>（<img src=\"/effect-icons/salvage.webp\">：当此卡被触发时，你可以选择自己休息室中至多1张角色卡返回手牌）",
     "all_cards": [
       {
         "id": "GCR/SE48-T18",

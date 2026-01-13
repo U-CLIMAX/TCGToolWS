@@ -435,7 +435,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/gate.webp\"/>：此卡被触发时，你可以选择1张自己休息室的高潮卡，返回手牌。）",
+    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/gate.webp\">：此卡被触发时，你可以选择1张自己休息室的高潮卡，返回手牌。）",
     "all_cards": [
       {
         "id": "AMG/W121-T19",

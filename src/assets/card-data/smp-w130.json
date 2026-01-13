@@ -631,7 +631,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/bounce.webp\"/>：（返回：此卡触发时，你可以选择1张对方的角色卡，返回手牌）",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/bounce.webp\">：（返回：此卡触发时，你可以选择1张对方的角色卡，返回手牌）",
     "all_cards": [
       {
         "id": "SMP/W130-027",
@@ -654,7 +654,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/choice.webp\"/>：此卡触发时，你可以选择1张自己休息室的持有 <img src=\"/effect-icons/soul.webp\"/>标记的角色卡，返回手牌或放置入库存区）",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你可以选择1张自己休息室的持有 <img src=\"/effect-icons/soul.webp\">标记的角色卡，返回手牌或放置入库存区）",
     "all_cards": [
       {
         "id": "SMP/W130-028",
@@ -677,7 +677,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/choice.webp\"/>：此卡触发时，你可以选择1张自己休息室的持有<img src=\"/effect-icons/soul.webp\"/>标记的角色卡，返回手牌或放置入库存区）",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你可以选择1张自己休息室的持有<img src=\"/effect-icons/soul.webp\">标记的角色卡，返回手牌或放置入库存区）",
     "all_cards": [
       {
         "id": "SMP/W130-029",
@@ -1107,7 +1107,7 @@
     "trait": ["サマポケ", "海賊"],
     "color": "绿色",
     "soul": 1,
-    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋500。<br/>【自】［将1张手牌放置入休息室］你的角色卡的触发判定中判出高潮卡时，若该卡持有的触发标记为<img src=\"/effect-icons/treasure.webp\"/>，则你可以支付费用。若如此做，则你选择1张自己时计区的卡片，返回手牌，将自己卡组顶的1张卡，放置入时计区。",
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋500。<br/>【自】［将1张手牌放置入休息室］你的角色卡的触发判定中判出高潮卡时，若该卡持有的触发标记为<img src=\"/effect-icons/treasure.webp\">，则你可以支付费用。若如此做，则你选择1张自己时计区的卡片，返回手牌，将自己卡组顶的1张卡，放置入时计区。",
     "all_cards": [
       {
         "id": "SMP/W130-047",
@@ -1176,7 +1176,7 @@
     "trait": ["サマポケ", "海賊"],
     "color": "绿色",
     "soul": 1,
-    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。<br/>【自】［②］ 你的再演步骤开始之际，你可以支付费用。若如此做，则你选择至多1张自己的手牌的触发标记为<img src=\"/effect-icons/treasure.webp\"/>的高潮卡公开，返回卡组，将卡组洗切。",
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。<br/>【自】［②］ 你的再演步骤开始之际，你可以支付费用。若如此做，则你选择至多1张自己的手牌的触发标记为<img src=\"/effect-icons/treasure.webp\">的高潮卡公开，返回卡组，将卡组洗切。",
     "all_cards": [
       {
         "id": "SMP/W130-050",
@@ -1268,7 +1268,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/treasure.webp\"/>：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
     "all_cards": [
       {
         "id": "SMP/W130-054",
@@ -1291,7 +1291,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/treasure.webp\"/>：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
     "all_cards": [
       {
         "id": "SMP/W130-055",
@@ -1314,7 +1314,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/treasure.webp\"/>：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
     "all_cards": [
       {
         "id": "SMP/W130-056",
@@ -1337,7 +1337,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/stock.webp\"/>：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/stock.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
     "all_cards": [
       {
         "id": "SMP/W130-057",
@@ -1360,7 +1360,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/treasure.webp\"/>：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
     "all_cards": [
       {
         "id": "SMP/W130-058",
@@ -2016,7 +2016,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/salvage.webp\"/>：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
     "all_cards": [
       {
         "id": "SMP/W130-086",
@@ -2039,7 +2039,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【自】 此卡被从手牌放置入高潮区时，执行<img src=\"/effect-icons/standby.webp\"/>的效果。<br/>（<img src=\"/effect-icons/standby.webp\"/>：此卡触发时，你可以选择1张自己休息室的自己的等级小于等于＋1的角色卡，以【横置】状态放置入舞台的任意格子）",
+    "effect": "【自】 此卡被从手牌放置入高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br/>（<img src=\"/effect-icons/standby.webp\">：此卡触发时，你可以选择1张自己休息室的自己的等级小于等于＋1的角色卡，以【横置】状态放置入舞台的任意格子）",
     "all_cards": [
       {
         "id": "SMP/W130-087",
@@ -2062,7 +2062,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/salvage.webp\"/>：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
     "all_cards": [
       {
         "id": "SMP/W130-088",
@@ -2108,7 +2108,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/salvage.webp\"/>：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
     "all_cards": [
       {
         "id": "SMP/W130-090",
@@ -2668,7 +2668,7 @@
     "trait": ["サマポケ", "海賊"],
     "color": "蓝色",
     "soul": 2,
-    "effect": "【永】 记忆 你的回合中，若你的思出区存在「“働き者のメイドさん”鴎」，则此卡的力量＋3000。【自】 此卡被从手牌放置入舞台的回合中，你的再演步骤开始之际，若前列存在此卡，则你将自己卡组顶的至多1张卡，放置入库存区，选择至多1张自己的手牌的触发标记为<br/><img src=\"/effect-icons/treasure.webp\"/>的高潮卡公开，返回卡组，将卡组洗切。",
+    "effect": "【永】 记忆 你的回合中，若你的思出区存在「“働き者のメイドさん”鴎」，则此卡的力量＋3000。【自】 此卡被从手牌放置入舞台的回合中，你的再演步骤开始之际，若前列存在此卡，则你将自己卡组顶的至多1张卡，放置入库存区，选择至多1张自己的手牌的触发标记为<br/><img src=\"/effect-icons/treasure.webp\">的高潮卡公开，返回卡组，将卡组洗切。",
     "all_cards": [
       {
         "id": "SMP/W130-114",
@@ -2760,7 +2760,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/gate.webp\"/>：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
     "all_cards": [
       {
         "id": "SMP/W130-118",
@@ -2787,7 +2787,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/draw.webp\"/>：此卡触发时，你可以抽1张卡）",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/draw.webp\">：此卡触发时，你可以抽1张卡）",
     "all_cards": [
       {
         "id": "SMP/W130-119",
@@ -2810,7 +2810,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/gate.webp\"/>：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br/>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
     "all_cards": [
       {
         "id": "SMP/W130-120",
