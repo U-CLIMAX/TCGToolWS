@@ -5,7 +5,7 @@
 
   /* For grid-background */
   --grid-bg-color: #f7f7f8;
-  --grid-line-color: #eae9ed;
+  --grid-line-color: #f4f4f6;
 
   /* For search button - 黑白灰配色 */
   --search-btn-bg: rgba(45, 55, 72, 0.75);
@@ -30,7 +30,7 @@
 
   /* For grid-background */
   --grid-bg-color: #171a1d;
-  --grid-line-color: #292e34;
+  --grid-line-color: #121518;
 
   /* For search button - 黑白灰配色 */
   --search-btn-bg: rgba(255, 255, 255, 0.9);
