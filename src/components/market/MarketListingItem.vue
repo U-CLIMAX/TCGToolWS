@@ -240,8 +240,16 @@ const confirmDelete = () => {
 }
 
 const copyLink = async (url) => {
+  let textToCopy = url
+  if (!isTouch.value && url) {
+    const match = url.match(/https:\/\/[^\s]+/)
+    if (match) {
+      textToCopy = match[0]
+    }
+  }
+
   try {
-    await clipboard.writeText(url)
+    await clipboard.writeText(textToCopy)
     triggerSnackbar('购买链接已复制', 'success')
   } catch (err) {
     console.error('Failed to copy: ', err)
