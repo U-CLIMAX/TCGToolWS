@@ -1,4 +1,9 @@
 const wsSeriesMap = {
+  '传说系列': {
+    id: 'tal',
+    prefixes: ['TAL'],
+    latestReleaseDate: '2026-1-16',
+  },
   'Re：从零开始的异世界生活': {
     id: 're0',
     prefixes: ['RZ'],

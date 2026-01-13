@@ -55,6 +55,8 @@ export const useMarketStore = defineStore(
       { name: '风', value: 'bounce', icon: '/effect-icons/bounce.webp' },
       { name: '火', value: 'shot', icon: '/effect-icons/shot.webp' },
       { name: 'Y', value: 'choice', icon: '/effect-icons/choice.webp' },
+      { name: '镜', value: 'discovery', icon: '/effect-icons/discovery.webp' },
+      { name: '灯', value: 'chance', icon: '/effect-icons/chance.webp' },
     ]
     const tagOptions = [
       { label: '全平', value: 0 },

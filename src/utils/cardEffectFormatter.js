@@ -12,6 +12,7 @@ const ICON_MAP = {
   '【一回合3次】': 'turn3',
   '【时计区】': 'alarm',
   '【LINK】': 'link',
+  '【再演】': 'replay',
 }
 const ICON_REGEX = new RegExp(Object.keys(ICON_MAP).join('|'), 'g')
 
