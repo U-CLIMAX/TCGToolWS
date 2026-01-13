@@ -9,7 +9,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\">：此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/choice.webp\">：此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
     "all_cards": [
       {
         "id": "UMA/W106-036S",
@@ -28,7 +28,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/choice.webp\">：此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/choice.webp\">：此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
     "all_cards": [
       {
         "id": "UMA/W106-037S",
@@ -47,7 +47,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/bounce.webp\">：此卡被触发时，你可以选择对手的1个角色，使其返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/bounce.webp\">：此卡被触发时，你可以选择对手的1个角色，使其返回手牌）",
     "all_cards": [
       {
         "id": "UMA/W106-038S",
@@ -85,7 +85,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\">：此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
     "all_cards": [
       {
         "id": "UMA/W106-075S",
@@ -104,7 +104,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/treasure.webp\">：此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
     "all_cards": [
       {
         "id": "UMA/W106-076S",
@@ -123,7 +123,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
     "all_cards": [
       {
         "id": "UMA/W106-112S",
@@ -142,7 +142,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【自】此卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br/>（<img src=\"/effect-icons/standby.webp\">：此卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，【横置】放置到舞台任意位置）",
+    "effect": "【自】此卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br>（<img src=\"/effect-icons/standby.webp\">：此卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，【横置】放置到舞台任意位置）",
     "all_cards": [
       {
         "id": "UMA/W106-113S",
@@ -161,7 +161,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【自】此卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br/>（<img src=\"/effect-icons/standby.webp\">：此卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，【横置】放置到舞台任意位置）",
+    "effect": "【自】此卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br>（<img src=\"/effect-icons/standby.webp\">：此卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，【横置】放置到舞台任意位置）",
     "all_cards": [
       {
         "id": "UMA/W106-114S",
@@ -180,7 +180,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
     "all_cards": [
       {
         "id": "UMA/W106-115S",
@@ -199,7 +199,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【自】此卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br/>（<img src=\"/effect-icons/standby.webp\">：此卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，【横置】放置到舞台任意位置）",
+    "effect": "【自】此卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br>（<img src=\"/effect-icons/standby.webp\">：此卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，【横置】放置到舞台任意位置）",
     "all_cards": [
       {
         "id": "UMA/W106-116S",
@@ -218,7 +218,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
     "all_cards": [
       {
         "id": "UMA/W106-117S",
@@ -237,7 +237,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/gate.webp\">：此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
     "all_cards": [
       {
         "id": "UMA/W106-151S",
@@ -256,7 +256,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/gate.webp\">：此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
     "all_cards": [
       {
         "id": "UMA/W106-152S",
@@ -294,7 +294,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/draw.webp\">：此卡被触发时，你可以抽1张卡）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/draw.webp\">：此卡被触发时，你可以抽1张卡）",
     "all_cards": [
       {
         "id": "UMA/W106-154S",
@@ -313,7 +313,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br/>（<img src=\"/effect-icons/gate.webp\">：此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
     "all_cards": [
       {
         "id": "UMA/W106-155S",
@@ -332,7 +332,7 @@
     "trait": ["ウマ娘"],
     "color": "黄色",
     "soul": 2,
-    "effect": "【自】此卡从手牌放置到舞台时，你可以将自己时计区顶1张卡放置到休息室。<br/>【自】[(3) 1张手牌放置到休息室] 此卡的战斗对手【倒置】时，你可以支付费用。支付了的话，给对手造成2点伤害，你看自己卡组顶1张卡，放置到卡组顶或卡组底。（发生伤害取消）",
+    "effect": "【自】此卡从手牌放置到舞台时，你可以将自己时计区顶1张卡放置到休息室。<br>【自】[(3) 1张手牌放置到休息室] 此卡的战斗对手【倒置】时，你可以支付费用。支付了的话，给对手造成2点伤害，你看自己卡组顶1张卡，放置到卡组顶或卡组底。（发生伤害取消）",
     "all_cards": [
       {
         "id": "UMA/W106-156",
@@ -351,7 +351,7 @@
     "trait": ["ウマ娘"],
     "color": "绿色",
     "soul": 1,
-    "effect": "【自】这个能力1回合至多发动1次。你使用【起】效果时，那个回合中，此卡的战斗力+X。X是你《ウマ娘》的角色的数量×500。<br/>【起】[你1个《ウマ娘》的角色【横置】] 那个回合中，此卡获得以下能力。『【自】此卡的战斗对手【倒置】时，你可以将那个角色放置到卡组底。』",
+    "effect": "【自】这个能力1回合至多发动1次。你使用【起】效果时，那个回合中，此卡的战斗力+X。X是你《ウマ娘》的角色的数量×500。<br>【起】[你1个《ウマ娘》的角色【横置】] 那个回合中，此卡获得以下能力。『【自】此卡的战斗对手【倒置】时，你可以将那个角色放置到卡组底。』",
     "all_cards": [
       {
         "id": "UMA/W106-157",
@@ -393,7 +393,7 @@
     "trait": ["ウマ娘"],
     "color": "绿色",
     "soul": 1,
-    "effect": "【自】此卡从手牌放置到舞台时，那个回合中，此卡的战斗力+1500。<br/>【自】[1张手牌放置到休息室] 此卡攻击时，你可以支付费用。支付了的话，你选择自己其他1个《ウマ娘》的角色返回手牌。",
+    "effect": "【自】此卡从手牌放置到舞台时，那个回合中，此卡的战斗力+1500。<br>【自】[1张手牌放置到休息室] 此卡攻击时，你可以支付费用。支付了的话，你选择自己其他1个《ウマ娘》的角色返回手牌。",
     "all_cards": [
       {
         "id": "UMA/W106-P02",
