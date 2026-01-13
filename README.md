@@ -69,6 +69,27 @@
 | **路由管理**   | [Vue Router](https://router.vuejs.org/)                         | 處理 SPA 頁面導航                                   |
 | **程式碼品質** | ESLint + Prettier                                               | 確保程式碼風格一致性與品質                          |
 
+## 📁 專案結構
+
+```text
+.
+├── backend/            # Cloudflare Workers 後端邏輯 (Hono)
+├── public/             # 靜態資源 (圖片、圖示、Manifest)
+├── scripts/            # 建構與設定腳本 (索引建立、圖片下載)
+├── src/                # Vue 3 前端原始碼
+│   ├── assets/         # 前端靜態資源
+│   ├── components/     # Vue 元件
+│   ├── composables/    # 組合式函數 (Composables)
+│   ├── router/         # 路由設定
+│   ├── stores/         # Pinia 狀態管理
+│   ├── styles/         # 全域樣式 (CSS/SCSS)
+│   └── views/          # 頁面元件
+├── .env.dev            # 開發環境變數範本
+├── package.json        # 專案依賴與腳本設定
+├── vite.config.js      # Vite 設定檔
+└── wrangler.jsonc      # Cloudflare Workers 設定檔
+```
+
 ## 快速開始
 
 ### 環境變數設定
@@ -163,6 +184,17 @@
     ```bash
     npm run build
     ```
+
+### 定時任務測試 (Scheduler)
+
+本專案後端包含排程任務。若要在本地測試 Scheduler，請參考 Cloudflare 官方文件：
+[Testing Cron Triggers Locally](https://developers.cloudflare.com/workers/configuration/cron-triggers/#test-cron-triggers-locally)
+
+您可以在本地 Worker 運行時，透過 curl 發送請求來手動觸發：
+
+```bash
+curl "http://localhost:5173/cdn-cgi/handler/scheduled"
+```
 
 ## 開發規範
 
