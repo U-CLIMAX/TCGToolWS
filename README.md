@@ -34,6 +34,7 @@
 - [專案簡介](#專案簡介)
 - [主要功能](#主要功能)
 - [系統架構](#系統架構)
+- [專案結構](#專案結構)
 - [快速開始](#快速開始)
   - [環境變數設定](#環境變數設定)
   - [安裝與執行](#安裝與執行)
@@ -69,14 +70,14 @@
 | **路由管理**   | [Vue Router](https://router.vuejs.org/)                         | 處理 SPA 頁面導航                                   |
 | **程式碼品質** | ESLint + Prettier                                               | 確保程式碼風格一致性與品質                          |
 
-## 📁 專案結構
+## 專案結構
 
 ```text
 .
 ├── backend/            # Cloudflare Workers 後端邏輯 (Hono)
 ├── public/             # 靜態資源 (圖片、圖示、Manifest)
 ├── scripts/            # 建構與設定腳本 (索引建立、圖片下載)
-├── src/                # Vue 3 前端原始碼
+├── src/                # 前端原始碼
 │   ├── assets/         # 前端靜態資源
 │   ├── components/     # Vue 元件
 │   ├── composables/    # 組合式函數 (Composables)
