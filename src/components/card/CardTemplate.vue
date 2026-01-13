@@ -1,13 +1,15 @@
 <template>
-  <v-card
-    class="detail-card d-flex flex-column w-100"
-    :class="{ 'glass-card': hasBackgroundImage }"
-    variant="flat"
-    :rounded="isTableMode ? '2lg' : '5md'"
-    @click="handleCardClick"
-  >
-    <v-hover v-slot="{ isHovering, props: hoverProps }">
-      <div :class="isTableMode ? 'ma-1' : 'ma-2'" style="position: relative" v-bind="hoverProps">
+  <v-hover v-slot="{ isHovering, props }">
+    <v-card
+      v-bind="props"
+      class="detail-card d-flex flex-column w-100"
+      :class="{ 'glass-card': hasBackgroundImage }"
+      variant="flat"
+      :rounded="isTableMode ? '2lg' : '5md'"
+      @click="handleCardClick"
+      :elevation="isHovering ? 2 : 0"
+    >
+      <div :class="isTableMode ? 'ma-1' : 'ma-2'" style="position: relative">
         <v-img
           :key="card.id"
           :src="imageUrl"
@@ -91,52 +93,52 @@
           </div>
         </v-img>
       </div>
-    </v-hover>
 
-    <div
-      v-show="!isTableMode || lgAndUp"
-      :class="isTableMode ? 'pa-2' : 'pa-3'"
-      class="card-content pt-0"
-    >
       <div
-        :class="[
-          isLightWithBg ? 'text-grey-lighten-2' : 'text-grey',
-          'text-caption text-md-body-2 mb-1 text-truncate',
-        ]"
+        v-show="!isTableMode || lgAndUp"
+        :class="isTableMode ? 'pa-2' : 'pa-3'"
+        class="card-content pt-0"
       >
-        {{ card.id }}
+        <div
+          :class="[
+            isLightWithBg ? 'text-grey-lighten-2' : 'text-grey',
+            'text-caption text-md-body-2 mb-1 text-truncate',
+          ]"
+        >
+          {{ card.id }}
+        </div>
+        <h3 class="text-subtitle-2 text-md-subtitle-1 text-truncate">{{ card.name }}</h3>
+        <v-expand-transition>
+          <v-row v-if="!isTableMode" dense class="mt-2 text-center">
+            <v-col cols="6" class="pa-0">
+              <div :class="[isLightWithBg ? 'text-grey-lighten-2' : 'text-grey', 'text-caption']">
+                种类
+              </div>
+              <div class="text-body-2">{{ card.type }}</div>
+            </v-col>
+            <v-col cols="6" class="pa-0">
+              <div :class="[isLightWithBg ? 'text-grey-lighten-2' : 'text-grey', 'text-caption']">
+                灵魂值
+              </div>
+              <div class="text-body-2">{{ card.soul }}</div>
+            </v-col>
+            <v-col cols="6" class="pa-0 pt-1">
+              <div :class="[isLightWithBg ? 'text-grey-lighten-2' : 'text-grey', 'text-caption']">
+                等级
+              </div>
+              <div class="text-body-2">{{ card.level }}</div>
+            </v-col>
+            <v-col cols="6" class="pa-0 pt-1">
+              <div :class="[isLightWithBg ? 'text-grey-lighten-2' : 'text-grey', 'text-caption']">
+                战斗力
+              </div>
+              <div class="text-body-2">{{ card.power }}</div>
+            </v-col>
+          </v-row>
+        </v-expand-transition>
       </div>
-      <h3 class="text-subtitle-2 text-md-subtitle-1 text-truncate">{{ card.name }}</h3>
-      <v-expand-transition>
-        <v-row v-if="!isTableMode" dense class="mt-2 text-center">
-          <v-col cols="6" class="pa-0">
-            <div :class="[isLightWithBg ? 'text-grey-lighten-2' : 'text-grey', 'text-caption']">
-              种类
-            </div>
-            <div class="text-body-2">{{ card.type }}</div>
-          </v-col>
-          <v-col cols="6" class="pa-0">
-            <div :class="[isLightWithBg ? 'text-grey-lighten-2' : 'text-grey', 'text-caption']">
-              灵魂值
-            </div>
-            <div class="text-body-2">{{ card.soul }}</div>
-          </v-col>
-          <v-col cols="6" class="pa-0 pt-1">
-            <div :class="[isLightWithBg ? 'text-grey-lighten-2' : 'text-grey', 'text-caption']">
-              等级
-            </div>
-            <div class="text-body-2">{{ card.level }}</div>
-          </v-col>
-          <v-col cols="6" class="pa-0 pt-1">
-            <div :class="[isLightWithBg ? 'text-grey-lighten-2' : 'text-grey', 'text-caption']">
-              战斗力
-            </div>
-            <div class="text-body-2">{{ card.power }}</div>
-          </v-col>
-        </v-row>
-      </v-expand-transition>
-    </div>
-  </v-card>
+    </v-card>
+  </v-hover>
 </template>
 
 <script setup>

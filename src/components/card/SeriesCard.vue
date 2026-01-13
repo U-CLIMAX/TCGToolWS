@@ -1,88 +1,91 @@
 <template>
-  <v-card
-    class="series-card d-flex flex-column flex-grow-1 overflow-hidden"
-    :class="[
-      { 'glass-card': hasBackgroundImage, 'compact': isCompact },
-      isCompact ? 'pa-2' : 'pa-3',
-    ]"
-    hover
-    :to="{ name: 'SeriesDetail', params: { seriesId: seriesData.id } }"
-    variant="flat"
-    rounded="3md"
-    v-tooltip:top-center="{
-      text: seriesName,
-      disabled: isTouch,
-    }"
-  >
-    <div class="image-wrapper position-relative overflow-hidden rounded-3md mb-2">
-      <v-img
-        :src="iconUrl"
-        aspect-ratio="1"
-        cover
-        rounded="3md"
-        lazy-src="/empty-placehold.webp"
-        class="series-image"
-      >
-        <template #placeholder>
-          <div class="d-flex align-center justify-center fill-height">
-            <v-progress-circular color="grey-lighten-4" indeterminate></v-progress-circular>
-          </div>
-        </template>
-        <template #error>
-          <v-img src="/placehold.webp" aspect-ratio="1" cover rounded="3md" />
-        </template>
-      </v-img>
+  <v-hover v-slot:default="{ isHovering, props }">
+    <v-card
+      v-bind="props"
+      class="series-card d-flex flex-column flex-grow-1 overflow-hidden"
+      :class="[
+        { 'glass-card': hasBackgroundImage, 'compact': isCompact },
+        isCompact ? 'pa-2' : 'pa-3',
+      ]"
+      :to="{ name: 'SeriesDetail', params: { seriesId: seriesData.id } }"
+      variant="flat"
+      rounded="3md"
+      v-tooltip:top-center="{
+        text: seriesName,
+        disabled: isTouch,
+      }"
+      :elevation="isHovering ? 2 : 0"
+    >
+      <div class="image-wrapper position-relative overflow-hidden rounded-3md mb-2">
+        <v-img
+          :src="iconUrl"
+          aspect-ratio="1"
+          cover
+          rounded="3md"
+          lazy-src="/empty-placehold.webp"
+          class="series-image"
+        >
+          <template #placeholder>
+            <div class="d-flex align-center justify-center fill-height">
+              <v-progress-circular color="grey-lighten-4" indeterminate></v-progress-circular>
+            </div>
+          </template>
+          <template #error>
+            <v-img src="/placehold.webp" aspect-ratio="1" cover rounded="3md" />
+          </template>
+        </v-img>
 
-      <!-- Compact 模式下 Hover 時顯示的資訊覆蓋層 -->
-      <div v-if="isCompact" class="hover-overlay rounded-3md d-flex align-end">
-        <div class="overlay-content pa-2 w-100">
-          <div class="text-caption text-white text-truncate mb-1">
+        <!-- Compact 模式下 Hover 時顯示的資訊覆蓋層 -->
+        <div v-if="isCompact" class="hover-overlay rounded-3md d-flex align-end">
+          <div class="overlay-content pa-2 w-100">
+            <div class="text-caption text-white text-truncate mb-1">
+              <v-icon size="x-small" class="mr-1">mdi-layers-outline</v-icon>
+              {{ seriesData.prefixes.join(', ') }}
+            </div>
+            <div class="text-caption text-white">
+              {{ seriesData.latestReleaseDate }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- card-content -->
+      <div class="card-content d-flex flex-column flex-grow-1 ga-1">
+        <!-- info-section -->
+        <div class="d-flex flex-column ga-1">
+          <!-- prefixes-line -->
+          <div
+            v-if="!isCompact"
+            class="text-truncate d-flex align-center"
+            :class="isLightWithBg ? 'text-grey-lighten-2' : 'text-grey'"
+            style="min-height: 18px"
+          >
             <v-icon size="x-small" class="mr-1">mdi-layers-outline</v-icon>
-            {{ seriesData.prefixes.join(', ') }}
+            <span class="text-caption text-truncate">{{ seriesData.prefixes.join(', ') }}</span>
           </div>
-          <div class="text-caption text-white">
+
+          <!-- series-title -->
+          <p
+            class="text-truncate"
+            :class="
+              isCompact
+                ? 'text-body-2 font-weight-medium'
+                : 'text-subtitle-2 text-sm-subtitle-1 font-weight-medium'
+            "
+            :style="isCompact ? 'line-height: 1.4' : 'line-height: 1.3'"
+          >
+            {{ seriesName }}
+          </p>
+        </div>
+
+        <div v-if="!isCompact" class="date-section mt-auto pt-1">
+          <p class="text-caption" :class="isLightWithBg ? 'text-grey-lighten-2' : 'text-grey'">
             {{ seriesData.latestReleaseDate }}
-          </div>
+          </p>
         </div>
       </div>
-    </div>
-
-    <!-- card-content -->
-    <div class="card-content d-flex flex-column flex-grow-1 ga-1">
-      <!-- info-section -->
-      <div class="d-flex flex-column ga-1">
-        <!-- prefixes-line -->
-        <div
-          v-if="!isCompact"
-          class="text-truncate d-flex align-center"
-          :class="isLightWithBg ? 'text-grey-lighten-2' : 'text-grey'"
-          style="min-height: 18px"
-        >
-          <v-icon size="x-small" class="mr-1">mdi-layers-outline</v-icon>
-          <span class="text-caption text-truncate">{{ seriesData.prefixes.join(', ') }}</span>
-        </div>
-
-        <!-- series-title -->
-        <p
-          class="text-truncate"
-          :class="
-            isCompact
-              ? 'text-body-2 font-weight-medium'
-              : 'text-subtitle-2 text-sm-subtitle-1 font-weight-medium'
-          "
-          :style="isCompact ? 'line-height: 1.4' : 'line-height: 1.3'"
-        >
-          {{ seriesName }}
-        </p>
-      </div>
-
-      <div v-if="!isCompact" class="date-section mt-auto pt-1">
-        <p class="text-caption" :class="isLightWithBg ? 'text-grey-lighten-2' : 'text-grey'">
-          {{ seriesData.latestReleaseDate }}
-        </p>
-      </div>
-    </div>
-  </v-card>
+    </v-card>
+  </v-hover>
 </template>
 
 <script setup>

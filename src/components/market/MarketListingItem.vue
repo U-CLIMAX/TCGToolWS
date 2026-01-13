@@ -4,7 +4,7 @@
       v-bind="props"
       class="h-100 d-flex flex-column rounded-3md overflow-hidden pa-2 listing-card"
       :class="{ 'is-lifted': isHovering && !isTouch }"
-      elevation="0"
+      :elevation="isHovering ? 2 : 0"
     >
       <div class="position-relative rounded-3md overflow-hidden">
         <v-carousel
