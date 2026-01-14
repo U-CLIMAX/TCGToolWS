@@ -152,7 +152,7 @@ export const handleLogin = async (c) => {
       role: user.role,
       p_exp: user.premium_expire_time || null, // premium_expire_time
     }
-    const token = await sign(payload, secret)
+    const token = await sign(payload, secret, 'HS256')
 
     return c.json({
       success: true,
@@ -176,7 +176,7 @@ export const handleRefreshSession = async (c) => {
     }
     const token = authHeader.substring(7)
 
-    const payload = await verify(token, secret)
+    const payload = await verify(token, secret, 'HS256')
 
     const userId = payload.sub
     const user = await db
@@ -199,7 +199,7 @@ export const handleRefreshSession = async (c) => {
       role: user.role,
       p_exp: user.premium_expire_time || null, // premium_expire_time
     }
-    const newToken = await sign(newPayload, secret)
+    const newToken = await sign(newPayload, secret, 'HS256')
 
     return c.json({ success: true, token: newToken })
   } catch (error) {
@@ -220,7 +220,7 @@ export const handleRefreshUserToken = async (c) => {
       role: user.role,
       p_exp: user.premium_expire_time,
     }
-    const token = await sign(payload, secret)
+    const token = await sign(payload, secret, 'HS256')
 
     return c.json({ success: true, token: token })
   } catch (error) {
@@ -381,7 +381,7 @@ export const authMiddleware = async (c, next) => {
 
     for (const secret of secrets) {
       try {
-        payload = await verify(token, secret)
+        payload = await verify(token, secret, 'HS256')
         break
       } catch (e) {
         lastError = e
