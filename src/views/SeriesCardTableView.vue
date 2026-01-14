@@ -25,6 +25,18 @@
       </v-container>
 
       <v-container class="pt-0">
+        <div class="d-flex justify-center my-4">
+          <v-tabs
+            v-model="seriesGameFilter"
+            class="w-fit d-inline-flex"
+            :class="{ 'glass rounded-pill px-4 border-e-md border-s-md': hasBackgroundImage }"
+            density="compact"
+          >
+            <v-tab value="ws" class="font-weight-bold"> WS </v-tab>
+            <v-tab value="wsr" class="font-weight-bold" color="ws-rose"> WSR </v-tab>
+          </v-tabs>
+        </div>
+
         <v-row justify="space-between" align="center" class="px-3 mt-2">
           <v-btn-toggle
             v-model="seriesSortBy"
@@ -53,18 +65,6 @@
             {{ seriesSortAscending ? 'Asc' : 'Desc' }}
           </v-btn>
         </v-row>
-
-        <div class="d-flex justify-center my-4">
-          <v-tabs
-            v-model="seriesGameFilter"
-            class="w-fit d-inline-flex"
-            :class="{ 'glass rounded-pill px-4 border-e-md border-s-md': hasBackgroundImage }"
-            density="compact"
-          >
-            <v-tab value="ws" class="font-weight-bold"> WS </v-tab>
-            <v-tab value="wsr" class="font-weight-bold" color="ws-rose"> WSR </v-tab>
-          </v-tabs>
-        </div>
 
         <v-row>
           <v-col
