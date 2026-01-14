@@ -69,7 +69,7 @@
       </v-container>
 
       <v-container class="pt-0" :class="{ 'px-10': smAndDown }">
-        <div class="d-flex justify-center my-4">
+        <div class="d-flex justify-center mt-4">
           <v-tabs
             v-model="seriesGameFilter"
             class="w-fit d-inline-flex"
@@ -81,12 +81,12 @@
           </v-tabs>
         </div>
 
-        <v-row justify="space-between" align="center" class="px-3 mt-2">
+        <v-row justify="space-between" align="center" class="px-1 mt-2 mb-4">
           <v-btn-toggle
             v-model="seriesSortBy"
             mandatory
             density="compact"
-            variant="tonal"
+            :variant="hasBackgroundImage ? 'tonal' : 'text'"
             :class="{ glass: hasBackgroundImage }"
           >
             <v-btn value="date" size="small">
