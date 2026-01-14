@@ -112,5 +112,32 @@
         "rarity": "SR"
       }
     ]
+  },
+  "IMC/WE51-P01": {
+    "name": "頼れる事務員 千川ちひろ",
+    "product_name": "PRカード【Sサイド】",
+    "type": "事件卡",
+    "level": 3,
+    "power": "-",
+    "cost": 2,
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "此卡可以在不满足颜色条件的情况下从手牌中使用。<br>你可以选择自己的1张手牌，公开。这样做的话，你从自己的休息室选择至多1张与公开的卡同色的角色卡和至多1张与公开的卡同色的高潮卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "IMC/WE51-P01",
+        "rarity": "PR"
+      },
+      {
+        "id": "IMC/WE51-P01EX",
+        "rarity": "PR+"
+      },
+      {
+        "id": "IMC/WE51-P01S",
+        "rarity": "PR"
+      }
+    ]
   }
 }
