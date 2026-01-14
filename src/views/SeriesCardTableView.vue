@@ -7,24 +7,68 @@
       empty-text=""
       class="h-100 themed-scrollbar"
     >
-      <v-container class="pa-0">
-        <v-sheet v-if="recentlyViewed.length > 0" color="transparent">
-          <div class="d-flex align-center ps-2 mb-2">
-            <v-icon :color="isLightWithBg ? 'white' : ''" class="mr-2" icon="mdi-history" />
-            <div class="text-h6" :class="isLightWithBg ? 'text-white' : ''">最近查看</div>
-          </div>
-
-          <v-slide-group class="pa-2" show-arrows>
-            <v-slide-group-item v-for="item in recentlyViewed" :key="item.data.id">
-              <div class="ma-1" :style="{ width: smAndDown ? '125px' : '150px' }">
-                <SeriesCard :series-name="item.name" :series-data="item.data" :is-compact="true" />
+      <v-container class="pt-0" :class="{ 'px-0': smAndDown }">
+        <v-sheet
+          v-if="recentlyViewed.length > 0"
+          :color="!hasBackgroundImage ? undefined : 'transparent'"
+          class="rounded-5md"
+          :class="{
+            'glass-card': hasBackgroundImage,
+            'pt-2': !smAndDown,
+            'pr-2 mx-1': smAndDown,
+          }"
+        >
+          <div :class="smAndDown ? 'd-flex align-center overflow-hidden' : ''">
+            <div
+              :class="[
+                smAndDown
+                  ? 'd-flex flex-column align-center pr-0 pl-1 py-1'
+                  : 'd-flex align-center pl-2',
+              ]"
+            >
+              <v-icon
+                :color="isLightWithBg ? 'white' : ''"
+                :class="smAndDown ? 'mb-1' : 'mr-2'"
+                icon="mdi-history"
+                size="small"
+              />
+              <div
+                class="text-subtitle-2 font-weight-bold"
+                :class="isLightWithBg ? 'text-white' : ''"
+                :style="
+                  smAndDown
+                    ? {
+                        writingMode: 'vertical-rl',
+                        textOrientation: 'upright',
+                        letterSpacing: '2px',
+                      }
+                    : {}
+                "
+              >
+                最近查看
               </div>
-            </v-slide-group-item>
-          </v-slide-group>
+            </div>
+
+            <v-slide-group
+              class="pa-2 flex-grow-1"
+              :class="{ 'py-0 pl-0': smAndDown }"
+              :show-arrows="smAndDown ? false : true"
+            >
+              <v-slide-group-item v-for="item in recentlyViewed" :key="item.data.id">
+                <div class="ma-1" :style="{ width: smAndDown ? '100px' : '150px' }">
+                  <SeriesCard
+                    :series-name="item.name"
+                    :series-data="item.data"
+                    :is-compact="true"
+                  />
+                </div>
+              </v-slide-group-item>
+            </v-slide-group>
+          </div>
         </v-sheet>
       </v-container>
 
-      <v-container class="pt-0">
+      <v-container class="pt-0" :class="{ 'px-10': smAndDown }">
         <div class="d-flex justify-center my-4">
           <v-tabs
             v-model="seriesGameFilter"
@@ -73,7 +117,7 @@
             cols="6"
             sm="3"
             md="2"
-            class="d-flex"
+            class="d-flex pa-1"
           >
             <SeriesCard :series-name="item.name" :series-data="item.data" />
           </v-col>
