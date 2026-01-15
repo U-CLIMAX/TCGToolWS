@@ -77,7 +77,7 @@
           ></v-divider>
         </template>
 
-        <v-btn @click="isSettingsModalOpen = true" icon="mdi-cog" v-tooltip:bottom="'设定'"></v-btn>
+        <v-btn @click="isSettingsModalOpen = true" icon="mdi-cog"></v-btn>
 
         <v-badge
           v-if="authStore.isAuthenticated"
