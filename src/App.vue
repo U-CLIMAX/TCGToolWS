@@ -79,47 +79,31 @@
 
         <v-btn @click="isSettingsModalOpen = true" icon="mdi-cog" v-tooltip:bottom="'设定'"></v-btn>
 
-        <v-tooltip
+        <v-badge
           v-if="authStore.isAuthenticated"
-          text="账号资料"
-          location="bottom"
-          :disabled="isTouch"
+          :model-value="userRole === 0"
+          color="red"
+          dot
+          location="top end"
+          offset-x="12"
+          offset-y="11"
         >
-          <template v-slot:activator="{ props }">
-            <v-badge
-              :model-value="userRole === 0"
-              color="red"
-              dot
-              location="top end"
-              offset-x="12"
-              offset-y="11"
-            >
-              <v-btn
-                v-bind="props"
-                @click="isUserProfileModalOpen = true"
-                icon="mdi-account-circle"
-                :class="accountIconClass"
-              ></v-btn>
-            </v-badge>
-          </template>
-        </v-tooltip>
+          <v-btn
+            v-bind="props"
+            @click="isUserProfileModalOpen = true"
+            icon="mdi-account-circle"
+            :class="accountIconClass"
+          ></v-btn>
+        </v-badge>
 
         <template v-if="!isInSpecialFlow">
-          <v-tooltip
-            :text="authStore.isAuthenticated ? '登出' : '登录/注册'"
-            location="bottom"
-            :disabled="isTouch ? true : false"
-          >
-            <template v-slot:activator="{ props }">
-              <v-btn
-                v-if="!authStore.isAuthenticated"
-                v-bind="props"
-                @click="handleLogin"
-                icon="mdi-login"
-                color="teal-lighten-1"
-              ></v-btn>
-            </template>
-          </v-tooltip>
+          <v-btn
+            v-if="!authStore.isAuthenticated"
+            @click="handleLogin"
+            text="LOGIN"
+            color="teal-lighten-1"
+            class="pa-1"
+          ></v-btn>
         </template>
       </template>
     </v-app-bar>
@@ -235,7 +219,6 @@ import { useTheme, useDisplay } from 'vuetify'
 import { useRoute, useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useUIStore } from '@/stores/ui'
-import { useDevice } from '@/composables/useDevice'
 import { useAuthStore } from '@/stores/auth'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { usePerformanceManager } from '@/composables/usePerformanceManager'
@@ -289,7 +272,6 @@ const accountIconClass = computed(() => {
 const authDialog = ref(null)
 const { show, text, color, triggerSnackbar } = useSnackbar()
 const route = useRoute()
-const { isTouch } = useDevice()
 const isSettingsModalOpen = ref(false)
 const isUserProfileModalOpen = ref(false)
 const isHomeRoute = computed(() => route.name === 'Home')
