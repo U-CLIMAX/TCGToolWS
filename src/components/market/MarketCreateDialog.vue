@@ -115,6 +115,7 @@
                 <v-text-field
                   v-model="formData.deckCode"
                   label="U-CLIMAX 卡组代码"
+                  :rules="[(v) => v.length === 6 || '长度必须等于 6 个字符']"
                   variant="outlined"
                   density="comfortable"
                   prepend-inner-icon="mdi-code-json"
