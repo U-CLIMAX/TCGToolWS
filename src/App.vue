@@ -106,9 +106,8 @@
             <v-btn
               v-if="!authStore.isAuthenticated"
               @click="handleLogin"
-              text="LOGIN"
-              color="teal-lighten-1"
-              class="pa-1"
+              icon="mdi-account-circle"
+              color="blue-grey-lighten-2"
             ></v-btn>
           </template>
         </template>
