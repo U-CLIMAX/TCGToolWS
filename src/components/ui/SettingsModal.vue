@@ -1,6 +1,7 @@
 <template>
   <v-dialog
     :model-value="modelValue"
+    :fullscreen="xs"
     @update:model-value="$emit('update:modelValue', $event)"
     max-width="500px"
   >
