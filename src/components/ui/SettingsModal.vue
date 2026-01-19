@@ -4,15 +4,16 @@
     :fullscreen="xs"
     @update:model-value="$emit('update:modelValue', $event)"
     max-width="500px"
+    scrollable
   >
-    <v-card class="h-100 themed-scrollbar" :class="{ 'is-dragging': isDraggingSlider }">
+    <v-card :class="{ 'is-dragging': isDraggingSlider }">
       <v-card-title class="d-flex align-center">
-        <span class="headline">设定</span>
+        <span>设定</span>
         <v-spacer />
         <v-btn icon="mdi-close" variant="text" @click="$emit('update:modelValue', false)"></v-btn>
       </v-card-title>
       <v-divider />
-      <v-card-text class="pt-0">
+      <v-card-text class="pt-0 themed-scrollbar">
         <v-list>
           <v-list-item>
             <v-list-item-title>暗黑模式</v-list-item-title>

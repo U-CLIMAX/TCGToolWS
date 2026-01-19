@@ -54,7 +54,7 @@
             <v-btn text="取消" @click="isDeleteDialogOpen = false"></v-btn>
             <v-btn
               color="pink-accent-3"
-              variant="flat"
+              variant="tonal"
               text="删除"
               @click="confirmDeleteDeck"
             ></v-btn>

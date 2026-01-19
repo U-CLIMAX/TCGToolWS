@@ -6,14 +6,7 @@
           <div class="overlay-header-content">
             <!-- 左側 -->
             <div class="header-left">
-              <v-btn
-                icon
-                :size="resize"
-                variant="text"
-                @click="openSaveDialog"
-                :disabled="!deck"
-                v-tooltip:bottom="'储存卡组'"
-              >
+              <v-btn icon :size="resize" variant="text" @click="openSaveDialog" :disabled="!deck">
                 <v-icon size="24">mdi-content-save-outline</v-icon>
               </v-btn>
             </div>
@@ -91,10 +84,16 @@
     </v-dialog>
 
     <!-- Save Deck Dialog -->
-    <v-dialog v-model="isSaveDialogOpen" max-width="500px" @update:model-value="closeSaveDialog">
-      <v-card>
+    <v-dialog
+      v-model="isSaveDialogOpen"
+      :fullscreen="xs"
+      max-width="500px"
+      @update:model-value="closeSaveDialog"
+    >
+      <v-card class="d-flex flex-column" max-height="85vh">
         <v-card-title>储存卡组</v-card-title>
-        <v-card-text>
+
+        <v-card-text class="d-flex flex-column flex-grow-1 overflow-hidden">
           <v-text-field
             v-model="deckName"
             label="卡组名称"
@@ -103,13 +102,15 @@
             variant="outlined"
             density="compact"
             hide-details="auto"
-            class="mb-4"
+            class="mb-4 flex-grow-0"
           ></v-text-field>
-          <p class="text-subtitle-1 mb-2">选择封面</p>
+
+          <p class="text-subtitle-1 mb-2 flex-grow-0">选择封面</p>
+
           <v-sheet
-            class="overflow-y-auto pa-2 rounded themed-scrollbar"
-            max-height="300px"
+            class="overflow-y-auto pa-2 rounded themed-scrollbar flex-grow-1"
             color="default"
+            style="min-height: 0"
           >
             <v-row dense>
               <v-col v-for="card in Object.values(cards)" :key="card.id" cols="4" lg="3">
@@ -139,14 +140,16 @@
             </v-row>
           </v-sheet>
         </v-card-text>
-        <v-card-actions>
-          <v-btn text @click="isSaveDialogOpen = false">取消</v-btn>
+
+        <v-card-actions class="flex-grow-0 mx-4">
+          <v-btn text="取消" @click="isSaveDialogOpen = false"></v-btn>
           <v-btn
             color="primary"
             variant="tonal"
+            text="确定"
             @click="emitSaveDeck"
             :disabled="!deckName.trim() || !selectedCoverCardId"
-            >确定
+          >
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -198,7 +201,7 @@ const props = defineProps({
 
 const emit = defineEmits(['save'])
 
-const { smAndUp } = useDisplay()
+const { smAndUp, xs } = useDisplay()
 const resize = computed(() => {
   return smAndUp.value ? 'default' : 'small'
 })

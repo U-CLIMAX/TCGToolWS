@@ -74,7 +74,7 @@
       </v-card-text>
       <v-card-actions>
         <v-btn text="关闭" @click="isDialogOpen = false"></v-btn>
-        <v-btn text="登出" @click="handleLogout" color="red-lighten-1"></v-btn>
+        <v-btn text="登出" variant="tonal" @click="handleLogout" color="red-lighten-1"></v-btn>
       </v-card-actions>
     </v-card>
     <SponsorNoticeDialog v-model="isSponsorNoticeOpen" @confirm="proceedToPayment" />

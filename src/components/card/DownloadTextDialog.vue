@@ -1,7 +1,17 @@
 <template>
-  <v-dialog :model-value="modelValue" @update:model-value="closeDialog" max-width="500">
-    <v-card title="下载效果文本" class="h-100 themed-scrollbar">
-      <v-card-text class="pb-0">
+  <v-dialog
+    :model-value="modelValue"
+    :fullscreen="xs"
+    @update:model-value="closeDialog"
+    scrollable
+    max-width="500"
+  >
+    <v-card>
+      <v-card-title class="d-flex align-center">
+        <v-span>下载效果文本</v-span>
+      </v-card-title>
+      <v-divider />
+      <v-card-text class="pb-0 h-100 themed-scrollbar">
         <v-row dense>
           <v-col cols="12" sm="3">
             <v-text-field
@@ -69,10 +79,10 @@
         />
       </v-card-text>
 
-      <v-card-actions>
+      <v-card-actions class="mx-6">
         <v-spacer />
         <v-btn text="取消" variant="text" @click="closeDialog" />
-        <v-btn text="确定" color="primary" @click="confirmDownload" />
+        <v-btn text="确定" variant="tonal" color="primary" @click="confirmDownload" />
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -80,6 +90,7 @@
 
 <script setup>
 import { ref, watch } from 'vue'
+import { useDisplay } from 'vuetify'
 import { useDownloadStore } from '@/stores/download'
 
 const props = defineProps({
@@ -89,6 +100,7 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue', 'confirm'])
 
 const downloadStore = useDownloadStore()
+const { xs } = useDisplay()
 
 const localWidth = ref(800)
 const localBgColor = ref('#FFFFFF')

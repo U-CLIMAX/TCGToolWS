@@ -1,12 +1,10 @@
 <template>
   <v-dialog v-model="dialog" max-width="900px" scrollable :fullscreen="smAndDown">
     <v-card>
-      <v-toolbar color="primary" density="compact">
-        <v-toolbar-title>{{ isEditing ? '编辑商品' : '发布商品' }}</v-toolbar-title>
-        <v-spacer></v-spacer>
-        <v-btn icon="mdi-close" @click="dialog = false"></v-btn>
-      </v-toolbar>
-
+      <v-card-title class="d-flex align-center">
+        <v-span>{{ isEditing ? '编辑商品' : '发布商品' }}</v-span>
+      </v-card-title>
+      <v-divider />
       <v-card-text class="pa-4 themed-scrollbar">
         <div class="text-caption text-red mb-2 px-3">* 为必填项</div>
         <v-form ref="form" v-model="isValid">
@@ -194,12 +192,12 @@
         </v-form>
       </v-card-text>
 
-      <v-card-actions class="pa-4 mt-3 pt-0">
+      <v-card-actions class="pa-4 mt-3 mx-6 pt-0">
         <v-spacer></v-spacer>
         <v-btn variant="text" @click="dialog = false">取消</v-btn>
         <v-btn
           color="primary"
-          variant="flat"
+          variant="tonal"
           @click="handleSubmit"
           :loading="isSubmitting"
           :disabled="!isValid || formData.selectedCardIds.length === 0"

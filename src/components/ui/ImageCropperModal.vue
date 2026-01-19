@@ -14,10 +14,10 @@
             <cropper ref="cropperRef" :src="src" :auto-zoom="true" />
           </div>
         </v-card-text>
-        <v-card-actions>
+        <v-card-actions class="mx-4">
           <v-spacer />
-          <v-btn text @click="onCancel">取消</v-btn>
-          <v-btn color="primary" variant="flat" @click="onConfirm">确定</v-btn>
+          <v-btn text="取消" @click="onCancel"></v-btn>
+          <v-btn text="确定" color="primary" variant="tonal" @click="onConfirm"></v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>

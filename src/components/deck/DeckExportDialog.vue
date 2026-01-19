@@ -1,12 +1,19 @@
 <template>
-  <v-dialog :model-value="modelValue" max-width="500" @update:model-value="closeDialog">
-    <v-card class="themed-scrollbar">
-      <v-card-title class="d-flex justify-space-between align-center">
+  <v-dialog
+    :model-value="modelValue"
+    :fullscreen="xs"
+    max-width="500"
+    scrollable
+    @update:model-value="closeDialog"
+  >
+    <v-card class="d-flex flex-column" :style="xs ? 'height: 100vh' : 'height: 80vh'">
+      <v-card-title class="d-flex justify-space-between align-center flex-shrink-0">
         <span>汇出卡组</span>
         <v-btn icon="mdi-close" variant="text" @click="closeDialog"></v-btn>
       </v-card-title>
-      <v-card-text class="pt-0">
-        <div class="d-flex mb-5">
+
+      <v-card-text class="pt-0 flex-grow-1 d-flex flex-column themed-scrollbar">
+        <div class="d-flex mb-5 flex-shrink-0">
           <v-btn
             color="primary"
             class="mw-200"
@@ -30,7 +37,7 @@
           </v-btn-toggle>
         </div>
 
-        <div v-if="generatedImageResult" class="mb-5">
+        <div v-if="generatedImageResult" class="mb-5 flex-shrink-0">
           <v-img
             :src="generatedImageResult.src"
             class="mb-2 border rounded"
@@ -59,7 +66,7 @@
           </div>
         </div>
 
-        <div class="d-flex mb-5">
+        <div class="d-flex mb-5 flex-shrink-0">
           <v-btn
             color="primary"
             class="mw-200"
@@ -82,7 +89,8 @@
             <v-btn value="zh" class="flex-grow-1">中</v-btn>
           </v-btn-toggle>
         </div>
-        <div class="position-relative">
+
+        <div class="position-relative flex-grow-1 d-flex flex-column">
           <v-textarea
             label="卡组 txt"
             :model-value="deckBaseIds"
@@ -91,7 +99,7 @@
             variant="outlined"
             hide-details
             no-resize
-            class="themed-scrollbar"
+            class="themed-scrollbar flex-grow-1"
           ></v-textarea>
           <v-btn
             icon="mdi-content-copy"
@@ -109,6 +117,7 @@
 
 <script setup>
 import { computed, ref } from 'vue'
+import { useDisplay } from 'vuetify'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { sortCards } from '@/utils/cardsSort.js'
 import { normalizeFileName } from '@/utils/sanitizeFilename'
@@ -141,6 +150,7 @@ const selectedLanguage = ref('jp')
 const selectedImageMode = ref('u_climax')
 
 const uiStore = useUIStore()
+const { xs } = useDisplay()
 
 const deckBaseIds = computed(() => {
   if (!props.cards) return ''
