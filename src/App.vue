@@ -8,16 +8,12 @@
       :color="isHomeRoute ? '#212121' : 'default'"
       :elevation="isHomeRoute ? 0 : 5"
     >
-      <template #prepend>
-        <v-app-bar-nav-icon class="d-md-none" @click="drawer = !drawer"></v-app-bar-nav-icon>
-      </template>
-
       <v-app-bar-title>
         <v-img
           :src="titleImg"
           alt="UClimax for ws"
           class="ma-16"
-          :class="{ 'ma-auto': smAndDown }"
+          :class="{ 'ml-0': smAndDown }"
           contain
           eager
           :style="titleImgStyle"
@@ -119,75 +115,6 @@
       </template>
     </v-app-bar>
 
-    <v-navigation-drawer v-model="drawer" temporary touchless>
-      <v-list class="py-0">
-        <template v-for="item in navItems" :key="item.to">
-          <!-- Search Group -->
-          <v-list-group v-if="item.name === 'GlobalSearch'" value="search">
-            <template v-slot:activator="{ props }">
-              <v-list-item v-bind="props" :title="item.text">
-                <template #prepend>
-                  <v-icon :icon="navIcons[item.icon]" size="24"></v-icon>
-                </template>
-              </v-list-item>
-            </template>
-            <v-list-item
-              :to="{ name: 'GlobalSearch', params: { game: 'ws' } }"
-              title="Weiβ Schwarz"
-            ></v-list-item>
-            <v-list-item
-              color="ws-rose"
-              :to="{ name: 'GlobalSearch', params: { game: 'wsr' } }"
-              title="Weiβ Schwarz Rose"
-            ></v-list-item>
-          </v-list-group>
-
-          <!-- Standard Items -->
-          <v-list-item
-            v-else-if="!item.requiresAuth || authStore.isAuthenticated"
-            :to="{ name: item.name }"
-            :title="item.text"
-          >
-            <template #prepend>
-              <v-icon :icon="navIcons[item.icon]" size="24"></v-icon>
-            </template>
-          </v-list-item>
-        </template>
-      </v-list>
-      <template v-slot:append>
-        <div class="pa-4">
-          <v-btn
-            v-if="authStore.isAuthenticated && userRole === 0"
-            @click="isSponsorNoticeOpen = true"
-            text="赞助我们"
-            prepend-icon="mdi-heart"
-            color="red-accent-2"
-            class="w-100 mb-3"
-          ></v-btn>
-
-          <v-btn
-            href="https://github.com/U-CLIMAX/TCGToolWS"
-            target="_blank"
-            size="small"
-            block
-            variant="text"
-            class="text-grey-darken-1 text-none"
-          >
-            <template #prepend>
-              <v-img
-                src="/github.svg"
-                width="20"
-                height="20"
-                :style="drawerGithubIconStyle"
-                class="mr-2"
-              ></v-img>
-            </template>
-            GitHub
-          </v-btn>
-        </div>
-      </template>
-    </v-navigation-drawer>
-
     <v-main :scrollable="true">
       <router-view v-slot="{ Component }">
         <transition :name="transitionName" mode="out-in">
@@ -195,6 +122,49 @@
         </transition>
       </router-view>
     </v-main>
+
+    <v-bottom-navigation
+      v-if="smAndDown"
+      :bg-color="isHomeRoute ? '#212121' : 'default'"
+      color="primary"
+      :height="46"
+      grow
+      app
+    >
+      <template v-for="item in navItems" :key="item.to">
+        <!-- Search Menu -->
+        <v-menu v-if="item.name === 'GlobalSearch'" location="top center" offset="10">
+          <template v-slot:activator="{ props }">
+            <v-btn v-bind="props" :value="item.name" style="min-width: 0">
+              <v-icon :icon="navIcons[item.icon]"></v-icon>
+            </v-btn>
+          </template>
+          <v-list density="compact" :class="{ 'glass-menu': hasBackgroundImage }">
+            <v-list-item
+              :to="{ name: 'GlobalSearch', params: { game: 'ws' } }"
+              title="Weiβ Schwarz"
+            >
+            </v-list-item>
+            <v-list-item
+              color="ws-rose"
+              :to="{ name: 'GlobalSearch', params: { game: 'wsr' } }"
+              title="Weiβ Schwarz Rose"
+            >
+            </v-list-item>
+          </v-list>
+        </v-menu>
+
+        <!-- Standard Button -->
+        <v-btn
+          v-else-if="!item.requiresAuth || authStore.isAuthenticated"
+          :to="{ name: item.name }"
+          :value="item.name"
+          style="min-width: 0"
+        >
+          <v-icon :icon="navIcons[item.icon]"></v-icon>
+        </v-btn>
+      </template>
+    </v-bottom-navigation>
 
     <v-snackbar v-model="show" :color="color" timeout="2000" location="top" opacity="0.8" eager>
       {{ text }}
@@ -264,10 +234,6 @@ const titleImgStyle = computed(() => {
   }
 })
 
-const drawerGithubIconStyle = computed(() => {
-  return vuetifyTheme.global.current.value.dark ? { filter: 'invert(1)' } : {}
-})
-
 const accountIconClass = computed(() => {
   const role = userRole.value
   const isDark = vuetifyTheme.global.current.value.dark || isHomeRoute.value
@@ -328,8 +294,6 @@ const confirmLogout = () => {
   isUserProfileModalOpen.value = false
 }
 
-const drawer = ref(false)
-
 const navIcons = {
   'home.svg': HomeIcon,
   'market.svg': MarketIcon,
@@ -341,8 +305,18 @@ const navIcons = {
 const navItems = [
   { text: '首页', name: 'Home', requiresAuth: false, icon: 'home.svg' },
   { text: '集换大厅', name: 'Market', requiresAuth: false, icon: 'market.svg' },
-  { text: '卡片搜索', name: 'GlobalSearch', requiresAuth: false, icon: 'search.svg' },
-  { text: '系列卡表', name: 'SeriesCardTable', requiresAuth: false, icon: 'series-card-table.svg' },
+  {
+    text: '卡片搜索',
+    name: 'GlobalSearch',
+    requiresAuth: false,
+    icon: 'search.svg',
+  },
+  {
+    text: '系列卡表',
+    name: 'SeriesCardTable',
+    requiresAuth: false,
+    icon: 'series-card-table.svg',
+  },
   { text: '我的卡组', name: 'Decks', requiresAuth: true, icon: 'deck.svg' },
 ]
 

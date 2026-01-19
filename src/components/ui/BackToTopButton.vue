@@ -7,7 +7,7 @@
       icon
       size="large"
       class="ma-4 back-to-top-btn"
-      :class="extraClass"
+      :class="{ 'mb-14': smAndDown }"
       @click="scrollToTop"
     >
       <v-img
@@ -24,7 +24,7 @@
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
-import { useTheme } from 'vuetify'
+import { useTheme, useDisplay } from 'vuetify'
 import WsIcon from '@/assets/ui/ws-icon.svg?url'
 
 const props = defineProps({
@@ -32,13 +32,10 @@ const props = defineProps({
     type: Object,
     default: null,
   },
-  extraClass: {
-    type: [String, Object, Array],
-    default: null,
-  },
 })
 
 const theme = useTheme()
+const { smAndDown } = useDisplay()
 const isFabVisible = ref(false)
 
 const iconFilterStyle = computed(() => {

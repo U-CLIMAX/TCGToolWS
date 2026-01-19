@@ -108,6 +108,7 @@
             size="large"
             color="primary"
             class="opacity-90"
+            :class="{ 'mb-10': smAndDown }"
             @click="sheetContent = 'filter'"
           ></v-btn>
 
@@ -176,7 +177,7 @@ const props = defineProps({
   },
 })
 
-const { smAndUp, lgAndUp } = useDisplay()
+const { smAndUp, smAndDown, lgAndUp } = useDisplay()
 const resize = computed(() => {
   return smAndUp.value ? 'default' : 'x-small'
 })

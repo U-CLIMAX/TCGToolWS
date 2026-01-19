@@ -141,6 +141,7 @@
             size="large"
             color="primary"
             class="opacity-90"
+            :class="{ 'mb-10': smAndDown }"
             @click="sheetContent = 'filter'"
             :disabled="globalSearchStore.isLoading"
           ></v-btn>
@@ -223,7 +224,7 @@ const { searchCountDetails, hasActiveFilters, searchResults } = storeToRefs(glob
 const rawHeaderHeight = ref(0)
 
 const sheetContent = ref(null)
-const { smAndUp, lgAndUp } = useDisplay()
+const { smAndUp, smAndDown, lgAndUp } = useDisplay()
 
 const resize = computed(() => {
   return smAndUp.value ? 'default' : 'x-small'
