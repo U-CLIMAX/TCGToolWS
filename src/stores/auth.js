@@ -37,6 +37,7 @@ export const useAuthStore = defineStore('auth', () => {
   const rememberMe = ref(initRemember)
   const userRole = ref(0)
   const userStatus = ref(null)
+  const isAuthReady = ref(false)
   const isAuthenticated = computed(() => !!token.value)
 
   // 儲存到 storage
@@ -313,12 +314,15 @@ export const useAuthStore = defineStore('auth', () => {
       console.error('Failed to fetch user status:', error)
       userStatus.value = null
       userRole.value = 0
+    } finally {
+      isAuthReady.value = true
     }
   }
 
   return {
     token,
     isAuthenticated,
+    isAuthReady,
     rememberMe,
     userRole,
     userStatus,

@@ -79,31 +79,42 @@
 
         <v-btn @click="isSettingsModalOpen = true" icon="mdi-cog"></v-btn>
 
-        <v-badge
-          v-if="authStore.isAuthenticated"
-          :model-value="userRole === 0"
-          color="red"
-          dot
-          location="top end"
-          offset-x="12"
-          offset-y="11"
-        >
-          <v-btn
-            v-bind="props"
-            @click="isUserProfileModalOpen = true"
-            icon="mdi-account-circle"
-            :class="accountIconClass"
-          ></v-btn>
-        </v-badge>
+        <template v-if="!authStore.isAuthReady">
+          <div class="d-flex align-center justify-center mx-2" style="width: 40px; height: 40px">
+            <v-progress-circular
+              indeterminate
+              size="24"
+              width="2"
+              color="grey"
+            ></v-progress-circular>
+          </div>
+        </template>
+        <template v-else>
+          <v-badge
+            v-if="authStore.isAuthenticated"
+            :model-value="userRole === 0"
+            color="red"
+            dot
+            location="top end"
+            offset-x="12"
+            offset-y="11"
+          >
+            <v-btn
+              @click="isUserProfileModalOpen = true"
+              icon="mdi-account-circle"
+              :class="accountIconClass"
+            ></v-btn>
+          </v-badge>
 
-        <template v-if="!isInSpecialFlow">
-          <v-btn
-            v-if="!authStore.isAuthenticated"
-            @click="handleLogin"
-            text="LOGIN"
-            color="teal-lighten-1"
-            class="pa-1"
-          ></v-btn>
+          <template v-if="!isInSpecialFlow">
+            <v-btn
+              v-if="!authStore.isAuthenticated"
+              @click="handleLogin"
+              text="LOGIN"
+              color="teal-lighten-1"
+              class="pa-1"
+            ></v-btn>
+          </template>
         </template>
       </template>
     </v-app-bar>
