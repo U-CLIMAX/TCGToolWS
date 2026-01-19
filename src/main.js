@@ -10,6 +10,7 @@ import { useUIStore } from './stores/ui'
 import { registerSW } from 'virtual:pwa-register'
 import { createVersionPolling } from 'version-polling'
 
+import '@mdi/font/css/materialdesignicons.css'
 import '@/assets/styles/main.css'
 import 'vuetify/styles'
 
