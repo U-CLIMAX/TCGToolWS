@@ -174,6 +174,7 @@
           @click="handleLogin"
           value="login"
           style="min-width: 0"
+          :active="false"
         >
           <v-icon icon="mdi-account-circle" color="blue-grey-lighten-2"></v-icon>
         </v-btn>
@@ -184,16 +185,10 @@
           value="profile"
           style="min-width: 0"
           :class="accountIconClass"
+          :active="false"
         >
-          <v-badge
-            :model-value="userRole === 0"
-            color="red"
-            dot
-            location="top end"
-            offset-x="12"
-            offset-y="11"
-          >
-            <v-icon icon="mdi-account-circle"></v-icon>
+          <v-badge :model-value="userRole === 0" color="red" dot location="top start" offset-x="13">
+            <v-icon icon="mdi-account-circle" color="grey-lighten-1"></v-icon>
           </v-badge>
         </v-btn>
       </template>
@@ -508,5 +503,20 @@ watch(
 .inline-icon {
   height: 1rem;
   vertical-align: -0.15rem;
+}
+</style>
+
+<style scoped>
+.force-inactive-style {
+  /* 這裡的顏色設定為繼承，或者您可以指定具體的灰色，例如 #757575 */
+  color: inherit !important;
+
+  /* 保持未選中時的透明度 (Vuetify 預設未選中按鈕透明度約為 0.6) */
+  opacity: 0.6 !important;
+}
+
+/* 針對內部的 icon 再次確保不變色 (雙重保險) */
+.force-inactive-style .v-icon {
+  color: inherit !important;
 }
 </style>
