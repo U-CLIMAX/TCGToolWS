@@ -75,7 +75,7 @@
           <v-card-actions>
             <v-spacer />
             <v-btn variant="text" @click="showDeckCodeDialog = false">取消</v-btn>
-            <v-btn color="primary" variant="flat" @click="navigateToSharedDeck">确定</v-btn>
+            <v-btn color="primary" variant="tonal" @click="navigateToSharedDeck">确定</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
