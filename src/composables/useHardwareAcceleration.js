@@ -15,8 +15,7 @@ export const useHardwareAcceleration = () => {
 
     try {
       const gpu = await getGPUTier({
-        // eslint-disable-next-line no-undef
-        benchmarksURL: `https://npm.onmicrosoft.cn/detect-gpu@${__DETECT_GPU_VERSION__}/dist/benchmarks`,
+        benchmarksURL: `/gpu-benchmarks`,
       })
 
       if (gpu && gpu.tier >= 2) {
