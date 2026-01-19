@@ -71,6 +71,19 @@
             <v-icon end icon="mdi-arrow-up-bold-circle-outline"></v-icon>
           </v-btn>
         </div>
+
+        <v-divider v-if="userStatus.role === 0" class="my-2"></v-divider>
+
+        <div class="pa-2">
+          <v-btn
+            variant="tonal"
+            color="primary"
+            prepend-icon="mdi-cog"
+            @click="handleSettingsClick"
+          >
+            网站设置
+          </v-btn>
+        </div>
       </v-card-text>
       <v-card-actions>
         <v-btn text="关闭" @click="isDialogOpen = false"></v-btn>
@@ -78,6 +91,7 @@
       </v-card-actions>
     </v-card>
     <SponsorNoticeDialog v-model="isSponsorNoticeOpen" @confirm="proceedToPayment" />
+    <SettingsModal v-model="isSettingsModalOpen" />
   </v-dialog>
 </template>
 
@@ -88,6 +102,7 @@ import { useAuthStore } from '@/stores/auth'
 import { useUIStore } from '@/stores/ui'
 import { useSnackbar } from '@/composables/useSnackbar'
 import SponsorNoticeDialog from '@/components/ui/SponsorNoticeDialog.vue'
+import SettingsModal from '@/components/ui/SettingsModal.vue'
 import * as clipboard from 'clipboard-polyfill'
 
 const props = defineProps({
@@ -102,6 +117,7 @@ const uiStore = useUIStore()
 const { theme } = storeToRefs(uiStore)
 
 const isSponsorNoticeOpen = ref(false)
+const isSettingsModalOpen = ref(false)
 
 const handleLogout = () => {
   emit('update:modelValue', false) // Close the modal
@@ -115,6 +131,10 @@ const isRefreshing = ref(false)
 
 const handleUpgradeClick = () => {
   isSponsorNoticeOpen.value = true
+}
+
+const handleSettingsClick = () => {
+  isSettingsModalOpen.value = true
 }
 
 const proceedToPayment = async () => {

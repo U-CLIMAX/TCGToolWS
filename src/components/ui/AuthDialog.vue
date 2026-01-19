@@ -8,6 +8,13 @@
         <v-card :title="isLoginMode ? '登录' : '注册'">
           <template #append>
             <v-btn
+              v-if="isLoginMode"
+              icon="mdi-cog"
+              variant="text"
+              @click="handleSettingsClick"
+              :disabled="loading"
+            ></v-btn>
+            <v-btn
               icon="mdi-close"
               variant="text"
               @click="dialog = false"
@@ -158,6 +165,7 @@
         </v-card>
       </template>
     </v-card>
+    <SettingsModal v-model="isSettingsModalOpen" />
   </v-dialog>
 </template>
 
@@ -166,6 +174,7 @@ import { ref, computed } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useCooldown } from '@/composables/useCooldown'
+import SettingsModal from '@/components/ui/SettingsModal.vue'
 
 const authStore = useAuthStore()
 const { triggerSnackbar } = useSnackbar()
@@ -185,6 +194,7 @@ const {
 
 // --- Component State ---
 const dialog = ref(false)
+const isSettingsModalOpen = ref(false)
 const step = ref('credentials') // 'credentials' or 'verification'
 const mode = ref('login') // 'login' or 'register'
 
@@ -291,6 +301,10 @@ const handleResendCode = async () => {
   } finally {
     resending.value = false
   }
+}
+
+const handleSettingsClick = () => {
+  isSettingsModalOpen.value = true
 }
 
 // --- Helper Functions ---

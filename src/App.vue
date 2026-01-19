@@ -2,6 +2,7 @@
   <v-app id="app" class="grid-background" :style="appStyle">
     <HomeBackground v-show="isHomeRoute" />
     <v-app-bar
+      v-if="!smAndDown"
       scroll-behavior="elevate"
       scroll-threshold="160"
       height="50"
@@ -72,8 +73,6 @@
             vertical
           ></v-divider>
         </template>
-
-        <v-btn @click="isSettingsModalOpen = true" icon="mdi-cog"></v-btn>
 
         <template v-if="!authStore.isAuthReady">
           <div class="d-flex align-center justify-center mx-2" style="width: 40px; height: 40px">
@@ -161,6 +160,41 @@
           style="min-width: 0"
         >
           <v-icon :icon="navIcons[item.icon]"></v-icon>
+        </v-btn>
+      </template>
+
+      <template v-if="!authStore.isAuthReady">
+        <v-btn disabled value="loading" style="min-width: 0">
+          <v-progress-circular indeterminate size="24" width="2" color="grey"></v-progress-circular>
+        </v-btn>
+      </template>
+      <template v-else>
+        <v-btn
+          v-if="!authStore.isAuthenticated"
+          @click="handleLogin"
+          value="login"
+          style="min-width: 0"
+        >
+          <v-icon icon="mdi-account-circle" color="blue-grey-lighten-2"></v-icon>
+        </v-btn>
+
+        <v-btn
+          v-else
+          @click="isUserProfileModalOpen = true"
+          value="profile"
+          style="min-width: 0"
+          :class="accountIconClass"
+        >
+          <v-badge
+            :model-value="userRole === 0"
+            color="red"
+            dot
+            location="top end"
+            offset-x="12"
+            offset-y="11"
+          >
+            <v-icon icon="mdi-account-circle"></v-icon>
+          </v-badge>
         </v-btn>
       </template>
     </v-bottom-navigation>
