@@ -1,5 +1,5 @@
 <template>
-  <div v-if="allCards.length > 0" class="d-flex py-4 align-center justify-center">
+  <div v-if="allCards.length > 0" class="d-flex pb-4 align-center justify-center">
     <v-card
       rounded="xxl"
       elevation="2"

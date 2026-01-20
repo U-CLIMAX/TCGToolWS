@@ -1,7 +1,7 @@
 <template>
   <div class="fill-height d-flex overflow-y-auto themed-scrollbar">
     <v-container class="h-100 pa-0">
-      <div class="d-flex justify-center pt-3 px-3">
+      <div class="d-flex justify-center pt-4 px-3">
         <v-sheet
           class="search-container"
           :class="{ 'glass-sheet': hasBackgroundImage }"
@@ -47,7 +47,7 @@
           <v-card-title>输入卡组代码</v-card-title>
           <v-card-text>
             <v-row dense>
-              <v-col cols="7">
+              <v-col cols="6">
                 <v-select
                   v-model="deckCodeSource"
                   :items="sourceOptions"
@@ -59,7 +59,7 @@
                   hide-details
                 />
               </v-col>
-              <v-col cols="5">
+              <v-col cols="6">
                 <v-text-field
                   v-model="deckCode"
                   label="卡组代码"
@@ -98,7 +98,7 @@
       <transition-group
         v-if="initialLoadingComplete"
         tag="div"
-        class="v-row ma-1 pt-3"
+        class="v-row ma-1 mt-0"
         name="deck-fade"
         appear
       >

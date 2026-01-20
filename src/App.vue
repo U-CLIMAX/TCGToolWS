@@ -29,7 +29,13 @@
               <!-- Search Dropdown -->
               <v-menu v-if="item.name === 'GlobalSearch'" open-on-hover>
                 <template v-slot:activator="{ props }">
-                  <v-btn variant="text" class="h-100 rounded-0" v-bind="props">
+                  <v-btn
+                    variant="text"
+                    :active="$route.name === 'GlobalSearch'"
+                    :base-color="$route.params.game === 'wsr' ? 'ws-rose' : undefined"
+                    class="h-100 rounded-0"
+                    v-bind="props"
+                  >
                     <template #prepend>
                       <v-icon :icon="navIcons[item.icon]" size="24"></v-icon>
                     </template>
@@ -58,6 +64,7 @@
                 :to="{ name: item.name }"
                 :text="item.text"
                 class="h-100 rounded-0"
+                :active="item.group && $route.meta.group === item.group"
                 :prepend-icon="navIcons[item.icon]"
               >
                 <template #prepend>
@@ -124,7 +131,6 @@
     <v-bottom-navigation
       v-if="smAndDown"
       :bg-color="isHomeRoute ? '#212121' : 'default'"
-      color="primary"
       :height="50"
       class="pb-4"
       grow
@@ -134,7 +140,13 @@
         <!-- Search Menu -->
         <v-menu v-if="item.name === 'GlobalSearch'" location="top center" offset="10">
           <template v-slot:activator="{ props }">
-            <v-btn v-bind="props" :value="item.name" style="min-width: 0">
+            <v-btn
+              v-bind="props"
+              :value="item.name"
+              :active="$route.name === 'GlobalSearch'"
+              :base-color="$route.params.game === 'wsr' ? 'ws-rose' : undefined"
+              style="min-width: 0"
+            >
               <v-icon :icon="navIcons[item.icon]"></v-icon>
             </v-btn>
           </template>
@@ -158,6 +170,8 @@
           v-else-if="!item.requiresAuth || authStore.isAuthenticated"
           :to="{ name: item.name }"
           :value="item.name"
+          :active="item.group && $route.meta.group === item.group"
+          color="primary"
           style="min-width: 0"
         >
           <v-icon :icon="navIcons[item.icon]"></v-icon>
@@ -345,8 +359,9 @@ const navItems = [
     name: 'SeriesCardTable',
     requiresAuth: false,
     icon: 'series-card-table.svg',
+    group: 'series',
   },
-  { text: '我的卡组', name: 'Decks', requiresAuth: true, icon: 'deck.svg' },
+  { text: '我的卡组', name: 'Decks', requiresAuth: true, icon: 'deck.svg', group: 'decks' },
 ]
 
 const appStyle = computed(() => {
