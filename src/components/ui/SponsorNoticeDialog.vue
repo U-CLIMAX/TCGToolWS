@@ -115,7 +115,7 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn text="取消" @click="model = false"></v-btn>
-        <v-btn color="primary" variant="elevated" @click="handleConfirm"> 我了解了，继续 </v-btn>
+        <v-btn color="primary" variant="tonal" @click="handleConfirm"> 我了解了，继续 </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
