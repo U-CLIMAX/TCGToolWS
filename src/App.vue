@@ -125,7 +125,8 @@
       v-if="smAndDown"
       :bg-color="isHomeRoute ? '#212121' : 'default'"
       color="primary"
-      :height="46"
+      :height="50"
+      class="pb-4"
       grow
       app
     >
@@ -503,20 +504,5 @@ watch(
 .inline-icon {
   height: 1rem;
   vertical-align: -0.15rem;
-}
-</style>
-
-<style scoped>
-.force-inactive-style {
-  /* 這裡的顏色設定為繼承，或者您可以指定具體的灰色，例如 #757575 */
-  color: inherit !important;
-
-  /* 保持未選中時的透明度 (Vuetify 預設未選中按鈕透明度約為 0.6) */
-  opacity: 0.6 !important;
-}
-
-/* 針對內部的 icon 再次確保不變色 (雙重保險) */
-.force-inactive-style .v-icon {
-  color: inherit !important;
 }
 </style>
