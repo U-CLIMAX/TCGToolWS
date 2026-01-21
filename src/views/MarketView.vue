@@ -271,19 +271,14 @@
           暂无商品
         </div>
 
-        <v-row dense v-else>
-          <v-col
+        <div v-else class="listing-grid-container">
+          <MarketListingItem
             v-for="item in marketStore.listings"
             :key="item.id"
-            cols="6"
-            sm="4"
-            md="3"
-            lg="2"
-            xl="1"
-          >
-            <MarketListingItem :listing="item" @edit="handleEdit" />
-          </v-col>
-        </v-row>
+            :listing="item"
+            @edit="handleEdit"
+          />
+        </div>
       </v-container>
 
       <template v-slot:loading>
@@ -482,5 +477,25 @@ watch(scrollKey, () => {
   border: 1px solid rgba(var(--v-border-color), var(--v-border-opacity));
   color: rgb(var(--v-theme-on-surface));
   font-size: 0.875rem;
+}
+
+.listing-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+/* Slightly increase the card size on a wider screen to avoid overcrowding in a single row. */
+@media (min-width: 1280px) {
+  .listing-grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 740px) {
+  .listing-grid-container {
+    gap: 8px;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 </style>
