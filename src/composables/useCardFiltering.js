@@ -119,8 +119,7 @@ export const useCardFiltering = (
       showTriggerSoul,
       selectedSoul,
     ],
-    applyAttributeFilters,
-    { deep: true }
+    applyAttributeFilters
   )
 
   const resetFilters = () => {

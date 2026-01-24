@@ -159,7 +159,7 @@ watch(
   () => {
     loadedImagesCount.value = 0
   },
-  { deep: true, immediate: true }
+  { immediate: true }
 )
 
 defineExpose({

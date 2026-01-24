@@ -285,8 +285,7 @@ watch(
   () => deckStore.savedDecks,
   async () => {
     await loadDecodedDecks()
-  },
-  { deep: true }
+  }
 )
 </script>
 

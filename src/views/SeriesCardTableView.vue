@@ -226,17 +226,13 @@ const load = async ({ done }) => {
   done('ok')
 }
 
-watch(
-  [seriesSearchTerm, seriesSortBy, seriesSortAscending, seriesGameFilter],
-  async () => {
-    displayedSeries.value = []
-    await nextTick()
-    if (infiniteScrollRef.value) {
-      infiniteScrollRef.value.reset()
-    }
-  },
-  { deep: true }
-)
+watch([seriesSearchTerm, seriesSortBy, seriesSortAscending, seriesGameFilter], async () => {
+  displayedSeries.value = []
+  await nextTick()
+  if (infiniteScrollRef.value) {
+    infiniteScrollRef.value.reset()
+  }
+})
 
 const storageKey = computed(() => 'seriesCardTableViewState')
 

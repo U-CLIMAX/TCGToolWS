@@ -300,13 +300,9 @@ watch(game, (newGame) => {
   globalSearchStore.initialize(newGame)
 })
 
-watch(
-  searchResults,
-  () => {
-    cardListRef.value?.reset()
-  },
-  { deep: true }
-)
+watch(searchResults, () => {
+  cardListRef.value?.reset()
+})
 
 onUnmounted(() => {
   observer.disconnect()

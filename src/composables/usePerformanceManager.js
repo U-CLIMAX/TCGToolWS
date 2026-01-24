@@ -33,6 +33,6 @@ export const usePerformanceManager = () => {
         uiStore.setPerformanceMode(newMode)
       }
     },
-    { immediate: true, deep: true }
+    { immediate: true }
   )
 }
