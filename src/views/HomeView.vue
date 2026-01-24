@@ -128,25 +128,6 @@
         </div>
       </div>
 
-      <!-- Promo Section -->
-      <div ref="promoSection" class="promo-section animated-section">
-        <div class="promo-content">
-          <div class="video-wrapper">
-            <iframe
-              src="//player.bilibili.com/player.html?isOutside=true&aid=115552085345391&bvid=BV1zaCCBaEds&cid=34016988267&p=1&autoplay=0"
-              scrolling="no"
-              border="0"
-              frameborder="no"
-              framespacing="0"
-              allowfullscreen="true"
-            ></iframe>
-          </div>
-          <div style="min-height: 2em">
-            <p class="promo-text">使用教程视频</p>
-          </div>
-        </div>
-      </div>
-
       <!-- Support Section -->
       <div ref="supportSection" class="support-section animated-section">
         <!-- Left Block -->
