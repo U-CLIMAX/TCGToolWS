@@ -962,6 +962,11 @@ const wsrSeriesMap = {
     prefixes: ['OS06'],
     latestReleaseDate: '2025-12-26',
   },
+  'Lose＆Whisp': {
+    id: 'os07',
+    prefixes: ['OS07'],
+    latestReleaseDate: '2026-1-30',
+  },
   ' 其他': {
     id: 'wsr',
     prefixes: ['OS00', 'WSR'],

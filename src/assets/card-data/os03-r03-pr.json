@@ -1,5 +1,5 @@
 {
-  "OS03/R03-P17": {
+  "OS03/R03-P20": {
     "name": "みんなで海へ アイリス",
     "product_name": "PRカード",
     "type": "角色卡",
@@ -13,11 +13,11 @@
     "effect": "【永】你其他全部区域的「氷上のバトル ノエル」获得<img src=\"/effect-icons/soul.webp\">。<br>【永】你其他全部的「氷上のバトル ノエル」，战斗力+1000。",
     "all_cards": [
       {
-        "id": "OS03/R03-P17",
+        "id": "OS03/R03-P20",
         "rarity": "PR"
       },
       {
-        "id": "OS03/R03-P17S",
+        "id": "OS03/R03-P20S",
         "rarity": "PR"
       }
     ]
@@ -68,7 +68,7 @@
       }
     ]
   },
-  "OS03/R03-P17EX": {
+  "OS03/R03-P17": {
     "name": "視線釘付け 明日原",
     "product_name": "PRカード",
     "type": "角色卡",
