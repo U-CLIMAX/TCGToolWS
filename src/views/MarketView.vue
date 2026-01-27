@@ -10,7 +10,7 @@
       <v-container class="pa-0">
         <div class="d-flex justify-center px-3">
           <v-row class="w-100" style="max-width: 1280px">
-            <v-col cols="12" md="9" class="pt-2">
+            <v-col cols="12" md="9">
               <v-sheet
                 class="search-container w-100"
                 :class="{ 'glass-sheet': hasBackgroundImage }"
