@@ -305,12 +305,13 @@ const handleModalClick = () => {
 const handleTraitClick = (trait) => {
   if (!isFilterable.value) return
 
+  const traits = activeFilterStore.value.selectedTraits
   const index = activeFilterStore.value.selectedTraits.indexOf(trait)
   if (index === -1) {
-    activeFilterStore.value.selectedTraits.push(trait)
+    activeFilterStore.value.selectedTraits = [...traits, trait]
     triggerSnackbar(`已添加特征筛选: ${trait}`)
   } else {
-    activeFilterStore.value.selectedTraits.splice(index, 1)
+    activeFilterStore.value.selectedTraits = traits.filter((t) => t !== trait)
     triggerSnackbar(`已移除特征筛选: ${trait}`)
   }
 }
