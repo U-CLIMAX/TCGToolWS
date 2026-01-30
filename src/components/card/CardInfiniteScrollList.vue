@@ -174,15 +174,12 @@ const fetchLinkedCards = async (card) => {
     const cardToDisplay = await fetchCardByIdAndPrefix(card.id, card.cardIdPrefix)
 
     if (cardToDisplay && cardToDisplay.link && cardToDisplay.link.length > 0) {
-      const baseIds = [
-        ...new Set(cardToDisplay.link.map((linkId) => linkId.replace(/[a-zA-Z]+$/, ''))),
-      ]
-
-      const linkRequests = baseIds.map(
-        async (baseId) => await fetchCardsByBaseIdAndPrefix(baseId, cardToDisplay.cardIdPrefix)
+      const linkedCardsData = await Promise.all(
+        cardToDisplay.link.map((linkId) =>
+          fetchCardsByBaseIdAndPrefix(linkId, cardToDisplay.cardIdPrefix)
+        )
       )
 
-      const linkedCardsData = await Promise.all(linkRequests)
       if (selectedCardData.value?.card?.id === card.id) {
         selectedLinkedCards.value = sortCards(linkedCardsData.flat().filter(Boolean))
       }

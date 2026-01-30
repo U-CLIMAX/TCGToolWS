@@ -648,15 +648,11 @@ const handleShowNewCard = async (cardPayload) => {
     isModalVisible.value = true
 
     if (card.link && Array.isArray(card.link) && card.link.length > 0) {
-      // Sanitize and deduplicate link IDs to prevent redundant fetches.
-      const baseIds = [...new Set(card.link.map((linkId) => linkId.replace(/[a-zA-Z]+$/, '')))]
-      const fetchedLinks = await Promise.all(
-        baseIds.map(
-          async (baseId) => await fetchCardsByBaseIdAndPrefix(baseId, cardToDisplay.cardIdPrefix)
-        )
+      const linkedCardsData = await Promise.all(
+        card.link.map(async (linkId) => fetchCardsByBaseIdAndPrefix(linkId, card.cardIdPrefix))
       )
       if (selectedCardData.value && selectedCardData.value.id === card.id) {
-        linkedCardsDetails.value = sortCards(fetchedLinks.flat().filter(Boolean))
+        linkedCardsDetails.value = sortCards(linkedCardsData.flat().filter(Boolean))
       }
     }
   } catch (error) {
