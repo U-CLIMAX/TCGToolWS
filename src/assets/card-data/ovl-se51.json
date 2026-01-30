@@ -382,7 +382,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】你全部的角色，战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你从自己的休息室选择1张触发标记是<img src=\"/effect-icons/soul.webp\">的角色卡，返回手牌或放置到库存区）",
+    "effect": "【永】你全部的角色，战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡触发时，你从自己的休息室选择1张触发标记是<img src=\"/effect-icons/soul.webp\">的角色卡，返回手牌或放置到库存区）",
     "all_cards": [
       {
         "id": "OVL/SE51-16",
@@ -405,7 +405,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】你全部的角色，战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你从自己的休息室选择1张触发标记是<img src=\"/effect-icons/soul.webp\">的角色卡，返回手牌或放置到库存区）",
+    "effect": "【永】你全部的角色，战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡触发时，你从自己的休息室选择1张触发标记是<img src=\"/effect-icons/soul.webp\">的角色卡，返回手牌或放置到库存区）",
     "all_cards": [
       {
         "id": "OVL/SE51-17",
@@ -1030,7 +1030,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】你全部的角色，战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你可以将此卡返回手牌。你可以将自己卡组顶1张卡，放置到库存区）",
+    "effect": "【永】你全部的角色，战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/treasure.webp\">:此卡触发时，你可以将此卡返回手牌。你可以将自己卡组顶1张卡，放置到库存区）",
     "all_cards": [
       {
         "id": "OVL/SE51-44",
@@ -1053,7 +1053,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】你全部的角色，战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你可以将此卡返回手牌。你可以将自己卡组顶1张卡，放置到库存区）",
+    "effect": "【永】你全部的角色，战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/treasure.webp\">:此卡触发时，你可以将此卡返回手牌。你可以将自己卡组顶1张卡，放置到库存区）",
     "all_cards": [
       {
         "id": "OVL/SE51-45",
@@ -1403,7 +1403,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】你全部的角色，战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以从自己的休息室选择1个角色返回手牌）",
+    "effect": "【永】你全部的角色，战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡触发时，你可以从自己的休息室选择1个角色返回手牌）",
     "all_cards": [
       {
         "id": "OVL/SE51-59",
@@ -1426,7 +1426,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】你全部的角色，战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以从自己的休息室选择1个角色返回手牌）",
+    "effect": "【永】你全部的角色，战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡触发时，你可以从自己的休息室选择1个角色返回手牌）",
     "all_cards": [
       {
         "id": "OVL/SE51-60",

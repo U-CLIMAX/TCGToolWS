@@ -590,7 +590,7 @@
     "trigger_soul_count": 0,
     "trait": "-",
     "color": "黄色",
-    "effect": "【永】【LINK】 Leo/need<br>【永】你全部的角色，战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/choice.webp\">：此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "effect": "【永】【LINK】 Leo/need<br>【永】你全部的角色，战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
     "all_cards": [
       {
         "id": "PJS/S125-025",
@@ -613,7 +613,7 @@
     "trigger_soul_count": 1,
     "trait": "-",
     "color": "黄色",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/shot.webp\">：这个回合中，触发此卡的角色下次造成的伤害被取消时，给对手造成1点伤害）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/shot.webp\">:这个回合中，触发此卡的角色下次造成的伤害被取消时，给对手造成1点伤害）",
     "all_cards": [
       {
         "id": "PJS/S125-026",
@@ -640,7 +640,7 @@
     "trigger_soul_count": 1,
     "trait": "-",
     "color": "黄色",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/shot.webp\">：这个回合中，触发此卡的角色下次造成的伤害被取消时，给对手造成1点伤害）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/shot.webp\">:这个回合中，触发此卡的角色下次造成的伤害被取消时，给对手造成1点伤害）",
     "all_cards": [
       {
         "id": "PJS/S125-027",
@@ -663,7 +663,7 @@
     "trigger_soul_count": 1,
     "trait": "-",
     "color": "黄色",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/shot.webp\">：这个回合中，触发此卡的角色下次造成的伤害被取消时，给对手造成1点伤害）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/shot.webp\">:这个回合中，触发此卡的角色下次造成的伤害被取消时，给对手造成1点伤害）",
     "all_cards": [
       {
         "id": "PJS/S125-028",
@@ -686,7 +686,7 @@
     "trigger_soul_count": 1,
     "trait": "-",
     "color": "黄色",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/shot.webp\">：这个回合中，触发此卡的角色下次造成的伤害被取消时，给对手造成1点伤害）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/shot.webp\">:这个回合中，触发此卡的角色下次造成的伤害被取消时，给对手造成1点伤害）",
     "all_cards": [
       {
         "id": "PJS/S125-029",
@@ -1312,7 +1312,7 @@
     "trigger_soul_count": 0,
     "trait": "-",
     "color": "绿色",
-    "effect": "【永】【LINK】 Leo/need<br>【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
+    "effect": "【永】【LINK】 Leo/need<br>【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/treasure.webp\">:此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
     "all_cards": [
       {
         "id": "PJS/S125-055",
@@ -1335,7 +1335,7 @@
     "trigger_soul_count": 0,
     "trait": "-",
     "color": "绿色",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/stock.webp\">：此卡被触发时，你可以将自己卡组顶1张卡放置到库存区）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/stock.webp\">:此卡被触发时，你可以将自己卡组顶1张卡放置到库存区）",
     "all_cards": [
       {
         "id": "PJS/S125-056",
@@ -1362,7 +1362,7 @@
     "trigger_soul_count": 0,
     "trait": "-",
     "color": "绿色",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/stock.webp\">：此卡被触发时，你可以将自己卡组顶1张卡放置到库存区）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/stock.webp\">:此卡被触发时，你可以将自己卡组顶1张卡放置到库存区）",
     "all_cards": [
       {
         "id": "PJS/S125-057",
@@ -1385,7 +1385,7 @@
     "trigger_soul_count": 0,
     "trait": "-",
     "color": "绿色",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/stock.webp\">：此卡被触发时，你可以将自己卡组顶1张卡放置到库存区）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/stock.webp\">:此卡被触发时，你可以将自己卡组顶1张卡放置到库存区）",
     "all_cards": [
       {
         "id": "PJS/S125-058",
@@ -1408,7 +1408,7 @@
     "trigger_soul_count": 0,
     "trait": "-",
     "color": "绿色",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/stock.webp\">：此卡被触发时，你可以将自己卡组顶1张卡放置到库存区）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/stock.webp\">:此卡被触发时，你可以将自己卡组顶1张卡放置到库存区）",
     "all_cards": [
       {
         "id": "PJS/S125-059",
@@ -1957,7 +1957,7 @@
     "trigger_soul_count": 0,
     "trait": "-",
     "color": "红色",
-    "effect": "【永】【LINK】 Leo/need<br>【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "effect": "【永】【LINK】 Leo/need<br>【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
     "all_cards": [
       {
         "id": "PJS/S125-082",
@@ -1980,7 +1980,7 @@
     "trigger_soul_count": 1,
     "trait": "-",
     "color": "红色",
-    "effect": "【自】此卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br>（<img src=\"/effect-icons/standby.webp\">：此卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，【横置】放置到舞台的任意位置）",
+    "effect": "【自】此卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br>（<img src=\"/effect-icons/standby.webp\">:此卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，【横置】放置到舞台的任意位置）",
     "all_cards": [
       {
         "id": "PJS/S125-083",
@@ -2007,7 +2007,7 @@
     "trigger_soul_count": 1,
     "trait": "-",
     "color": "红色",
-    "effect": "【自】此卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br>（<img src=\"/effect-icons/standby.webp\">：此卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，【横置】放置到舞台的任意位置）",
+    "effect": "【自】此卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br>（<img src=\"/effect-icons/standby.webp\">:此卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，【横置】放置到舞台的任意位置）",
     "all_cards": [
       {
         "id": "PJS/S125-084",
@@ -2030,7 +2030,7 @@
     "trigger_soul_count": 0,
     "trait": "-",
     "color": "红色",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
     "all_cards": [
       {
         "id": "PJS/S125-085",
@@ -2053,7 +2053,7 @@
     "trigger_soul_count": 0,
     "trait": "-",
     "color": "红色",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
     "all_cards": [
       {
         "id": "PJS/S125-086",
@@ -2702,7 +2702,7 @@
     "trigger_soul_count": 1,
     "trait": "-",
     "color": "蓝色",
-    "effect": "【永】【LINK】 Leo/need<br>【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "effect": "【永】【LINK】 Leo/need<br>【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
     "all_cards": [
       {
         "id": "PJS/S125-113",
@@ -2729,7 +2729,7 @@
     "trigger_soul_count": 1,
     "trait": "-",
     "color": "蓝色",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
     "all_cards": [
       {
         "id": "PJS/S125-114",
@@ -2756,7 +2756,7 @@
     "trigger_soul_count": 1,
     "trait": "-",
     "color": "蓝色",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
     "all_cards": [
       {
         "id": "PJS/S125-115",
@@ -2779,7 +2779,7 @@
     "trigger_soul_count": 1,
     "trait": "-",
     "color": "蓝色",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
     "all_cards": [
       {
         "id": "PJS/S125-116",
@@ -2802,7 +2802,7 @@
     "trigger_soul_count": 1,
     "trait": "-",
     "color": "蓝色",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
     "all_cards": [
       {
         "id": "PJS/S125-117",

@@ -180,7 +180,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/bounce.webp\">：此卡被触发时，你可以选择对手的1个角色，使其返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/bounce.webp\">:此卡被触发时，你可以选择对手的1个角色，使其返回手牌）",
     "all_cards": [
       {
         "id": "AB/W11-T07",

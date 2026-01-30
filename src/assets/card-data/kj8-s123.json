@@ -746,7 +746,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/choice.webp\">：此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
     "all_cards": [
       {
         "id": "KJ8/S123-032",
@@ -769,7 +769,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/choice.webp\">：此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
     "all_cards": [
       {
         "id": "KJ8/S123-033",
@@ -792,7 +792,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/shot.webp\">：这个回合中，触发此卡的攻击角色下次给予的伤害被取消时，给予对手1点伤害）",
+    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/shot.webp\">:这个回合中，触发此卡的攻击角色下次给予的伤害被取消时，给予对手1点伤害）",
     "all_cards": [
       {
         "id": "KJ8/S123-034",
@@ -815,7 +815,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/shot.webp\">：这个回合中，触发此卡的攻击角色下次给予的伤害被取消时，给予对手1点伤害）",
+    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/shot.webp\">:这个回合中，触发此卡的攻击角色下次给予的伤害被取消时，给予对手1点伤害）",
     "all_cards": [
       {
         "id": "KJ8/S123-035",
@@ -1533,7 +1533,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置到库存区。）",
+    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/treasure.webp\">:此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置到库存区。）",
     "all_cards": [
       {
         "id": "KJ8/S123-065",
@@ -1556,7 +1556,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置到库存区。）",
+    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/treasure.webp\">:此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置到库存区。）",
     "all_cards": [
       {
         "id": "KJ8/S123-066",
@@ -1579,7 +1579,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置到库存区。）",
+    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/treasure.webp\">:此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置到库存区。）",
     "all_cards": [
       {
         "id": "KJ8/S123-067",
@@ -2270,7 +2270,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
     "all_cards": [
       {
         "id": "KJ8/S123-096",
@@ -2293,7 +2293,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
     "all_cards": [
       {
         "id": "KJ8/S123-097",
@@ -2316,7 +2316,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
     "all_cards": [
       {
         "id": "KJ8/S123-098",
@@ -2339,7 +2339,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【自】 此卡被从手牌放置到高潮区域时，执行<img src=\"/effect-icons/standby.webp\">的触发效果。<br>（<img src=\"/effect-icons/standby.webp\">：此卡被触发时，你可以选择1张自己休息室的等级自己等级+1以下的角色卡，以【横置】状态放置到舞台的任意格子）",
+    "effect": "【自】 此卡被从手牌放置到高潮区域时，执行<img src=\"/effect-icons/standby.webp\">的触发效果。<br>（<img src=\"/effect-icons/standby.webp\">:此卡被触发时，你可以选择1张自己休息室的等级自己等级+1以下的角色卡，以【横置】状态放置到舞台的任意格子）",
     "all_cards": [
       {
         "id": "KJ8/S123-099",
@@ -2362,7 +2362,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【自】 此卡被从手牌放置到高潮区域时，执行<img src=\"/effect-icons/standby.webp\">的触发效果。<br>（<img src=\"/effect-icons/standby.webp\">：此卡被触发时，你可以选择1张自己休息室的等级自己等级+1以下的角色卡，以【横置】状态放置到舞台的任意格子）",
+    "effect": "【自】 此卡被从手牌放置到高潮区域时，执行<img src=\"/effect-icons/standby.webp\">的触发效果。<br>（<img src=\"/effect-icons/standby.webp\">:此卡被触发时，你可以选择1张自己休息室的等级自己等级+1以下的角色卡，以【横置】状态放置到舞台的任意格子）",
     "all_cards": [
       {
         "id": "KJ8/S123-100",

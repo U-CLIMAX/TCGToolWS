@@ -514,7 +514,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/choice.webp\">：此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
     "all_cards": [
       {
         "id": "PJS/S109-024",
@@ -537,7 +537,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/choice.webp\">：此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
     "all_cards": [
       {
         "id": "PJS/S109-025",
@@ -560,7 +560,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/choice.webp\">：此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
     "all_cards": [
       {
         "id": "PJS/S109-026",
@@ -583,7 +583,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/bounce.webp\">：此卡被触发时，你可以选择对手的1个角色，使其返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/bounce.webp\">:此卡被触发时，你可以选择对手的1个角色，使其返回手牌）",
     "all_cards": [
       {
         "id": "PJS/S109-027",
@@ -606,7 +606,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/choice.webp\">：此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
     "all_cards": [
       {
         "id": "PJS/S109-028",
@@ -1153,7 +1153,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/treasure.webp\">:此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
     "all_cards": [
       {
         "id": "PJS/S109-053",
@@ -1176,7 +1176,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/stock.webp\">：此卡被触发时，你可以将自己卡组顶1张卡放置到库存区）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/stock.webp\">:此卡被触发时，你可以将自己卡组顶1张卡放置到库存区）",
     "all_cards": [
       {
         "id": "PJS/S109-054",
@@ -1199,7 +1199,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/stock.webp\">：此卡被触发时，你可以将自己卡组顶1张卡放置到库存区）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/stock.webp\">:此卡被触发时，你可以将自己卡组顶1张卡放置到库存区）",
     "all_cards": [
       {
         "id": "PJS/S109-055",
@@ -1222,7 +1222,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/stock.webp\">：此卡被触发时，你可以将自己卡组顶1张卡放置到库存区）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/stock.webp\">:此卡被触发时，你可以将自己卡组顶1张卡放置到库存区）",
     "all_cards": [
       {
         "id": "PJS/S109-056",
@@ -1245,7 +1245,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/stock.webp\">：此卡被触发时，你可以将自己卡组顶1张卡放置到库存区）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/stock.webp\">:此卡被触发时，你可以将自己卡组顶1张卡放置到库存区）",
     "all_cards": [
       {
         "id": "PJS/S109-057",
@@ -1781,7 +1781,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
     "all_cards": [
       {
         "id": "PJS/S109-081",
@@ -1804,7 +1804,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
     "all_cards": [
       {
         "id": "PJS/S109-082",
@@ -1827,7 +1827,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
     "all_cards": [
       {
         "id": "PJS/S109-083",
@@ -1850,7 +1850,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
     "all_cards": [
       {
         "id": "PJS/S109-084",
@@ -2359,7 +2359,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/draw.webp\">：此卡被触发时，你可以抽1张卡）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/draw.webp\">:此卡被触发时，你可以抽1张卡）",
     "all_cards": [
       {
         "id": "PJS/S109-107",
@@ -2382,7 +2382,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
     "all_cards": [
       {
         "id": "PJS/S109-108",
@@ -2405,7 +2405,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
     "all_cards": [
       {
         "id": "PJS/S109-109",
@@ -2428,7 +2428,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
     "all_cards": [
       {
         "id": "PJS/S109-110",
@@ -2451,7 +2451,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
     "all_cards": [
       {
         "id": "PJS/S109-111",

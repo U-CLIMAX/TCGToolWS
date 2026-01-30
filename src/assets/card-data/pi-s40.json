@@ -900,7 +900,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
     "all_cards": [
       {
         "id": "PI/S40-046",
@@ -923,7 +923,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
     "all_cards": [
       {
         "id": "PI/S40-047",
@@ -1867,7 +1867,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。（<img src=\"/effect-icons/gate.webp\">：此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
     "all_cards": [
       {
         "id": "PI/S40-095",
@@ -1913,7 +1913,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。（<img src=\"/effect-icons/draw.webp\">：此卡被触发时，你可以抽1张卡）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。（<img src=\"/effect-icons/draw.webp\">:此卡被触发时，你可以抽1张卡）",
     "all_cards": [
       {
         "id": "PI/S40-097",
@@ -1970,7 +1970,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。（<img src=\"/effect-icons/draw.webp\">：此卡被触发时，你可以抽1张卡）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。（<img src=\"/effect-icons/draw.webp\">:此卡被触发时，你可以抽1张卡）",
     "all_cards": [
       {
         "id": "PI/S40-100",

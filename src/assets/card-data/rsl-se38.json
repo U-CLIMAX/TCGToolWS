@@ -78,7 +78,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/stock.webp\">：此卡被触发时，你可以将自己卡组顶1张卡放置到库存区）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/stock.webp\">:此卡被触发时，你可以将自己卡组顶1张卡放置到库存区）",
     "all_cards": [
       {
         "id": "RSL/SE38-04",
@@ -604,7 +604,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】与此卡卡名相同的卡和「煌めく水槽、輝く瞳」，在卡组里至多可以投入4张。<br>【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/draw.webp\">：此卡被触发时，你可以抽1张卡）",
+    "effect": "【永】与此卡卡名相同的卡和「煌めく水槽、輝く瞳」，在卡组里至多可以投入4张。<br>【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/draw.webp\">:此卡被触发时，你可以抽1张卡）",
     "all_cards": [
       {
         "id": "RSL/SE38-26",

@@ -36,7 +36,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】你的所有角色，战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡，返回手牌或放置到库存区。）",
+    "effect": "【永】你的所有角色，战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡触发时，你从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡，返回手牌或放置到库存区。）",
     "all_cards": [
       {
         "id": "DDD/S118-P02EX",

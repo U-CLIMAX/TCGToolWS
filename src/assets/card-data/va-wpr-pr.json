@@ -541,7 +541,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】 你的所有角色战斗力＋1000，魂+1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时,你可以选自己休息室里1个角色,放置到手牌）",
+    "effect": "【永】 你的所有角色战斗力＋1000，魂+1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时,你可以选自己休息室里1个角色,放置到手牌）",
     "all_cards": [
       {
         "id": "VA/WPR-P29",

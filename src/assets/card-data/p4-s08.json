@@ -477,7 +477,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/bounce.webp\">：此卡被触发时，你可以选择对手的1个角色，使其返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/bounce.webp\">:此卡被触发时，你可以选择对手的1个角色，使其返回手牌）",
     "all_cards": [
       {
         "id": "P4/S08-025",
@@ -930,7 +930,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/stock.webp\">：此卡被触发时，你可以将自己卡组顶1张卡放置到库存区）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/stock.webp\">:此卡被触发时，你可以将自己卡组顶1张卡放置到库存区）",
     "all_cards": [
       {
         "id": "P4/S08-048",
@@ -1417,7 +1417,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
     "all_cards": [
       {
         "id": "P4/S08-073",
@@ -1954,7 +1954,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/draw.webp\">：此卡被触发时，你可以抽1张卡）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/draw.webp\">:此卡被触发时，你可以抽1张卡）",
     "all_cards": [
       {
         "id": "P4/S08-100",

@@ -262,7 +262,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/choice.webp\">：此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
     "all_cards": [
       {
         "id": "AMG/W121-012",
@@ -285,7 +285,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/choice.webp\">：此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
     "all_cards": [
       {
         "id": "AMG/W121-013",
@@ -922,7 +922,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置到库存区。）",
+    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/treasure.webp\">:此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置到库存区。）",
     "all_cards": [
       {
         "id": "AMG/W121-040",
@@ -949,7 +949,7 @@
     "trait": "-",
     "color": "绿色",
     "soul": "-",
-    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置到库存区。）",
+    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/treasure.webp\">:此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置到库存区。）",
     "all_cards": [
       {
         "id": "AMG/W121-041",
@@ -1590,7 +1590,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【自】 此卡被从手牌放置到高潮区域时，执行<img src=\"/effect-icons/standby.webp\">的触发效果。<br>（<img src=\"/effect-icons/standby.webp\">：此卡被触发时，你可以选择1张自己休息室的等级自己等级+1以下的角色卡，以【横置】状态放置到舞台的任意格子）",
+    "effect": "【自】 此卡被从手牌放置到高潮区域时，执行<img src=\"/effect-icons/standby.webp\">的触发效果。<br>（<img src=\"/effect-icons/standby.webp\">:此卡被触发时，你可以选择1张自己休息室的等级自己等级+1以下的角色卡，以【横置】状态放置到舞台的任意格子）",
     "all_cards": [
       {
         "id": "AMG/W121-068",
@@ -1617,7 +1617,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【自】 此卡被从手牌放置到高潮区域时，执行<img src=\"/effect-icons/standby.webp\">的触发效果。<br>（<img src=\"/effect-icons/standby.webp\">：此卡被触发时，你可以选择1张自己休息室的等级自己等级+1以下的角色卡，以【横置】状态放置到舞台的任意格子）",
+    "effect": "【自】 此卡被从手牌放置到高潮区域时，执行<img src=\"/effect-icons/standby.webp\">的触发效果。<br>（<img src=\"/effect-icons/standby.webp\">:此卡被触发时，你可以选择1张自己休息室的等级自己等级+1以下的角色卡，以【横置】状态放置到舞台的任意格子）",
     "all_cards": [
       {
         "id": "AMG/W121-069",
@@ -1644,7 +1644,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
     "all_cards": [
       {
         "id": "AMG/W121-070",
@@ -1667,7 +1667,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
     "all_cards": [
       {
         "id": "AMG/W121-071",
@@ -2304,7 +2304,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡被触发时，你可以选择1张自己休息室的高潮卡，返回手牌。）",
+    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以选择1张自己休息室的高潮卡，返回手牌。）",
     "all_cards": [
       {
         "id": "AMG/W121-098",
@@ -2331,7 +2331,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡被触发时，你可以选择1张自己休息室的高潮卡，返回手牌。）",
+    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以选择1张自己休息室的高潮卡，返回手牌。）",
     "all_cards": [
       {
         "id": "AMG/W121-099",
@@ -2358,7 +2358,7 @@
     "trait": "-",
     "color": "蓝色",
     "soul": "-",
-    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡被触发时，你可以选择1张自己休息室的高潮卡，返回手牌。）",
+    "effect": "【永】 你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以选择1张自己休息室的高潮卡，返回手牌。）",
     "all_cards": [
       {
         "id": "AMG/W121-100",

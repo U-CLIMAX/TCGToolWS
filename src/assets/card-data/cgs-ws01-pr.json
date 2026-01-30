@@ -623,7 +623,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
     "all_cards": [
       {
         "id": "CGS/WS01-P31",
@@ -680,7 +680,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】 你所有的角色，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择自己休息室的一张角色卡，返回手牌）",
+    "effect": "【永】 你所有的角色，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡触发时，你可以选择自己休息室的一张角色卡，返回手牌）",
     "all_cards": [
       {
         "id": "CGS/WS01-P36",
@@ -734,7 +734,7 @@
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "【永】 你所有的角色，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择自己休息室的一张角色卡，返回手牌）",
+    "effect": "【永】 你所有的角色，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡触发时，你可以选择自己休息室的一张角色卡，返回手牌）",
     "all_cards": [
       {
         "id": "CGS/WS01-P38EXa",
