@@ -142,7 +142,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
           } else if (idx === lowRarityIdx) {
             // 0/1 -> Boolean
             finalVal = val === 1
-          } else if (idx === powerIdx) {
+          } else if (idx === powerIdx && typeof val === 'number') {
             // Value -> Value * 500
             finalVal = val * 500
           }
