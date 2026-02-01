@@ -68,7 +68,7 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { useDisplay } from 'vuetify'
-import { useCardImage } from '@/composables/useCardImage'
+import { getCardUrls } from '@/utils/getCardImage'
 import { useDeckStore } from '@/stores/deck'
 import { useDevice } from '@/composables/useDevice'
 import { useUIStore } from '@/stores/ui'
@@ -107,9 +107,9 @@ const coverCard = computed(() => {
   )
 })
 
-const { base: imageUrl, blur: blurUrl } = useCardImage(
-  computed(() => coverCard.value.cardIdPrefix),
-  computed(() => coverCard.value.id)
+const { base: imageUrl, blur: blurUrl } = getCardUrls(
+  coverCard.value.cardIdPrefix,
+  coverCard.value.id
 )
 
 const isLocalDeck = computed(() => props.deckKey === 'local')

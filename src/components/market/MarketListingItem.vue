@@ -16,8 +16,8 @@
         >
           <v-carousel-item v-for="card in listing.cards_id" :key="card.id">
             <v-img
-              :src="getCardUrl(card).base"
-              :lazy-src="getCardUrl(card).blur"
+              :src="getCardUrls(card.cardIdPrefix, card.id).base"
+              :lazy-src="getCardUrls(card.cardIdPrefix, card.id).blur"
               cover
               class="preload-img"
               :aspect-ratio="400 / 559"
@@ -165,7 +165,7 @@
 import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { seriesMap } from '@/maps/series-map'
-import { useCardImage } from '@/composables/useCardImage'
+import { getCardUrls } from '@/utils/getCardImage'
 import { useMarketStore } from '@/stores/market'
 import { useUIStore } from '@/stores/ui'
 import { useDevice } from '@/composables/useDevice'
@@ -198,12 +198,6 @@ const seriesIcon = computed(() => {
   if (!seriesInfo.value) return ''
   return `/series-icons/${seriesInfo.value.id}.webp`
 })
-
-const getCardUrl = (card) => {
-  if (!card || !card.id || !card.cardIdPrefix) return { base: '', blur: '' }
-  const { base, blur } = useCardImage(card.cardIdPrefix, card.id)
-  return { base: base.value, blur: blur.value }
-}
 
 const getClimaxIcon = (value) => {
   const option = marketStore.climaxTypeOptions.find((opt) => opt.value === value)

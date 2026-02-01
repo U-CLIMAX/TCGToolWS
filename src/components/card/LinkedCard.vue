@@ -31,8 +31,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { useCardImage } from '@/composables/useCardImage.js'
+import { getCardUrls } from '@/utils/getCardImage'
 import { useDevice } from '@/composables/useDevice'
 
 const props = defineProps({
@@ -42,16 +41,13 @@ const props = defineProps({
 const emit = defineEmits(['show-details'])
 
 const { isTouch } = useDevice()
-const cardId = computed(() => props.card.id)
-const cardIdPrefix = computed(() => props.card.cardIdPrefix)
-
-const { base: imageUrl, blur: blurUrl } = useCardImage(cardIdPrefix, cardId)
+const { base: imageUrl, blur: blurUrl } = getCardUrls(props.card.cardIdPrefix, props.card.id)
 
 const handleCardClick = () => {
   emit('show-details', {
     card: props.card,
-    imageUrl: imageUrl.value,
-    blurUrl: blurUrl.value,
+    imageUrl: imageUrl,
+    blurUrl: blurUrl,
   })
 }
 </script>

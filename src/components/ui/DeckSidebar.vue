@@ -309,7 +309,7 @@
 <script setup>
 import { ref, computed, toRaw } from 'vue'
 import { useDeckStore } from '@/stores/deck'
-import { useCardImage, getCardUrls } from '@/composables/useCardImage'
+import { getCardUrls } from '@/utils/getCardImage'
 import { fetchCardByIdAndPrefix, fetchCardsByBaseIdAndPrefix } from '@/utils/card'
 import CardDetailModal from '@/components/card/CardDetailModal.vue'
 import { useDisplay } from 'vuetify'
@@ -616,13 +616,13 @@ const onNextCard = () => {
 
 const modalCardImageUrl = computed(() => {
   if (selectedCardData.value) {
-    const { base, blur } = useCardImage(
+    const { base, blur } = getCardUrls(
       selectedCardData.value.cardIdPrefix,
       selectedCardData.value.id
     )
     return {
-      base: base.value,
-      blur: blur.value,
+      base: base,
+      blur: blur,
     }
   }
   return { base: '/empty-placehold.webp', blur: '/empty-placehold.webp' }

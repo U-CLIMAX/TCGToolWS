@@ -140,7 +140,7 @@ import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useTheme } from 'vuetify'
 import { useDisplay } from 'vuetify'
-import { useCardImage, getCardUrls } from '@/composables/useCardImage.js'
+import { getCardUrls } from '@/utils/getCardImage'
 import { useDevice } from '@/composables/useDevice'
 import CardDetailModal from '@/components/card/CardDetailModal.vue'
 import DeckStatsDashboard from '@/components/deck/DeckStatsDashboard.vue'
@@ -216,13 +216,10 @@ const iconFilterStyle = computed(() => {
 
 const modalCardImageUrl = computed(() => {
   if (props.selectedCard) {
-    const { base, blur } = useCardImage(
-      computed(() => props.selectedCard.cardIdPrefix),
-      computed(() => props.selectedCard.id)
-    )
+    const { base, blur } = getCardUrls(props.selectedCard.cardIdPrefix, props.selectedCard.id)
     return {
-      base: base.value,
-      blur: blur.value,
+      base: base,
+      blur: blur,
     }
   }
 

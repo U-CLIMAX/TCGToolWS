@@ -216,7 +216,7 @@ import { seriesMap } from '@/maps/series-map'
 import { useFilterStore } from '@/stores/filter'
 import { useMarketStore } from '@/stores/market'
 import { useUIStore } from '@/stores/ui'
-import { useCardImage } from '@/composables/useCardImage'
+import { getCardUrls } from '@/utils/getCardImage'
 import { useSnackbar } from '@/composables/useSnackbar'
 
 const props = defineProps(['modelValue', 'editingListing'])
@@ -333,8 +333,8 @@ watch(dialog, async (newVal) => {
 })
 
 const getCardImage = (card) => {
-  const { base, blur } = useCardImage(card.cardIdPrefix, card.id)
-  return { base: base.value, blur: blur.value }
+  const { base, blur } = getCardUrls(card.cardIdPrefix, card.id)
+  return { base: base, blur: blur }
 }
 
 const toggleCardSelection = (card) => {

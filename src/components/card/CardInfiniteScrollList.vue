@@ -77,7 +77,7 @@ import CardTemplate from '@/components/card/CardTemplate.vue'
 import CardDetailModal from '@/components/card/CardDetailModal.vue'
 import BackToTopButton from '@/components/ui/BackToTopButton.vue'
 import { fetchCardByIdAndPrefix, fetchCardsByBaseIdAndPrefix } from '@/utils/card'
-import { useCardImage } from '@/composables/useCardImage.js'
+import { getCardUrls } from '@/utils/getCardImage'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import { useUIStore } from '@/stores/ui'
 import { storeToRefs } from 'pinia'
@@ -148,23 +148,23 @@ const isTableMode = computed(() => props.isTableModeActive || !smAndUp.value)
 const onPrevCard = () => {
   const prevCard = getPrevCard()
   if (prevCard) {
-    const { base, blur } = useCardImage(prevCard.cardIdPrefix, prevCard.id)
+    const { base, blur } = getCardUrls(prevCard.cardIdPrefix, prevCard.id)
     onShowDetails({
       card: prevCard,
-      imageUrl: base.value,
-      blurUrl: blur.value,
+      imageUrl: base,
+      blurUrl: blur,
     })
   }
 }
 
 const onNextCard = () => {
   const nextCard = getNextCard()
-  const { base, blur } = useCardImage(nextCard.cardIdPrefix, nextCard.id)
+  const { base, blur } = getCardUrls(nextCard.cardIdPrefix, nextCard.id)
   if (nextCard) {
     onShowDetails({
       card: nextCard,
-      imageUrl: base.value,
-      blurUrl: blur.value,
+      imageUrl: base,
+      blurUrl: blur,
     })
   }
 }

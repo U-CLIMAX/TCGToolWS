@@ -174,7 +174,7 @@
 
 <script setup>
 import { computed, ref, onUnmounted, onMounted } from 'vue'
-import { getCardUrls } from '@/composables/useCardImage.js'
+import { getCardUrls } from '@/utils/getCardImage'
 import { useDisplay } from 'vuetify'
 import { useDeckGrouping } from '@/composables/useDeckGrouping'
 import { fetchCardsByBaseIdAndPrefix } from '@/utils/card'

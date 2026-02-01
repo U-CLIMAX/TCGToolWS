@@ -78,7 +78,7 @@
 </template>
 
 <script setup>
-import { getCardUrls } from '@/composables/useCardImage.js'
+import { getCardUrls } from '@/utils/getCardImage'
 import { computed, ref, watch, readonly } from 'vue'
 import { QR } from '@/components/common/QR.js'
 import { sortCards } from '@/utils/cardsSort.js'

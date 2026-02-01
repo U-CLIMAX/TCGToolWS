@@ -373,7 +373,7 @@ import { useDeckEncoder } from '@/composables/useDeckEncoder'
 import { useDisplay } from 'vuetify'
 import { storeToRefs } from 'pinia'
 import { useDeckGrouping } from '@/composables/useDeckGrouping'
-import { useCardImage } from '@/composables/useCardImage'
+import { getCardUrls } from '@/utils/getCardImage'
 import { fetchCardByIdAndPrefix, fetchCardsByBaseIdAndPrefix } from '@/utils/card'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useUIStore } from '@/stores/ui'
@@ -816,10 +816,10 @@ const handleDownloadDeckPDF = async (language) => {
   uiStore.setLoading(true)
   try {
     const cardsWithImages = originalCards.value.map((card) => {
-      const { base } = useCardImage(card.cardIdPrefix, card.id)
+      const { base } = getCardUrls(card.cardIdPrefix, card.id)
       return {
         ...card,
-        imgUrl: base.value,
+        imgUrl: base,
       }
     })
 

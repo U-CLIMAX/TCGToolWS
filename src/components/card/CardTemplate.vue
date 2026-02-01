@@ -145,7 +145,7 @@
 import { computed } from 'vue'
 import { useDisplay, useTheme } from 'vuetify'
 import { storeToRefs } from 'pinia'
-import { useCardImage } from '@/composables/useCardImage.js'
+import { getCardUrls } from '@/utils/getCardImage'
 import { useAuthStore } from '@/stores/auth'
 import { useDeckStore } from '@/stores/deck'
 import { useUIStore } from '@/stores/ui'
@@ -171,10 +171,7 @@ const isLightWithBg = computed(() => {
   return hasBackgroundImage.value && theme.global.name.value === 'light'
 })
 
-const { base: imageUrl, blur: blurUrl } = useCardImage(
-  computed(() => props.card.cardIdPrefix),
-  computed(() => props.card.id)
-)
+const { base: imageUrl, blur: blurUrl } = getCardUrls(props.card.cardIdPrefix, props.card.id)
 const cardCount = computed(() => deckStore.getCardCount(props.card.id))
 const buttonSize = computed(() =>
   (uiStore.isFilterOpen && uiStore.isCardDeckOpen) || smAndDown.value ? 'x-small' : 'small'
@@ -184,8 +181,8 @@ const handleCardClick = () => {
   if (!props.card) return
   emit('show-details', {
     card: props.card,
-    imageUrl: imageUrl.value,
-    blurUrl: blurUrl.value,
+    imageUrl: imageUrl,
+    blurUrl: blurUrl,
   })
 }
 </script>
