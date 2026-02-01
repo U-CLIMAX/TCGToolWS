@@ -218,6 +218,7 @@ export const useDeckStore = defineStore(
         throw new Error(errorData.error || '删除卡组失败')
       }
 
+      savedDecks.value = { ...savedDecks.value }
       delete savedDecks.value[key]
 
       if (editingDeckKey.value === key) {
