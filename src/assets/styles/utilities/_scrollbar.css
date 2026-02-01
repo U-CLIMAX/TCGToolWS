@@ -34,3 +34,20 @@
     scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
   }
 }
+
+/* 手機端隱藏滾動條 */
+@media (max-width: 768px) {
+  /* Chrome / Edge / Safari */
+  .themed-scrollbar::-webkit-scrollbar,
+  .themed-scrollbar .v-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Firefox */
+  @supports not selector(::-webkit-scrollbar) {
+    .themed-scrollbar,
+    .themed-scrollbar .v-list {
+      scrollbar-width: none;
+    }
+  }
+}
