@@ -8,7 +8,7 @@
   >
     <v-card>
       <v-card-title class="d-flex align-center">
-        <v-span>下载效果文本</v-span>
+        <span>下载效果文本</span>
       </v-card-title>
       <v-divider />
       <v-card-text class="pb-0 h-100 themed-scrollbar">
