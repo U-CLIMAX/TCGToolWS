@@ -1,13 +1,13 @@
 import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
+import { ref, shallowRef, computed, reactive } from 'vue'
 import { useAuthStore } from './auth'
 import { seriesMap } from '@/maps/series-map'
 
 export const useMarketStore = defineStore('market', () => {
-  const listings = ref([])
+  const listings = shallowRef([])
   const userListingCount = ref(0)
   const isLoading = ref(false)
-  const pagination = ref({
+  const pagination = reactive({
     page: 1,
     limit: 20,
     total: 0,
@@ -15,14 +15,14 @@ export const useMarketStore = defineStore('market', () => {
     nextCursor: null,
   })
 
-  const rankingStats = ref({
+  const rankingStats = shallowRef({
     updated_at: 0,
     top5: [],
   })
   const isRankingLoading = ref(false)
 
   // 篩選條件
-  const filters = ref({
+  const filters = reactive({
     seriesId: null,
     climaxType: [],
     tag: [],
@@ -74,34 +74,34 @@ export const useMarketStore = defineStore('market', () => {
   const fetchListings = async (isLoadMore = false) => {
     // 如果不是加載更多，立即清空列表，防止切換時顯示舊資料
     if (!isLoadMore) {
-      pagination.value.page = 1
-      pagination.value.nextCursor = null
+      pagination.page = 1
+      pagination.nextCursor = null
       listings.value = []
-      pagination.value.hasMore = true
+      pagination.hasMore = true
     }
 
     if (isLoading.value) return
 
     // 如果沒有更多數據，直接返回
-    if (isLoadMore && !pagination.value.hasMore) return
+    if (isLoadMore && !pagination.hasMore) return
 
     isLoading.value = true
     try {
       const queryParams = new URLSearchParams({
-        limit: pagination.value.limit,
-        sort: filters.value.sort,
+        limit: pagination.limit,
+        sort: filters.sort,
       })
 
-      if (isLoadMore && pagination.value.nextCursor) {
-        queryParams.append('cursor', pagination.value.nextCursor)
+      if (isLoadMore && pagination.nextCursor) {
+        queryParams.append('cursor', pagination.nextCursor)
       }
 
-      if (filters.value.seriesId) queryParams.append('series', filters.value.seriesId)
-      if (filters.value.climaxType && filters.value.climaxType.length > 0) {
-        filters.value.climaxType.forEach((c) => queryParams.append('climax', c))
+      if (filters.seriesId) queryParams.append('series', filters.seriesId)
+      if (filters.climaxType && filters.climaxType.length > 0) {
+        filters.climaxType.forEach((c) => queryParams.append('climax', c))
       }
-      if (filters.value.tag && filters.value.tag.length > 0) {
-        filters.value.tag.forEach((t) => queryParams.append('tag', t))
+      if (filters.tag && filters.tag.length > 0) {
+        filters.tag.forEach((t) => queryParams.append('tag', t))
       }
 
       const headers = {}
@@ -110,7 +110,7 @@ export const useMarketStore = defineStore('market', () => {
       }
 
       const endpoint =
-        filters.value.source === 'mine' ? '/api/market/my-listings' : '/api/market/listings'
+        filters.source === 'mine' ? '/api/market/my-listings' : '/api/market/listings'
 
       const response = await fetch(`${endpoint}?${queryParams.toString()}`, {
         headers,
@@ -122,25 +122,25 @@ export const useMarketStore = defineStore('market', () => {
 
       const data = await response.json()
 
-      if (filters.value.source === 'mine') {
+      if (filters.source === 'mine') {
         await fetchUserListingCount()
       }
 
       if (isLoadMore) {
         listings.value = [...listings.value, ...data.listings]
-        pagination.value.page += 1
+        pagination.page += 1
       } else {
         listings.value = data.listings
-        pagination.value.page = 1
+        pagination.page = 1
       }
 
       // Update cursor and hasMore status
-      pagination.value.nextCursor = data.nextCursor
-      pagination.value.hasMore = !!data.nextCursor
+      pagination.nextCursor = data.nextCursor
+      pagination.hasMore = !!data.nextCursor
 
       // Update total only if returned (backend might skip it for optimization)
       if (data.total !== undefined) {
-        pagination.value.total = data.total
+        pagination.total = data.total
       }
     } catch (error) {
       console.error('Failed to fetch listings:', error)
@@ -260,20 +260,20 @@ export const useMarketStore = defineStore('market', () => {
     listings.value = []
     userListingCount.value = 0
     isLoading.value = false
-    pagination.value = {
+    Object.assign(pagination, {
       page: 1,
       limit: 20,
       total: 0,
       hasMore: true,
       nextCursor: null,
-    }
-    filters.value = {
+    })
+    Object.assign(filters, {
       seriesId: null,
       climaxType: [],
       tag: [],
       source: 'all',
       sort: 'newest',
-    }
+    })
   }
 
   return {
