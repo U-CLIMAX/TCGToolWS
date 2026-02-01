@@ -2,7 +2,7 @@
   <v-dialog v-model="dialog" max-width="900px" scrollable :fullscreen="smAndDown">
     <v-card>
       <v-card-title class="d-flex align-center">
-        <v-span>{{ isEditing ? '编辑商品' : '发布商品' }}</v-span>
+        <span>{{ isEditing ? '编辑商品' : '发布商品' }}</span>
       </v-card-title>
       <v-divider />
       <v-card-text class="pa-4 themed-scrollbar">
