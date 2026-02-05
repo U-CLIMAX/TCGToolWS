@@ -14,18 +14,13 @@
     >
       <div class="image-wrapper position-relative overflow-hidden rounded-3md mb-2">
         <v-img
-          :src="iconUrl"
+          :src="`/series-icons/original/${seriesData.id}.webp`"
+          :lazy-src="`/series-icons/blur/${seriesData.id}.webp`"
           aspect-ratio="1"
           cover
           rounded="3md"
-          lazy-src="/empty-placehold.webp"
-          class="series-image"
+          class="series-image preload-img"
         >
-          <template #placeholder>
-            <div class="d-flex align-center justify-center fill-height">
-              <v-progress-circular color="grey-lighten-4" indeterminate></v-progress-circular>
-            </div>
-          </template>
           <template #error>
             <v-img src="/placehold.webp" aspect-ratio="1" cover rounded="3md" />
           </template>
@@ -89,7 +84,7 @@ import { computed } from 'vue'
 import { useUIStore } from '@/stores/ui'
 import { useTheme } from 'vuetify'
 
-const props = defineProps({
+defineProps({
   seriesName: {
     type: String,
     required: true,
@@ -110,10 +105,6 @@ const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 const isLightWithBg = computed(() => {
   return hasBackgroundImage.value && theme.global.name.value === 'light'
-})
-
-const iconUrl = computed(() => {
-  return `series-icons/${props.seriesData.id}.webp`
 })
 </script>
 

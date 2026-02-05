@@ -196,7 +196,7 @@ const seriesInfo = computed(() => {
 
 const seriesIcon = computed(() => {
   if (!seriesInfo.value) return ''
-  return `/series-icons/${seriesInfo.value.id}.webp`
+  return `/series-icons/original/${seriesInfo.value.id}.webp`
 })
 
 const getClimaxIcon = (value) => {

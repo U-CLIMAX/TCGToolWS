@@ -210,7 +210,12 @@
                         {{ index + 1 }}
                       </div>
                       <v-avatar size="24" rounded="0" class="mr-2">
-                        <v-img :src="`/series-icons/${item.series_name}.webp`" cover />
+                        <v-img
+                          :src="`/series-icons/original/${item.series_name}.webp`"
+                          :lazy-src="`/series-icons/blur/${item.series_name}.webp`"
+                          cover
+                          class="preload-img"
+                        />
                       </v-avatar>
                     </template>
 
