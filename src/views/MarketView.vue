@@ -277,12 +277,9 @@
         </div>
 
         <div v-else class="listing-grid-container">
-          <MarketListingItem
-            v-for="item in marketStore.listings"
-            :key="item.id"
-            :listing="item"
-            @edit="handleEdit"
-          />
+          <LazyCardWrapper v-for="item in marketStore.listings" :key="item.id">
+            <MarketListingItem :listing="item" @edit="handleEdit" />
+          </LazyCardWrapper>
         </div>
       </v-container>
 
@@ -309,6 +306,7 @@ import { ref, computed, onMounted, watch, nextTick } from 'vue'
 import { useMarketStore } from '@/stores/market'
 import { useUIStore } from '@/stores/ui'
 import { useAuthStore } from '@/stores/auth'
+import LazyCardWrapper from '@/components/common/LazyCardWrapper.vue'
 import MarketCreateDialog from '@/components/market/MarketCreateDialog.vue'
 import MarketListingItem from '@/components/market/MarketListingItem.vue'
 import AuthDialog from '@/components/ui/AuthDialog.vue'

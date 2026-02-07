@@ -239,7 +239,7 @@ watch(
   { immediate: true }
 )
 
-watch([() => filterStore.filteredCards, isTableModeActive], () => {
+watch([() => filterStore.filteredCards], () => {
   if (listRef.value) {
     listRef.value.reset()
   }

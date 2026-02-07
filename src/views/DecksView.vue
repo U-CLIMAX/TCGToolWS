@@ -103,7 +103,9 @@
         appear
       >
         <v-col v-for="item in displayedDecks" :key="item.key" class="pa-2" cols="4" sm="2">
-          <DeckCard :deck="item.deck" :deckKey="item.key" :is-editing="item.isEditing" />
+          <LazyCardWrapper>
+            <DeckCard :deck="item.deck" :deckKey="item.key" :is-editing="item.isEditing" />
+          </LazyCardWrapper>
         </v-col>
       </transition-group>
     </v-container>
@@ -117,6 +119,7 @@ import { useDeckStore } from '@/stores/deck'
 import { useAuthStore } from '@/stores/auth'
 import { useDeckEncoder } from '@/composables/useDeckEncoder'
 import DeckCard from '@/components/deck/DeckCard.vue'
+import LazyCardWrapper from '@/components/common/LazyCardWrapper.vue'
 import { useUIStore } from '@/stores/ui'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { seriesMap } from '@/maps/series-map'

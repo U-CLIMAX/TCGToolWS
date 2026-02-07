@@ -119,7 +119,9 @@
             md="2"
             class="d-flex pa-1"
           >
-            <SeriesCard :series-name="item.name" :series-data="item.data" />
+            <LazyCardWrapper>
+              <SeriesCard :series-name="item.name" :series-data="item.data" />
+            </LazyCardWrapper>
           </v-col>
         </v-row>
 
@@ -144,6 +146,7 @@ import { useRecentStore } from '@/stores/recent'
 import { useInfiniteScrollState } from '@/composables/useInfiniteScrollState.js'
 import { seriesMap } from '@/maps/series-map.js'
 import SeriesCard from '@/components/card/SeriesCard.vue'
+import LazyCardWrapper from '@/components/common/LazyCardWrapper.vue'
 import FloatingSearch from '@/components/ui/FloatingSearchBar.vue'
 import BackToTopButton from '@/components/ui/BackToTopButton.vue'
 import collator from '@/utils/collator.js'

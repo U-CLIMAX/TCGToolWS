@@ -36,7 +36,9 @@
           class="d-flex justify-center"
           :data-card-id="card.id"
         >
-          <CardTemplate :card="card" :is-table-mode="isTableMode" @show-details="onShowDetails" />
+          <LazyCardWrapper>
+            <CardTemplate :card="card" :is-table-mode="isTableMode" @show-details="onShowDetails" />
+          </LazyCardWrapper>
         </div>
       </TransitionGroup>
     </div>
@@ -74,6 +76,7 @@
 import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
 import { useDisplay } from 'vuetify'
 import CardTemplate from '@/components/card/CardTemplate.vue'
+import LazyCardWrapper from '@/components/common/LazyCardWrapper.vue'
 import CardDetailModal from '@/components/card/CardDetailModal.vue'
 import BackToTopButton from '@/components/ui/BackToTopButton.vue'
 import { fetchCardByIdAndPrefix, fetchCardsByBaseIdAndPrefix } from '@/utils/card'
