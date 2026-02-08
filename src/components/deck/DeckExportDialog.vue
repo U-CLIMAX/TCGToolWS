@@ -1,7 +1,7 @@
 <template>
   <v-dialog
     :model-value="modelValue"
-    :fullscreen="xs"
+    :fullscreen="smAndDown"
     max-width="500"
     scrollable
     @update:model-value="closeDialog"
@@ -150,7 +150,7 @@ const selectedLanguage = ref('jp')
 const selectedImageMode = ref('u_climax')
 
 const uiStore = useUIStore()
-const { xs } = useDisplay()
+const { xs, smAndDown } = useDisplay()
 
 const deckBaseIds = computed(() => {
   if (!props.cards) return ''

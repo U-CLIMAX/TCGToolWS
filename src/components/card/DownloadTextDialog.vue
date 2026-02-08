@@ -1,7 +1,7 @@
 <template>
   <v-dialog
     :model-value="modelValue"
-    :fullscreen="xs"
+    :fullscreen="smAndDown"
     @update:model-value="closeDialog"
     scrollable
     max-width="500"
@@ -100,7 +100,7 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue', 'confirm'])
 
 const downloadStore = useDownloadStore()
-const { xs } = useDisplay()
+const { smAndDown } = useDisplay()
 
 const localWidth = ref(800)
 const localBgColor = ref('#FFFFFF')

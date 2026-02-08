@@ -47,7 +47,7 @@
   <v-dialog
     v-if="selectedCardData"
     v-model="isModalVisible"
-    :fullscreen="xs"
+    :fullscreen="smAndDown"
     :max-width="smAndDown ? undefined : '60%'"
     :max-height="smAndDown ? undefined : '95%'"
     :min-height="smAndDown ? undefined : '60%'"

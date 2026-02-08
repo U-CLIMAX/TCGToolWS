@@ -156,7 +156,7 @@
   <v-dialog
     v-if="selectedCardData"
     v-model="isModalVisible"
-    :fullscreen="xs"
+    :fullscreen="smAndDown"
     :max-width="smAndDown ? undefined : '60%'"
     :max-height="smAndDown ? undefined : '95%'"
     :min-height="smAndDown ? undefined : '60%'"
@@ -191,7 +191,7 @@
   <!-- Save Deck Dialog -->
   <v-dialog
     v-model="isSaveDialogOpen"
-    :fullscreen="xs"
+    :fullscreen="smAndDown"
     max-width="500px"
     @update:model-value="closeSaveDialog"
   >
@@ -429,7 +429,7 @@ defineProps({
 })
 
 const router = useRouter()
-const { xs, smAndUp, smAndDown } = useDisplay()
+const { smAndUp, smAndDown } = useDisplay()
 const deckStore = useDeckStore()
 const { encodeDeck } = useDeckEncoder()
 const { triggerSnackbar } = useSnackbar()

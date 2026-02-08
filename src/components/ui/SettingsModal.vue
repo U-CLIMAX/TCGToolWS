@@ -1,7 +1,7 @@
 <template>
   <v-dialog
     :model-value="modelValue"
-    :fullscreen="xs"
+    :fullscreen="smAndDown"
     @update:model-value="$emit('update:modelValue', $event)"
     max-width="500px"
     scrollable
@@ -189,7 +189,7 @@ import { useUIStore } from '@/stores/ui'
 import { useDisplay } from 'vuetify'
 import ImageCropperModal from './ImageCropperModal.vue'
 
-const { xs } = useDisplay()
+const { smAndDown, xs } = useDisplay()
 
 const uiStore = useUIStore()
 const fileInputRef = ref(null)
