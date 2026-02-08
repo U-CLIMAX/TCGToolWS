@@ -5,14 +5,14 @@
     @click="handleClick"
   >
     <div class="content-wrapper">
-      <h1 class="animated-title">U CLIMAX</h1>
+      <h1 class="animated-title" :class="{ loaded: imageLoaded }">U CLIMAX</h1>
       <p class="click-hint" v-if="status === 'active'">点击进入</p>
     </div>
   </div>
 </template>
 
 <script setup>
-import { watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 
 const props = defineProps({
   status: {
@@ -22,6 +22,15 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['start-exit', 'animation-finished'])
+const imageLoaded = ref(false)
+
+onMounted(() => {
+  const img = new Image()
+  img.onload = () => {
+    imageLoaded.value = true
+  }
+  img.src = '/intro/series_card_list_blur.webp'
+})
 
 const handleClick = () => {
   if (props.status === 'active') {
@@ -70,18 +79,23 @@ watch(
   font-size: clamp(3rem, 10vw, 8rem);
   font-weight: 900;
   text-align: center;
-  color: transparent;
+  color: rgba(255, 255, 255, 0.1);
   padding: 0rem 2.5rem;
+  transform: scale(1);
+  opacity: 0;
+  transition:
+    transform 1.2s cubic-bezier(0.5, 0, 1, 1),
+    opacity 1s ease-out;
+}
+
+.animated-title.loaded {
+  opacity: 1;
   background-image: url('/intro/series_card_list_blur.webp');
   background-size: cover;
   background-position: center;
   -webkit-background-clip: text;
   background-clip: text;
-  transform: scale(1);
-  opacity: 1;
-  transition:
-    transform 1.2s cubic-bezier(0.5, 0, 1, 1),
-    opacity 1s ease-out;
+  color: transparent;
 }
 
 .click-hint {
