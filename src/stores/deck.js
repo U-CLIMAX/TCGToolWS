@@ -109,23 +109,25 @@ export const useDeckStore = defineStore(
 
           // Choice 檢查
           choice.forEach((list) => {
-            const foundNames = new Set()
-            const foundCards = []
+            const foundItems = []
 
             list.forEach((name) => {
               const matches = relevantCards.get(name)
               if (matches && matches.length > 0) {
-                foundNames.add(name)
-                foundCards.push(matches[0])
+                foundItems.push({ name, card: matches[0] })
               }
             })
 
-            if (foundNames.size > 1) {
-              const names = Array.from(foundNames).sort()
-              violations.set(`choice:${names.join('|')}`, {
+            if (foundItems.length > 1) {
+              foundItems.sort((a, b) => a.name.localeCompare(b.name))
+
+              violations.set(`choice:${foundItems.map((item) => item.name).join('|')}`, {
                 type: 'choice',
-                choices: names,
-                found: foundCards.map((c) => ({ id: c.id, cardIdPrefix: c.cardIdPrefix })),
+                choices: foundItems.map((item) => item.name),
+                found: foundItems.map((item) => ({
+                  id: item.card.id,
+                  cardIdPrefix: item.card.cardIdPrefix,
+                })),
               })
             }
           })
