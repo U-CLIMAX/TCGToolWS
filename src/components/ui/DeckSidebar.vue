@@ -30,6 +30,15 @@
             {{ deckStore.totalCardCount }} / 50
           </v-chip>
           <v-btn
+            v-if="deckStore.restrictionViolations.length > 0"
+            icon="mdi-alert-circle"
+            variant="text"
+            color="error"
+            density="compact"
+            @click="isRestrictionDialogOpen = true"
+            v-tooltip:top-center="{ text: '卡组包含限制卡片', disabled: isTouch }"
+          ></v-btn>
+          <v-btn
             :disabled="deckStore.totalCardCount <= 0"
             icon="mdi-open-in-new"
             variant="text"
@@ -289,6 +298,85 @@
     </v-card>
   </v-dialog>
 
+  <!-- Restriction Dialog -->
+  <v-dialog v-model="isRestrictionDialogOpen" max-width="500" scrollable :fullscreen="smAndDown">
+    <v-card>
+      <v-card-title class="text-error">
+        <v-icon start icon="mdi-alert-circle"></v-icon>
+        卡组限制提醒
+        <span class="text-caption text-medium-emphasis ml-2">
+          (更新日期: {{ deckRestrictionsLastUpdated }})
+        </span>
+      </v-card-title>
+      <v-divider />
+      <v-card-text class="themed-scrollbar">
+        <v-list :lines="false">
+          <template v-for="(v, i) in deckStore.restrictionViolations" :key="i">
+            <v-divider v-if="i !== 0" class="my-4"></v-divider>
+            <v-list-item class="px-0">
+              <template v-if="v.type === 'banned'">
+                <v-list-item-title class="text-error font-weight-bold">
+                  禁止使用
+                </v-list-item-title>
+                <v-list-item-subtitle>
+                  {{ v.cardName }}
+                </v-list-item-subtitle>
+                <div class="mt-2" style="width: 80px">
+                  <v-img
+                    :src="getCardUrls(v.card.cardIdPrefix, v.card.id).base"
+                    cover
+                    :aspect-ratio="400 / 559"
+                    class="rounded"
+                  ></v-img>
+                </div>
+              </template>
+
+              <template v-else-if="v.type === 'limited'">
+                <v-list-item-title class="text-warning font-weight-bold">
+                  只能使用 {{ v.limit }} 张
+                </v-list-item-title>
+                <v-list-item-subtitle>
+                  {{ v.cardName }} (当前: {{ v.card.quantity }})
+                </v-list-item-subtitle>
+                <div class="mt-2" style="width: 80px">
+                  <v-img
+                    :src="getCardUrls(v.card.cardIdPrefix, v.card.id).base"
+                    cover
+                    :aspect-ratio="400 / 559"
+                    class="rounded"
+                  ></v-img>
+                </div>
+              </template>
+
+              <template v-else-if="v.type === 'choice'">
+                <v-list-item-title class="text-warning font-weight-bold">
+                  以下卡片只能选择一种
+                </v-list-item-title>
+                <v-list-item-subtitle>
+                  {{ v.choices.join(' / ') }}
+                </v-list-item-subtitle>
+                <div class="d-flex flex-wrap gap-2 mt-2">
+                  <div v-for="c in v.found" :key="c.id" style="width: 80px" class="mr-2 mb-2">
+                    <v-img
+                      :src="getCardUrls(c.cardIdPrefix, c.id).base"
+                      cover
+                      :aspect-ratio="400 / 559"
+                      class="rounded"
+                    ></v-img>
+                  </div>
+                </div>
+              </template>
+            </v-list-item>
+          </template>
+        </v-list>
+      </v-card-text>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn text="关闭" @click="isRestrictionDialogOpen = false"></v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
+
   <!-- Clear Confirm Dialog -->
   <v-dialog v-model="isClearConfirmDialogOpen" max-width="400">
     <v-card>
@@ -316,12 +404,14 @@ import { useDisplay } from 'vuetify'
 import { storeToRefs } from 'pinia'
 import { useDeckGrouping } from '@/composables/useDeckGrouping'
 import { useDeckEncoder } from '@/composables/useDeckEncoder'
+import { useDevice } from '@/composables/useDevice'
 import { useAuthStore } from '@/stores/auth'
 import { useRouter } from 'vue-router'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useUIStore } from '@/stores/ui'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import { sortCards } from '@/utils/cardsSort'
+import { deckRestrictionsLastUpdated } from '@/maps/deck-restrictions'
 
 defineProps({
   headerOffsetHeight: {
@@ -344,6 +434,7 @@ const deckStore = useDeckStore()
 const { encodeDeck } = useDeckEncoder()
 const { triggerSnackbar } = useSnackbar()
 const uiStore = useUIStore()
+const { isTouch } = useDevice()
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 // Loading State
@@ -352,6 +443,8 @@ const { userRole, userStatus } = storeToRefs(authStore)
 
 // Auth Alert Dialog State
 const isAuthAlertOpen = ref(false)
+
+const isRestrictionDialogOpen = ref(false)
 
 // Save Deck Dialog State
 const isSaveDialogOpen = ref(false)

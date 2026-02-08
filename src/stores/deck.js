@@ -2,12 +2,13 @@ import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { useAuthStore } from './auth'
 import { findDeckSeriesId } from '@/utils/findDeckSeriesId'
+import { deckRestrictions } from '@/maps/deck-restrictions'
 
 export const useDeckStore = defineStore(
   'deck',
   () => {
     // --- 狀態 (State) ---
-    const version = ref(1)
+    const version = ref(2)
     const cardsInDeck = ref({})
     const seriesId = ref('')
     const deckName = ref('')
@@ -16,6 +17,7 @@ export const useDeckStore = defineStore(
     const deckHistory = ref([])
     const originalCardsInDeck = ref({})
     const savedDecks = ref({})
+    const restrictionViolations = ref([])
 
     const authStore = useAuthStore()
 
@@ -28,6 +30,64 @@ export const useDeckStore = defineStore(
       return Object.values(cardsInDeck.value).reduce((sum, item) => sum + item.quantity, 0)
     })
 
+    // --- Helper Functions ---
+    const checkRestrictions = () => {
+      const cards = Object.values(cardsInDeck.value)
+      const violations = new Map()
+
+      const add = (key, data) => !violations.has(key) && violations.set(key, data)
+
+      Object.values(deckRestrictions).forEach(({ banned = [], limited = [], choice = [] }) => {
+        banned.forEach((name) => {
+          const card = cards.find((c) => c.name === name)
+          if (card) {
+            add(`banned:${name}`, {
+              type: 'banned',
+              cardName: name,
+              card: { id: card.id, cardIdPrefix: card.cardIdPrefix },
+            })
+          }
+        })
+
+        limited.forEach(({ cardName, limit }) => {
+          const matches = cards.filter((c) => c.name === cardName)
+          const quantity = matches.reduce((sum, c) => sum + c.quantity, 0)
+          if (quantity > limit) {
+            add(`limited:${cardName}`, {
+              type: 'limited',
+              cardName,
+              limit,
+              card: {
+                id: matches[0].id,
+                cardIdPrefix: matches[0].cardIdPrefix,
+                quantity,
+              },
+            })
+          }
+        })
+
+        choice.forEach((list) => {
+          const matches = cards.filter((c) => list.includes(c.name))
+          const uniqueCards = matches.filter(
+            (c, i, arr) => arr.findIndex((x) => x.name === c.name) === i
+          )
+
+          if (uniqueCards.length > 1) {
+            uniqueCards.sort((a, b) => a.name.localeCompare(b.name))
+            const names = uniqueCards.map((c) => c.name)
+
+            add(`choice:${names.join('|')}`, {
+              type: 'choice',
+              choices: names,
+              found: uniqueCards.map((c) => ({ id: c.id, cardIdPrefix: c.cardIdPrefix })),
+            })
+          }
+        })
+      })
+
+      restrictionViolations.value = Array.from(violations.values())
+    }
+
     // --- 同步操作 (Actions) ---
     const addCard = (card) => {
       const cardId = card.id
@@ -38,6 +98,7 @@ export const useDeckStore = defineStore(
           id: cardId,
           cardIdPrefix: card.cardIdPrefix,
           product_name: card.product_name,
+          name: card.name,
           level: card.level,
           color: card.color,
           cost: card.cost,
@@ -45,6 +106,7 @@ export const useDeckStore = defineStore(
           quantity: 1,
         }
       }
+      checkRestrictions()
       return true
     }
 
@@ -57,10 +119,12 @@ export const useDeckStore = defineStore(
       if (cardInDeck.quantity <= 0) {
         delete cardsInDeck.value[cardId]
       }
+      checkRestrictions()
     }
 
     const clearDeck = () => {
       cardsInDeck.value = {}
+      checkRestrictions()
     }
 
     const setEditingDeck = (deck, key) => {
@@ -72,6 +136,7 @@ export const useDeckStore = defineStore(
       coverCardId.value = deck.coverCardId
       deckHistory.value = deck.history || []
       editingDeckKey.value = key
+      checkRestrictions()
     }
 
     const clearEditingDeck = () => {
@@ -261,6 +326,8 @@ export const useDeckStore = defineStore(
       deleteDeck,
       reset,
       fetchDecklog,
+      restrictionViolations,
+      checkRestrictions,
     }
   },
   {
