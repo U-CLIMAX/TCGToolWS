@@ -3,19 +3,12 @@ import { ref, computed } from 'vue'
 import { useAuthStore } from './auth'
 import { findDeckSeriesId } from '@/utils/findDeckSeriesId'
 import { deckRestrictions } from '@/maps/deck-restrictions'
-import { seriesMap } from '@/maps/series-map'
-
-// Pre-calculate ID to Prefixes map for efficient lookup
-const idToPrefixes = Object.values(seriesMap).reduce((acc, series) => {
-  acc[series.id] = series.prefixes
-  return acc
-}, {})
 
 export const useDeckStore = defineStore(
   'deck',
   () => {
     // --- 狀態 (State) ---
-    const version = ref(2)
+    const version = ref(1)
     const cardsInDeck = ref({})
     const seriesId = ref('')
     const deckName = ref('')
@@ -41,98 +34,87 @@ export const useDeckStore = defineStore(
     const checkRestrictions = () => {
       const cards = Object.values(cardsInDeck.value)
       const violations = new Map()
-      const cardsBySeries = new Map()
 
-      cards.forEach((card) => {
-        const prefix = card.id.split('/')[0]
-        if (!cardsBySeries.has(prefix)) {
-          cardsBySeries.set(prefix, new Map())
+      const addViolation = (key, data) => {
+        if (!violations.has(key)) {
+          violations.set(key, data)
         }
-        const seriesCards = cardsBySeries.get(prefix)
+      }
 
-        if (!seriesCards.has(card.name)) {
-          seriesCards.set(card.name, [])
-        }
-        seriesCards.get(card.name).push(card)
-      })
+      const checkBanned = (banned) => {
+        banned.forEach((obj) => {
+          const [cardName, restrictedIds] = Object.entries(obj)[0]
+          const card = cards.find((c) => restrictedIds.includes(c.id))
 
-      Object.entries(deckRestrictions).forEach(
-        ([sid, { banned = [], limited = [], choice = [] }]) => {
-          const validPrefixes = idToPrefixes[sid] || []
-
-          // 只處理相關 series 的卡片
-          const relevantCards = new Map()
-          validPrefixes.forEach((prefix) => {
-            const seriesCards = cardsBySeries.get(prefix)
-            if (seriesCards) {
-              seriesCards.forEach((cards, name) => {
-                if (!relevantCards.has(name)) {
-                  relevantCards.set(name, [])
-                }
-                relevantCards.get(name).push(...cards)
-              })
-            }
-          })
-
-          // Banned 檢查
-          banned.forEach((name) => {
-            const matches = relevantCards.get(name)
-            if (matches && matches.length > 0) {
-              const card = matches[0]
-              violations.set(`banned:${name}`, {
-                type: 'banned',
-                cardName: name,
-                card: { id: card.id, cardIdPrefix: card.cardIdPrefix },
-              })
-            }
-          })
-
-          // Limited 檢查
-          limited.forEach(({ cardName, limit }) => {
-            const matches = relevantCards.get(cardName)
-            if (matches) {
-              const quantity = matches.reduce((sum, c) => sum + c.quantity, 0)
-              if (quantity > limit) {
-                violations.set(`limited:${cardName}`, {
-                  type: 'limited',
-                  cardName,
-                  limit,
-                  card: {
-                    id: matches[0].id,
-                    cardIdPrefix: matches[0].cardIdPrefix,
-                    quantity,
-                  },
-                })
-              }
-            }
-          })
-
-          // Choice 檢查
-          choice.forEach((list) => {
-            const foundItems = []
-
-            list.forEach((name) => {
-              const matches = relevantCards.get(name)
-              if (matches && matches.length > 0) {
-                foundItems.push({ name, card: matches[0] })
-              }
+          if (card) {
+            addViolation(`banned:${cardName}`, {
+              type: 'banned',
+              cardName,
+              card: {
+                id: card.id,
+                cardIdPrefix: card.cardIdPrefix,
+              },
             })
+          }
+        })
+      }
 
-            if (foundItems.length > 1) {
-              foundItems.sort((a, b) => a.name.localeCompare(b.name))
+      const checkLimited = (limited) => {
+        limited.forEach(({ cardName, cardId, limit }) => {
+          const matches = cards.filter((c) => cardId.includes(c.id))
+          const quantity = matches.reduce((sum, c) => sum + c.quantity, 0)
 
-              violations.set(`choice:${foundItems.map((item) => item.name).join('|')}`, {
-                type: 'choice',
-                choices: foundItems.map((item) => item.name),
-                found: foundItems.map((item) => ({
-                  id: item.card.id,
-                  cardIdPrefix: item.card.cardIdPrefix,
-                })),
-              })
-            }
-          })
-        }
-      )
+          if (quantity > limit) {
+            addViolation(`limited:${cardName}`, {
+              type: 'limited',
+              cardName,
+              limit,
+              card: {
+                id: matches[0].id,
+                cardIdPrefix: matches[0].cardIdPrefix,
+                quantity,
+              },
+            })
+          }
+        })
+      }
+
+      const checkChoice = (choice) => {
+        choice.forEach((list) => {
+          const foundCardsList = list
+            .map((obj) => {
+              const [cardName, restrictedIds] = Object.entries(obj)[0]
+              const match = cards.find((c) => restrictedIds.includes(c.id))
+              return match ? { ...match, name: cardName } : null
+            })
+            .filter(Boolean)
+
+          if (foundCardsList.length > 1) {
+            foundCardsList.sort((a, b) => a.name.localeCompare(b.name))
+
+            const choices = foundCardsList.map((c) => c.name)
+            const found = foundCardsList.map((c) => ({
+              id: c.id,
+              name: c.name,
+              cardIdPrefix: c.cardIdPrefix,
+            }))
+
+            addViolation(`choice:${choices.join('|')}`, {
+              type: 'choice',
+              choices,
+              found,
+            })
+          }
+        })
+      }
+
+      Object.values(deckRestrictions).forEach((restrictions) => {
+        const { banned = [], limited = [], choice = [] } = restrictions
+
+        checkBanned(banned)
+        checkLimited(limited)
+        checkChoice(choice)
+      })
 
       restrictionViolations.value = Array.from(violations.values())
     }
@@ -147,7 +129,6 @@ export const useDeckStore = defineStore(
           id: cardId,
           cardIdPrefix: card.cardIdPrefix,
           product_name: card.product_name,
-          name: card.name,
           level: card.level,
           color: card.color,
           cost: card.cost,
