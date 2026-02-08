@@ -27,7 +27,7 @@ export const deckRestrictions = {
   },
   'bd': {
     banned: ['キラキラを求めて 香澄'],
-    choice: ['市ヶ谷有咲', 'がんばれパン', '拒絶の言葉 豊川祥子'],
+    choice: [['市ヶ谷有咲', 'がんばれパン', '拒絶の言葉 豊川祥子']],
   },
   'hll': {
     limited: [{ cardName: '見守る者 学園長', limit: 1 }],
@@ -49,7 +49,7 @@ export const deckRestrictions = {
     limited: [{ cardName: '“その笑顔を守るために”叶星', limit: 3 }],
   },
   '5hy': {
-    limted: [{ cardName: '走り出す恋心 中野 二乃', limit: 2 }],
+    limited: [{ cardName: '走り出す恋心 中野 二乃', limit: 2 }],
     choice: [
       [
         '大切なお守り',
