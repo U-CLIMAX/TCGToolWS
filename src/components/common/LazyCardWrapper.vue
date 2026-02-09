@@ -80,7 +80,7 @@ onUnmounted(() => {
 <style scoped>
 .lazy-card-wrapper {
   width: 100%;
-  contain: layout paint;
+  contain: layout;
 }
 .content-container {
   display: contents;
