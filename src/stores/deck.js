@@ -8,7 +8,7 @@ export const useDeckStore = defineStore(
   'deck',
   () => {
     // --- 狀態 (State) ---
-    const version = ref(1)
+    const version = ref(2)
     const cardsInDeck = ref({})
     const seriesId = ref('')
     const deckName = ref('')
