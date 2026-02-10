@@ -530,7 +530,7 @@ onMounted(async () => {
         const localCards = Object.values(deckStore.cardsInDeck)
         deck.value = {
           name: '当前卡组',
-          cards: deckStore.cardsInDeck,
+          deckData: deckStore.cardsInDeck,
           coverCardId: deckStore.coverCardId || (localCards.length > 0 ? localCards[0].id : null),
           seriesId: deckStore.seriesId,
         }
