@@ -20,7 +20,7 @@ import DeckDetail from '@/components/deck/DeckDetailTemplate.vue'
 
 const route = useRoute()
 const router = useRouter()
-const { decodeDeck, encodeDeck } = useDeckEncoder()
+const { decodeData, encodeData } = useDeckEncoder()
 const uiStore = useUIStore()
 const deckStore = useDeckStore()
 const { triggerSnackbar } = useSnackbar()
@@ -48,7 +48,7 @@ const handleSaveDeck = async ({ name, coverCardId }) => {
     }, {})
 
     const key = generateDeckKey()
-    const compressedData = await encodeDeck(cardsToEncode)
+    const compressedData = await encodeData(cardsToEncode)
 
     await deckStore.saveEncodedDeck(key, compressedData, {
       name: name,
@@ -73,7 +73,7 @@ onMounted(async () => {
     let initialCards = {}
     deck.value = {
       ...deckStore.savedDecks[deckKey],
-      deckData: await decodeDeck(toRaw(deckStore.savedDecks[deckKey].deckData)),
+      deckData: await decodeData(toRaw(deckStore.savedDecks[deckKey].deckData)),
     }
     initialCards = deck.value.deckData
 

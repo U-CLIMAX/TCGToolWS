@@ -10,11 +10,11 @@ export const useDeckEncoder = () => {
     workerInstance.terminate()
   })
 
-  const encodeDeck = async (data) => {
+  const encodeData = async (data) => {
     return await deckWorker.compress(data)
   }
 
-  const decodeDeck = async (data) => {
+  const decodeData = async (data) => {
     try {
       return await deckWorker.decompress(data)
     } catch {
@@ -23,7 +23,7 @@ export const useDeckEncoder = () => {
   }
 
   return {
-    encodeDeck,
-    decodeDeck,
+    encodeData,
+    decodeData,
   }
 }

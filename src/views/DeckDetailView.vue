@@ -394,7 +394,7 @@ const resize = computed(() => {
 })
 const route = useRoute()
 const router = useRouter()
-const { decodeDeck } = useDeckEncoder()
+const { decodeData } = useDeckEncoder()
 const { triggerSnackbar } = useSnackbar()
 const uiStore = useUIStore()
 const authStore = useAuthStore()
@@ -542,8 +542,8 @@ onMounted(async () => {
     } else {
       deck.value = {
         ...deckStore.savedDecks[deckKey],
-        deckData: await decodeDeck(toRaw(deckStore.savedDecks[deckKey].deckData)),
-        history: await decodeDeck(toRaw(deckStore.savedDecks[deckKey].history)),
+        deckData: await decodeData(toRaw(deckStore.savedDecks[deckKey].deckData)),
+        history: await decodeData(toRaw(deckStore.savedDecks[deckKey].history)),
       }
       initialCards = deck.value.deckData
       console.log(deck.value)

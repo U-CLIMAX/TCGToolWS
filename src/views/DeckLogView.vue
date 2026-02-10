@@ -21,7 +21,7 @@ import { generateDeckKey } from '@/utils/nanoid'
 
 const route = useRoute()
 const router = useRouter()
-const { encodeDeck } = useDeckEncoder()
+const { encodeData } = useDeckEncoder()
 const uiStore = useUIStore()
 const deckStore = useDeckStore()
 const { triggerSnackbar } = useSnackbar()
@@ -50,7 +50,7 @@ const handleSaveDeck = async ({ name, coverCardId }) => {
     const key = generateDeckKey()
     const deckSeriesId = findDeckSeriesId(Object.keys(cards.value))
 
-    const compressedData = await encodeDeck(cardsToEncode)
+    const compressedData = await encodeData(cardsToEncode)
     await deckStore.saveEncodedDeck(key, compressedData, {
       name: name,
       seriesId: deckSeriesId,

@@ -438,7 +438,7 @@ defineProps({
 const router = useRouter()
 const { smAndUp, smAndDown } = useDisplay()
 const deckStore = useDeckStore()
-const { encodeDeck } = useDeckEncoder()
+const { encodeData } = useDeckEncoder()
 const { triggerSnackbar } = useSnackbar()
 const uiStore = useUIStore()
 const { isTouch } = useDevice()
@@ -526,7 +526,7 @@ const handleCreateDeck = async () => {
   uiStore.setLoading(true)
   try {
     const key = generateDeckKey()
-    const compressedDeckData = await encodeDeck(toRaw(deckStore.cardsInDeck))
+    const compressedDeckData = await encodeData(toRaw(deckStore.cardsInDeck))
 
     await deckStore.saveEncodedDeck(key, compressedDeckData, {
       name: deckName.value,
@@ -625,8 +625,8 @@ const handleUpdateDeck = async (historyText = '', diff = []) => {
       }
     }
 
-    const compressedDeckData = await encodeDeck(toRaw(deckStore.cardsInDeck))
-    const compressedHistoryData = await encodeDeck(updatedHistory)
+    const compressedDeckData = await encodeData(toRaw(deckStore.cardsInDeck))
+    const compressedHistoryData = await encodeData(updatedHistory)
 
     await deckStore.updateEncodedDeck(deckStore.editingDeckKey, compressedDeckData, {
       name: deckName.value,
