@@ -57,6 +57,38 @@
                 </v-list>
               </v-menu>
 
+              <!-- Decks Dropdown -->
+              <v-menu v-else-if="item.name === 'Decks'" open-on-hover>
+                <template v-slot:activator="{ props }">
+                  <v-btn
+                    variant="text"
+                    :active="item.group && $route.meta.group === item.group"
+                    class="h-100 rounded-0"
+                    v-bind="props"
+                  >
+                    <template #prepend>
+                      <v-icon :icon="navIcons[item.icon]" size="24"></v-icon>
+                    </template>
+                    {{ item.text }}
+                  </v-btn>
+                </template>
+                <v-list density="compact" :class="{ 'glass-menu': hasBackgroundImage }">
+                  <v-list-item
+                    v-if="authStore.isAuthenticated"
+                    :to="{ name: 'Decks' }"
+                    title="我的卡组"
+                    prepend-icon="mdi-cards-variant"
+                  >
+                  </v-list-item>
+                  <v-list-item
+                    :to="{ name: 'DecksGallery' }"
+                    title="卡组广场"
+                    prepend-icon="mdi-view-grid-outline"
+                  >
+                  </v-list-item>
+                </v-list>
+              </v-menu>
+
               <!-- Standard Buttons -->
               <v-btn
                 v-else-if="!item.requiresAuth || authStore.isAuthenticated"
@@ -160,6 +192,35 @@
               color="ws-rose"
               :to="{ name: 'GlobalSearch', params: { game: 'wsr' } }"
               title="Weiβ Schwarz Rose"
+            >
+            </v-list-item>
+          </v-list>
+        </v-menu>
+
+        <!-- Decks Menu -->
+        <v-menu v-else-if="item.name === 'Decks'" location="top center" offset="10">
+          <template v-slot:activator="{ props }">
+            <v-btn
+              v-bind="props"
+              :value="item.name"
+              :active="item.group && $route.meta.group === item.group"
+              style="min-width: 0"
+            >
+              <v-icon :icon="navIcons[item.icon]"></v-icon>
+            </v-btn>
+          </template>
+          <v-list density="compact" :class="{ 'glass-menu': hasBackgroundImage }">
+            <v-list-item
+              v-if="authStore.isAuthenticated"
+              :to="{ name: 'Decks' }"
+              title="我的卡组"
+              prepend-icon="mdi-cards-variant"
+            >
+            </v-list-item>
+            <v-list-item
+              :to="{ name: 'DecksGallery' }"
+              title="卡组广场"
+              prepend-icon="mdi-view-grid-outline"
             >
             </v-list-item>
           </v-list>
@@ -361,7 +422,7 @@ const navItems = [
     icon: 'series-card-table.svg',
     group: 'series',
   },
-  { text: '我的卡组', name: 'Decks', requiresAuth: true, icon: 'deck.svg', group: 'decks' },
+  { text: '卡组', name: 'Decks', requiresAuth: false, icon: 'deck.svg', group: 'decks' },
 ]
 
 const appStyle = computed(() => {

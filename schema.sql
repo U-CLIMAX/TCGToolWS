@@ -66,3 +66,16 @@ CREATE INDEX IF NOT EXISTS idx_listings_price_desc_id ON market_listings(price D
 CREATE INDEX IF NOT EXISTS idx_listings_series_updated_id ON market_listings( series_id, updated_at DESC, id DESC);
 CREATE INDEX IF NOT EXISTS idx_listings_series_price_asc_id ON market_listings( series_id, price ASC, id ASC);
 CREATE INDEX IF NOT EXISTS idx_listings_series_price_desc_id ON market_listings( series_id, price DESC, id DESC);
+
+CREATE TABLE IF NOT EXISTS decks_gallery (
+    key TEXT PRIMARY KEY,
+    series_id TEXT NOT NULL,
+    user_id TEXT NOT NULL,
+    deck_name TEXT NOT NULL,
+    cover_cards_id TEXT NOT NULL,
+    climax_cards_id TEXT NOT NULL,
+    deck_data BLOB NOT NULL,
+    updated_at INTEGER,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+CREATE INDEX IF NOT EXISTS idx_decks_gallery_user_id ON decks_gallery(user_id);

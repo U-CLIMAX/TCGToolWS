@@ -192,7 +192,7 @@ export const useDeckStore = defineStore(
     const saveEncodedDeck = async (
       key,
       deckData,
-      { name, seriesId, coverCardId, history = [] }
+      { name, seriesId, coverCardId, history = [], isDeckGallery = false, climaxCardsId = [] }
     ) => {
       if (!authStore.token) {
         throw new Error('请先登入')
@@ -211,6 +211,8 @@ export const useDeckStore = defineStore(
           seriesId,
           coverCardId,
           history,
+          isDeckGallery,
+          climaxCardsId,
         }),
       })
 
@@ -219,13 +221,15 @@ export const useDeckStore = defineStore(
         throw new Error(errorData.error || '保存卡组失败')
       }
 
-      savedDecks.value[key] = {
-        deckData,
-        name,
-        seriesId,
-        coverCardId,
-        history,
-        updated_at: Math.floor(Date.now() / 1000),
+      if (!isDeckGallery) {
+        savedDecks.value[key] = {
+          deckData,
+          name,
+          seriesId,
+          coverCardId,
+          history,
+          updated_at: Math.floor(Date.now() / 1000),
+        }
       }
     }
 
