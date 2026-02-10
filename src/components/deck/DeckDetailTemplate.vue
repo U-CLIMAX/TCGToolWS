@@ -227,7 +227,7 @@ const openSaveDialog = () => {
   } else if (props.deck) {
     // 預設名稱與封面
     deckName.value = props.deckTitle.slice(0, 20) || ''
-    selectedCoverCardId.value = props.deck.coverCardId || {
+    selectedCoverCardId.value = props.deck.cover_cards_id || {
       id: Object.values(props.cards)[0]?.id,
       cardIdPrefix: '',
     }
@@ -235,12 +235,8 @@ const openSaveDialog = () => {
   }
 }
 
-const closeSaveDialog = (value) => {
-  if (!value) {
-    isSaveDialogOpen.value = false
-    deckName.value = ''
-    selectedCoverCardId.value = null
-  }
+const closeSaveDialog = () => {
+  isSaveDialogOpen.value = false
 }
 
 const emitSaveDeck = () => {

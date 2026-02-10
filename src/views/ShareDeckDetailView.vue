@@ -2,7 +2,7 @@
   <DeckDetail
     :deck="deck"
     :cards="cards"
-    :deck-title="deck ? deck.name : deckKey"
+    :deck-title="deck ? deck.deck_name : deckKey"
     @save="handleSaveDeck"
   />
 </template>
@@ -49,10 +49,9 @@ const handleSaveDeck = async ({ name, coverCardId }) => {
 
     const key = generateDeckKey()
     const compressedData = await encodeData(cardsToEncode)
-
     await deckStore.saveEncodedDeck(key, compressedData, {
       name: name,
-      seriesId: deck.value.seriesId,
+      seriesId: deck.value.series_id,
       coverCardId: coverCardId,
     })
 
@@ -71,9 +70,10 @@ onMounted(async () => {
 
   try {
     let initialCards = {}
+    const data = await deckStore.fetchDeckByKey(deckKey)
     deck.value = {
-      ...deckStore.savedDecks[deckKey],
-      deckData: await decodeData(toRaw(deckStore.savedDecks[deckKey].deckData)),
+      ...data,
+      deckData: await decodeData(toRaw(data.deck_data)),
     }
     initialCards = deck.value.deckData
 
