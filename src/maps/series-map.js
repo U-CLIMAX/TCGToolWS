@@ -506,7 +506,7 @@ const wsSeriesMap = {
   '赛马娘 Pretty Derby': {
     id: 'uma',
     prefixes: ['UMA'],
-    latestReleaseDate: '2024-09-27',
+    latestReleaseDate: '2026-02-13',
   },
   '孤独摇滚': {
     id: 'btr',
