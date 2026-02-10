@@ -26,7 +26,11 @@ CREATE TABLE IF NOT EXISTS password_resets (
 CREATE TABLE IF NOT EXISTS decks (
     key TEXT PRIMARY KEY,
     user_id TEXT NOT NULL,
+    deck_name TEXT NOT NULL,
+    series_id TEXT NOT NULL,
+    cover_cards_id TEXT NOT NULL,
     deck_data BLOB NOT NULL,
+    history BLOB NOT NULL,
     updated_at INTEGER,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );

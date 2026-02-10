@@ -17,6 +17,7 @@ import { useDeckStore } from '@/stores/deck'
 import { useSnackbar } from '@/composables/useSnackbar'
 import DeckDetail from '@/components/deck/DeckDetailTemplate.vue'
 import { findDeckSeriesId } from '@/utils/findDeckSeriesId'
+import { generateDeckKey } from '@/utils/nanoid'
 
 const route = useRoute()
 const router = useRouter()
@@ -46,16 +47,16 @@ const handleSaveDeck = async ({ name, coverCardId }) => {
       }
       return acc
     }, {})
+    const key = generateDeckKey()
     const deckSeriesId = findDeckSeriesId(Object.keys(cards.value))
-    const deckData = {
+
+    const compressedData = await encodeDeck(cardsToEncode)
+    await deckStore.saveEncodedDeck(key, compressedData, {
       name: name,
-      version: deckStore.version,
-      cards: cardsToEncode,
       seriesId: deckSeriesId,
       coverCardId: coverCardId,
-    }
+    })
 
-    const { key } = await encodeDeck(deckData, { isSharedDeck: true })
     triggerSnackbar('卡组保存成功！', 'success')
     await router.push(`/decks/${key}`)
   } catch (error) {

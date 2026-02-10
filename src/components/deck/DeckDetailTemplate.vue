@@ -114,7 +114,10 @@
           >
             <v-row dense>
               <v-col v-for="card in Object.values(cards)" :key="card.id" cols="4" lg="3">
-                <div class="cover-card-container" @click="selectedCoverCardId = card.id">
+                <div
+                  class="cover-card-container"
+                  @click="selectedCoverCardId = { id: card.id, cardIdPrefix: card.cardIdPrefix }"
+                >
                   <v-img
                     :src="getCardUrls(card.cardIdPrefix, card.id).base"
                     :lazy-src="getCardUrls(card.cardIdPrefix, card.id).blur"
@@ -122,7 +125,7 @@
                     cover
                     class="rounded-lg preload-img"
                     :class="{
-                      'selected-cover': selectedCoverCardId === card.id,
+                      'selected-cover': selectedCoverCardId.id === card.id,
                       'clickable': true,
                     }"
                   >
@@ -224,7 +227,10 @@ const openSaveDialog = () => {
   } else if (props.deck) {
     // 預設名稱與封面
     deckName.value = props.deckTitle.slice(0, 20) || ''
-    selectedCoverCardId.value = props.deck.coverCardId || Object.values(props.cards)[0]?.id
+    selectedCoverCardId.value = props.deck.coverCardId || {
+      id: Object.values(props.cards)[0]?.id,
+      cardIdPrefix: '',
+    }
     isSaveDialogOpen.value = true
   }
 }

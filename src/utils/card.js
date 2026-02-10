@@ -19,7 +19,6 @@ const findAllPrefixesByCardPrefix = (prefix) => {
 }
 
 const cardCache = new Map()
-const filterStore = useFilterStore()
 
 export const fetchCardByIdAndPrefix = (id, prefix) => {
   const cacheKey = `${prefix}-${id}`
@@ -54,6 +53,7 @@ export const fetchCardByIdAndPrefix = (id, prefix) => {
 
 export const fetchCardsByBaseIdAndPrefix = async (baseId, prefix) => {
   try {
+    const filterStore = useFilterStore()
     const seriesPrefixes = findAllPrefixesByCardPrefix(prefix)
     const { allCards } = await filterStore.fetchAndProcessCards(seriesPrefixes)
     const cards = allCards.filter((c) => c.baseId === baseId)

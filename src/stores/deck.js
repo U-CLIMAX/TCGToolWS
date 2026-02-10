@@ -136,6 +136,11 @@ export const useDeckStore = defineStore(
           quantity: 1,
         }
       }
+
+      if (coverCardId.value === '') {
+        coverCardId.value = { id: card.id, cardIdPrefix: card.cardIdPrefix }
+      }
+
       checkRestrictions()
       return true
     }
@@ -153,28 +158,25 @@ export const useDeckStore = defineStore(
     }
 
     const clearDeck = () => {
+      deckName.value = ''
+      coverCardId.value = ''
+      editingDeckKey.value = ''
+      deckHistory.value = []
+      originalCardsInDeck.value = {}
       cardsInDeck.value = {}
       checkRestrictions()
     }
 
     const setEditingDeck = (deck, key) => {
       // Deep copy for diffing later
-      originalCardsInDeck.value = JSON.parse(JSON.stringify(deck.cards))
-      cardsInDeck.value = deck.cards
+      originalCardsInDeck.value = JSON.parse(JSON.stringify(deck.deckData))
+      cardsInDeck.value = deck.deckData
       seriesId.value = deck.seriesId
       deckName.value = deck.name
       coverCardId.value = deck.coverCardId
       deckHistory.value = deck.history || []
       editingDeckKey.value = key
       checkRestrictions()
-    }
-
-    const clearEditingDeck = () => {
-      deckName.value = ''
-      coverCardId.value = ''
-      editingDeckKey.value = ''
-      deckHistory.value = []
-      originalCardsInDeck.value = {}
     }
 
     const updateDominantSeriesId = () => {
@@ -187,7 +189,11 @@ export const useDeckStore = defineStore(
     /**
      * 保存卡组。如果API调用失败，将抛出一个错误。
      */
-    const saveEncodedDeck = async (key, compressedData, isSharedDeck = false) => {
+    const saveEncodedDeck = async (
+      key,
+      deckData,
+      { name, seriesId, coverCardId, history = [] }
+    ) => {
       if (!authStore.token) {
         throw new Error('请先登入')
       }
@@ -198,7 +204,14 @@ export const useDeckStore = defineStore(
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${authStore.token}`,
         },
-        body: JSON.stringify({ key, deckData: compressedData }),
+        body: JSON.stringify({
+          key,
+          deckData,
+          name,
+          seriesId,
+          coverCardId,
+          history,
+        }),
       })
 
       if (!response.ok) {
@@ -206,16 +219,24 @@ export const useDeckStore = defineStore(
         throw new Error(errorData.error || '保存卡组失败')
       }
 
-      savedDecks.value[key] = compressedData
-      if (!isSharedDeck) {
-        cardsInDeck.value = {}
+      savedDecks.value[key] = {
+        deckData,
+        name,
+        seriesId,
+        coverCardId,
+        history,
+        updated_at: Math.floor(Date.now() / 1000),
       }
     }
 
     /**
      * 更新现有卡组。
      */
-    const updateEncodedDeck = async (key, compressedData) => {
+    const updateEncodedDeck = async (
+      key,
+      deckData,
+      { name, seriesId, coverCardId, history = [] }
+    ) => {
       if (!authStore.token) {
         throw new Error('请先登入')
       }
@@ -226,7 +247,13 @@ export const useDeckStore = defineStore(
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${authStore.token}`,
         },
-        body: JSON.stringify({ deckData: compressedData }),
+        body: JSON.stringify({
+          deckData,
+          name,
+          seriesId,
+          coverCardId,
+          history,
+        }),
       })
 
       if (!response.ok) {
@@ -234,7 +261,14 @@ export const useDeckStore = defineStore(
         throw new Error(errorData.error || '更新卡组失败')
       }
 
-      savedDecks.value[key] = compressedData
+      savedDecks.value[key] = {
+        deckData,
+        name,
+        seriesId,
+        coverCardId,
+        history,
+        updated_at: Math.floor(Date.now() / 1000),
+      }
     }
 
     /**
@@ -260,7 +294,14 @@ export const useDeckStore = defineStore(
       decks.sort((a, b) => b.updated_at - a.updated_at)
 
       savedDecks.value = decks.reduce((acc, deck) => {
-        acc[deck.key] = deck.deck_data
+        acc[deck.key] = {
+          deckData: deck.deck_data,
+          name: deck.deck_name,
+          seriesId: deck.series_id,
+          coverCardId: deck.cover_cards_id,
+          history: deck.history,
+          updated_at: deck.updated_at,
+        }
         return acc
       }, {})
     }
@@ -318,7 +359,6 @@ export const useDeckStore = defineStore(
 
       if (editingDeckKey.value === key) {
         clearDeck()
-        clearEditingDeck()
       }
     }
 
@@ -346,7 +386,6 @@ export const useDeckStore = defineStore(
       removeCard,
       clearDeck,
       setEditingDeck,
-      clearEditingDeck,
       updateDominantSeriesId,
       savedDecks,
       saveEncodedDeck,

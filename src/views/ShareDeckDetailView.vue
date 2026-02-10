@@ -8,18 +8,21 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, toRaw } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useDeckEncoder } from '@/composables/useDeckEncoder'
 import { fetchCardByIdAndPrefix } from '@/utils/card'
 import { useUIStore } from '@/stores/ui'
 import { useSnackbar } from '@/composables/useSnackbar'
+import { useDeckStore } from '@/stores/deck'
+import { generateDeckKey } from '@/utils/nanoid'
 import DeckDetail from '@/components/deck/DeckDetailTemplate.vue'
 
 const route = useRoute()
 const router = useRouter()
 const { decodeDeck, encodeDeck } = useDeckEncoder()
 const uiStore = useUIStore()
+const deckStore = useDeckStore()
 const { triggerSnackbar } = useSnackbar()
 
 const deckKey = route.params.key
@@ -44,15 +47,15 @@ const handleSaveDeck = async ({ name, coverCardId }) => {
       return acc
     }, {})
 
-    const deckData = {
+    const key = generateDeckKey()
+    const compressedData = await encodeDeck(cardsToEncode)
+
+    await deckStore.saveEncodedDeck(key, compressedData, {
       name: name,
-      version: deck.value.version,
-      cards: cardsToEncode,
       seriesId: deck.value.seriesId,
       coverCardId: coverCardId,
-    }
+    })
 
-    const { key } = await encodeDeck(deckData, { isSharedDeck: true })
     triggerSnackbar('卡组保存成功！', 'success')
     await router.push(`/decks/${key}`)
   } catch (error) {
@@ -68,9 +71,11 @@ onMounted(async () => {
 
   try {
     let initialCards = {}
-    const decoded = await decodeDeck(deckKey, true)
-    deck.value = decoded
-    initialCards = decoded.cards
+    deck.value = {
+      ...deckStore.savedDecks[deckKey],
+      deckData: await decodeDeck(toRaw(deckStore.savedDecks[deckKey].deckData)),
+    }
+    initialCards = deck.value.deckData
 
     // ---獲取所有卡片的完整資料 ---
     const cardPromises = Object.values(initialCards).map(async (card) => {

@@ -8,10 +8,10 @@ import { fetchDecklogData } from '../services/decklog.js'
  */
 export const handleCreateDeck = async (c) => {
   try {
-    const { key, deckData } = await c.req.json()
+    const { key, deckData, name, seriesId, coverCardId, history } = await c.req.json()
 
-    if (!key || !deckData) {
-      return createErrorResponse(c, 400, '缺少 key 或 deckData')
+    if (!key || !deckData || !name || !seriesId || !coverCardId) {
+      return createErrorResponse(c, 400, '缺少必要参数')
     }
 
     const user = c.get('user')
@@ -28,17 +28,23 @@ export const handleCreateDeck = async (c) => {
       return createErrorResponse(c, 403, `最多只能储存 ${MAX_DECKS_PER_USER} 副卡组`)
     }
 
+    const coverCardIdStr = JSON.stringify(coverCardId)
     const deckDataArray = new Uint8Array(Object.values(deckData))
+    const historyArray = new Uint8Array(Object.values(history || []))
     const now = Math.floor(Date.now() / 1000)
 
     const info = await c.env.DB.prepare(
-      `INSERT INTO decks (key, user_id, deck_data, updated_at)
-       VALUES (?, ?, ?, ?)
+      `INSERT INTO decks (key, user_id, deck_name, series_id, cover_cards_id, deck_data, history, updated_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?)
        ON CONFLICT(key) DO UPDATE SET
+       deck_name = excluded.deck_name,
+       series_id = excluded.series_id,
+       cover_cards_id = excluded.cover_cards_id,
        deck_data = excluded.deck_data,
+       history = excluded.history,
        updated_at = excluded.updated_at`
     )
-      .bind(key, user.id, deckDataArray, now)
+      .bind(key, user.id, name, seriesId, coverCardIdStr, deckDataArray, historyArray, now)
       .run()
 
     if (!info.success) {
@@ -61,12 +67,17 @@ export const handleGetDecks = async (c) => {
     const user = c.get('user')
 
     const { results } = await c.env.DB.prepare(
-      'SELECT key, deck_data, updated_at FROM decks WHERE user_id = ?'
+      'SELECT key, deck_name, series_id, cover_cards_id, deck_data, history, updated_at FROM decks WHERE user_id = ?'
     )
       .bind(user.id)
       .all()
 
-    return c.json(results)
+    const parsedResults = results.map((result) => {
+      result.cover_cards_id = JSON.parse(result.cover_cards_id)
+      return result
+    })
+
+    return c.json(parsedResults)
   } catch (error) {
     console.error('Error fetching decks:', error)
     return createErrorResponse(c, 500, '内部服务器错误')
@@ -82,10 +93,12 @@ export const handleGetDeckByKey = async (c) => {
   try {
     const { key } = c.req.param()
 
-    const result = await c.env.DB.prepare('SELECT key, deck_data FROM decks WHERE key = ?')
+    const result = await c.env.DB.prepare(
+      'SELECT key, deck_name, series_id, cover_cards_id, deck_data, history FROM decks WHERE key = ?'
+    )
       .bind(key)
       .first()
-
+    result.cover_cards_id = JSON.parse(result.cover_cards_id)
     if (!result) {
       return createErrorResponse(c, 404, '卡组不存在')
     }
@@ -139,20 +152,22 @@ export const handleDeleteDeck = async (c) => {
 export const handleUpdateDeck = async (c) => {
   try {
     const { key } = c.req.param()
-    const { deckData } = await c.req.json()
+    const { deckData, name, seriesId, coverCardId, history } = await c.req.json()
 
-    if (!key || !deckData) {
+    if (!key || !deckData || !name || !seriesId || !coverCardId) {
       return createErrorResponse(c, 400, '缺少重要参数')
     }
 
     const user = c.get('user')
+    const coverCardIdStr = JSON.stringify(coverCardId)
     const deckDataArray = new Uint8Array(Object.values(deckData))
+    const historyArray = new Uint8Array(Object.values(history || []))
 
     const now = Math.floor(Date.now() / 1000)
     const info = await c.env.DB.prepare(
-      `UPDATE decks SET deck_data = ?, updated_at = ? WHERE key = ? AND user_id = ?`
+      `UPDATE decks SET deck_name = ?, series_id = ?, cover_cards_id = ?, deck_data = ?, history = ?, updated_at = ? WHERE key = ? AND user_id = ?`
     )
-      .bind(deckDataArray, now, key, user.id)
+      .bind(name, seriesId, coverCardIdStr, deckDataArray, historyArray, now, key, user.id)
       .run()
 
     if (!info.success) {

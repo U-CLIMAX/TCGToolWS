@@ -97,19 +97,9 @@ const { triggerSnackbar } = useSnackbar()
 
 const isDeleteDialogOpen = ref(false)
 
-const coverCard = computed(() => {
-  const cards = props.deck?.cards || {}
-  const cardsArray = Object.values(cards)
-  return (
-    cardsArray.find((card) => card.id === props.deck?.coverCardId) ||
-    cardsArray.slice().sort((a, b) => a.id - b.id)[0] ||
-    null
-  )
-})
-
 const { base: imageUrl, blur: blurUrl } = getCardUrls(
-  coverCard.value.cardIdPrefix,
-  coverCard.value.id
+  props.deck.coverCardId.cardIdPrefix,
+  props.deck.coverCardId.id
 )
 
 const isLocalDeck = computed(() => props.deckKey === 'local')

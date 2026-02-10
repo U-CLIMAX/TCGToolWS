@@ -367,7 +367,7 @@
 </template>
 
 <script setup>
-import { computed, ref, onUnmounted, onMounted, nextTick, watch } from 'vue'
+import { computed, ref, onUnmounted, onMounted, nextTick, watch, toRaw } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useDeckEncoder } from '@/composables/useDeckEncoder'
 import { useDisplay } from 'vuetify'
@@ -540,9 +540,13 @@ onMounted(async () => {
         return
       }
     } else {
-      const decoded = await decodeDeck(deckKey)
-      deck.value = decoded
-      initialCards = decoded.cards
+      deck.value = {
+        ...deckStore.savedDecks[deckKey],
+        deckData: await decodeDeck(toRaw(deckStore.savedDecks[deckKey].deckData)),
+        history: await decodeDeck(toRaw(deckStore.savedDecks[deckKey].history)),
+      }
+      initialCards = deck.value.deckData
+      console.log(deck.value)
     }
 
     cards.value = Object.values(initialCards).reduce((acc, card) => {
@@ -552,13 +556,12 @@ onMounted(async () => {
       } else {
         acc[card.id] = { ...card, baseId }
       }
-
       return acc
     }, {})
 
     // Process originalCards here after deck.value is set
-    if (deck.value?.cards) {
-      const cardsArray = Object.values(deck.value.cards)
+    if (deck.value?.deckData) {
+      const cardsArray = Object.values(deck.value.deckData)
       originalCards.value = await Promise.all(
         cardsArray.map(async (card) => {
           const fullCardData = await fetchCardByIdAndPrefix(card.id, card.cardIdPrefix)

@@ -113,11 +113,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch, computed } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useDeckStore } from '@/stores/deck'
 import { useAuthStore } from '@/stores/auth'
-import { useDeckEncoder } from '@/composables/useDeckEncoder'
 import DeckCard from '@/components/deck/DeckCard.vue'
 import LazyCardWrapper from '@/components/common/LazyCardWrapper.vue'
 import { useUIStore } from '@/stores/ui'
@@ -129,14 +128,12 @@ import DeckIcon from '@/assets/ui/deck.svg'
 const router = useRouter()
 const deckStore = useDeckStore()
 const authStore = useAuthStore()
-const { decodeDeck } = useDeckEncoder()
 const uiStore = useUIStore()
 const { triggerSnackbar } = useSnackbar()
 
 const deckCode = ref('')
 const deckNameSearchTerm = ref('')
 const selectedSeries = ref(null)
-const decodedDecks = ref({})
 const initialLoadingComplete = ref(false)
 const showDeckCodeDialog = ref(false)
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
@@ -161,7 +158,7 @@ const availableSeriesOptions = computed(() => {
   const counts = {}
 
   // 遍歷所有已解碼的牌組來統計數量
-  Object.values(decodedDecks.value).forEach((deck) => {
+  Object.values(deckStore.savedDecks).forEach((deck) => {
     if (deck.seriesId) {
       const foundEntry = Object.entries(seriesMap).find(([, info]) => info.id === deck.seriesId)
 
@@ -185,11 +182,11 @@ const filteredDecks = computed(() => {
   const seriesFilter = selectedSeries.value // 這裡拿到的仍然是純系列名稱 (value)
 
   if (!searchTerm && !seriesFilter) {
-    return decodedDecks.value
+    return deckStore.savedDecks
   }
 
   return Object.fromEntries(
-    Object.entries(decodedDecks.value).filter(([, deck]) => {
+    Object.entries(deckStore.savedDecks).filter(([, deck]) => {
       // 名稱篩選邏輯
       const matchesName = !searchTerm || deck.name.toLowerCase().includes(searchTerm)
 
@@ -260,17 +257,6 @@ const displayedDecks = computed(() => {
   return items
 })
 
-const loadDecodedDecks = async () => {
-  const decks = {}
-  for (const key in deckStore.savedDecks) {
-    const decoded = await decodeDeck(key)
-    if (decoded) {
-      decks[key] = decoded
-    }
-  }
-  decodedDecks.value = decks
-}
-
 onMounted(async () => {
   uiStore.setLoading(true)
 
@@ -283,13 +269,6 @@ onMounted(async () => {
     initialLoadingComplete.value = true
   }
 })
-
-watch(
-  () => deckStore.savedDecks,
-  async () => {
-    await loadDecodedDecks()
-  }
-)
 </script>
 
 <style scoped>

@@ -219,14 +219,20 @@
         >
           <v-row dense class="h-100">
             <v-col v-for="card in deckCards" :key="card.id" cols="4" lg="3">
-              <div class="cover-card-container" @click="selectedCoverCardId = card.id">
+              <div
+                class="cover-card-container"
+                @click="selectedCoverCardId = { id: card.id, cardIdPrefix: card.cardIdPrefix }"
+              >
                 <v-img
                   :src="getCardUrls(card.cardIdPrefix, card.id).base"
                   :lazy-src="getCardUrls(card.cardIdPrefix, card.id).blur"
                   :aspect-ratio="400 / 559"
                   cover
                   class="rounded-lg preload-img"
-                  :class="{ 'selected-cover': selectedCoverCardId === card.id, 'clickable': true }"
+                  :class="{
+                    'selected-cover': selectedCoverCardId.id === card.id,
+                    'clickable': true,
+                  }"
                 >
                   <template #error>
                     <v-img
@@ -412,6 +418,7 @@ import { useUIStore } from '@/stores/ui'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import { sortCards } from '@/utils/cardsSort'
 import { deckRestrictionsLastUpdated } from '@/maps/deck-restrictions'
+import { generateDeckKey } from '@/utils/nanoid'
 
 defineProps({
   headerOffsetHeight: {
@@ -477,21 +484,17 @@ const openSaveDialog = () => {
       deckName.value = deckStore.deckName
       selectedCoverCardId.value = deckStore.coverCardId
     } else {
-      selectedCoverCardId.value = deckCards.value[0].id
+      selectedCoverCardId.value = {
+        id: deckCards.value[0].id,
+        cardIdPrefix: deckCards.value[0].cardIdPrefix,
+      }
     }
     isSaveDialogOpen.value = true
   }
 }
 
-const closeSaveDialog = (value) => {
-  if (!value) {
-    // Reset state when dialog is closed
-    isSaveDialogOpen.value = false
-    if (!deckStore.editingDeckKey) {
-      deckName.value = ''
-      selectedCoverCardId.value = null
-    }
-  }
+const closeSaveDialog = () => {
+  isSaveDialogOpen.value = false
 }
 
 const openClearConfirmDialog = () => {
@@ -507,7 +510,6 @@ const openClearConfirmDialog = () => {
 
 const confirmClearAction = () => {
   deckStore.clearDeck()
-  deckStore.clearEditingDeck()
   isClearConfirmDialogOpen.value = false
 }
 
@@ -523,19 +525,18 @@ const handleCreateDeck = async () => {
   deckStore.updateDominantSeriesId()
   uiStore.setLoading(true)
   try {
-    const deckData = {
+    const key = generateDeckKey()
+    const compressedDeckData = await encodeDeck(toRaw(deckStore.cardsInDeck))
+
+    await deckStore.saveEncodedDeck(key, compressedDeckData, {
       name: deckName.value,
-      version: deckStore.version,
-      cards: toRaw(deckStore.cardsInDeck),
       seriesId: deckStore.seriesId,
       coverCardId: selectedCoverCardId.value,
-    }
-    const { key } = await encodeDeck(deckData, { isSharedDeck: false })
+    })
 
     isSaveDialogOpen.value = false
     triggerSnackbar('新卡组已成功创建！', 'success')
     await router.push(`/decks/${key}`)
-    deckStore.clearEditingDeck()
     deckStore.clearDeck()
   } catch (error) {
     triggerSnackbar(error.message, 'error')
@@ -624,21 +625,20 @@ const handleUpdateDeck = async (historyText = '', diff = []) => {
       }
     }
 
-    const deckData = {
+    const compressedDeckData = await encodeDeck(toRaw(deckStore.cardsInDeck))
+    const compressedHistoryData = await encodeDeck(updatedHistory)
+
+    await deckStore.updateEncodedDeck(deckStore.editingDeckKey, compressedDeckData, {
       name: deckName.value,
-      version: deckStore.version,
-      cards: toRaw(deckStore.cardsInDeck),
       seriesId: deckStore.seriesId,
       coverCardId: selectedCoverCardId.value,
-      history: updatedHistory,
-    }
-
-    const { key } = await encodeDeck(deckData, { existingKey: deckStore.editingDeckKey })
+      history: compressedHistoryData,
+    })
+    const key = deckStore.editingDeckKey
 
     isSaveDialogOpen.value = false
     triggerSnackbar('卡组已成功更新！', 'success')
     await router.push(`/decks/${key}`)
-    deckStore.clearEditingDeck()
     deckStore.clearDeck()
   } catch (error) {
     triggerSnackbar(error.message, 'error')
