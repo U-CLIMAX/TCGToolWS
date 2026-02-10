@@ -10,11 +10,11 @@ import { getMarketStats } from '../services/market-stats.js'
 export const handleCreateListing = async (c) => {
   try {
     const user = c.get('user')
-    const { series_name, cards_id, climax_types, tags, price, shop_url, deck_code } =
+    const { series_id, cards_id, climax_types, tags, price, shop_url, deck_code } =
       await c.req.json()
 
     // Validation
-    if (!series_name || !cards_id || !climax_types || price === undefined || !shop_url) {
+    if (!series_id || !cards_id || !climax_types || price === undefined || !shop_url) {
       return createErrorResponse(c, 400, '缺少必要参数')
     }
 
@@ -45,13 +45,13 @@ export const handleCreateListing = async (c) => {
     const now = Math.floor(Date.now() / 1000)
 
     const info = await c.env.DB.prepare(
-      `INSERT INTO market_listings (id, user_id, series_name, cards_id, climax_types, tags, price, shop_url, deck_code, updated_at)
+      `INSERT INTO market_listings (id, user_id, series_id, cards_id, climax_types, tags, price, shop_url, deck_code, updated_at)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
     )
       .bind(
         id,
         user.id,
-        series_name,
+        series_id,
         cardsIdStr,
         climaxTypesStr,
         tagsStr,
@@ -82,13 +82,13 @@ export const handleUpdateListing = async (c) => {
   try {
     const user = c.get('user')
     const { id } = c.req.param()
-    const { series_name, cards_id, climax_types, tags, price, shop_url, deck_code } =
+    const { series_id, cards_id, climax_types, tags, price, shop_url, deck_code } =
       await c.req.json()
 
     if (!id) return createErrorResponse(c, 400, '缺少 ID')
 
     // Validation
-    if (!series_name || !cards_id || !climax_types || price === undefined || !shop_url) {
+    if (!series_id || !cards_id || !climax_types || price === undefined || !shop_url) {
       return createErrorResponse(c, 400, '缺少必要参数')
     }
 
@@ -100,11 +100,11 @@ export const handleUpdateListing = async (c) => {
 
     const info = await c.env.DB.prepare(
       `UPDATE market_listings
-       SET series_name = ?, cards_id = ?, climax_types = ?, tags = ?, price = ?, shop_url = ?, deck_code = ?, updated_at = ?
+       SET series_id = ?, cards_id = ?, climax_types = ?, tags = ?, price = ?, shop_url = ?, deck_code = ?, updated_at = ?
        WHERE id = ? AND user_id = ?`
     )
       .bind(
-        series_name,
+        series_id,
         cardsIdStr,
         climaxTypesStr,
         tagsStr,
@@ -157,7 +157,7 @@ export const handleGetListings = async (c) => {
     }
 
     if (series) {
-      conditions.push('series_name = ?')
+      conditions.push(' series_id = ?')
       params.push(series)
     }
 
@@ -200,7 +200,7 @@ export const handleGetListings = async (c) => {
     const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : ''
 
     const query = `
-      SELECT id, user_id, series_name, cards_id, climax_types, tags, price, shop_url, deck_code, updated_at
+      SELECT id, user_id, series_id, cards_id, climax_types, tags, price, shop_url, deck_code, updated_at
       FROM market_listings
       ${whereClause}
       ORDER BY ${orderByClause}
@@ -276,7 +276,7 @@ export const handleGetUserListings = async (c) => {
     }
 
     if (series) {
-      conditions.push('series_name = ?')
+      conditions.push(' series_id = ?')
       params.push(series)
     }
 
@@ -318,7 +318,7 @@ export const handleGetUserListings = async (c) => {
     const whereClause = `WHERE ${conditions.join(' AND ')}`
 
     const query = `
-      SELECT id, user_id, series_name, cards_id, climax_types, tags, price, shop_url, deck_code, updated_at
+      SELECT id, user_id, series_id, cards_id, climax_types, tags, price, shop_url, deck_code, updated_at
       FROM market_listings
       ${whereClause}
       ORDER BY ${orderByClause}

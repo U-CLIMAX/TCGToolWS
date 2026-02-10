@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS afdian_orders (
 CREATE TABLE IF NOT EXISTS market_listings (
     id TEXT PRIMARY KEY,
     user_id TEXT NOT NULL,
-    series_name TEXT NOT NULL,      -- 系列名
+    series_id TEXT NOT NULL,      -- 系列名
     cards_id TEXT NOT NULL,         -- 聯動人卡號 (存成 JSON 字串)
     climax_types TEXT NOT NULL,     -- 潮種類 (存成 JSON 字串，例如 '["門", "枝"]')
     tags TEXT,                      -- Tags (存成 JSON 字串，例如 '["賽場向", "娛樂"]')
@@ -63,6 +63,6 @@ CREATE INDEX IF NOT EXISTS idx_listings_user_id ON market_listings(user_id);
 CREATE INDEX IF NOT EXISTS idx_listings_updated_id ON market_listings(updated_at DESC, id DESC);
 CREATE INDEX IF NOT EXISTS idx_listings_price_asc_id ON market_listings(price ASC, id ASC);
 CREATE INDEX IF NOT EXISTS idx_listings_price_desc_id ON market_listings(price DESC, id DESC);
-CREATE INDEX IF NOT EXISTS idx_listings_series_updated_id ON market_listings(series_name, updated_at DESC, id DESC);
-CREATE INDEX IF NOT EXISTS idx_listings_series_price_asc_id ON market_listings(series_name, price ASC, id ASC);
-CREATE INDEX IF NOT EXISTS idx_listings_series_price_desc_id ON market_listings(series_name, price DESC, id DESC);
+CREATE INDEX IF NOT EXISTS idx_listings_series_updated_id ON market_listings( series_id, updated_at DESC, id DESC);
+CREATE INDEX IF NOT EXISTS idx_listings_series_price_asc_id ON market_listings( series_id, price ASC, id ASC);
+CREATE INDEX IF NOT EXISTS idx_listings_series_price_desc_id ON market_listings( series_id, price DESC, id DESC);

@@ -190,7 +190,7 @@ const router = useRouter()
 const showDeleteDialog = ref(false)
 
 const seriesInfo = computed(() => {
-  const entry = Object.entries(seriesMap).find(([, val]) => val.id === props.listing.series_name)
+  const entry = Object.entries(seriesMap).find(([, val]) => val.id === props.listing.series_id)
   return entry ? { title: entry[0], ...entry[1] } : null
 })
 

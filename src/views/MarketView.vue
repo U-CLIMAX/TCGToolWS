@@ -196,10 +196,10 @@
                 <v-list v-else density="compact" class="bg-transparent pa-0">
                   <v-list-item
                     v-for="(item, index) in marketStore.rankingStats.top5"
-                    :key="item.series_name"
+                    :key="item.series_id"
                     class="px-1 mb-1 rounded"
                     link
-                    @click="selectSeries(item.series_name)"
+                    @click="selectSeries(item.series_id)"
                   >
                     <template #prepend>
                       <div
@@ -211,8 +211,8 @@
                       </div>
                       <v-avatar size="24" rounded="0" class="mr-2">
                         <v-img
-                          :src="`/series-icons/original/${item.series_name}.webp`"
-                          :lazy-src="`/series-icons/blur/${item.series_name}.webp`"
+                          :src="`/series-icons/original/${item.series_id}.webp`"
+                          :lazy-src="`/series-icons/blur/${item.series_id}.webp`"
                           cover
                           class="preload-img"
                         />
@@ -220,7 +220,7 @@
                     </template>
 
                     <v-list-item-title class="text-caption">
-                      {{ getSeriesName(item.series_name) }}
+                      {{ getSeriesName(item.series_id) }}
                     </v-list-item-title>
 
                     <template #append>

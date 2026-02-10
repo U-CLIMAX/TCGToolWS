@@ -1,9 +1,9 @@
 export const updateMarketStats = async (env) => {
   try {
     const query = `
-      SELECT series_name, COUNT(*) as count
+      SELECT series_id, COUNT(*) as count
       FROM market_listings
-      GROUP BY series_name
+      GROUP BY series_id
       ORDER BY count DESC, updated_at DESC
       LIMIT 5
     `

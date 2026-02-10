@@ -317,7 +317,7 @@ watch(dialog, async (newVal) => {
   if (newVal) {
     if (props.editingListing) {
       const l = props.editingListing
-      formData.seriesId = l.series_name
+      formData.seriesId = l.series_id
       formData.price = l.price
       formData.climaxTypes = [...l.climax_types]
       formData.tags = l.tags ? [...l.tags] : []
@@ -325,7 +325,7 @@ watch(dialog, async (newVal) => {
       formData.deckCode = l.deck_code
       formData.selectedCardIds = l.cards_id.map((c) => c.id)
 
-      await fetchSeriesCards(l.series_name)
+      await fetchSeriesCards(l.series_id)
     } else {
       resetForm()
     }
@@ -384,7 +384,7 @@ const handleSubmit = async () => {
     })
 
     const payload = {
-      series_name: formData.seriesId,
+      series_id: formData.seriesId,
       cards_id: selectedCardsData,
       climax_types: formData.climaxTypes,
       tags: formData.tags,
