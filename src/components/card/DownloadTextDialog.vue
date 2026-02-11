@@ -79,7 +79,7 @@
         />
       </v-card-text>
 
-      <v-card-actions class="mx-6">
+      <v-card-actions class="mx-5">
         <v-spacer />
         <v-btn text="取消" variant="text" @click="closeDialog" />
         <v-btn text="确定" variant="tonal" color="primary" @click="confirmDownload" />
