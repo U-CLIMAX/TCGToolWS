@@ -348,9 +348,11 @@
 
     <!-- Auth Alert Dialog -->
     <v-dialog v-model="isAuthAlertOpen" max-width="400px">
-      <v-card>
-        <v-card-title> 需要登入</v-card-title>
-        <v-card-text> 赞助功能需要登入后才能使用。 </v-card-text>
+      <v-card class="rounded-2lg pa-2">
+        <v-card-title>需要登入</v-card-title>
+        <v-card-text class="text-body-2 text-medium-emphasis">
+          赞助功能需要登入后才能使用。
+        </v-card-text>
         <v-card-actions>
           <v-btn color="primary" text @click="isAuthAlertOpen = false">确定</v-btn>
         </v-card-actions>

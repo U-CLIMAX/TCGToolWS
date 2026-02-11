@@ -297,7 +297,6 @@
       @created="handleRefresh"
       @updated="handleRefresh"
     />
-    <AuthDialog ref="authDialog" />
   </v-container>
 </template>
 
@@ -309,7 +308,6 @@ import { useAuthStore } from '@/stores/auth'
 import LazyCardWrapper from '@/components/common/LazyCardWrapper.vue'
 import MarketCreateDialog from '@/components/market/MarketCreateDialog.vue'
 import MarketListingItem from '@/components/market/MarketListingItem.vue'
-import AuthDialog from '@/components/ui/AuthDialog.vue'
 import BackToTopButton from '@/components/ui/BackToTopButton.vue'
 import { useSnackbar } from '@/composables/useSnackbar'
 
@@ -338,7 +336,6 @@ const sortOptions = [
 
 const showCreateDialog = ref(false)
 const editingListing = ref(null)
-const authDialog = ref(null)
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 const maxListings = computed(() => {
@@ -352,10 +349,6 @@ const isLimitReached = computed(() => {
 })
 
 const openCreateDialog = () => {
-  if (!authStore.isAuthenticated) {
-    authDialog.value?.open()
-    return
-  }
   editingListing.value = null
   showCreateDialog.value = true
 }

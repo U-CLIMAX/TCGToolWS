@@ -1,6 +1,6 @@
 <template>
   <v-dialog v-model="model" max-width="500px">
-    <v-card class="overflow-y-auto themed-scrollbar">
+    <v-card class="overflow-y-auto themed-scrollbar rounded-2lg pa-2">
       <v-card-title class="d-flex align-center">
         <v-icon color="warning" class="mr-2">mdi-alert-circle-outline</v-icon>
         赞助使用须知
@@ -71,7 +71,7 @@
                     无限卡组数量
                   </v-list-item-title>
                   <v-list-item-subtitle class="text-caption">
-                    创建任意数量的卡组，不受限制
+                    创建和分享任意数量的卡组，不受限制
                   </v-list-item-subtitle>
                 </v-list-item>
                 <v-list-item class="px-0 mb-3">

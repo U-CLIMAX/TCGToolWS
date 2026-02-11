@@ -33,7 +33,13 @@ const routes = [
     path: '/decks',
     name: 'Decks',
     component: () => import('@/views/DecksView.vue'),
-    meta: { requiresAuth: true, group: 'decks' },
+    meta: { group: 'decks' },
+  },
+  {
+    path: '/gallery',
+    name: 'DecksGallery',
+    component: () => import('@/views/DecksGalleryView.vue'),
+    meta: { group: 'decks' },
   },
   {
     path: '/decks/:key',

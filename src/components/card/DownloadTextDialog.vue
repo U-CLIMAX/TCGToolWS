@@ -6,7 +6,7 @@
     scrollable
     max-width="500"
   >
-    <v-card>
+    <v-card class="rounded-2lg">
       <v-card-title class="d-flex align-center">
         <span>下载效果文本</span>
       </v-card-title>
@@ -79,7 +79,7 @@
         />
       </v-card-text>
 
-      <v-card-actions class="mx-6">
+      <v-card-actions class="mx-5">
         <v-spacer />
         <v-btn text="取消" variant="text" @click="closeDialog" />
         <v-btn text="确定" variant="tonal" color="primary" @click="confirmDownload" />

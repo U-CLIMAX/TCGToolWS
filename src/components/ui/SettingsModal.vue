@@ -6,7 +6,7 @@
     max-width="500px"
     scrollable
   >
-    <v-card :class="{ 'is-dragging': isDraggingSlider }">
+    <v-card class="rounded-2lg" :class="{ 'is-dragging': isDraggingSlider }">
       <v-card-title class="d-flex align-center">
         <span>设定</span>
         <v-spacer />

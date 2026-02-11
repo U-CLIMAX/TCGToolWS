@@ -148,12 +148,16 @@
         </v-row>
       </v-card-text>
 
-      <v-dialog v-model="showDeleteDialog" max-width="300">
-        <v-card title="确认删除" text="确定要移除此商品吗？此操作无法撤销。">
+      <v-dialog v-model="showDeleteDialog" max-width="320">
+        <v-card class="rounded-2lg pa-2">
+          <v-card-title>确认删除</v-card-title>
+          <v-card-text class="text-body-2 text-medium-emphasis">
+            确定要移除此商品吗？此操作无法撤销。
+          </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn text="取消" @click="showDeleteDialog = false"></v-btn>
-            <v-btn color="error" variant="flat" text="删除" @click="handleDelete"></v-btn>
+            <v-btn color="error" variant="tonal" text="删除" @click="handleDelete"></v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>

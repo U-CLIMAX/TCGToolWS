@@ -7,7 +7,7 @@
       max-height="90vh"
       persistent
     >
-      <v-card class="d-flex flex-column">
+      <v-card class="d-flex flex-column rounded-2lg pa-2">
         <v-card-title>图片裁剪</v-card-title>
         <v-card-text class="flex-grow-1 overflow-hidden">
           <div ref="containerRef" class="cropper-container" :style="{ height: containerHeight }">

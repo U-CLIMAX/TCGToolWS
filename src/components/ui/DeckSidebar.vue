@@ -178,12 +178,14 @@
   </v-dialog>
 
   <!-- Auth Alert Dialog -->
-  <v-dialog v-model="isAuthAlertOpen" max-width="400px">
-    <v-card>
+  <v-dialog v-model="isAuthAlertOpen" max-width="320px">
+    <v-card class="rounded-2lg pa-2">
       <v-card-title> 需要登入</v-card-title>
-      <v-card-text> 储存卡组功能需要登入后才能使用。 </v-card-text>
+      <v-card-text class="text-body-2 text-medium-emphasis">
+        储存卡组功能需要登入后才能使用。
+      </v-card-text>
       <v-card-actions>
-        <v-btn color="primary" text @click="isAuthAlertOpen = false">确定</v-btn>
+        <v-btn color="primary" variant="tonal" @click="isAuthAlertOpen = false">确定</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -195,7 +197,7 @@
     max-width="500px"
     @update:model-value="closeSaveDialog"
   >
-    <v-card class="d-flex flex-column" max-height="85vh">
+    <v-card class="d-flex flex-column rounded-2lg pa-2" max-height="85vh">
       <v-card-title>{{ deckStore.editingDeckKey ? '更新卡组' : '储存卡组' }}</v-card-title>
 
       <v-card-text class="d-flex flex-column flex-grow-1 overflow-hidden">
@@ -273,7 +275,7 @@
   </v-dialog>
   <!-- History Note Dialog -->
   <v-dialog v-model="isHistoryDialogOpen" max-width="400px" persistent>
-    <v-card>
+    <v-card class="rounded-2lg pa-2">
       <v-card-title>新增更新纪录</v-card-title>
       <v-card-text>
         <v-form ref="historyForm" @submit.prevent="handleUpdateDeckWithHistory">
@@ -306,7 +308,7 @@
 
   <!-- Restriction Dialog -->
   <v-dialog v-model="isRestrictionDialogOpen" max-width="500" scrollable :fullscreen="smAndDown">
-    <v-card>
+    <v-card class="rounded-2lg">
       <v-card-title class="text-error">
         <v-icon start icon="mdi-alert-circle"></v-icon>
         卡组限制提醒
@@ -384,17 +386,17 @@
   </v-dialog>
 
   <!-- Clear Confirm Dialog -->
-  <v-dialog v-model="isClearConfirmDialogOpen" max-width="400">
-    <v-card>
+  <v-dialog v-model="isClearConfirmDialogOpen" max-width="320">
+    <v-card class="rounded-2lg pa-2">
       <template #prepend>
         <v-icon color="warning">mdi-alert-outline</v-icon>
         <v-card-title class="text-warning pl-2"> {{ clearDialogTitle }} </v-card-title>
       </template>
-      <v-card-text>{{ clearDialogContent }}</v-card-text>
+      <v-card-text class="text-body-2 text-medium-emphasis">{{ clearDialogContent }}</v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn text="取消" @click="isClearConfirmDialogOpen = false"></v-btn>
-        <v-btn color="primary" variant="flat" text="确定" @click="confirmClearAction"></v-btn>
+        <v-btn color="primary" variant="tonal" text="确定" @click="confirmClearAction"></v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

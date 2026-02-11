@@ -1,6 +1,6 @@
 <template>
   <v-dialog v-model="visible" persistent no-click-animation max-width="400" z-index="9999">
-    <v-card class="text-center">
+    <v-card class="text-center rounded-2lg">
       <v-card-text class="pt-8 pb-2">
         <v-avatar size="80" color="primary" variant="tonal">
           <v-icon icon="mdi-sync-circle" size="48" color="primary"></v-icon>

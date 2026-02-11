@@ -8,44 +8,67 @@ import { fetchDecklogData } from '../services/decklog.js'
  */
 export const handleCreateDeck = async (c) => {
   try {
-    const { key, deckData, name, seriesId, coverCardId, history } = await c.req.json()
+    const { key, deckData, name, seriesId, coverCardId, history, isDeckGallery, climaxCardsId } =
+      await c.req.json()
 
-    if (!key || !deckData || !name || !seriesId || !coverCardId) {
+    if (isDeckGallery && !climaxCardsId) {
+      return createErrorResponse(c, 400, '分享至广场需要 climaxCardsId')
+    } else if (!key || !deckData || !name || !seriesId || !coverCardId) {
       return createErrorResponse(c, 400, '缺少必要参数')
     }
 
     const user = c.get('user')
+    const tableName = isDeckGallery ? 'decks_gallery' : 'decks'
 
     // 檢查用戶現有的牌組數量
     const { count } = await c.env.DB.prepare(
-      'SELECT COUNT(*) as count FROM decks WHERE user_id = ?'
+      `SELECT COUNT(*) as count FROM ${tableName} WHERE user_id = ?`
     )
       .bind(user.id)
       .first()
 
     const MAX_DECKS_PER_USER = 15
     if (count >= MAX_DECKS_PER_USER && user.role === 0) {
-      return createErrorResponse(c, 403, `最多只能储存 ${MAX_DECKS_PER_USER} 副卡组`)
+      const msg = isDeckGallery ? '分享' : '储存'
+      return createErrorResponse(c, 403, `最多只能${msg} ${MAX_DECKS_PER_USER} 副卡组`)
     }
 
     const coverCardIdStr = JSON.stringify(coverCardId)
     const deckDataArray = new Uint8Array(Object.values(deckData))
-    const historyArray = new Uint8Array(Object.values(history || []))
     const now = Math.floor(Date.now() / 1000)
 
-    const info = await c.env.DB.prepare(
-      `INSERT INTO decks (key, user_id, deck_name, series_id, cover_cards_id, deck_data, history, updated_at)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-       ON CONFLICT(key) DO UPDATE SET
-       deck_name = excluded.deck_name,
-       series_id = excluded.series_id,
-       cover_cards_id = excluded.cover_cards_id,
-       deck_data = excluded.deck_data,
-       history = excluded.history,
-       updated_at = excluded.updated_at`
-    )
-      .bind(key, user.id, name, seriesId, coverCardIdStr, deckDataArray, historyArray, now)
-      .run()
+    let info
+    if (isDeckGallery) {
+      const climaxCardsIdStr = JSON.stringify(climaxCardsId)
+      info = await c.env.DB.prepare(
+        `INSERT INTO decks_gallery (key, user_id, deck_name, series_id, cover_cards_id, climax_cards_id, deck_data, updated_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        ON CONFLICT(key) DO UPDATE SET
+        deck_name = excluded.deck_name,
+        series_id = excluded.series_id,
+        cover_cards_id = excluded.cover_cards_id,
+        climax_cards_id = excluded.climax_cards_id,
+        deck_data = excluded.deck_data,
+        updated_at = excluded.updated_at`
+      )
+        .bind(key, user.id, name, seriesId, coverCardIdStr, climaxCardsIdStr, deckDataArray, now)
+        .run()
+    } else {
+      const historyArray = new Uint8Array(Object.values(history || []))
+      info = await c.env.DB.prepare(
+        `INSERT INTO decks (key, user_id, deck_name, series_id, cover_cards_id, deck_data, history, updated_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        ON CONFLICT(key) DO UPDATE SET
+        deck_name = excluded.deck_name,
+        series_id = excluded.series_id,
+        cover_cards_id = excluded.cover_cards_id,
+        deck_data = excluded.deck_data,
+        history = excluded.history,
+        updated_at = excluded.updated_at`
+      )
+        .bind(key, user.id, name, seriesId, coverCardIdStr, deckDataArray, historyArray, now)
+        .run()
+    }
 
     if (!info.success) {
       return createErrorResponse(c, 500, '数据库操作失败')
@@ -93,12 +116,21 @@ export const handleGetDeckByKey = async (c) => {
   try {
     const { key } = c.req.param()
 
-    const result = await c.env.DB.prepare(
-      'SELECT key, deck_name, series_id, cover_cards_id, deck_data, history FROM decks WHERE key = ?'
+    let result = await c.env.DB.prepare(
+      'SELECT key, deck_name, series_id, cover_cards_id, deck_data FROM decks_gallery WHERE key = ?'
     )
       .bind(key)
       .first()
+
+    if (!result) {
+      result = await c.env.DB.prepare(
+        'SELECT key, deck_name, series_id, cover_cards_id, deck_data, history FROM decks WHERE key = ?'
+      )
+        .bind(key)
+        .first()
+    }
     result.cover_cards_id = JSON.parse(result.cover_cards_id)
+
     if (!result) {
       return createErrorResponse(c, 404, '卡组不存在')
     }

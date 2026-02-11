@@ -27,7 +27,7 @@
           <div class="d-none d-md-block h-100">
             <template v-for="item in navItems" :key="item.to">
               <!-- Search Dropdown -->
-              <v-menu v-if="item.name === 'GlobalSearch'" open-on-hover>
+              <v-menu v-if="item.name === 'GlobalSearch'" offset="5" open-on-hover>
                 <template v-slot:activator="{ props }">
                   <v-btn
                     variant="text"
@@ -42,16 +42,66 @@
                     {{ item.text }}
                   </v-btn>
                 </template>
-                <v-list density="compact" :class="{ 'glass-menu': hasBackgroundImage }">
+                <v-list
+                  density="compact"
+                  :class="{ 'glass-menu': hasBackgroundImage }"
+                  class="rounded-5md"
+                  nav
+                >
                   <v-list-item
                     :to="{ name: 'GlobalSearch', params: { game: 'ws' } }"
                     title="Weiβ Schwarz"
+                    slim
+                    class="rounded-pill"
                   >
                   </v-list-item>
                   <v-list-item
                     color="ws-rose"
                     :to="{ name: 'GlobalSearch', params: { game: 'wsr' } }"
                     title="Weiβ Schwarz Rose"
+                    slim
+                    class="rounded-pill"
+                  >
+                  </v-list-item>
+                </v-list>
+              </v-menu>
+
+              <!-- Decks Dropdown -->
+              <v-menu v-else-if="item.name === 'Decks'" offset="5" open-on-hover>
+                <template v-slot:activator="{ props }">
+                  <v-btn
+                    variant="text"
+                    :active="item.group && $route.meta.group === item.group"
+                    class="h-100 rounded-0"
+                    v-bind="props"
+                  >
+                    <template #prepend>
+                      <v-icon :icon="navIcons[item.icon]" size="24"></v-icon>
+                    </template>
+                    {{ item.text }}
+                  </v-btn>
+                </template>
+                <v-list
+                  density="compact"
+                  :class="{ 'glass-menu': hasBackgroundImage }"
+                  class="rounded-5md"
+                  nav
+                >
+                  <v-list-item
+                    v-if="authStore.isAuthenticated"
+                    :to="{ name: 'Decks' }"
+                    title="我的卡组"
+                    prepend-icon="mdi-cards-variant"
+                    slim
+                    class="rounded-pill"
+                  >
+                  </v-list-item>
+                  <v-list-item
+                    :to="{ name: 'DecksGallery' }"
+                    title="卡组广场"
+                    prepend-icon="mdi-view-grid-outline"
+                    slim
+                    class="rounded-pill"
                   >
                   </v-list-item>
                 </v-list>
@@ -150,16 +200,61 @@
               <v-icon :icon="navIcons[item.icon]"></v-icon>
             </v-btn>
           </template>
-          <v-list density="compact" :class="{ 'glass-menu': hasBackgroundImage }">
+          <v-list
+            density="compact"
+            :class="{ 'glass-menu': hasBackgroundImage }"
+            class="rounded-5md"
+            nav
+          >
             <v-list-item
               :to="{ name: 'GlobalSearch', params: { game: 'ws' } }"
               title="Weiβ Schwarz"
+              class="rounded-pill"
             >
             </v-list-item>
             <v-list-item
               color="ws-rose"
               :to="{ name: 'GlobalSearch', params: { game: 'wsr' } }"
               title="Weiβ Schwarz Rose"
+              class="rounded-pill"
+            >
+            </v-list-item>
+          </v-list>
+        </v-menu>
+
+        <!-- Decks Menu -->
+        <v-menu v-else-if="item.name === 'Decks'" location="top center" offset="10">
+          <template v-slot:activator="{ props }">
+            <v-btn
+              v-bind="props"
+              :value="item.name"
+              :active="item.group && $route.meta.group === item.group"
+              style="min-width: 0"
+            >
+              <v-icon :icon="navIcons[item.icon]"></v-icon>
+            </v-btn>
+          </template>
+          <v-list
+            density="compact"
+            :class="{ 'glass-menu': hasBackgroundImage }"
+            class="rounded-5md"
+            nav
+          >
+            <v-list-item
+              v-if="authStore.isAuthenticated"
+              :to="{ name: 'Decks' }"
+              title="我的卡组"
+              prepend-icon="mdi-cards-variant"
+              slim
+              class="rounded-pill"
+            >
+            </v-list-item>
+            <v-list-item
+              :to="{ name: 'DecksGallery' }"
+              title="卡组广场"
+              prepend-icon="mdi-view-grid-outline"
+              slim
+              class="rounded-pill"
             >
             </v-list-item>
           </v-list>
@@ -219,7 +314,11 @@
     <SponsorNoticeDialog v-model="isSponsorNoticeOpen" @confirm="proceedToPayment" />
 
     <v-dialog v-model="isLogoutDialogVisible" max-width="320" persistent>
-      <v-card title="确定登出" text="您确定要登出目前的帐号吗？">
+      <v-card class="rounded-2lg pa-2">
+        <v-card-title>确定登出</v-card-title>
+        <v-card-text class="text-body-2 text-medium-emphasis">
+          您确定要登出目前的帐号吗？
+        </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn text="取消" @click="isLogoutDialogVisible = false"></v-btn>
@@ -361,7 +460,7 @@ const navItems = [
     icon: 'series-card-table.svg',
     group: 'series',
   },
-  { text: '我的卡组', name: 'Decks', requiresAuth: true, icon: 'deck.svg', group: 'decks' },
+  { text: '卡组', name: 'Decks', requiresAuth: false, icon: 'deck.svg', group: 'decks' },
 ]
 
 const appStyle = computed(() => {

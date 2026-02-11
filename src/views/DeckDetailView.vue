@@ -14,14 +14,40 @@
                   @click="openExportDialog"
                   v-tooltip:bottom="'汇出卡组'"
                 ></v-btn>
-                <v-btn
-                  :size="resize"
-                  icon="mdi-share-variant"
-                  variant="text"
-                  :disabled="isLocalDeck"
-                  @click="handleShareCard"
-                  v-tooltip:bottom="'分享卡组'"
-                ></v-btn>
+                <v-menu location="bottom end" offset="12" open-on-hover>
+                  <template v-slot:activator="{ props }">
+                    <v-btn
+                      v-bind="props"
+                      :size="resize"
+                      icon="mdi-share-variant"
+                      variant="text"
+                      :disabled="isLocalDeck"
+                    ></v-btn>
+                  </template>
+                  <v-list
+                    nav
+                    density="compact"
+                    :class="{ 'glass-menu': hasBackgroundImage }"
+                    class="rounded-5md"
+                  >
+                    <v-list-item
+                      @click="handleShareCard"
+                      title="分享链接"
+                      prepend-icon="mdi-link"
+                      slim
+                      class="rounded-pill"
+                    >
+                    </v-list-item>
+                    <v-list-item
+                      @click="handleShareToDeckGallery"
+                      title="分享到卡组广场"
+                      prepend-icon="mdi-view-grid-plus"
+                      slim
+                      class="rounded-pill"
+                    >
+                    </v-list-item>
+                  </v-list>
+                </v-menu>
                 <v-btn
                   :size="resize"
                   icon="mdi-link-variant"
@@ -223,9 +249,15 @@
         </v-list-item>
         <v-list-item v-if="!isLocalDeck" @click="handleShareClick">
           <template #prepend>
-            <v-icon>mdi-share-variant</v-icon>
+            <v-icon>mdi-link</v-icon>
           </template>
-          <v-list-item-title>分享卡组</v-list-item-title>
+          <v-list-item-title>分享链接</v-list-item-title>
+        </v-list-item>
+        <v-list-item v-if="!isLocalDeck" @click="handleShareToDeckGallery">
+          <template #prepend>
+            <v-icon>mdi-view-grid-plus</v-icon>
+          </template>
+          <v-list-item-title>分享到卡组广场</v-list-item-title>
         </v-list-item>
         <v-list-item v-if="!isLocalDeck" @click="handleCopyClick">
           <template #prepend>
@@ -243,13 +275,13 @@
     </v-bottom-sheet>
 
     <v-dialog v-model="isConfirmEditDialogVisible" max-width="420">
-      <v-card>
+      <v-card class="rounded-2lg pa-2">
         <template #prepend>
           <v-icon color="warning">mdi-alert-outline</v-icon>
           <v-card-title class="text-warning pl-2"> 确认编辑 </v-card-title>
         </template>
 
-        <v-card-text>
+        <v-card-text class="text-body-2 text-medium-emphasis">
           <p>检测到有尚未储存的卡组，若继续将会复盖。</p>
           <p>是否要舍弃目前的卡组，开始编辑新的卡组？</p>
         </v-card-text>
@@ -271,7 +303,7 @@
     />
 
     <v-dialog v-model="isHistoryDialogVisible" max-width="650" scrollable>
-      <v-card elevation="0" class="rounded-xl">
+      <v-card elevation="0" class="rounded-2lg">
         <!-- 头部 -->
         <v-card-title class="px-6 py-5 d-flex align-center">
           <v-icon icon="mdi-history" size="24" class="mr-3 text-primary"></v-icon>
@@ -353,13 +385,13 @@
     </v-dialog>
 
     <v-dialog v-model="isTextModalVisible" max-width="500" class="overflow-y-auto themed-scrollbar">
-      <v-card>
+      <v-card class="rounded-2lg pa-2">
         <v-card-text>
           {{ modalTextContent }}
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="isTextModalVisible = false">关闭</v-btn>
+          <v-btn text @click="isTextModalVisible = false">关闭</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -375,6 +407,7 @@ import { storeToRefs } from 'pinia'
 import { useDeckGrouping } from '@/composables/useDeckGrouping'
 import { getCardUrls } from '@/utils/getCardImage'
 import { fetchCardByIdAndPrefix, fetchCardsByBaseIdAndPrefix } from '@/utils/card'
+import { generateDeckKey } from '@/utils/nanoid'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useUIStore } from '@/stores/ui'
 import { useDeckStore } from '@/stores/deck'
@@ -394,7 +427,7 @@ const resize = computed(() => {
 })
 const route = useRoute()
 const router = useRouter()
-const { decodeData } = useDeckEncoder()
+const { decodeData, encodeData } = useDeckEncoder()
 const { triggerSnackbar } = useSnackbar()
 const uiStore = useUIStore()
 const authStore = useAuthStore()
@@ -441,6 +474,61 @@ const handleShareCard = async () => {
   } catch (err) {
     console.error('Failed to copy: ', err)
     triggerSnackbar('复制失败', 'error')
+  }
+}
+
+const handleShareToDeckGallery = async () => {
+  if (!deck.value || originalCards.value.length === 0) {
+    triggerSnackbar('卡组内容为空，无法分享', 'error')
+    return
+  }
+
+  uiStore.setLoading(true)
+  try {
+    const cardsToEncode = originalCards.value.reduce((acc, card) => {
+      acc[card.id] = {
+        id: card.id,
+        cardIdPrefix: card.cardIdPrefix,
+        product_name: card.product_name,
+        level: card.level,
+        color: card.color,
+        cost: card.cost,
+        type: card.type,
+        quantity: card.quantity,
+      }
+      return acc
+    }, {})
+
+    // 提取高潮卡並去重 (保留 ID 最長者)
+    const climaxCardsMap = new Map()
+    originalCards.value
+      .filter((card) => card.type === '高潮卡')
+      .forEach((card) => {
+        const existing = climaxCardsMap.get(card.baseId)
+        if (!existing || card.id.length > existing.id.length) {
+          climaxCardsMap.set(card.baseId, {
+            id: card.id,
+            cardIdPrefix: card.cardIdPrefix,
+          })
+        }
+      })
+    const climaxCardsId = Array.from(climaxCardsMap.values()).slice(0, 3)
+    const key = generateDeckKey()
+    const data = await encodeData(cardsToEncode)
+
+    await deckStore.saveEncodedDeck(key, data, {
+      name: deck.value.name,
+      seriesId: deck.value.seriesId,
+      coverCardId: deck.value.coverCardId,
+      climaxCardsId: climaxCardsId,
+      isDeckGallery: true,
+    })
+    triggerSnackbar('已成功分享到卡组广场！', 'success')
+  } catch (error) {
+    console.error('❌ 分享失败:', error)
+    triggerSnackbar(error.message || '分享失败', 'error')
+  } finally {
+    uiStore.setLoading(false)
   }
 }
 

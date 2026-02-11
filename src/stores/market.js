@@ -8,11 +8,10 @@ export const useMarketStore = defineStore('market', () => {
   const userListingCount = ref(0)
   const isLoading = ref(false)
   const pagination = reactive({
-    page: 1,
+    cursor: null,
+    hasMore: true,
     limit: 20,
     total: 0,
-    hasMore: true,
-    nextCursor: null,
   })
 
   const rankingStats = shallowRef({
@@ -74,8 +73,7 @@ export const useMarketStore = defineStore('market', () => {
   const fetchListings = async (isLoadMore = false) => {
     // 如果不是加載更多，立即清空列表，防止切換時顯示舊資料
     if (!isLoadMore) {
-      pagination.page = 1
-      pagination.nextCursor = null
+      pagination.cursor = null
       listings.value = []
       pagination.hasMore = true
     }
@@ -92,8 +90,8 @@ export const useMarketStore = defineStore('market', () => {
         sort: filters.sort,
       })
 
-      if (isLoadMore && pagination.nextCursor) {
-        queryParams.append('cursor', pagination.nextCursor)
+      if (isLoadMore && pagination.cursor) {
+        queryParams.append('cursor', pagination.cursor)
       }
 
       if (filters.seriesId) queryParams.append('series', filters.seriesId)
@@ -128,14 +126,12 @@ export const useMarketStore = defineStore('market', () => {
 
       if (isLoadMore) {
         listings.value = [...listings.value, ...data.listings]
-        pagination.page += 1
       } else {
         listings.value = data.listings
-        pagination.page = 1
       }
 
       // Update cursor and hasMore status
-      pagination.nextCursor = data.nextCursor
+      pagination.cursor = data.nextCursor
       pagination.hasMore = !!data.nextCursor
 
       // Update total only if returned (backend might skip it for optimization)
@@ -261,11 +257,10 @@ export const useMarketStore = defineStore('market', () => {
     userListingCount.value = 0
     isLoading.value = false
     Object.assign(pagination, {
-      page: 1,
+      cursor: null,
+      hasMore: true,
       limit: 20,
       total: 0,
-      hasMore: true,
-      nextCursor: null,
     })
     Object.assign(filters, {
       seriesId: null,
