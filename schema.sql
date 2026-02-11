@@ -79,3 +79,7 @@ CREATE TABLE IF NOT EXISTS decks_gallery (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 CREATE INDEX IF NOT EXISTS idx_decks_gallery_user_id ON decks_gallery(user_id);
+CREATE INDEX IF NOT EXISTS idx_decks_gallery_updated_id ON decks_gallery(updated_at DESC, key DESC);
+CREATE INDEX IF NOT EXISTS idx_decks_gallery_updated_asc_id ON decks_gallery(updated_at ASC, key ASC);
+CREATE INDEX IF NOT EXISTS idx_decks_gallery_series_updated_id ON decks_gallery(series_id, updated_at DESC, key DESC);
+CREATE INDEX IF NOT EXISTS idx_decks_gallery_series_updated_asc_id ON decks_gallery(series_id, updated_at ASC, key ASC);

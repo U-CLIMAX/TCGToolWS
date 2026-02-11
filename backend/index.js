@@ -19,6 +19,11 @@ import {
   handleGetDecklogData,
 } from './lib/decks.js'
 import {
+  handleGetDecksGallery,
+  handleGetUserDecksGallery,
+  handleDeleteGalleryDeck,
+} from './lib/gallery.js'
+import {
   handleCreateListing,
   handleGetListings,
   handleGetUserListings,
@@ -105,6 +110,15 @@ marketRoutes.get('/my-listings', handleGetUserListings)
 marketRoutes.get('/my-count', handleGetMyListingCount)
 marketRoutes.delete('/listings/:id', handleDeleteListing)
 
+// === Gallery 路由 ===
+const galleryRoutes = new Hono()
+// 公開讀取
+galleryRoutes.get('/decks', publicReadLimiter, handleGetDecksGallery)
+// 需要驗證
+galleryRoutes.use('/*', authMiddleware, apiUserLimiter)
+galleryRoutes.get('/my-decks', handleGetUserDecksGallery)
+galleryRoutes.delete('/decks/:key', handleDeleteGalleryDeck)
+
 // === 受保護的 Payment 路由 ===
 const paymentRoutes = new Hono()
 paymentRoutes.use('/*', authMiddleware, apiUserLimiter) // 必須登入才能創建訂單
@@ -120,6 +134,7 @@ app.route('/decks', deckRoutes)
 app.route('/shared-decks', publicDeckRoutes)
 app.route('/decklog', decklogRoutes)
 app.route('/market', marketRoutes)
+app.route('/gallery', galleryRoutes)
 app.route('/webhooks', webhookRoutes)
 app.route('/payments', paymentRoutes)
 

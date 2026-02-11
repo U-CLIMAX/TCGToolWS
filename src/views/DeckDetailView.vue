@@ -503,7 +503,7 @@ const handleShareToDeckGallery = async () => {
           })
         }
       })
-    const climaxCardsId = Array.from(climaxCardsMap.values())
+    const climaxCardsId = Array.from(climaxCardsMap.values()).slice(0, 3)
     const key = generateDeckKey()
     const data = await encodeData(cardsToEncode)
 
