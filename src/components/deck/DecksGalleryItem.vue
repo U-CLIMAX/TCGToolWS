@@ -3,8 +3,8 @@
     <v-card
       v-bind="props"
       class="gallery-item-card rounded-xl"
-      :class="{ 'is-lifted': isHovering && !isTouch }"
-      elevation="0"
+      :class="{ 'is-lifted': isHovering && !isTouch, 'glass-card': hasBackgroundImage }"
+      :elevation="isHovering ? 2 : 0"
       @click="navigateToDeckDetail"
     >
       <div class="d-flex flex-row fill-height py-4">
@@ -97,6 +97,9 @@ import { useDecksGalleryStore } from '@/stores/decksGallery'
 import { seriesMap } from '@/maps/series-map'
 import { getCardUrls } from '@/utils/getCardImage'
 import { useDevice } from '@/composables/useDevice'
+import { useUIStore } from '@/stores/ui'
+
+const uiStore = useUIStore()
 
 const props = defineProps({
   deck: {
@@ -110,11 +113,11 @@ const emit = defineEmits(['delete'])
 const { isTouch } = useDevice()
 const router = useRouter()
 const galleryStore = useDecksGalleryStore()
+const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 const showDeleteDialog = ref(false)
 
 const seriesInfo = computed(() => {
-  // 安全檢查，防止 series_id 為空導致錯誤
   if (!props.deck.series_id) return null
   const entry = Object.entries(seriesMap).find(([, val]) => val.id === props.deck.series_id)
   return entry ? { title: entry[0], ...entry[1] } : null
@@ -168,7 +171,6 @@ const handleDelete = () => {
 
 .gallery-item-card.is-lifted {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08) !important;
 }
 
 /* 左側封面區塊 */

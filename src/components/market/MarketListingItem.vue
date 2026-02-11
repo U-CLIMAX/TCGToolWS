@@ -3,7 +3,7 @@
     <v-card
       v-bind="props"
       class="h-100 d-flex flex-column rounded-3md overflow-hidden pa-2 listing-card"
-      :class="{ 'is-lifted': isHovering && !isTouch }"
+      :class="{ 'is-lifted': isHovering && !isTouch, 'glass-card': hasBackgroundImage }"
       :elevation="isHovering ? 2 : 0"
     >
       <div class="position-relative rounded-3md overflow-hidden">
@@ -55,12 +55,12 @@
       <v-card-text class="pa-0 pt-2 flex-grow-1 d-flex align-center">
         <v-row dense no-gutters class="align-center h-100">
           <v-col cols="6" class="d-flex flex-column justify-center pr-2">
-            <div class="d-flex align-center text-grey-darken-1 text-truncate">
+            <div class="d-flex align-center text-medium-emphasis text-truncate">
               <v-avatar size="16" :image="seriesIcon" class="mr-1 rounded-0"></v-avatar>
               <span style="font-size: 0.65rem">{{ timeAgo }}</span>
             </div>
 
-            <div class="text-h5 font-weight-black font-DINCond text-red-accent-4 mb-0">
+            <div class="text-h5 font-weight-black font-DINCond text-red-accent-3 mb-0">
               <span class="text-body-2 font-weight-bold mr-1">¥</span>{{ listing.price }}
             </div>
 
@@ -202,6 +202,7 @@ const seriesIcon = computed(() => {
   if (!seriesInfo.value) return ''
   return `/series-icons/original/${seriesInfo.value.id}.webp`
 })
+const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 const getClimaxIcon = (value) => {
   const option = marketStore.climaxTypeOptions.find((opt) => opt.value === value)
