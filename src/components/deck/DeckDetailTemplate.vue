@@ -92,7 +92,7 @@
       max-width="500px"
       @update:model-value="closeSaveDialog"
     >
-      <v-card class="d-flex flex-column rounded-2lg pa-2" max-height="85vh">
+      <v-card class="d-flex flex-column pa-2" :class="{ 'rounded-2lg': smAndUp }" max-height="85vh">
         <v-card-title>储存卡组</v-card-title>
 
         <v-card-text class="d-flex flex-column flex-grow-1 overflow-hidden">

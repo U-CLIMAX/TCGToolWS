@@ -6,7 +6,7 @@
     max-width="500px"
     scrollable
   >
-    <v-card class="rounded-2lg" :class="{ 'is-dragging': isDraggingSlider }">
+    <v-card :class="{ 'is-dragging': isDraggingSlider, 'rounded-2lg': smAndUp }">
       <v-card-title class="d-flex align-center">
         <span>设定</span>
         <v-spacer />
@@ -189,7 +189,7 @@ import { useUIStore } from '@/stores/ui'
 import { useDisplay } from 'vuetify'
 import ImageCropperModal from './ImageCropperModal.vue'
 
-const { smAndDown, xs } = useDisplay()
+const { smAndDown, smAndUp, xs } = useDisplay()
 
 const uiStore = useUIStore()
 const fileInputRef = ref(null)

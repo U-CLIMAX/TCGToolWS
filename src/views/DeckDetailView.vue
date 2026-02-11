@@ -3,12 +3,11 @@
     <v-container fluid class="h-100 pa-0">
       <div class="d-flex flex-column h-100 overflow-hidden">
         <div ref="headerRef" class="overlay-header pl-4 pr-4 pa-1">
-          <div class="overlay-header-content">
+          <div class="overlay-header-content" :class="{ 'mt-1': smAndUp }">
             <!-- 左側 -->
             <div class="header-left">
               <template v-if="smAndUp">
                 <v-btn
-                  :size="resize"
                   icon="mdi-export-variant"
                   variant="text"
                   @click="openExportDialog"
@@ -18,7 +17,6 @@
                   <template v-slot:activator="{ props }">
                     <v-btn
                       v-bind="props"
-                      :size="resize"
                       icon="mdi-share-variant"
                       variant="text"
                       :disabled="isLocalDeck"
@@ -49,7 +47,6 @@
                   </v-list>
                 </v-menu>
                 <v-btn
-                  :size="resize"
                   icon="mdi-link-variant"
                   variant="text"
                   :disabled="isLocalDeck"
@@ -57,7 +54,6 @@
                   v-tooltip:bottom="'复制卡组代码'"
                 ></v-btn>
                 <v-btn
-                  :size="resize"
                   icon="mdi-pencil"
                   variant="text"
                   @click="handleEditDeck"
@@ -65,7 +61,6 @@
                 ></v-btn>
                 <v-btn
                   v-if="userRole !== 0 && !isLocalDeck"
-                  :size="resize"
                   icon="mdi-history"
                   variant="text"
                   @click="isHistoryDialogVisible = true"
@@ -73,12 +68,7 @@
                 ></v-btn>
               </template>
               <template v-if="!smAndUp">
-                <v-btn
-                  icon
-                  :size="resize"
-                  variant="text"
-                  @click="showMoreActionsBottomSheet = true"
-                >
+                <v-btn icon variant="text" @click="showMoreActionsBottomSheet = true">
                   <v-icon size="24">mdi-dots-vertical</v-icon>
                 </v-btn>
               </template>
@@ -109,7 +99,7 @@
             </div>
 
             <!-- 右側 -->
-            <div class="header-right mt-2">
+            <div class="header-right">
               <template v-if="smAndUp">
                 <v-tooltip
                   v-if="!isViewingHistory"
@@ -120,7 +110,6 @@
                     <v-btn
                       v-if="isEditing && deckStore.editingDeckKey"
                       v-bind="props"
-                      :size="resize"
                       :icon="
                         showDifferences ? 'mdi-vector-difference-ba' : 'mdi-vector-difference-ab'
                       "
@@ -130,7 +119,6 @@
                   </template>
                 </v-tooltip>
                 <v-btn
-                  :size="resize"
                   :icon="uiStore.showStatsDashboard ? 'mdi-chart-pie' : 'mdi-chart-pie-outline'"
                   class="mr-2"
                   variant="text"
@@ -150,7 +138,7 @@
                 </div>
               </template>
               <template v-else>
-                <v-btn icon :size="resize" variant="text" @click="showBottomSheet = true">
+                <v-btn icon variant="text" @click="showBottomSheet = true">
                   <v-icon size="24">mdi-format-list-bulleted-type</v-icon>
                 </v-btn>
               </template>
@@ -308,13 +296,6 @@
         <v-card-title class="px-6 py-5 d-flex align-center">
           <v-icon icon="mdi-history" size="24" class="mr-3 text-primary"></v-icon>
           <span class="text-h6">卡组历史纪录</span>
-          <v-spacer></v-spacer>
-          <v-btn
-            icon="mdi-close"
-            variant="text"
-            size="small"
-            @click="isHistoryDialogVisible = false"
-          ></v-btn>
         </v-card-title>
 
         <v-divider></v-divider>
@@ -422,9 +403,6 @@ import DeckExportDialog from '@/components/deck/DeckExportDialog.vue'
 import * as clipboard from 'clipboard-polyfill'
 
 const { smAndUp } = useDisplay()
-const resize = computed(() => {
-  return smAndUp.value ? 'default' : 'small'
-})
 const route = useRoute()
 const router = useRouter()
 const { decodeData, encodeData } = useDeckEncoder()

@@ -6,7 +6,7 @@
     scrollable
     max-width="500"
   >
-    <v-card class="rounded-2lg">
+    <v-card :class="{ 'rounded-2lg': smAndUp }">
       <v-card-title class="d-flex align-center">
         <span>下载效果文本</span>
       </v-card-title>
@@ -100,7 +100,7 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue', 'confirm'])
 
 const downloadStore = useDownloadStore()
-const { smAndDown } = useDisplay()
+const { smAndDown, smAndUp } = useDisplay()
 
 const localWidth = ref(800)
 const localBgColor = ref('#FFFFFF')

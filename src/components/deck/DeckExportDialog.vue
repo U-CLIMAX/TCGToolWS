@@ -6,7 +6,11 @@
     scrollable
     @update:model-value="closeDialog"
   >
-    <v-card class="d-flex flex-column rounded-2lg" :style="xs ? 'height: 100vh' : 'height: 80vh'">
+    <v-card
+      class="d-flex flex-column"
+      :class="{ 'rounded-2lg': smAndUp }"
+      :style="xs ? 'height: 100vh' : 'height: 80vh'"
+    >
       <v-card-title class="d-flex justify-space-between align-center flex-shrink-0">
         <span>汇出卡组</span>
         <v-btn icon="mdi-close" variant="text" @click="closeDialog"></v-btn>
@@ -150,7 +154,7 @@ const selectedLanguage = ref('jp')
 const selectedImageMode = ref('u_climax')
 
 const uiStore = useUIStore()
-const { xs, smAndDown } = useDisplay()
+const { xs, smAndDown, smAndUp } = useDisplay()
 
 const deckBaseIds = computed(() => {
   if (!props.cards) return ''

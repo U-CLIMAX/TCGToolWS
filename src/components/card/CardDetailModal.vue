@@ -7,11 +7,12 @@
       right: handleSwipeRight,
     }"
     @click="handleModalClick"
-    class="d-flex flex-column w-100 cursor-auto rounded-2lg"
+    class="d-flex flex-column w-100 cursor-auto"
     style="position: relative"
     :class="{
       'overflow-y-auto themed-scrollbar': !$vuetify.display.mdAndUp,
       'overflow-visible': $vuetify.display.mdAndUp,
+      'rounded-2lg': $vuetify.display.mdAndUp,
     }"
   >
     <v-btn
