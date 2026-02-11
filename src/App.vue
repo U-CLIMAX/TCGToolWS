@@ -27,7 +27,7 @@
           <div class="d-none d-md-block h-100">
             <template v-for="item in navItems" :key="item.to">
               <!-- Search Dropdown -->
-              <v-menu v-if="item.name === 'GlobalSearch'" open-on-hover>
+              <v-menu v-if="item.name === 'GlobalSearch'" offset="5" open-on-hover>
                 <template v-slot:activator="{ props }">
                   <v-btn
                     variant="text"
@@ -58,7 +58,7 @@
               </v-menu>
 
               <!-- Decks Dropdown -->
-              <v-menu v-else-if="item.name === 'Decks'" open-on-hover>
+              <v-menu v-else-if="item.name === 'Decks'" offset="5" open-on-hover>
                 <template v-slot:activator="{ props }">
                   <v-btn
                     variant="text"
@@ -72,7 +72,11 @@
                     {{ item.text }}
                   </v-btn>
                 </template>
-                <v-list density="compact" :class="{ 'glass-menu': hasBackgroundImage }">
+                <v-list
+                  density="compact"
+                  :class="{ 'glass-menu': hasBackgroundImage }"
+                  class="rounded-2lg"
+                >
                   <v-list-item
                     v-if="authStore.isAuthenticated"
                     :to="{ name: 'Decks' }"
@@ -182,7 +186,11 @@
               <v-icon :icon="navIcons[item.icon]"></v-icon>
             </v-btn>
           </template>
-          <v-list density="compact" :class="{ 'glass-menu': hasBackgroundImage }">
+          <v-list
+            density="compact"
+            :class="{ 'glass-menu': hasBackgroundImage }"
+            class="rounded-2lg"
+          >
             <v-list-item
               :to="{ name: 'GlobalSearch', params: { game: 'ws' } }"
               title="Weiβ Schwarz"
@@ -209,7 +217,11 @@
               <v-icon :icon="navIcons[item.icon]"></v-icon>
             </v-btn>
           </template>
-          <v-list density="compact" :class="{ 'glass-menu': hasBackgroundImage }">
+          <v-list
+            density="compact"
+            :class="{ 'glass-menu': hasBackgroundImage }"
+            class="rounded-2lg"
+          >
             <v-list-item
               v-if="authStore.isAuthenticated"
               :to="{ name: 'Decks' }"

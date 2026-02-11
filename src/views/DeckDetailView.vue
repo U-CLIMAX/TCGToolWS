@@ -14,7 +14,7 @@
                   @click="openExportDialog"
                   v-tooltip:bottom="'汇出卡组'"
                 ></v-btn>
-                <v-menu location="bottom end" open-on-hover>
+                <v-menu location="bottom end" offset="5" open-on-hover>
                   <template v-slot:activator="{ props }">
                     <v-btn
                       v-bind="props"
@@ -24,7 +24,12 @@
                       :disabled="isLocalDeck"
                     ></v-btn>
                   </template>
-                  <v-list nav density="compact" :class="{ 'glass-menu': hasBackgroundImage }">
+                  <v-list
+                    nav
+                    density="compact"
+                    :class="{ 'glass-menu': hasBackgroundImage }"
+                    class="rounded-2lg"
+                  >
                     <v-list-item @click="handleShareCard">
                       <template #prepend>
                         <v-icon>mdi-link</v-icon>
