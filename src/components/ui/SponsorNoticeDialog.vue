@@ -71,7 +71,7 @@
                     无限卡组数量
                   </v-list-item-title>
                   <v-list-item-subtitle class="text-caption">
-                    创建任意数量的卡组，不受限制
+                    创建和分享任意数量的卡组，不受限制
                   </v-list-item-subtitle>
                 </v-list-item>
                 <v-list-item class="px-0 mb-3">
