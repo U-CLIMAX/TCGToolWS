@@ -130,16 +130,11 @@ const timeAgo = computed(() => {
   const now = new Date()
   const diffInSeconds = Math.floor((now - date) / 1000)
 
-  // 如果是 3 天內，顯示「天前」
-  if (diffInSeconds < 259200) {
-    if (diffInSeconds < 60) return '剛剛'
-    if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)} 分前`
-    if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)} 小時前`
-    return `${Math.floor(diffInSeconds / 86400)} 天前`
-  }
-
-  // 超過 3 天顯示日期 (例如 2月1日)
-  return `${date.getMonth() + 1}月${date.getDate()}日`
+  if (diffInSeconds < 60) return '刚刚'
+  if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)} 分钟前`
+  if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)} 小时前`
+  if (diffInSeconds < 604800) return `${Math.floor(diffInSeconds / 86400)} 天前`
+  return date.toLocaleDateString()
 })
 
 const navigateToDeckDetail = () => {
