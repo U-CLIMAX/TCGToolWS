@@ -1,6 +1,6 @@
 <template>
   <v-dialog v-model="model" max-width="500px">
-    <v-card class="overflow-y-auto themed-scrollbar">
+    <v-card class="overflow-y-auto themed-scrollbar rounded-2lg pa-2">
       <v-card-title class="d-flex align-center">
         <v-icon color="warning" class="mr-2">mdi-alert-circle-outline</v-icon>
         赞助使用须知

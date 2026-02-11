@@ -1,6 +1,6 @@
 <template>
   <v-dialog v-model="dialog" max-width="400" persistent>
-    <v-card :loading="loading || resending">
+    <v-card class="rounded-2lg" :loading="loading || resending">
       <!-- ============================================= -->
       <!-- View 1: Credentials Input (登录/注册信息输入) -->
       <!-- ============================================= -->

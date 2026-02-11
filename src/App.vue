@@ -280,7 +280,11 @@
     <SponsorNoticeDialog v-model="isSponsorNoticeOpen" @confirm="proceedToPayment" />
 
     <v-dialog v-model="isLogoutDialogVisible" max-width="320" persistent>
-      <v-card title="确定登出" text="您确定要登出目前的帐号吗？">
+      <v-card class="rounded-2lg pa-2">
+        <v-card-title>确定登出</v-card-title>
+        <v-card-text class="text-body-2 text-medium-emphasis">
+          您确定要登出目前的帐号吗？
+        </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn text="取消" @click="isLogoutDialogVisible = false"></v-btn>

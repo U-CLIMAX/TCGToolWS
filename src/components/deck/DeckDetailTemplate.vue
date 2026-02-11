@@ -73,12 +73,14 @@
     </v-container>
 
     <!-- Auth Alert Dialog -->
-    <v-dialog v-model="isAuthAlertOpen" max-width="400px">
-      <v-card>
+    <v-dialog v-model="isAuthAlertOpen" max-width="320px">
+      <v-card class="rounded-2lg pa-2">
         <v-card-title> 需要登录</v-card-title>
-        <v-card-text> 储存卡组功能需要登录后才能使用。 </v-card-text>
+        <v-card-text class="text-body-2 text-medium-emphasis">
+          储存卡组功能需要登录后才能使用。
+        </v-card-text>
         <v-card-actions>
-          <v-btn color="primary" text @click="isAuthAlertOpen = false">确定</v-btn>
+          <v-btn color="primary" variant="tonal" @click="isAuthAlertOpen = false">确定</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -90,7 +92,7 @@
       max-width="500px"
       @update:model-value="closeSaveDialog"
     >
-      <v-card class="d-flex flex-column" max-height="85vh">
+      <v-card class="d-flex flex-column rounded-2lg pa-2" max-height="85vh">
         <v-card-title>储存卡组</v-card-title>
 
         <v-card-text class="d-flex flex-column flex-grow-1 overflow-hidden">

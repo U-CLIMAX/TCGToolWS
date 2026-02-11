@@ -42,8 +42,8 @@
         </v-sheet>
       </div>
 
-      <v-dialog v-model="showDeckCodeDialog" max-width="500px">
-        <v-card>
+      <v-dialog v-model="showDeckCodeDialog" max-width="600px">
+        <v-card class="rounded-2lg pa-2">
           <v-card-title>输入卡组代码</v-card-title>
           <v-card-text>
             <v-row dense>

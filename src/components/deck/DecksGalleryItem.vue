@@ -75,8 +75,8 @@
       </div>
 
       <v-dialog v-model="showDeleteDialog" max-width="320">
-        <v-card class="rounded-lg pa-2">
-          <v-card-title class="text-h6">确认删除</v-card-title>
+        <v-card class="rounded-2lg pa-2">
+          <v-card-title>确认删除</v-card-title>
           <v-card-text class="text-body-2 text-medium-emphasis">
             确定要从广场移除此卡组吗？此操作无法撤销。
           </v-card-text>

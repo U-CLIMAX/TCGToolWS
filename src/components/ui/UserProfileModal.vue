@@ -1,6 +1,6 @@
 <template>
   <v-dialog v-model="isDialogOpen" max-width="400">
-    <v-card>
+    <v-card class="rounded-2lg pa-2">
       <v-card-title class="d-flex align-center">
         <v-icon>mdi-account</v-icon>
         账号资料

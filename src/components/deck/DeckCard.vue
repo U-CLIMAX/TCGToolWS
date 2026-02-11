@@ -47,8 +47,11 @@
       </v-scale-transition>
 
       <v-dialog v-model="isDeleteDialogOpen" max-width="400">
-        <v-card title="删除卡组">
-          <v-card-text>确定要删除卡组 "{{ deck.name }}" 吗？此操作无法撤销。</v-card-text>
+        <v-card class="rounded-2lg pa-2">
+          <v-card-title>删除卡组</v-card-title>
+          <v-card-text class="text-body-2 text-medium-emphasis"
+            >确定要删除卡组 "{{ deck.name }}" 吗？此操作无法撤销。
+          </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn text="取消" @click="isDeleteDialogOpen = false"></v-btn>

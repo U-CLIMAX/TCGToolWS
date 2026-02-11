@@ -6,7 +6,7 @@
     scrollable
     max-width="500"
   >
-    <v-card>
+    <v-card class="rounded-2lg">
       <v-card-title class="d-flex align-center">
         <span>下载效果文本</span>
       </v-card-title>

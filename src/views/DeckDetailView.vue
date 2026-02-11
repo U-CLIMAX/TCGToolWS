@@ -266,13 +266,13 @@
     </v-bottom-sheet>
 
     <v-dialog v-model="isConfirmEditDialogVisible" max-width="420">
-      <v-card>
+      <v-card class="rounded-2lg pa-2">
         <template #prepend>
           <v-icon color="warning">mdi-alert-outline</v-icon>
           <v-card-title class="text-warning pl-2"> 确认编辑 </v-card-title>
         </template>
 
-        <v-card-text>
+        <v-card-text class="text-body-2 text-medium-emphasis">
           <p>检测到有尚未储存的卡组，若继续将会复盖。</p>
           <p>是否要舍弃目前的卡组，开始编辑新的卡组？</p>
         </v-card-text>
@@ -294,7 +294,7 @@
     />
 
     <v-dialog v-model="isHistoryDialogVisible" max-width="650" scrollable>
-      <v-card elevation="0" class="rounded-xl">
+      <v-card elevation="0" class="rounded-2lg">
         <!-- 头部 -->
         <v-card-title class="px-6 py-5 d-flex align-center">
           <v-icon icon="mdi-history" size="24" class="mr-3 text-primary"></v-icon>
@@ -376,13 +376,13 @@
     </v-dialog>
 
     <v-dialog v-model="isTextModalVisible" max-width="500" class="overflow-y-auto themed-scrollbar">
-      <v-card>
+      <v-card class="rounded-2lg pa-2">
         <v-card-text>
           {{ modalTextContent }}
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="isTextModalVisible = false">关闭</v-btn>
+          <v-btn text @click="isTextModalVisible = false">关闭</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>

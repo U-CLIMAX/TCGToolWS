@@ -287,8 +287,8 @@
       </div>
     </v-sheet>
 
-    <v-dialog v-model="addKeywordDialog" max-width="300">
-      <v-card>
+    <v-dialog v-model="addKeywordDialog" max-width="320">
+      <v-card class="rounded-2lg pa-2">
         <v-card-title>新增关键字</v-card-title>
         <v-card-text>
           <v-text-field
