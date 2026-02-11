@@ -141,7 +141,6 @@
     </v-infinite-scroll>
 
     <BackToTopButton :scroll-container="scrollContainer" />
-    <AuthDialog ref="authDialog" />
   </v-container>
 </template>
 
@@ -152,7 +151,6 @@ import { useUIStore } from '@/stores/ui'
 import { useAuthStore } from '@/stores/auth'
 import LazyCardWrapper from '@/components/common/LazyCardWrapper.vue'
 import DecksGalleryItem from '@/components/deck/DecksGalleryItem.vue'
-import AuthDialog from '@/components/ui/AuthDialog.vue'
 import BackToTopButton from '@/components/ui/BackToTopButton.vue'
 import { useSnackbar } from '@/composables/useSnackbar'
 
@@ -182,7 +180,6 @@ const sortOptions = [
   { title: '时间从旧到新', value: 'oldest' },
 ]
 
-const authDialog = ref(null)
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 const localFilters = ref({
