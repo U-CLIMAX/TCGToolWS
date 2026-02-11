@@ -38,7 +38,6 @@ export const useMarketStore = defineStore('market', () => {
         title: key,
         value: seriesMap[key].id,
       }))
-      .sort((a, b) => a.title.localeCompare(b.title, 'zh-CN'))
   })
 
   const climaxTypeOptions = [
