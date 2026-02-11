@@ -1,0 +1,120 @@
+{
+  "OS07/R07-P05": {
+    "name": "にゃつはの夜 夏葉",
+    "product_name": "PRカード",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Lose", "妹"],
+    "color": "黄色",
+    "effect": "【自】[(1) 1张手牌的高潮卡放置到休息室] 此卡从手牌登场时，你可以支付费用。支付了的话，你从自己的休息室选择1张高潮卡，返回手牌。<br>【自】【时计区】shift 等级0 （你的主要阶段开始时，你可以将自己手牌的黄色卡与时计区的此卡互换）",
+    "all_cards": [
+      {
+        "id": "OS07/R07-P05",
+        "rarity": "PR"
+      },
+      {
+        "id": "OS07/R07-P05S",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "OS07/R07-P07": {
+    "name": "常夏のプール 夏葉",
+    "product_name": "PRカード",
+    "type": "角色卡",
+    "level": 1,
+    "power": 1000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["Lose", "妹"],
+    "color": "黄色",
+    "effect": "【起】【反击】 助太刀2500 等级1 [(1) 将手牌的此卡放置到休息室]",
+    "all_cards": [
+      {
+        "id": "OS07/R07-P07EX",
+        "rarity": "PR+"
+      }
+    ]
+  },
+  "OS07/R07-P01": {
+    "name": "ものべの",
+    "product_name": "PRカード",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": 0,
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "all_cards": [
+      {
+        "id": "OS07/R07-P01S",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "OS07/R07-P02": {
+    "name": "改札デート",
+    "product_name": "PRカード",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": 0,
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/treasure.webp\">:此卡被触发时，此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
+    "all_cards": [
+      {
+        "id": "OS07/R07-P02S",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "OS07/R07-P03": {
+    "name": "義妹以上の関係 日々姫",
+    "product_name": "PRカード",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["Lose", "妹"],
+    "color": "红色",
+    "effect": "【永】你有「一途な恋 日々姫＆ありす」和「重なる気持ち 日々姫」的话，你手牌中此卡的等级-1。<br>【自】此卡从手牌登场时，你将自己卡组顶3张卡放置到休息室。那些卡中红色的角色卡或红色的事件卡有1张以上的话，直到下一个对手的回合结束为止，此卡的战斗力+1500。有2张以上的话，你将自己时计区顶至多1张卡放置到休息室。有3张以上的话，你可以给对手造成1点伤害。",
+    "all_cards": [
+      {
+        "id": "OS07/R07-P03S",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "OS07/R07-P04": {
+    "name": "川遊び すみ",
+    "product_name": "PRカード",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Lose", "妖怪"],
+    "color": "蓝色",
+    "effect": "【自】你使用此卡的『助太刀』时，你有〈同OS〉的角色的话，你选择自己战斗中的1个角色，那个回合中，战斗力+1000。<br>【起】【反击】助太刀1000 等级1 [手牌中此卡放置到休息室]",
+    "all_cards": [
+      {
+        "id": "OS07/R07-P04S",
+        "rarity": "PR"
+      }
+    ]
+  }
+}
