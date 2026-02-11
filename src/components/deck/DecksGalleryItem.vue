@@ -22,7 +22,7 @@
           </v-img>
         </div>
 
-        <div class="content-section d-flex flex-column pr-3 flex-grow-1">
+        <div class="content-section d-flex flex-column pr-3">
           <div class="d-flex justify-space-between align-start mb-1">
             <h3
               class="text-h6 font-weight-bold text-truncate text-high-emphasis mr-2"
@@ -123,7 +123,6 @@ const seriesInfo = computed(() => {
 
 const seriesName = computed(() => seriesInfo.value?.title || props.deck.series_id || '未知系列')
 
-// 簡化並格式化時間顯示，更貼近圖片風格 (MM月DD日)
 const timeAgo = computed(() => {
   if (!props.deck.updated_at) return ''
   const date = new Date(props.deck.updated_at * 1000)
@@ -176,20 +175,21 @@ const handleDelete = () => {
 
 /* 左側封面區塊 */
 .cover-section {
-  width: 30%; /* 佔寬度的 30% */
+  flex: 0 0 30%;
+  width: 30%;
   height: 100%;
 }
 
 /* 右側內容區塊 */
 .content-section {
-  width: 70%; /* 剩餘空間 */
+  flex: 1 1 auto;
+  width: 0;
   position: relative;
-  min-width: 0; /* Flexbox 文字截斷的關鍵 */
 }
 
 /* 下方卡片列表容器 */
 .card-list-container {
-  height: 56px; /* 固定高度給縮圖 */
+  height: 56px;
   width: 100%;
   position: relative;
 }
