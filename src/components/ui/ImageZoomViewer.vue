@@ -1,6 +1,11 @@
 <template>
   <!-- 放大對話框 -->
-  <v-dialog v-model="internalDialog" max-width="90vw" @click:outside="closeDialog">
+  <v-dialog
+    v-model="internalDialog"
+    :fullscreen="smAndDown"
+    max-width="90vw"
+    @click:outside="closeDialog"
+  >
     <!-- Mobile Layout -->
     <v-card v-if="smAndDown" color="black" elevation="0" class="mobile-viewer">
       <div class="mobile-viewer__image-container">
