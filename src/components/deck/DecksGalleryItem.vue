@@ -99,8 +99,6 @@ import { getCardUrls } from '@/utils/getCardImage'
 import { useDevice } from '@/composables/useDevice'
 import { useUIStore } from '@/stores/ui'
 
-const uiStore = useUIStore()
-
 const props = defineProps({
   deck: {
     type: Object,
@@ -113,6 +111,7 @@ const emit = defineEmits(['delete'])
 const { isTouch } = useDevice()
 const router = useRouter()
 const galleryStore = useDecksGalleryStore()
+const uiStore = useUIStore()
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 const showDeleteDialog = ref(false)
