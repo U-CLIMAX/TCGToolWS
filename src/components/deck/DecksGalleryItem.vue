@@ -1,11 +1,10 @@
 <template>
-  <v-hover v-slot="{ isHovering, props: hoverProps }">
+  <v-hover v-slot="{ isHovering, props }">
     <v-card
-      v-bind="hoverProps"
+      v-bind="props"
       class="gallery-item-card rounded-xl"
       :class="{ 'is-lifted': isHovering && !isTouch }"
       elevation="0"
-      border
       @click="navigateToDeckDetail"
     >
       <div class="d-flex flex-row fill-height py-4">
@@ -163,7 +162,6 @@ const handleDelete = () => {
 .gallery-item-card {
   height: 150px;
   transition: all 0.2s ease-in-out;
-  background-color: rgb(var(--v-theme-surface));
   cursor: pointer;
   overflow: hidden;
 }
@@ -200,7 +198,6 @@ const handleDelete = () => {
   height: 100%;
   overflow-x: auto;
   overflow-y: hidden;
-  /* 隱藏滾動條樣式 */
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE/Edge */
 }
