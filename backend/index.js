@@ -22,6 +22,7 @@ import {
   handleGetDecksGallery,
   handleGetUserDecksGallery,
   handleDeleteGalleryDeck,
+  handleGetMyGalleryCount,
 } from './lib/gallery.js'
 import {
   handleCreateListing,
@@ -117,6 +118,7 @@ galleryRoutes.get('/decks', publicReadLimiter, handleGetDecksGallery)
 // 需要驗證
 galleryRoutes.use('/*', authMiddleware, apiUserLimiter)
 galleryRoutes.get('/my-decks', handleGetUserDecksGallery)
+galleryRoutes.get('/my-count', handleGetMyGalleryCount)
 galleryRoutes.delete('/decks/:key', handleDeleteGalleryDeck)
 
 // === 受保護的 Payment 路由 ===

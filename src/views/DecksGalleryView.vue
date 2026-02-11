@@ -101,11 +101,14 @@
       </v-container>
 
       <v-container class="pt-4 px-3">
-        <div v-if="galleryStore.decks.length > 0">
+        <div v-if="galleryStore.decks.length > 0 && galleryStore.filters.source === 'mine'">
           <div class="group-header">
             <div class="d-flex align-center ga-2">
               <v-icon :icon="DeckGalleryIcon" size="24"></v-icon>
-              <span>{{ deckCount }} / {{ maxDecks === Infinity ? '∞' : maxDecks }}</span>
+              <span>
+                {{ galleryStore.userDeckCount }} /
+                {{ maxDecks === Infinity ? '∞' : maxDecks }}
+              </span>
               <span
                 v-if="maxDecks !== Infinity && deckCount >= maxDecks"
                 class="text-error font-weight-bold"
@@ -164,7 +167,6 @@ const infiniteScrollRef = ref(null)
 const scrollContainer = ref(null)
 const scrollKey = ref(0)
 
-const deckCount = computed(() => galleryStore.decks.length)
 const maxDecks = computed(() => (authStore.userRole === 0 ? 15 : Infinity))
 
 const sourceOptions = computed(() => {

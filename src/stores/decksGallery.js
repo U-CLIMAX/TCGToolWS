@@ -8,6 +8,7 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
 
   // State
   const decks = ref([])
+  const userDeckCount = ref(0)
   const isLoading = ref(false)
   const filters = reactive({
     source: 'all', // 'all' or 'mine'
@@ -58,6 +59,11 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
       }
 
       const data = await response.json()
+
+      if (filters.source === 'mine') {
+        await fetchUserDeckCount()
+      }
+
       if (isLoadMore) {
         decks.value.push(...data.decks)
       } else {
@@ -71,6 +77,23 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
       throw error
     } finally {
       isLoading.value = false
+    }
+  }
+
+  const fetchUserDeckCount = async () => {
+    if (!authStore.token) return
+
+    try {
+      const response = await fetch('/api/gallery/my-count', {
+        headers: {
+          Authorization: `Bearer ${authStore.token}`,
+        },
+      })
+      if (!response.ok) throw new Error('获取广场分享数量失败')
+      const data = await response.json()
+      userDeckCount.value = data.count
+    } catch (error) {
+      console.error(error)
     }
   }
 
@@ -90,15 +113,18 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
     }
 
     decks.value = decks.value.filter((d) => d.key !== key)
+    await fetchUserDeckCount()
   }
 
   return {
     decks,
+    userDeckCount,
     isLoading,
     filters,
     pagination,
     seriesOptions,
     fetchDecks,
+    fetchUserDeckCount,
     deleteDeck,
   }
 })

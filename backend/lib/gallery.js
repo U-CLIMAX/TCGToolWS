@@ -192,3 +192,24 @@ export const handleDeleteGalleryDeck = async (c) => {
     return createErrorResponse(c, 500, '内部服务器错误')
   }
 }
+
+/**
+ * Gets the total count of decks in the gallery for the authenticated user.
+ * @param {object} c - Hono context object.
+ * @returns {Response}
+ */
+export const handleGetMyGalleryCount = async (c) => {
+  try {
+    const user = c.get('user')
+    const { count } = await c.env.DB.prepare(
+      'SELECT COUNT(*) as count FROM decks_gallery WHERE user_id = ?'
+    )
+      .bind(user.id)
+      .first()
+
+    return c.json({ count: count || 0 })
+  } catch (error) {
+    console.error('Error fetching gallery count:', error)
+    return createErrorResponse(c, 500, '内部服务器错误')
+  }
+}
