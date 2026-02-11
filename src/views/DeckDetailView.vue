@@ -14,7 +14,7 @@
                   @click="openExportDialog"
                   v-tooltip:bottom="'汇出卡组'"
                 ></v-btn>
-                <v-menu location="bottom end" offset="5" open-on-hover>
+                <v-menu location="bottom end" offset="12" open-on-hover>
                   <template v-slot:activator="{ props }">
                     <v-btn
                       v-bind="props"
@@ -28,19 +28,23 @@
                     nav
                     density="compact"
                     :class="{ 'glass-menu': hasBackgroundImage }"
-                    class="rounded-2lg"
+                    class="rounded-5md"
                   >
-                    <v-list-item @click="handleShareCard">
-                      <template #prepend>
-                        <v-icon>mdi-link</v-icon>
-                      </template>
-                      <v-list-item-title>分享链接</v-list-item-title>
+                    <v-list-item
+                      @click="handleShareCard"
+                      title="分享链接"
+                      prepend-icon="mdi-link"
+                      slim
+                      class="rounded-pill"
+                    >
                     </v-list-item>
-                    <v-list-item @click="handleShareToDeckGallery">
-                      <template #prepend>
-                        <v-icon>mdi-view-grid-plus</v-icon>
-                      </template>
-                      <v-list-item-title>分享到卡组广场</v-list-item-title>
+                    <v-list-item
+                      @click="handleShareToDeckGallery"
+                      title="分享到卡组广场"
+                      prepend-icon="mdi-view-grid-plus"
+                      slim
+                      class="rounded-pill"
+                    >
                     </v-list-item>
                   </v-list>
                 </v-menu>

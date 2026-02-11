@@ -42,16 +42,25 @@
                     {{ item.text }}
                   </v-btn>
                 </template>
-                <v-list density="compact" :class="{ 'glass-menu': hasBackgroundImage }">
+                <v-list
+                  density="compact"
+                  :class="{ 'glass-menu': hasBackgroundImage }"
+                  class="rounded-5md"
+                  nav
+                >
                   <v-list-item
                     :to="{ name: 'GlobalSearch', params: { game: 'ws' } }"
                     title="Weiβ Schwarz"
+                    slim
+                    class="rounded-pill"
                   >
                   </v-list-item>
                   <v-list-item
                     color="ws-rose"
                     :to="{ name: 'GlobalSearch', params: { game: 'wsr' } }"
                     title="Weiβ Schwarz Rose"
+                    slim
+                    class="rounded-pill"
                   >
                   </v-list-item>
                 </v-list>
@@ -75,19 +84,24 @@
                 <v-list
                   density="compact"
                   :class="{ 'glass-menu': hasBackgroundImage }"
-                  class="rounded-2lg"
+                  class="rounded-5md"
+                  nav
                 >
                   <v-list-item
                     v-if="authStore.isAuthenticated"
                     :to="{ name: 'Decks' }"
                     title="我的卡组"
                     prepend-icon="mdi-cards-variant"
+                    slim
+                    class="rounded-pill"
                   >
                   </v-list-item>
                   <v-list-item
                     :to="{ name: 'DecksGallery' }"
                     title="卡组广场"
                     prepend-icon="mdi-view-grid-outline"
+                    slim
+                    class="rounded-pill"
                   >
                   </v-list-item>
                 </v-list>
@@ -189,17 +203,20 @@
           <v-list
             density="compact"
             :class="{ 'glass-menu': hasBackgroundImage }"
-            class="rounded-2lg"
+            class="rounded-5md"
+            nav
           >
             <v-list-item
               :to="{ name: 'GlobalSearch', params: { game: 'ws' } }"
               title="Weiβ Schwarz"
+              class="rounded-pill"
             >
             </v-list-item>
             <v-list-item
               color="ws-rose"
               :to="{ name: 'GlobalSearch', params: { game: 'wsr' } }"
               title="Weiβ Schwarz Rose"
+              class="rounded-pill"
             >
             </v-list-item>
           </v-list>
@@ -220,19 +237,24 @@
           <v-list
             density="compact"
             :class="{ 'glass-menu': hasBackgroundImage }"
-            class="rounded-2lg"
+            class="rounded-5md"
+            nav
           >
             <v-list-item
               v-if="authStore.isAuthenticated"
               :to="{ name: 'Decks' }"
               title="我的卡组"
               prepend-icon="mdi-cards-variant"
+              slim
+              class="rounded-pill"
             >
             </v-list-item>
             <v-list-item
               :to="{ name: 'DecksGallery' }"
               title="卡组广场"
               prepend-icon="mdi-view-grid-outline"
+              slim
+              class="rounded-pill"
             >
             </v-list-item>
           </v-list>
