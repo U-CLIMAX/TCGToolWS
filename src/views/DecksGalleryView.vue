@@ -1,5 +1,21 @@
 <template>
   <v-container fluid class="h-100 pa-0">
+    <v-navigation-drawer
+      v-model="drawer"
+      location="right"
+      temporary
+      :width="drawerWidth"
+      class="glass-sheet"
+      touchless
+    >
+      <ShareDeckDetailView
+        v-if="selectedDeckKey"
+        :deck-key="selectedDeckKey"
+        :embedded="true"
+        @close="drawer = false"
+      />
+    </v-navigation-drawer>
+
     <v-infinite-scroll
       ref="infiniteScrollRef"
       :key="scrollKey"
@@ -128,7 +144,7 @@
 
         <div v-else class="gallery-grid-container">
           <LazyCardWrapper v-for="item in galleryStore.decks" :key="item.key">
-            <DecksGalleryItem :deck="item" @delete="handleDelete" />
+            <DecksGalleryItem :deck="item" @delete="handleDelete" @select="handleSelectDeck" />
           </LazyCardWrapper>
         </div>
       </v-container>
@@ -151,8 +167,10 @@ import { useUIStore } from '@/stores/ui'
 import { useAuthStore } from '@/stores/auth'
 import LazyCardWrapper from '@/components/common/LazyCardWrapper.vue'
 import DecksGalleryItem from '@/components/deck/DecksGalleryItem.vue'
+import ShareDeckDetailView from '@/views/ShareDeckDetailView.vue'
 import BackToTopButton from '@/components/ui/BackToTopButton.vue'
 import { useSnackbar } from '@/composables/useSnackbar'
+import { useDisplay } from 'vuetify'
 
 import DeckGalleryIcon from '@/assets/ui/deck-gallery.svg'
 
@@ -160,10 +178,17 @@ const { triggerSnackbar } = useSnackbar()
 const galleryStore = useDecksGalleryStore()
 const uiStore = useUIStore()
 const authStore = useAuthStore()
+const { smAndDown, width } = useDisplay()
 
 const infiniteScrollRef = ref(null)
 const scrollContainer = ref(null)
 const scrollKey = ref(0)
+const drawer = ref(false)
+const selectedDeckKey = ref(null)
+
+const drawerWidth = computed(() => {
+  return smAndDown.value ? '1000' : width.value * 0.45
+})
 
 const maxDecks = computed(() => (authStore.userRole === 0 ? 15 : Infinity))
 
@@ -205,6 +230,11 @@ const resetFilters = () => {
   localFilters.value.source = 'all'
   localFilters.value.seriesId = null
   localFilters.value.sort = 'newest'
+}
+
+const handleSelectDeck = (key) => {
+  selectedDeckKey.value = key
+  drawer.value = true
 }
 
 const handleDelete = async (key) => {

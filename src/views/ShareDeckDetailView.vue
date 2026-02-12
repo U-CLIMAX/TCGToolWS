@@ -1,14 +1,31 @@
 <template>
-  <DeckDetail
-    :deck="deck"
-    :cards="cards"
-    :deck-title="deck ? deck.deck_name : deckKey"
-    @save="handleSaveDeck"
-  />
+  <div class="h-100 position-relative">
+    <v-overlay
+      v-if="embedded"
+      :model-value="isLoading"
+      class="align-center justify-center"
+      contained
+      persistent
+      no-click-animation
+      z-index="5"
+    >
+      <v-progress-circular indeterminate color="primary" size="64" />
+    </v-overlay>
+
+    <DeckDetail
+      :deck="deck"
+      :cards="cards"
+      :deck-title="deck ? deck.deck_name : effectiveKey"
+      :embedded="embedded"
+      :deck-key="effectiveKey"
+      @save="handleSaveDeck"
+      @close="$emit('close')"
+    />
+  </div>
 </template>
 
 <script setup>
-import { ref, onMounted, toRaw } from 'vue'
+import { ref, onMounted, toRaw, computed, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useDeckEncoder } from '@/composables/useDeckEncoder'
 import { fetchCardByIdAndPrefix } from '@/utils/card'
@@ -18,6 +35,17 @@ import { useDeckStore } from '@/stores/deck'
 import { generateDeckKey } from '@/utils/nanoid'
 import DeckDetail from '@/components/deck/DeckDetailTemplate.vue'
 
+const props = defineProps({
+  deckKey: {
+    type: String,
+    default: null,
+  },
+  embedded: {
+    type: Boolean,
+    default: false,
+  },
+})
+
 const route = useRoute()
 const router = useRouter()
 const { decodeData, encodeData } = useDeckEncoder()
@@ -25,12 +53,14 @@ const uiStore = useUIStore()
 const deckStore = useDeckStore()
 const { triggerSnackbar } = useSnackbar()
 
-const deckKey = route.params.key
+const effectiveKey = computed(() => props.deckKey || route.params.key)
 const deck = ref(null)
 const cards = ref({})
+const isLoading = ref(false)
 
 const handleSaveDeck = async ({ name, coverCardId }) => {
-  uiStore.setLoading(true)
+  const setLoading = (val) => (props.embedded ? (isLoading.value = val) : uiStore.setLoading(val))
+  setLoading(true)
 
   try {
     const cardsToEncode = Object.values(cards.value).reduce((acc, card) => {
@@ -61,16 +91,22 @@ const handleSaveDeck = async ({ name, coverCardId }) => {
     triggerSnackbar(error.message, 'error')
     console.error('❌ 創建失敗:', error)
   } finally {
-    uiStore.setLoading(false)
+    setLoading(false)
   }
 }
 
-onMounted(async () => {
-  uiStore.setLoading(true)
+const loadDeckData = async () => {
+  if (!effectiveKey.value) return
+
+  // init deck
+  deck.value = null
+
+  const setLoading = (val) => (props.embedded ? (isLoading.value = val) : uiStore.setLoading(val))
+  setLoading(true)
 
   try {
     let initialCards = {}
-    const data = await deckStore.fetchDeckByKey(deckKey)
+    const data = await deckStore.fetchDeckByKey(effectiveKey.value)
     deck.value = {
       ...data,
       deckData: await decodeData(toRaw(data.deck_data)),
@@ -94,7 +130,13 @@ onMounted(async () => {
   } catch (error) {
     triggerSnackbar(error.message, 'error')
   } finally {
-    uiStore.setLoading(false)
+    setLoading(false)
   }
+}
+
+watch(effectiveKey, loadDeckData)
+
+onMounted(() => {
+  loadDeckData()
 })
 </script>

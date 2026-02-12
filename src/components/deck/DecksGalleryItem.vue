@@ -92,7 +92,6 @@
 
 <script setup>
 import { computed, ref } from 'vue'
-import { useRouter } from 'vue-router'
 import { useDecksGalleryStore } from '@/stores/decksGallery'
 import { seriesMap } from '@/maps/series-map'
 import { getCardUrls } from '@/utils/getCardImage'
@@ -106,10 +105,9 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['delete'])
+const emit = defineEmits(['delete', 'select'])
 
 const { isTouch } = useDevice()
-const router = useRouter()
 const galleryStore = useDecksGalleryStore()
 const uiStore = useUIStore()
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
@@ -138,16 +136,7 @@ const timeAgo = computed(() => {
 })
 
 const navigateToDeckDetail = () => {
-  try {
-    const win = window.open()
-    const route = router.resolve({
-      name: 'ShareDeckDetail',
-      params: { key: props.deck.key },
-    })
-    win.location.href = route.href
-  } catch {
-    router.push({ name: 'ShareDeckDetail', params: { key: props.deck.key } })
-  }
+  emit('select', props.deck.key)
 }
 
 const confirmDelete = () => {

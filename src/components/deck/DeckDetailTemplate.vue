@@ -6,7 +6,14 @@
           <div class="overlay-header-content">
             <!-- 左側 -->
             <div class="header-left">
-              <v-btn icon :size="resize" variant="text" @click="openSaveDialog" :disabled="!deck">
+              <v-btn
+                icon
+                :size="resize"
+                color="blue-accent-2"
+                variant="text"
+                @click="openSaveDialog"
+                :disabled="!deck"
+              >
                 <v-icon size="24">mdi-content-save-outline</v-icon>
               </v-btn>
             </div>
@@ -20,9 +27,25 @@
             </div>
 
             <!-- 右側 -->
-            <div class="header-right mt-2 ga-2">
-              <template v-if="smAndUp">
-                <div style="width: 120px">
+            <div class="header-right ga-2">
+              <template v-if="embedded">
+                <v-btn
+                  icon
+                  variant="text"
+                  :href="`/share-decks/${deckKey}`"
+                  target="_blank"
+                  color="teal-lighten-1"
+                  :size="resize"
+                  v-tooltip:bottom="'在新窗口打开'"
+                >
+                  <v-icon size="24">mdi-open-in-new</v-icon>
+                </v-btn>
+                <v-btn :size="resize" icon variant="text" @click="$emit('close')">
+                  <v-icon size="24">mdi-arrow-collapse-right</v-icon>
+                </v-btn>
+              </template>
+              <template v-else-if="smAndUp">
+                <div style="width: 120px" class="mt-2">
                   <v-select
                     v-model="groupBy"
                     :items="groupByOptions"
@@ -202,9 +225,17 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  embedded: {
+    type: Boolean,
+    default: false,
+  },
+  deckKey: {
+    type: String,
+    default: '',
+  },
 })
 
-const emit = defineEmits(['save'])
+const emit = defineEmits(['save', 'close'])
 
 const { smAndUp, smAndDown } = useDisplay()
 const resize = computed(() => {
