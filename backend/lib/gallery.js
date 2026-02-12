@@ -46,7 +46,7 @@ export const handleGetDecksGallery = async (c) => {
     const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : ''
 
     const query = `
-      SELECT key, user_id, deck_name, series_id, cover_cards_id, climax_cards_id, updated_at
+      SELECT key, user_id, deck_name, series_id, cover_cards_id, climax_cards_id, updated_at, rating_avg
       FROM decks_gallery
       ${whereClause}
       ORDER BY ${orderByClause}
@@ -130,7 +130,7 @@ export const handleGetUserDecksGallery = async (c) => {
     const whereClause = `WHERE ${conditions.join(' AND ')}`
 
     const query = `
-      SELECT key, user_id, deck_name, series_id, cover_cards_id, climax_cards_id, updated_at
+      SELECT key, user_id, deck_name, series_id, cover_cards_id, climax_cards_id, updated_at, rating_avg
       FROM decks_gallery
       ${whereClause}
       ORDER BY ${orderByClause}

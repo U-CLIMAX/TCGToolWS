@@ -7,69 +7,85 @@
       :elevation="isHovering ? 2 : 0"
       @click="navigateToDeckDetail"
     >
-      <div class="d-flex flex-row fill-height py-4">
-        <div class="cover-section px-3">
-          <v-img
-            :src="getCardUrls(deck.cover_cards_id.cardIdPrefix, deck.cover_cards_id.id).base"
-            :lazy-src="getCardUrls(deck.cover_cards_id.cardIdPrefix, deck.cover_cards_id.id).blur"
-            class="h-100 preload-img"
-            :aspect-ratio="400 / 559"
-          >
-            <template #error>
-              <v-img src="/placehold.webp" cover class="fill-height" />
-            </template>
-          </v-img>
-        </div>
-
-        <div class="content-section d-flex flex-column pr-3">
-          <div class="d-flex justify-space-between align-start mb-1">
-            <h3
-              class="text-h6 font-weight-bold text-truncate text-high-emphasis mr-2"
-              style="line-height: 1.2"
+      <div class="d-flex flex-column h-100">
+        <div class="d-flex flex-row flex-grow-1 pt-4">
+          <div class="cover-section px-3">
+            <v-img
+              :src="getCardUrls(deck.cover_cards_id.cardIdPrefix, deck.cover_cards_id.id).base"
+              :lazy-src="getCardUrls(deck.cover_cards_id.cardIdPrefix, deck.cover_cards_id.id).blur"
+              class="h-100 preload-img"
+              :aspect-ratio="400 / 559"
             >
-              {{ deck.deck_name || '未命名卡組' }}
-            </h3>
-
-            <div v-if="galleryStore.filters.source === 'mine'" class="flex-shrink-0">
-              <v-btn
-                color="red-accent-2"
-                variant="text"
-                icon="mdi-trash-can-outline"
-                size="small"
-                density="comfortable"
-                @click.stop="confirmDelete"
-              ></v-btn>
-            </div>
-            <div
-              v-else
-              class="d-flex align-center text-caption text-medium-emphasis flex-shrink-0 mt-auto"
-            >
-              <v-icon icon="mdi-clock-time-eight-outline" size="small" class="mr-1"></v-icon>
-              {{ timeAgo }}
-            </div>
+              <template #error>
+                <v-img src="/placehold.webp" cover class="fill-height" />
+              </template>
+            </v-img>
           </div>
 
-          <div class="d-flex align-center mb-3 mt-auto">
-            <span class="text-body-2 text-medium-emphasis text-truncate">{{ seriesName }}</span>
-          </div>
+          <div class="content-section d-flex flex-column pr-3">
+            <div class="d-flex justify-space-between align-start mb-1">
+              <h3
+                class="text-h6 font-weight-bold text-truncate text-high-emphasis mr-2"
+                style="line-height: 1.2"
+              >
+                {{ deck.deck_name || '未命名卡組' }}
+              </h3>
 
-          <div class="card-list-container mt-auto">
-            <div
-              v-if="deck.climax_cards_id && deck.climax_cards_id.length > 0"
-              class="card-scroll-wrapper"
-            >
-              <div v-for="cx in deck.climax_cards_id" :key="cx.id" class="mini-card-item">
-                <v-img
-                  :src="getCardUrls(cx.cardIdPrefix, cx.id).base"
-                  :lazy-src="getCardUrls(cx.cardIdPrefix, cx.id).blur"
-                  class="preload-img"
-                />
+              <div v-if="galleryStore.filters.source === 'mine'" class="flex-shrink-0">
+                <v-btn
+                  color="red-accent-2"
+                  variant="text"
+                  icon="mdi-trash-can-outline"
+                  size="small"
+                  density="comfortable"
+                  @click.stop="confirmDelete"
+                ></v-btn>
+              </div>
+              <div
+                v-else
+                class="d-flex align-center text-caption text-medium-emphasis flex-shrink-0 mt-auto"
+              >
+                <v-icon icon="mdi-clock-time-eight-outline" size="small" class="mr-1"></v-icon>
+                {{ timeAgo }}
               </div>
             </div>
-            <div v-else class="text-caption text-disabled d-flex align-center justify-center h-100">
-              无高潮卡
+
+            <div class="d-flex align-center mb-2 mt-auto">
+              <span class="text-body-2 text-medium-emphasis text-truncate">{{ seriesName }}</span>
+            </div>
+
+            <div class="card-list-container mt-auto">
+              <div
+                v-if="deck.climax_cards_id && deck.climax_cards_id.length > 0"
+                class="card-scroll-wrapper"
+              >
+                <div v-for="cx in deck.climax_cards_id" :key="cx.id" class="mini-card-item">
+                  <v-img
+                    :src="getCardUrls(cx.cardIdPrefix, cx.id).base"
+                    :lazy-src="getCardUrls(cx.cardIdPrefix, cx.id).blur"
+                    class="preload-img"
+                  />
+                </div>
+              </div>
+              <div
+                v-else
+                class="text-caption text-disabled d-flex align-center justify-center h-100"
+              >
+                无高潮卡
+              </div>
             </div>
           </div>
+        </div>
+
+        <div class="d-flex justify-end pb-3 px-3">
+          <v-rating
+            :model-value="deck.rating_avg"
+            color="amber"
+            density="compact"
+            half-increments
+            readonly
+            size="x-small"
+          ></v-rating>
         </div>
       </div>
 
@@ -151,7 +167,8 @@ const handleDelete = () => {
 
 <style scoped>
 .gallery-item-card {
-  height: 150px;
+  height: auto;
+  min-height: 150px;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
   overflow: hidden;
@@ -165,7 +182,9 @@ const handleDelete = () => {
 .cover-section {
   flex: 0 0 30%;
   width: 30%;
-  height: 100%;
+  max-width: 120px;
+  height: auto;
+  max-height: 180px;
 }
 
 /* 右側內容區塊 */
