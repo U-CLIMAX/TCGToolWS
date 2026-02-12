@@ -98,9 +98,6 @@ const handleSaveDeck = async ({ name, coverCardId }) => {
 const loadDeckData = async () => {
   if (!effectiveKey.value) return
 
-  // init deck
-  deck.value = null
-
   const setLoading = (val) => (props.embedded ? (isLoading.value = val) : uiStore.setLoading(val))
   setLoading(true)
 

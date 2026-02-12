@@ -10,6 +10,7 @@
     >
       <ShareDeckDetailView
         v-if="selectedDeckKey"
+        :key="selectedDeckKey"
         :deck-key="selectedDeckKey"
         :embedded="true"
         @close="drawer = false"
