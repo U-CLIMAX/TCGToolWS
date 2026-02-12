@@ -11,7 +11,7 @@
           :group-by="groupBy"
         />
         <DeckRating
-          v-else
+          v-else-if="route.name === 'DecksGallery'"
           :deck-key="deckKey"
           :initial-avg-rating="ratingAvg"
           :initial-rating-count="ratingCount"
