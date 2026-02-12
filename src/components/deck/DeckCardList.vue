@@ -3,7 +3,10 @@
     <div class="px-4 pb-4 w-100 h-100 centered-content">
       <v-fab-transition>
         <DeckStatsDashboard
-          v-if="uiStore.showStatsDashboard || shouldForceDashboardOpen"
+          v-if="
+            route.name !== 'DecksGallery' &&
+            (uiStore.showStatsDashboard || shouldForceDashboardOpen)
+          "
           :grouped-cards="statsGroupedCards"
           :group-by="groupBy"
         />
