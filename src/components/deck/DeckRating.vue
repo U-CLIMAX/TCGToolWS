@@ -1,67 +1,62 @@
 <template>
-  <div class="d-flex justify-center my-2 w-100">
-    <v-card class="pa-4 rounded-xl d-flex flex-column align-center w-100" elevation="0">
-      <!-- Top Row: Summary & Breakdown -->
-      <div class="d-flex flex-row align-center w-100">
-        <!-- Left Column: Summary -->
-        <div class="d-flex flex-column align-center justify-center px-2" style="flex: 1">
-          <div
-            class="text-h2 font-DINCond font-weight-black mb-1"
-            :class="avgRating >= 4.8 ? rainbowText : 'text-primary'"
-          >
-            {{ avgRating.toFixed(1) }}
-          </div>
-          <v-rating
-            :model-value="avgRating"
-            density="compact"
-            color="amber"
-            half-increments
-            readonly
-            size="small"
-            class="mb-1"
-          ></v-rating>
-          <div class="text-caption text-medium-emphasis">{{ ratingCount }} 人评分</div>
+  <div class="pa-4 pt-0 d-flex flex-column align-center justify-center my-2 w-100">
+    <!-- Top Row: Summary & Breakdown -->
+    <div class="d-flex flex-row align-center w-100">
+      <!-- Left Column: Summary -->
+      <div class="d-flex flex-column align-center justify-center px-2" style="flex: 1">
+        <div
+          class="text-h2 font-DINCond font-weight-black mb-1"
+          :class="avgRating >= 4.8 ? rainbowText : 'text-primary'"
+        >
+          {{ avgRating.toFixed(1) }}
         </div>
-
-        <v-divider vertical class="my-2"></v-divider>
-
-        <!-- Right Column: Breakdown Bars -->
-        <div class="d-flex flex-column justify-center px-2 ga-1" style="flex: 2; min-width: 180px">
-          <div v-for="i in 5" :key="i" class="d-flex align-center w-100" style="height: 18px">
-            <span
-              class="text-caption text-medium-emphasis mr-2 font-weight-bold"
-              style="width: 12px"
-            >
-              {{ 6 - i }}
-            </span>
-            <v-progress-linear
-              :model-value="ratingCount > 0 ? (ratingBreakdown[5 - i] / ratingCount) * 100 : 0"
-              color="amber"
-              height="6"
-              rounded
-              class="flex-grow-1"
-            ></v-progress-linear>
-            <span class="text-caption text-medium-emphasis ml-2 text-end" style="width: 24px">
-              {{ ratingBreakdown[5 - i] }}
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Bottom Row: User Rating -->
-      <div class="d-flex flex-column align-center mt-3 w-100">
-        <div class="text-caption text-medium-emphasis">您的评分</div>
         <v-rating
-          v-model="myRating"
+          :model-value="avgRating"
           density="compact"
           color="amber"
-          hover
-          clearable
-          size="x-large"
-          @update:model-value="handleRate"
+          half-increments
+          readonly
+          size="small"
+          class="mb-1"
         ></v-rating>
+        <div class="text-caption text-medium-emphasis">{{ ratingCount }} 人评分</div>
       </div>
-    </v-card>
+
+      <v-divider vertical class="my-2"></v-divider>
+
+      <!-- Right Column: Breakdown Bars -->
+      <div class="d-flex flex-column justify-center px-2 ga-1" style="flex: 2; min-width: 180px">
+        <div v-for="i in 5" :key="i" class="d-flex align-center w-100" style="height: 18px">
+          <span class="text-caption text-medium-emphasis mr-2 font-weight-bold" style="width: 12px">
+            {{ 6 - i }}
+          </span>
+          <v-progress-linear
+            :model-value="ratingCount > 0 ? (ratingBreakdown[5 - i] / ratingCount) * 100 : 0"
+            color="amber"
+            height="6"
+            rounded
+            class="flex-grow-1"
+          ></v-progress-linear>
+          <span class="text-caption text-medium-emphasis ml-2 text-end" style="width: 24px">
+            {{ ratingBreakdown[5 - i] }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Row: User Rating -->
+    <div class="d-flex flex-column align-center mt-3 w-100">
+      <div class="text-caption text-medium-emphasis">您的评分</div>
+      <v-rating
+        v-model="myRating"
+        density="compact"
+        color="amber"
+        hover
+        clearable
+        size="x-large"
+        @update:model-value="handleRate"
+      ></v-rating>
+    </div>
   </div>
 </template>
 
