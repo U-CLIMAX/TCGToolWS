@@ -5,7 +5,7 @@
       location="right"
       temporary
       :width="drawerWidth"
-      class="glass-sheet"
+      :class="{ 'glass-sheet': hasBackgroundImage }"
       touchless
     >
       <ShareDeckDetailView
