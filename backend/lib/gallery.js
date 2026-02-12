@@ -30,6 +30,19 @@ export const handleGetDecksGallery = async (c) => {
         cursorCondition = '(updated_at, key) > (?, ?)'
         params.push(cursorObj.t, cursorObj.k)
       }
+    } else if (sort === 'rating_desc') {
+      orderByClause = 'rating_avg DESC, updated_at DESC, key DESC'
+      if (cursorObj) {
+        cursorCondition = '(rating_avg, updated_at, key) < (?, ?, ?)'
+        params.push(cursorObj.r || 0, cursorObj.t, cursorObj.k)
+      }
+    } else if (sort === 'rating_asc') {
+      orderByClause = 'rating_avg ASC, updated_at DESC, key DESC'
+      if (cursorObj) {
+        cursorCondition =
+          '((rating_avg > ?) OR (rating_avg = ? AND (updated_at < ? OR (updated_at = ? AND key < ?))))'
+        params.push(cursorObj.r || 0, cursorObj.r || 0, cursorObj.t, cursorObj.t, cursorObj.k)
+      }
     } else {
       // Default: newest
       orderByClause = 'updated_at DESC, key DESC'
@@ -63,7 +76,11 @@ export const handleGetDecksGallery = async (c) => {
     let nextCursor = null
     if (hasNextPage && decks.length > 0) {
       const lastItem = decks[decks.length - 1]
-      nextCursor = btoa(JSON.stringify({ t: lastItem.updated_at, k: lastItem.key }))
+      const cursorData = { t: lastItem.updated_at, k: lastItem.key }
+      if (sort.startsWith('rating')) {
+        cursorData.r = lastItem.rating_avg || 0
+      }
+      nextCursor = btoa(JSON.stringify(cursorData))
     }
 
     const parsedDecks = decks.map((d) => ({
@@ -114,6 +131,19 @@ export const handleGetUserDecksGallery = async (c) => {
         cursorCondition = '(updated_at, key) > (?, ?)'
         params.push(cursorObj.t, cursorObj.k)
       }
+    } else if (sort === 'rating_desc') {
+      orderByClause = 'rating_avg DESC, updated_at DESC, key DESC'
+      if (cursorObj) {
+        cursorCondition = '(rating_avg, updated_at, key) < (?, ?, ?)'
+        params.push(cursorObj.r || 0, cursorObj.t, cursorObj.k)
+      }
+    } else if (sort === 'rating_asc') {
+      orderByClause = 'rating_avg ASC, updated_at DESC, key DESC'
+      if (cursorObj) {
+        cursorCondition =
+          '((rating_avg > ?) OR (rating_avg = ? AND (updated_at < ? OR (updated_at = ? AND key < ?))))'
+        params.push(cursorObj.r || 0, cursorObj.r || 0, cursorObj.t, cursorObj.t, cursorObj.k)
+      }
     } else {
       // Default: newest
       orderByClause = 'updated_at DESC, key DESC'
@@ -147,7 +177,11 @@ export const handleGetUserDecksGallery = async (c) => {
     let nextCursor = null
     if (hasNextPage && decks.length > 0) {
       const lastItem = decks[decks.length - 1]
-      nextCursor = btoa(JSON.stringify({ t: lastItem.updated_at, k: lastItem.key }))
+      const cursorData = { t: lastItem.updated_at, k: lastItem.key }
+      if (sort.startsWith('rating')) {
+        cursorData.r = lastItem.rating_avg || 0
+      }
+      nextCursor = btoa(JSON.stringify(cursorData))
     }
 
     const parsedDecks = decks.map((d) => ({
@@ -225,7 +259,12 @@ export const handleRateDeck = async (c) => {
     const { key } = c.req.param()
     const { rating } = await c.req.json()
 
-    if (!key || rating === undefined || rating === null || (rating !== 0 && (rating < 1 || rating > 5))) {
+    if (
+      !key ||
+      rating === undefined ||
+      rating === null ||
+      (rating !== 0 && (rating < 1 || rating > 5))
+    ) {
       return createErrorResponse(c, 400, '参数错误')
     }
 
@@ -233,9 +272,7 @@ export const handleRateDeck = async (c) => {
 
     if (rating === 0) {
       // Delete rating
-      await c.env.DB.prepare(
-        'DELETE FROM deck_ratings WHERE deck_key = ? AND user_id = ?'
-      )
+      await c.env.DB.prepare('DELETE FROM deck_ratings WHERE deck_key = ? AND user_id = ?')
         .bind(key, user.id)
         .run()
     } else {

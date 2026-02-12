@@ -204,6 +204,8 @@ const sourceOptions = computed(() => {
 const sortOptions = [
   { title: '时间从新到旧', value: 'newest' },
   { title: '时间从旧到新', value: 'oldest' },
+  { title: '评分从高到低', value: 'rating_desc' },
+  { title: '评分从低到高', value: 'rating_asc' },
 ]
 
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)

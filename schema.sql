@@ -86,6 +86,10 @@ CREATE INDEX IF NOT EXISTS idx_decks_gallery_updated_id ON decks_gallery(updated
 CREATE INDEX IF NOT EXISTS idx_decks_gallery_updated_asc_id ON decks_gallery(updated_at ASC, key ASC);
 CREATE INDEX IF NOT EXISTS idx_decks_gallery_series_updated_id ON decks_gallery(series_id, updated_at DESC, key DESC);
 CREATE INDEX IF NOT EXISTS idx_decks_gallery_series_updated_asc_id ON decks_gallery(series_id, updated_at ASC, key ASC);
+CREATE INDEX IF NOT EXISTS idx_decks_gallery_rating_desc ON decks_gallery(rating_avg DESC, updated_at DESC, key DESC);
+CREATE INDEX IF NOT EXISTS idx_decks_gallery_rating_asc ON decks_gallery(rating_avg ASC, updated_at DESC, key DESC);
+CREATE INDEX IF NOT EXISTS idx_decks_gallery_series_rating_desc ON decks_gallery(series_id, rating_avg DESC, updated_at DESC, key DESC);
+CREATE INDEX IF NOT EXISTS idx_decks_gallery_series_rating_asc ON decks_gallery(series_id, rating_avg ASC, updated_at DESC, key DESC);
 
 CREATE TABLE IF NOT EXISTS deck_ratings (
     deck_key TEXT NOT NULL,
