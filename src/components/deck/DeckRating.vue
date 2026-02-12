@@ -50,7 +50,7 @@
 
       <!-- Bottom Row: User Rating -->
       <div class="d-flex flex-column align-center mt-3 w-100">
-        <div class="text-caption text-medium-emphasis">您的评价</div>
+        <div class="text-caption text-medium-emphasis">您的评分</div>
         <v-rating
           v-model="myRating"
           density="compact"
@@ -138,7 +138,7 @@ const handleRate = async (val) => {
     ratingCount.value = result.rating_count
     ratingBreakdown.value = result.rating_breakdown
     myRating.value = ratingValue
-    triggerSnackbar(ratingValue === 0 ? '评价已删除' : '评分成功', 'success')
+    triggerSnackbar(ratingValue === 0 ? '评分已删除' : '评分成功', 'success')
   } catch (error) {
     triggerSnackbar(error.message, 'error')
   }
