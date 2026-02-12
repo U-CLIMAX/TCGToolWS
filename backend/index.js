@@ -23,6 +23,8 @@ import {
   handleGetUserDecksGallery,
   handleDeleteGalleryDeck,
   handleGetMyGalleryCount,
+  handleRateDeck,
+  handleGetMyDeckRating,
 } from './lib/gallery.js'
 import {
   handleCreateListing,
@@ -120,6 +122,8 @@ galleryRoutes.use('/*', authMiddleware, apiUserLimiter)
 galleryRoutes.get('/my-decks', handleGetUserDecksGallery)
 galleryRoutes.get('/my-count', handleGetMyGalleryCount)
 galleryRoutes.delete('/decks/:key', handleDeleteGalleryDeck)
+galleryRoutes.post('/decks/:key/rating', handleRateDeck)
+galleryRoutes.get('/decks/:key/rating', handleGetMyDeckRating)
 
 // === 受保護的 Payment 路由 ===
 const paymentRoutes = new Hono()

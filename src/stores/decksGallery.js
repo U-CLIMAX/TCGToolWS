@@ -97,6 +97,40 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
     }
   }
 
+  const rateDeck = async (key, rating) => {
+    if (!authStore.token) throw new Error('请先登入')
+
+    const response = await fetch(`/api/gallery/decks/${key}/rating`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${authStore.token}`,
+      },
+      body: JSON.stringify({ rating }),
+    })
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}))
+      throw new Error(errorData.error || '评分失败')
+    }
+
+    return await response.json()
+  }
+
+  const fetchMyRating = async (key) => {
+    if (!authStore.token) return 0
+
+    const response = await fetch(`/api/gallery/decks/${key}/rating`, {
+      headers: {
+        Authorization: `Bearer ${authStore.token}`,
+      },
+    })
+
+    if (!response.ok) return 0
+    const data = await response.json()
+    return data.rating
+  }
+
   const deleteDeck = async (key) => {
     if (!authStore.token) throw new Error('请先登入')
 
@@ -126,5 +160,7 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
     fetchDecks,
     fetchUserDeckCount,
     deleteDeck,
+    rateDeck,
+    fetchMyRating,
   }
 })

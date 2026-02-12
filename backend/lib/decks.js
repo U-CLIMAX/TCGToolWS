@@ -117,7 +117,7 @@ export const handleGetDeckByKey = async (c) => {
     const { key } = c.req.param()
 
     let result = await c.env.DB.prepare(
-      'SELECT key, deck_name, series_id, cover_cards_id, deck_data FROM decks_gallery WHERE key = ?'
+      'SELECT key, deck_name, series_id, cover_cards_id, deck_data, rating_avg, rating_count, rating_breakdown FROM decks_gallery WHERE key = ?'
     )
       .bind(key)
       .first()
@@ -130,6 +130,14 @@ export const handleGetDeckByKey = async (c) => {
         .first()
     }
     result.cover_cards_id = JSON.parse(result.cover_cards_id)
+    if (result.rating_breakdown) {
+      try {
+        result.rating_breakdown = JSON.parse(result.rating_breakdown)
+        // eslint-disable-next-line no-unused-vars
+      } catch (e) {
+        result.rating_breakdown = [0, 0, 0, 0, 0]
+      }
+    }
 
     if (!result) {
       return createErrorResponse(c, 404, '卡组不存在')

@@ -10,6 +10,13 @@
           :grouped-cards="statsGroupedCards"
           :group-by="groupBy"
         />
+        <DeckRating
+          v-else
+          :deck-key="deckKey"
+          :initial-avg-rating="ratingAvg"
+          :initial-rating-count="ratingCount"
+          :initial-rating-breakdown="ratingBreakdown"
+        />
       </v-fab-transition>
 
       <v-fade-transition>
@@ -147,6 +154,7 @@ import { getCardUrls } from '@/utils/getCardImage'
 import { useDevice } from '@/composables/useDevice'
 import CardDetailModal from '@/components/card/CardDetailModal.vue'
 import DeckStatsDashboard from '@/components/deck/DeckStatsDashboard.vue'
+import DeckRating from '@/components/deck/DeckRating.vue'
 import WsIcon from '@/assets/ui/ws-icon.svg?url'
 import { useUIStore } from '@/stores/ui'
 
@@ -186,6 +194,22 @@ const props = defineProps({
   totalCards: {
     type: Number,
     default: 0,
+  },
+  deckKey: {
+    type: String,
+    default: '',
+  },
+  ratingAvg: {
+    type: Number,
+    default: 0,
+  },
+  ratingCount: {
+    type: Number,
+    default: 0,
+  },
+  ratingBreakdown: {
+    type: Array,
+    default: () => [0, 0, 0, 0, 0],
   },
 })
 

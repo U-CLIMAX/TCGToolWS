@@ -213,3 +213,104 @@ export const handleGetMyGalleryCount = async (c) => {
     return createErrorResponse(c, 500, '内部服务器错误')
   }
 }
+
+/**
+ * Rates a deck in the gallery.
+ * @param {object} c - Hono context object.
+ * @returns {Response}
+ */
+export const handleRateDeck = async (c) => {
+  try {
+    const user = c.get('user')
+    const { key } = c.req.param()
+    const { rating } = await c.req.json()
+
+    if (!key || rating === undefined || rating === null || (rating !== 0 && (rating < 1 || rating > 5))) {
+      return createErrorResponse(c, 400, '参数错误')
+    }
+
+    const now = Math.floor(Date.now() / 1000)
+
+    if (rating === 0) {
+      // Delete rating
+      await c.env.DB.prepare(
+        'DELETE FROM deck_ratings WHERE deck_key = ? AND user_id = ?'
+      )
+        .bind(key, user.id)
+        .run()
+    } else {
+      // Insert or Update rating
+      await c.env.DB.prepare(
+        `INSERT INTO deck_ratings (deck_key, user_id, rating, updated_at)
+         VALUES (?, ?, ?, ?)
+         ON CONFLICT(deck_key, user_id) DO UPDATE SET
+         rating = excluded.rating,
+         updated_at = excluded.updated_at`
+      )
+        .bind(key, user.id, rating, now)
+        .run()
+    }
+
+    // Recalculate average and count
+    const { avgRating, count } = await c.env.DB.prepare(
+      `SELECT AVG(rating) as avgRating, COUNT(*) as count FROM deck_ratings WHERE deck_key = ?`
+    )
+      .bind(key)
+      .first()
+
+    // Calculate breakdown
+    const { results } = await c.env.DB.prepare(
+      `SELECT rating, COUNT(*) as count FROM deck_ratings WHERE deck_key = ? GROUP BY rating`
+    )
+      .bind(key)
+      .all()
+
+    const breakdown = [0, 0, 0, 0, 0]
+    results.forEach((r) => {
+      if (r.rating >= 1 && r.rating <= 5) {
+        breakdown[r.rating - 1] = r.count
+      }
+    })
+    const breakdownStr = JSON.stringify(breakdown)
+
+    // Update decks_gallery
+    await c.env.DB.prepare(
+      `UPDATE decks_gallery SET rating_avg = ?, rating_count = ?, rating_breakdown = ? WHERE key = ?`
+    )
+      .bind(avgRating || 0, count || 0, breakdownStr, key)
+      .run()
+
+    return c.json({
+      success: true,
+      rating_avg: avgRating || 0,
+      rating_count: count || 0,
+      rating_breakdown: breakdown,
+    })
+  } catch (error) {
+    console.error('Error rating deck:', error)
+    return createErrorResponse(c, 500, '内部服务器错误')
+  }
+}
+
+/**
+ * Gets the authenticated user's rating for a specific deck.
+ * @param {object} c - Hono context object.
+ * @returns {Response}
+ */
+export const handleGetMyDeckRating = async (c) => {
+  try {
+    const user = c.get('user')
+    const { key } = c.req.param()
+
+    const result = await c.env.DB.prepare(
+      `SELECT rating FROM deck_ratings WHERE deck_key = ? AND user_id = ?`
+    )
+      .bind(key, user.id)
+      .first()
+
+    return c.json({ rating: result ? result.rating : 0 })
+  } catch (error) {
+    console.error('Error fetching my deck rating:', error)
+    return createErrorResponse(c, 500, '内部服务器错误')
+  }
+}
