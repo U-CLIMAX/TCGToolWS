@@ -163,6 +163,7 @@
 
 <script setup>
 import { ref, computed, onMounted, watch, nextTick } from 'vue'
+import { onBeforeRouteLeave } from 'vue-router'
 import { useDecksGalleryStore } from '@/stores/decksGallery'
 import { useUIStore } from '@/stores/ui'
 import { useAuthStore } from '@/stores/auth'
@@ -262,6 +263,15 @@ const loadMore = async ({ done }) => {
     done('empty')
   }
 }
+
+onBeforeRouteLeave((to, from, next) => {
+  if (drawer.value) {
+    drawer.value = false
+    next(false)
+  } else {
+    next()
+  }
+})
 
 onMounted(async () => {
   // Initialize local filters from store
