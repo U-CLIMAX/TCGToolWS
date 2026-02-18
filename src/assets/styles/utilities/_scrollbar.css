@@ -37,7 +37,7 @@
 }
 
 /* 手機端隱藏滾動條 */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   /* Chrome / Edge / Safari */
   .themed-scrollbar::-webkit-scrollbar,
   .themed-scrollbar .v-list::-webkit-scrollbar {
