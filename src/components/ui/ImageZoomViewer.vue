@@ -2,12 +2,12 @@
   <!-- 放大對話框 -->
   <v-dialog
     v-model="internalDialog"
-    :fullscreen="smAndDown"
+    :fullscreen="!smAndUp"
     max-width="90vw"
     @click:outside="closeDialog"
   >
     <!-- Mobile Layout -->
-    <v-card v-if="smAndDown" color="black" elevation="0" class="mobile-viewer">
+    <v-card v-if="!smAndUp" color="black" elevation="0" class="mobile-viewer">
       <div class="mobile-viewer__image-container">
         <v-img :src="images[currentImageIndex]" contain class="mobile-viewer__image"></v-img>
       </div>
@@ -82,7 +82,7 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue', 'dialog-opened', 'dialog-closed'])
 
-const { smAndDown } = useDisplay()
+const { smAndUp } = useDisplay()
 
 const internalDialog = ref(false)
 const currentImageIndex = ref(0)

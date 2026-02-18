@@ -115,7 +115,7 @@
     <!-- Save Deck Dialog -->
     <v-dialog
       v-model="isSaveDialogOpen"
-      :fullscreen="smAndDown"
+      :fullscreen="!smAndUp"
       max-width="500px"
       @update:model-value="closeSaveDialog"
     >
@@ -241,7 +241,7 @@ const props = defineProps({
 
 const emit = defineEmits(['save', 'close'])
 
-const { smAndUp, smAndDown } = useDisplay()
+const { smAndUp } = useDisplay()
 const resize = computed(() => {
   return smAndUp.value ? 'default' : 'small'
 })

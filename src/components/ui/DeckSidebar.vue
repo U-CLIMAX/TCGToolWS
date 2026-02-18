@@ -156,10 +156,10 @@
   <v-dialog
     v-if="selectedCardData"
     v-model="isModalVisible"
-    :fullscreen="smAndDown"
-    :max-width="smAndDown ? undefined : '60%'"
-    :max-height="smAndDown ? undefined : '95%'"
-    :min-height="smAndDown ? undefined : '60%'"
+    :fullscreen="!smAndUp"
+    :max-width="!smAndUp ? undefined : '80%'"
+    :max-height="!smAndUp ? undefined : '95%'"
+    :min-height="!smAndUp ? undefined : '40%'"
   >
     <CardDetailModal
       :card="selectedCardData"
@@ -193,7 +193,7 @@
   <!-- Save Deck Dialog -->
   <v-dialog
     v-model="isSaveDialogOpen"
-    :fullscreen="smAndDown"
+    :fullscreen="!smAndUp"
     max-width="500px"
     @update:model-value="closeSaveDialog"
   >
@@ -307,7 +307,7 @@
   </v-dialog>
 
   <!-- Restriction Dialog -->
-  <v-dialog v-model="isRestrictionDialogOpen" max-width="500" scrollable :fullscreen="smAndDown">
+  <v-dialog v-model="isRestrictionDialogOpen" max-width="500" scrollable :fullscreen="!smAndUp">
     <v-card class="rounded-2lg">
       <v-card-title class="text-error">
         <v-icon start icon="mdi-alert-circle"></v-icon>
@@ -438,7 +438,7 @@ defineProps({
 })
 
 const router = useRouter()
-const { smAndUp, smAndDown } = useDisplay()
+const { smAndUp } = useDisplay()
 const deckStore = useDeckStore()
 const { encodeData } = useDeckEncoder()
 const { triggerSnackbar } = useSnackbar()

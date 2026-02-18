@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" max-width="900px" scrollable :fullscreen="smAndDown">
+  <v-dialog v-model="dialog" max-width="900px" scrollable :fullscreen="!smAndUp">
     <v-card :class="{ 'rounded-2lg': smAndUp }">
       <v-card-title class="d-flex align-center">
         <span>{{ isEditing ? '编辑商品' : '发布商品' }}</span>
@@ -221,7 +221,7 @@ import { useSnackbar } from '@/composables/useSnackbar'
 
 const props = defineProps(['modelValue', 'editingListing'])
 const emit = defineEmits(['update:modelValue', 'created', 'updated'])
-const { smAndDown, smAndUp } = useDisplay()
+const { smAndUp } = useDisplay()
 const filterStore = useFilterStore()
 const marketStore = useMarketStore()
 const uiStore = useUIStore()

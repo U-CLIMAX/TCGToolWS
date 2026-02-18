@@ -2,7 +2,7 @@
   <v-app id="app" class="grid-background" :style="appStyle">
     <HomeBackground v-show="isHomeRoute" />
     <v-app-bar
-      v-if="!smAndDown"
+      v-if="smAndUp"
       scroll-behavior="elevate"
       scroll-threshold="160"
       height="50"
@@ -14,7 +14,7 @@
           :src="titleImg"
           alt="UClimax for ws"
           class="ma-16"
-          :class="{ 'ml-0': smAndDown }"
+          :class="{ 'ml-0': !smAndUp }"
           contain
           eager
           :style="titleImgStyle"
@@ -24,7 +24,7 @@
 
       <template #append>
         <template v-if="!isInSpecialFlow">
-          <div class="d-none d-md-block h-100">
+          <div class="d-none d-sm-block h-100">
             <template v-for="item in navItems" :key="item.to">
               <!-- Search Dropdown -->
               <v-menu v-if="item.name === 'GlobalSearch'" offset="5" open-on-hover>
@@ -179,7 +179,7 @@
     </v-main>
 
     <v-bottom-navigation
-      v-if="smAndDown"
+      v-if="!smAndUp"
       :bg-color="isHomeRoute ? '#212121' : 'default'"
       :height="50"
       class="pb-4"
@@ -368,7 +368,7 @@ const authStore = useAuthStore()
 const { userRole } = storeToRefs(authStore)
 const vuetifyTheme = useTheme()
 const uiStore = useUIStore()
-const { mdAndDown, smAndDown } = useDisplay()
+const { mdAndDown, smAndUp } = useDisplay()
 
 const titleImgStyle = computed(() => {
   return {
