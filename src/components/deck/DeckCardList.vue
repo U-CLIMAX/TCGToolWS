@@ -123,9 +123,9 @@
       :model-value="isModalVisible"
       @update:model-value="$emit('update:isModalVisible', $event)"
       :fullscreen="!smAndUp"
-      :max-width="!smAndUp ? undefined : '80%'"
+      :max-width="!smAndUp ? undefined : smAndDown ? '80%' : '60%'"
       :max-height="!smAndUp ? undefined : '95%'"
-      :min-height="!smAndUp ? undefined : '40%'"
+      :min-height="!smAndUp ? undefined : '60%'"
     >
       <CardDetailModal
         :card="selectedCard"
@@ -215,7 +215,7 @@ const props = defineProps({
 
 defineEmits(['card-click', 'update:isModalVisible', 'show-new-card', 'prev-card', 'next-card'])
 
-const { smAndUp } = useDisplay()
+const { smAndUp, smAndDown } = useDisplay()
 const theme = useTheme()
 const uiStore = useUIStore()
 const { isTouch } = useDevice()

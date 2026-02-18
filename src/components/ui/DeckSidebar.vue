@@ -157,7 +157,7 @@
     v-if="selectedCardData"
     v-model="isModalVisible"
     :fullscreen="!smAndUp"
-    :max-width="!smAndUp ? undefined : '80%'"
+    :max-width="!smAndUp ? undefined : smAndDown ? '80%' : '60%'"
     :max-height="!smAndUp ? undefined : '95%'"
     :min-height="!smAndUp ? undefined : '40%'"
   >
@@ -438,7 +438,7 @@ defineProps({
 })
 
 const router = useRouter()
-const { smAndUp } = useDisplay()
+const { smAndUp, smAndDown } = useDisplay()
 const deckStore = useDeckStore()
 const { encodeData } = useDeckEncoder()
 const { triggerSnackbar } = useSnackbar()

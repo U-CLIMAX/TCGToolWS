@@ -48,9 +48,9 @@
     v-if="selectedCardData"
     v-model="isModalVisible"
     :fullscreen="!smAndUp"
-    :max-width="!smAndUp ? undefined : '80%'"
+    :max-width="!smAndUp ? undefined : smAndDown ? '80%' : '60%'"
     :max-height="!smAndUp ? undefined : '95%'"
-    :min-height="!smAndUp ? undefined : '40%'"
+    :min-height="!smAndUp ? undefined : '60%'"
   >
     <CardDetailModal
       :card="selectedCardData.card"
@@ -113,7 +113,7 @@ const props = defineProps({
   },
 })
 
-const { smAndUp, xs } = useDisplay()
+const { smAndUp, smAndDown, xs } = useDisplay()
 const uiStore = useUIStore()
 const { isPerformanceMode } = storeToRefs(uiStore)
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
