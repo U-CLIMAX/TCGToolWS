@@ -12,7 +12,7 @@
     :class="{
       'overflow-y-auto themed-scrollbar': !$vuetify.display.mdAndUp,
       'overflow-visible': $vuetify.display.mdAndUp,
-      'rounded-2lg': $vuetify.display.mdAndUp,
+      'rounded-2lg': $vuetify.display.smAndUp,
     }"
   >
     <v-btn
