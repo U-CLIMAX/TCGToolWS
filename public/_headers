@@ -1,3 +1,9 @@
+/series-icons/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+
 /uclimax.ico
   Cache-Control: public, max-age=604800
   CF-Cache-Level: cache_everything
