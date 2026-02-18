@@ -13,8 +13,7 @@
         <v-img
           :src="titleImg"
           alt="UClimax for ws"
-          class="ma-16"
-          :class="{ 'ml-0': !smAndUp }"
+          :class="!smAndDown ? 'ml-16' : 'ml-0'"
           contain
           eager
           :style="titleImgStyle"
@@ -368,7 +367,7 @@ const authStore = useAuthStore()
 const { userRole } = storeToRefs(authStore)
 const vuetifyTheme = useTheme()
 const uiStore = useUIStore()
-const { mdAndDown, smAndUp } = useDisplay()
+const { mdAndDown, smAndUp, smAndDown } = useDisplay()
 
 const titleImgStyle = computed(() => {
   return {
