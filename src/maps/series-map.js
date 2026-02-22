@@ -2,7 +2,7 @@ const wsSeriesMap = {
   '传说系列': {
     id: 'tal',
     prefixes: ['TAL'],
-    latestReleaseDate: '2026-1-16',
+    latestReleaseDate: '2026-01-16',
   },
   'Re：从零开始的异世界生活': {
     id: 're0',
@@ -53,7 +53,7 @@ const wsSeriesMap = {
   '女神异闻录': {
     id: 'persona',
     prefixes: ['P3', 'P4', 'PQ', 'P5'],
-    latestReleaseDate: '2024-5-17',
+    latestReleaseDate: '2024-05-17',
   },
   '莉可丽丝': {
     id: 'lrc',
@@ -932,6 +932,11 @@ const wsSeriesMap = {
 }
 
 const wsrSeriesMap = {
+  'AQUAPLUS': {
+    id: 'os08',
+    prefixes: ['OS08'],
+    latestReleaseDate: '2026-02-27',
+  },
   'sprite': {
     id: 'os05',
     prefixes: ['OS05'],
@@ -940,22 +945,22 @@ const wsrSeriesMap = {
   '异种族风俗娘': {
     id: 'os04',
     prefixes: ['OS04'],
-    latestReleaseDate: '2025-8-29',
+    latestReleaseDate: '2025-08-29',
   },
   'HARUKAZE': {
     id: 'os03',
     prefixes: ['OS03'],
-    latestReleaseDate: '2025-6-27',
+    latestReleaseDate: '2025-06-27',
   },
   '柚子社': {
     id: 'os01',
     prefixes: ['OS01'],
-    latestReleaseDate: '2025-4-25',
+    latestReleaseDate: '2025-04-25',
   },
   '梦想成为魔法少女': {
     id: 'os02',
     prefixes: ['OS02'],
-    latestReleaseDate: '2025-4-25',
+    latestReleaseDate: '2025-04-25',
   },
   '枕': {
     id: 'os06',
@@ -965,7 +970,7 @@ const wsrSeriesMap = {
   'Lose＆Whisp': {
     id: 'os07',
     prefixes: ['OS07'],
-    latestReleaseDate: '2026-1-30',
+    latestReleaseDate: '2026-01-30',
   },
   ' 其他': {
     id: 'wsr',
