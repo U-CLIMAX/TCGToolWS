@@ -34,7 +34,7 @@
             placeholder="卡号、卡名、效果"
             :items="allKeywords"
             hide-details="auto"
-            v-model="keywordInput"
+            v-model="filterStore.keyword"
             variant="underlined"
             density="compact"
             :rules="[(v) => !v || v.length >= 2 || '关键字至少输入2个字符']"
@@ -314,7 +314,6 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { useDisplay } from 'vuetify'
-import { debounce } from 'es-toolkit'
 import { useTheme } from 'vuetify'
 import { useUIStore } from '@/stores/ui'
 import { useFilterStore } from '@/stores/filter'
@@ -415,17 +414,6 @@ const saveNewKeyword = () => {
 const removeKeyword = (keyword) => {
   uiStore.removeCustomKeyword(keyword)
 }
-
-const updateStoreKeyword = debounce((val) => {
-  filterStore.keyword = val
-}, 300)
-
-const keywordInput = computed({
-  get: () => filterStore.keyword,
-  set: (val) => {
-    updateStoreKeyword(val || null)
-  },
-})
 
 const toggleSearchMode = () => {
   filterStore.searchMode = filterStore.searchMode === 'fuzzy' ? 'precise' : 'fuzzy'

@@ -12,7 +12,7 @@
     <div :class="['search-wrapper', { 'is-expanded': isExpanded }]" v-click-outside="collapse">
       <v-text-field
         ref="inputRef"
-        v-model="localSearchTerm"
+        v-model="uiStore.seriesSearchTerm"
         class="search-input"
         placeholder="系列名称、番号"
         variant="plain"
@@ -31,19 +31,8 @@
 <script setup>
 import { ref, nextTick, computed, onMounted, onUnmounted } from 'vue'
 import { useUIStore } from '@/stores/ui'
-import { debounce } from 'es-toolkit'
 
 const uiStore = useUIStore()
-const updateStoreTerm = debounce((val) => {
-  uiStore.seriesSearchTerm = val
-}, 300)
-
-const localSearchTerm = computed({
-  get: () => uiStore.seriesSearchTerm,
-  set: (val) => {
-    updateStoreTerm(val)
-  },
-})
 
 const isExpanded = ref(false)
 const inputRef = ref(null)
@@ -131,30 +120,25 @@ const collapse = () => {
 }
 
 const toggleExpand = async () => {
-  if (movedDuringDrag.value) {
+  if (movedDuringDrag.value || isExpanded.value) {
     return
   }
-  if (isExpanded.value && !localSearchTerm.value) {
-    isExpanded.value = false
-  } else if (!isExpanded.value) {
-    const expandedWidth = 350
-    if (draggableContainer.value) {
-      const parentRect = draggableContainer.value.parentElement.getBoundingClientRect()
-      const viewportWidth = parentRect.width
 
-      if (position.value.x + expandedWidth > viewportWidth) {
-        position.value.x = viewportWidth - expandedWidth
-      }
-      // Ensure it doesn't go off the left edge either
-      position.value.x = Math.max(0, position.value.x)
+  const expandedWidth = 350
+  if (draggableContainer.value) {
+    const parentRect = draggableContainer.value.parentElement.getBoundingClientRect()
+    const viewportWidth = parentRect.width
+
+    if (position.value.x + expandedWidth > viewportWidth) {
+      position.value.x = viewportWidth - expandedWidth
     }
-
-    isExpanded.value = true
-    await nextTick()
-    inputRef.value?.focus()
-  } else {
-    collapse()
+    // Ensure it doesn't go off the left edge either
+    position.value.x = Math.max(0, position.value.x)
   }
+
+  isExpanded.value = true
+  await nextTick()
+  inputRef.value?.focus()
 }
 
 const handleTap = () => {

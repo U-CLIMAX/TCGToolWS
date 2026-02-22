@@ -121,6 +121,7 @@ import DeckCard from '@/components/deck/DeckCard.vue'
 import LazyCardWrapper from '@/components/common/LazyCardWrapper.vue'
 import { useUIStore } from '@/stores/ui'
 import { useSnackbar } from '@/composables/useSnackbar'
+import { debounceRef } from '@/composables/useDebounceRef'
 import { seriesMap } from '@/maps/series-map'
 
 import DeckIcon from '@/assets/ui/deck.svg'
@@ -132,7 +133,7 @@ const uiStore = useUIStore()
 const { triggerSnackbar } = useSnackbar()
 
 const deckCode = ref('')
-const deckNameSearchTerm = ref('')
+const deckNameSearchTerm = debounceRef('', 300)
 const selectedSeries = ref(null)
 const initialLoadingComplete = ref(false)
 const showDeckCodeDialog = ref(false)

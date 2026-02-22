@@ -1,6 +1,7 @@
 import { ref, computed, watch, shallowRef, toRaw, onUnmounted } from 'vue'
 import { wrap } from 'comlink'
 import FilterWorker from '@/workers/filter.worker.js?worker'
+import { debounceRef } from '@/composables/useDebounceRef'
 
 export const useCardFiltering = (
   productNamesRef,
@@ -10,7 +11,7 @@ export const useCardFiltering = (
   powerRangeRef
 ) => {
   // User-selected filter values
-  const keyword = ref(null)
+  const keyword = debounceRef(null, 300)
   const searchMode = ref('precise') // precise or fuzzy
   const selectedCardTypes = ref([])
   const selectedColors = ref([])

@@ -1,6 +1,7 @@
 import { ref, shallowRef, computed } from 'vue'
 import { defineStore } from 'pinia'
 import localforage from 'localforage'
+import { debounceRef } from '@/composables/useDebounceRef'
 
 const backgroundStore = localforage.createInstance({
   name: 'ui-background',
@@ -28,7 +29,7 @@ export const useUIStore = defineStore(
     const customKeywords = ref([])
 
     // State for SeriesCardTableView
-    const seriesSearchTerm = ref('')
+    const seriesSearchTerm = debounceRef('', 300)
     const seriesSortBy = ref('date') // 'date' or 'name'
     const seriesSortAscending = ref(false)
     const seriesGameFilter = ref('ws')
