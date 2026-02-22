@@ -85,7 +85,7 @@
                 :color="
                   filterStore.searchMode === 'fuzzy' ? 'orange-lighten-2' : 'light-blue-lighten-2'
                 "
-                :disabled="!keywordInput || keywordInput.length < 2"
+                :disabled="!filterStore.keyword || filterStore.keyword.length < 2"
                 v-tooltip:bottom="filterStore.searchMode === 'fuzzy' ? '模糊搜索' : '精准搜索'"
               >
                 <v-icon
