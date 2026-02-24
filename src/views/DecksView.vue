@@ -6,40 +6,62 @@
     <v-container class="h-100 pa-0" :class="{ 'mt-3': smAndUp }">
       <div class="d-flex justify-center pt-4 px-3">
         <v-sheet
-          class="search-container"
+          class="search-container w-100 pa-4 pa-sm-5"
           :class="{ 'glass-sheet': hasBackgroundImage }"
-          rounded="lg"
+          rounded="xl"
           elevation="2"
         >
-          <!-- 搜尋與篩選區域 -->
-          <div class="d-flex flex-column flex-sm-row mb-3">
-            <v-text-field
-              v-model="deckNameSearchTerm"
-              label="搜索卡组名称"
-              variant="solo-filled"
-              density="compact"
-              append-inner-icon="mdi-magnify"
-              hide-details
-              flat
-              class="flex-grow-1 mr-sm-2 mb-2 mb-sm-0"
-            />
-            <v-select
-              v-model="selectedSeries"
-              :items="availableSeriesOptions"
-              item-title="title"
-              item-value="value"
-              label="筛选系列"
-              variant="solo-filled"
-              density="compact"
-              hide-details
-              flat
-              clearable
-              class="flex-shrink-0 series-select"
-              :menu-props="uiStore.menuProps"
-            />
+          <!-- 標題區域 -->
+          <div class="d-flex align-center ga-3 mb-5">
+            <v-icon icon="mdi-cards-variant" color="primary" size="32"></v-icon>
+            <div>
+              <div class="text-h6 font-weight-bold" style="line-height: 1.2">我的卡组</div>
+              <div class="text-caption text-medium-emphasis">管理并搜索您收藏的卡组</div>
+            </div>
           </div>
 
-          <v-btn block variant="tonal" prepend-icon="mdi-import" @click="showDeckCodeDialog = true">
+          <!-- 搜尋與篩選區域 -->
+          <v-row dense class="mb-2">
+            <v-col cols="12" sm="7">
+              <v-text-field
+                v-model="deckNameSearchTerm"
+                label="搜索卡组名称"
+                variant="solo-filled"
+                flat
+                rounded="pill"
+                density="comfortable"
+                append-inner-icon="mdi-magnify"
+                hide-details
+              />
+            </v-col>
+            <v-col cols="12" sm="5">
+              <v-select
+                v-model="selectedSeries"
+                :items="availableSeriesOptions"
+                item-title="title"
+                item-value="value"
+                label="筛选系列"
+                variant="solo-filled"
+                flat
+                rounded="pill"
+                density="comfortable"
+                hide-details
+                clearable
+                :menu-props="uiStore.menuProps"
+              />
+            </v-col>
+          </v-row>
+
+          <v-btn
+            block
+            variant="tonal"
+            rounded="pill"
+            color="primary"
+            prepend-icon="mdi-import"
+            height="44"
+            class="mt-2"
+            @click="showDeckCodeDialog = true"
+          >
             通过卡组代码查看
           </v-btn>
         </v-sheet>

@@ -66,6 +66,7 @@
             density="compact"
             color="primary"
             variant="tonal"
+            rounded="pill"
             divided
             mandatory
             class="w-100 h-100"
@@ -93,6 +94,7 @@
             label="分类"
             density="compact"
             variant="outlined"
+            rounded="pill"
             hide-details
             :menu-props="uiStore.menuProps"
           ></v-select>

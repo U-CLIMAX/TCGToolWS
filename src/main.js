@@ -40,12 +40,14 @@ const bootstrap = async () => {
           colors: {
             'default': '#EEEEEE',
             'ws-rose': '#e85a6a',
+            'grey-btn': '#455A64',
           },
         },
         dark: {
           colors: {
             'default': '#424242',
             'ws-rose': '#FF8391',
+            'grey-btn': '#ECEFF1',
           },
         },
       },

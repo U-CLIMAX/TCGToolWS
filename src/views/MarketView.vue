@@ -13,173 +13,197 @@
           <v-row class="w-100" style="max-width: 1280px">
             <v-col cols="12" md="9">
               <v-sheet
-                class="search-container w-100"
+                class="search-container w-100 h-100 pa-4 pa-sm-5 d-flex flex-column"
                 :class="{ 'glass-sheet': hasBackgroundImage }"
-                rounded="lg"
+                rounded="xl"
                 elevation="2"
               >
-                <div class="d-flex justify-space-between align-center mb-3 ga-2">
-                  <div class="text-caption text-medium-emphasis">
-                    本平台仅提供商品信息展示，不参与交易过程，复制链接后在相应 app
-                    内打开。请务必核实卖家身份，建议通过闲鱼等担保平台完成交易。最终解释权归
-                    U-CLIMAX 所有。
+                <div
+                  class="d-flex flex-column flex-md-row justify-space-between align-start align-md-center mb-5 ga-3"
+                >
+                  <div class="d-flex align-center ga-3 flex-grow-1">
+                    <v-icon icon="mdi-shopping" color="primary" size="32"></v-icon>
+                    <div>
+                      <div class="text-h6 font-weight-bold" style="line-height: 1.2">集换大厅</div>
+                      <div
+                        class="text-caption text-medium-emphasis d-none d-sm-block"
+                        style="max-width: 500px"
+                      >
+                        本平台仅展示信息，不参与交易。建议通过闲鱼等担保平台完成交易。
+                      </div>
+                    </div>
                   </div>
-                  <v-btn
-                    v-if="authStore.isAuthenticated"
-                    color="primary"
-                    prepend-icon="mdi-plus"
-                    @click="openCreateDialog"
-                    :disabled="isLimitReached"
-                    elevation="0"
-                  >
-                    发布商品
-                  </v-btn>
-                </div>
 
-                <v-divider class="mb-3"></v-divider>
-
-                <!-- 來源選擇 -->
-                <v-row dense>
-                  <v-col cols="12" class="mb-2">
+                  <div class="d-flex align-center ga-2 w-100 w-md-auto">
                     <v-btn-toggle
                       v-model="localFilters.source"
                       mandatory
                       color="primary"
-                      variant="outlined"
-                      divided
-                      class="w-100"
+                      variant="tonal"
+                      rounded="pill"
                       density="compact"
+                      class="flex-grow-1 overflow-hidden"
                       @update:model-value="handleSearch"
                     >
                       <v-btn
                         v-for="opt in sourceOptions"
                         :key="opt.value"
                         :value="opt.value"
-                        class="flex-1-1"
+                        class="px-sm-6"
                         :prepend-icon="opt.value === 'mine' ? 'mdi-store' : 'mdi-shopping'"
                       >
                         {{ opt.title }}
                       </v-btn>
                     </v-btn-toggle>
-                  </v-col>
-                </v-row>
 
-                <!-- 篩選條件區域 -->
-                <v-card variant="outlined" class="mt-3 pa-3" rounded="lg">
-                  <div class="text-caption text-medium-emphasis mb-3 d-flex align-center">
-                    <v-icon icon="mdi-filter-variant" size="18" class="mr-1"></v-icon>
-                    筛选条件
+                    <v-btn
+                      v-if="authStore.isAuthenticated"
+                      color="primary"
+                      variant="flat"
+                      rounded="pill"
+                      prepend-icon="mdi-plus"
+                      height="40"
+                      @click="openCreateDialog"
+                      :disabled="isLimitReached"
+                    >
+                      发布
+                    </v-btn>
                   </div>
+                </div>
 
-                  <v-row dense>
-                    <!-- 排序選擇 -->
-                    <v-col cols="12" sm="6" md="3">
-                      <v-select
-                        v-model="localFilters.sort"
-                        :items="sortOptions"
-                        item-title="title"
-                        item-value="value"
-                        label="排序"
-                        variant="outlined"
-                        density="compact"
-                        hide-details
-                        prepend-inner-icon="mdi-sort"
-                        :menu-props="uiStore.menuProps"
-                      />
-                    </v-col>
+                <v-row dense class="align-center">
+                  <!-- 排序選擇 -->
+                  <v-col cols="12" sm="6">
+                    <v-select
+                      v-model="localFilters.sort"
+                      :items="sortOptions"
+                      item-title="title"
+                      item-value="value"
+                      variant="solo-filled"
+                      flat
+                      rounded="pill"
+                      density="comfortable"
+                      hide-details
+                      prepend-inner-icon="mdi-sort"
+                      :menu-props="uiStore.menuProps"
+                    />
+                  </v-col>
 
-                    <!-- 系列選擇 -->
-                    <v-col cols="12" sm="6" md="3">
-                      <v-autocomplete
-                        v-model="localFilters.seriesId"
-                        :items="marketStore.seriesOptions"
-                        item-title="title"
-                        item-value="value"
-                        label="选择系列"
-                        variant="outlined"
-                        density="compact"
-                        hide-details
-                        clearable
-                        :menu-props="uiStore.menuProps"
-                      />
-                    </v-col>
+                  <!-- 系列選擇 -->
+                  <v-col cols="12" sm="6">
+                    <v-autocomplete
+                      v-model="localFilters.seriesId"
+                      :items="marketStore.seriesOptions"
+                      item-title="title"
+                      item-value="value"
+                      label="选择系列"
+                      variant="solo-filled"
+                      flat
+                      rounded="pill"
+                      density="comfortable"
+                      hide-details
+                      clearable
+                      :menu-props="uiStore.menuProps"
+                    />
+                  </v-col>
 
-                    <!-- 潮種類選擇 -->
-                    <v-col cols="12" sm="6" md="3">
-                      <v-select
-                        v-model="localFilters.climaxType"
-                        :items="marketStore.climaxTypeOptions"
-                        item-title="name"
-                        item-value="value"
-                        label="潮种类"
-                        variant="outlined"
-                        density="compact"
-                        hide-details
-                        clearable
-                        multiple
-                        chips
-                        :menu-props="uiStore.menuProps"
-                      >
-                        <template #item="{ props, item }">
-                          <v-list-item v-bind="props" :title="item.raw.name">
-                            <template #prepend>
-                              <v-img
-                                :src="item.raw.icon"
-                                width="24"
-                                height="24"
-                                class="mr-2"
-                                contain
-                              />
-                            </template>
-                          </v-list-item>
-                        </template>
-                        <template #chip="{ item }">
-                          <v-chip size="small">
-                            <template #prepend>
-                              <v-img :src="item.raw.icon" width="16" height="16" class="mr-1" />
-                            </template>
-                            {{ item.raw.name }}
-                          </v-chip>
-                        </template>
-                      </v-select>
-                    </v-col>
+                  <!-- 潮種類選擇 -->
+                  <v-col cols="12" sm="6">
+                    <v-select
+                      v-model="localFilters.climaxType"
+                      :items="marketStore.climaxTypeOptions"
+                      item-title="name"
+                      item-value="value"
+                      label="潮种类"
+                      variant="solo-filled"
+                      flat
+                      rounded="pill"
+                      density="comfortable"
+                      hide-details
+                      clearable
+                      multiple
+                      chips
+                      :menu-props="uiStore.menuProps"
+                    >
+                      <template #item="{ props, item }">
+                        <v-list-item v-bind="props" :title="item.raw.name">
+                          <template #prepend>
+                            <v-img
+                              :src="item.raw.icon"
+                              width="24"
+                              height="24"
+                              class="mr-2"
+                              contain
+                            />
+                          </template>
+                        </v-list-item>
+                      </template>
+                      <template #chip="{ item }">
+                        <v-chip size="small" class="ma-0">
+                          <template #prepend>
+                            <v-img :src="item.raw.icon" width="16" height="16" class="mr-1" />
+                          </template>
+                          {{ item.raw.name }}
+                        </v-chip>
+                      </template>
+                    </v-select>
+                  </v-col>
 
-                    <!-- 標籤選擇 -->
-                    <v-col cols="12" sm="6" md="3">
-                      <v-select
-                        v-model="localFilters.tag"
-                        :items="marketStore.tagOptions"
-                        item-title="label"
-                        item-value="value"
-                        label="标签"
-                        multiple
-                        chips
-                        closable-chips
-                        variant="outlined"
-                        density="compact"
-                        hide-details
-                        clearable
-                        prepend-inner-icon="mdi-tag-outline"
-                        :menu-props="uiStore.menuProps"
-                      />
-                    </v-col>
-                  </v-row>
+                  <!-- 標籤選擇 -->
+                  <v-col cols="12" sm="6">
+                    <v-select
+                      v-model="localFilters.tag"
+                      :items="marketStore.tagOptions"
+                      item-title="label"
+                      item-value="value"
+                      label="标签"
+                      multiple
+                      chips
+                      closable-chips
+                      variant="solo-filled"
+                      flat
+                      rounded="pill"
+                      density="comfortable"
+                      hide-details
+                      clearable
+                      prepend-inner-icon="mdi-tag-outline"
+                      :menu-props="uiStore.menuProps"
+                    />
+                  </v-col>
 
                   <!-- 篩選操作按鈕 -->
-                  <div class="d-flex justify-end ga-2 mt-3">
-                    <v-btn variant="flat" color="grey" @click="resetFilters">重置</v-btn>
-                    <v-btn color="secondary" variant="flat" @click="handleSearch"> 搜索 </v-btn>
-                  </div>
-                </v-card>
+                  <v-col cols="12" class="d-flex justify-end ga-2 mt-2">
+                    <v-btn
+                      variant="tonal"
+                      rounded="pill"
+                      color="grey-btn"
+                      width="100"
+                      height="40"
+                      @click="resetFilters"
+                    >
+                      重置
+                    </v-btn>
+                    <v-btn
+                      color="secondary"
+                      variant="flat"
+                      rounded="pill"
+                      width="100"
+                      height="40"
+                      @click="handleSearch"
+                    >
+                      搜索
+                    </v-btn>
+                  </v-col>
+                </v-row>
               </v-sheet>
             </v-col>
 
             <!-- 排行榜 -->
             <v-col cols="12" md="3">
               <v-sheet
-                class="pa-3"
+                class="pa-3 h-100"
                 :class="{ 'glass-sheet': hasBackgroundImage }"
-                rounded="lg"
+                rounded="xl"
                 elevation="2"
               >
                 <div class="d-flex align-center mb-3">
@@ -198,7 +222,7 @@
                   <v-list-item
                     v-for="(item, index) in marketStore.rankingStats.top5"
                     :key="item.series_id"
-                    class="px-1 mb-1 rounded"
+                    class="px-1 mb-1 rounded-pill"
                     link
                     @click="selectSeries(item.series_id)"
                   >
@@ -225,20 +249,20 @@
                     </v-list-item-title>
 
                     <template #append>
-                      <span class="text-caption text-grey-darken-1">{{ item.count }}</span>
+                      <span class="text-caption text-grey-darken-1 pr-1">{{ item.count }}</span>
                     </template>
                   </v-list-item>
 
                   <div
                     v-if="marketStore.rankingStats.top5.length === 0"
-                    class="text-caption text-center text-grey-darken-1 py-4"
+                    class="text-caption text-center text-medium-emphasis py-4"
                   >
                     暂无数据
                   </div>
                 </v-list>
                 <div
                   v-if="marketStore.rankingStats.top5.length !== 0"
-                  class="text-caption text-grey-darken-1 text-right"
+                  class="text-caption text-medium-emphasis text-right"
                   style="font-size: 10px"
                 >
                   更新于:

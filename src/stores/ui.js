@@ -42,11 +42,11 @@ export const useUIStore = defineStore(
     const backgroundImage = ref(null)
 
     const menuProps = computed(() => {
-      const classes = ['themed-scrollbar']
+      const classes = ['themed-scrollbar', 'rounded-xl']
       if (backgroundImage.value) {
         classes.unshift('glass-menu')
       }
-      return { contentClass: classes.join(' ') }
+      return { contentClass: classes.join(' '), offset: 3 }
     })
     const menuPropsNoGlass = computed(() => {
       return { contentClass: 'themed-scrollbar' }

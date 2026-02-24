@@ -78,6 +78,7 @@
           <v-btn
             variant="tonal"
             color="primary"
+            rounded="pill"
             prepend-icon="mdi-cog"
             @click="handleSettingsClick"
           >

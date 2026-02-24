@@ -99,12 +99,7 @@
         :class="isTableMode ? 'pa-2' : 'pa-3'"
         class="card-content pt-0"
       >
-        <div
-          :class="[
-            isLightWithBg ? 'text-grey-lighten-2' : 'text-grey',
-            'text-caption text-md-body-2 mb-1 text-truncate',
-          ]"
-        >
+        <div class="text-caption text-medium-emphasis text-md-body-2 mb-1 text-truncate">
           {{ card.id }}
         </div>
         <h3 class="text-subtitle-2 text-md-subtitle-1 text-truncate">{{ card.name }}</h3>

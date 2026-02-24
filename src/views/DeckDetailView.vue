@@ -162,6 +162,7 @@
                     label="分类"
                     density="compact"
                     variant="outlined"
+                    rounded="pill"
                     hide-details
                     :menu-props="uiStore.menuProps"
                   ></v-select>

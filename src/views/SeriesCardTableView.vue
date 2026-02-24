@@ -12,7 +12,8 @@
         <v-sheet
           v-if="recentlyViewed.length > 0"
           :color="!hasBackgroundImage ? undefined : 'transparent'"
-          class="rounded-5md"
+          rounded="xl"
+          elevation="2"
           :class="{
             'glass-card': hasBackgroundImage,
             'pt-2': !smAndDown,

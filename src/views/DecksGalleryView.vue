@@ -36,88 +36,106 @@
           <v-row class="w-100" style="max-width: 1280px">
             <v-col cols="12">
               <v-sheet
-                class="search-container w-100"
+                class="search-container w-100 pa-4 pa-sm-5"
                 :class="{ 'glass-sheet': hasBackgroundImage }"
-                rounded="3md"
+                rounded="xl"
                 elevation="2"
               >
-                <div class="d-flex justify-space-between align-center mb-3 ga-2">
-                  <div class="text-h6 font-weight-bold">卡组广场</div>
-                  <div class="text-caption text-medium-emphasis d-none d-sm-block">
-                    在此浏览玩家分享的热门卡组。点击卡组查看详情。
+                <div
+                  class="d-flex flex-column flex-md-row justify-space-between align-start align-md-center mb-5 ga-3"
+                >
+                  <div class="d-flex align-center ga-3">
+                    <v-icon icon="mdi-view-grid-outline" color="primary" size="32"></v-icon>
+                    <div>
+                      <div class="text-h6 font-weight-bold" style="line-height: 1.2">卡组广场</div>
+                      <div class="text-caption text-medium-emphasis d-none d-sm-block">
+                        浏览并搜索玩家分享的热门卡组
+                      </div>
+                    </div>
                   </div>
+
+                  <v-btn-toggle
+                    v-model="localFilters.source"
+                    mandatory
+                    color="primary"
+                    variant="tonal"
+                    rounded="pill"
+                    density="compact"
+                    class="w-100 w-md-auto"
+                    @update:model-value="handleSearch"
+                  >
+                    <v-btn
+                      v-for="opt in sourceOptions"
+                      :key="opt.value"
+                      :value="opt.value"
+                      class="flex-grow-1 px-sm-6"
+                      :prepend-icon="opt.value === 'mine' ? 'mdi-account-star' : 'mdi-earth'"
+                    >
+                      {{ opt.title }}
+                    </v-btn>
+                  </v-btn-toggle>
                 </div>
 
-                <v-divider class="mb-3"></v-divider>
-
-                <!-- 來源選擇 -->
-                <v-row dense>
-                  <v-col cols="12" class="mb-2">
-                    <v-btn-toggle
-                      v-model="localFilters.source"
-                      mandatory
-                      color="primary"
-                      variant="outlined"
-                      divided
-                      class="w-100"
-                      density="compact"
-                      @update:model-value="handleSearch"
-                    >
-                      <v-btn
-                        v-for="opt in sourceOptions"
-                        :key="opt.value"
-                        :value="opt.value"
-                        class="flex-1-1"
-                        :prepend-icon="opt.value === 'mine' ? 'mdi-account-star' : 'mdi-earth'"
-                      >
-                        {{ opt.title }}
-                      </v-btn>
-                    </v-btn-toggle>
+                <v-row dense class="align-center">
+                  <!-- 系列選擇 -->
+                  <v-col cols="12" sm="5" md="6">
+                    <v-autocomplete
+                      v-model="localFilters.seriesId"
+                      :items="galleryStore.seriesOptions"
+                      item-title="title"
+                      item-value="value"
+                      label="选择系列"
+                      variant="solo-filled"
+                      flat
+                      rounded="pill"
+                      density="comfortable"
+                      hide-details
+                      clearable
+                      :menu-props="uiStore.menuProps"
+                    />
                   </v-col>
-                </v-row>
 
-                <!-- 篩選條件區域 -->
-                <v-card variant="outlined" class="mt-3 pa-3" rounded="lg">
-                  <v-row dense>
-                    <!-- 系列選擇 -->
-                    <v-col cols="12" sm="8">
-                      <v-autocomplete
-                        v-model="localFilters.seriesId"
-                        :items="galleryStore.seriesOptions"
-                        item-title="title"
-                        item-value="value"
-                        label="选择系列"
-                        variant="outlined"
-                        density="compact"
-                        hide-details
-                        clearable
-                        :menu-props="uiStore.menuProps"
-                      />
-                    </v-col>
-
-                    <!-- 排序選擇 -->
-                    <v-col cols="12" sm="4">
-                      <v-select
-                        v-model="localFilters.sort"
-                        :items="sortOptions"
-                        item-title="title"
-                        item-value="value"
-                        label="排序"
-                        variant="outlined"
-                        density="compact"
-                        hide-details
-                        prepend-inner-icon="mdi-sort"
-                        :menu-props="uiStore.menuProps"
-                      />
-                    </v-col>
-                  </v-row>
+                  <!-- 排序選擇 -->
+                  <v-col cols="12" sm="3" md="3">
+                    <v-select
+                      v-model="localFilters.sort"
+                      :items="sortOptions"
+                      item-title="title"
+                      item-value="value"
+                      variant="solo-filled"
+                      flat
+                      rounded="pill"
+                      density="comfortable"
+                      hide-details
+                      prepend-inner-icon="mdi-sort"
+                      :menu-props="uiStore.menuProps"
+                    />
+                  </v-col>
 
                   <!-- 篩選操作按鈕 -->
-                  <div class="d-flex justify-end ga-2 mt-3">
-                    <v-btn variant="flat" color="grey" @click="resetFilters">重置</v-btn>
-                    <v-btn color="secondary" variant="flat" @click="handleSearch"> 搜索 </v-btn>
-                  </div>
-                </v-card>
+                  <v-col cols="12" sm="4" md="3" class="d-flex ga-2">
+                    <v-btn
+                      variant="tonal"
+                      rounded="pill"
+                      color="grey-btn"
+                      class="flex-grow-1"
+                      height="48"
+                      @click="resetFilters"
+                    >
+                      重置
+                    </v-btn>
+                    <v-btn
+                      color="secondary"
+                      variant="flat"
+                      rounded="pill"
+                      class="flex-grow-1"
+                      height="48"
+                      @click="handleSearch"
+                    >
+                      搜索
+                    </v-btn>
+                  </v-col>
+                </v-row>
               </v-sheet>
             </v-col>
           </v-row>
@@ -145,7 +163,7 @@
 
         <div
           v-if="galleryStore.decks.length === 0 && !galleryStore.isLoading"
-          class="text-center text-grey mt-10"
+          class="text-center text-medium-emphasis mt-10"
         >
           暂无分享卡组
         </div>

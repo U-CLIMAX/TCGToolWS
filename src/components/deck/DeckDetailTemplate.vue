@@ -81,6 +81,7 @@
                     label="分类"
                     density="compact"
                     variant="outlined"
+                    rounded="pill"
                     hide-details
                     :disabled="!deck"
                     :menu-props="uiStore.menuProps"

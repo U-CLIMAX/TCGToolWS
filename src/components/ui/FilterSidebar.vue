@@ -145,6 +145,7 @@
           clearable
           v-model="filterStore.selectedCardTypes"
           variant="outlined"
+          rounded="pill"
           :menu-props="uiStore.menuProps"
           :disabled="props.disabled"
         ></v-select>
@@ -164,6 +165,7 @@
           clearable
           v-model="filterStore.selectedColors"
           variant="outlined"
+          rounded="pill"
           :menu-props="uiStore.menuProps"
           :disabled="props.disabled"
         ></v-select>
@@ -175,6 +177,7 @@
           clearable
           v-model="filterStore.selectedProductName"
           variant="outlined"
+          rounded="pill"
           :menu-props="uiStore.menuProps"
           :disabled="props.disabled"
         >
@@ -196,6 +199,7 @@
           clearable
           v-model="filterStore.selectedRarities"
           variant="outlined"
+          rounded="pill"
           :menu-props="uiStore.menuProps"
           :disabled="props.disabled"
         ></v-select>
@@ -209,6 +213,7 @@
           clearable
           v-model="filterStore.selectedTraits"
           variant="outlined"
+          rounded="pill"
           :menu-props="uiStore.menuProps"
           :disabled="props.disabled"
         ></v-select>
@@ -222,6 +227,7 @@
           clearable
           v-model="filterStore.selectedLevels"
           variant="outlined"
+          rounded="pill"
           :menu-props="uiStore.menuProps"
           :disabled="props.disabled"
         ></v-select>
@@ -235,6 +241,7 @@
           clearable
           v-model="filterStore.selectedSoul"
           variant="outlined"
+          rounded="pill"
           :menu-props="uiStore.menuProps"
           :disabled="props.disabled"
         ></v-select>
