@@ -394,22 +394,34 @@ const handleRefresh = async () => {
   }
 }
 
-const resetFilters = () => {
+const resetFilters = async () => {
   localFilters.value.source = 'all'
   localFilters.value.seriesId = null
   localFilters.value.climaxType = []
   localFilters.value.tag = []
   localFilters.value.sort = 'newest'
+  marketStore.filters.source = localFilters.value.source
+  marketStore.filters.seriesId = localFilters.value.seriesId
+  marketStore.filters.climaxType = [...localFilters.value.climaxType]
+  marketStore.filters.tag = [...localFilters.value.tag]
+  marketStore.filters.sort = localFilters.value.sort
+
+  try {
+    await marketStore.fetchListings()
+    scrollKey.value++
+  } catch (error) {
+    triggerSnackbar(error.message || '搜索失败', 'error')
+  }
 }
 
 const getSeriesName = (id) => {
   return marketStore.seriesOptions.find((opt) => opt.value === id)?.title || id
 }
 
-const selectSeries = (seriesId) => {
-  resetFilters()
+const selectSeries = async (seriesId) => {
+  await resetFilters()
   localFilters.value.seriesId = seriesId
-  handleSearch()
+  await handleSearch()
 }
 
 const loadMore = async ({ done }) => {

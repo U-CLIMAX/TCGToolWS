@@ -38,7 +38,7 @@
               <v-sheet
                 class="search-container w-100"
                 :class="{ 'glass-sheet': hasBackgroundImage }"
-                rounded="lg"
+                rounded="3md"
                 elevation="2"
               >
                 <div class="d-flex justify-space-between align-center mb-3 ga-2">
@@ -237,10 +237,20 @@ const handleSearch = async () => {
   }
 }
 
-const resetFilters = () => {
+const resetFilters = async () => {
   localFilters.value.source = 'all'
   localFilters.value.seriesId = null
   localFilters.value.sort = 'newest'
+  galleryStore.filters.source = localFilters.value.source
+  galleryStore.filters.seriesId = localFilters.value.seriesId
+  galleryStore.filters.sort = localFilters.value.sort
+
+  try {
+    await galleryStore.fetchDecks()
+    scrollKey.value++
+  } catch (error) {
+    triggerSnackbar(error.message || '搜索失败', 'error')
+  }
 }
 
 const handleSelectDeck = (key) => {
