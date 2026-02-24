@@ -5,7 +5,6 @@
       location="right"
       temporary
       :width="drawerWidth"
-      class="pb-1"
       :class="{
         'glass-sheet--low': hasBackgroundImage,
         'rounded-3md mt-7 mb-3 h-auto': smAndUp,

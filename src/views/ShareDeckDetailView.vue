@@ -3,7 +3,7 @@
     <v-overlay
       v-if="embedded"
       :model-value="isLoading"
-      class="align-center justify-center"
+      class="align-center justify-center rounded-3md"
       contained
       persistent
       no-click-animation
