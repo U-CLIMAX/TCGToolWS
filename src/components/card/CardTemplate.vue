@@ -106,27 +106,19 @@
         <v-expand-transition>
           <v-row v-if="!isTableMode" dense class="mt-2 text-center">
             <v-col cols="6" class="pa-0">
-              <div :class="[isLightWithBg ? 'text-grey-lighten-2' : 'text-grey', 'text-caption']">
-                种类
-              </div>
+              <div class="text-caption text-disabled">种类</div>
               <div class="text-body-2">{{ card.type }}</div>
             </v-col>
             <v-col cols="6" class="pa-0">
-              <div :class="[isLightWithBg ? 'text-grey-lighten-2' : 'text-grey', 'text-caption']">
-                灵魂值
-              </div>
+              <div class="text-caption text-disabled">灵魂值</div>
               <div class="text-body-2">{{ card.soul }}</div>
             </v-col>
             <v-col cols="6" class="pa-0 pt-1">
-              <div :class="[isLightWithBg ? 'text-grey-lighten-2' : 'text-grey', 'text-caption']">
-                等级
-              </div>
+              <div class="text-caption text-disabled">等级</div>
               <div class="text-body-2">{{ card.level }}</div>
             </v-col>
             <v-col cols="6" class="pa-0 pt-1">
-              <div :class="[isLightWithBg ? 'text-grey-lighten-2' : 'text-grey', 'text-caption']">
-                战斗力
-              </div>
+              <div class="text-caption text-disabled">战斗力</div>
               <div class="text-body-2">{{ card.power }}</div>
             </v-col>
           </v-row>
@@ -138,7 +130,7 @@
 
 <script setup>
 import { computed } from 'vue'
-import { useDisplay, useTheme } from 'vuetify'
+import { useDisplay } from 'vuetify'
 import { storeToRefs } from 'pinia'
 import { getCardUrls } from '@/utils/getCardImage'
 import { useAuthStore } from '@/stores/auth'
@@ -159,12 +151,7 @@ const deckStore = useDeckStore()
 const uiStore = useUIStore()
 const { smAndDown, lgAndUp } = useDisplay()
 const { isTouch } = useDevice()
-const theme = useTheme()
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
-
-const isLightWithBg = computed(() => {
-  return hasBackgroundImage.value && theme.global.name.value === 'light'
-})
 
 const { base: imageUrl, blur: blurUrl } = getCardUrls(props.card.cardIdPrefix, props.card.id)
 const cardCount = computed(() => deckStore.getCardCount(props.card.id))
