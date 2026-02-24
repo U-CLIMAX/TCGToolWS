@@ -1,0 +1,21 @@
+{
+  "BDY/W135-P02": {
+    "name": "“In the name of BanG Dream!”仲町あられ",
+    "product_name": "-",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "音楽", "夢限大みゅーたいぷ"],
+    "color": "黄色",
+    "effect": "【自】你使用此卡的『助太刀』时，你看自己卡组顶1张卡，放置到卡组顶或卡组底。<br>【起】【反击】助太刀3000 等级2 [(1) 手牌中此卡公开，放置到卡组底] （你选择自己前列被攻击的1个角色，那个回合中，战斗力+3000）",
+    "all_cards": [
+      {
+        "id": "BDY/W135-P02",
+        "rarity": "PR"
+      }
+    ]
+  }
+}

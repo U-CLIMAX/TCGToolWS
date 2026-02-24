@@ -196,5 +196,176 @@
         "rarity": "PR"
       }
     ]
+  },
+  "BD/WE49-P12": {
+    "name": "“In the name of BanG Dream!”戸山香澄",
+    "product_name": "PRカード【Wサイド】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "音楽", "Poppin'Party"],
+    "color": "红色",
+    "effect": "【自】此卡从手牌放置到舞台时，你公开自己卡组顶1张卡。那张卡是《Anniversary》或《Poppin'Party》的角色卡的话，你选择自己的1个角色，那个回合中，战斗力+2000。（公开的卡放回原处）<br>【自】[(2)] 此卡从手牌放置到舞台时，你可以支付费用。支付了的话，你将自己休息室的卡全部返回卡组，卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WE49-P12",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "BD/WE49-P13": {
+    "name": "“In the name of BanG Dream!”美竹蘭",
+    "product_name": "PRカード【Wサイド】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "音楽", "Afterglow"],
+    "color": "绿色",
+    "effect": "【自】此卡从手牌放置到舞台时，你选择对手至多1个角色返回手牌。你可以选择自己的1张手牌放置到休息室。这样做的话，你选择对手的1个角色返回手牌。<br>【自】[(1) 1张手牌放置到休息室] 此卡攻击时，你可以支付费用。支付了的话，你选择对手前列的1个角色返回手牌，那个回合中，此卡的战斗力+1000。",
+    "all_cards": [
+      {
+        "id": "BD/WE49-P13",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "BD/WE49-P14": {
+    "name": "“In the name of BanG Dream!”丸山彩",
+    "product_name": "PRカード【Wサイド】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "音楽", "Pastel＊Palettes"],
+    "color": "红色",
+    "effect": "【自】此卡从手牌放置到舞台时或从舞台放置到休息室时，你选择对手的1个角色，那个回合的下个回合结束为止，给予以下能力。『【永】此卡不能移动到其他位置。』",
+    "all_cards": [
+      {
+        "id": "BD/WE49-P14",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "BD/WE49-P15": {
+    "name": "“In the name of BanG Dream!”湊友希那",
+    "product_name": "PRカード【Wサイド】",
+    "type": "角色卡",
+    "level": 2,
+    "power": 5500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "音楽", "Roselia"],
+    "color": "蓝色",
+    "effect": "【自】此卡从手牌放置到舞台时，你选择自己的1个《Anniversary》或《Roselia》的角色，那个回合中，灵魂值+1。<br>【起】[此卡放置到休息室] 你选择对手的1个角色，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WE49-P15",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "BD/WE49-P16": {
+    "name": "“In the name of BanG Dream!”弦巻こころ",
+    "product_name": "PRカード【Wサイド】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "音楽", "ハロー、ハッピーワールド！"],
+    "color": "黄色",
+    "effect": "【自】[(1) 1张手牌放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。支付了的话，你看自己卡组顶至多3张卡，选择至多1张卡加入手牌，其余的卡放置到休息室。<br>【自】[(1) 手牌中1张高潮卡放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。支付了的话，你从自己的休息室选择1张高潮卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WE49-P16",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "BD/WE49-P17": {
+    "name": "“In the name of BanG Dream!”倉田ましろ",
+    "product_name": "PRカード【Wサイド】",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "音楽", "Morfonica"],
+    "color": "蓝色",
+    "effect": "【自】[(2)] 你使用此卡的『助太刀』时，你可以支付费用。支付了的话，你将自己休息室的卡全部返回卡组，卡组洗切。<br>【起】【反击】助太刀2500 等级2 [(1) 手牌的此卡放置到休息室] （你选择自己前列被攻击的1个角色，那个回合中，战斗力+2500）",
+    "all_cards": [
+      {
+        "id": "BD/WE49-P17",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "BD/WE49-P18": {
+    "name": "“In the name of BanG Dream!”レイヤ",
+    "product_name": "PRカード【Wサイド】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "音楽", "RAISE A SUILEN"],
+    "color": "绿色",
+    "effect": "【自】此卡从手牌放置到舞台时，所有玩家执行以下行动。『你的思出区有5张以上卡的话，你从自己的思出区选择4张卡，将那些卡以外的自己思出区的卡全部放置到休息室。』<br>【自】[1张手牌放置到时计区] 此卡从手牌放置到舞台时，你可以支付费用。支付了的话，你看自己卡组顶至多X张卡，选择至多1张卡加入手牌，其余的卡放置到休息室。X是你其他《Anniversary》或《RAISE A SUILEN》的角色卡的数量。",
+    "all_cards": [
+      {
+        "id": "BD/WE49-P18",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "BD/WE49-P19": {
+    "name": "“In the name of BanG Dream!”高松燈",
+    "product_name": "PRカード【Wサイド】",
+    "type": "角色卡",
+    "level": 2,
+    "power": 4500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "音楽", "MyGO!!!!!"],
+    "color": "蓝色",
+    "effect": "【自】此卡从手牌放置到舞台时，你选择自己的至多2个角色，那个回合中，给予以下能力。『【自】此卡【倒置】时，此卡的战斗对手的等级比对手的等级高的话，你可以将那个角色放置到卡组底。』",
+    "all_cards": [
+      {
+        "id": "BD/WE49-P19",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "BD/WE49-P20": {
+    "name": "“In the name of BanG Dream!”ドロリス",
+    "product_name": "PRカード【Wサイド】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "音楽", "Ave Mujica"],
+    "color": "红色",
+    "effect": "【起】集中 [(1)] 你将自己卡组顶4张卡放置到休息室。那些卡中每有1张高潮卡，执行以下行动。『你看自己卡组顶至多3张卡，选择至多1张卡加入手牌，其余的卡放置到休息室，你选择自己的1张手牌，放置到休息室。』",
+    "all_cards": [
+      {
+        "id": "BD/WE49-P20",
+        "rarity": "PR"
+      }
+    ]
   }
 }

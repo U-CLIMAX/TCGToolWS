@@ -87,7 +87,7 @@ const wsSeriesMap = {
   },
   'BanG Dream!': {
     id: 'bd',
-    prefixes: ['BD'],
+    prefixes: ['BD', 'BDY'],
     latestReleaseDate: '2025-09-12',
   },
   '缘结甘神家': {
@@ -822,7 +822,7 @@ const wsSeriesMap = {
   '突击莉莉': {
     id: 'all',
     prefixes: ['ALL'],
-    latestReleaseDate: '2022-01-20',
+    latestReleaseDate: '2026-02-27',
   },
   '新樱花大战': {
     id: 'skr',
