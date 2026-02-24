@@ -151,10 +151,10 @@
         <div class="fab-bottom-left-container d-flex ga-3">
           <v-btn
             icon="mdi-layers-search"
-            size="large"
+            size="default"
             color="primary"
             class="opacity-90"
-            :class="{ 'mb-10': smAndDown }"
+            :class="{ 'mb-14': smAndDown }"
             @click="sheetContent = 'filter'"
             :disabled="globalSearchStore.isLoading"
           ></v-btn>
@@ -168,7 +168,7 @@
           >
             <v-btn
               icon="mdi-cards"
-              size="large"
+              size="default"
               color="primary"
               class="opacity-90"
               @click="sheetContent = 'deck'"

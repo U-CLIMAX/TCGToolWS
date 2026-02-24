@@ -70,7 +70,7 @@
         </v-sheet>
       </v-container>
 
-      <v-container class="pt-0" :class="{ 'px-10': smAndDown }">
+      <v-container class="pt-0" :class="{ 'px-10 mb-12': !smAndUp }">
         <div class="d-flex justify-center mt-4">
           <v-tabs
             v-model="seriesGameFilter"

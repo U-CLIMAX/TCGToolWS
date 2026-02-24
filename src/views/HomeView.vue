@@ -284,7 +284,7 @@
 
         <v-col
           cols="12"
-          class="mt-4 text-grey-darken-1 align-center text-body-2"
+          class="my-4 text-grey-darken-1 align-center text-body-2"
           :class="smAndDown ? 'd-flex flex-column  ga-2' : 'd-flex justify-center  ga-3'"
         >
           <div class="d-flex align-center ga-1">

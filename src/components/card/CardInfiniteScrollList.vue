@@ -24,7 +24,11 @@
         :name="isTransitionDisabled ? '' : 'card-transition'"
         tag="div"
         class="card-grid-container"
-        :class="{ 'freeze-layout': isLayoutFrozen, 'table-mode-grid': isTableMode }"
+        :class="{
+          'freeze-layout': isLayoutFrozen,
+          'table-mode-grid': isTableMode,
+          'mb-14': !smAndUp,
+        }"
         :style="{
           paddingTop: `${headerOffsetHeight + 1}px`,
           gridTemplateColumns: frozenColumns,

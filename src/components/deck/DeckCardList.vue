@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="px-4 pb-4 w-100 h-100 centered-content">
+    <div class="px-4 pb-4 w-100 h-100 centered-content" :class="{ 'mb-14': !smAndUp }">
       <v-fab-transition>
         <DeckStatsDashboard
           v-if="

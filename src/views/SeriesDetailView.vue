@@ -5,7 +5,7 @@
     </div>
 
     <div v-else class="d-flex flex-column h-100">
-      <div ref="headerRef" class="overlay-header pl-4 pr-4 pa-1" :class="smAndUp ? 'mt-4' : 'mt-0'">
+      <div ref="headerRef" class="overlay-header px-4 pa-1" :class="smAndUp ? 'mt-4' : 'mt-0'">
         <div class="overlay-header-content">
           <div
             :class="{
@@ -103,7 +103,7 @@
           :header-offset-height="headerOffsetHeight"
           :is-table-mode-active="isTableModeActive"
           margin="300"
-          class="flex-grow-1 themed-scrollbar pl-4 pr-4"
+          class="flex-grow-1 themed-scrollbar px-4"
           :style="{ '--sb-margin-top': `${headerOffsetHeight + 20}px` }"
         />
         <template v-if="smAndUp">

@@ -274,7 +274,7 @@
         </div>
       </v-container>
 
-      <v-container class="pt-4 px-3">
+      <v-container class="pt-4 px-3" :class="{ 'mb-10': !smAndUp }">
         <div
           v-if="
             authStore.isAuthenticated &&
