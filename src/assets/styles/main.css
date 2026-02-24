@@ -6,6 +6,7 @@
 @import './utilities/_grid-background.css';
 @import './utilities/_chip.css';
 @import './utilities/_overlay-header.css';
+@import './utilities/_glass-header.css';
 @import './utilities/_glass-card.css';
 @import './utilities/_glass-sheet.css';
 @import './utilities/_glass-menu.css';

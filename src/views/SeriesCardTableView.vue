@@ -6,8 +6,9 @@
       @load="load"
       empty-text=""
       class="h-100 themed-scrollbar"
+      :style="{ '--sb-margin-top': '27px' }"
     >
-      <v-container class="pt-0" :class="{ 'px-0': smAndDown }">
+      <v-container class="pt-0" :class="{ 'mt-3': smAndUp }">
         <v-sheet
           v-if="recentlyViewed.length > 0"
           :color="!hasBackgroundImage ? undefined : 'transparent'"
@@ -178,7 +179,7 @@ const recentlyViewed = computed(() => {
 })
 
 const theme = useTheme()
-const { smAndDown } = useDisplay()
+const { smAndDown, smAndUp } = useDisplay()
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 const isLightWithBg = computed(() => {
   return hasBackgroundImage.value && theme.global.name.value === 'light'

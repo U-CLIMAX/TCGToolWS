@@ -5,7 +5,13 @@
       location="right"
       temporary
       :width="drawerWidth"
-      :class="{ 'glass-sheet': hasBackgroundImage }"
+      class="pb-1"
+      :class="{
+        'glass-sheet--low': hasBackgroundImage,
+        'rounded-3md mt-7 mb-3 h-auto': smAndUp,
+        'mr-4': drawer && smAndUp,
+      }"
+      :scrim="false"
       touchless
     >
       <ShareDeckDetailView
@@ -21,10 +27,11 @@
       ref="infiniteScrollRef"
       :key="scrollKey"
       class="h-100 themed-scrollbar"
+      :style="{ '--sb-margin-top': '27px' }"
       :onLoad="loadMore"
       :empty-text="''"
     >
-      <v-container class="pa-0">
+      <v-container class="pa-0" :class="{ 'mt-3': smAndUp }">
         <div class="d-flex justify-center px-3">
           <v-row class="w-100" style="max-width: 1280px">
             <v-col cols="12">
@@ -36,7 +43,7 @@
               >
                 <div class="d-flex justify-space-between align-center mb-3 ga-2">
                   <div class="text-h6 font-weight-bold">卡组广场</div>
-                  <div class="text-caption text-grey-darken-1 d-none d-sm-block">
+                  <div class="text-caption text-medium-emphasis d-none d-sm-block">
                     在此浏览玩家分享的热门卡组。点击卡组查看详情。
                   </div>
                 </div>
@@ -180,7 +187,7 @@ const { triggerSnackbar } = useSnackbar()
 const galleryStore = useDecksGalleryStore()
 const uiStore = useUIStore()
 const authStore = useAuthStore()
-const { smAndDown, width } = useDisplay()
+const { smAndUp, width } = useDisplay()
 
 const infiniteScrollRef = ref(null)
 const scrollContainer = ref(null)
@@ -189,7 +196,7 @@ const drawer = ref(false)
 const selectedDeckKey = ref(null)
 
 const drawerWidth = computed(() => {
-  return smAndDown.value ? '1000' : width.value * 0.45
+  return !smAndUp.value ? '1000' : width.value * 0.45
 })
 
 const maxDecks = computed(() => (authStore.userRole === 0 ? 15 : Infinity))

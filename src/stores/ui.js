@@ -27,6 +27,11 @@ export const useUIStore = defineStore(
     const useAdaptiveColor = ref(true)
     const showStatsDashboard = ref(true)
     const customKeywords = ref([])
+    const headerHeight = ref(64) // Default height
+
+    const setHeaderHeight = (height) => {
+      headerHeight.value = height
+    }
 
     // State for SeriesCardTableView
     const seriesSearchTerm = debounceRef('', 300)
@@ -142,6 +147,8 @@ export const useUIStore = defineStore(
       isCardDeckOpen,
       isLoading,
       setLoading,
+      headerHeight,
+      setHeaderHeight,
       isTableModeActive,
       performanceThreshold,
       isPerformanceMode,

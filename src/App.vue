@@ -1,19 +1,22 @@
 <template>
   <v-app id="app" class="grid-background" :style="appStyle">
     <HomeBackground v-show="isHomeRoute" />
+
     <v-app-bar
       v-if="smAndUp"
+      class="floating-bar"
+      :class="{ 'glass-header': !isHomeRoute && hasBackgroundImage }"
       scroll-behavior="elevate"
       scroll-threshold="160"
       height="50"
-      :color="isHomeRoute ? '#212121' : 'default'"
-      :elevation="isHomeRoute ? 0 : 5"
+      :elevation="isHomeRoute ? 0 : 3"
+      :color="isHomeRoute ? 'transparent' : undefined"
     >
-      <v-app-bar-title>
+      <v-app-bar-title v-if="!smAndDown">
         <v-img
           :src="titleImg"
           alt="UClimax for ws"
-          :class="!smAndDown ? 'ml-16' : 'ml-0'"
+          class="ml-16"
           contain
           eager
           :style="titleImgStyle"
@@ -23,17 +26,18 @@
 
       <template #append>
         <template v-if="!isInSpecialFlow">
-          <div class="d-none d-sm-block h-100">
+          <div class="d-none d-sm-block">
             <template v-for="item in navItems" :key="item.to">
               <!-- Search Dropdown -->
-              <v-menu v-if="item.name === 'GlobalSearch'" offset="5" open-on-hover>
+              <v-menu v-if="item.name === 'GlobalSearch'" offset="10" open-on-hover>
                 <template v-slot:activator="{ props }">
                   <v-btn
                     variant="text"
                     :active="$route.name === 'GlobalSearch'"
                     :base-color="$route.params.game === 'wsr' ? 'ws-rose' : undefined"
-                    class="h-100 rounded-0"
+                    class="rounded-3md mr-1"
                     v-bind="props"
+                    :color="isHomeRoute ? 'white' : undefined"
                   >
                     <template #prepend>
                       <v-icon :icon="navIcons[item.icon]" size="24"></v-icon>
@@ -44,14 +48,14 @@
                 <v-list
                   density="compact"
                   :class="{ 'glass-menu': hasBackgroundImage }"
-                  class="rounded-5md"
+                  class="rounded-3md"
                   nav
                 >
                   <v-list-item
                     :to="{ name: 'GlobalSearch', params: { game: 'ws' } }"
                     title="Weiβ Schwarz"
                     slim
-                    class="rounded-pill"
+                    class="rounded-3md"
                   >
                   </v-list-item>
                   <v-list-item
@@ -59,20 +63,21 @@
                     :to="{ name: 'GlobalSearch', params: { game: 'wsr' } }"
                     title="Weiβ Schwarz Rose"
                     slim
-                    class="rounded-pill"
+                    class="rounded-3md"
                   >
                   </v-list-item>
                 </v-list>
               </v-menu>
 
               <!-- Decks Dropdown -->
-              <v-menu v-else-if="item.name === 'Decks'" offset="5" open-on-hover>
+              <v-menu v-else-if="item.name === 'Decks'" offset="10" open-on-hover>
                 <template v-slot:activator="{ props }">
                   <v-btn
                     variant="text"
                     :active="item.group && $route.meta.group === item.group"
-                    class="h-100 rounded-0"
+                    class="rounded-3md"
                     v-bind="props"
+                    :color="isHomeRoute ? 'white' : undefined"
                   >
                     <template #prepend>
                       <v-icon :icon="navIcons[item.icon]" size="24"></v-icon>
@@ -83,7 +88,7 @@
                 <v-list
                   density="compact"
                   :class="{ 'glass-menu': hasBackgroundImage }"
-                  class="rounded-5md"
+                  class="rounded-3md"
                   nav
                 >
                   <v-list-item
@@ -92,7 +97,7 @@
                     title="我的卡组"
                     prepend-icon="mdi-cards-variant"
                     slim
-                    class="rounded-pill"
+                    class="rounded-3md"
                   >
                   </v-list-item>
                   <v-list-item
@@ -100,7 +105,7 @@
                     title="卡组广场"
                     prepend-icon="mdi-view-grid-outline"
                     slim
-                    class="rounded-pill"
+                    class="rounded-3md"
                   >
                   </v-list-item>
                 </v-list>
@@ -112,9 +117,12 @@
                 variant="text"
                 :to="{ name: item.name }"
                 :text="item.text"
-                class="h-100 rounded-0"
+                class="rounded-3md mr-1"
+                :class="{ 'home-route-btn': isHomeRoute }"
                 :active="item.group && $route.meta.group === item.group"
                 :prepend-icon="navIcons[item.icon]"
+                :active-color="isHomeRoute ? 'cyan-accent-2' : undefined"
+                :color="isHomeRoute ? 'white' : undefined"
               >
                 <template #prepend>
                   <v-icon :icon="navIcons[item.icon]" size="24"></v-icon>
@@ -169,7 +177,19 @@
       </template>
     </v-app-bar>
 
-    <v-main :scrollable="true">
+    <!-- Progressive Header Blur -->
+    <v-fade-transition>
+      <div
+        v-if="route.meta.headerBlur"
+        class="header-progressive-blur"
+        :style="{
+          '--header-height': `${uiStore.headerHeight}px`,
+        }"
+      ></div>
+      <div v-else-if="isHomeRoute && smAndUp" class="home-header-progressive-blur"></div>
+    </v-fade-transition>
+
+    <v-main :scrollable="true" :class="{ 'pa-0': !smAndUp }">
       <router-view v-slot="{ Component }">
         <transition :name="transitionName" mode="out-in">
           <component :is="Component" />
@@ -179,11 +199,13 @@
 
     <v-bottom-navigation
       v-if="!smAndUp"
-      :bg-color="isHomeRoute ? '#212121' : 'default'"
+      class="floating-bottom-bar"
+      :class="{ 'glass-header': !isHomeRoute && hasBackgroundImage }"
       :height="50"
-      class="pb-4"
       grow
       app
+      :elevation="isHomeRoute ? 0 : 3"
+      :color="isHomeRoute ? 'transparent' : undefined"
     >
       <template v-for="item in navItems" :key="item.to">
         <!-- Search Menu -->
@@ -195,6 +217,7 @@
               :active="$route.name === 'GlobalSearch'"
               :base-color="$route.params.game === 'wsr' ? 'ws-rose' : undefined"
               style="min-width: 0"
+              :color="isHomeRoute ? 'white' : undefined"
             >
               <v-icon :icon="navIcons[item.icon]"></v-icon>
             </v-btn>
@@ -202,20 +225,20 @@
           <v-list
             density="compact"
             :class="{ 'glass-menu': hasBackgroundImage }"
-            class="rounded-5md"
+            class="rounded-3md"
             nav
           >
             <v-list-item
               :to="{ name: 'GlobalSearch', params: { game: 'ws' } }"
               title="Weiβ Schwarz"
-              class="rounded-pill"
+              class="rounded-3md"
             >
             </v-list-item>
             <v-list-item
               color="ws-rose"
               :to="{ name: 'GlobalSearch', params: { game: 'wsr' } }"
               title="Weiβ Schwarz Rose"
-              class="rounded-pill"
+              class="rounded-3md"
             >
             </v-list-item>
           </v-list>
@@ -229,6 +252,7 @@
               :value="item.name"
               :active="item.group && $route.meta.group === item.group"
               style="min-width: 0"
+              :color="isHomeRoute ? 'white' : undefined"
             >
               <v-icon :icon="navIcons[item.icon]"></v-icon>
             </v-btn>
@@ -236,7 +260,7 @@
           <v-list
             density="compact"
             :class="{ 'glass-menu': hasBackgroundImage }"
-            class="rounded-5md"
+            class="rounded-3md"
             nav
           >
             <v-list-item
@@ -245,7 +269,7 @@
               title="我的卡组"
               prepend-icon="mdi-cards-variant"
               slim
-              class="rounded-pill"
+              class="rounded-3md"
             >
             </v-list-item>
             <v-list-item
@@ -253,7 +277,7 @@
               title="卡组广场"
               prepend-icon="mdi-view-grid-outline"
               slim
-              class="rounded-pill"
+              class="rounded-3md"
             >
             </v-list-item>
           </v-list>
@@ -265,8 +289,9 @@
           :to="{ name: item.name }"
           :value="item.name"
           :active="item.group && $route.meta.group === item.group"
-          color="primary"
           style="min-width: 0"
+          :active-color="isHomeRoute ? 'cyan-accent-2' : 'primary'"
+          :color="isHomeRoute ? 'white' : undefined"
         >
           <v-icon :icon="navIcons[item.icon]"></v-icon>
         </v-btn>
@@ -617,5 +642,34 @@ watch(
 .inline-icon {
   height: 1rem;
   vertical-align: -0.15rem;
+}
+</style>
+
+<style scope>
+/* Floating App Bar Styles */
+.floating-bar {
+  margin: 12px 16px !important;
+  border-radius: 12px !important;
+  width: calc(100% - 32px) !important;
+  left: 0 !important;
+  right: 0 !important;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.floating-bottom-bar {
+  margin: 12px 16px !important;
+  margin-bottom: 15px !important;
+  border-radius: 18px !important;
+  width: calc(100% - 32px) !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.home-route-btn .v-btn__overlay {
+  background: transparent !important;
 }
 </style>

@@ -1,6 +1,9 @@
 <template>
-  <div class="fill-height d-flex overflow-y-auto themed-scrollbar">
-    <v-container class="h-100 pa-0">
+  <div
+    class="fill-height d-flex overflow-y-auto themed-scrollbar"
+    :style="{ '--sb-margin-top': '27px' }"
+  >
+    <v-container class="h-100 pa-0" :class="{ 'mt-3': smAndUp }">
       <div class="d-flex justify-center pt-4 px-3">
         <v-sheet
           class="search-container"
@@ -114,6 +117,7 @@
 
 <script setup>
 import { ref, onMounted, computed } from 'vue'
+import { useDisplay } from 'vuetify'
 import { useRouter } from 'vue-router'
 import { useDeckStore } from '@/stores/deck'
 import { useAuthStore } from '@/stores/auth'
@@ -131,6 +135,7 @@ const deckStore = useDeckStore()
 const authStore = useAuthStore()
 const uiStore = useUIStore()
 const { triggerSnackbar } = useSnackbar()
+const { smAndUp } = useDisplay()
 
 const deckCode = ref('')
 const deckNameSearchTerm = debounceRef('', 300)

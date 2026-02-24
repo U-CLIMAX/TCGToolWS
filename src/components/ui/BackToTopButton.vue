@@ -5,16 +5,16 @@
       position="fixed"
       location="bottom right"
       icon
-      size="large"
+      :size="smAndDown ? 'small' : 'large'"
       class="ma-4 back-to-top-btn"
-      :class="{ 'mb-14': smAndDown }"
+      :class="{ 'mb-18': smAndDown }"
       @click="scrollToTop"
     >
       <v-img
         :src="WsIcon"
         alt="Back to top"
-        width="28"
-        height="28"
+        :width="smAndDown ? 24 : 28"
+        :height="smAndDown ? 24 : 28"
         draggable="false"
         :style="{ filter: iconFilterStyle }"
       />

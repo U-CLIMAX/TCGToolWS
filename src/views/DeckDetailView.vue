@@ -2,14 +2,26 @@
   <div class="h-100">
     <v-container fluid class="h-100 pa-0">
       <div class="d-flex flex-column h-100 overflow-hidden">
-        <div ref="headerRef" class="overlay-header pl-4 pr-4 pa-1">
+        <div
+          ref="headerRef"
+          class="overlay-header py-1"
+          :class="smAndUp ? 'mt-4 px-4' : 'mt-0 px-0'"
+        >
           <div class="overlay-header-content" :class="{ 'mt-1': smAndUp }">
             <!-- 左側 -->
-            <div class="header-left">
+            <div
+              class="header-left"
+              :class="{
+                'glass-header': uiStore.backgroundImage && smAndUp,
+                'bg-surface': !uiStore.backgroundImage && smAndUp,
+                'elevation-0': !smAndUp,
+              }"
+            >
               <template v-if="smAndUp">
                 <v-btn
                   icon="mdi-export-variant"
                   variant="text"
+                  density="compact"
                   @click="openExportDialog"
                   v-tooltip:bottom="'汇出卡组'"
                 ></v-btn>
@@ -19,6 +31,7 @@
                       v-bind="props"
                       icon="mdi-share-variant"
                       variant="text"
+                      density="compact"
                       :disabled="isLocalDeck"
                     ></v-btn>
                   </template>
@@ -26,14 +39,14 @@
                     nav
                     density="compact"
                     :class="{ 'glass-menu': hasBackgroundImage }"
-                    class="rounded-5md"
+                    class="rounded-3md"
                   >
                     <v-list-item
                       @click="handleShareCard"
-                      title="分享链接"
+                      title="复制分享链接"
                       prepend-icon="mdi-link"
                       slim
-                      class="rounded-pill"
+                      class="rounded-3md"
                     >
                     </v-list-item>
                     <v-list-item
@@ -41,7 +54,7 @@
                       title="分享到卡组广场"
                       prepend-icon="mdi-view-grid-plus"
                       slim
-                      class="rounded-pill"
+                      class="rounded-3md"
                     >
                     </v-list-item>
                   </v-list>
@@ -49,6 +62,7 @@
                 <v-btn
                   icon="mdi-link-variant"
                   variant="text"
+                  density="compact"
                   :disabled="isLocalDeck"
                   @click="handleCopyDeckKey"
                   v-tooltip:bottom="'复制卡组代码'"
@@ -56,6 +70,7 @@
                 <v-btn
                   icon="mdi-pencil"
                   variant="text"
+                  density="compact"
                   @click="handleEditDeck"
                   v-tooltip:bottom="'编辑卡组'"
                 ></v-btn>
@@ -63,12 +78,18 @@
                   v-if="userRole !== 0 && !isLocalDeck"
                   icon="mdi-history"
                   variant="text"
+                  density="compact"
                   @click="isHistoryDialogVisible = true"
                   v-tooltip:bottom="'卡组历史'"
                 ></v-btn>
               </template>
-              <template v-if="!smAndUp">
-                <v-btn icon variant="text" @click="showMoreActionsBottomSheet = true">
+              <template v-else>
+                <v-btn
+                  icon
+                  variant="text"
+                  density="compact"
+                  @click="showMoreActionsBottomSheet = true"
+                >
                   <v-icon size="24">mdi-dots-vertical</v-icon>
                 </v-btn>
               </template>
@@ -98,8 +119,15 @@
               </template>
             </div>
 
-            <!-- 右側 -->
-            <div class="header-right">
+            <!-- 右侧 -->
+            <div
+              class="header-right"
+              :class="{
+                'glass-header': uiStore.backgroundImage && smAndUp,
+                'bg-surface': !uiStore.backgroundImage && smAndUp,
+                'elevation-0': !smAndUp,
+              }"
+            >
               <template v-if="smAndUp">
                 <v-tooltip
                   v-if="!isViewingHistory"
@@ -108,12 +136,13 @@
                 >
                   <template v-slot:activator="{ props }">
                     <v-btn
-                      v-if="isEditing && deckStore.editingDeckKey"
                       v-bind="props"
+                      v-if="isEditing && deckStore.editingDeckKey"
                       :icon="
                         showDifferences ? 'mdi-vector-difference-ba' : 'mdi-vector-difference-ab'
                       "
                       variant="text"
+                      density="compact"
                       @click="showDifferences = !showDifferences"
                     ></v-btn>
                   </template>
@@ -122,10 +151,11 @@
                   :icon="uiStore.showStatsDashboard ? 'mdi-chart-pie' : 'mdi-chart-pie-outline'"
                   class="mr-2"
                   variant="text"
+                  density="compact"
                   @click="uiStore.showStatsDashboard = !uiStore.showStatsDashboard"
                   v-tooltip:bottom="uiStore.showStatsDashboard ? '隐藏统计' : '显示统计'"
                 ></v-btn>
-                <div style="width: 120px">
+                <div style="width: 120px" class="header-select">
                   <v-select
                     v-model="groupBy"
                     :items="groupByOptions"
@@ -138,7 +168,7 @@
                 </div>
               </template>
               <template v-else>
-                <v-btn icon variant="text" @click="showBottomSheet = true">
+                <v-btn icon variant="text" density="compact" @click="showBottomSheet = true">
                   <v-icon size="24">mdi-format-list-bulleted-type</v-icon>
                 </v-btn>
               </template>
@@ -239,7 +269,7 @@
           <template #prepend>
             <v-icon>mdi-link</v-icon>
           </template>
-          <v-list-item-title>分享链接</v-list-item-title>
+          <v-list-item-title>复制分享链接</v-list-item-title>
         </v-list-item>
         <v-list-item v-if="!isLocalDeck" @click="handleShareToDeckGallery">
           <template #prepend>
@@ -380,7 +410,7 @@
 </template>
 
 <script setup>
-import { computed, ref, onUnmounted, onMounted, nextTick, watch, toRaw } from 'vue'
+import { computed, ref, onUnmounted, onMounted, nextTick, watch, toRaw, watchEffect } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useDeckEncoder } from '@/composables/useDeckEncoder'
 import { useDisplay } from 'vuetify'
@@ -757,6 +787,11 @@ onUnmounted(() => {
   }
 })
 
+watchEffect(() => {
+  const extra = smAndUp.value ? 69 : 0
+  uiStore.setHeaderHeight(headerOffsetHeight.value + extra)
+})
+
 const isModalVisible = ref(false)
 const selectedCardData = ref(null)
 const linkedCardsDetails = ref([])
@@ -1040,4 +1075,20 @@ const showTextModal = (text) => {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.header-select :deep(.v-field__input) {
+  min-height: 32px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  font-size: 0.8125rem;
+  display: flex;
+  align-items: center;
+}
+
+.header-select :deep(.v-field__append-inner) {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  height: 32px;
+  align-items: center;
+}
+</style>

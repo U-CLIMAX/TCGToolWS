@@ -5,14 +5,20 @@
     </div>
 
     <div v-else class="d-flex flex-column h-100">
-      <div ref="headerRef" class="overlay-header pl-4 pr-4 pa-1">
+      <div ref="headerRef" class="overlay-header pl-4 pr-4 pa-1" :class="smAndUp ? 'mt-4' : 'mt-0'">
         <div class="overlay-header-content">
-          <div class="header-left">
+          <div
+            :class="{
+              'glass-header': uiStore.backgroundImage && smAndUp,
+              'bg-surface': !uiStore.backgroundImage,
+              'header-left': smAndUp,
+            }"
+          >
             <v-btn
               v-if="smAndUp"
-              :size="resize"
               :icon="filterIcon"
               variant="text"
+              density="compact"
               @click="isFilterOpen = !isFilterOpen"
               v-tooltip:bottom="isFilterOpen ? '关闭筛选' : '开启筛选'"
             ></v-btn>
@@ -23,6 +29,7 @@
               :size="resize"
               icon="mdi-arrow-left"
               variant="text"
+              density="compact"
               :to="{ name: 'SeriesCardTable' }"
               class="flex-shrink-0"
             ></v-btn>
@@ -41,12 +48,18 @@
             </v-chip>
           </div>
 
-          <div class="header-right">
+          <div
+            :class="{
+              'glass-header': uiStore.backgroundImage && smAndUp,
+              'bg-surface': !uiStore.backgroundImage,
+              'header-right': smAndUp,
+            }"
+          >
             <v-btn
               v-if="smAndUp"
-              :size="resize"
               :icon="isTableModeActive ? 'mdi-grid' : 'mdi-grid-large'"
               variant="text"
+              density="compact"
               @click="isTableModeActive = !isTableModeActive"
               v-tooltip:bottom="isTableModeActive ? '切换预设模式' : '切换紧凑模式'"
             ></v-btn>
@@ -59,9 +72,9 @@
               offset-y="12"
             >
               <v-btn
-                :size="resize"
                 :icon="isCardDeckOpen ? 'mdi-cards' : 'mdi-cards-outline'"
                 variant="text"
+                density="compact"
                 @click="isCardDeckOpen = !isCardDeckOpen"
                 v-tooltip:bottom="isCardDeckOpen ? '隐藏卡组' : '检视卡组'"
               ></v-btn>
@@ -91,7 +104,7 @@
           :is-table-mode-active="isTableModeActive"
           margin="300"
           class="flex-grow-1 themed-scrollbar pl-4 pr-4"
-          :style="{ '--sb-margin-top': `${headerOffsetHeight}px` }"
+          :style="{ '--sb-margin-top': `${headerOffsetHeight + 20}px` }"
         />
         <template v-if="smAndUp">
           <div class="sidebar-container" :class="{ 'right-sidebar-open': isCardDeckOpen }">
@@ -105,10 +118,10 @@
         <div class="fab-bottom-left-container d-flex ga-3">
           <v-btn
             icon="mdi-filter"
-            size="large"
+            size="default"
             color="primary"
             class="opacity-90"
-            :class="{ 'mb-10': smAndDown }"
+            :class="{ 'mb-14': smAndDown }"
             @click="sheetContent = 'filter'"
           ></v-btn>
 
@@ -122,7 +135,7 @@
           >
             <v-btn
               icon="mdi-cards"
-              size="large"
+              size="default"
               color="primary"
               class="opacity-90"
               @click="sheetContent = 'deck'"
@@ -204,6 +217,11 @@ watchEffect(() => {
   if (headerRef.value) {
     observer.observe(headerRef.value)
   }
+})
+
+watchEffect(() => {
+  const extra = smAndUp.value ? 80 : 10
+  uiStore.setHeaderHeight(headerOffsetHeight.value + extra)
 })
 
 watch(isFilterOpen, (newValue) => {

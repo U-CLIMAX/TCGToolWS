@@ -1,13 +1,19 @@
 <template>
   <v-container fluid class="h-100 pa-0">
     <div class="d-flex flex-column h-100">
-      <div ref="headerRef" class="overlay-header pl-4 pr-4 pa-1">
+      <div ref="headerRef" class="overlay-header pl-4 pr-4 pa-1" :class="smAndUp ? 'mt-4' : 'mt-0'">
         <div class="overlay-header-content">
-          <div class="header-left">
+          <div
+            :class="{
+              'glass-header': uiStore.backgroundImage && smAndUp,
+              'bg-surface': !uiStore.backgroundImage,
+              'header-left': smAndUp,
+            }"
+          >
             <v-btn
               v-if="smAndUp"
-              :size="resize"
               :icon="searchIcon"
+              density="compact"
               variant="text"
               @click="isFilterOpen = !isFilterOpen"
               :disabled="globalSearchStore.isLoading"
@@ -24,12 +30,12 @@
               {{ game.toUpperCase() }} 搜索结果
             </h1>
             <v-chip
-              :size="resize"
               prepend-icon="mdi-cards-diamond-outline"
               class="counter-chip font-weight-bold flex-shrink-0"
               :color="isChipShowWarning ? 'warning' : undefined"
               :style="{ cursor: isChipShowWarning ? 'help' : undefined }"
               :disabled="globalSearchStore.isLoading"
+              :size="smAndUp ? 'default' : 'x-small'"
             >
               <template v-if="isChipShowWarning">
                 <v-tooltip activator="parent" location="bottom">
@@ -40,11 +46,17 @@
             </v-chip>
           </div>
 
-          <div class="header-right">
+          <div
+            :class="{
+              'glass-header': uiStore.backgroundImage && smAndUp,
+              'bg-surface': !uiStore.backgroundImage,
+              'header-right': smAndUp,
+            }"
+          >
             <v-btn
               v-if="smAndUp"
-              :size="resize"
               :icon="isTableModeActive ? 'mdi-grid' : 'mdi-grid-large'"
+              density="compact"
               variant="text"
               @click="isTableModeActive = !isTableModeActive"
               :disabled="globalSearchStore.isLoading"
@@ -59,8 +71,8 @@
               offset-y="12"
             >
               <v-btn
-                :size="resize"
                 :icon="isCardDeckOpen ? 'mdi-cards' : 'mdi-cards-outline'"
+                density="compact"
                 variant="text"
                 @click="isCardDeckOpen = !isCardDeckOpen"
                 :disabled="globalSearchStore.isLoading"
@@ -125,7 +137,7 @@
           key="global-search-list"
           margin=" 300"
           class="flex-grow-1 themed-scrollbar pl-4 pr-4"
-          :style="{ '--sb-margin-top': `${headerOffsetHeight}px` }"
+          :style="{ '--sb-margin-top': `${headerOffsetHeight + 20}px` }"
         />
         <template v-if="smAndUp">
           <div class="sidebar-container" :class="{ 'right-sidebar-open': isCardDeckOpen }">
@@ -227,30 +239,25 @@ const rawHeaderHeight = ref(0)
 const sheetContent = ref(null)
 const { smAndUp, smAndDown, lgAndUp } = useDisplay()
 
-const resize = computed(() => {
-  return smAndUp.value ? 'default' : 'x-small'
-})
-
 const searchIcon = computed(() =>
   isFilterOpen.value ? 'mdi-layers-search' : 'mdi-layers-search-outline'
 )
 const headerOffsetHeight = computed(() => rawHeaderHeight.value)
 
+watchEffect(() => {
+  const extra = smAndUp.value ? 80 : 10
+  uiStore.setHeaderHeight(headerOffsetHeight.value + extra)
+})
+
 const observer = new ResizeObserver(([entry]) => {
   if (entry && entry.target) {
-    rawHeaderHeight.value = entry.target.offsetHeight
+    rawHeaderHeight.value = entry.target.offsetHeight + 2
   }
 })
 
 watchEffect(() => {
   if (headerRef.value) {
     observer.observe(headerRef.value)
-  }
-})
-
-watch(isTableModeActive, () => {
-  if (cardListRef.value) {
-    cardListRef.value.reset()
   }
 })
 

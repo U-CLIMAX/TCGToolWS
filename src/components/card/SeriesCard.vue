@@ -47,8 +47,7 @@
           <!-- prefixes-line -->
           <div
             v-if="!isCompact"
-            class="text-truncate d-flex align-center"
-            :class="isLightWithBg ? 'text-grey-lighten-2' : 'text-grey'"
+            class="text-truncate text-medium-emphasis d-flex align-center"
             style="min-height: 18px"
           >
             <v-icon size="x-small" class="mr-1">mdi-layers-outline</v-icon>
@@ -70,7 +69,7 @@
         </div>
 
         <div v-if="!isCompact" class="date-section mt-auto pt-1">
-          <p class="text-caption" :class="isLightWithBg ? 'text-grey-lighten-2' : 'text-grey'">
+          <p class="text-caption text-medium-emphasis">
             {{ seriesData.latestReleaseDate }}
           </p>
         </div>
@@ -82,7 +81,6 @@
 <script setup>
 import { computed } from 'vue'
 import { useUIStore } from '@/stores/ui'
-import { useTheme } from 'vuetify'
 
 defineProps({
   seriesName: {
@@ -100,12 +98,7 @@ defineProps({
 })
 
 const uiStore = useUIStore()
-const theme = useTheme()
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
-
-const isLightWithBg = computed(() => {
-  return hasBackgroundImage.value && theme.global.name.value === 'light'
-})
 </script>
 
 <style scoped>

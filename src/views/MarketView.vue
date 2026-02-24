@@ -4,10 +4,11 @@
       ref="infiniteScrollRef"
       :key="scrollKey"
       class="h-100 themed-scrollbar"
+      :style="{ '--sb-margin-top': '27px' }"
       :onLoad="loadMore"
       :empty-text="''"
     >
-      <v-container class="pa-0">
+      <v-container class="pa-0" :class="{ 'mt-3': smAndUp }">
         <div class="d-flex justify-center px-3">
           <v-row class="w-100" style="max-width: 1280px">
             <v-col cols="12" md="9">
@@ -18,7 +19,7 @@
                 elevation="2"
               >
                 <div class="d-flex justify-space-between align-center mb-3 ga-2">
-                  <div class="text-caption text-grey-darken-1">
+                  <div class="text-caption text-medium-emphasis">
                     本平台仅提供商品信息展示，不参与交易过程，复制链接后在相应 app
                     内打开。请务必核实卖家身份，建议通过闲鱼等担保平台完成交易。最终解释权归
                     U-CLIMAX 所有。
@@ -302,6 +303,7 @@
 
 <script setup>
 import { ref, computed, onMounted, watch, nextTick } from 'vue'
+import { useDisplay } from 'vuetify'
 import { useMarketStore } from '@/stores/market'
 import { useUIStore } from '@/stores/ui'
 import { useAuthStore } from '@/stores/auth'
@@ -315,6 +317,7 @@ const { triggerSnackbar } = useSnackbar()
 const marketStore = useMarketStore()
 const uiStore = useUIStore()
 const authStore = useAuthStore()
+const { smAndUp } = useDisplay()
 
 const infiniteScrollRef = ref(null)
 const scrollContainer = ref(null)

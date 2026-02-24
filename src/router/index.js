@@ -27,7 +27,7 @@ const routes = [
     name: 'SeriesDetail',
     component: () => import('@/views/SeriesDetailView.vue'),
     props: true,
-    meta: { group: 'series' },
+    meta: { group: 'series', headerBlur: true },
   },
   {
     path: '/decks',
@@ -46,19 +46,21 @@ const routes = [
     name: 'DeckDetail',
     component: () => import('@/views/DeckDetailView.vue'),
     props: true,
-    meta: { requiresAuth: true, group: 'decks' },
+    meta: { requiresAuth: true, group: 'decks', headerBlur: true },
   },
   {
     path: '/share-decks/:key',
     name: 'ShareDeckDetail',
     component: () => import('@/views/ShareDeckDetailView.vue'),
     props: true,
+    meta: { headerBlur: true },
   },
   {
     path: '/decklog/:key',
     name: 'DeckLog',
     component: () => import('@/views/DeckLogView.vue'),
     props: true,
+    meta: { headerBlur: true },
   },
   {
     path: '/forgot-password',
@@ -78,6 +80,7 @@ const routes = [
     name: 'GlobalSearch',
     component: () => import('@/views/GlobalSearchView.vue'),
     props: true,
+    meta: { headerBlur: true },
   },
   {
     path: '/market',

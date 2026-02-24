@@ -1,16 +1,38 @@
 <template>
-  <div class="h-100">
+  <div class="h-100" style="position: relative">
+    <!-- Progressive Header Blur -->
+    <transition name="fade">
+      <div
+        v-if="embedded"
+        class="header-progressive-blur rounded-3md"
+        :style="{
+          '--header-height': `${headerOffsetHeight}px`,
+        }"
+      ></div>
+    </transition>
+
     <v-container fluid class="h-100 pa-0">
       <div class="d-flex flex-column h-100 overflow-hidden">
-        <div ref="headerRef" class="overlay-header pl-4 pr-4 pa-1">
+        <div
+          ref="headerRef"
+          class="overlay-header py-1"
+          :class="smAndUp ? 'mt-4 px-4' : 'mt-0 px-0'"
+        >
           <div class="overlay-header-content">
             <!-- 左側 -->
-            <div class="header-left">
+            <div
+              class="header-left"
+              :class="{
+                'glass-header': uiStore.backgroundImage && smAndUp && !embedded,
+                'bg-surface': !uiStore.backgroundImage && smAndUp && !embedded,
+                'elevation-0': !smAndUp || embedded,
+              }"
+            >
               <v-btn
                 icon
-                :size="resize"
                 color="blue-accent-2"
                 variant="text"
+                density="compact"
                 @click="openSaveDialog"
                 :disabled="!deck"
               >
@@ -27,25 +49,32 @@
             </div>
 
             <!-- 右側 -->
-            <div class="header-right ga-2">
+            <div
+              class="header-right"
+              :class="{
+                'glass-header': uiStore.backgroundImage && smAndUp && !embedded,
+                'bg-surface': !uiStore.backgroundImage && smAndUp && !embedded,
+                'elevation-0': !smAndUp || embedded,
+              }"
+            >
               <template v-if="embedded">
                 <v-btn
                   icon
                   variant="text"
+                  density="compact"
                   :href="`/share-decks/${deckKey}`"
                   target="_blank"
                   color="teal-lighten-1"
-                  :size="resize"
                   v-tooltip:bottom="'在新窗口打开'"
                 >
                   <v-icon size="24">mdi-open-in-new</v-icon>
                 </v-btn>
-                <v-btn :size="resize" icon variant="text" @click="$emit('close')">
+                <v-btn icon variant="text" density="compact" @click="$emit('close')">
                   <v-icon size="24">mdi-arrow-collapse-right</v-icon>
                 </v-btn>
               </template>
               <template v-else-if="smAndUp">
-                <div style="width: 120px" class="mt-2">
+                <div style="width: 120px" class="header-select">
                   <v-select
                     v-model="groupBy"
                     :items="groupByOptions"
@@ -59,7 +88,7 @@
                 </div>
               </template>
               <template v-else>
-                <v-btn icon :size="resize" variant="text" @click="showBottomSheet = true">
+                <v-btn icon variant="text" density="compact" @click="showBottomSheet = true">
                   <v-icon size="24">mdi-format-list-bulleted-type</v-icon>
                 </v-btn>
               </template>
@@ -205,7 +234,7 @@
 </template>
 
 <script setup>
-import { computed, ref, onUnmounted, onMounted } from 'vue'
+import { computed, ref, onUnmounted, onMounted, watchEffect } from 'vue'
 import { getCardUrls } from '@/utils/getCardImage'
 import { useDisplay } from 'vuetify'
 import { useDeckGrouping } from '@/composables/useDeckGrouping'
@@ -242,9 +271,6 @@ const props = defineProps({
 const emit = defineEmits(['save', 'close'])
 
 const { smAndUp } = useDisplay()
-const resize = computed(() => {
-  return smAndUp.value ? 'default' : 'small'
-})
 const authStore = useAuthStore()
 const uiStore = useUIStore()
 
@@ -329,6 +355,11 @@ onUnmounted(() => {
   }
 })
 
+watchEffect(() => {
+  const extra = smAndUp.value ? 69 : 0
+  uiStore.setHeaderHeight(headerOffsetHeight.value + extra)
+})
+
 // Card Navigation & Details Modal
 const isModalVisible = ref(false)
 const selectedCardData = ref(null)
@@ -387,6 +418,10 @@ const showBottomSheet = ref(false)
 </script>
 
 <style scoped>
+.header-progressive-blur {
+  position: absolute !important;
+}
+
 .cover-card-container .clickable {
   cursor: pointer;
   border: 2px solid transparent;
@@ -398,5 +433,21 @@ const showBottomSheet = ref(false)
 .cover-card-container .selected-cover {
   border-color: rgb(216, 102, 102);
   box-shadow: 0 0 10px 3px rgba(223, 137, 137, 0.6);
+}
+
+.header-select :deep(.v-field__input) {
+  min-height: 32px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  font-size: 0.8125rem;
+  display: flex;
+  align-items: center;
+}
+
+.header-select :deep(.v-field__append-inner) {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  height: 32px;
+  align-items: center;
 }
 </style>
