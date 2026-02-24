@@ -206,6 +206,7 @@
       app
       :elevation="isHomeRoute ? 0 : 3"
       :color="isHomeRoute ? 'transparent' : undefined"
+      :bg-color="isHomeRoute ? 'rgb(33, 33, 33)' : undefined"
     >
       <template v-for="item in navItems" :key="item.to">
         <!-- Search Menu -->
@@ -659,7 +660,7 @@ watch(
 
 .floating-bottom-bar {
   margin: 12px 8px !important;
-  margin-bottom: 16px !important;
+  margin-bottom: 20px !important;
   border-radius: 18px !important;
   width: calc(100% - 16px) !important;
   left: 0 !important;

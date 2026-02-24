@@ -121,7 +121,7 @@
             size="default"
             color="primary"
             class="opacity-90"
-            :class="{ 'mb-14': smAndDown }"
+            :class="{ 'mb-15': smAndDown }"
             @click="sheetContent = 'filter'"
           ></v-btn>
 

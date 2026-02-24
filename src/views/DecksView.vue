@@ -1,6 +1,7 @@
 <template>
   <div
     class="fill-height d-flex overflow-y-auto themed-scrollbar"
+    :class="{ 'mb-18': !smAndUp }"
     :style="{ '--sb-margin-top': '27px' }"
   >
     <v-container class="h-100 pa-0" :class="{ 'mt-3': smAndUp }">
@@ -72,7 +73,7 @@
           <v-card-title>输入卡组代码</v-card-title>
           <v-card-text>
             <v-row dense>
-              <v-col cols="6">
+              <v-col cols="12" sm="6">
                 <v-select
                   v-model="deckCodeSource"
                   :items="sourceOptions"
@@ -84,7 +85,7 @@
                   hide-details
                 />
               </v-col>
-              <v-col cols="6">
+              <v-col cols="12" sm="6">
                 <v-text-field
                   v-model="deckCode"
                   label="卡组代码"

@@ -7,7 +7,7 @@
       icon
       :size="smAndDown ? 'small' : 'large'"
       class="ma-4 back-to-top-btn"
-      :class="{ 'mb-18': smAndDown }"
+      :class="{ 'mb-19': smAndDown }"
       @click="scrollToTop"
     >
       <v-img

@@ -27,7 +27,7 @@
         :class="{
           'freeze-layout': isLayoutFrozen,
           'table-mode-grid': isTableMode,
-          'mb-14': !smAndUp,
+          'mb-15': !smAndUp,
         }"
         :style="{
           paddingTop: `${headerOffsetHeight + 1}px`,
