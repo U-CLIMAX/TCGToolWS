@@ -119,6 +119,7 @@
             :rating-avg="deck?.rating_avg || 0"
             :rating-count="deck?.rating_count || 0"
             :rating-breakdown="deck?.rating_breakdown || [0, 0, 0, 0, 0]"
+            :embed="embedded"
             @card-click="handleCardClick"
             @update:isModalVisible="isModalVisible = $event"
             @show-new-card="handleShowNewCard"

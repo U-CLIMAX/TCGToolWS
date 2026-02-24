@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="px-4 pb-4 w-100 h-100 centered-content" :class="{ 'mb-15': !smAndUp }">
+    <div class="px-4 pb-4 w-100 h-100 centered-content" :class="{ 'mb-15': !smAndUp && !embed }">
       <v-fab-transition>
         <DeckStatsDashboard
           v-if="
@@ -210,6 +210,10 @@ const props = defineProps({
   ratingBreakdown: {
     type: Array,
     default: () => [0, 0, 0, 0, 0],
+  },
+  embed: {
+    type: Boolean,
+    default: false,
   },
 })
 
