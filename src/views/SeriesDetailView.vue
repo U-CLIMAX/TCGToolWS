@@ -68,8 +68,8 @@
               :content="deckStore.totalCardCount"
               :model-value="deckStore.totalCardCount > 0"
               color="primary"
-              offset-x="6"
-              offset-y="12"
+              offset-x="3"
+              offset-y="3"
             >
               <v-btn
                 :icon="isCardDeckOpen ? 'mdi-cards' : 'mdi-cards-outline'"
