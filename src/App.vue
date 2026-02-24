@@ -135,6 +135,7 @@
             length="24"
             thickness="2"
             vertical
+            :color="isHomeRoute ? 'transparent' : undefined"
           ></v-divider>
         </template>
 
@@ -403,7 +404,7 @@ const titleImgStyle = computed(() => {
 
 const accountIconClass = computed(() => {
   const role = userRole.value
-  const isDark = vuetifyTheme.global.current.value.dark || isHomeRoute.value
+  const isDark = vuetifyTheme.global.current.value.dark
 
   if (role === 1) {
     return isDark ? 'premium-user-icon-dark' : 'premium-user-icon-light'
@@ -411,7 +412,7 @@ const accountIconClass = computed(() => {
   if (role === 2) {
     return isDark ? 'developer-user-icon-dark' : 'developer-user-icon-light'
   }
-  return null
+  return 'text-blue-grey-lighten-5'
 })
 const authDialog = ref(null)
 const { show, text, color, triggerSnackbar } = useSnackbar()
@@ -599,6 +600,41 @@ watch(
   opacity: 0;
 }
 
+/* 設定給效果小圖標用的樣式 */
+.inline-icon {
+  height: 1rem;
+  vertical-align: -0.15rem;
+}
+</style>
+
+<style scope>
+/* Floating App Bar Styles */
+.floating-bar {
+  margin: 12px 16px !important;
+  border-radius: 12px !important;
+  width: calc(100% - 32px) !important;
+  left: 0 !important;
+  right: 0 !important;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.floating-bottom-bar {
+  margin: 12px 16px !important;
+  margin-bottom: 20px !important;
+  border-radius: 18px !important;
+  width: calc(100% - 32px) !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.home-route-btn .v-btn__overlay {
+  background: transparent !important;
+}
+
 /* Premium User (Role 1) - Light Theme */
 .premium-user-icon-light .v-icon {
   background: var(--golden-gradirnt-light);
@@ -637,40 +673,5 @@ watch(
   background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: gradient-loop 3s linear infinite;
-}
-
-/* 設定給效果小圖標用的樣式 */
-.inline-icon {
-  height: 1rem;
-  vertical-align: -0.15rem;
-}
-</style>
-
-<style scope>
-/* Floating App Bar Styles */
-.floating-bar {
-  margin: 12px 16px !important;
-  border-radius: 12px !important;
-  width: calc(100% - 32px) !important;
-  left: 0 !important;
-  right: 0 !important;
-  overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-.floating-bottom-bar {
-  margin: 12px 16px !important;
-  margin-bottom: 20px !important;
-  border-radius: 18px !important;
-  width: calc(100% - 32px) !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-.home-route-btn .v-btn__overlay {
-  background: transparent !important;
 }
 </style>
