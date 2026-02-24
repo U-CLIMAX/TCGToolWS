@@ -659,10 +659,10 @@ watch(
 }
 
 .floating-bottom-bar {
-  margin: 12px 8px !important;
+  margin: 12px 16px !important;
   margin-bottom: 20px !important;
   border-radius: 18px !important;
-  width: calc(100% - 16px) !important;
+  width: calc(100% - 32px) !important;
   left: 0 !important;
   right: 0 !important;
   bottom: 0 !important;
