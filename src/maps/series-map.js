@@ -1,4 +1,9 @@
 const wsSeriesMap = {
+  'VIRTUAL GIRL': {
+    id: 'vrg',
+    prefixes: ['VRG', 'BDY'],
+    latestReleaseDate: '2026-03-06',
+  },
   '传说系列': {
     id: 'tal',
     prefixes: ['TAL'],
@@ -88,7 +93,7 @@ const wsSeriesMap = {
   'BanG Dream!': {
     id: 'bd',
     prefixes: ['BD', 'BDY'],
-    latestReleaseDate: '2025-09-12',
+    latestReleaseDate: '2026-03-06',
   },
   '缘结甘神家': {
     id: 'amg',

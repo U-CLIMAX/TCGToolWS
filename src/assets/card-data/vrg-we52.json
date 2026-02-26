@@ -1,0 +1,1630 @@
+{
+  "VRG/WE52-01": {
+    "name": "“バーチャルガール”アイ＆リンカ＆マキ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "红色",
+    "effect": "【自】[(1) 你将自己卡组顶1张卡放置到时计区] 此卡从手牌放置到舞台时，你可以支付费用。支付了的话，你从自己的卡组找至多1张等级1以下的角色卡展示给对手后加入手牌，卡组洗切。<br>【起】[此卡放置到休息室] 你选择自己的1个角色，那个回合中，给予以下能力。『【自】此卡攻击时，你公开自己卡组顶1张卡。那张卡的等级是1级以上的话放置到库存区。』（高潮卡视为0级。否则放回原处）",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-01",
+        "rarity": "RR"
+      },
+      {
+        "id": "VRG/WE52-01H",
+        "rarity": "HRR"
+      }
+    ]
+  },
+  "VRG/WE52-02": {
+    "name": "“スプラッシュ！”アイ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "红色",
+    "effect": "【自】[此卡返回手牌] 你的触发标记是<img src=\"/effect-icons/salvage.webp\">的高潮卡放置到高潮区时，你可以支付费用。支付了的话，你看自己卡组顶至多2张卡，以喜欢的顺序放置到卡组顶，你选择自己的1个角色，那个回合中，战斗力+1500。<br>【起】集中 [(1) 此卡【横置】] 你将自己卡组顶4张卡放置到休息室。那些卡中每有1张高潮卡，你从自己的休息室选择至多1张《終末世界》或《音楽》的角色卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-02",
+        "rarity": "RR"
+      },
+      {
+        "id": "VRG/WE52-02H",
+        "rarity": "HRR"
+      }
+    ]
+  },
+  "VRG/WE52-03": {
+    "name": "“もうひとりのわたし”アイ＆常盤愛",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "红色",
+    "effect": "【永】你的回合中，你全部的角色是《終末世界》或《音楽》的话，此卡的战斗力+2000。<br>【自】【CX联动】此卡攻击时，高潮区有「HELLO WORLD！」，你其他《終末世界》或《音楽》的角色有2个以上的话，你看自己卡组顶至多3张卡，选择至多1张《終末世界》或《音楽》的角色卡和至多1张「Vision Eye」展示给对手后加入手牌，其余的卡放置到休息室。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-03",
+        "rarity": "RR"
+      },
+      {
+        "id": "VRG/WE52-03H",
+        "rarity": "HRR"
+      },
+      {
+        "id": "VRG/WE52-03SSP",
+        "rarity": "SSP"
+      }
+    ]
+  },
+  "VRG/WE52-04": {
+    "name": "“AI-Vstar”アイ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "红色",
+    "effect": "【起】【CX联动】[1张手牌的「“わたし『たち』の始まり”常盤愛」放置到休息室，此卡放置到休息室] 你的休息室触发标记是<img src=\"/effect-icons/salvage.webp\">的高潮卡有2张以上的话，你从自己的卡组找至多1张「HELLO WORLD！」或「World's End」或「Hi-Vision」展示给对手后加入手牌，卡组洗切，选择自己的1个角色，那个回合中，战斗力+3000。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-04",
+        "rarity": "RR"
+      },
+      {
+        "id": "VRG/WE52-04H",
+        "rarity": "HRR"
+      },
+      {
+        "id": "VRG/WE52-04SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "VRG/WE52-05": {
+    "name": "“ステージ”アイ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "红色",
+    "effect": "【自】【CX联动】此卡通过「\"わたし『たち』の始まり\"常盤愛」的【自】的效果放置到舞台时，你的高潮区有「World's End」，前列有此卡的话，你选择此卡和自己休息室的1张「\"わたし『たち』の始まり\"常盤愛」，放置到思出区，你将所有玩家的角色放置到休息室，给对手造成4次1点伤害，将自己时计区顶至多2张卡放置到休息室。（发生伤害取消）<br>【自】【CX联动】记忆 [(2) 1张手牌放置到休息室] 此卡攻击时，高潮区有「World's End」，你的思出区有「\"わたし『たち』の始まり\"常盤愛」的话，你可以支付费用。支付了的话，给对手造成1点伤害，给对手造成4点伤害。（发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-05",
+        "rarity": "RR"
+      },
+      {
+        "id": "VRG/WE52-05H",
+        "rarity": "HRR"
+      },
+      {
+        "id": "VRG/WE52-05SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "VRG/WE52-06": {
+    "name": "常盤愛",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "红色",
+    "effect": "【永】你的回合中，此卡的等级+1，战斗力+2500。<br>【自】此卡的战斗对手【倒置】时，你选择自己其他1个角色，【横置】，移动到后列没有角色的位置。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-06",
+        "rarity": "R"
+      },
+      {
+        "id": "VRG/WE52-06H",
+        "rarity": "HR"
+      }
+    ]
+  },
+  "VRG/WE52-07": {
+    "name": "“魅惑の視線”リンカ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "红色",
+    "effect": "【自】[1张手牌放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。支付了的话，你公开自己卡组顶1张卡，从自己的休息室选择1张等级X以下的角色卡返回手牌。X是公开的卡的等级。（高潮卡视为0级。公开的卡放回原处）",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-07",
+        "rarity": "R"
+      },
+      {
+        "id": "VRG/WE52-07H",
+        "rarity": "HR"
+      }
+    ]
+  },
+  "VRG/WE52-08": {
+    "name": "“夕暮れの海辺”アイ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "红色",
+    "effect": "【自】[(1) 你将自己卡组顶1张卡放置到时计区] 此卡从舞台放置到休息室时，你可以支付费用。支付了的话，你看自己卡组顶至多2张卡，选择至多2张《終末世界》或《音楽》的角色卡或「Vision Eye」展示给对手后加入手牌，其余的卡放置到休息室。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-08",
+        "rarity": "R"
+      },
+      {
+        "id": "VRG/WE52-08H",
+        "rarity": "HR"
+      }
+    ]
+  },
+  "VRG/WE52-09": {
+    "name": "“わたし『たち』の始まり”常盤愛",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "红色",
+    "effect": "【自】[(1) 1张手牌放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。支付了的话，你从自己的休息室选择1张角色卡返回手牌。<br>【自】【CX联动】[(1) 此卡放置到休息室] 你的高潮阶段中，高潮区有「World's End」放置时，你的等级是2级以上的话，你可以支付费用。支付了的话，你选择自己手牌中至多1张「\"ステージ\"アイ」，放置到此卡原来的位置。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-09",
+        "rarity": "R"
+      },
+      {
+        "id": "VRG/WE52-09H",
+        "rarity": "HR"
+      }
+    ]
+  },
+  "VRG/WE52-10": {
+    "name": "“恋バナ”マキ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "红色",
+    "effect": "【永】你的回合中，此卡下方有指示物的话，此卡的战斗力+2000。<br>【自】此卡从手牌放置到舞台时，你公开自己卡组顶1张卡。那张卡是《終末世界》或《音楽》的角色卡或「Vision Eye」的话，你可以将那张卡作为指示物背面朝下放置到此卡下方。（不这样做的话放回原处）<br>【自】此卡的战斗对手【倒置】时，你的高潮区有高潮卡的话，你可以将自己卡组顶1张卡放置到库存区。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-10",
+        "rarity": "R"
+      },
+      {
+        "id": "VRG/WE52-10H",
+        "rarity": "HR"
+      }
+    ]
+  },
+  "VRG/WE52-11": {
+    "name": "“アンチプライド・カタルシス”マキ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "红色",
+    "effect": "【自】[(1)] 你的高潮卡放置到高潮区时，你可以支付费用。支付了的话，你看自己卡组顶至多4张卡，选择至多1张《終末世界》或《音楽》的角色卡展示给对手后加入手牌，其余的卡放置到休息室。<br>【自】[此卡返回手牌] 你的高潮卡放置到高潮区时，你可以支付费用。支付了的话，你选择自己的1个角色，直到下一个对手的回合结束为止，战斗力+1000。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-11",
+        "rarity": "R"
+      },
+      {
+        "id": "VRG/WE52-11H",
+        "rarity": "HR"
+      },
+      {
+        "id": "VRG/WE52-11SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "VRG/WE52-12": {
+    "name": "“夕暮れの海辺”マキ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "红色",
+    "effect": "【自】[你舞台其他1个《終末世界》或《音楽》的角色放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。支付了的话，你公开自己卡组顶1张卡。那张卡是《終末世界》或《音楽》的角色卡或「Vision Eye」的话加入手牌。（否则放回原处）<br>【起】[(1) 此卡放置到休息室] 你将自己卡组顶2张卡放置到休息室，从自己的休息室选择1张等级X以下的角色卡返回手牌。X是那些卡的等级合计。（高潮卡视为0级）",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-12",
+        "rarity": "R"
+      },
+      {
+        "id": "VRG/WE52-12H",
+        "rarity": "HR"
+      }
+    ]
+  },
+  "VRG/WE52-13": {
+    "name": "“写真の少女”常盤愛",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "红色",
+    "effect": "【永】你的回合中，你其他全部《終末世界》或《音楽》的角色，战斗力+X。X是此卡下方的标记的个数×2000。<br>【自】此卡从手牌放置到舞台时，你可以将自己卡组全部放置到休息室。<br>【自】你的卡组更新时，你没有其他「\"写真の少女\"常盤愛」的话，你将自己卡组顶1张卡，作为此卡的下标记，正面朝上放置。<br>【起】[此卡放置到库存区] 你的思出区没有「\"わたし『たち』の始まり\"常盤愛」的话，你从自己的休息室选择1张「\"わたし『たち』の始まり\"常盤愛」，放置到思出区。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-13",
+        "rarity": "R"
+      },
+      {
+        "id": "VRG/WE52-13H",
+        "rarity": "HR"
+      }
+    ]
+  },
+  "VRG/WE52-14": {
+    "name": "“灰色の世界”ミライ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 3,
+    "power": 11000,
+    "cost": 2,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "红色",
+    "effect": "【自】此卡从手牌放置到舞台时，你看自己卡组顶至多3张卡，选择至多1张卡加入手牌，其余的卡放置到休息室。<br>【自】【CX联动】你的高潮阶段中，「World's End」放置到高潮区时，前列有此卡的话，你从自己的思出区选择至多1张「\"ステージ\"アイ」，放置到舞台的任意位置，将自己卡组顶至多1张卡放置到库存区。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-14",
+        "rarity": "R"
+      },
+      {
+        "id": "VRG/WE52-14H",
+        "rarity": "HR"
+      }
+    ]
+  },
+  "VRG/WE52-15": {
+    "name": "“消えない表示”アイ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "红色",
+    "effect": "【自】[(1) 手牌中1张《終末世界》或《音楽》的角色卡放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。支付了的话，你看自己卡组顶至多3张卡，选择至多1张卡加入手牌，其余的卡放置到休息室。<br>【自】此卡造成的伤害被取消时，你可以将此卡放置到库存区。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-15",
+        "rarity": "U"
+      },
+      {
+        "id": "VRG/WE52-15H",
+        "rarity": "HU"
+      }
+    ]
+  },
+  "VRG/WE52-16": {
+    "name": "“頂点を目指して”ハルカ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "红色",
+    "effect": "【自】此卡从手牌放置到舞台时，你可以选择自己其他1个角色，放置到库存区。<br>【起】[(1) 此卡放置到休息室] 你看自己卡组顶至多4张卡，选择至多1张《終末世界》或《音楽》的角色卡展示给对手后加入手牌，其余的卡放置到休息室。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-16",
+        "rarity": "U"
+      },
+      {
+        "id": "VRG/WE52-16H",
+        "rarity": "HU"
+      }
+    ]
+  },
+  "VRG/WE52-17": {
+    "name": "“新人Vstar”アイ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "红色",
+    "effect": "【永】你其他全部《終末世界》或《音楽》的角色，战斗力+500。<br>【自】【CX联动】你的「Hi-Vision」放置到高潮区时，你全部的角色是《終末世界》或《音楽》的话，你选择自己的1个角色，那个回合中，战斗力+3000，给予以下能力。『【自】[(1)] 此卡攻击时，你可以支付费用。支付了的话，那次攻击中，你在触发步骤执行2次触发判定。』",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-17",
+        "rarity": "U"
+      },
+      {
+        "id": "VRG/WE52-17H",
+        "rarity": "HU"
+      }
+    ]
+  },
+  "VRG/WE52-18": {
+    "name": "“頼れるお姉さん”マキ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "红色",
+    "effect": "【永】你有其他《終末世界》或《音楽》的角色的话，此卡获得以下2个能力。『【永】你的回合中，此卡的战斗力+5000。』『【自】再演 [1张手牌的角色卡放置到休息室]』<br>【自】[(1)] 此卡攻击时，你可以支付费用。支付了的话，那次攻击中，你在触发步骤执行2次触发判定。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-18",
+        "rarity": "U"
+      },
+      {
+        "id": "VRG/WE52-18H",
+        "rarity": "HU"
+      }
+    ]
+  },
+  "VRG/WE52-19": {
+    "name": "“魅惑の視線”アイ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 3,
+    "power": 5500,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "红色",
+    "effect": "【永】你的回合中，此卡的战斗力+10000。<br>【自】[(6) 手牌中3张《終末世界》或《音楽》的角色卡放置到休息室，你舞台其他4张《終末世界》或《音楽》的角色卡放置到休息室] 此卡从手牌放置到舞台的回合中，此卡的战斗对手【倒置】时，你可以支付费用。支付了的话，给对手造成1点伤害，给对手造成2点伤害，给对手造成3点伤害，给对手造成4点伤害。（发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-19",
+        "rarity": "U"
+      },
+      {
+        "id": "VRG/WE52-19H",
+        "rarity": "HU"
+      }
+    ]
+  },
+  "VRG/WE52-20": {
+    "name": "“終末の世界で”アイ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 3,
+    "power": 8000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "红色",
+    "effect": "【自】此卡从手牌放置到舞台时，你将自己时计区顶至多1张卡放置到休息室，直到下一个对手的回合结束为止，此卡的战斗力+3000。<br>【自】[手牌中1张《終末世界》或《音楽》的角色卡放置到休息室] 此卡的战斗对手【倒置】时，你可以支付费用。支付了的话，你将自己时计区顶1张卡放置到休息室。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-20",
+        "rarity": "U"
+      },
+      {
+        "id": "VRG/WE52-20H",
+        "rarity": "HU"
+      }
+    ]
+  },
+  "VRG/WE52-21": {
+    "name": "片瀬凛",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "红色",
+    "effect": "【永】你的回合中，此卡的战斗力+1000，此卡不能侧面攻击。<br>【自】对手的攻击阶段开始时，你可以将此卡移动到前列没有角色的位置。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-21",
+        "rarity": "C"
+      },
+      {
+        "id": "VRG/WE52-21H",
+        "rarity": "HC"
+      }
+    ]
+  },
+  "VRG/WE52-22": {
+    "name": "ヤヨイ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "红色",
+    "effect": "【自】此卡攻击时，你有其他「サクラ」的话，你公开自己卡组顶1张卡。那张卡是《終末世界》或《音楽》的角色卡或事件卡的话，那个回合中，此卡的战斗力+7000，灵魂值+1。（公开的卡放回原处）<br>【自】绊／「サクラ」 [(1)] （此卡从手牌放置到舞台或被使用放置到舞台时，你可以支付费用。支付了的话，你从自己的休息室选择1张「サクラ」，返回手牌）",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-22",
+        "rarity": "C"
+      },
+      {
+        "id": "VRG/WE52-22H",
+        "rarity": "HC"
+      }
+    ]
+  },
+  "VRG/WE52-23": {
+    "name": "サクラ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "红色",
+    "effect": "【自】此卡攻击时，你有其他「ヤヨイ」的话，你公开自己卡组顶1张卡。那张卡是《終末世界》或《音楽》的角色卡或事件卡的话，你选择对手前列的1个角色，那个回合中，战斗力-5000。（公开的卡放回原处）<br>【自】绊／「ヤヨイ」 [1张手牌放置到休息室] （此卡从手牌放置到舞台或被使用放置到舞台时，你可以支付费用。支付了的话，你从自己的休息室选择1张「ヤヨイ」，返回手牌）",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-23",
+        "rarity": "C"
+      },
+      {
+        "id": "VRG/WE52-23H",
+        "rarity": "HC"
+      }
+    ]
+  },
+  "VRG/WE52-24": {
+    "name": "“終末の世界で”リンカ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "红色",
+    "effect": "【自】此卡从手牌放置到舞台时，你选择自己的1个《終末世界》或《音楽》的角色，那个回合中，战斗力+3000。<br>【自】[1张手牌放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。支付了的话，你从自己的休息室选择1张等级0以下的角色卡，放置到舞台的任意位置。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-24",
+        "rarity": "C"
+      },
+      {
+        "id": "VRG/WE52-24H",
+        "rarity": "HC"
+      }
+    ]
+  },
+  "VRG/WE52-25": {
+    "name": "ハルカ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "红色",
+    "effect": "【自】你使用此卡的『助太刀』时，你选择自己战斗中的1个角色，那个回合中，给予以下能力。『【自】此卡的战斗对手【倒置】时，你将那个角色思出。』<br>【起】【反击】助太刀3000 等级2 [(1) 手牌中此卡放置到休息室] （你选择自己1个被正面攻击的角色，那个回合中，战斗力+3000）",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-25",
+        "rarity": "C"
+      },
+      {
+        "id": "VRG/WE52-25H",
+        "rarity": "HC"
+      }
+    ]
+  },
+  "VRG/WE52-26": {
+    "name": "“約束を胸に”リンカ＆片瀬凛",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 2,
+    "power": 4000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "红色",
+    "effect": "【自】【时计区】 警铃 此卡在时计区最上面的话，你的主要阶段开始时，你可以抽1张卡。这样做的话，你选择自己的1张手牌放置到休息室。<br>【起】[此卡放置到卡组底] 你看自己卡组顶至多3张卡，以喜欢的顺序放置到卡组顶，抽1张卡。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-26",
+        "rarity": "C"
+      },
+      {
+        "id": "VRG/WE52-26H",
+        "rarity": "HC"
+      }
+    ]
+  },
+  "VRG/WE52-27": {
+    "name": "“憧れを重ねて”マキ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 2,
+    "power": 5000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "红色",
+    "effect": "【永】你的回合中，你全部的角色是《終末世界》或《音楽》的话，此卡的战斗力+6000。<br>【自】[1张手牌放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。支付了的话，你从自己的休息室选择1张《終末世界》或《音楽》的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-27",
+        "rarity": "C"
+      },
+      {
+        "id": "VRG/WE52-27H",
+        "rarity": "HC"
+      }
+    ]
+  },
+  "VRG/WE52-28": {
+    "name": "アイ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "红色",
+    "effect": "【自】此卡从手牌放置到舞台时，你其他《終末世界》或《音楽》的角色有4个以上的话，你从自己的休息室选择1张《終末世界》或《音楽》的角色卡，可以放置到库存区。<br>【自】此卡攻击时，此卡正面的角色的等级是3级以上的话，那个回合中，此卡的战斗力+6000。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-28",
+        "rarity": "C"
+      },
+      {
+        "id": "VRG/WE52-28H",
+        "rarity": "HC"
+      }
+    ]
+  },
+  "VRG/WE52-29": {
+    "name": "Vision Eye",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 0,
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "【反击】你没有《終末世界》或《音楽》的角色的话，此卡不能从手牌中使用。<br>集中 你将自己卡组顶2张卡放置到休息室。你从自己的休息室选择至多1张等级X以下的《終末世界》或《音楽》的角色卡返回手牌。X是通过这个效果放置到休息室的那些卡的等级合计。（高潮卡视为0级）",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-29",
+        "rarity": "U"
+      },
+      {
+        "id": "VRG/WE52-29H",
+        "rarity": "HU"
+      }
+    ]
+  },
+  "VRG/WE52-30": {
+    "name": "HELLO WORLD！",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-30",
+        "rarity": "C"
+      },
+      {
+        "id": "VRG/WE52-30A",
+        "rarity": "AGR"
+      },
+      {
+        "id": "VRG/WE52-30H",
+        "rarity": "HC"
+      }
+    ]
+  },
+  "VRG/WE52-31": {
+    "name": "World's End",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-31",
+        "rarity": "C"
+      },
+      {
+        "id": "VRG/WE52-31H",
+        "rarity": "HC"
+      }
+    ]
+  },
+  "VRG/WE52-32": {
+    "name": "Hi-Vision",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-32",
+        "rarity": "C"
+      },
+      {
+        "id": "VRG/WE52-32H",
+        "rarity": "HC"
+      }
+    ]
+  },
+  "VRG/WE52-33": {
+    "name": "“もうひとりの私”リンカ＆片瀬凛",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "蓝色",
+    "effect": "【自】[1张手牌放置到休息室] 此卡从舞台放置到休息室时，你可以支付费用。支付了的话，你将自己卡组顶3张卡放置到休息室，从自己的休息室选择至多1张等级X以下的《終末世界》或《音楽》的角色卡返回手牌。X是通过这个效果放置到休息室的《終末世界》或《音楽》的角色卡的数量。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-33",
+        "rarity": "RR"
+      },
+      {
+        "id": "VRG/WE52-33H",
+        "rarity": "HRR"
+      },
+      {
+        "id": "VRG/WE52-33SSP",
+        "rarity": "SSP"
+      }
+    ]
+  },
+  "VRG/WE52-34": {
+    "name": "“もうひとりのあたし”マキ＆サキ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 3,
+    "power": 7000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "蓝色",
+    "effect": "【永】你或对手的休息室的高潮卡在2张以下的话，你手牌中此卡的等级-1。<br>【自】此卡从手牌放置到舞台时，你将自己时计区顶至多1张卡放置到休息室，那个回合中，此卡的战斗力+3000。<br>【自】此卡从舞台放置到休息室时，你公开自己卡组顶1张卡。那张卡是《終末世界》或《音楽》的角色卡的话，你可以将此卡放置到库存区。（公开的卡放回原处）",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-34",
+        "rarity": "RR"
+      },
+      {
+        "id": "VRG/WE52-34H",
+        "rarity": "HRR"
+      },
+      {
+        "id": "VRG/WE52-34SSP",
+        "rarity": "SSP"
+      }
+    ]
+  },
+  "VRG/WE52-35": {
+    "name": "“アルストロメリア”リンカ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "蓝色",
+    "effect": "【自】此卡从手牌放置到舞台时，你抽至多2张卡，选择自己的2张手牌放置到休息室，将自己卡组顶至多1张卡放置到库存区。<br>【自】【CX联动】[(2) 1张手牌放置到休息室] 此卡攻击时，高潮区有「サプライズゲスト」，你有其他《終末世界》或《音楽》的角色的话，你可以支付费用。支付了的话，你从对手的休息室选择至多1张卡放置到卡组顶，给对手造成4点伤害。（发生伤害取消）<br>【自】变身 [此卡返回手牌] 你的高潮阶段开始时，你可以支付费用。支付了的话，你从自己的手牌中选择至多1张「\"完璧の仮面\"片瀬凛」，放置到此卡原来的位置。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-35",
+        "rarity": "RR"
+      },
+      {
+        "id": "VRG/WE52-35H",
+        "rarity": "HRR"
+      },
+      {
+        "id": "VRG/WE52-35SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "VRG/WE52-36": {
+    "name": "“レジスタンスのリーダー”マキ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "蓝色",
+    "effect": "【自】[(1) 1张手牌放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。支付了的话，你从自己的卡组找至多1张《終末世界》或《音楽》的角色卡展示给对手后加入手牌，卡组洗切。<br>【自】[手牌中1张高潮卡放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。支付了的话，你从自己的休息室选择1张《終末世界》或《音楽》的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-36",
+        "rarity": "R"
+      },
+      {
+        "id": "VRG/WE52-36H",
+        "rarity": "HR"
+      },
+      {
+        "id": "VRG/WE52-36SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "VRG/WE52-37": {
+    "name": "“最高のパフォーマンス”リンカ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "蓝色",
+    "effect": "【自】你的高潮卡放置到高潮区时，你选择自己的1个角色，那个回合中，给予以下能力。『【自】[(1)] 此卡攻击时，你可以支付费用。支付了的话，那次攻击中，你在触发步骤执行2次触发判定。』<br>【起】集中 [(1) 你2个角色【横置】] 你将自己卡组顶4张卡放置到休息室。那些卡中每有1张高潮卡，你从自己的休息室选择至多1张角色卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-37",
+        "rarity": "R"
+      },
+      {
+        "id": "VRG/WE52-37H",
+        "rarity": "HR"
+      }
+    ]
+  },
+  "VRG/WE52-38": {
+    "name": "“オルタのトップVstar”リンカ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "蓝色",
+    "effect": "【永】你的回合中，你其他《終末世界》或《音楽》的角色有2个以上的话，此卡的战斗力+2000。<br>【自】【CX联动】此卡攻击时，高潮区有「私のステージ！」，你全部的角色是《終末世界》或《音楽》的话，你从自己的休息室选择1张《終末世界》或《音楽》的角色卡或「凛のお弁当」，返回手牌。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-38",
+        "rarity": "R"
+      },
+      {
+        "id": "VRG/WE52-38H",
+        "rarity": "HR"
+      },
+      {
+        "id": "VRG/WE52-38SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "VRG/WE52-39": {
+    "name": "“相談相手”片瀬凛",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "蓝色",
+    "effect": "【自】此卡【倒置】时，此卡的战斗对手的等级比对手的等级高的话，你可以将那个角色放置到卡组底。<br>【自】变身 [此卡放置到库存区] 你的高潮阶段开始时，你可以支付费用。支付了的话，你从自己的休息室选择1张「\"オルタのトップVstar\"リンカ」，放置到此卡原来的位置。（高潮阶段开始时此卡不在的话不会发动）",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-39",
+        "rarity": "R"
+      },
+      {
+        "id": "VRG/WE52-39H",
+        "rarity": "HR"
+      }
+    ]
+  },
+  "VRG/WE52-40": {
+    "name": "“完璧の仮面”片瀬凛",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 3,
+    "power": 5000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "蓝色",
+    "effect": "【自】此卡从手牌放置到舞台时，你将自己时计区顶至多1张卡放置到休息室，直到下一个对手的回合结束为止，此卡的战斗力+6000。<br>【自】【CX联动】此卡攻击时，高潮区有「サプライズゲスト」的话，直到下一个对手的回合结束为止，此卡的战斗力+1000，此卡获得以下能力。『【永】此卡正面的角色的灵魂-2。』<br>【自】变身 [此卡返回手牌] 你的高潮阶段开始时，你可以支付费用。支付了的话，你从自己的手牌中选择至多1张「\"アルストロメリア\"リンカ」，放置到此卡原来的位置。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-40",
+        "rarity": "R"
+      },
+      {
+        "id": "VRG/WE52-40H",
+        "rarity": "HR"
+      }
+    ]
+  },
+  "VRG/WE52-41": {
+    "name": "“絶望で、かがやけ”アイ＆凛＆マキ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "蓝色",
+    "effect": "【自】此卡从手牌放置到舞台时，你从以下2个效果中选择1个执行。『对手将自己全部库存区的卡返回卡组，卡组洗切，将自己卡组顶相同张数的卡放置到库存区，那个回合中，此卡的战斗力+1000。』『[(1)] 你可以支付费用。支付了的话，你从自己的休息室选择1张高潮卡返回手牌。』<br>【自】[(1) 1张手牌放置到休息室] 此卡的战斗对手【倒置】时，你可以支付费用。支付了的话，给对手造成1点伤害。（发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-41",
+        "rarity": "R"
+      },
+      {
+        "id": "VRG/WE52-41H",
+        "rarity": "HR"
+      }
+    ]
+  },
+  "VRG/WE52-42": {
+    "name": "“声の主”常盤愛",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "蓝色",
+    "effect": "【自】[(1) 1张手牌的高潮卡放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。支付了的话，你从自己的休息室选择1张高潮卡返回手牌。<br>【自】此卡【倒置】时，此卡的战斗对手的等级是0级以下的话，你可以将那个角色放置到卡组底。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-42",
+        "rarity": "U"
+      },
+      {
+        "id": "VRG/WE52-42H",
+        "rarity": "HU"
+      }
+    ]
+  },
+  "VRG/WE52-43": {
+    "name": "“恋バナ”片瀬凛",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "蓝色",
+    "effect": "【自】[(2)] 此卡从手牌放置到舞台时，你可以支付费用。支付了的话，你将自己休息室的卡全部返回卡组，卡组洗切。<br>【起】[你2个角色【横置】] 此卡放置到库存区。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-43",
+        "rarity": "U"
+      },
+      {
+        "id": "VRG/WE52-43H",
+        "rarity": "HU"
+      }
+    ]
+  },
+  "VRG/WE52-44": {
+    "name": "ミライ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "蓝色",
+    "effect": "【自】此卡从手牌放置到舞台时，你选择对手至多1个角色，放置到思出区，对手将自己思出区的那张角色卡，放置到舞台的任意位置。<br>【起】[1张手牌放置到休息室，此卡放置到休息室] 你从自己的休息室选择1张《終末世界》或《音楽》的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-44",
+        "rarity": "U"
+      },
+      {
+        "id": "VRG/WE52-44H",
+        "rarity": "HU"
+      }
+    ]
+  },
+  "VRG/WE52-45": {
+    "name": "“終末の世界で”片瀬凛",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "蓝色",
+    "effect": "【永】你其他全部《終末世界》或《音楽》的角色，战斗力+500。<br>【自】[此卡放置到休息室] 你其他《終末世界》或《音楽》的角色从舞台放置到休息室时，后列有此卡的话，你可以支付费用。支付了的话，将那个角色【横置】放回原来的位置。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-45",
+        "rarity": "U"
+      },
+      {
+        "id": "VRG/WE52-45H",
+        "rarity": "HU"
+      }
+    ]
+  },
+  "VRG/WE52-46": {
+    "name": "“図書館での作戦”アイ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "蓝色",
+    "effect": "【自】你的高潮阶段开始时，前列有此卡的话，你选择自己的至多2个角色，那个回合中，给予以下能力。『【自】此卡攻击时，那次攻击中，你在触发步骤执行2次触发判定。执行2次的话，你将自己库存区顶1张卡放置到休息室。』<br>【自】你其他《終末世界》或《音楽》的角色攻击时，那个回合中，此卡的战斗力+X。X是你其他《終末世界》或《音楽》的角色的数量×500。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-46",
+        "rarity": "U"
+      },
+      {
+        "id": "VRG/WE52-46H",
+        "rarity": "HU"
+      }
+    ]
+  },
+  "VRG/WE52-47": {
+    "name": "“魅惑の視線”マキ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "蓝色",
+    "effect": "【永】你的回合中，此卡的战斗力+2000。<br>【自】[1张手牌放置到休息室，你舞台的其他1个角色放置到休息室] 此卡攻击时，你可以支付费用。支付了的话，你从自己的卡组找至多1张《終末世界》或《音楽》的角色卡展示给对手后加入手牌，卡组洗切。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-47",
+        "rarity": "U"
+      },
+      {
+        "id": "VRG/WE52-47H",
+        "rarity": "HU"
+      }
+    ]
+  },
+  "VRG/WE52-48": {
+    "name": "“夕暮れの海辺”リンカ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 2,
+    "power": 4000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "蓝色",
+    "effect": "【自】此卡从手牌放置到舞台时，你可以选择对手1个等级1以上的角色。这样做的话，对手从自己的休息室选择1个等级X以下的角色，进行互换。X是你选择的那个角色的等级-1。<br>【起】[此卡放置到卡组底] 你从自己的手牌中选择至多1张自己等级以下的角色卡，放置到舞台任意位置，那个回合中，那个角色的战斗力+1000。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-48",
+        "rarity": "U"
+      },
+      {
+        "id": "VRG/WE52-48H",
+        "rarity": "HU"
+      }
+    ]
+  },
+  "VRG/WE52-49": {
+    "name": "“下層での共闘”マキ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "蓝色",
+    "effect": "【自】此卡攻击时，那个回合中，此卡的战斗力+X。X是你其他《終末世界》或《音楽》的角色卡的数量×1000。<br>【自】【CX联动】此卡攻击结束时，高潮区有「アジトでの遭遇」，你其他《終末世界》或《音楽》的角色有2个以上的话，你从自己的休息室选择至多2张《終末世界》或《音楽》的角色卡，选择1张返回手牌，其余的卡放置到库存区底。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-49",
+        "rarity": "U"
+      },
+      {
+        "id": "VRG/WE52-49H",
+        "rarity": "HU"
+      }
+    ]
+  },
+  "VRG/WE52-50": {
+    "name": "リンカ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "蓝色",
+    "effect": "【自】此卡从手牌放置到舞台时，你其他《終末世界》或《音楽》的角色有2个以上的话，你可以抽1张卡。这样做的话，你选择自己的1张手牌放置到休息室。<br>【起】[(1) 此卡放置到休息室] 你从自己的手牌中选择至多1张自己的等级以下的《終末世界》或《音楽》的角色卡，放置到此卡原来的位置。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-50",
+        "rarity": "C"
+      },
+      {
+        "id": "VRG/WE52-50H",
+        "rarity": "HC"
+      }
+    ]
+  },
+  "VRG/WE52-51": {
+    "name": "マキ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "蓝色",
+    "effect": "【自】此卡从手牌放置到舞台时，那个回合中，此卡的战斗力+X。X是你《終末世界》或《音楽》的角色卡的数量×1000。<br>【自】[(1) 1张手牌放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。支付了的话，你选择对手的1个角色返回手牌。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-51",
+        "rarity": "C"
+      },
+      {
+        "id": "VRG/WE52-51H",
+        "rarity": "HC"
+      }
+    ]
+  },
+  "VRG/WE52-52": {
+    "name": "ジャミたん",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "蓝色",
+    "effect": "【自】此卡从手牌放置到舞台时，你选择对手的1个角色，直到下一个对手的回合结束为止，给予以下能力。『【永】此卡不能移动到其他位置。』<br>【自】此卡从手牌放置到舞台时，所有玩家执行以下行动。『你的思出区有5张以上的话，你从自己的思出区选择4张卡，将那些卡以外的自己思出区的卡全部放置到休息室。』",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-52",
+        "rarity": "C"
+      },
+      {
+        "id": "VRG/WE52-52H",
+        "rarity": "HC"
+      }
+    ]
+  },
+  "VRG/WE52-53": {
+    "name": "“突然の接近”片瀬凛",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "蓝色",
+    "effect": "【自】共鸣 [(1) 1张手牌中卡名包含「リンカ」或「凛」的角色卡放置到休息室，公开1张手牌的「凛のお弁当」] 你使用此卡的『助太刀』时，你可以支付费用。支付了的话，你选择对手的1个角色，那个回合中，灵魂值-2。<br>【起】【反击】助太刀1000 等级1 [手牌中此卡放置到休息室] （你选择自己1个被正面攻击的角色，那个回合中，战斗力+1000）",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-53",
+        "rarity": "C"
+      },
+      {
+        "id": "VRG/WE52-53H",
+        "rarity": "HC"
+      }
+    ]
+  },
+  "VRG/WE52-54": {
+    "name": "“終末の世界で”マキ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "蓝色",
+    "effect": "【永】你的回合中，你其他《終末世界》或《音楽》的角色有2个以上的话，此卡的战斗力+2000，此卡获得以下能力。『【自】此卡攻击时，此卡正面的角色的等级是2级的话，那个回合中，此卡的战斗力+6000。』<br>【自】此卡攻击时，你看自己卡组顶1张卡，放置到卡组顶或卡组底。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-54",
+        "rarity": "C"
+      },
+      {
+        "id": "VRG/WE52-54H",
+        "rarity": "HC"
+      }
+    ]
+  },
+  "VRG/WE52-55": {
+    "name": "“二人の時間”アイ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "蓝色",
+    "effect": "【永】 应援 所有此卡前面的你的《終末世界》或《音楽》的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。<br>【自】［1张手牌的高潮卡放置入休息室］ 你的高潮卡触发时，你可以支付费用。支付了的话，你从自己的休息室选择1张角色卡，返回手牌。<br>【起】［此卡【横置】］ 你看自己卡组顶至多2张卡，以喜欢的顺序放回卡组顶。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-55",
+        "rarity": "C"
+      },
+      {
+        "id": "VRG/WE52-55H",
+        "rarity": "HC"
+      }
+    ]
+  },
+  "VRG/WE52-56": {
+    "name": "サキ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "蓝色",
+    "effect": "【永】此卡在你的准备阶段不会【竖置】。<br>【自】此卡从舞台放置到休息室时，你公开自己卡组顶1张卡。那张卡的等级是1级以上的话放置到库存区。（高潮卡视为0级。否则放回原处）",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-56",
+        "rarity": "C"
+      },
+      {
+        "id": "VRG/WE52-56H",
+        "rarity": "HC"
+      }
+    ]
+  },
+  "VRG/WE52-57": {
+    "name": "“車いすの少女”サキ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "蓝色",
+    "effect": "【自】[(1) 1张手牌的《終末世界》或《音楽》的角色卡放置到休息室，你舞台的1个角色放置到休息室] 你使用此卡的『助太刀』时，你可以支付费用。支付了的话，你选择对手的1个等级比对手等级高的角色，放置到卡组底。<br>【起】【反击】助太刀2500 等级2 [(1) 手牌的此卡放置到休息室] （你选择自己被正面攻击的1个角色，那个回合中，战斗力+2500）",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-57",
+        "rarity": "C"
+      },
+      {
+        "id": "VRG/WE52-57H",
+        "rarity": "HC"
+      }
+    ]
+  },
+  "VRG/WE52-58": {
+    "name": "“特別な日”アイ＆リンカ＆マキ",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": [
+      "終末世界",
+      "音楽"
+    ],
+    "color": "蓝色",
+    "effect": "【永】你《終末世界》或《音楽》的角色有4个以上的话，你手牌中此卡的等级-1。<br>【自】[你舞台其他1个《終末世界》或《音楽》的角色放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。支付了的话，你从自己的休息室选择至多2张《終末世界》或《音楽》的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-58",
+        "rarity": "C"
+      },
+      {
+        "id": "VRG/WE52-58H",
+        "rarity": "HC"
+      }
+    ]
+  },
+  "VRG/WE52-59": {
+    "name": "凛のお弁当",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "事件卡",
+    "level": 3,
+    "power": "-",
+    "cost": 2,
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【反击】你卡名包含「リンカ」或「凛」或「ミライ」的角色不存在的话，此卡不能从手牌中使用。你从以下2个效果中选择1个执行。<br>『你将自己时计区顶至多2张卡放置到休息室，将此卡放置到思出区。』<br>『对手的回合的话，你将自己休息室的卡全部返回卡组，卡组洗切，你看自己卡组顶至多2张卡，选择至多2张卡放置到休息室，其余的卡按喜欢的顺序放置到卡组顶。』",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-59",
+        "rarity": "U"
+      },
+      {
+        "id": "VRG/WE52-59H",
+        "rarity": "HU"
+      }
+    ]
+  },
+  "VRG/WE52-60": {
+    "name": "サプライズゲスト",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-60",
+        "rarity": "C"
+      },
+      {
+        "id": "VRG/WE52-60H",
+        "rarity": "HC"
+      }
+    ]
+  },
+  "VRG/WE52-61": {
+    "name": "私のステージ！",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-61",
+        "rarity": "C"
+      },
+      {
+        "id": "VRG/WE52-61H",
+        "rarity": "HC"
+      }
+    ]
+  },
+  "VRG/WE52-62": {
+    "name": "アジトでの遭遇",
+    "product_name": "VIRTUAL GIRL @ WORLD’S END",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "VRG/WE52-62",
+        "rarity": "C"
+      },
+      {
+        "id": "VRG/WE52-62H",
+        "rarity": "HC"
+      }
+    ]
+  }
+}

@@ -1,0 +1,463 @@
+{
+  "BDY/W135-T01": {
+    "name": "“夢現妄想世界”峰月律",
+    "product_name": "BanG Dream! [夢限大みゅーたいぷ]",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["音楽", "夢限大みゅーたいぷ"],
+    "color": "黄色",
+    "effect": "【自】你的高潮阶段开始时，你选择自己的1个《夢限大みゅーたいぷ》的角色，那个回合中，给予以下能力。『【自】此卡攻击时，你看自己卡组顶1张卡，放置到卡组顶或休息室。』<br>【起】集中 [(1) 此卡【横置】] 你将自己卡组顶5张卡放置到休息室。那些卡中每有1张高潮卡，你抽至多1张卡。",
+    "all_cards": [
+      {
+        "id": "BDY/W135-T01",
+        "rarity": "TD"
+      },
+      {
+        "id": "BDY/W135-T01R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BDY/W135-T01SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "BDY/W135-T02": {
+    "name": "“真夜中遊園地”峰月律",
+    "product_name": "BanG Dream! [夢限大みゅーたいぷ]",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["音楽", "夢限大みゅーたいぷ"],
+    "color": "黄色",
+    "effect": "【自】[你休息室1张《音楽》的角色卡放置到时计区底] 再演步骤开始时，你前列没有其他【横置】的角色的话，你可以支付费用。支付了的话，此卡【横置】。<br>【自】你抽卡阶段开始时，你前列没有其他角色的话，那个回合中，此卡的战斗力+4000。",
+    "all_cards": [
+      {
+        "id": "BDY/W135-T02",
+        "rarity": "TD"
+      },
+      {
+        "id": "BDY/W135-T02R",
+        "rarity": "RRR"
+      }
+    ]
+  },
+  "BDY/W135-T03": {
+    "name": "“真夜中遊園地”仲町あられ",
+    "product_name": "BanG Dream! [夢限大みゅーたいぷ]",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["音楽", "夢限大みゅーたいぷ"],
+    "color": "黄色",
+    "effect": "【自】此卡攻击时，你可以公开自己卡组顶至多3张卡。公开1张以上的话，你从那些卡中选择至多1张《音楽》的角色卡加入手牌，其余的卡放置到休息室，选择自己的1张手牌放置到休息室。",
+    "all_cards": [
+      {
+        "id": "BDY/W135-T03",
+        "rarity": "TD"
+      },
+      {
+        "id": "BDY/W135-T03R",
+        "rarity": "RRR"
+      }
+    ]
+  },
+  "BDY/W135-T04": {
+    "name": "“Hi-Vision”仲町あられ",
+    "product_name": "BanG Dream! [夢限大みゅーたいぷ]",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["音楽", "夢限大みゅーたいぷ"],
+    "color": "黄色",
+    "effect": "【永】你的回合中，你其他《音楽》的角色每有1个，此卡的战斗力+1000。<br>【自】此卡的战斗中，你受到的伤害被取消时，你可以将此卡放置到库存区。",
+    "all_cards": [
+      {
+        "id": "BDY/W135-T04",
+        "rarity": "TD"
+      },
+      {
+        "id": "BDY/W135-T04R",
+        "rarity": "RRR"
+      }
+    ]
+  },
+  "BDY/W135-T05": {
+    "name": "“Hi-Vision”峰月律",
+    "product_name": "BanG Dream! [夢限大みゅーたいぷ]",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["音楽", "夢限大みゅーたいぷ"],
+    "color": "黄色",
+    "effect": "【永】你每有1个其他的《音楽》的角色，此卡的战斗力+1000。",
+    "all_cards": [
+      {
+        "id": "BDY/W135-T05",
+        "rarity": "TD"
+      },
+      {
+        "id": "BDY/W135-T05R",
+        "rarity": "RRR"
+      }
+    ]
+  },
+  "BDY/W135-T06": {
+    "name": "“夢現妄想世界”仲町あられ",
+    "product_name": "BanG Dream! [夢限大みゅーたいぷ]",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["音楽", "夢限大みゅーたいぷ"],
+    "color": "黄色",
+    "effect": "【自】[1张手牌放置到休息室] 此卡从手牌放置到舞台时，你其他《音楽》的角色有2个以上的话，你可以支付费用。支付了的话，你选择自己时计区的1张卡，返回手牌。<br>【自】【CX联动】[(3) 2张手牌放置到休息室] 此卡的攻击结束时，高潮区有「夢現妄想世界」的话，你可以支付费用。支付了的话，给对手造成2次2点伤害。（发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BDY/W135-T06",
+        "rarity": "TD"
+      },
+      {
+        "id": "BDY/W135-T06R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BDY/W135-T06S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BDY/W135-T06SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "BDY/W135-T07": {
+    "name": "コミュ着火Fire!",
+    "product_name": "BanG Dream! [夢限大みゅーたいぷ]",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 1,
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "你从自己的卡组找至多1张高潮卡展示给对手后加入手牌，卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BDY/W135-T07",
+        "rarity": "TD"
+      },
+      {
+        "id": "BDY/W135-T07R",
+        "rarity": "RRR"
+      }
+    ]
+  },
+  "BDY/W135-T08": {
+    "name": "夢現妄想世界",
+    "product_name": "BanG Dream! [夢限大みゅーたいぷ]",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "all_cards": [
+      {
+        "id": "BDY/W135-T08",
+        "rarity": "TD"
+      },
+      {
+        "id": "BDY/W135-T08R",
+        "rarity": "RRR"
+      }
+    ]
+  },
+  "BDY/W135-T09": {
+    "name": "チューニング",
+    "product_name": "BanG Dream! [夢限大みゅーたいぷ]",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 2,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你全部的角色灵魂值+2。",
+    "all_cards": [
+      {
+        "id": "BDY/W135-T09",
+        "rarity": "TD"
+      },
+      {
+        "id": "BDY/W135-T09R",
+        "rarity": "RRR"
+      }
+    ]
+  },
+  "BDY/W135-T10": {
+    "name": "“真夜中遊園地”宮永ののか",
+    "product_name": "BanG Dream! [夢限大みゅーたいぷ]",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["音楽", "夢限大みゅーたいぷ"],
+    "color": "红色",
+    "effect": "【永】你的回合中，你其他全部的「“真夜中遊園地”千石ユノ」，战斗力+2000。<br>【自】绊／「“真夜中遊園地”千石ユノ」 [(1)] （此卡从手牌放置到舞台或被使用放置到舞台时，你可以支付费用。支付了的话，你从自己的休息室选择1张「“真夜中遊園地”千石ユノ」，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BDY/W135-T10",
+        "rarity": "TD"
+      },
+      {
+        "id": "BDY/W135-T10R",
+        "rarity": "RRR"
+      }
+    ]
+  },
+  "BDY/W135-T11": {
+    "name": "“夢現妄想世界”千石ユノ",
+    "product_name": "BanG Dream! [夢限大みゅーたいぷ]",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["音楽", "夢限大みゅーたいぷ"],
+    "color": "红色",
+    "effect": "【永】你其他全部《音楽》的角色，战斗力+500。<br>【起】[(2) 此卡【横置】] 你从自己的休息室选择1张角色卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "BDY/W135-T11",
+        "rarity": "TD"
+      },
+      {
+        "id": "BDY/W135-T11R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BDY/W135-T11SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "BDY/W135-T12": {
+    "name": "“夢現妄想世界”藤都子",
+    "product_name": "BanG Dream! [夢限大みゅーたいぷ]",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["音楽", "夢限大みゅーたいぷ"],
+    "color": "红色",
+    "effect": "【自】此卡【倒置】时，此卡的战斗对手的等级是0级以下的话，你可以将那个角色【倒置】。<br>【起】[1张手牌放置到休息室，此卡放置到卡组底] 你从自己的卡组找至多1张《音楽》的角色卡展示给对手后加入手牌，卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BDY/W135-T12",
+        "rarity": "TD"
+      },
+      {
+        "id": "BDY/W135-T12R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BDY/W135-T12SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "BDY/W135-T13": {
+    "name": "“真夜中遊園地”藤都子",
+    "product_name": "BanG Dream! [夢限大みゅーたいぷ]",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["音楽", "夢限大みゅーたいぷ"],
+    "color": "红色",
+    "effect": "【自】你使用此卡的『助太刀』时，你有《音楽》的角色的话，你选择自己战斗中的1个角色，那个回合中，战斗力+1000。<br>【起】【反击】助太刀1000 等级1 [手牌中此卡放置到休息室] （你选择自己1个被正面攻击的角色，那个回合中，战斗力+1000）",
+    "all_cards": [
+      {
+        "id": "BDY/W135-T13",
+        "rarity": "TD"
+      },
+      {
+        "id": "BDY/W135-T13R",
+        "rarity": "RRR"
+      }
+    ]
+  },
+  "BDY/W135-T14": {
+    "name": "“Hi-Vision”宮永ののか",
+    "product_name": "BanG Dream! [夢限大みゅーたいぷ]",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["音楽", "夢限大みゅーたいぷ"],
+    "color": "红色",
+    "effect": "【永】你其他《音楽》的角色有2个以上的话，此卡的战斗力+3000。<br>【自】【CX联动】此卡攻击时，高潮区有「Hi-Vision」，你其他《音楽》的角色有2个以上的话，你可以从自己的休息室选择1张《音楽》的角色卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "BDY/W135-T14",
+        "rarity": "TD"
+      },
+      {
+        "id": "BDY/W135-T14R",
+        "rarity": "RRR"
+      }
+    ]
+  },
+  "BDY/W135-T15": {
+    "name": "“真夜中遊園地”千石ユノ",
+    "product_name": "BanG Dream! [夢限大みゅーたいぷ]",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "soul": 2,
+    "trigger_soul_count": 0,
+    "trait": ["音楽", "夢限大みゅーたいぷ"],
+    "color": "红色",
+    "effect": "",
+    "all_cards": [
+      {
+        "id": "BDY/W135-T15",
+        "rarity": "TD"
+      },
+      {
+        "id": "BDY/W135-T15R",
+        "rarity": "RRR"
+      }
+    ]
+  },
+  "BDY/W135-T16": {
+    "name": "“Hi-Vision”藤都子",
+    "product_name": "BanG Dream! [夢限大みゅーたいぷ]",
+    "type": "角色卡",
+    "level": 2,
+    "power": 3500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["音楽", "夢限大みゅーたいぷ"],
+    "color": "红色",
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。<br>【起】［此卡【横置】］ 你将自己卡组顶1张卡放置到卡组顶或休息室，你其他全部的「“夢現妄想世界”仲町あられ」，那个回合中，力量＋1000，给予以下能力。『【永】 此卡的战斗中，对手不能从手牌中使用『助太刀』。』",
+    "all_cards": [
+      {
+        "id": "BDY/W135-T16",
+        "rarity": "TD"
+      },
+      {
+        "id": "BDY/W135-T16R",
+        "rarity": "RRR"
+      }
+    ]
+  },
+  "BDY/W135-T17": {
+    "name": "“夢現妄想世界”宮永ののか",
+    "product_name": "BanG Dream! [夢限大みゅーたいぷ]",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["音楽", "夢限大みゅーたいぷ"],
+    "color": "红色",
+    "effect": "【自】此卡从手牌放置到舞台时，那个回合中，此卡的战斗力+X。X是你《音楽》的角色卡的数量×1000。<br>【自】此卡从手牌放置到舞台时，你其他《音楽》的角色有4个以上的话，你可以从自己的休息室选择1张《音楽》的角色卡放置到库存区。",
+    "all_cards": [
+      {
+        "id": "BDY/W135-T17",
+        "rarity": "TD"
+      },
+      {
+        "id": "BDY/W135-T17R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BDY/W135-T17SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "BDY/W135-T18": {
+    "name": "“Hi-Vision”千石ユノ",
+    "product_name": "BanG Dream! [夢限大みゅーたいぷ]",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["音楽", "夢限大みゅーたいぷ"],
+    "color": "红色",
+    "effect": "【自】此卡从手牌放置到舞台时，你看自己卡组顶至多2张卡，以喜欢的顺序放置到卡组顶。<br>【自】[你舞台其他1个角色放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。支付了的话，你从自己的休息室选择1张高潮卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BDY/W135-T18",
+        "rarity": "TD"
+      },
+      {
+        "id": "BDY/W135-T18R",
+        "rarity": "RRR"
+      }
+    ]
+  },
+  "BDY/W135-T19": {
+    "name": "Hi-Vision",
+    "product_name": "BanG Dream! [夢限大みゅーたいぷ]",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "BDY/W135-T19",
+        "rarity": "TD"
+      },
+      {
+        "id": "BDY/W135-T19R",
+        "rarity": "RRR"
+      }
+    ]
+  }
+}
