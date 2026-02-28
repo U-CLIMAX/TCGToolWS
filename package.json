@@ -13,8 +13,8 @@
     "preview": "vite preview",
     "setup-img": "node scripts/setup-images.js",
     "lint": "eslint . --fix",
-    "format": "prettier --write src/",
-    "format:card": "prettier --write src/assets/card-data/",
+    "format": "prettier --write src/ --cache",
+    "format:card": "prettier --write src/assets/card-data/ --cache",
     "db:init": "npx wrangler d1 execute ws-account-db --local --file=./schema.sql"
   },
   "dependencies": {

@@ -19,4 +19,6 @@ yarn.lock
 *.svg
 *.png
 *.jpg
+*.webp
+*.woff2
 src/assets/animations/*.json

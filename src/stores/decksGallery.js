@@ -104,7 +104,7 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${authStore.token}`,
+        'Authorization': `Bearer ${authStore.token}`,
       },
       body: JSON.stringify({ rating }),
     })
