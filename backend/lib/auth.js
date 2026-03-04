@@ -367,7 +367,7 @@ export const handleAfdianWebhook = async (c) => {
 
 export const authMiddleware = async (c, next) => {
   const authHeader = c.req.header('Authorization')
-  const secrets = [c.env.JWT_SECRET, c.env.JWT_OLD_SECRET].filter(Boolean)
+  const secret = c.env.JWT_SECRET
 
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
     return createErrorResponse(c, 401, 'Unauthorized: No token provided')
@@ -376,21 +376,7 @@ export const authMiddleware = async (c, next) => {
   const token = authHeader.substring(7)
 
   try {
-    let payload = null
-    let lastError = null
-
-    for (const secret of secrets) {
-      try {
-        payload = await verify(token, secret, 'HS256')
-        break
-      } catch (e) {
-        lastError = e
-      }
-    }
-
-    if (!payload) {
-      throw lastError || new Error('Invalid token')
-    }
+    const payload = await verify(token, secret, 'HS256')
 
     const user = await c.env.DB.prepare(
       'SELECT id, role, premium_expire_time FROM users WHERE id = ?'
