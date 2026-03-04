@@ -6,6 +6,7 @@
         账号资料
         <v-spacer></v-spacer>
         <v-btn
+          prepend-icon="mdi-refresh"
           text="刷新"
           @click="handleRefreshToken"
           :loading="isRefreshing"
