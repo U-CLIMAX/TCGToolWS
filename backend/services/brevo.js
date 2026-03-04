@@ -7,12 +7,12 @@
  */
 export const sendVerificationEmail = async (toEmail, verificationCode, apiKey) => {
   const SENDER_NAME = 'Uclimax TCGTool'
-  const SENDER_EMAIL = 'noreply@uclimax.cn'
+  const SENDER_EMAIL = 'noreply@uclimax.top'
 
   const response = await fetch('https://api.brevo.com/v3/smtp/email', {
     method: 'POST',
     headers: {
-      accept: 'application/json',
+      'accept': 'application/json',
       'api-key': apiKey,
       'content-type': 'application/json',
     },
@@ -49,12 +49,12 @@ export const sendPasswordResetEmail = async (toEmail, resetToken, apiKey, fronte
   const resetLink = `${frontendUrl}/reset-password?token=${resetToken}`
 
   const SENDER_NAME = 'Uclimax TCGTool'
-  const SENDER_EMAIL = 'noreply@uclimax.cn'
+  const SENDER_EMAIL = 'noreply@uclimax.top'
 
   const response = await fetch('https://api.brevo.com/v3/smtp/email', {
     method: 'POST',
     headers: {
-      accept: 'application/json',
+      'accept': 'application/json',
       'api-key': apiKey,
       'content-type': 'application/json',
     },

@@ -24,8 +24,8 @@
 </p>
 
 <p align="center">
-  <a href="https://uclimax.cn">
-    <img src="https://img.shields.io/badge/Official_Site-uclimax.cn-2ea44f?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Official Site">
+  <a href="https://uclimax.top">
+    <img src="https://img.shields.io/badge/Official_Site-uclimax.top-2ea44f?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Official Site">
   </a>
 </p>
 
