@@ -194,10 +194,6 @@
             >
               <v-icon color="light-blue-lighten-3" size="48" class="mb-3">mdi-heart-circle</v-icon>
               <div class="text-h5 font-weight-bold text-white mb-2">替网站充电</div>
-              <div class="d-flex align-baseline mb-4">
-                <span class="text-h3 font-weight-bold text-green-lighten-1">¥5</span>
-                <span class="text-body-1 text-white ml-1">/月</span>
-              </div>
               <v-btn
                 color="orange-darken-1"
                 size="large"

@@ -57,9 +57,6 @@
                 mdi-star-circle
               </v-icon>
               充电福利
-              <v-spacer></v-spacer>
-              <span class="text-h6 font-weight-bold text-green-lighten-1">¥5</span>
-              <span class="text-body-2 ml-1">/月</span>
             </v-expansion-panel-title>
             <v-expansion-panel-text>
               <v-list bg-color="transparent" class="flex-grow-1">
