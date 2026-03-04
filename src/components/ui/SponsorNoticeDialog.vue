@@ -3,7 +3,7 @@
     <v-card class="overflow-y-auto themed-scrollbar rounded-2lg pa-2">
       <v-card-title class="d-flex align-center">
         <v-icon color="warning" class="mr-2">mdi-alert-circle-outline</v-icon>
-        赞助使用须知
+        網站充電须知
       </v-card-title>
 
       <v-card-text>
@@ -15,21 +15,21 @@
           border="start"
           density="comfortable"
         >
-          <div class="text-subtitle-2 font-weight-bold mb-1">⚠️ 只能通过此按钮跳转付款</div>
+          <div class="text-subtitle-2 font-weight-bold mb-1">⚠️ 只能通过此按钮跳转进行充电</div>
           <div class="text-caption" style="line-height: 1.4">
-            付款链接包含您的专属身份标识。请务必<b>直接点击下方按钮</b>跳转进行赞助。
+            充电链接包含您的专属身份标识。请务必<b>直接点击下方按钮</b>跳转进行充电。
             <br />
             <span class="font-weight-bold">切勿使用</span
             >浏览器的“历史记录”、“书签”或“他人转发的链接”，否则系统将无法自动开通您的权限。
           </div>
         </v-alert>
 
-        <p class="mb-4">感谢您的支持！在您完成付款后，请注意以下事项：</p>
+        <p class="mb-4">感谢您的支持！在您完成充电后，请注意以下事项：</p>
 
         <v-list density="compact" bg-color="transparent" class="py-0">
           <v-list-item prepend-icon="mdi-numeric-1-circle-outline" class="px-1">
             <v-list-item-title class="text-wrap">
-              付款完成後，请前往<b>「账号资料」</b>，点击<b>「刷新」</b>按钮以更新您的帐号身份。
+              充电完成後，请前往<b>「账号资料」</b>，点击<b>「刷新」</b>按钮以更新您的帐号身份。
             </v-list-item-title>
           </v-list-item>
 
@@ -56,7 +56,7 @@
               <v-icon color="light-blue-lighten-3" size="small" class="mr-2">
                 mdi-star-circle
               </v-icon>
-              赞助会员特权
+              充电福利
               <v-spacer></v-spacer>
               <span class="text-h6 font-weight-bold text-green-lighten-1">¥5</span>
               <span class="text-body-2 ml-1">/月</span>

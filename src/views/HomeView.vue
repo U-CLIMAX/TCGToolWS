@@ -141,7 +141,7 @@
                 <v-icon color="light-blue-lighten-3" size="small" class="mr-2">
                   mdi-star-circle
                 </v-icon>
-                <span class="text-h6 font-weight-bold text-white">赞助会员特权</span>
+                <span class="text-h6 font-weight-bold text-white">充电福利</span>
               </div>
               <v-list bg-color="transparent" class="flex-grow-1">
                 <v-list-item class="px-0 mb-3">
@@ -193,7 +193,7 @@
               class="d-flex flex-column align-center justify-center text-center pa-6"
             >
               <v-icon color="light-blue-lighten-3" size="48" class="mb-3">mdi-heart-circle</v-icon>
-              <div class="text-h5 font-weight-bold text-white mb-2">成为赞助者</div>
+              <div class="text-h5 font-weight-bold text-white mb-2">替网站充电</div>
               <div class="d-flex align-baseline mb-4">
                 <span class="text-h3 font-weight-bold text-green-lighten-1">¥5</span>
                 <span class="text-body-1 text-white ml-1">/月</span>
@@ -207,7 +207,7 @@
                 class="mb-4"
                 min-width="160"
               >
-                立即赞助
+                立即充电
               </v-btn>
               <v-divider class="my-3" width="60%" opacity="30"></v-divider>
               <div class="d-flex align-center justify-center">
@@ -359,7 +359,7 @@
       <v-card class="rounded-2lg pa-2">
         <v-card-title>需要登入</v-card-title>
         <v-card-text class="text-body-2 text-medium-emphasis">
-          赞助功能需要登入后才能使用。
+          充电功能需要登入后才能使用。
         </v-card-text>
         <v-card-actions>
           <v-btn color="primary" text @click="isAuthAlertOpen = false">确定</v-btn>
