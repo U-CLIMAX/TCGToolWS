@@ -335,6 +335,16 @@
             <span>U-CLIMAX项目组</span>
           </div>
         </v-col>
+
+        <v-col cols="12" class="text-center align-center text-body-2">
+          <a
+            href="https://beian.miit.gov.cn/"
+            target="_blank"
+            class="text-grey-darken-1 text-decoration-underline"
+          >
+            苏ICP备2026011045号-1
+          </a>
+        </v-col>
       </v-sheet>
     </div>
 
