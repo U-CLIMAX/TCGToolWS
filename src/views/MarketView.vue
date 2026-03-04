@@ -350,7 +350,7 @@ const scrollKey = ref(0)
 const sourceOptions = computed(() => {
   const options = [{ title: '全部商品', value: 'all' }]
   if (authStore.isAuthenticated) {
-    options.push({ title: '我的卖场', value: 'mine' })
+    options.push({ title: '我的发布', value: 'mine' })
   }
   return options
 })

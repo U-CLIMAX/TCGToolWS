@@ -60,9 +60,9 @@
               <span style="font-size: 0.65rem">{{ timeAgo }}</span>
             </div>
 
-            <div class="text-h5 font-weight-black font-DINCond text-red-darken-2 mb-0">
+            <!-- <div class="text-h5 font-weight-black font-DINCond text-red-darken-2 mb-0">
               <span class="text-body-2 font-weight-bold mr-1">¥</span>{{ listing.price }}
-            </div>
+            </div> -->
 
             <div class="d-flex align-center" style="height: 24px">
               <template v-if="listing.climax_types && listing.climax_types.length > 0">
