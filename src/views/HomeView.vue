@@ -275,9 +275,17 @@
             Bushiroad 并无任何官方合作或授权关系。
           </div>
           <div class="mt-1">
-            © {{ new Date().getFullYear() }} U-CLIMAX. All rights reserved. |
+            © {{ new Date().getFullYear() }} U-CLIMAX. All rights reserved.&nbsp;|&nbsp;
             <a href="mailto:issues@uclimax.cn" class="text-grey-darken-1 text-decoration-underline">
               问题反馈
+            </a>
+            &nbsp;|&nbsp;
+            <a
+              href="https://beian.miit.gov.cn/"
+              target="_blank"
+              class="text-grey-darken-1 text-decoration-underline"
+            >
+              苏ICP备2026011045号-1
             </a>
           </div>
         </v-col>
@@ -334,16 +342,6 @@
             &
             <span>U-CLIMAX项目组</span>
           </div>
-        </v-col>
-
-        <v-col cols="12" class="text-center align-center text-body-2">
-          <a
-            href="https://beian.miit.gov.cn/"
-            target="_blank"
-            class="text-grey-darken-1 text-decoration-underline"
-          >
-            苏ICP备2026011045号-1
-          </a>
         </v-col>
       </v-sheet>
     </div>
