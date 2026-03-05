@@ -46,6 +46,12 @@ import { updateMarketStats } from './services/market-stats.js'
 
 const app = new Hono().basePath('/api')
 
+app.use('*', async (c, next) => {
+  await next()
+  c.header('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0')
+  c.header('Vary', 'Authorization')
+})
+
 // === Rate Limiter Middlewares ===
 const authCodeLimiter = (c, next) =>
   createRateLimiter({
