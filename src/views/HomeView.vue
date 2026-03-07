@@ -358,7 +358,7 @@
           充电功能需要登入后才能使用。
         </v-card-text>
         <v-card-actions>
-          <v-btn color="primary" text @click="isAuthAlertOpen = false">确定</v-btn>
+          <v-btn color="primary" variant="tonal" text @click="isAuthAlertOpen = false">确定</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
