@@ -152,7 +152,7 @@
                 <v-row dense>
                   <v-col v-for="card in displayedCards" :key="card.id" cols="4" sm="3" md="2">
                     <div
-                      class="cover-selection-item position-relative"
+                      class="cover-selection-item position-relative rounded-lg"
                       :class="{ selected: formData.selectedCardIds.includes(card.id) }"
                       @click="toggleCardSelection(card)"
                     >
@@ -161,7 +161,7 @@
                         :lazy-src="getCardImage(card).blur"
                         aspect-ratio="0.716"
                         cover
-                        class="rounded"
+                        class="rounded-lg"
                       ></v-img>
 
                       <!-- Selection Overlay -->
