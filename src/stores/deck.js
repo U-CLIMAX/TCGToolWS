@@ -156,6 +156,7 @@ export const useDeckStore = defineStore(
 
       if (cardInDeck.quantity <= 0) {
         delete cardsInDeck.value[cardId]
+        if (cardId === coverCardId.value?.id) coverCardId.value = ''
       }
       checkRestrictions()
     }

@@ -486,6 +486,8 @@ const openSaveDialog = () => {
   } else if (deckCards.value.length > 0) {
     if (deckStore.editingDeckKey) {
       deckName.value = deckStore.deckName
+    }
+    if (deckStore.coverCardId !== '') {
       selectedCoverCardId.value = deckStore.coverCardId
     } else {
       selectedCoverCardId.value = {
