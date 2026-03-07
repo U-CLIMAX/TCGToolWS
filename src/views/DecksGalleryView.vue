@@ -254,7 +254,6 @@ const handleSearch = async () => {
 }
 
 const resetFilters = async () => {
-  localFilters.value.source = 'all'
   localFilters.value.seriesId = null
   localFilters.value.sort = 'newest'
   galleryStore.filters.source = localFilters.value.source

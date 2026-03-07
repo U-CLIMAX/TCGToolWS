@@ -419,7 +419,6 @@ const handleRefresh = async () => {
 }
 
 const resetFilters = async () => {
-  localFilters.value.source = 'all'
   localFilters.value.seriesId = null
   localFilters.value.climaxType = []
   localFilters.value.tag = []
