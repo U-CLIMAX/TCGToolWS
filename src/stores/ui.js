@@ -16,6 +16,7 @@ export const useUIStore = defineStore(
     const theme = ref('dark')
     const isFilterOpen = ref(false)
     const isCardDeckOpen = ref(false)
+    const isCardDetailModalOpen = ref(false)
     const isLoading = ref(false)
     const isTableModeActive = ref(false)
     const performanceThreshold = ref(600)
@@ -145,6 +146,7 @@ export const useUIStore = defineStore(
       theme,
       isFilterOpen,
       isCardDeckOpen,
+      isCardDetailModalOpen,
       isLoading,
       setLoading,
       headerHeight,
@@ -179,7 +181,7 @@ export const useUIStore = defineStore(
   {
     persist: {
       storage: localStorage,
-      omit: ['showForceUpdate', 'pollingWorker', 'seriesSearchTerm'],
+      omit: ['showForceUpdate', 'pollingWorker', 'seriesSearchTerm', 'isCardDetailModalOpen'],
     },
   }
 )

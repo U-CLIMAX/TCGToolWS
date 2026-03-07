@@ -298,7 +298,12 @@ const loadMore = async ({ done }) => {
 }
 
 onBeforeRouteLeave((to, from, next) => {
-  if (drawer.value && !smAndUp.value) {
+  if (smAndUp.value) next()
+
+  if (uiStore.isCardDetailModalOpen) {
+    uiStore.isCardDetailModalOpen = false
+    next(false)
+  } else if (drawer.value) {
     drawer.value = false
     next(false)
   } else {

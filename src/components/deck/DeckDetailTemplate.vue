@@ -363,7 +363,10 @@ watchEffect(() => {
 })
 
 // Card Navigation & Details Modal
-const isModalVisible = ref(false)
+const isModalVisible = computed({
+  get: () => uiStore.isCardDetailModalOpen,
+  set: (val) => (uiStore.isCardDetailModalOpen = val),
+})
 const selectedCardData = ref(null)
 const linkedCardsDetails = ref([])
 const isLoadingLinkedCards = ref(false)
