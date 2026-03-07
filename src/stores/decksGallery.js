@@ -3,6 +3,14 @@ import { ref, reactive } from 'vue'
 import { useAuthStore } from './auth'
 import { seriesMap } from '@/maps/series-map'
 
+// Static options moved out of the store to avoid redundant reactivity
+const SERIES_OPTIONS = Object.keys(seriesMap)
+  .filter((key) => !['ws', 'wsr'].includes(seriesMap[key].id))
+  .map((key) => ({
+    title: key,
+    value: seriesMap[key].id,
+  }))
+
 export const useDecksGalleryStore = defineStore('decksGallery', () => {
   const authStore = useAuthStore()
 
@@ -21,12 +29,6 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
     hasMore: true,
     limit: 20,
   })
-
-  // Options
-  const seriesOptions = Object.entries(seriesMap).map(([title, info]) => ({
-    title,
-    value: info.id,
-  }))
 
   const fetchDecks = async (isLoadMore = false) => {
     if (isLoading.value) return
@@ -156,7 +158,7 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
     isLoading,
     filters,
     pagination,
-    seriesOptions,
+    seriesOptions: SERIES_OPTIONS,
     fetchDecks,
     fetchUserDeckCount,
     deleteDeck,

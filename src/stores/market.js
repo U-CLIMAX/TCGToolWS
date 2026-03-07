@@ -1,7 +1,44 @@
 import { defineStore } from 'pinia'
-import { ref, shallowRef, computed, reactive } from 'vue'
+import { ref, shallowRef, reactive } from 'vue'
 import { useAuthStore } from './auth'
 import { seriesMap } from '@/maps/series-map'
+
+// Static options moved out of the store to avoid redundant reactivity
+const SERIES_OPTIONS = Object.keys(seriesMap)
+  .filter((key) => !['ws', 'wsr'].includes(seriesMap[key].id))
+  .map((key) => ({
+    title: key,
+    value: seriesMap[key].id,
+  }))
+
+const CLIMAX_TYPE_OPTIONS = [
+  { name: '爆', value: 'soul', icon: '/effect-icons/soul.webp' },
+  { name: '门', value: 'salvage', icon: '/effect-icons/salvage.webp' },
+  { name: '电', value: 'standby', icon: '/effect-icons/standby.webp' },
+  { name: '书', value: 'draw', icon: '/effect-icons/draw.webp' },
+  { name: '裤', value: 'gate', icon: '/effect-icons/gate.webp' },
+  { name: '袋', value: 'stock', icon: '/effect-icons/stock.webp' },
+  { name: '砖', value: 'treasure', icon: '/effect-icons/treasure.webp' },
+  { name: '风', value: 'bounce', icon: '/effect-icons/bounce.webp' },
+  { name: '火', value: 'shot', icon: '/effect-icons/shot.webp' },
+  { name: 'Y', value: 'choice', icon: '/effect-icons/choice.webp' },
+  { name: '镜', value: 'discovery', icon: '/effect-icons/discovery.webp' },
+  { name: '灯', value: 'chance', icon: '/effect-icons/chance.webp' },
+]
+
+const TAG_OPTIONS = [
+  { label: '全平', value: 0 },
+  { label: '有闪', value: 1 },
+  { label: '有签', value: 2 },
+  { label: '全闪', value: 3 },
+  { label: '顶罕', value: 4 },
+  { label: '大套', value: 5 },
+]
+
+const TAG_LABELS = TAG_OPTIONS.reduce((acc, t) => {
+  acc[t.value] = t.label
+  return acc
+}, [])
 
 export const useMarketStore = defineStore('market', () => {
   const listings = shallowRef([])
@@ -30,43 +67,6 @@ export const useMarketStore = defineStore('market', () => {
   })
 
   const authStore = useAuthStore()
-
-  const seriesOptions = computed(() => {
-    return Object.keys(seriesMap)
-      .filter((key) => !['ws', 'wsr'].includes(seriesMap[key].id))
-      .map((key) => ({
-        title: key,
-        value: seriesMap[key].id,
-      }))
-  })
-
-  const climaxTypeOptions = [
-    { name: '爆', value: 'soul', icon: '/effect-icons/soul.webp' },
-    { name: '门', value: 'salvage', icon: '/effect-icons/salvage.webp' },
-    { name: '电', value: 'standby', icon: '/effect-icons/standby.webp' },
-    { name: '书', value: 'draw', icon: '/effect-icons/draw.webp' },
-    { name: '裤', value: 'gate', icon: '/effect-icons/gate.webp' },
-    { name: '袋', value: 'stock', icon: '/effect-icons/stock.webp' },
-    { name: '砖', value: 'treasure', icon: '/effect-icons/treasure.webp' },
-    { name: '风', value: 'bounce', icon: '/effect-icons/bounce.webp' },
-    { name: '火', value: 'shot', icon: '/effect-icons/shot.webp' },
-    { name: 'Y', value: 'choice', icon: '/effect-icons/choice.webp' },
-    { name: '镜', value: 'discovery', icon: '/effect-icons/discovery.webp' },
-    { name: '灯', value: 'chance', icon: '/effect-icons/chance.webp' },
-  ]
-  const tagOptions = [
-    { label: '全平', value: 0 },
-    { label: '有闪', value: 1 },
-    { label: '有签', value: 2 },
-    { label: '全闪', value: 3 },
-    { label: '顶罕', value: 4 },
-    { label: '大套', value: 5 },
-  ]
-
-  const tagLabels = tagOptions.reduce((acc, t) => {
-    acc[t.value] = t.label
-    return acc
-  }, [])
 
   // Actions
   const fetchListings = async (isLoadMore = false) => {
@@ -286,9 +286,9 @@ export const useMarketStore = defineStore('market', () => {
     deleteListing,
     reset,
     // Constants
-    seriesOptions,
-    climaxTypeOptions,
-    tagOptions,
-    tagLabels,
+    seriesOptions: SERIES_OPTIONS,
+    climaxTypeOptions: CLIMAX_TYPE_OPTIONS,
+    tagOptions: TAG_OPTIONS,
+    tagLabels: TAG_LABELS,
   }
 })
