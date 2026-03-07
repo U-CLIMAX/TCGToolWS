@@ -190,7 +190,7 @@
       <div v-else-if="isHomeRoute && smAndUp" class="home-header-progressive-blur"></div>
     </v-fade-transition>
 
-    <v-main :scrollable="true" :class="{ 'pa-0': !smAndUp }">
+    <v-main :scrollable="true" :class="{ 'pa-0': !smAndUp || isGalleryRoute }">
       <router-view v-slot="{ Component }">
         <transition :name="transitionName" mode="out-in">
           <component :is="Component" />
@@ -448,6 +448,8 @@ const route = useRoute()
 const isSettingsModalOpen = ref(false)
 const isUserProfileModalOpen = ref(false)
 const isHomeRoute = computed(() => route.name === 'Home')
+const isGalleryRoute = computed(() => route.name === 'DecksGallery')
+
 const titleImg = computed(() => {
   const isLightTheme = vuetifyTheme.global.name.value === 'light'
   return isHomeRoute.value ? titleMonochrome : isLightTheme ? titleLightImg : titleDarkImg

@@ -10,7 +10,6 @@
         'rounded-3md mt-7 mb-3 h-auto': smAndUp,
         'mr-4': drawer && smAndUp,
       }"
-      :scrim="false"
       touchless
     >
       <ShareDeckDetailView
@@ -26,7 +25,7 @@
       ref="infiniteScrollRef"
       :key="scrollKey"
       class="h-100 themed-scrollbar"
-      :style="{ '--sb-margin-top': '27px' }"
+      :style="{ '--sb-margin-top': '79px', 'paddingTop': smAndUp ? '50px' : '0' }"
       :onLoad="loadMore"
       :empty-text="''"
     >
@@ -299,7 +298,7 @@ const loadMore = async ({ done }) => {
 }
 
 onBeforeRouteLeave((to, from, next) => {
-  if (drawer.value) {
+  if (drawer.value && !smAndUp.value) {
     drawer.value = false
     next(false)
   } else {
