@@ -5,6 +5,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 import { visualizer } from 'rollup-plugin-visualizer'
 import { cloudflare } from '@cloudflare/vite-plugin'
 import vue from '@vitejs/plugin-vue'
+import legacy from '@vitejs/plugin-legacy'
 import vuetify from 'vite-plugin-vuetify'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import svgLoader from 'vite-svg-loader'
@@ -24,6 +25,9 @@ export default defineConfig({
     vue(),
     vueDevTools(),
     lqip(),
+    legacy({
+      targets: ['defaults', 'not IE 11'],
+    }),
     svgLoader({
       svgoConfig: {
         multipass: true,
