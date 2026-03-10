@@ -148,7 +148,7 @@ const wsSeriesMap = {
   '初音岛': {
     id: 'dc',
     prefixes: ['DC', 'DC3', 'DC4', 'DS', 'DC5'],
-    latestReleaseDate: '2023-08-24',
+    latestReleaseDate: '2026-03-13',
   },
   'D4DJ': {
     id: 'dj',
