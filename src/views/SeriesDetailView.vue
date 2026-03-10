@@ -170,6 +170,7 @@
 
 <script setup>
 import { ref, computed, watchEffect, onMounted, onUnmounted, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { useDisplay } from 'vuetify'
 import { storeToRefs } from 'pinia'
 import { seriesMap } from '@/maps/series-map.js'
@@ -188,8 +189,14 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  initialProductName: {
+    type: String,
+    default: null,
+  },
 })
 
+const route = useRoute()
+const router = useRouter()
 const { smAndUp, smAndDown, lgAndUp } = useDisplay()
 const resize = computed(() => {
   return smAndUp.value ? 'default' : 'x-small'
@@ -249,12 +256,63 @@ const seriesName = computed(() => {
 })
 const prefixes = computed(() => seriesMap[seriesName.value]?.prefixes ?? [])
 
+// 使用雜湊函式，將長名稱轉換為短序號 (Base36)
+const getShortHash = (str) => {
+  if (!str) return undefined
+  let h = 0
+  for (let i = 0; i < str.length; i++) {
+    h = (Math.imul(31, h) + str.charCodeAt(i)) | 0
+  }
+  return (h >>> 0).toString(36)
+}
+
 watch(
   prefixes,
-  (newPrefixes) => {
-    filterStore.initialize(newPrefixes)
+  async (newPrefixes) => {
+    await filterStore.initialize(newPrefixes)
+
+    // 從 URL 恢復產品篩選狀態 (透過雜湊值比對)
+    if (props.initialProductName) {
+      const found = filterStore.productNames.find(
+        (name) => getShortHash(name) === props.initialProductName
+      )
+      if (found) {
+        filterStore.selectedProductName = found
+      }
+    }
   },
   { immediate: true }
+)
+
+// 監聽 URL 參數變化 (如：點擊瀏覽器後退)，同步到 Store
+watch(
+  () => props.initialProductName,
+  (newVal) => {
+    if (!newVal) {
+      filterStore.selectedProductName = null
+      return
+    }
+    const found = filterStore.productNames.find((name) => getShortHash(name) === newVal)
+    if (found && found !== filterStore.selectedProductName) {
+      filterStore.selectedProductName = found
+    }
+  }
+)
+// 當產品名稱改變時，同步更新 URL
+watch(
+  () => filterStore.selectedProductName,
+  (newVal) => {
+    const hash = getShortHash(newVal)
+    // 僅在不同時更新，避免無限迴圈
+    if (route.query.p !== hash) {
+      router.replace({
+        query: {
+          ...route.query,
+          p: hash,
+        },
+      })
+    }
+  }
 )
 
 watch([() => filterStore.filteredCards], () => {

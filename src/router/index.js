@@ -26,7 +26,10 @@ const routes = [
     path: '/series/:seriesId',
     name: 'SeriesDetail',
     component: () => import('@/views/SeriesDetailView.vue'),
-    props: true,
+    props: (route) => ({
+      seriesId: route.params.seriesId,
+      initialProductName: route.query.p,
+    }),
     meta: { group: 'series', headerBlur: true },
   },
   {
