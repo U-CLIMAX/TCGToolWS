@@ -1,11 +1,12 @@
-export const deckRestrictionsLastUpdated = '2026/2/4'
+export const deckRestrictionsLastUpdated = '2026/3/10'
 
 export const deckRestrictions = {
   'dc': {
     choice: [
       [
-        { 水着の杏: ['DC/W01-091', 'DC/WC01-091', 'DC/W81-P02S'] },
+        { 水着の杏: ['DC/W01-091', 'DC/WC01-091', 'DC/W81-P02S', 'DC/W128-P09', 'DC/W128-P09S'] },
         { 木琴占い: ['DC/W01-095', 'DC/WC01-095', 'DC/W81-P01S'] },
+        { 選挙ポスター撮影: ['DC/W128-096', 'DC/W128-096S', 'DC/W128-096SP'] },
       ],
     ],
   },
