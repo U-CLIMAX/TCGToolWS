@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="h-100 pa-0">
+  <v-container fluid class="h-100 pa-0 d-flex flex-column">
     <v-navigation-drawer
       v-model="drawer"
       location="right"
@@ -24,8 +24,8 @@
     <v-infinite-scroll
       ref="infiniteScrollRef"
       :key="scrollKey"
-      class="h-100 themed-scrollbar"
-      :style="{ '--sb-margin-top': '79px', 'paddingTop': smAndUp ? '50px' : '0' }"
+      class="themed-scrollbar"
+      :style="scrollStyle"
       :onLoad="loadMore"
       :empty-text="''"
     >
@@ -213,6 +213,15 @@ const selectedDeckKey = ref(null)
 
 const drawerWidth = computed(() => {
   return !smAndUp.value ? '1000' : width.value * 0.45
+})
+
+const scrollStyle = computed(() => {
+  const marginTop = smAndUp.value ? '50px' : '0'
+  return {
+    '--sb-margin-top': '27px',
+    'marginTop': marginTop,
+    'height': `calc(100% - ${marginTop})`,
+  }
 })
 
 const maxDecks = computed(() => (authStore.userRole === 0 ? 15 : Infinity))
