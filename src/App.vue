@@ -355,32 +355,6 @@
 
     <AppUpdateDialog />
 
-    <v-dialog v-model="isDomainAlertOpen" max-width="400" persistent>
-      <v-card class="rounded-2lg pa-4">
-        <v-card-title class="text-h6 font-weight-bold">域名迁移通知</v-card-title>
-        <v-card-text class="text-body-1 py-4">
-          本站新网址已迁移至：<br />
-          <a
-            href="https://www.uclimax.top"
-            target="_blank"
-            class="text-primary font-weight-bold text-decoration-underline"
-          >
-            www.uclimax.top
-          </a>
-          <br /><br />
-          当前域名 <span class="text-error">uclimax.cn</span> 将于
-          <span class="font-weight-bold">3月15日</span>
-          起停止访问，请各位用户及时收藏并切换至新网址。
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="primary" variant="elevated" block @click="isDomainAlertOpen = false">
-            我知道了
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-
     <!-- Global Loading Overlay -->
     <v-overlay v-model="uiStore.isLoading" class="d-flex align-center justify-center" persistent>
       <half-circle-spinner :animation-duration="1000" :size="64" :color="spinnerColor" />
@@ -389,7 +363,7 @@
 </template>
 
 <script setup>
-import { ref, watch, computed, onMounted } from 'vue'
+import { ref, watch, computed } from 'vue'
 import { useTheme, useDisplay } from 'vuetify'
 import { useRoute, useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
@@ -421,8 +395,6 @@ const { userRole } = storeToRefs(authStore)
 const vuetifyTheme = useTheme()
 const uiStore = useUIStore()
 const { mdAndDown, smAndUp, smAndDown } = useDisplay()
-
-const isDomainAlertOpen = ref(false)
 
 const titleImgStyle = computed(() => {
   return {
@@ -566,12 +538,6 @@ watch(
   },
   { immediate: true }
 )
-
-onMounted(() => {
-  if (window.location.hostname.includes('uclimax.cn')) {
-    isDomainAlertOpen.value = true
-  }
-})
 </script>
 
 <style>
