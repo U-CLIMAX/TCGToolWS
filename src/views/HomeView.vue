@@ -278,11 +278,20 @@
             &nbsp;|&nbsp;
             <a
               href="https://beian.miit.gov.cn/"
+              rel="noreferrer"
               target="_blank"
               class="text-grey-darken-1 text-decoration-underline"
             >
               苏ICP备2026011045号-1
             </a>
+            &nbsp;|&nbsp;
+            <a
+              href="https://beian.mps.gov.cn/#/query/webSearch?code=32108802011327"
+              rel="noreferrer"
+              target="_blank"
+              class="text-grey-darken-1 text-decoration-underline"
+              >苏公网安备32108802011327号</a
+            >
           </div>
         </v-col>
 
