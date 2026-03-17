@@ -23,6 +23,23 @@
 
           <!-- 搜尋與篩選區域 -->
           <v-row dense class="mb-2">
+            <!-- 0. 遊戲種類選擇 -->
+            <v-col cols="12">
+              <v-btn-toggle
+                v-model="selectedGameType"
+                mandatory
+                color="primary"
+                variant="tonal"
+                rounded="pill"
+                density="comfortable"
+                class="mb-2"
+                @update:model-value="onGameTypeChange"
+              >
+                <v-btn value="ws" class="px-8"> WS </v-btn>
+                <v-btn value="wsr" class="px-8"> WSR </v-btn>
+              </v-btn-toggle>
+            </v-col>
+
             <v-col cols="12" sm="7">
               <v-text-field
                 v-model="deckNameSearchTerm"
@@ -162,10 +179,15 @@ const { smAndUp } = useDisplay()
 
 const deckCode = ref('')
 const deckNameSearchTerm = debounceRef('', 300)
+const selectedGameType = ref('ws')
 const selectedSeries = ref(null)
 const initialLoadingComplete = ref(false)
 const showDeckCodeDialog = ref(false)
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
+
+const onGameTypeChange = () => {
+  selectedSeries.value = null
+}
 
 // 卡組代碼來源
 const deckCodeSource = ref('uclimax') // 默認選擇 U CLIMAX
@@ -191,7 +213,7 @@ const availableSeriesOptions = computed(() => {
     if (deck.seriesId) {
       const foundEntry = Object.entries(seriesMap).find(([, info]) => info.id === deck.seriesId)
 
-      if (foundEntry) {
+      if (foundEntry && foundEntry[1].game === selectedGameType.value) {
         const seriesName = foundEntry[0]
         counts[seriesName] = (counts[seriesName] || 0) + 1
       }
@@ -209,13 +231,14 @@ const availableSeriesOptions = computed(() => {
 const filteredDecks = computed(() => {
   const searchTerm = deckNameSearchTerm.value.toLowerCase()
   const seriesFilter = selectedSeries.value // 這裡拿到的仍然是純系列名稱 (value)
-
-  if (!searchTerm && !seriesFilter) {
-    return deckStore.savedDecks
-  }
+  const gameTypeFilter = selectedGameType.value
 
   return Object.fromEntries(
     Object.entries(deckStore.savedDecks).filter(([, deck]) => {
+      // 遊戲種類篩選邏輯
+      const seriesInfo = Object.values(seriesMap).find((s) => s.id === deck.seriesId)
+      const matchesGameType = (seriesInfo?.game || 'ws') === gameTypeFilter
+
       // 名稱篩選邏輯
       const matchesName = !searchTerm || deck.name.toLowerCase().includes(searchTerm)
 
@@ -226,7 +249,7 @@ const filteredDecks = computed(() => {
         matchesSeries = deck.seriesId === targetSeriesId
       }
 
-      return matchesName && matchesSeries
+      return matchesGameType && matchesName && matchesSeries
     })
   )
 })
