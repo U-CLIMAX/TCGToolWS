@@ -76,22 +76,21 @@
 
                 <v-row dense class="align-center">
                   <!-- 遊戲種類選擇 -->
-                  <v-col cols="12">
+                  <v-col cols="12" sm="3" md="2">
                     <v-btn-toggle
                       v-model="localFilters.gameType"
                       mandatory
-                      color="primary"
+                      :color="localFilters.gameType === 'ws' ? 'primary' : 'ws-rose'"
                       variant="tonal"
                       rounded="pill"
-                      density="comfortable"
-                      class="mb-2"
+                      class="w-100"
                       @update:model-value="onGameTypeChange"
                     >
                       <v-btn
-                        v-for="opt in galleryStore.gameTypeOptions"
+                        v-for="opt in GAME_TYPE_OPTIONS"
                         :key="opt.value"
                         :value="opt.value"
-                        class="px-8"
+                        class="flex-grow-1"
                       >
                         {{ opt.title }}
                       </v-btn>
@@ -99,7 +98,7 @@
                   </v-col>
 
                   <!-- 系列選擇 -->
-                  <v-col cols="12" sm="5" md="6">
+                  <v-col cols="12" sm="3" md="4">
                     <v-autocomplete
                       v-model="localFilters.seriesId"
                       :items="galleryStore.seriesOptions"
@@ -134,7 +133,7 @@
                   </v-col>
 
                   <!-- 篩選操作按鈕 -->
-                  <v-col cols="12" sm="4" md="3" class="d-flex ga-2">
+                  <v-col cols="12" sm="3" md="3" class="d-flex ga-2">
                     <v-btn
                       variant="tonal"
                       rounded="pill"
@@ -219,6 +218,7 @@ import ShareDeckDetailView from '@/views/ShareDeckDetailView.vue'
 import BackToTopButton from '@/components/ui/BackToTopButton.vue'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useDisplay } from 'vuetify'
+import { GAME_TYPE_OPTIONS } from '@/maps/series-map'
 
 import DeckGalleryIcon from '@/assets/ui/deck-gallery.svg'
 

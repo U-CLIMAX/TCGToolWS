@@ -28,15 +28,22 @@
               <v-btn-toggle
                 v-model="selectedGameType"
                 mandatory
-                color="primary"
+                :color="selectedGameType === 'ws' ? 'primary' : 'ws-rose'"
                 variant="tonal"
                 rounded="pill"
                 density="comfortable"
                 class="mb-2"
+                :class="{ 'w-100': !smAndUp }"
                 @update:model-value="onGameTypeChange"
               >
-                <v-btn value="ws" class="px-8"> WS </v-btn>
-                <v-btn value="wsr" class="px-8"> WSR </v-btn>
+                <v-btn
+                  v-for="opt in GAME_TYPE_OPTIONS"
+                  :key="opt.value"
+                  :value="opt.value"
+                  class="px-8 flex-grow-1"
+                >
+                  {{ opt.title }}
+                </v-btn>
               </v-btn-toggle>
             </v-col>
 
@@ -166,7 +173,7 @@ import LazyCardWrapper from '@/components/common/LazyCardWrapper.vue'
 import { useUIStore } from '@/stores/ui'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { debounceRef } from '@/composables/useDebounceRef'
-import { seriesMap } from '@/maps/series-map'
+import { seriesMap, GAME_TYPE_OPTIONS } from '@/maps/series-map'
 
 import DeckIcon from '@/assets/ui/deck.svg'
 

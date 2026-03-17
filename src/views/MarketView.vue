@@ -77,18 +77,19 @@
                     <v-btn-toggle
                       v-model="localFilters.gameType"
                       mandatory
-                      color="primary"
+                      :color="localFilters.gameType === 'ws' ? 'primary' : 'ws-rose'"
                       variant="tonal"
                       rounded="pill"
                       density="comfortable"
                       class="mb-2"
+                      :class="{ 'w-100': !smAndUp }"
                       @update:model-value="onGameTypeChange"
                     >
                       <v-btn
-                        v-for="opt in marketStore.gameTypeOptions"
+                        v-for="opt in GAME_TYPE_OPTIONS"
                         :key="opt.value"
                         :value="opt.value"
-                        class="px-8"
+                        class="px-8 flex-grow-1"
                       >
                         {{ opt.title }}
                       </v-btn>
@@ -359,6 +360,7 @@ import MarketCreateDialog from '@/components/market/MarketCreateDialog.vue'
 import MarketListingItem from '@/components/market/MarketListingItem.vue'
 import BackToTopButton from '@/components/ui/BackToTopButton.vue'
 import { useSnackbar } from '@/composables/useSnackbar'
+import { GAME_TYPE_OPTIONS } from '@/maps/series-map'
 
 const { triggerSnackbar } = useSnackbar()
 const marketStore = useMarketStore()
@@ -474,6 +476,8 @@ const getSeriesName = (id) => {
 }
 
 const selectSeries = async (seriesId) => {
+  await resetFilters()
+
   // Find the game type of the selected series
   const series = marketStore.allSeriesOptions.find((s) => s.value === seriesId)
   if (series) {

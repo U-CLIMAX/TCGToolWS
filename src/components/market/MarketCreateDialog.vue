@@ -15,18 +15,19 @@
                 <v-btn-toggle
                   v-model="formData.gameType"
                   mandatory
-                  color="primary"
+                  :color="formData.gameType === 'ws' ? 'primary' : 'ws-rose'"
                   variant="tonal"
                   rounded="pill"
                   density="comfortable"
                   class="mb-4"
+                  :class="{ 'w-100': !smAndUp }"
                   @update:model-value="onGameTypeChange"
                 >
                   <v-btn
-                    v-for="opt in marketStore.gameTypeOptions"
+                    v-for="opt in GAME_TYPE_OPTIONS"
                     :key="opt.value"
                     :value="opt.value"
-                    class="px-8"
+                    class="px-8 flex-grow-1"
                   >
                     {{ opt.title }}
                   </v-btn>
@@ -235,7 +236,7 @@
 <script setup>
 import { ref, computed, reactive, watch } from 'vue'
 import { useDisplay } from 'vuetify'
-import { seriesMap } from '@/maps/series-map'
+import { GAME_TYPE_OPTIONS, seriesMap } from '@/maps/series-map'
 import { useFilterStore } from '@/stores/filter'
 import { useMarketStore } from '@/stores/market'
 import { useUIStore } from '@/stores/ui'
