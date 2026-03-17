@@ -17,6 +17,7 @@ import { useDeckStore } from '@/stores/deck'
 import { useSnackbar } from '@/composables/useSnackbar'
 import DeckDetail from '@/components/deck/DeckDetailTemplate.vue'
 import { findDeckSeriesId } from '@/utils/findDeckSeriesId'
+import { seriesMap } from '@/maps/series-map'
 import { generateDeckKey } from '@/utils/nanoid'
 
 const route = useRoute()
@@ -51,9 +52,12 @@ const handleSaveDeck = async ({ name, coverCardId }) => {
     const deckSeriesId = findDeckSeriesId(Object.keys(cards.value))
 
     const compressedData = await encodeData(cardsToEncode)
+    const gameType = Object.values(seriesMap).find((s) => s.id === deckSeriesId)?.game || 'ws'
+
     await deckStore.saveEncodedDeck(key, compressedData, {
       name: name,
       seriesId: deckSeriesId,
+      game_type: gameType,
       coverCardId: coverCardId,
     })
 

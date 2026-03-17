@@ -528,6 +528,7 @@ const handleShareToDeckGallery = async () => {
     await deckStore.saveEncodedDeck(key, data, {
       name: deck.value.name,
       seriesId: deck.value.seriesId,
+      game_type: deck.value.game_type,
       coverCardId: deck.value.coverCardId,
       climaxCardsId: climaxCardsId,
       isDeckGallery: true,

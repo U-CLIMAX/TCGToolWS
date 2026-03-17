@@ -1,15 +1,20 @@
 import { defineStore } from 'pinia'
-import { ref, reactive } from 'vue'
+import { ref, reactive, computed } from 'vue'
 import { useAuthStore } from './auth'
 import { seriesMap } from '@/maps/series-map'
 
-// Static options moved out of the store to avoid redundant reactivity
-const SERIES_OPTIONS = Object.keys(seriesMap)
+const ALL_SERIES_OPTIONS = Object.keys(seriesMap)
   .filter((key) => !['ws', 'wsr'].includes(seriesMap[key].id))
   .map((key) => ({
     title: key,
     value: seriesMap[key].id,
+    game: seriesMap[key].game,
   }))
+
+const GAME_TYPE_OPTIONS = [
+  { title: 'WS', value: 'ws' },
+  { title: 'WSR', value: 'wsr' },
+]
 
 export const useDecksGalleryStore = defineStore('decksGallery', () => {
   const authStore = useAuthStore()
@@ -20,8 +25,13 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
   const isLoading = ref(false)
   const filters = reactive({
     source: 'all', // 'all' or 'mine'
+    gameType: 'ws',
     seriesId: null,
     sort: 'newest', // Only 'newest' for now as per requirement
+  })
+
+  const seriesOptions = computed(() => {
+    return ALL_SERIES_OPTIONS.filter((opt) => opt.game === filters.gameType)
   })
 
   const pagination = reactive({
@@ -43,6 +53,7 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
 
       const params = new URLSearchParams()
       params.append('limit', pagination.limit.toString())
+      params.append('game_type', filters.gameType)
       if (filters.seriesId) params.append('series', filters.seriesId)
       if (filters.sort) params.append('sort', filters.sort)
       if (pagination.cursor) params.append('cursor', pagination.cursor)
@@ -158,7 +169,9 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
     isLoading,
     filters,
     pagination,
-    seriesOptions: SERIES_OPTIONS,
+    seriesOptions,
+    allSeriesOptions: ALL_SERIES_OPTIONS,
+    gameTypeOptions: GAME_TYPE_OPTIONS,
     fetchDecks,
     fetchUserDeckCount,
     deleteDeck,

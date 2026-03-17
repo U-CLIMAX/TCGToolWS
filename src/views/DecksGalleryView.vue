@@ -75,6 +75,29 @@
                 </div>
 
                 <v-row dense class="align-center">
+                  <!-- 遊戲種類選擇 -->
+                  <v-col cols="12">
+                    <v-btn-toggle
+                      v-model="localFilters.gameType"
+                      mandatory
+                      color="primary"
+                      variant="tonal"
+                      rounded="pill"
+                      density="comfortable"
+                      class="mb-2"
+                      @update:model-value="onGameTypeChange"
+                    >
+                      <v-btn
+                        v-for="opt in galleryStore.gameTypeOptions"
+                        :key="opt.value"
+                        :value="opt.value"
+                        class="px-8"
+                      >
+                        {{ opt.title }}
+                      </v-btn>
+                    </v-btn-toggle>
+                  </v-col>
+
                   <!-- 系列選擇 -->
                   <v-col cols="12" sm="5" md="6">
                     <v-autocomplete
@@ -245,12 +268,19 @@ const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 const localFilters = ref({
   source: 'all',
+  gameType: 'ws',
   seriesId: null,
   sort: 'newest',
 })
 
+const onGameTypeChange = () => {
+  localFilters.value.seriesId = null
+  handleSearch()
+}
+
 const handleSearch = async () => {
   galleryStore.filters.source = localFilters.value.source
+  galleryStore.filters.gameType = localFilters.value.gameType
   galleryStore.filters.seriesId = localFilters.value.seriesId
   galleryStore.filters.sort = localFilters.value.sort
 
@@ -263,9 +293,11 @@ const handleSearch = async () => {
 }
 
 const resetFilters = async () => {
+  localFilters.value.gameType = 'ws'
   localFilters.value.seriesId = null
   localFilters.value.sort = 'newest'
   galleryStore.filters.source = localFilters.value.source
+  galleryStore.filters.gameType = localFilters.value.gameType
   galleryStore.filters.seriesId = localFilters.value.seriesId
   galleryStore.filters.sort = localFilters.value.sort
 
@@ -322,6 +354,7 @@ onBeforeRouteLeave((to, from, next) => {
 onMounted(async () => {
   // Initialize local filters from store
   localFilters.value.source = galleryStore.filters.source
+  localFilters.value.gameType = galleryStore.filters.gameType
   localFilters.value.seriesId = galleryStore.filters.seriesId
   localFilters.value.sort = galleryStore.filters.sort
 

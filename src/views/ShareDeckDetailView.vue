@@ -33,6 +33,7 @@ import { useUIStore } from '@/stores/ui'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useDeckStore } from '@/stores/deck'
 import { generateDeckKey } from '@/utils/nanoid'
+import { seriesMap } from '@/maps/series-map'
 import DeckDetail from '@/components/deck/DeckDetailTemplate.vue'
 
 const props = defineProps({
@@ -79,9 +80,13 @@ const handleSaveDeck = async ({ name, coverCardId }) => {
 
     const key = generateDeckKey()
     const compressedData = await encodeData(cardsToEncode)
+
+    const gameType = Object.values(seriesMap).find((s) => s.id === deck.value.series_id)?.game || 'ws'
+
     await deckStore.saveEncodedDeck(key, compressedData, {
       name: name,
       seriesId: deck.value.series_id,
+      game_type: gameType,
       coverCardId: coverCardId,
     })
 

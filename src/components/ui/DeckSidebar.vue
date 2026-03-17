@@ -423,6 +423,7 @@ import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import { sortCards } from '@/utils/cardsSort'
 import { deckRestrictionsLastUpdated } from '@/maps/deck-restrictions'
 import { generateDeckKey } from '@/utils/nanoid'
+import { seriesMap } from '@/maps/series-map'
 
 defineProps({
   headerOffsetHeight: {
@@ -534,9 +535,12 @@ const handleCreateDeck = async () => {
     const key = generateDeckKey()
     const compressedDeckData = await encodeData(toRaw(deckStore.cardsInDeck))
 
+    const gameType = Object.values(seriesMap).find((s) => s.id === deckStore.seriesId)?.game || 'ws'
+
     await deckStore.saveEncodedDeck(key, compressedDeckData, {
       name: deckName.value,
       seriesId: deckStore.seriesId,
+      game_type: gameType,
       coverCardId: selectedCoverCardId.value,
     })
 
@@ -634,9 +638,12 @@ const handleUpdateDeck = async (historyText = '', diff = []) => {
     const compressedDeckData = await encodeData(toRaw(deckStore.cardsInDeck))
     const compressedHistoryData = await encodeData(updatedHistory)
 
+    const gameType = Object.values(seriesMap).find((s) => s.id === deckStore.seriesId)?.game || 'ws'
+
     await deckStore.updateEncodedDeck(deckStore.editingDeckKey, compressedDeckData, {
       name: deckName.value,
       seriesId: deckStore.seriesId,
+      game_type: gameType,
       coverCardId: selectedCoverCardId.value,
       history: compressedHistoryData,
     })

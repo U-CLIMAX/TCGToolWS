@@ -8,8 +8,17 @@ import { fetchDecklogData } from '../services/decklog.js'
  */
 export const handleCreateDeck = async (c) => {
   try {
-    const { key, deckData, name, seriesId, coverCardId, history, isDeckGallery, climaxCardsId } =
-      await c.req.json()
+    const {
+      key,
+      deckData,
+      name,
+      seriesId,
+      game_type,
+      coverCardId,
+      history,
+      isDeckGallery,
+      climaxCardsId,
+    } = await c.req.json()
 
     if (isDeckGallery && !climaxCardsId) {
       return createErrorResponse(c, 400, '分享至广场需要 climaxCardsId')
@@ -41,32 +50,54 @@ export const handleCreateDeck = async (c) => {
     if (isDeckGallery) {
       const climaxCardsIdStr = JSON.stringify(climaxCardsId)
       info = await c.env.DB.prepare(
-        `INSERT INTO decks_gallery (key, user_id, deck_name, series_id, cover_cards_id, climax_cards_id, deck_data, updated_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        `INSERT INTO decks_gallery (key, user_id, deck_name, series_id, game_type, cover_cards_id, climax_cards_id, deck_data, updated_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         ON CONFLICT(key) DO UPDATE SET
         deck_name = excluded.deck_name,
         series_id = excluded.series_id,
+        game_type = excluded.game_type,
         cover_cards_id = excluded.cover_cards_id,
         climax_cards_id = excluded.climax_cards_id,
         deck_data = excluded.deck_data,
         updated_at = excluded.updated_at`
       )
-        .bind(key, user.id, name, seriesId, coverCardIdStr, climaxCardsIdStr, deckDataArray, now)
+        .bind(
+          key,
+          user.id,
+          name,
+          seriesId,
+          game_type,
+          coverCardIdStr,
+          climaxCardsIdStr,
+          deckDataArray,
+          now
+        )
         .run()
     } else {
       const historyArray = new Uint8Array(Object.values(history || []))
       info = await c.env.DB.prepare(
-        `INSERT INTO decks (key, user_id, deck_name, series_id, cover_cards_id, deck_data, history, updated_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        `INSERT INTO decks (key, user_id, deck_name, series_id, game_type, cover_cards_id, deck_data, history, updated_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         ON CONFLICT(key) DO UPDATE SET
         deck_name = excluded.deck_name,
         series_id = excluded.series_id,
+        game_type = excluded.game_type,
         cover_cards_id = excluded.cover_cards_id,
         deck_data = excluded.deck_data,
         history = excluded.history,
         updated_at = excluded.updated_at`
       )
-        .bind(key, user.id, name, seriesId, coverCardIdStr, deckDataArray, historyArray, now)
+        .bind(
+          key,
+          user.id,
+          name,
+          seriesId,
+          game_type,
+          coverCardIdStr,
+          deckDataArray,
+          historyArray,
+          now
+        )
         .run()
     }
 
@@ -90,7 +121,7 @@ export const handleGetDecks = async (c) => {
     const user = c.get('user')
 
     const { results } = await c.env.DB.prepare(
-      'SELECT key, deck_name, series_id, cover_cards_id, deck_data, history, updated_at FROM decks WHERE user_id = ?'
+      'SELECT key, deck_name, series_id, game_type, cover_cards_id, deck_data, history, updated_at FROM decks WHERE user_id = ?'
     )
       .bind(user.id)
       .all()
@@ -117,14 +148,14 @@ export const handleGetDeckByKey = async (c) => {
     const { key } = c.req.param()
 
     let result = await c.env.DB.prepare(
-      'SELECT key, deck_name, series_id, cover_cards_id, deck_data, rating_avg, rating_count, rating_breakdown FROM decks_gallery WHERE key = ?'
+      'SELECT key, deck_name, series_id, game_type, cover_cards_id, deck_data, rating_avg, rating_count, rating_breakdown FROM decks_gallery WHERE key = ?'
     )
       .bind(key)
       .first()
 
     if (!result) {
       result = await c.env.DB.prepare(
-        'SELECT key, deck_name, series_id, cover_cards_id, deck_data, history FROM decks WHERE key = ?'
+        'SELECT key, deck_name, series_id, game_type, cover_cards_id, deck_data, history FROM decks WHERE key = ?'
       )
         .bind(key)
         .first()
@@ -192,7 +223,7 @@ export const handleDeleteDeck = async (c) => {
 export const handleUpdateDeck = async (c) => {
   try {
     const { key } = c.req.param()
-    const { deckData, name, seriesId, coverCardId, history } = await c.req.json()
+    const { deckData, name, seriesId, game_type, coverCardId, history } = await c.req.json()
 
     if (!key || !deckData || !name || !seriesId || !coverCardId) {
       return createErrorResponse(c, 400, '缺少重要参数')
@@ -205,9 +236,19 @@ export const handleUpdateDeck = async (c) => {
 
     const now = Math.floor(Date.now() / 1000)
     const info = await c.env.DB.prepare(
-      `UPDATE decks SET deck_name = ?, series_id = ?, cover_cards_id = ?, deck_data = ?, history = ?, updated_at = ? WHERE key = ? AND user_id = ?`
+      `UPDATE decks SET deck_name = ?, series_id = ?, game_type = ?, cover_cards_id = ?, deck_data = ?, history = ?, updated_at = ? WHERE key = ? AND user_id = ?`
     )
-      .bind(name, seriesId, coverCardIdStr, deckDataArray, historyArray, now, key, user.id)
+      .bind(
+        name,
+        seriesId,
+        game_type,
+        coverCardIdStr,
+        deckDataArray,
+        historyArray,
+        now,
+        key,
+        user.id
+      )
       .run()
 
     if (!info.success) {

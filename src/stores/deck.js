@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { useAuthStore } from './auth'
 import { findDeckSeriesId } from '@/utils/findDeckSeriesId'
+import { seriesMap } from '@/maps/series-map'
 import { deckRestrictions } from '@/maps/deck-restrictions'
 import SensitiveWordTool from 'sensitive-word-tool'
 
@@ -196,7 +197,15 @@ export const useDeckStore = defineStore(
     const saveEncodedDeck = async (
       key,
       deckData,
-      { name, seriesId, coverCardId, history = [], isDeckGallery = false, climaxCardsId = [] }
+      {
+        name,
+        seriesId,
+        game_type,
+        coverCardId,
+        history = [],
+        isDeckGallery = false,
+        climaxCardsId = [],
+      }
     ) => {
       if (!authStore.token) {
         throw new Error('请先登入')
@@ -218,6 +227,7 @@ export const useDeckStore = defineStore(
           deckData,
           name,
           seriesId,
+          game_type,
           coverCardId,
           history,
           isDeckGallery,
@@ -235,6 +245,7 @@ export const useDeckStore = defineStore(
           deckData,
           name,
           seriesId,
+          game_type,
           coverCardId,
           history,
           updated_at: Math.floor(Date.now() / 1000),
@@ -248,7 +259,7 @@ export const useDeckStore = defineStore(
     const updateEncodedDeck = async (
       key,
       deckData,
-      { name, seriesId, coverCardId, history = [] }
+      { name, seriesId, game_type, coverCardId, history = [] }
     ) => {
       if (!authStore.token) {
         throw new Error('请先登入')
@@ -269,6 +280,7 @@ export const useDeckStore = defineStore(
           deckData,
           name,
           seriesId,
+          game_type,
           coverCardId,
           history,
         }),
@@ -316,6 +328,7 @@ export const useDeckStore = defineStore(
           deckData: deck.deck_data,
           name: deck.deck_name,
           seriesId: deck.series_id,
+          game_type: deck.game_type,
           coverCardId: deck.cover_cards_id,
           history: deck.history,
           updated_at: deck.updated_at,

@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS decks (
     user_id TEXT NOT NULL,
     deck_name TEXT NOT NULL,
     series_id TEXT NOT NULL,
+    game_type TEXT NOT NULL DEFAULT 'ws', -- 遊戲種類 (ws, wsr)
     cover_cards_id TEXT NOT NULL,
     deck_data BLOB NOT NULL,
     history BLOB NOT NULL,
@@ -71,6 +72,7 @@ CREATE INDEX IF NOT EXISTS idx_listings_series_price_desc_id ON market_listings(
 CREATE TABLE IF NOT EXISTS decks_gallery (
     key TEXT PRIMARY KEY,
     series_id TEXT NOT NULL,
+    game_type TEXT NOT NULL DEFAULT 'ws', -- 遊戲種類 (ws, wsr)
     user_id TEXT NOT NULL,
     deck_name TEXT NOT NULL,
     cover_cards_id TEXT NOT NULL,

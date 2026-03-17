@@ -292,9 +292,10 @@ const openSaveDialog = () => {
   } else if (props.deck) {
     // 預設名稱與封面
     deckName.value = props.deckTitle.slice(0, 20) || ''
+    const coverCard = Object.values(props.cards)[0]
     selectedCoverCardId.value = props.deck.cover_cards_id || {
-      id: Object.values(props.cards)[0]?.id,
-      cardIdPrefix: '',
+      id: coverCard?.id,
+      cardIdPrefix: coverCard?.cardIdPrefix,
     }
     isSaveDialogOpen.value = true
   }

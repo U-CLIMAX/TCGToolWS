@@ -7,14 +7,14 @@ import { createErrorResponse } from './utils.js'
  */
 export const handleGetDecksGallery = async (c) => {
   try {
-    const { limit, series, sort = 'newest', cursor } = c.req.query()
+    const { limit, series, game_type, sort = 'newest', cursor } = c.req.query()
     const limitNum = Math.max(1, Math.min(100, parseInt(limit) || 20))
 
     let cursorObj = null
     if (cursor) cursorObj = JSON.parse(atob(cursor))
 
-    const conditions = []
-    const params = []
+    const conditions = ['game_type = ?']
+    const params = [game_type]
 
     if (series) {
       conditions.push('series_id = ?')
@@ -59,7 +59,7 @@ export const handleGetDecksGallery = async (c) => {
     const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : ''
 
     const query = `
-      SELECT key, user_id, deck_name, series_id, cover_cards_id, climax_cards_id, updated_at, rating_avg
+      SELECT key, user_id, deck_name, series_id, game_type, cover_cards_id, climax_cards_id, updated_at, rating_avg
       FROM decks_gallery
       ${whereClause}
       ORDER BY ${orderByClause}
@@ -108,14 +108,14 @@ export const handleGetDecksGallery = async (c) => {
 export const handleGetUserDecksGallery = async (c) => {
   try {
     const user = c.get('user')
-    const { limit, series, sort = 'newest', cursor } = c.req.query()
+    const { limit, series, game_type, sort = 'newest', cursor } = c.req.query()
     const limitNum = Math.max(1, Math.min(100, parseInt(limit) || 20))
 
     let cursorObj = null
     if (cursor) cursorObj = JSON.parse(atob(cursor))
 
-    const conditions = ['user_id = ?']
-    const params = [user.id]
+    const conditions = ['user_id = ?', 'game_type = ?']
+    const params = [user.id, game_type]
 
     if (series) {
       conditions.push('series_id = ?')
@@ -160,7 +160,7 @@ export const handleGetUserDecksGallery = async (c) => {
     const whereClause = `WHERE ${conditions.join(' AND ')}`
 
     const query = `
-      SELECT key, user_id, deck_name, series_id, cover_cards_id, climax_cards_id, updated_at, rating_avg
+      SELECT key, user_id, deck_name, series_id, game_type, cover_cards_id, climax_cards_id, updated_at, rating_avg
       FROM decks_gallery
       ${whereClause}
       ORDER BY ${orderByClause}
