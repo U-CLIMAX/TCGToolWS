@@ -2,7 +2,6 @@ import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { useAuthStore } from './auth'
 import { findDeckSeriesId } from '@/utils/findDeckSeriesId'
-import { seriesMap } from '@/maps/series-map'
 import { deckRestrictions } from '@/maps/deck-restrictions'
 import SensitiveWordTool from 'sensitive-word-tool'
 
@@ -295,6 +294,7 @@ export const useDeckStore = defineStore(
         deckData,
         name,
         seriesId,
+        game_type,
         coverCardId,
         history,
         updated_at: Math.floor(Date.now() / 1000),
