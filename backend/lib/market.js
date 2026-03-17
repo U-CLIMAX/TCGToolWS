@@ -10,7 +10,7 @@ import { getMarketStats } from '../services/market-stats.js'
 export const handleCreateListing = async (c) => {
   try {
     const user = c.get('user')
-    const { series_id, cards_id, climax_types, tags, price, shop_url, deck_code } =
+    const { series_id, game_type, cards_id, climax_types, tags, price, shop_url, deck_code } =
       await c.req.json()
 
     // Validation
@@ -45,13 +45,14 @@ export const handleCreateListing = async (c) => {
     const now = Math.floor(Date.now() / 1000)
 
     const info = await c.env.DB.prepare(
-      `INSERT INTO market_listings (id, user_id, series_id, cards_id, climax_types, tags, price, shop_url, deck_code, updated_at)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+      `INSERT INTO market_listings (id, user_id, series_id, game_type, cards_id, climax_types, tags, price, shop_url, deck_code, updated_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
     )
       .bind(
         id,
         user.id,
         series_id,
+        game_type,
         cardsIdStr,
         climaxTypesStr,
         tagsStr,
@@ -82,7 +83,7 @@ export const handleUpdateListing = async (c) => {
   try {
     const user = c.get('user')
     const { id } = c.req.param()
-    const { series_id, cards_id, climax_types, tags, price, shop_url, deck_code } =
+    const { series_id, game_type, cards_id, climax_types, tags, price, shop_url, deck_code } =
       await c.req.json()
 
     if (!id) return createErrorResponse(c, 400, '缺少 ID')
@@ -100,11 +101,12 @@ export const handleUpdateListing = async (c) => {
 
     const info = await c.env.DB.prepare(
       `UPDATE market_listings
-       SET series_id = ?, cards_id = ?, climax_types = ?, tags = ?, price = ?, shop_url = ?, deck_code = ?, updated_at = ?
+       SET series_id = ?, game_type = ?, cards_id = ?, climax_types = ?, tags = ?, price = ?, shop_url = ?, deck_code = ?, updated_at = ?
        WHERE id = ? AND user_id = ?`
     )
       .bind(
         series_id,
+        game_type,
         cardsIdStr,
         climaxTypesStr,
         tagsStr,
@@ -139,15 +141,15 @@ export const handleUpdateListing = async (c) => {
  */
 export const handleGetListings = async (c) => {
   try {
-    const { limit, series, sort = 'newest', cursor } = c.req.query()
+    const { limit, series, game_type, sort = 'newest', cursor } = c.req.query()
     const limitNum = Math.max(1, Math.min(100, parseInt(limit) || 20))
 
     // Decode cursor if present
     let cursorObj = null
     if (cursor) cursorObj = JSON.parse(atob(cursor))
 
-    const conditions = []
-    const params = []
+    const conditions = [' game_type = ?']
+    const params = [game_type]
 
     const tagsQuery = c.req.queries('tag')
     if (tagsQuery && tagsQuery.length > 0) {
@@ -200,7 +202,7 @@ export const handleGetListings = async (c) => {
     const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : ''
 
     const query = `
-      SELECT id, user_id, series_id, cards_id, climax_types, tags, price, shop_url, deck_code, updated_at
+      SELECT id, user_id, series_id, game_type, cards_id, climax_types, tags, price, shop_url, deck_code, updated_at
       FROM market_listings
       ${whereClause}
       ORDER BY ${orderByClause}
@@ -257,7 +259,7 @@ export const handleGetListings = async (c) => {
 export const handleGetUserListings = async (c) => {
   try {
     const user = c.get('user')
-    const { limit, series, sort = 'newest', cursor } = c.req.query()
+    const { limit, series, game_type, sort = 'newest', cursor } = c.req.query()
 
     const limitNum = Math.max(1, Math.min(100, parseInt(limit) || 20))
 
@@ -265,8 +267,8 @@ export const handleGetUserListings = async (c) => {
     let cursorObj = null
     if (cursor) cursorObj = JSON.parse(atob(cursor))
 
-    const conditions = ['user_id = ?']
-    const params = [user.id]
+    const conditions = ['user_id = ?', 'game_type = ?']
+    const params = [user.id, game_type]
 
     const tagsQuery = c.req.queries('tag')
     if (tagsQuery && tagsQuery.length > 0) {
@@ -318,7 +320,7 @@ export const handleGetUserListings = async (c) => {
     const whereClause = `WHERE ${conditions.join(' AND ')}`
 
     const query = `
-      SELECT id, user_id, series_id, cards_id, climax_types, tags, price, shop_url, deck_code, updated_at
+      SELECT id, user_id, series_id, game_type, cards_id, climax_types, tags, price, shop_url, deck_code, updated_at
       FROM market_listings
       ${whereClause}
       ORDER BY ${orderByClause}

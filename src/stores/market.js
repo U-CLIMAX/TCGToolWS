@@ -1,15 +1,7 @@
 import { defineStore } from 'pinia'
-import { ref, shallowRef, reactive } from 'vue'
+import { ref, shallowRef, reactive, computed } from 'vue'
 import { useAuthStore } from './auth'
 import { seriesMap } from '@/maps/series-map'
-
-// Static options moved out of the store to avoid redundant reactivity
-const SERIES_OPTIONS = Object.keys(seriesMap)
-  .filter((key) => !['ws', 'wsr'].includes(seriesMap[key].id))
-  .map((key) => ({
-    title: key,
-    value: seriesMap[key].id,
-  }))
 
 const CLIMAX_TYPE_OPTIONS = [
   { name: '爆', value: 'soul', icon: '/effect-icons/soul.webp' },
@@ -35,10 +27,23 @@ const TAG_OPTIONS = [
   { label: '大套', value: 5 },
 ]
 
+const GAME_TYPE_OPTIONS = [
+  { title: 'WS', value: 'ws' },
+  { title: 'WSR', value: 'wsr' },
+]
+
 const TAG_LABELS = TAG_OPTIONS.reduce((acc, t) => {
   acc[t.value] = t.label
   return acc
 }, [])
+
+const ALL_SERIES_OPTIONS = Object.keys(seriesMap)
+  .filter((key) => !['ws', 'wsr'].includes(seriesMap[key].id))
+  .map((key) => ({
+    title: key,
+    value: seriesMap[key].id,
+    game: seriesMap[key].game,
+  }))
 
 export const useMarketStore = defineStore('market', () => {
   const listings = shallowRef([])
@@ -59,11 +64,16 @@ export const useMarketStore = defineStore('market', () => {
 
   // 篩選條件
   const filters = reactive({
+    gameType: 'ws',
     seriesId: null,
     climaxType: [],
     tag: [],
     source: 'all', // 'all' or 'mine'
     sort: 'newest', // 'newest'/ 'price_asc'/ 'price_desc'
+  })
+
+  const seriesOptions = computed(() => {
+    return ALL_SERIES_OPTIONS.filter((opt) => opt.game === filters.gameType)
   })
 
   const authStore = useAuthStore()
@@ -87,6 +97,7 @@ export const useMarketStore = defineStore('market', () => {
       const queryParams = new URLSearchParams({
         limit: pagination.limit,
         sort: filters.sort,
+        game_type: filters.gameType,
       })
 
       if (isLoadMore && pagination.cursor) {
@@ -262,6 +273,7 @@ export const useMarketStore = defineStore('market', () => {
       total: 0,
     })
     Object.assign(filters, {
+      gameType: 'ws',
       seriesId: null,
       climaxType: [],
       tag: [],
@@ -276,6 +288,8 @@ export const useMarketStore = defineStore('market', () => {
     isLoading,
     pagination,
     filters,
+    seriesOptions,
+    allSeriesOptions: ALL_SERIES_OPTIONS,
     rankingStats,
     isRankingLoading,
     fetchListings,
@@ -286,7 +300,7 @@ export const useMarketStore = defineStore('market', () => {
     deleteListing,
     reset,
     // Constants
-    seriesOptions: SERIES_OPTIONS,
+    gameTypeOptions: GAME_TYPE_OPTIONS,
     climaxTypeOptions: CLIMAX_TYPE_OPTIONS,
     tagOptions: TAG_OPTIONS,
     tagLabels: TAG_LABELS,

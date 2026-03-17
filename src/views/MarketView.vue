@@ -72,6 +72,29 @@
                 </div>
 
                 <v-row dense class="align-center">
+                  <!-- 遊戲種類選擇 -->
+                  <v-col cols="12">
+                    <v-btn-toggle
+                      v-model="localFilters.gameType"
+                      mandatory
+                      color="primary"
+                      variant="tonal"
+                      rounded="pill"
+                      density="comfortable"
+                      class="mb-2"
+                      @update:model-value="onGameTypeChange"
+                    >
+                      <v-btn
+                        v-for="opt in marketStore.gameTypeOptions"
+                        :key="opt.value"
+                        :value="opt.value"
+                        class="px-8"
+                      >
+                        {{ opt.title }}
+                      </v-btn>
+                    </v-btn-toggle>
+                  </v-col>
+
                   <!-- 排序選擇 -->
                   <v-col cols="12" sm="6">
                     <v-select
@@ -387,14 +410,21 @@ const handleEdit = (listing) => {
 
 const localFilters = ref({
   source: 'all',
+  gameType: 'ws',
   seriesId: null,
   climaxType: [],
   tag: [],
   sort: 'newest',
 })
 
+const onGameTypeChange = () => {
+  localFilters.value.seriesId = null
+  handleSearch()
+}
+
 const handleSearch = async () => {
   marketStore.filters.source = localFilters.value.source
+  marketStore.filters.gameType = localFilters.value.gameType
   marketStore.filters.seriesId = localFilters.value.seriesId
   marketStore.filters.climaxType = [...localFilters.value.climaxType]
   marketStore.filters.tag = [...localFilters.value.tag]
@@ -419,11 +449,13 @@ const handleRefresh = async () => {
 }
 
 const resetFilters = async () => {
+  localFilters.value.gameType = 'ws'
   localFilters.value.seriesId = null
   localFilters.value.climaxType = []
   localFilters.value.tag = []
   localFilters.value.sort = 'newest'
   marketStore.filters.source = localFilters.value.source
+  marketStore.filters.gameType = localFilters.value.gameType
   marketStore.filters.seriesId = localFilters.value.seriesId
   marketStore.filters.climaxType = [...localFilters.value.climaxType]
   marketStore.filters.tag = [...localFilters.value.tag]
@@ -438,11 +470,15 @@ const resetFilters = async () => {
 }
 
 const getSeriesName = (id) => {
-  return marketStore.seriesOptions.find((opt) => opt.value === id)?.title || id
+  return marketStore.allSeriesOptions.find((opt) => opt.value === id)?.title || id
 }
 
 const selectSeries = async (seriesId) => {
-  await resetFilters()
+  // Find the game type of the selected series
+  const series = marketStore.allSeriesOptions.find((s) => s.value === seriesId)
+  if (series) {
+    localFilters.value.gameType = series.game
+  }
   localFilters.value.seriesId = seriesId
   await handleSearch()
 }
@@ -464,6 +500,7 @@ const loadMore = async ({ done }) => {
 onMounted(async () => {
   // Initialize local filters from store
   localFilters.value.source = marketStore.filters.source
+  localFilters.value.gameType = marketStore.filters.gameType
   localFilters.value.seriesId = marketStore.filters.seriesId
   localFilters.value.climaxType = [...marketStore.filters.climaxType]
   localFilters.value.tag = [...marketStore.filters.tag]

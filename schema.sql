@@ -50,6 +50,7 @@ CREATE TABLE IF NOT EXISTS market_listings (
     id TEXT PRIMARY KEY,
     user_id TEXT NOT NULL,
     series_id TEXT NOT NULL,      -- 系列名
+    game_type TEXT NOT NULL DEFAULT 'ws', -- 遊戲種類 (ws, wsr)
     cards_id TEXT NOT NULL,         -- 聯動人卡號 (存成 JSON 字串)
     climax_types TEXT NOT NULL,     -- 潮種類 (存成 JSON 字串，例如 '["門", "枝"]')
     tags TEXT,                      -- Tags (存成 JSON 字串，例如 '["賽場向", "娛樂"]')

@@ -10,11 +10,34 @@
         <v-form ref="form" v-model="isValid">
           <v-container>
             <v-row dense>
+              <!-- 0. 遊戲種類選擇 -->
+              <v-col cols="12">
+                <v-btn-toggle
+                  v-model="formData.gameType"
+                  mandatory
+                  color="primary"
+                  variant="tonal"
+                  rounded="pill"
+                  density="comfortable"
+                  class="mb-4"
+                  @update:model-value="onGameTypeChange"
+                >
+                  <v-btn
+                    v-for="opt in marketStore.gameTypeOptions"
+                    :key="opt.value"
+                    :value="opt.value"
+                    class="px-8"
+                  >
+                    {{ opt.title }}
+                  </v-btn>
+                </v-btn-toggle>
+              </v-col>
+
               <!-- 1. 基本資訊 -->
               <v-col cols="12" md="6">
                 <v-autocomplete
                   v-model="formData.seriesId"
-                  :items="marketStore.seriesOptions"
+                  :items="filteredSeriesOptions"
                   item-title="title"
                   item-value="value"
                   label="系列 *"
@@ -241,6 +264,7 @@ const isLoadingCards = ref(false)
 const searchQuery = ref('')
 
 const formData = reactive({
+  gameType: 'ws',
   seriesId: null,
   price: null,
   climaxTypes: [],
@@ -248,6 +272,10 @@ const formData = reactive({
   shopUrl: '',
   deckCode: '',
   selectedCardIds: [],
+})
+
+const filteredSeriesOptions = computed(() => {
+  return marketStore.allSeriesOptions.filter((opt) => opt.game === formData.gameType)
 })
 
 const availableCoverCards = ref([])
@@ -296,12 +324,19 @@ const fetchSeriesCards = async (seriesId) => {
   }
 }
 
+const onGameTypeChange = () => {
+  formData.seriesId = null
+  formData.selectedCardIds = []
+  availableCoverCards.value = []
+}
+
 const onSeriesChange = async () => {
   formData.selectedCardIds = []
   await fetchSeriesCards(formData.seriesId)
 }
 
 const resetForm = () => {
+  formData.gameType = 'ws'
   formData.seriesId = null
   formData.price = null
   formData.climaxTypes = []
@@ -317,6 +352,7 @@ watch(dialog, async (newVal) => {
   if (newVal) {
     if (props.editingListing) {
       const l = props.editingListing
+      formData.gameType = l.game_type || 'ws'
       formData.seriesId = l.series_id
       formData.price = l.price
       formData.climaxTypes = [...l.climax_types]
@@ -385,6 +421,7 @@ const handleSubmit = async () => {
 
     const payload = {
       series_id: formData.seriesId,
+      game_type: formData.gameType,
       cards_id: selectedCardsData,
       climax_types: formData.climaxTypes,
       tags: formData.tags,
