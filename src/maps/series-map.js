@@ -988,3 +988,16 @@ export const seriesMap = {
   ...Object.fromEntries(Object.entries(wsSeriesMap).map(([k, v]) => [k, { ...v, game: 'ws' }])),
   ...Object.fromEntries(Object.entries(wsrSeriesMap).map(([k, v]) => [k, { ...v, game: 'wsr' }])),
 }
+
+export const ALL_SERIES_OPTIONS = Object.keys(seriesMap)
+  .filter((key) => !['ws', 'wsr'].includes(seriesMap[key].id))
+  .map((key) => ({
+    title: key,
+    value: seriesMap[key].id,
+    game: seriesMap[key].game,
+  }))
+
+export const GAME_TYPE_OPTIONS = [
+  { title: 'WS', value: 'ws' },
+  { title: 'WSR', value: 'wsr' },
+]

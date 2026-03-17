@@ -1,20 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, reactive, computed } from 'vue'
 import { useAuthStore } from './auth'
-import { seriesMap } from '@/maps/series-map'
-
-const ALL_SERIES_OPTIONS = Object.keys(seriesMap)
-  .filter((key) => !['ws', 'wsr'].includes(seriesMap[key].id))
-  .map((key) => ({
-    title: key,
-    value: seriesMap[key].id,
-    game: seriesMap[key].game,
-  }))
-
-const GAME_TYPE_OPTIONS = [
-  { title: 'WS', value: 'ws' },
-  { title: 'WSR', value: 'wsr' },
-]
+import { ALL_SERIES_OPTIONS } from '@/maps/series-map'
 
 export const useDecksGalleryStore = defineStore('decksGallery', () => {
   const authStore = useAuthStore()
@@ -171,7 +158,6 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
     pagination,
     seriesOptions,
     allSeriesOptions: ALL_SERIES_OPTIONS,
-    gameTypeOptions: GAME_TYPE_OPTIONS,
     fetchDecks,
     fetchUserDeckCount,
     deleteDeck,

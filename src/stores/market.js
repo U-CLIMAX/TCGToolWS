@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, shallowRef, reactive, computed } from 'vue'
 import { useAuthStore } from './auth'
-import { seriesMap } from '@/maps/series-map'
+import { ALL_SERIES_OPTIONS } from '@/maps/series-map'
 
 const CLIMAX_TYPE_OPTIONS = [
   { name: '爆', value: 'soul', icon: '/effect-icons/soul.webp' },
@@ -27,23 +27,10 @@ const TAG_OPTIONS = [
   { label: '大套', value: 5 },
 ]
 
-const GAME_TYPE_OPTIONS = [
-  { title: 'WS', value: 'ws' },
-  { title: 'WSR', value: 'wsr' },
-]
-
 const TAG_LABELS = TAG_OPTIONS.reduce((acc, t) => {
   acc[t.value] = t.label
   return acc
 }, [])
-
-const ALL_SERIES_OPTIONS = Object.keys(seriesMap)
-  .filter((key) => !['ws', 'wsr'].includes(seriesMap[key].id))
-  .map((key) => ({
-    title: key,
-    value: seriesMap[key].id,
-    game: seriesMap[key].game,
-  }))
 
 export const useMarketStore = defineStore('market', () => {
   const listings = shallowRef([])
@@ -300,7 +287,6 @@ export const useMarketStore = defineStore('market', () => {
     deleteListing,
     reset,
     // Constants
-    gameTypeOptions: GAME_TYPE_OPTIONS,
     climaxTypeOptions: CLIMAX_TYPE_OPTIONS,
     tagOptions: TAG_OPTIONS,
     tagLabels: TAG_LABELS,
