@@ -4,6 +4,7 @@
     :model-value="modelValue"
     :color="color"
     :slider-color="sliderColor"
+    slider-transition="shift"
     inset
     :inset-radius="100"
     class="v-tabs-inset-custom h-auto text-grey"
