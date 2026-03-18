@@ -108,7 +108,7 @@ export const handleInitiatePayment = async (c) => {
       .run()
 
     // 2. 構建愛發電 URL
-    const afdianUrl = `https://afdian.com/order/create?plan_id=${planId}&custom_order_id=${customOrderId}`
+    const afdianUrl = `https://ifdian.net/order/create?plan_id=${planId}&custom_order_id=${customOrderId}`
 
     // 3. 返回 URL 給前端
     return c.json({
