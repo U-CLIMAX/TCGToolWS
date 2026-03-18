@@ -3,7 +3,7 @@
     <v-infinite-scroll
       ref="infiniteScrollRef"
       :key="scrollKey"
-      class="h-100 themed-scrollbar"
+      class="h-100 themed-scrollbar py-4"
       :style="{ '--sb-margin-top': '27px' }"
       :onLoad="loadMore"
       :empty-text="''"

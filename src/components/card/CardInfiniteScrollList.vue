@@ -12,7 +12,7 @@
   <v-infinite-scroll
     v-else
     ref="infiniteScrollRef"
-    class="overflow-x-hidden"
+    class="overflow-x-hidden py-4"
     :class="{ 'hide-loader': shouldHideLoader }"
     @load="load"
     empty-text=""

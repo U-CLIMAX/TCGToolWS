@@ -5,7 +5,7 @@
       ref="infiniteScrollRef"
       @load="load"
       empty-text=""
-      class="h-100 themed-scrollbar"
+      class="h-100 themed-scrollbar py-4"
       :style="{ '--sb-margin-top': '27px' }"
     >
       <v-container class="pt-0" :class="{ 'mt-3': smAndUp }">

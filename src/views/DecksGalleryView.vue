@@ -24,7 +24,7 @@
     <v-infinite-scroll
       ref="infiniteScrollRef"
       :key="scrollKey"
-      class="themed-scrollbar"
+      class="themed-scrollbar py-4"
       :style="scrollStyle"
       :onLoad="loadMore"
       :empty-text="''"
