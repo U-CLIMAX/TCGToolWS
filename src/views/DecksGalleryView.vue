@@ -52,53 +52,35 @@
                     </div>
                   </div>
 
-                  <v-btn-toggle
+                  <InsetTabs
                     v-model="localFilters.source"
-                    mandatory
+                    :options="sourceOptions"
                     color="primary"
-                    variant="tonal"
-                    rounded="pill"
-                    density="compact"
-                    class="w-100 w-md-auto"
                     @update:model-value="handleSearch"
                   >
-                    <v-btn
-                      v-for="opt in sourceOptions"
-                      :key="opt.value"
-                      :value="opt.value"
-                      class="flex-grow-1 px-sm-6"
-                      :prepend-icon="opt.value === 'mine' ? 'mdi-account-star' : 'mdi-earth'"
-                    >
-                      {{ opt.title }}
-                    </v-btn>
-                  </v-btn-toggle>
+                    <template #tab-item="{ option }">
+                      <v-icon
+                        :icon="option.value === 'mine' ? 'mdi-account-star' : 'mdi-earth'"
+                        start
+                      ></v-icon>
+                      {{ option.title }}
+                    </template>
+                  </InsetTabs>
                 </div>
 
                 <v-row dense class="align-center">
                   <!-- 遊戲種類選擇 -->
-                  <v-col cols="12" sm="3" md="2">
-                    <v-btn-toggle
+                  <v-col cols="12" class="mb-2">
+                    <InsetTabs
                       v-model="localFilters.gameType"
-                      mandatory
+                      :options="GAME_TYPE_OPTIONS"
                       :color="localFilters.gameType === 'ws' ? 'primary' : 'ws-rose'"
-                      variant="tonal"
-                      rounded="pill"
-                      class="w-100"
                       @update:model-value="onGameTypeChange"
-                    >
-                      <v-btn
-                        v-for="opt in GAME_TYPE_OPTIONS"
-                        :key="opt.value"
-                        :value="opt.value"
-                        class="flex-grow-1"
-                      >
-                        {{ opt.title }}
-                      </v-btn>
-                    </v-btn-toggle>
+                    />
                   </v-col>
 
                   <!-- 系列選擇 -->
-                  <v-col cols="12" sm="3" md="4">
+                  <v-col cols="12" sm="6">
                     <v-autocomplete
                       v-model="localFilters.seriesId"
                       :items="galleryStore.seriesOptions"
@@ -116,7 +98,7 @@
                   </v-col>
 
                   <!-- 排序選擇 -->
-                  <v-col cols="12" sm="3" md="3">
+                  <v-col cols="12" sm="3">
                     <v-select
                       v-model="localFilters.sort"
                       :items="sortOptions"
@@ -133,7 +115,7 @@
                   </v-col>
 
                   <!-- 篩選操作按鈕 -->
-                  <v-col cols="12" sm="3" md="3" class="d-flex ga-2">
+                  <v-col cols="12" sm="3" class="d-flex ga-2">
                     <v-btn
                       variant="tonal"
                       rounded="pill"
@@ -215,6 +197,7 @@ import { useAuthStore } from '@/stores/auth'
 import LazyCardWrapper from '@/components/common/LazyCardWrapper.vue'
 import DecksGalleryItem from '@/components/deck/DecksGalleryItem.vue'
 import ShareDeckDetailView from '@/views/ShareDeckDetailView.vue'
+import InsetTabs from '@/components/ui/InsetTabs.vue'
 import BackToTopButton from '@/components/ui/BackToTopButton.vue'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useDisplay } from 'vuetify'

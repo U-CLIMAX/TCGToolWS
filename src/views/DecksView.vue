@@ -22,31 +22,19 @@
           </div>
 
           <!-- 搜尋與篩選區域 -->
-          <v-row dense class="mb-2">
+          <v-row dense>
             <!-- 0. 遊戲種類選擇 -->
-            <v-col cols="12">
-              <v-btn-toggle
+            <v-col cols="12" sm="5">
+              <InsetTabs
                 v-model="selectedGameType"
-                mandatory
+                :options="GAME_TYPE_OPTIONS"
                 :color="selectedGameType === 'ws' ? 'primary' : 'ws-rose'"
-                variant="tonal"
-                rounded="pill"
-                density="comfortable"
-                class="mb-2"
-                :class="{ 'w-100': !smAndUp }"
                 @update:model-value="onGameTypeChange"
-              >
-                <v-btn
-                  v-for="opt in GAME_TYPE_OPTIONS"
-                  :key="opt.value"
-                  :value="opt.value"
-                  class="px-8 flex-grow-1"
-                >
-                  {{ opt.title }}
-                </v-btn>
-              </v-btn-toggle>
+              />
             </v-col>
+          </v-row>
 
+          <v-row dense class="mb-2">
             <v-col cols="12" sm="7">
               <v-text-field
                 v-model="deckNameSearchTerm"
@@ -170,6 +158,7 @@ import { useDeckStore } from '@/stores/deck'
 import { useAuthStore } from '@/stores/auth'
 import DeckCard from '@/components/deck/DeckCard.vue'
 import LazyCardWrapper from '@/components/common/LazyCardWrapper.vue'
+import InsetTabs from '@/components/ui/InsetTabs.vue'
 import { useUIStore } from '@/stores/ui'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { debounceRef } from '@/composables/useDebounceRef'

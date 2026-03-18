@@ -35,26 +35,20 @@
                   </div>
 
                   <div class="d-flex align-center ga-2 w-100 w-md-auto">
-                    <v-btn-toggle
+                    <InsetTabs
                       v-model="localFilters.source"
-                      mandatory
+                      :options="sourceOptions"
                       color="primary"
-                      variant="tonal"
-                      rounded="pill"
-                      density="compact"
-                      class="flex-grow-1 overflow-hidden"
                       @update:model-value="handleSearch"
                     >
-                      <v-btn
-                        v-for="opt in sourceOptions"
-                        :key="opt.value"
-                        :value="opt.value"
-                        class="px-sm-6"
-                        :prepend-icon="opt.value === 'mine' ? 'mdi-store' : 'mdi-shopping'"
-                      >
-                        {{ opt.title }}
-                      </v-btn>
-                    </v-btn-toggle>
+                      <template #tab-item="{ option }">
+                        <v-icon
+                          :icon="option.value === 'mine' ? 'mdi-store' : 'mdi-shopping'"
+                          start
+                        ></v-icon>
+                        {{ option.title }}
+                      </template>
+                    </InsetTabs>
 
                     <v-btn
                       v-if="authStore.isAuthenticated"
@@ -74,26 +68,13 @@
                 <v-row dense class="align-center">
                   <!-- 遊戲種類選擇 -->
                   <v-col cols="12">
-                    <v-btn-toggle
+                    <InsetTabs
                       v-model="localFilters.gameType"
-                      mandatory
+                      :options="GAME_TYPE_OPTIONS"
                       :color="localFilters.gameType === 'ws' ? 'primary' : 'ws-rose'"
-                      variant="tonal"
-                      rounded="pill"
-                      density="comfortable"
                       class="mb-2"
-                      :class="{ 'w-100': !smAndUp }"
                       @update:model-value="onGameTypeChange"
-                    >
-                      <v-btn
-                        v-for="opt in GAME_TYPE_OPTIONS"
-                        :key="opt.value"
-                        :value="opt.value"
-                        class="px-8 flex-grow-1"
-                      >
-                        {{ opt.title }}
-                      </v-btn>
-                    </v-btn-toggle>
+                    />
                   </v-col>
 
                   <!-- 排序選擇 -->
@@ -358,6 +339,7 @@ import { useAuthStore } from '@/stores/auth'
 import LazyCardWrapper from '@/components/common/LazyCardWrapper.vue'
 import MarketCreateDialog from '@/components/market/MarketCreateDialog.vue'
 import MarketListingItem from '@/components/market/MarketListingItem.vue'
+import InsetTabs from '@/components/ui/InsetTabs.vue'
 import BackToTopButton from '@/components/ui/BackToTopButton.vue'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { GAME_TYPE_OPTIONS } from '@/maps/series-map'
