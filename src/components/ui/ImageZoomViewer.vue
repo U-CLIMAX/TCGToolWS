@@ -8,8 +8,20 @@
   >
     <!-- Mobile Layout -->
     <v-card v-if="!smAndUp" color="black" elevation="0" class="mobile-viewer">
-      <div class="mobile-viewer__image-container">
-        <v-img :src="images[currentImageIndex]" contain class="mobile-viewer__image"></v-img>
+      <div
+        ref="containerRef"
+        class="mobile-viewer__image-container"
+        @touchstart="handleTouchStart"
+        @touchmove="handleTouchMove"
+        @touchend="handleTouchEnd"
+        style="touch-action: none"
+      >
+        <v-img
+          :src="images[currentImageIndex]"
+          contain
+          class="mobile-viewer__image"
+          :style="imageTransformStyle"
+        ></v-img>
       </div>
       <div class="mobile-viewer__controls">
         <v-btn v-if="images.length > 1" icon variant="text" @click.stop="prevImage">
@@ -61,7 +73,7 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted, onUnmounted } from 'vue'
+import { ref, watch, computed, onMounted, onUnmounted } from 'vue'
 import { useDisplay } from 'vuetify'
 
 const props = defineProps({
@@ -86,6 +98,51 @@ const { smAndUp } = useDisplay()
 
 const internalDialog = ref(false)
 const currentImageIndex = ref(0)
+const containerRef = ref(null)
+
+// 縮放與平移狀態
+const scale = ref(1)
+const translateX = ref(0)
+const translateY = ref(0)
+const lastScale = ref(1)
+const lastTranslateX = ref(0)
+const lastTranslateY = ref(0)
+const startDistance = ref(0)
+const startTouchX = ref(0)
+const startTouchY = ref(0)
+const startMidX = ref(0)
+const startMidY = ref(0)
+const isPinching = ref(false)
+const isDragging = ref(false)
+
+const imageTransformStyle = computed(() => ({
+  transform: `translate(${translateX.value}px, ${translateY.value}px) scale(${scale.value})`,
+  transition: isPinching.value || isDragging.value ? 'none' : 'transform 0.2s ease-out',
+}))
+
+// 限制位移邊界
+const limitTransform = (x, y, s) => {
+  if (!containerRef.value) return { x, y }
+  const { width, height } = containerRef.value.getBoundingClientRect()
+  
+  const maxX = Math.max(0, (width * s - width) / 2)
+  const maxY = Math.max(0, (height * s - height) / 4)
+  
+  return {
+    x: Math.min(Math.max(-maxX, x), maxX),
+    y: Math.min(Math.max(-maxY, y), maxY)
+  }
+}
+
+// 重置縮放
+const resetZoom = () => {
+  scale.value = 1
+  translateX.value = 0
+  translateY.value = 0
+  lastScale.value = 1
+  lastTranslateX.value = 0
+  lastTranslateY.value = 0
+}
 
 // 同步 v-model
 watch(
@@ -94,6 +151,7 @@ watch(
     internalDialog.value = newVal
     if (newVal) {
       currentImageIndex.value = props.initialIndex
+      resetZoom()
       emit('dialog-opened')
     }
   }
@@ -102,13 +160,91 @@ watch(
 watch(internalDialog, (newVal) => {
   emit('update:modelValue', newVal)
   if (!newVal) {
+    resetZoom()
     emit('dialog-closed')
   }
 })
 
+// 當切換圖片時重置縮放
+watch(currentImageIndex, resetZoom)
+
 // 關閉對話框
 const closeDialog = () => {
   internalDialog.value = false
+}
+
+// 觸摸事件處理
+const getDistance = (touches) => {
+  return Math.hypot(
+    touches[0].clientX - touches[1].clientX,
+    touches[0].clientY - touches[1].clientY
+  )
+}
+
+const getMidpoint = (touches) => {
+  if (!containerRef.value) return { x: 0, y: 0 }
+  const rect = containerRef.value.getBoundingClientRect()
+  const cx = (touches[0].clientX + touches[1].clientX) / 2
+  const cy = (touches[0].clientY + touches[1].clientY) / 2
+  // 返回相對於容器中心的座標
+  return {
+    x: cx - (rect.left + rect.width / 2),
+    y: cy - (rect.top + rect.height / 2)
+  }
+}
+
+const handleTouchStart = (e) => {
+  if (smAndUp.value) return
+
+  if (e.touches.length === 2) {
+    isPinching.value = true
+    isDragging.value = false
+    startDistance.value = getDistance(e.touches)
+    const mid = getMidpoint(e.touches)
+    startMidX.value = mid.x
+    startMidY.value = mid.y
+    lastScale.value = scale.value
+    lastTranslateX.value = translateX.value
+    lastTranslateY.value = translateY.value
+  } else if (e.touches.length === 1) {
+    isDragging.value = true
+    startTouchX.value = e.touches[0].clientX - translateX.value
+    startTouchY.value = e.touches[0].clientY - translateY.value
+  }
+}
+
+const handleTouchMove = (e) => {
+  if (smAndUp.value) return
+
+  if (isPinching.value && e.touches.length === 2) {
+    const currentDistance = getDistance(e.touches)
+    const newScale = Math.min(Math.max(1, (currentDistance / startDistance.value) * lastScale.value), 5)
+    
+    // 計算縮放中心位移（兩根手指的中點）
+    // 公式: tx_new = mid_x - (mid_x - tx_old) * (s_new / s_old)
+    const mid = getMidpoint(e.touches)
+    const newTranslateX = mid.x - (startMidX.value - lastTranslateX.value) * (newScale / lastScale.value)
+    const newTranslateY = mid.y - (startMidY.value - lastTranslateY.value) * (newScale / lastScale.value)
+    
+    const limited = limitTransform(newTranslateX, newTranslateY, newScale)
+    scale.value = newScale
+    translateX.value = limited.x
+    translateY.value = limited.y
+  } else if (isDragging.value && e.touches.length === 1 && scale.value > 1) {
+    const newX = e.touches[0].clientX - startTouchX.value
+    const newY = e.touches[0].clientY - startTouchY.value
+    const limited = limitTransform(newX, newY, scale.value)
+    translateX.value = limited.x
+    translateY.value = limited.y
+  }
+}
+
+const handleTouchEnd = () => {
+  isPinching.value = false
+  isDragging.value = false
+  if (scale.value < 1.05) {
+    resetZoom()
+  }
 }
 
 // 上一張圖片
@@ -210,6 +346,7 @@ onUnmounted(() => {
   height: 100%;
   width: 100%;
   border-radius: 0;
+  touch-action: none;
 }
 
 .mobile-viewer__image-container {
