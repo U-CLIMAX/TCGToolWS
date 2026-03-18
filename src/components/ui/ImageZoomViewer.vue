@@ -14,7 +14,7 @@
         @touchstart="handleTouchStart"
         @touchmove="handleTouchMove"
         @touchend="handleTouchEnd"
-        style="touch-action: none"
+        :style="{ touchAction: canRunCustomZoom ? 'none' : 'auto' }"
       >
         <v-img
           :src="images[currentImageIndex]"
@@ -100,6 +100,22 @@ const internalDialog = ref(false)
 const currentImageIndex = ref(0)
 const containerRef = ref(null)
 
+// 判斷是否處於手機全螢幕佈局
+const isMobileFullscreen = computed(() => !smAndUp.value)
+
+// 判斷是否應啟用自定義縮放邏輯
+// 必須在手機全螢幕佈局下，且「瀏覽器層級」沒有被明顯放大 (VisualViewport scale 接近 1)
+const canRunCustomZoom = computed(() => {
+  if (!isMobileFullscreen.value) return false
+  
+  // 如果 VisualViewport scale > 1.01，將控制權交還給瀏覽器。
+  if (window.visualViewport && window.visualViewport.scale > 1.01) {
+    return false
+  }
+  
+  return true
+})
+
 // 縮放與平移狀態
 const scale = ref(1)
 const translateX = ref(0)
@@ -122,7 +138,7 @@ const imageTransformStyle = computed(() => ({
 
 // 限制位移邊界
 const limitTransform = (x, y, s) => {
-  if (!containerRef.value) return { x, y }
+  if (!containerRef.value || !canRunCustomZoom.value) return { x, y }
   const { width, height } = containerRef.value.getBoundingClientRect()
   
   const maxX = Math.max(0, (width * s - width) / 2)
@@ -194,7 +210,7 @@ const getMidpoint = (touches) => {
 }
 
 const handleTouchStart = (e) => {
-  if (smAndUp.value) return
+  if (!canRunCustomZoom.value) return
 
   if (e.touches.length === 2) {
     isPinching.value = true
@@ -214,7 +230,7 @@ const handleTouchStart = (e) => {
 }
 
 const handleTouchMove = (e) => {
-  if (smAndUp.value) return
+  if (!canRunCustomZoom.value) return
 
   if (isPinching.value && e.touches.length === 2) {
     const currentDistance = getDistance(e.touches)
@@ -240,6 +256,8 @@ const handleTouchMove = (e) => {
 }
 
 const handleTouchEnd = () => {
+  if (!canRunCustomZoom.value) return
+
   isPinching.value = false
   isDragging.value = false
   if (scale.value < 1.05) {
@@ -346,7 +364,6 @@ onUnmounted(() => {
   height: 100%;
   width: 100%;
   border-radius: 0;
-  touch-action: none;
 }
 
 .mobile-viewer__image-container {
