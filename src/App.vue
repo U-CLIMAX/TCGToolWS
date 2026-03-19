@@ -330,7 +330,15 @@
       </template>
     </v-bottom-navigation>
 
-    <v-snackbar v-model="show" :color="color" timeout="2000" location="top" opacity="0.8" eager>
+    <v-snackbar
+      v-model="show"
+      :color="color"
+      timeout="2000"
+      location="top"
+      :style="{ opacity: 0.85 }"
+      rounded="pill"
+      eager
+    >
       {{ text }}
     </v-snackbar>
 
