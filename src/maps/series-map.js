@@ -897,7 +897,7 @@ const wsSeriesMap = {
   '葬送的芙莉莲': {
     id: 'sfn',
     prefixes: ['SFN'],
-    latestReleaseDate: '2024-04-12',
+    latestReleaseDate: '2026-03-20',
   },
   'Disney 镜之守卫者': {
     id: 'mrp',
