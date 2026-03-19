@@ -118,7 +118,7 @@
         </v-card>
       </v-dialog>
 
-      <div v-if="initialLoadingComplete && displayedDecks.length > 0" class="px-3 mt-3">
+      <div v-if="initialLoadingComplete" class="px-3 mt-3">
         <div class="group-header">
           <div class="d-flex align-center ga-2">
             <v-icon :icon="DeckIcon" size="24"></v-icon>
@@ -133,19 +133,22 @@
         </div>
       </div>
 
-      <transition-group
-        v-if="initialLoadingComplete"
-        tag="div"
-        class="v-row ma-1 mt-0"
-        name="deck-fade"
-        appear
-      >
-        <v-col v-for="item in displayedDecks" :key="item.key" class="pa-2" cols="4" sm="2">
-          <LazyCardWrapper>
-            <DeckCard :deck="item.deck" :deckKey="item.key" :is-editing="item.isEditing" />
-          </LazyCardWrapper>
-        </v-col>
-      </transition-group>
+      <template v-if="initialLoadingComplete">
+        <transition-group
+          v-if="displayedDecks.length > 0"
+          tag="div"
+          class="v-row ma-1 mt-0"
+          name="deck-fade"
+          appear
+        >
+          <v-col v-for="item in displayedDecks" :key="item.key" class="pa-2" cols="4" sm="2">
+            <LazyCardWrapper>
+              <DeckCard :deck="item.deck" :deckKey="item.key" :is-editing="item.isEditing" />
+            </LazyCardWrapper>
+          </v-col>
+        </transition-group>
+        <div v-else class="text-center text-medium-emphasis mt-10">暂无卡组</div>
+      </template>
     </v-container>
   </div>
 </template>
