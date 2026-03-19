@@ -276,11 +276,9 @@ const handleSearch = async () => {
 }
 
 const resetFilters = async () => {
-  localFilters.value.gameType = 'ws'
   localFilters.value.seriesId = null
   localFilters.value.sort = 'newest'
   galleryStore.filters.source = localFilters.value.source
-  galleryStore.filters.gameType = localFilters.value.gameType
   galleryStore.filters.seriesId = localFilters.value.seriesId
   galleryStore.filters.sort = localFilters.value.sort
 

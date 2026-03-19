@@ -433,13 +433,11 @@ const handleRefresh = async () => {
 }
 
 const resetFilters = async () => {
-  localFilters.value.gameType = 'ws'
   localFilters.value.seriesId = null
   localFilters.value.climaxType = []
   localFilters.value.tag = []
   localFilters.value.sort = 'newest'
   marketStore.filters.source = localFilters.value.source
-  marketStore.filters.gameType = localFilters.value.gameType
   marketStore.filters.seriesId = localFilters.value.seriesId
   marketStore.filters.climaxType = [...localFilters.value.climaxType]
   marketStore.filters.tag = [...localFilters.value.tag]
