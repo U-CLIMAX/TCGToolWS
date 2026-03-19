@@ -145,7 +145,7 @@
       </v-container>
 
       <v-container class="pt-4 px-3" :class="{ 'mb-10': !smAndUp }">
-        <div v-if="galleryStore.decks.length > 0 && galleryStore.filters.source === 'mine'">
+        <div v-if="galleryStore.filters.source === 'mine'">
           <div class="group-header">
             <div class="d-flex align-center ga-2">
               <v-icon :icon="DeckGalleryIcon" size="24"></v-icon>

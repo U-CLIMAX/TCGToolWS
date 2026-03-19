@@ -280,13 +280,7 @@
       </v-container>
 
       <v-container class="pt-4 px-3" :class="{ 'mb-10': !smAndUp }">
-        <div
-          v-if="
-            authStore.isAuthenticated &&
-            marketStore.filters.source === 'mine' &&
-            marketStore.listings.length > 0
-          "
-        >
+        <div v-if="authStore.isAuthenticated && marketStore.filters.source === 'mine'">
           <div class="group-header">
             <div class="d-flex align-center ga-2">
               <v-icon icon="mdi-package-check" size="24"></v-icon>
