@@ -8,7 +8,7 @@
       class="h-100 themed-scrollbar py-4"
       :style="{ '--sb-margin-top': '27px' }"
     >
-      <v-container class="pt-0" :class="{ 'mt-3': smAndUp }">
+      <v-container class="py-0" :class="{ 'mt-3': smAndUp }">
         <v-sheet
           v-if="recentlyViewed.length > 0"
           :color="!hasBackgroundImage ? undefined : 'transparent'"
@@ -16,7 +16,7 @@
           elevation="2"
           :class="{
             'glass-card': hasBackgroundImage,
-            'pt-2': !smAndDown,
+            'pt-2 mb-2': !smAndDown,
             'pr-2 mx-1': smAndDown,
           }"
         >
@@ -29,14 +29,13 @@
               ]"
             >
               <v-icon
-                :color="isLightWithBg ? 'white' : ''"
+                class="text-medium-emphasis"
                 :class="smAndDown ? 'mb-1' : 'mr-2'"
                 icon="mdi-history"
                 size="small"
               />
               <div
-                class="text-subtitle-2 font-weight-bold"
-                :class="isLightWithBg ? 'text-white' : ''"
+                class="text-subtitle-2 text-medium-emphasis font-weight-bold"
                 :style="
                   smAndDown
                     ? {
@@ -71,48 +70,40 @@
       </v-container>
 
       <v-container class="pt-0" :class="{ 'px-10 mb-12': !smAndUp }">
-        <div class="d-flex justify-center mt-4">
-          <v-tabs
+        <div class="d-flex flex-column flex-sm-row align-center mt-4 mb-4">
+          <InsetTabs
             v-model="seriesGameFilter"
-            class="w-fit d-inline-flex"
-            :class="{ 'glass rounded-pill px-4 border-e-md border-s-md': hasBackgroundImage }"
-            density="compact"
+            :options="GAME_TYPE_OPTIONS"
+            :color="seriesGameFilter === 'ws' ? 'primary' : 'ws-rose'"
+            class="mb-4 mb-sm-0"
+            @update:model-value="onGameTypeChange"
           >
-            <v-tab value="ws" class="font-weight-bold"> WS </v-tab>
-            <v-tab value="wsr" class="font-weight-bold" color="ws-rose"> WSR </v-tab>
-          </v-tabs>
+            <template #tab-item="{ option }">
+              <span class="font-weight-bold">{{ option.title }}</span>
+            </template>
+          </InsetTabs>
+
+          <div class="flex-grow-1 d-flex justify-end w-100 w-sm-auto">
+            <v-btn
+              v-for="field in [
+                { label: 'Date', value: 'date' },
+                { label: 'Name', value: 'name' },
+              ]"
+              :key="field.value"
+              density="compact"
+              class="rounded-pill px-4 mx-1"
+              :ripple="false"
+              @click="toggleSort(field.value)"
+            >
+              <v-icon v-if="seriesSortBy === field.value" size="large">
+                {{ seriesSortAscending ? 'mdi-triangle-small-up' : 'mdi-triangle-small-down' }}
+              </v-icon>
+              {{ field.label }}
+            </v-btn>
+          </div>
         </div>
 
-        <v-row justify="space-between" align="center" class="px-1 mt-2 mb-4">
-          <v-btn-toggle
-            v-model="seriesSortBy"
-            mandatory
-            density="compact"
-            :variant="hasBackgroundImage ? 'tonal' : 'text'"
-            :class="{ glass: hasBackgroundImage }"
-          >
-            <v-btn value="date" size="small">
-              <v-icon start>mdi-calendar</v-icon>
-              Date
-            </v-btn>
-            <v-btn value="name" size="small">
-              <v-icon start>mdi-sort-alphabetical-variant</v-icon>
-              Name
-            </v-btn>
-          </v-btn-toggle>
-
-          <v-btn
-            @click="seriesSortAscending = !seriesSortAscending"
-            variant="tonal"
-            class="ml-4"
-            :class="{ glass: hasBackgroundImage }"
-          >
-            <v-icon start>{{ seriesSortAscending ? 'mdi-arrow-up' : 'mdi-arrow-down' }}</v-icon>
-            {{ seriesSortAscending ? 'Asc' : 'Desc' }}
-          </v-btn>
-        </v-row>
-
-        <v-row>
+        <v-row class="ma-0">
           <v-col
             v-for="item in displayedSeries"
             :key="item.data.id"
@@ -141,16 +132,17 @@
 
 <script setup>
 import { ref, computed, watch, nextTick, onMounted } from 'vue'
-import { useTheme, useDisplay } from 'vuetify'
+import { useDisplay } from 'vuetify'
 import { storeToRefs } from 'pinia'
 import { useUIStore } from '@/stores/ui'
 import { useRecentStore } from '@/stores/recent'
 import { useInfiniteScrollState } from '@/composables/useInfiniteScrollState.js'
-import { seriesMap } from '@/maps/series-map.js'
+import { seriesMap, GAME_TYPE_OPTIONS } from '@/maps/series-map.js'
 import SeriesCard from '@/components/card/SeriesCard.vue'
 import LazyCardWrapper from '@/components/common/LazyCardWrapper.vue'
 import FloatingSearch from '@/components/ui/FloatingSearchBar.vue'
 import BackToTopButton from '@/components/ui/BackToTopButton.vue'
+import InsetTabs from '@/components/ui/InsetTabs.vue'
 import collator from '@/utils/collator.js'
 
 const itemsPerLoad = 24
@@ -167,6 +159,14 @@ const uiStore = useUIStore()
 const { seriesSearchTerm, seriesSortBy, seriesSortAscending, seriesGameFilter } =
   storeToRefs(uiStore)
 
+const toggleSort = (field) => {
+  if (seriesSortBy.value === field) {
+    seriesSortAscending.value = !seriesSortAscending.value
+  } else {
+    seriesSortBy.value = field
+  }
+}
+
 const recentStore = useRecentStore()
 const { seriesIds } = storeToRefs(recentStore)
 
@@ -179,12 +179,8 @@ const recentlyViewed = computed(() => {
     .filter(Boolean)
 })
 
-const theme = useTheme()
 const { smAndDown, smAndUp } = useDisplay()
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
-const isLightWithBg = computed(() => {
-  return hasBackgroundImage.value && theme.global.name.value === 'light'
-})
 
 const filteredSeries = computed(() => {
   const term = seriesSearchTerm.value.trim().toLowerCase()

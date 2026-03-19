@@ -9,7 +9,7 @@
       ]"
       :to="{ name: 'SeriesDetail', params: { seriesId: seriesData.id } }"
       variant="flat"
-      rounded="3md"
+      rounded="2lg"
       :elevation="isHovering ? 2 : 0"
     >
       <div class="image-wrapper position-relative overflow-hidden rounded-3md mb-2">

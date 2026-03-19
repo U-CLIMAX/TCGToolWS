@@ -7,7 +7,7 @@
     slider-transition="shift"
     inset
     :inset-radius="100"
-    class="v-tabs-inset-custom h-auto text-grey"
+    class="v-tabs-inset-custom h-auto text-medium-emphasis"
     :class="themeClass"
     :density="density"
     @update:model-value="$emit('update:modelValue', $event)"
