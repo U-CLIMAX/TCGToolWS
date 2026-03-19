@@ -18,7 +18,7 @@
     "db:init": "npx wrangler d1 execute ws-account-db --local --file=./schema.sql"
   },
   "dependencies": {
-    "@zumer/snapdom": "^2.0.1",
+    "@zumer/snapdom": "^2.5.0",
     "brotli-wasm": "^3.0.1",
     "clipboard-polyfill": "^4.1.1",
     "comlink": "^4.4.2",
@@ -28,7 +28,7 @@
     "flexsearch": "^0.8.212",
     "hono": "^4.12.7",
     "jsoncrush": "^1.1.8",
-    "jspdf": "^4.2.0",
+    "jspdf": "^4.2.1",
     "jwt-decode": "^4.0.0",
     "lean-qr": "^2.6.0",
     "localforage": "^1.10.0",
