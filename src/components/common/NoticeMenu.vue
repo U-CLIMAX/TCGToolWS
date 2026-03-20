@@ -85,9 +85,9 @@
   <v-dialog v-model="showDetailDialog" max-width="500">
     <v-card v-if="selectedNotice" class="rounded-2lg">
       <v-card-title class="d-flex align-center pt-4 px-6">
-        <v-icon v-if="selectedNotice.is_important" color="warning" class="mr-2"
-          >mdi-alert-circle</v-icon
-        >
+        <v-icon v-if="selectedNotice.is_important" color="warning" class="mr-2" size="x-small">
+          mdi-alert-circle
+        </v-icon>
         <span class="text-h6 font-weight-bold">{{ selectedNotice.title }}</span>
       </v-card-title>
       <v-card-subtitle class="px-6 pb-2">

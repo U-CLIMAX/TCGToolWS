@@ -3,7 +3,7 @@
     <HomeBackground v-show="isHomeRoute" />
 
     <v-app-bar
-      v-if="smAndUp"
+      v-if="!smAndDown"
       class="floating-bar"
       :class="{ 'glass-header': !isHomeRoute && hasBackgroundImage }"
       scroll-behavior="elevate"
@@ -12,7 +12,7 @@
       :elevation="isHomeRoute ? 0 : 3"
       :color="isHomeRoute ? 'transparent' : undefined"
     >
-      <v-app-bar-title v-if="!smAndDown">
+      <v-app-bar-title>
         <v-img
           :src="titleImg"
           alt="UClimax for ws"
@@ -188,7 +188,7 @@
     </v-main>
 
     <v-bottom-navigation
-      v-if="!smAndUp"
+      v-if="smAndDown"
       class="floating-bottom-bar"
       :class="{ 'glass-header': !isHomeRoute && hasBackgroundImage }"
       :height="50"
