@@ -1,0 +1,163 @@
+{
+  "STG/SZ08-P01": {
+    "name": "“Labmem Girls”牧濑红莉栖",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["Labmem", "泳装"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【自】 此卡被从手牌放置入舞台时，你公开自己卡组顶的1张卡。若该卡为等级小于等于0的角色卡，则将此卡放置入库存区。（公开的卡片放回原处）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-P01",
+        "rarity": "PR"
+      },
+      {
+        "id": "STG/SZ08-P01S",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-P02": {
+    "name": "“Labmem Girls”菲利丝·喵喵",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5500,
+    "cost": 1,
+    "trait": ["Labmem", "泳装"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【永】 若存在大于等于2张其他的你的持有《Labmem》特征的角色卡，则此卡的力量＋2000。<br>【自】［①］ 再演步骤开始之际，若不存在其他的你的前列的处于【休息】状态的角色卡，则你可以支付费用。若如此做，则【休息】此卡。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-P02",
+        "rarity": "PR"
+      },
+      {
+        "id": "STG/SZ08-P02S",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-P03": {
+    "name": "“Labmem Girls”漆原琉华",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6500,
+    "cost": 1,
+    "trait": ["Labmem", "泳装"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【永】 经验 若你的等级区存在「“记忆的碎片”漆原琉华」，则此卡的力量＋2500。<br>【永】 经验 若你的等级区存在「“作为恋人…”漆原琉华」，则此卡的力量＋500，魂＋1。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-P03",
+        "rarity": "PR"
+      },
+      {
+        "id": "STG/SZ08-P03S",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-P04": {
+    "name": "“Labmem Girls”椎名真由理",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 8000,
+    "cost": 2,
+    "trait": ["Labmem", "泳装"],
+    "color": "黄色",
+    "soul": "2",
+    "effect": "【自】 此能力1回合至多发动1次。你的卡片被放置入等级区时，该回合中，此卡的力量＋Ｘ。Ｘ为你的持有《Labmem》特征的角色卡的张数×500。<br>【自】 再演 ［将1张手牌中持有《Labmem》特征的角色卡放置入休息室］ （此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则将此卡以【休息】状态放置入此卡曾经存在的格子）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-P04",
+        "rarity": "PR"
+      },
+      {
+        "id": "STG/SZ08-P04S",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-P05": {
+    "name": "“新年和服”椎名真由理",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["Labmem", "和服"],
+    "color": "蓝色",
+    "soul": "2",
+    "effect": "【永】 每存在1张其他的你的持有《Labmem》特征的角色卡，此卡的力量＋500。<br>【自】 此卡被从手牌放置入舞台时，你可以选择自己的计时区上方的1张卡片，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-P05",
+        "rarity": "PR"
+      },
+      {
+        "id": "STG/SZ08-P05S",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-P06": {
+    "name": "“新年和服”牧濑红莉栖",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Labmem", "和服"],
+    "color": "红色",
+    "soul": "1",
+    "effect": "【自】 此卡被从手牌放置入舞台时，你检视自己卡组顶的1张卡，放置入卡组顶或休息室。<br>【自】［① 将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的持有《Labmem》特征的角色卡，返回手牌，选择1张其他的自己的持有《Labmem》特征的角色卡，该回合中，力量＋1000。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-P06",
+        "rarity": "PR"
+      },
+      {
+        "id": "STG/SZ08-P06S",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-P07": {
+    "name": "“盛夏的幻想”牧濑红莉栖＆椎名真由理\r\n【Phantasm】",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 0,
+    "trait": ["Labmem", "和服"],
+    "color": "红色",
+    "soul": "1",
+    "effect": "【自】 此卡被从手牌放置入舞台时，你选择1张自己的角色卡，该回合中，力量＋1000。<br>【自】 其他的你的角色卡的战斗对手【倒置】时，你选择1张自己的角色卡，该回合中，力量＋1000。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-P07",
+        "rarity": "PR"
+      },
+      {
+        "id": "STG/SZ08-P07S",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  }
+}

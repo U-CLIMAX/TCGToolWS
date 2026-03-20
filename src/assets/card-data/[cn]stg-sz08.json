@@ -1,0 +1,3751 @@
+{
+  "STG/SZ08-001": {
+    "name": "“维克托康多利亚大学教授的助手”比屋定真帆",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【永】 你可以因<img src=\"/effect-icons/choice.webp\">的效果选择自己休息室的「“人类记忆的数据化”AMADEUS」或「“承载记忆与人格的人工智能”AMADEUS」。<br>【自】 你的高潮卡触发时，若存在其他的你的持有《Labmem》特征的角色卡，则你可以抽1张卡。若如此做，则你选择1张自己的手牌，放置入休息室。<br>【起】 集中 ［① 【休息】此卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你选择至多1张自己休息室的角色卡或「“人类记忆的数据化”AMADEUS」或「“承载记忆与人格的人工智能”AMADEUS」，返回手牌。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-001",
+        "rarity": "RR"
+      },
+      {
+        "id": "STG/SZ08-001SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-002": {
+    "name": "“跨越世界线…”冈部伦太郎",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【自】［①］ 此能力1回合至多发动1次。你的卡片被放置入等级区时，你可以支付费用。若如此做，则你 选择命运石之门。<br>【replay】 选择命运石之门 你从以下效果中选择1个执行。<br>『你检视自己卡组顶至多3张卡，选择至多1张持有《Labmem》特征的角色卡或至多1张「Dmail」展示给对手，加入手牌，其余的卡片放置入休息室。』<br>『你选择1张自己的角色卡，该回合中，力量＋1500。』",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-002",
+        "rarity": "RR"
+      },
+      {
+        "id": "STG/SZ08-002S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-003": {
+    "name": "“被神宠爱的神童”牧濑红莉栖",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【自】［① 将1张你的休息室的持有《Labmem》特征的角色卡放置入计时区的下方］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组，选择至多1张等级小于等于1的角色卡展示给对手，加入手牌，将卡组洗切。<br>【自】 此卡攻击时，你选择1张自己的角色卡，该回合中，力量＋1000。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-003",
+        "rarity": "RR"
+      },
+      {
+        "id": "STG/SZ08-003S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-004": {
+    "name": "“好奇心旺盛的傲娇天才助手”牧濑红莉栖",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【永】 此卡、与此卡同名的卡片、「“被神宠爱的神童”牧濑红莉栖」，在卡组中可合计投入至多4张。<br>【自】［① 将1张你的休息室的持有《Labmem》特征的角色卡放置入计时区的下方］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组，选择至多1张等级小于等于1的角色卡展示给对手，加入手牌，将卡组洗切。<br>【自】 此卡攻击时，你选择1张自己的角色卡，该回合中，力量＋1000。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-004ZHS",
+        "rarity": "ZHS"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-005": {
+    "name": "“命运的齿轮”椎名真由理",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Labmem", "裁缝"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【自】［①］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己卡组顶至多3张卡，选择其中1张卡，放置入计时区，其余的卡片放置入休息室。若将1张放置入计时区，则你选择1张自己休息室的等级小于等于1的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-005",
+        "rarity": "RR"
+      },
+      {
+        "id": "STG/SZ08-005S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-006": {
+    "name": "“向自己相信的道路迈进”比屋定真帆",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【永】 经验 若你的等级区的卡片的合计等级大于等于2，则此卡的力量＋4000。<br>【自】【CX联动】 「永远铭刻的体温」被放置入你的高潮区时，若前列存在此卡，则你选择至多1张自己休息室的持有《Labmem》特征的角色卡，返回手牌，该回合中，此卡获得以下能力。『【自】［①］ 此卡攻击时，你可以支付费用。若如此做，则该攻击中，你在触发步骤进行2次触发判定。』",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-006",
+        "rarity": "RR"
+      },
+      {
+        "id": "STG/SZ08-006SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-007": {
+    "name": "“如影如幻的重逢”牧濑红莉栖",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "2",
+    "effect": "【自】 此卡被从手牌放置入舞台时，你可以选择自己的计时区上方的1张卡片，放置入休息室。<br>【自】【CX联动】 经验 「强硬的拉钩约定」被放置入你的高潮区时，若你的等级区的卡片的合计等级大于等于6，则该回合中，此卡的力量＋1000，此卡获得以下2个能力。『【自】ターン1回 此卡给予的伤害被取消时，你宣言任意数字，给予对方Ｘ点伤害。Ｘ为你宣言的数字。』『【自】［② 将2张手牌放置入休息室］ 此卡攻击时，若前列中央的格子中存在此卡，则你可以支付费用。若如此做，则给予对方4点伤害。』（不能宣言负数。会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-007",
+        "rarity": "RR"
+      },
+      {
+        "id": "STG/SZ08-007SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-008": {
+    "name": "“紧急救助”菲利丝·喵喵",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["Labmem", "女仆"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【自】［将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的等级小于等于Ｘ的持有《Labmem》特征的角色卡，返回手牌。Ｘ为你休息室中的「“菲利丝杯主办者”菲利丝·喵喵」的张数。<br>【自】 此卡【倒置】时，若此卡的战斗对手的等级小于等于0，则你可以将该角色卡放置入库存区。若如此做，则你选择对方库存区最下方的1张卡，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-008",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-008SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-009": {
+    "name": "“一起去背负吧”冈部伦太郎",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【永】 所有其他的你的「“作为恋人…”漆原琉华」与「“记忆的碎片”漆原琉华」，力量＋1000。<br>【起】［【休息】此卡］ 你从以下效果中选择1个执行。<br>『你分别选择1张自己等级区的「“作为恋人…”漆原琉华」和舞台的处于【竖置】状态的「“记忆的碎片”漆原琉华」，互换位置。』<br>『你分别选择1张自己等级区的「“记忆的碎片”漆原琉华」和舞台的处于【竖置】状态的「“作为恋人…”漆原琉华」，互换位置。』",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-009",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-009S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-010": {
+    "name": "“非科学的现象”牧濑红莉栖",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【起】［将此卡放置入休息室］ 若你的等级大于等于3，则你选择至多1张自己的手牌的「“特别的存在”牧濑红莉栖」，放置入此卡曾经存在的格子。<br>【起】 集中 ［① 【休息】此卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你检视自己的卡组，选择至多1张持有《Labmem》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-010",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-010S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-011": {
+    "name": "“尖锐的视线”比屋定真帆",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【永】 经验 若等级区存在此卡，则此卡的等级＋3。<br>【起】［① 将1张你的等级区的持有《Labmem》特征的角色卡放置入休息室，将此卡放置入等级区］ 你检视自己卡组顶的至多4张卡，选择至多1张等级大于等于1的卡片展示给对手，加入手牌，其余的卡片放置入休息室。（高潮卡视作等级为0的卡片）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-011",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-011S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-012": {
+    "name": "“永劫回归的潘多拉”牧濑红莉栖\r\n\r\n永劫回归的潘多拉注音：-Pandora of Eternal Return-",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 0,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【永】 你的回合中，每有1张其他的你的持有《Labmem》特征的角色卡，此卡的力量＋1000。<br>【自】［将1张手牌中的持有《Labmem》特征的角色卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的等级小于等于0的角色卡，放置入舞台的任意格子。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-012",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-012S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-013": {
+    "name": "“存在与时间”牧濑红莉栖",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【永】 若存在大于等于2张其他的你的持有《Labmem》特征的角色卡，则此卡的力量＋1000。<br>【自】【CX联动】 此卡的战斗对手【倒置】时，若你的高潮区存在「终结与起始的序章」，则你选择自己休息室的至多1张持有《Labmem》特征的角色卡或「Dmail」，返回手牌，选择1张其他的自己的角色卡，该回合中，力量＋1000。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-013",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-013S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-014": {
+    "name": "“被囚禁的时空地狱”冈部伦太郎",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【自】 此卡被从手牌放置入舞台时，你可以选择1张自己计时区下方的卡片与1张休息室的持有《Labmem》特征的角色卡，互换位置。<br>【自】［将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己的休息室的「Dmail」，返回手牌。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-014",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-014S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-015": {
+    "name": "“布朗管工房的新手打工”桐生萌郁",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Labmem", "手机"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【永】 每有1张其他的你的持有《Labmem》特征的角色卡，此卡的力量＋500。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-015",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-015S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-016": {
+    "name": "“强硬的助手”牧濑红莉栖",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5500,
+    "cost": 0,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【永】 此卡无法进行侧面攻击。<br>【自】 此能力1回合至多发动1次。你的卡片被放置入等级区时，该回合中，此卡的力量＋1500。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-016",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-016S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-017": {
+    "name": "“为了到达命运石之门”阿万音铃羽",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["Labmem", "打工"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【自】 你使用此卡的『助太刀』时，你选择自己的1张战斗中的角色卡，该回合中，赋予其以下能力。『【自】 此卡的战斗对手【倒置】时，你将该角色卡放置入回忆区。』<br>【起】【反击】 助太刀3000 等级2 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋3000）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-017",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-017SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-018": {
+    "name": "“闭时曲线的碑文”牧濑红莉栖\r\n\r\n闭时曲线的碑文注音：-Closed Epigraph-",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 4500,
+    "cost": 1,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。<br>【起】［【休息】1张其他的你的角色卡与此卡］ 若你的休息室存在事件卡，则你选择1张自己的角色卡，该回合中，力量＋500，赋予其以下能力。『【永】 此卡的战斗中，对方无法从手牌使用事件卡及『助太刀』。』",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-018",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-018S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-019": {
+    "name": "“通宵灰姑娘之秘密女生会”比屋定真帆",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 8500,
+    "cost": 2,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "2",
+    "effect": "【永】 若你的休息室存在大于等于3张触发标记为<img src=\"/effect-icons/choice.webp\">的高潮卡，则你手牌中的此卡的等级－1。<br>【永】 经验 若你的等级区的卡片的合计等级大于等于6，则此卡的力量＋2500，此卡获得『【自】 再演 ［将1张手牌中持有《Labmem》特征的角色卡放置入休息室］』。<br>【自】 此卡被从手牌放置入舞台时，你检视自己卡组顶至多3张卡，以任意顺序放置于卡组顶，抽1张卡。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-019",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-019S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-020": {
+    "name": "“命运的齿轮”冈部伦太郎",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "2",
+    "effect": "【永】 经验 若你的等级区存在「“命运的齿轮”牧濑红莉栖」与「“命运的齿轮”椎名真由理」，则你手牌中的此卡的等级－1。<br>【自】 此卡被从手牌放置入舞台时，你公开自己卡组顶的1张卡。若该卡为等级小于等于0的角色卡，则将其放置入库存区。（若非如此则放回原处）<br>【自】 此卡被从手牌放置入舞台时，你可以选择1张对方的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-020",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-020S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-021": {
+    "name": "“泡沫的幸福”椎名真由理",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Labmem", "裁缝"],
+    "color": "黄色",
+    "soul": "2",
+    "effect": "【自】 此卡被从手牌放置入舞台时，你抽至多2张卡，选择1张自己的手牌，放置入休息室。<br>【自】【CX联动】 经验 ［①］ 此卡攻击时，若你的高潮区存在「真由理的心意」，且你的等级区存在「“命运的齿轮”椎名真由理」，则你可以支付费用。若如此做，则你选择1张自己的角色卡，该回合中，力量＋4000，赋予其以下能力。『【自】 此能力1回合至多发动1次。此卡给予的伤害被取消时，你可以给予对方2点伤害。』（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-021",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-021S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-022": {
+    "name": "“猫耳巫女装扮的新年祝福”菲利丝·喵喵",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Labmem", "女仆"],
+    "color": "黄色",
+    "soul": "2",
+    "effect": "【永】 你的回合中，此卡的力量＋2000。<br>【自】 此卡攻击时，你公开自己卡组顶的1张卡。若该卡为持有《Labmem》特征的角色卡或「看着眼睛搅搅」，则给予对方Ｘ点伤害。Ｘ为该卡的等级。（会发生伤害取消。公开的卡片放回原处）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-022",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-022S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-023": {
+    "name": "“放任自己的疯狂与愚蠢”冈部伦太郎",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10500,
+    "cost": 2,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "2",
+    "effect": "【自】 若休息室中存在此卡，则你的第1回合开始之际，你检视自己卡组顶的1张卡，选择至多1张等级大于等于1的卡片展示给对手，加入手牌，其余的卡片放置入休息室。（高潮卡视作等级为0的卡片）<br>【自】【CX联动】［① 将1张手牌放置入休息室］ 此卡攻击时，若高潮区存在「世界的分歧点」，则你可以支付费用。若如此做，则给予对方2点伤害，直到下一个对方回合的结束之际为止，此卡的力量＋2000，此卡获得以下2个能力。『【永】 此卡不会被对方的效果选择。』『【永】 大活跃』（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-023",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-023S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-024": {
+    "name": "“如同以往那样”冈部伦太郎",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【自】 羁绊／「“你所描绘的未来”椎名真由理」「“孤独的观测者”冈部伦太郎」「“勇敢的Labmem No.002”椎名真由理」 ［将1张手牌放置入休息室］ （此卡，被从手牌放置入舞台或因被使用而放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的「“你所描绘的未来”椎名真由理」或「“孤独的观测者”冈部伦太郎」或「“勇敢的Labmem No.002”椎名真由理」，返回手牌）<br>【起】［将1张手牌放置入休息室，将此卡放置入休息室］ 你选择1张自己休息室的持有《Labmem》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-024",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-024S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-025": {
+    "name": "“中二病全开”菲利丝·喵喵",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Labmem", "女仆"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋500。<br>【起】［【休息】此卡］ 你选择1张自己的持有《Labmem》特征的角色卡，该回合中，等级＋1，力量＋500。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-025",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-025S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-026": {
+    "name": "“未来装置研究所的创始人”冈部伦太郎",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【永】 你的回合中，此卡的力量＋2000。<br>【自】【CX联动】［将2张手牌放置入休息室］ 「魔眼《Reading Steiner》」被放置入你的高潮区时，你可以支付费用。若如此做，则你选择自己休息室的至多2张持有《Labmem》特征的角色卡或「Dmail」，返回手牌。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-026",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-026S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-027": {
+    "name": "“圣诞节的惊喜”桥田至",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Labmem", "御宅族"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【自】［① 将1张手牌的高潮卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的高潮卡，返回手牌。<br>【自】 你的高潮阶段开始之际，你选择1张自己的持有《Labmem》特征的角色卡，该回合中，力量＋1000。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-027",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-027S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-028": {
+    "name": "“Cosplay服装完成”椎名真由理",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Labmem", "裁缝"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【自】 此卡被从手牌放置入舞台时，你选择1张自己的持有《Labmem》特征的角色卡，该回合中，力量＋1500，赋予其《Cosplay》。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-028",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-028S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-029": {
+    "name": "“布朗管工房的新手打工”阿万音铃羽",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["Labmem", "打工"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【自】［① 将1张手牌的高潮卡放置入休息室］ 此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则你选择1张自己休息室的高潮卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-029",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-029S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-030": {
+    "name": "“可靠如山的父亲”桥田至",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 500,
+    "cost": 0,
+    "trait": ["Labmem", "御宅族"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【自】［将2张手牌放置入休息室］ 你使用此卡的 『助太刀』时，你可以支付费用。若如此做，则你选择1张对方的等级高于对方的等级的角色卡，放置入库存区。若如此做，则你选择对方库存区最下方的1张卡，放置入休息室。<br>【起】【反击】 助太刀1000 等级1 ［将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋1000）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-030",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-030S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-031": {
+    "name": "“狂气的疯狂科学家”冈部伦太郎",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【自】［将2张你的休息室的角色卡或「合金乌帕」返回卡组，将卡组洗切］ 此卡攻击时，你可以支付费用。若如此做，则该回合中，此卡的力量＋2000。<br>【自】【CX联动】 你的角色卡攻击时，若高潮区存在「我名为凤凰院凶真!!」，且前列存在此卡，则该回合中，你可以使该处于攻击状态的角色卡的魂－1。若如此做，则该回合中，该处于攻击状态的角色卡的力量＋2000。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-031",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-031S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-032": {
+    "name": "“HENTAI绅士”桥田至",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 1,
+    "trait": ["Labmem", "御宅族"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【永】 应援 所有此卡前面的你的持有《Labmem》特征的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。<br>【起】［② 【休息】此卡］ 你选择1张自己休息室的持有《Labmem》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-032",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-032S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-033": {
+    "name": "“孤独的观测者”冈部伦太郎",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7500,
+    "cost": 2,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "2",
+    "effect": "【永】 若存在大于等于2张其他的你的持有《Labmem》特征的角色卡，则此卡的力量＋2000。<br>【自】【CX联动】 「世界的分歧点」被放置入你的高潮区时，若前列存在此卡，且存在其他的你的持有《Labmem》特征的角色卡，则你可以公开自己卡组顶的至多2张卡。若公开了大于等于1张卡，则你选择那些卡片中持有《Labmem》特征的至多2张角色卡，将其按任意顺序放置入库存区，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-033",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-033S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-034": {
+    "name": "“美丽的天才少女”牧濑红莉栖",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "2",
+    "effect": "【自】 此卡被从手牌放置入舞台时，你可以选择自己的计时区上方的1张卡片，放置入休息室。<br>【自】 此卡攻击时，若存在大于等于4张其他的你的持有《Labmem》特征的角色卡，则你选择1张自己的角色卡，该回合中，力量＋1000，魂＋1。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-034",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-034SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-035": {
+    "name": "“Labmem No.003”桥田至",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["Labmem", "御宅族"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【永】 你的回合中，所有其他的你的角色卡，力量＋500。<br>【起】 集中 ［① 【休息】此卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你抽至多1张卡。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-035",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-035S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-036": {
+    "name": "“面对着面”牧濑红莉栖＆冈部伦太郎",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【永】 所有其他的你的「“现在马上搬起来！”冈部伦太郎」，力量＋2000。<br>【自】 羁绊／「“现在马上搬起来！”冈部伦太郎」 ［将1张手牌放置入休息室］ （此卡，被从手牌放置入舞台或因被使用而放置入舞台时，你可以支付费用。若如此做，则你选择1张自己的休息室的「“现在马上搬起来！”冈部伦太郎」，返回手牌）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-036",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-036S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-037": {
+    "name": "“胡椒硕士”冈部伦太郎",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【永】 所有其他的你的「“干鲣鱼饭团”椎名真由理」，力量＋1000。<br>【永】 所有其他的你的持有《Labmem》特征的角色卡，力量＋500。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-037",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-037S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-038": {
+    "name": "“代谢综合症”桥田至",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Labmem", "御宅族"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【自】［②］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你将所有自己休息室的卡片，返回卡组，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-038",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-038S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-039": {
+    "name": "“还是穿上白大褂安心”牧濑红莉栖",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【自】 对方的攻击阶段开始之际，你可以将此卡移动至前列的不存在角色卡的格子。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-039",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-039S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-040": {
+    "name": "“Labmem No.008”阿万音铃羽",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["Labmem", "打工"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【自】 此卡被从手牌放置入舞台时，该回合中，此卡的力量＋1500。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-040",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-040S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-041": {
+    "name": "“划过鼻尖的掌根”阿万音铃羽",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 3000,
+    "cost": 0,
+    "trait": ["Labmem", "打工"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【永】 此卡无法进行侧面攻击。<br>【自】 此卡的战斗对手【倒置】时，你选择1张其他的自己的持有《Labmem》特征的角色卡，【休息】，移动至后列的不存在角色卡的格子。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-041",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-041S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-042": {
+    "name": "“师徒关系”漆原琉华",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 3500,
+    "cost": 0,
+    "trait": ["Labmem", "巫女"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【永】 若不存在其他的你的卡名含有「冈部」的角色卡，则此卡在你的竖置阶段不会【竖置】。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-042",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-042S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-043": {
+    "name": "“恶化的中二病”冈部伦太郎",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【自】［②］ 你使用此卡的 『助太刀』时，你可以支付费用。若如此做，则你检视自己的卡组，选择至多1张持有《Labmem》特征的角色卡展示给对手，加入手牌，将卡组洗切。<br>【起】【反击】 助太刀1000 等级1 ［将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋1000）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-043",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-043S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-044": {
+    "name": "“不健谈的保镖”桐生 萌郁",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["Labmem", "手机"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【永】 你的回合中，所有其他的你的持有《Labmem》特征的角色卡，力量＋1000。<br>【自】 你的触发标记为<img src=\"/effect-icons/choice.webp\">的高潮卡被放置入高潮区时，若你的手牌小于等于6张，则你选择1张自己的角色卡，直到下一个对方回合的结束之际为止，力量＋1000。<br>【起】［【休息】2张你的持有《Labmem》特征的角色卡，此卡放置入卡组底］ 你抽1张卡。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-044",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-044S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-045": {
+    "name": "“Labmem No.004”牧濑红莉栖",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【自】 此卡【倒置】时，若此卡的战斗对手的费用小于等于0，则你可以将该角色卡放置入库存区。若如此做，则你选择对方库存区最下方的1张卡，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-045",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-045S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-046": {
+    "name": "“Labmem No.001”冈部伦太郎",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5000,
+    "cost": 0,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【自】【CX联动】 此卡的战斗对手【倒置】时，若你的高潮区存在「El Psy Kongroo」，则你检视自己的卡组，选择至多1张持有《Labmem》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-046",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-046S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-047": {
+    "name": "“重要的伙伴”冈部伦太郎＆椎名真由理",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5000,
+    "cost": 0,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【自】 此卡攻击时，该回合中，此卡的力量＋Ｘ。Ｘ为其他的你的持有《Labmem》特征的角色卡的张数×500。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-047",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-047S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-048": {
+    "name": "“抗争者们”冈部伦太郎",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5500,
+    "cost": 0,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【自】 此卡被从手牌放置入舞台时，若存在对方的「“抗争者们”冈部伦太郎」，且所有玩家认可，则所有玩家宣言『El Psy Kongroo』。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-048",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-048S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-049": {
+    "name": "“严苛的打扫中士”天王寺绹",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 1000,
+    "cost": 1,
+    "trait": ["Ransel"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【自】 此卡被从手牌放置入舞台时，你将自己卡组顶的3张卡，放置入休息室。若那些卡片中存在高潮卡，则你可以选择1张对方的等级高于对方的等级的角色卡，放置入休息室。<br>【自】 此卡【倒置】时，若此卡的战斗对手的等级高于对方的等级，则你可以将该角色卡放置入库存区。若如此做，则你选择对方库存区最下方的1张卡，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-049",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-049S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-050": {
+    "name": "“抗争者们”牧濑红莉栖",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【起】【反击】 助太刀3000 等级2 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋3000）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-050",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-050S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-051": {
+    "name": "“难以压抑的情绪”冈部伦太郎",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 5000,
+    "cost": 1,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【自】 此卡被从手牌放置入舞台时，你选择至多2张自己的角色卡，该回合中，力量＋1500。<br>【起】［将此卡放置入卡组底］ 你选择1张对方的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-051",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-051S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-052": {
+    "name": "“成为助手的开端”牧濑红莉栖",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6500,
+    "cost": 1,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【永】 若存在大于等于2张其他的你的持有《Labmem》特征的角色卡，则此卡的力量＋3000。<br>【自】 再演 ［将1张手牌中持有《Labmem》特征的角色卡放置入休息室］ （此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则将此卡以【休息】状态放置入此卡曾经存在的格子）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-052",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-052S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-053": {
+    "name": "“通宵灰姑娘之秘密女生会”桐生萌郁",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 1,
+    "trait": ["Labmem", "手机"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【永】 经验 你的回合中，若你的等级区的卡片的合计等级大于等于5，则此卡的力量＋5500，此卡获得以下能力。『【自】 此卡的战斗对手【倒置】时，你可以将该卡放置入回忆区。』<br>【自】 此卡被从手牌放置入舞台时，你可以分别选择1张自己等级区的持有《Labmem》特征的卡片和1张休息室的持有《Labmem》特征的卡片，互换位置。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-053",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-053S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-054": {
+    "name": "“Labmem No.005”桐生萌郁",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 8000,
+    "cost": 1,
+    "trait": ["Labmem", "手机"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "【自】 此卡攻击时，若存在大于等于2张其他的你的持有《Labmem》特征的角色卡，则你检视自己卡组顶至多2张卡，选择其中1张卡，放置于卡组顶，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-054",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-054S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-055": {
+    "name": "“现在马上搬起来！”冈部伦太郎",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 8500,
+    "cost": 1,
+    "trait": ["Labmem", "科学"],
+    "color": "黄色",
+    "soul": "1",
+    "effect": "",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-055",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-055S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-056": {
+    "name": "“Labmem No.007”菲利丝·喵喵",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 8000,
+    "cost": 2,
+    "trait": ["Labmem", "女仆"],
+    "color": "黄色",
+    "soul": "2",
+    "effect": "【自】 其他的你的持有《Labmem》特征的角色卡攻击时，该回合中，此卡的力量＋1000。<br>【自】 再演 ［将1张手牌中持有《Labmem》特征的角色卡放置入休息室］ （此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则将此卡以【休息】状态放置入此卡曾经存在的格子）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-056",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-056S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-057": {
+    "name": "Dmail",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 0,
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【反击】 若存在的你的卡名含有「冈部」或「红莉栖」的角色卡小于等于1张， 则此卡无法从手牌被使用。<br>你可以分别选择1张自己等级区的卡片和1张休息室的持有《Labmem》特征的卡片，互换位置。<br>你选择1张自己的角色卡，该回合中，力量＋2000。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-057",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-057S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-058": {
+    "name": "“人类记忆的数据化”AMADEUS",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 0,
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【反击】 若存在你的卡名含有「真帆」或「冈部」的角色卡，则你从以下3个效果中选择1个执行。<br>『若你的等级为1，则你检视自己卡组顶至多4张卡，选择至多1张持有《Labmem》特征的角色卡展示给对手，加入手牌或放置入库存区，其余的卡片放置入休息室。』<br>『若你的等级为2，则你选择1张自己休息室的角色卡，返回手牌。』<br>『若你的等级为3，则你检视自己的卡组，选择至多1张高潮卡展示给对手，加入手牌，将卡组洗切，选择1张自己的角色卡，该回合中，魂＋1。』",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-058",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-058S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-059": {
+    "name": "“承载记忆与人格的人工智能”AMADEUS",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 0,
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】 此卡、与此卡同名的卡片、「“人类记忆的数据化”AMADEUS」，在卡组中可合计投入至多4张。<br>【反击】 若存在你的卡名含有「真帆」或「冈部」的角色卡，则你从以下3个效果中选择1个执行。<br>『若你的等级为1，则你检视自己卡组顶至多4张卡，选择至多1张持有《Labmem》特征的角色卡展示给对手，加入手牌或放置入库存区，其余的卡片放置入休息室。』<br>『若你的等级为2，则你选择1张自己休息室的角色卡，返回手牌。』<br>『若你的等级为3，则你检视自己的卡组，选择至多1张高潮卡展示给对手，加入手牌，将卡组洗切，选择1张自己的角色卡，该回合中，魂＋1。』",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-059ZHS",
+        "rarity": "ZHS"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-060": {
+    "name": "电话微波炉（暂定）",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "事件卡",
+    "level": 3,
+    "power": "-",
+    "cost": 3,
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "若不存在你的持有《Labmem》特征的角色卡，则此卡无法从手牌被使用。<br>若所有的玩家等级大于等于3，则所有玩家将自己计时区上方的至多4张卡片放置入休息室，你选择1张自己的角色卡，该回合中，力量＋3000。<br>将此卡放置入回忆区。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-060",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-060S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-061": {
+    "name": "终结与起始的序章",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/shot.webp\">：此回合中，触发此卡的攻击角色下次给予的伤害被取消时，给予对方1点伤害）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-061",
+        "rarity": "CR"
+      },
+      {
+        "id": "STG/SZ08-061R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-062": {
+    "name": "魔眼《Reading Steiner》",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/bounce.webp\">：此卡触发时，你可以选择1张对方的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-062",
+        "rarity": "CR"
+      },
+      {
+        "id": "STG/SZ08-062R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-063": {
+    "name": "我名为凤凰院凶真!!",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，魂＋2。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-063",
+        "rarity": "CR"
+      },
+      {
+        "id": "STG/SZ08-063R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 2
+  },
+  "STG/SZ08-064": {
+    "name": "\r\n真由理的心意",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/bounce.webp\">：此卡触发时，你可以选择1张对方的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-064",
+        "rarity": "CR"
+      },
+      {
+        "id": "STG/SZ08-064R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-065": {
+    "name": "El Psy Kongroo",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/bounce.webp\">：此卡触发时，你可以选择1张对方的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-065",
+        "rarity": "CR"
+      },
+      {
+        "id": "STG/SZ08-065R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-066": {
+    "name": "不速之客",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，魂＋2。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-066",
+        "rarity": "CR"
+      },
+      {
+        "id": "STG/SZ08-066R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 2
+  },
+  "STG/SZ08-067": {
+    "name": "永远铭刻的体温",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你可以选择1张自己休息室的触发标记中有<img src=\"/effect-icons/soul.webp\">的角色卡，返回手牌或放置入库存区）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-067",
+        "rarity": "CR"
+      },
+      {
+        "id": "STG/SZ08-067R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-068": {
+    "name": "强硬的拉钩约定",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你可以选择1张自己休息室的触发标记中有<img src=\"/effect-icons/soul.webp\">的角色卡，返回手牌或放置入库存区）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-068",
+        "rarity": "CR"
+      },
+      {
+        "id": "STG/SZ08-068R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-069": {
+    "name": "“打工战士”阿万音铃羽",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Labmem", "打工"],
+    "color": "绿色",
+    "soul": "1",
+    "effect": "【永】 若所有你的角色卡均持有《Labmem》特征，则此卡的力量＋1000。<br>【自】 对方的抽卡阶段开始之际，你公开自己卡组顶的1张卡。若该卡的等级大于等于1，则你可以将此卡返回手牌。（高潮卡视作等级为0的卡片。公开的卡片放回原处）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-069",
+        "rarity": "RR"
+      },
+      {
+        "id": "STG/SZ08-069SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-070": {
+    "name": "“FB与M4的关系”桐生萌郁",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Labmem", "手机"],
+    "color": "绿色",
+    "soul": "2",
+    "effect": "【自】 此卡被从手牌放置入舞台时，你可以选择自己的计时区上方的1张卡片，放置入休息室。<br>【自】［② 将1张手牌放置入休息室］ 此卡攻击时，若存在其他的你的持有《Labmem》特征的角色卡，则你可以支付费用。若如此做，则你公开自己卡组顶的1张卡。若该卡为「IBN5100」，则给予对方1点伤害，若该卡为持有《Labmem》特征的角色卡，则给予对方Ｘ点伤害，该回合中，此卡的力量＋2000。Ｘ为该角色卡的魂的数量。（会发生伤害取消。公开的卡片放回原处）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-070",
+        "rarity": "RR"
+      },
+      {
+        "id": "STG/SZ08-070S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-071": {
+    "name": "“超级嗨客”桥田至",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Labmem", "御宅族"],
+    "color": "绿色",
+    "soul": "1",
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋500。<br>【自】 此卡被从手牌放置入舞台时，你可以选择1张自己计时区的「电话微波炉」或「FG204 2nd EDITION ver2.31」或「看着眼睛搅搅」或「IBN5100」，返回手牌。若如此做，则你选择1张自己的手牌，放置入计时区。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-071",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-071S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-072": {
+    "name": "“笑容背后的思念”阿万音铃羽",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Labmem", "打工"],
+    "color": "绿色",
+    "soul": "1",
+    "effect": "【永】 经验 若你的等级区存在「“时间旅者”阿万音铃羽」，则此卡的力量＋1500。<br>【自】【CX联动】 此能力1回合至多发动1次。此卡给予的伤害被取消时，若你的高潮区存在「Cycling」，则你选择至多2张自己休息室的持有《Labmem》特征的角色卡，按任意顺序放置入库存区。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-072",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-072S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-073": {
+    "name": "“闪光指压师”桐生萌郁\r\nShining Finger",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5500,
+    "cost": 0,
+    "trait": ["Labmem", "手机"],
+    "color": "绿色",
+    "soul": "1",
+    "effect": "【自】 此卡被从手牌放置入舞台时，若不存在其他的你的持有《Labmem》特征的角色卡，则将此卡放置入休息室。<br>【自】 此能力1回合至多发动1次。你使用【起】时，该回合中，此卡的力量＋1500。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-073",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-073S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-074": {
+    "name": "“时间旅者”阿万音铃羽",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9000,
+    "cost": 2,
+    "trait": ["Labmem", "打工"],
+    "color": "绿色",
+    "soul": "2",
+    "effect": "【永】 若你的计时区存在「IBN5100」，则你手牌中的此卡的等级－1。<br>【永】 每有1张其他的你的持有《Labmem》特征的角色卡，此卡的力量＋500。<br>【自】 此卡被从手牌放置入舞台时，你检视自己卡组顶的至多3张卡，选择至多1张卡，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-074",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-074S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-075": {
+    "name": "“重度手机依赖症”桐生萌郁",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Labmem", "手机"],
+    "color": "绿色",
+    "soul": "1",
+    "effect": "【永】 若存在大于等于2张其他的你的持有《Labmem》特征的角色卡，则此卡的力量＋1000。<br>【自】［① 将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组，选择至多1张持有《Labmem》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-075",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-075S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-076": {
+    "name": "“来自未来的战士”阿万音铃羽",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["Labmem", "打工"],
+    "color": "绿色",
+    "soul": "1",
+    "effect": "【自】 经验 你使用此卡的『助太刀』时，若你的等级区存在「“时间旅者”阿万音铃羽」，则你选择自己的1张战斗中的角色卡，该回合中，力量＋1500。<br>【起】【反击】 助太刀1000 等级1 ［将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋1000）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-076",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-076S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-077": {
+    "name": "“Rounder M4”桐生萌郁",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 4000,
+    "cost": 1,
+    "trait": ["Labmem", "手机"],
+    "color": "绿色",
+    "soul": "2",
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。<br>【自】［将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己的休息室的「IBN5100」，返回手牌。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-077",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-077S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-078": {
+    "name": "“时光机的修理”桥田至",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6500,
+    "cost": 2,
+    "trait": ["Labmem", "御宅族"],
+    "color": "绿色",
+    "soul": "2",
+    "effect": "【永】 每有1张其他的你的持有《Labmem》特征的角色卡，此卡的力量＋500。<br>【永】 经验 若你的等级区存在「“时间旅者”阿万音铃羽」，则此卡的力量＋2500。<br>【自】【CX联动】［①］ 此卡的战斗对手【倒置】时，若你的高潮区存在「不可逆转的重启」，则你可以支付费用。若如此做，则你检视自己的卡组，选择至多2张持有《Labmem》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-078",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-078S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-079": {
+    "name": "“Mr.布朗”天王寺裕吾",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["肌肉"],
+    "color": "绿色",
+    "soul": "1",
+    "effect": "【起】［【休息】此卡］ 你选择1张自己的角色卡，该回合中，力量＋1000。<br>【起】 共鸣 ［① 公开1张手牌的「“Mr.布朗的爱女”天王寺绹」，【休息】此卡］ 你检视自己卡组顶至多4张卡，选择至多1张持有《Labmem》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-079",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-079S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-080": {
+    "name": "“菲利丝萌”桥田至",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["Labmem", "御宅族"],
+    "color": "绿色",
+    "soul": "1",
+    "effect": "【自】［①］ 对方的攻击阶段开始之际，你可以支付费用。若如此做，则你选择1张自己的卡名含有「菲利丝」的角色卡及此卡，分别【竖置】并互换位置。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-080",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-080S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-081": {
+    "name": "“Mr.布朗的爱女”天王寺绹",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 3000,
+    "cost": 0,
+    "trait": ["Ransel"],
+    "color": "绿色",
+    "soul": "1",
+    "effect": "",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-081",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-081S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-082": {
+    "name": "“FB的指令”桐生萌郁",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["Labmem", "手机"],
+    "color": "绿色",
+    "soul": "1",
+    "effect": "【自】 你的再演步骤开始之际，此回合中，若你没有使用过【起】，则将此卡放置入休息室。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-082",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-082S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-083": {
+    "name": "“可靠的右手”桥田至\r\nMy Favourite Right Arm",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 1,
+    "trait": ["Labmem", "御宅族"],
+    "color": "绿色",
+    "soul": "1",
+    "effect": "【永】 其他所有的你的卡名含有「阿万音」的角色卡，等级＋1，力量＋500。<br>【自】 此卡被从手牌放置入舞台时，你可以选择1张自己计时区下方的卡片与1张休息室的持有《Labmem》特征的角色卡或1张「IBN5100」，互换位置。<br>【起】［② 【休息】此卡］ 你检视自己的卡组，选择至多1张持有《Labmem》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-083",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-083S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-084": {
+    "name": "“约翰·提托的真面目”阿万音铃羽",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 4500,
+    "cost": 1,
+    "trait": ["Labmem", "打工"],
+    "color": "绿色",
+    "soul": "2",
+    "effect": "【永】 若存在大于等于4张你的持有《Labmem》特征的角色卡，则你手牌中的此卡的等级－1。<br>【永】 每有1张其他的你的持有《Labmem》特征的角色卡，此卡的力量＋1000。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-084",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-084S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-085": {
+    "name": "FG204 2nd EDITION ver2.31",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "你检视自己的卡组，选择至多2张持有『助太刀』的角色卡展示给对手，加入手牌，选择1张自己的手牌，放置入休息室，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-085",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-085S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-086": {
+    "name": "世界线变化率计量仪\r\nDivergence Meter",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 2,
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "若不存在你的持有《Labmem》特征的角色卡，则此卡无法从手牌被使用。<br>将此卡放置入回忆区。你将自己卡组顶的至多2张卡，放置入库存区，选择1张自己的角色卡，该回合中，力量＋2000。<br>若你的回忆区存在大于等于2张「世界线变动率测定仪」，则你抽至多2张卡，选择1张自己的手牌，放置入休息室。<br>若你的回忆区存在大于等于3张「世界线变动率测定仪」，则你选择1张对方的后列的费用小于等于1的角色卡，放置入休息室。<br>若你的回忆区存在大于等于4张「世界线变动率测定仪」，则你选择至多2张自己的计时区的角色卡，返回手牌，选择1张自己的手牌，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-086",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-086S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-087": {
+    "name": "Cycling",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【自】 此卡被从手牌放置入高潮区时，你选择至多1张自己休息室的绿色卡片，放置入库存区，所有你的角色卡，该回合中，魂＋1。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-087",
+        "rarity": "CR"
+      },
+      {
+        "id": "STG/SZ08-087R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 2
+  },
+  "STG/SZ08-088": {
+    "name": "不可逆转的重启",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-088",
+        "rarity": "CR"
+      },
+      {
+        "id": "STG/SZ08-088R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-089": {
+    "name": "“天才少女的忧郁”牧濑红莉栖",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Labmem", "科学"],
+    "color": "红色",
+    "soul": "1",
+    "effect": "【自】 对方的攻击阶段开始之际，你可以将1张对方卡组顶的卡，放置入休息室。若该卡的等级大于等于2，则你抽1张卡，选择1张自己的手牌，放置入休息室。（高潮卡视作等级为0的卡片）<br>【起】 集中 ［① 【休息】此卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你选择至多1张自己休息室的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-089",
+        "rarity": "RR"
+      },
+      {
+        "id": "STG/SZ08-089S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-090": {
+    "name": "“猫耳女仆”菲利丝·喵喵",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["Labmem", "女仆"],
+    "color": "红色",
+    "soul": "1",
+    "effect": "【自】 此卡被从手牌放置入舞台时，你选择1张自己的持有《Labmem》特征的角色卡，该回合中，力量＋1500。<br>【自】 此卡【倒置】时，若此卡的战斗对手的等级小于等于1，则你可以将该角色卡【倒置】。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-090",
+        "rarity": "RR"
+      },
+      {
+        "id": "STG/SZ08-090SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-091": {
+    "name": "“特别的存在”牧濑红莉栖",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["Labmem", "科学"],
+    "color": "红色",
+    "soul": "2",
+    "effect": "【永】 你的回合中，若所有你的角色卡均持有《Labmem》特征，则此卡的力量＋2000。<br>【自】 此卡被从手牌放置入舞台时，你检视自己卡组顶至多3张卡，选择至多1张卡，加入手牌，其余的卡片放置入休息室。<br>【自】【CX联动】［② 将1张手牌放置入休息室］ 此卡攻击时，若高潮区存在「时间跳跃的偏执狂」，则你可以支付费用。若如此做，则给予对方Ｘ点伤害，该回合中，此卡的力量＋1000。Ｘ为你的等级大于等于3的角色卡的张数。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-091",
+        "rarity": "RR"
+      },
+      {
+        "id": "STG/SZ08-091SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-092": {
+    "name": "“命运的齿轮”牧濑红莉栖",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Labmem", "科学"],
+    "color": "红色",
+    "soul": "1",
+    "effect": "【永】 所有其他的你的持有《Labmem》特征的角色卡，力量＋500。<br>【起】［【休息】2张你的持有《Labmem》特征的角色卡］ 你分别选择1张自己等级区的卡片与1张休息室的卡片，互换位置，选择至多1张自己的角色卡，该回合中，等级＋1。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-092",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-092S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-093": {
+    "name": "“Lab的大脑”牧濑红莉栖",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Labmem", "科学"],
+    "color": "红色",
+    "soul": "1",
+    "effect": "【自】 此卡被从手牌放置入舞台时，若存在其他的你的卡名含有「红莉栖」或「真由理」的角色卡，则该回合中，此卡的力量＋2000。<br>【自】［① 【休息】1张其他的你的处于【竖置】状态的卡名含有「红莉栖」或「真由理」的角色卡］ 此卡被从手牌放置入舞台的回合中，此卡的战斗对手【倒置】时，你可以支付费用。若如此做，则你检视自己的卡组，选择至多1张卡名含有「红莉栖」或「真由理」的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-093",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-093S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-094": {
+    "name": "“本名「秋叶留未穗」”菲利丝·喵喵",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5000,
+    "cost": 0,
+    "trait": ["Labmem", "女仆"],
+    "color": "红色",
+    "soul": "1",
+    "effect": "【自】【CX联动】［①］ 「菲利丝杯」被放置入你的高潮区时，若前列存在此卡，则你可以支付费用。若如此做，则你选择1张其他的自己的持有《Labmem》特征的角色卡，【竖置】。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-094",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-094S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-095": {
+    "name": "“菲利丝杯主办者”菲利丝·喵喵",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["Labmem", "女仆"],
+    "color": "红色",
+    "soul": "2",
+    "effect": "【永】 若你的休息室中存在的高潮卡小于等于2张，则你手牌中的此卡的等级－1。<br>【自】 此卡被从手牌放置入舞台时，你可以选择自己的计时区上方的1张卡片，放置入休息室。<br>【自】【CX联动】［①］ 此卡的战斗对手【倒置】时，若你的高潮区存在「菲利丝杯」，则你可以支付费用。若如此做，则给予对方1点伤害，你选择至多1张自己休息室的角色卡，返回手牌。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-095",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-095S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-096": {
+    "name": "“往日的残影”牧濑红莉栖",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Labmem", "科学"],
+    "color": "红色",
+    "soul": "2",
+    "effect": "【永】 若存在大于等于2张其他的你的持有《Labmem》特征的角色卡，则此卡的力量＋2000。<br>【自】 此卡被从手牌放置入舞台时，你抽至多2张卡，选择2张自己的手牌，放置入休息室，将自己卡组顶的至多1张卡，放置入库存区。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-096",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-096S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-097": {
+    "name": "“今天的谢礼”菲利丝·喵喵",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["Labmem", "女仆"],
+    "color": "红色",
+    "soul": "1",
+    "effect": "【自】 你的高潮阶段开始之际，你选择1张自己的持有《Labmem》特征的角色卡，该回合中，力量＋1000。<br>【起】 集中 ［① 【休息】2张你的角色卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，执行以下行动。『你抽至多2张卡，选择1张自己的手牌，放置入休息室。』",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-097",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-097S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-098": {
+    "name": "“梦的延续”牧濑红莉栖",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "trait": ["Labmem", "科学"],
+    "color": "红色",
+    "soul": "1",
+    "effect": "【永】 若存在大于等于2张其他的你的持有《Labmem》特征的角色卡，则此卡的力量＋2000。<br>【自】【CX联动】［①］ 「相对性理论」被放置入你的高潮区时，若前列存在此卡，且你的手牌小于等于5张，则你可以支付费用。若如此做，则你选择至多2张自己休息室的费用小于等于0的角色卡，放置入舞台上的不同格子。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-098",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-098S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-099": {
+    "name": "“时隔7年的联络”牧濑红莉栖",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 6000,
+    "cost": 0,
+    "trait": ["Labmem", "科学"],
+    "color": "红色",
+    "soul": "1",
+    "effect": "【永】 若此卡正面的角色卡的等级高于此卡的等级，则此卡无法进行正面攻击。<br>【自】 此卡被从手牌放置入舞台时，该回合中，此卡的等级＋1，力量＋1000。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-099",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-099S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-100": {
+    "name": "“约会的心得”牧濑红莉栖",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6500,
+    "cost": 1,
+    "trait": ["Labmem", "科学"],
+    "color": "红色",
+    "soul": "1",
+    "effect": "【永】 应援 所有此卡前面的你的等级大于等于3的角色卡，力量＋2000。<br>【起】［【休息】此卡］ 你选择1张自己的持有《Labmem》特征的角色卡，该回合中，力量＋1000。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-100",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-100S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-101": {
+    "name": "“独创的亲手料理”牧濑红莉栖",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 1,
+    "trait": ["Labmem", "科学"],
+    "color": "红色",
+    "soul": "1",
+    "effect": "【永】 此卡不会被对方的效果选择。<br>【自】 此卡攻击时，若此卡正面的角色卡的等级大于等于3，则该回合中，此卡的等级＋1，力量＋5500。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-101",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-101S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-102": {
+    "name": "“混沌记忆”菲利丝·喵喵\r\n“膝枕”菲利丝·喵喵",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Labmem", "女仆"],
+    "color": "红色",
+    "soul": "1",
+    "effect": "【永】 所有其他的你的「“普通的女孩子”菲利丝·喵喵」，力量＋1000。<br>【自】［【休息】1张其他的你的处于【竖置】状态的角色卡及此卡］ 其他的你的「“普通的女孩子”菲利丝·喵喵」被从手牌放置入舞台时，若此卡处于【竖置】状态，则你可以支付费用。若如此做，则你选择1张自己休息室的持有《Labmem》特征的角色卡，放置入库存区。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-102",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-102S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-103": {
+    "name": "“完全论破”牧濑红莉栖",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Labmem", "科学"],
+    "color": "红色",
+    "soul": "1",
+    "effect": "【永】 你的回合中，此卡的力量＋1000。<br>【自】 此卡【倒置】时，若此卡的战斗对手的等级小于等于0，则你可以将该角色卡【倒置】。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-103",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-103S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-104": {
+    "name": "“Lab中的平凡时光”牧濑红莉栖",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Labmem", "科学"],
+    "color": "红色",
+    "soul": "1",
+    "effect": "【永】 你的回合中，此卡的力量＋1000。<br>【自】 此卡攻击时，你选择1张自己的持有《Labmem》特征的角色卡，该回合中，等级＋1，力量＋1000。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-104",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-104S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-105": {
+    "name": "“＠channeler的称号”牧濑红莉栖",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["Labmem", "科学"],
+    "color": "红色",
+    "soul": "1",
+    "effect": "【自】 其他的你的持有《Labmem》特征的角色卡攻击时，该回合中，此卡的力量＋1000。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-105",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-105S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-106": {
+    "name": "“普通的女孩子”菲利丝·喵喵",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 3000,
+    "cost": 0,
+    "trait": ["Labmem", "女仆"],
+    "color": "红色",
+    "soul": "1",
+    "effect": "",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-106",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-106S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-107": {
+    "name": "“禁忌的秘密奥义”菲利丝·喵喵",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2000,
+    "cost": 1,
+    "trait": ["Labmem", "女仆"],
+    "color": "红色",
+    "soul": "1",
+    "effect": "【自】 你使用此卡的『助太刀』时，若存在你的持有《Labmem》特征的角色卡，则你选择1张自己的战斗中的角色卡，该回合中，力量＋1000。<br>【起】【反击】 助太刀2500 等级2 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2500）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-107",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-107S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-108": {
+    "name": "“雷NET联线战士的高手”菲利丝·喵喵",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6500,
+    "cost": 2,
+    "trait": ["Labmem", "女仆"],
+    "color": "红色",
+    "soul": "2",
+    "effect": "【永】 每存在1张其他的你的持有《Labmem》特征的角色卡，此卡的力量＋1000。<br>【永】 若存在对方的持有《御宅族》特征的角色卡，则此卡获得『【永】 大活跃』。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-108",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-108S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-109": {
+    "name": "看着眼睛搅搅",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 0,
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "所有玩家将所有自己休息室的卡片，返回卡组，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-109",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-109S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-110": {
+    "name": "β世界线",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "你选择至多2张自己休息室的角色卡，返回手牌，选择1张自己的手牌，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-110",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-110S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-111": {
+    "name": "时间跳跃的偏执狂",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-111",
+        "rarity": "CR"
+      },
+      {
+        "id": "STG/SZ08-111R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-112": {
+    "name": "菲利丝杯",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【自】 此卡被从手牌放置入高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br>（<img src=\"/effect-icons/standby.webp\">：此卡触发时，你选择1张自己休息室的等级小于等于自己的等级＋1的角色卡，以【休息】状态放置入舞台的任意格子）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-112",
+        "rarity": "CR"
+      },
+      {
+        "id": "STG/SZ08-112R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-113": {
+    "name": "相对性理论",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-113",
+        "rarity": "CR"
+      },
+      {
+        "id": "STG/SZ08-113R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-114": {
+    "name": "“难以掩藏的魅力”椎名真由理",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["Labmem", "裁缝"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【自】［将1张手牌放置入休息室］ 此卡攻击时，你可以支付费用。若如此做，则你检视自己卡组顶的至多4张卡，选择至多1张等级大于等于1的卡片展示给对手，加入手牌，其余的卡片放置入休息室。（高潮卡视作等级为0的卡片）<br>【自】［你将自己库存区上方的1张卡放置入休息室，或将你的卡组顶的1张卡放置入计时区］ 此卡攻击时，你可以支付费用。若如此做，则该攻击中，你在触发步骤进行2次触发判定。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-114",
+        "rarity": "RR"
+      },
+      {
+        "id": "STG/SZ08-114SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-115": {
+    "name": "“天真随性的乐天派”椎名真由理",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["Labmem", "裁缝"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【永】 此卡、与此卡同名的卡片、「“难以掩藏的魅力”椎名真由理」，在卡组中可合计投入至多4张。<br>【自】［将1张手牌放置入休息室］ 此卡攻击时，你可以支付费用。若如此做，则你检视自己卡组顶的至多4张卡，选择至多1张等级大于等于1的卡片展示给对手，加入手牌，其余的卡片放置入休息室。（高潮卡视作等级为0的卡片）<br>【自】［你将自己库存区上方的1张卡放置入休息室，或将你的卡组顶的1张卡放置入计时区］ 此卡攻击时，你可以支付费用。若如此做，则该攻击中，你在触发步骤进行2次触发判定。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-115ZHS",
+        "rarity": "ZHS"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-116": {
+    "name": "“追忆妈妈的心绪”椎名篝",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["Labmem", "谜"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【永】 你的回合中，此卡的力量＋4000。<br>【自】【CX联动】 此卡攻击时，若高潮区存在「被唤醒的记忆」，则你检视自己卡组顶至多3张卡，选择至多1张持有《Labmem》特征的角色卡或事件卡展示给对手，加入手牌，其余的卡片放置入休息室，该回合中，此卡获得以下能力。『【自】 此卡的战斗对手【倒置】时，你公开自己卡组顶的1张卡。若该卡等级大于等于2则加入手牌或放置入库存区。』（高潮卡视作等级为0的卡片。若非如此则放回原处）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-116",
+        "rarity": "RR"
+      },
+      {
+        "id": "STG/SZ08-116S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-117": {
+    "name": "“柳林神社的巫女”漆原琉华",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9000,
+    "cost": 2,
+    "trait": ["Labmem", "巫女"],
+    "color": "蓝色",
+    "soul": "2",
+    "effect": "【自】 此卡被从手牌放置入舞台时，你检视自己卡组顶至多Ｘ张卡，选择至多1张卡，加入手牌，其余的卡片放置入休息室。Ｘ为你的持有《Labmem》特征的角色卡的张数。<br>【自】 此卡攻击时，你选择1张自己的持有《Labmem》特征的角色卡，该回合中，力量＋1500。<br>【自】 再演 ［将1张手牌中持有《Labmem》特征的角色卡放置入休息室］ （此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则将此卡以【休息】状态放置入此卡曾经存在的格子）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-117",
+        "rarity": "RR"
+      },
+      {
+        "id": "STG/SZ08-117SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-118": {
+    "name": "“勇敢的Labmem No.002”椎名真由理",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Labmem", "裁缝"],
+    "color": "蓝色",
+    "soul": "2",
+    "effect": "【自】【CX联动】 经验 此卡的攻击结束之际，若高潮区存在「世界的分歧点」，且你的等级区存在「“难以掩藏的魅力”椎名真由理」或「“天真随性的乐天派”椎名真由理」，则你选择自己的计时区上方的至多1张卡片，放置入休息室，你从以下2个效果中选择1个执行。『给予对方1点伤害。』『［② 将1张手牌的蓝色的卡片放置入休息室］ 若前列中央的格子中存在此卡，则你可以支付费用。若如此做，则发动 Operation Arc Light。』（会发生伤害取消）<br>【replay】 Operation Arc Light 你选择1张自己的等级区的「“放任自己的疯狂与愚蠢”冈部伦太郎」及此卡，互换位置。（放置入舞台的角色卡以【竖置】状态被放置）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-118",
+        "rarity": "RR"
+      },
+      {
+        "id": "STG/SZ08-118SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-119": {
+    "name": "“点心培训班的讲师助手”阿万音由季",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["Labmem", "Cosplay"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【自】 此卡被从手牌放置入舞台时，你可以选择1张自己计时区的卡片，返回手牌。若如此做，则你选择1张自己的手牌，放置入计时区。<br>【自】［① 将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组，选择至多1张持有《Labmem》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-119",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-119S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-120": {
+    "name": "“隐藏的心意”漆原琉华",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Labmem", "巫女"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【自】 此卡被从手牌放置入舞台时，你检视自己卡组顶的1张卡，放置入卡组顶或卡组底。<br>【自】［将此卡返回手牌］ 你的高潮卡被放置入高潮区时，你可以支付费用。若如此做，则你选择1张自己的角色卡，直到下一个对方回合的结束之际为止，力量＋1000。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-120",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-120S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-121": {
+    "name": "“但他是男的”漆原琉华",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Labmem", "巫女"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【永】 对方的回合中，所有其他的你的持有《Labmem》特征的角色卡，力量＋500。<br>【起】 集中 ［①］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你检视自己的卡组，选择至多1张持有《Labmem》特征的角色卡展示给对手，加入手牌，选择1张自己的手牌，放置入休息室，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-121",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-121S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-122": {
+    "name": "“用大币消灾避邪”椎名真由理",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Labmem", "裁缝"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【自】 你使用事件卡时，你可以将此卡放置入库存区。<br>【起】［【休息】此卡］ 你选择1张自己的持有《Labmem》特征的角色卡，该回合中，力量＋500，赋予其以下能力。『【自】 此卡的战斗对手【倒置】时，你可以将对方计时区上方的1张卡，放置入休息室。若如此做，则你将该角色卡放置入计时区。』",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-122",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-122S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-123": {
+    "name": "“研究所的气氛担当”椎名真由理",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Labmem", "裁缝"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【自】 你使用此卡的『助太刀』时，若存在你的持有《Labmem》特征的角色卡，则你选择自己的1张战斗中的角色卡，该回合中，力量＋1000。<br>【起】【反击】 助太刀1000 等级1 ［将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋1000）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-123",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-123S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-124": {
+    "name": "“你所描绘的未来”椎名真由理",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5000,
+    "cost": 0,
+    "trait": ["Labmem", "裁缝"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【自】【CX联动】 此卡攻击时，若高潮区存在「世界的分歧点」，且存在其他的你的持有《Labmem》特征的角色卡，则你检视自己卡组顶至多4张卡，选择至多1张持有《Labmem》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-124",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-124S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-125": {
+    "name": "“雷NET翔爱好者”椎名真由理",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5500,
+    "cost": 1,
+    "trait": ["Labmem", "裁缝"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【永】 若存在大于等于2张其他的你的持有《Labmem》特征的角色卡，则此卡的力量＋2000。<br>【自】 再演 ［将1张手牌的角色卡放置入休息室］ （此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则将此卡以【休息】状态放置入此卡曾经存在的格子）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-125",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-125S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-126": {
+    "name": "“不由分说的抢夺”椎名真由理",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["Labmem", "女仆"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【自】［② 将1张你的舞台的角色卡放置入休息室］ 你使用此卡的『助太刀』时，你可以支付费用。若如此做，则你选择1张对方的等级高于对方的等级的角色卡，放置入休息室。<br>【起】【反击】 助太刀2500 等级2 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2500）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-126",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-126S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-127": {
+    "name": "“无可替代的存在”椎名真由理",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 7500,
+    "cost": 2,
+    "trait": ["Labmem", "裁缝"],
+    "color": "蓝色",
+    "soul": "2",
+    "effect": "【永】 应援 所有此卡前面的你的持有《Labmem》特征的角色卡，力量＋2000。<br>【自】［将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择自己的计时区上方的1张卡片，放置入库存区。<br>【起】［【休息】2张你的持有《Labmem》特征的角色卡］ 你分别选择1张自己等级区的卡片与1张休息室的卡片，互换位置，选择至多1张自己的角色卡，该回合中，等级＋1。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-127",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-127S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-128": {
+    "name": "“海姆冥界作战”椎名真由理",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 8500,
+    "cost": 2,
+    "trait": ["Labmem", "裁缝"],
+    "color": "蓝色",
+    "soul": "2",
+    "effect": "【永】 若存在大于等于4张你的持有《Labmem》特征的角色卡，则你手牌中的此卡的等级－1。<br>【自】 此卡被从手牌放置入舞台时，你选择1张自己的持有《Labmem》特征的角色卡，该回合中，力量＋Ｘ。Ｘ为你的持有《Labmem》特征的角色卡的张数×500。<br>【自】［将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择自己的计时区上方的1张卡片，放置入库存区。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-128",
+        "rarity": "R"
+      },
+      {
+        "id": "STG/SZ08-128S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-129": {
+    "name": "“治愈系天然少女”椎名真由理",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Labmem", "裁缝"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【自】 此卡被从手牌放置入舞台时，你公开自己卡组顶的1张卡。若该卡为持有《Labmem》特征的角色卡或「合金乌帕」则加入手牌，你选择1张自己的手牌，放置入休息室。（若非如此则放回原处）<br>【自】 此卡攻击时，你选择1张自己的持有《Labmem》特征的角色卡，该回合中，力量＋1500。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-129",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-129SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-130": {
+    "name": "“死亡的收束”椎名真由理",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Labmem", "裁缝"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【自】 你的高潮阶段开始之际，你选择1张自己的持有《Labmem》特征的角色卡，该回合中，等级＋1，力量＋500。<br>【起】 集中 ［① 【休息】2张你的角色卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你检视自己的卡组，选择至多1张持有《Labmem》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-130",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-130S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-131": {
+    "name": "\r\n“Cosplay同好”中濑克美＆来岛枫",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Cosplay"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【自】 此卡攻击时，你选择1张自己的持有《Labmem》特征或《Cosplay》特征的角色卡，该回合中，力量＋1500。<br>【自】 共鸣 ［将1张手牌放置入休息室，公开1张手牌的「“本名『秋叶留未穗』”菲利丝·喵喵」］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己卡组顶的至多4张卡，选择至多1张持有《Labmem》特征或《Cosplay》特征的角色卡，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-131",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-131S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-132": {
+    "name": "“消失的回忆”椎名真由理",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Labmem", "裁缝"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【自】［将1张手牌的高潮卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的持有《Labmem》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-132",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-132S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-133": {
+    "name": "“为大家准备的美味料理”漆原琉华",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Labmem", "巫女"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【自】［① 将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时或攻击时，你可以支付费用。若如此做，则你选择1张自己休息室的持有《Labmem》特征的角色卡，返回手牌，选择1张其他的自己的持有《Labmem》特征的角色卡，该回合中，赋予其以下能力。『【自】 此卡攻击时，你检视自己卡组顶至多2张卡，选择其中1张卡，放置于卡组顶，其余的卡片放置入休息室。』",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-133",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-133SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-134": {
+    "name": "“第一次相遇”漆原琉华",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 3500,
+    "cost": 0,
+    "trait": ["Labmem", "巫女"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【永】 此卡无法进行侧面攻击。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-134",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-134S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-135": {
+    "name": "“可丽饼的幸福味道”椎名真由理",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "trait": ["Labmem", "裁缝"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【永】 你的回合中，若存在大于等于2张其他的你的持有《Labmem》特征的角色卡，则此卡的力量＋2000，此卡获得以下能力。『【自】 此卡攻击时，若此卡正面的角色卡的等级为2，则该回合中，此卡的力量＋6000。』<br>【自】［将1张手牌的高潮卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的持有《Labmem》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-135",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-135S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-136": {
+    "name": "“作为恋人…”漆原琉华",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Labmem", "巫女"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【永】 经验 若你的等级区存在「“记忆的碎片”漆原琉华」，则此卡的力量＋1500。<br>【自】【CX联动】 此卡攻击时，若你的高潮区存在「自我相似的两性体」，则你公开自己卡组顶的1张卡。若该卡为持有《Labmem》特征的角色卡则加入手牌。（若非如此则放回原处）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-136",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-136S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-137": {
+    "name": "“记忆的碎片”漆原琉华",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Labmem", "巫女"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【永】 经验 若你的等级区存在「“作为恋人…”漆原琉华」，则此卡的力量＋1500。<br>【自】【CX联动】 「自我相似的两性体」被放置入你的高潮区时，若存在其他的你的卡名含有「冈部」的角色卡，则该回合中，此卡的力量＋4000。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-137",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-137S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-138": {
+    "name": "“难以接受的现实”椎名篝",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["Labmem", "谜"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【自】［②］ 你使用此卡的『助太刀』时，你可以支付费用。若如此做，则你将所有自己休息室的卡片，返回卡组，将卡组洗切。<br>【起】【反击】 助太刀2500 等级2 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2500）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-138",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-138S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-139": {
+    "name": "“关切的目光”漆原琉华",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6500,
+    "cost": 2,
+    "trait": ["Labmem", "巫女"],
+    "color": "蓝色",
+    "soul": "2",
+    "effect": "【永】 每存在1张其他的你的持有《Labmem》特征的角色卡，此卡的力量＋1000。<br>【自】 此卡直接攻击时，你公开自己卡组顶的1张卡。若该卡为持有《Labmem》特征的角色卡则加入手牌。（若非如此则放回原处）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-139",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-139S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-140": {
+    "name": "“重要的宝物”椎名篝",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Labmem", "谜"],
+    "color": "蓝色",
+    "soul": "2",
+    "effect": "【自】 此卡被从手牌放置入舞台时，你选择至多1张自己手牌的等级小于等于自己等级的角色卡，放置入舞台的任意格子，该回合中，该角色卡的力量＋2000。<br>【自】［②］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则对方将自己库存区的所有卡，返回卡组，将卡组洗切，从自己的卡组顶将相同张数的卡牌放置入库存区。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-140",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-140S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-141": {
+    "name": "“抗争者们”椎名真由理",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["Labmem", "裁缝"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【永】 所有其他的你的「“抗争者们”冈部伦太郎」，力量＋1000。<br>【自】 羁绊／「“抗争者们”冈部伦太郎」 ［①］ （此卡，被从手牌放置入舞台或因被使用而放置入舞台时，你可以支付费用。若如此做，则你选择1张自己的休息室的「“抗争者们”冈部伦太郎」，返回手牌）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-141",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-141S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-142": {
+    "name": "“Labmem No.006”漆原琉华",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Labmem", "巫女"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋500。<br>【自】 此卡被从手牌放置入舞台时，你检视自己卡组顶的1张卡，放置入卡组顶或卡组底。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-142",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-142S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-143": {
+    "name": "“向星星许愿…”椎名真由理",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Labmem", "裁缝"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋500。<br>【自】【CX联动】 对方升级时，若你的高潮区存在「与星屑握手」，则你检视自己卡组顶至多4张卡，选择至多1张持有《Labmem》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-143",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-143S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-144": {
+    "name": "“真由氏·喵喵”椎名真由理",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Labmem", "女仆"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【自】 此卡被从手牌放置入舞台时，若存在其他的你的卡名含有「真由理」或「菲利丝」的角色卡，则该回合中，此卡的力量＋2000。<br>【自】 此卡攻击时，你选择1张自己的角色卡，该回合中，力量＋1000。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-144",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-144S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-145": {
+    "name": "“合身的巫女装扮”椎名篝",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Labmem", "谜"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【永】 若所有你的角色卡均持有《Labmem》特征，则此卡的力量＋1500，此卡获得以下能力。『【自】 此卡的战斗对手【倒置】时，你选择1张自己休息室的持有《Labmem》特征的角色卡，返回手牌，选择1张自己的手牌，放置入休息室。』",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-145",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-145S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-146": {
+    "name": "“难以想象的可能性”漆原琉华",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["Labmem", "巫女"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【起】［① 将此卡放置入休息室］ 你选择1张自己的休息室的「IBN5100」，返回手牌。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-146",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-146S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-147": {
+    "name": "“小光酱COS”漆原琉华",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5000,
+    "cost": 0,
+    "trait": ["Labmem", "巫女"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【自】［① 将此卡放置入休息室］ 其他的你的持有《Labmem》特征的角色卡被正面攻击时，你可以支付费用。若如此做，则你选择1张自己的战斗中的角色卡，该回合中，力量＋2500。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-147",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-147S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-148": {
+    "name": "“干鲣鱼饭团”椎名真由理",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5500,
+    "cost": 0,
+    "trait": ["Labmem", "裁缝"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-148",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-148S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-149": {
+    "name": "“名侦探”椎名真由理",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5000,
+    "cost": 1,
+    "trait": ["Labmem", "裁缝"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【永】 若此卡正面的角色卡的费用小于等于0，则此卡不会【倒置】。<br>【自】 此卡被从手牌放置入舞台时，你公开自己卡组顶的1张卡。若该卡为持有《Labmem》特征的角色卡，则该回合中，此卡的力量＋2000。（公开的卡片放回原处）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-149",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-149S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-150": {
+    "name": "“猫耳女仆”椎名真由理",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 5000,
+    "cost": 1,
+    "trait": ["Labmem", "女仆"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋1000。<br>【起】［② 【休息】此卡］ 你检视自己的卡组，选择至多1张持有《Labmem》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-150",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-150S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-151": {
+    "name": "“帮忙做饭”椎名真由理",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6500,
+    "cost": 1,
+    "trait": ["Labmem", "裁缝"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【自】 此卡【倒置】时，若此卡的战斗对手的等级高于对方的等级，则你可以将该角色卡放置入卡组底。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-151",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-151S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-152": {
+    "name": "“无法理解的搭配”椎名真由理",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7500,
+    "cost": 1,
+    "trait": ["Labmem", "裁缝"],
+    "color": "蓝色",
+    "soul": "1",
+    "effect": "【自】 其他的你的持有《Labmem》特征的角色卡攻击时，该回合中，此卡的力量＋1500。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-152",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-152S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-153": {
+    "name": "“Labmem No.002”椎名真由理",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Labmem", "裁缝"],
+    "color": "蓝色",
+    "soul": "2",
+    "effect": "【永】 若所有你的角色卡均持有《Labmem》特征，则此卡的力量＋1000。<br>【自】［③ 将1张手牌放置入休息室］ 此能力1回合至多发动1次。此卡被从手牌放置入舞台的回合中，此卡的战斗对手【倒置】时，你可以支付费用。若如此做，则【竖置】此卡。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-153",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-153S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-154": {
+    "name": "合金乌帕",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【反击】 若不存在你的持有《Labmem》特征的角色卡，则此卡无法从手牌被使用。你选择1张自己的角色卡，该回合中，赋予其以下能力。『【永】 此卡不会【倒置】。』",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-154",
+        "rarity": "C"
+      },
+      {
+        "id": "STG/SZ08-154S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-155": {
+    "name": "IBN5100",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 0,
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "你检视自己卡组顶至多4张卡，选择至多1张持有《Labmem》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-155",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-155S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-156": {
+    "name": "森林妖精乌帕",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【反击】 若存在你的卡名含有「真由理」或「篝」的角色卡，则你检视自己的卡组，选择至多1张卡名含有「真由理」的角色卡与至多1张卡名含有「篝」的角色卡展示给对手，加入手牌，选择1张自己的手牌，放置入休息室，将卡组洗切。将此卡放置入回忆区。<br>【自】 记忆 ［将1张手牌的高潮卡放置入休息室］ 若回忆区存在此卡，则你的主要阶段开始之际，你可以支付费用。若如此做，则将此卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-156",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-156S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-157": {
+    "name": "无法避免的牺牲",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【反击】 你选择1张自己的卡名含有「真由理」的角色卡，放置入休息室。若如此做，则你选择自己的计时区上方的1张卡片，返回手牌，将此卡放置入回忆区。",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-157a",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-157b",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-157c",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-157d",
+        "rarity": "U"
+      },
+      {
+        "id": "STG/SZ08-157e",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-158": {
+    "name": "世界的分歧点",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（引：此卡触发时，你可以抽1张卡）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-158",
+        "rarity": "CR"
+      },
+      {
+        "id": "STG/SZ08-158R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-159": {
+    "name": "与星屑握手\r\nにルビ【Stardust・Shakehand】の記載",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-159",
+        "rarity": "CR"
+      },
+      {
+        "id": "STG/SZ08-159R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-160": {
+    "name": "存在的证明",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-160",
+        "rarity": "CR"
+      },
+      {
+        "id": "STG/SZ08-160R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-161": {
+    "name": "自我相似的两性体",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/draw.webp\">：此卡触发时，你可以抽1张卡）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-161",
+        "rarity": "CR"
+      },
+      {
+        "id": "STG/SZ08-161R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "STG/SZ08-162": {
+    "name": "被唤醒的记忆",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-162",
+        "rarity": "CR"
+      },
+      {
+        "id": "STG/SZ08-162R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "STG/SZ08-163": {
+    "name": "世界的分歧点",
+    "product_name": "「STEINS;GATE」补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "STG/SZ08-163",
+        "rarity": "CR"
+      },
+      {
+        "id": "STG/SZ08-163R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 1
+  }
+}

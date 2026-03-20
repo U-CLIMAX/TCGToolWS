@@ -112,7 +112,7 @@
             class="d-flex pa-1"
           >
             <LazyCardWrapper>
-              <SeriesCard :series-name="item.name" :series-data="item.data" />
+              <SeriesCard :series-name="item.name.replace('[cn]', '')" :series-data="item.data" />
             </LazyCardWrapper>
           </v-col>
         </v-row>

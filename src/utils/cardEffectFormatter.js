@@ -1,6 +1,5 @@
 const ICON_MAP = {
   '【CX联动】': 'cx',
-  '高潮联动': 'cx',
   '【自】': 'auto',
   '【永】': 'cont',
   '【起】': 'act',
@@ -8,10 +7,8 @@ const ICON_MAP = {
   '【横置】': 'rest',
   '【休息】': 'rest',
   '【反击】': 'backup',
-  '反击': 'backup',
   '【倒置】': 'reversed',
   '【一回合1次】': 'turn1',
-  'ターン1回': 'turn1',
   '【一回合2次】': 'turn2',
   '【一回合3次】': 'turn3',
   '【时计区】': 'alarm',

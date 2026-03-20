@@ -984,9 +984,23 @@ const wsrSeriesMap = {
   },
 }
 
+const wscSeriesMap = {
+  '[cn]蕾斯莱莉娅娜的炼金工房 ～忘却的炼金术与极夜的解放者～': {
+    id: '[cn]rsa',
+    prefixes: ['[cn]RSA'],
+    latestReleaseDate: '2025-08-15',
+  },
+  '[cn]STEINS;GATE': {
+    id: '[cn]stg',
+    prefixes: ['[cn]STG'],
+    latestReleaseDate: '2026-01-30',
+  },
+}
+
 export const seriesMap = {
   ...Object.fromEntries(Object.entries(wsSeriesMap).map(([k, v]) => [k, { ...v, game: 'ws' }])),
   ...Object.fromEntries(Object.entries(wsrSeriesMap).map(([k, v]) => [k, { ...v, game: 'wsr' }])),
+  ...Object.fromEntries(Object.entries(wscSeriesMap).map(([k, v]) => [k, { ...v, game: 'wsc' }])),
 }
 
 export const ALL_SERIES_OPTIONS = Object.keys(seriesMap)
@@ -1000,5 +1014,5 @@ export const ALL_SERIES_OPTIONS = Object.keys(seriesMap)
 export const GAME_TYPE_OPTIONS = [
   { title: 'WS', value: 'ws', color: 'primary' },
   { title: 'WSR', value: 'wsr', color: 'ws-rose' },
-  { title: 'WSC', value: 'wsc', color: 'primary' },
+  { title: 'WSC', value: 'wsc', color: 'ws-cn' },
 ]
