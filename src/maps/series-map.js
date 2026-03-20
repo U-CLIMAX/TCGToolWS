@@ -1006,7 +1006,7 @@ export const seriesMap = {
 export const ALL_SERIES_OPTIONS = Object.keys(seriesMap)
   .filter((key) => !['ws', 'wsr'].includes(seriesMap[key].id))
   .map((key) => ({
-    title: key,
+    title: key.replace('[cn]', ''),
     value: seriesMap[key].id,
     game: seriesMap[key].game,
   }))

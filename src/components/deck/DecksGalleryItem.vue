@@ -51,7 +51,9 @@
             </div>
 
             <div class="d-flex align-center mb-2 mt-auto">
-              <span class="text-body-2 text-medium-emphasis text-truncate">{{ seriesName }}</span>
+              <span class="text-body-2 text-medium-emphasis text-truncate">{{
+                seriesName.replace('[cn]', '')
+              }}</span>
             </div>
 
             <div class="card-list-container mt-auto">

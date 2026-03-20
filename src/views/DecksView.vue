@@ -213,7 +213,7 @@ const availableSeriesOptions = computed(() => {
       const foundEntry = Object.entries(seriesMap).find(([, info]) => info.id === deck.seriesId)
 
       if (foundEntry && foundEntry[1].game === selectedGameType.value) {
-        const seriesName = foundEntry[0]
+        const seriesName = foundEntry[0].replace('[cn]', '')
         counts[seriesName] = (counts[seriesName] || 0) + 1
       }
     }

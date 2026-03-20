@@ -37,7 +37,7 @@
               class="text-h6 text-sm-h5 text-truncate text-center px-2 flex-grow-1"
               style="min-width: 0"
             >
-              {{ seriesName }}
+              {{ seriesName.replace('[cn]', '') }}
             </h1>
             <v-chip
               :size="resize"
