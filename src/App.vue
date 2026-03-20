@@ -34,7 +34,7 @@
                   <v-btn
                     variant="text"
                     :active="$route.name === 'GlobalSearch'"
-                    :base-color="$route.params.game === 'wsr' ? 'ws-rose' : undefined"
+                    :base-color="routeGameColor"
                     class="rounded-3md mr-1"
                     v-bind="props"
                     :color="isHomeRoute ? 'white' : undefined"
@@ -52,16 +52,11 @@
                   nav
                 >
                   <v-list-item
-                    :to="{ name: 'GlobalSearch', params: { game: 'ws' } }"
-                    title="Weiβ Schwarz"
-                    slim
-                    class="rounded-3md"
-                  >
-                  </v-list-item>
-                  <v-list-item
-                    color="ws-rose"
-                    :to="{ name: 'GlobalSearch', params: { game: 'wsr' } }"
-                    title="Weiβ Schwarz Rose"
+                    v-for="gameOpt in GAME_TYPE_OPTIONS"
+                    :key="gameOpt.value"
+                    :to="{ name: 'GlobalSearch', params: { game: gameOpt.value } }"
+                    :title="`Weiβ Schwarz ${gameOpt.title === 'WS' ? '' : gameOpt.title === 'WSR' ? 'Rose' : '简中'}`"
+                    :color="gameOpt.color"
                     slim
                     class="rounded-3md"
                   >
@@ -386,6 +381,7 @@ import AppUpdateDialog from '@/components/ui/AppUpdateDialog.vue'
 import HomeBackground from '@/components/common/HomeBackground.vue'
 import SponsorNoticeDialog from '@/components/ui/SponsorNoticeDialog.vue'
 import { HalfCircleSpinner } from 'epic-spinners'
+import { GAME_TYPE_OPTIONS } from '@/maps/series-map'
 
 import titleDarkImg from '@/assets/ui/title-dark.webp'
 import titleLightImg from '@/assets/ui/title-light.webp'
@@ -429,6 +425,12 @@ const isSettingsModalOpen = ref(false)
 const isUserProfileModalOpen = ref(false)
 const isHomeRoute = computed(() => route.name === 'Home')
 const isGalleryRoute = computed(() => route.name === 'DecksGallery')
+
+const routeGameColor = computed(() => {
+  const game = route.params.game
+  if (!game) return undefined
+  return GAME_TYPE_OPTIONS.find((opt) => opt.value === game)?.color
+})
 
 const titleImg = computed(() => {
   const isLightTheme = vuetifyTheme.global.name.value === 'light'
