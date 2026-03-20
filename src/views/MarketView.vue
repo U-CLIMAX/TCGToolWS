@@ -71,7 +71,9 @@
                     <InsetTabs
                       v-model="localFilters.gameType"
                       :options="GAME_TYPE_OPTIONS"
-                      :color="localFilters.gameType === 'ws' ? 'primary' : 'ws-rose'"
+                      :color="
+                        GAME_TYPE_OPTIONS.find((o) => o.value === localFilters.gameType)?.color
+                      "
                       class="mb-2"
                       @update:model-value="onGameTypeChange"
                     />

@@ -72,11 +72,10 @@
       <v-container class="pt-0" :class="{ 'px-10 mb-12': !smAndUp }">
         <div class="d-flex flex-column flex-sm-row align-center mt-4 mb-4">
           <InsetTabs
-            v-model="seriesGameFilter"
+            v-model="selectedGameType"
             :options="GAME_TYPE_OPTIONS"
-            :color="seriesGameFilter === 'ws' ? 'primary' : 'ws-rose'"
+            :color="GAME_TYPE_OPTIONS.find((o) => o.value === selectedGameType)?.color"
             class="mb-4 mb-sm-0"
-            @update:model-value="onGameTypeChange"
           >
             <template #tab-item="{ option }">
               <span class="font-weight-bold">{{ option.title }}</span>
@@ -156,7 +155,7 @@ const displayedSeries = ref([])
 const infiniteScrollRef = ref(null)
 
 const uiStore = useUIStore()
-const { seriesSearchTerm, seriesSortBy, seriesSortAscending, seriesGameFilter } =
+const { seriesSearchTerm, seriesSortBy, seriesSortAscending, selectedGameType } =
   storeToRefs(uiStore)
 
 const toggleSort = (field) => {
@@ -184,7 +183,7 @@ const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 const filteredSeries = computed(() => {
   const term = seriesSearchTerm.value.trim().toLowerCase()
-  const game = seriesGameFilter.value
+  const game = selectedGameType.value
 
   let list = allSeries.value.filter((item) => item.data.game === game)
 
@@ -227,7 +226,7 @@ const load = async ({ done }) => {
   done('ok')
 }
 
-watch([seriesSearchTerm, seriesSortBy, seriesSortAscending, seriesGameFilter], async () => {
+watch([seriesSearchTerm, seriesSortBy, seriesSortAscending, selectedGameType], async () => {
   displayedSeries.value = []
   await nextTick()
   if (infiniteScrollRef.value) {

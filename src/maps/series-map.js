@@ -998,6 +998,7 @@ export const ALL_SERIES_OPTIONS = Object.keys(seriesMap)
   }))
 
 export const GAME_TYPE_OPTIONS = [
-  { title: 'WS', value: 'ws' },
-  { title: 'WSR', value: 'wsr' },
+  { title: 'WS', value: 'ws', color: 'primary' },
+  { title: 'WSR', value: 'wsr', color: 'ws-rose' },
+  { title: 'WSC', value: 'wsc', color: 'primary' },
 ]

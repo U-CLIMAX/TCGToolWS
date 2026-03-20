@@ -24,11 +24,11 @@
           <!-- 搜尋與篩選區域 -->
           <v-row dense>
             <!-- 0. 遊戲種類選擇 -->
-            <v-col cols="12" sm="5">
+            <v-col cols="12">
               <InsetTabs
                 v-model="selectedGameType"
                 :options="GAME_TYPE_OPTIONS"
-                :color="selectedGameType === 'ws' ? 'primary' : 'ws-rose'"
+                :color="GAME_TYPE_OPTIONS.find((o) => o.value === selectedGameType)?.color"
                 @update:model-value="onGameTypeChange"
               />
             </v-col>

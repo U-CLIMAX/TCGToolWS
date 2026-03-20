@@ -15,7 +15,7 @@
                 <InsetTabs
                   v-model="formData.gameType"
                   :options="GAME_TYPE_OPTIONS"
-                  :color="formData.gameType === 'ws' ? 'primary' : 'ws-rose'"
+                  :color="gameTypeColor"
                   class="mb-4"
                   @update:model-value="onGameTypeChange"
                 />
@@ -261,6 +261,10 @@ const formData = reactive({
   shopUrl: '',
   deckCode: '',
   selectedCardIds: [],
+})
+
+const gameTypeColor = computed(() => {
+  return GAME_TYPE_OPTIONS.find((opt) => opt.value === formData.gameType)?.color || 'primary'
 })
 
 const filteredSeriesOptions = computed(() => {

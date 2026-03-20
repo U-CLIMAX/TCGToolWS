@@ -51,7 +51,9 @@
             style="min-height: 18px"
           >
             <v-icon size="x-small" class="mr-1">mdi-layers-outline</v-icon>
-            <span class="text-caption text-truncate">{{ seriesData.prefixes.join(', ') }}</span>
+            <span class="text-caption text-truncate">
+              {{ seriesData.prefixes.map((p) => p.replace('[cn]', '')).join(', ') }}
+            </span>
           </div>
 
           <!-- series-title -->
