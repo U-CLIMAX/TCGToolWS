@@ -27,6 +27,11 @@ import {
   handleGetMyDeckRating,
 } from './lib/gallery.js'
 import {
+  handleGetNotices,
+  handleCreateNotice,
+  handleDeleteNotice,
+} from './lib/notices.js'
+import {
   handleCreateListing,
   handleGetListings,
   handleGetUserListings,
@@ -131,6 +136,12 @@ galleryRoutes.delete('/decks/:key', handleDeleteGalleryDeck)
 galleryRoutes.post('/decks/:key/rating', handleRateDeck)
 galleryRoutes.get('/decks/:key/rating', handleGetMyDeckRating)
 
+// === Notice 路由 ===
+const noticeRoutes = new Hono()
+noticeRoutes.get('/', publicReadLimiter, handleGetNotices)
+noticeRoutes.post('/', authMiddleware, apiUserLimiter, handleCreateNotice)
+noticeRoutes.delete('/:id', authMiddleware, apiUserLimiter, handleDeleteNotice)
+
 // === 受保護的 Payment 路由 ===
 const paymentRoutes = new Hono()
 paymentRoutes.use('/*', authMiddleware, apiUserLimiter) // 必須登入才能創建訂單
@@ -147,6 +158,7 @@ app.route('/shared-decks', publicDeckRoutes)
 app.route('/decklog', decklogRoutes)
 app.route('/market', marketRoutes)
 app.route('/gallery', galleryRoutes)
+app.route('/notices', noticeRoutes)
 app.route('/webhooks', webhookRoutes)
 app.route('/payments', paymentRoutes)
 

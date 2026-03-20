@@ -107,3 +107,12 @@ CREATE TABLE IF NOT EXISTS deck_ratings (
 );
 CREATE INDEX IF NOT EXISTS idx_deck_ratings_deck_key ON deck_ratings(deck_key);
 CREATE INDEX IF NOT EXISTS idx_deck_ratings_user_id ON deck_ratings(user_id);
+
+CREATE TABLE IF NOT EXISTS notices (
+    id TEXT PRIMARY KEY,
+    title TEXT NOT NULL,
+    content TEXT NOT NULL,
+    is_important INTEGER DEFAULT 0, -- 0: normal, 1: important
+    updated_at INTEGER NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_notices_updated_at ON notices(updated_at DESC);

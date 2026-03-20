@@ -134,6 +134,8 @@
           ></v-divider>
         </template>
 
+        <NoticeMenu offset="3" />
+
         <template v-if="!authStore.isAuthReady">
           <div class="d-flex align-center justify-center mx-2" style="width: 40px; height: 40px">
             <v-progress-circular
@@ -156,6 +158,7 @@
             <v-btn
               v-if="!authStore.isAuthenticated"
               @click="handleLogin"
+              :ripple="false"
               icon="mdi-account-circle"
               color="green-lighten-2"
             ></v-btn>
@@ -202,9 +205,9 @@
             <v-btn
               v-bind="props"
               :value="item.name"
+              style="min-width: 0"
               :active="$route.name === 'GlobalSearch'"
               :base-color="routeGameColor"
-              class="rounded-3md mr-1"
               :color="isHomeRoute ? 'white' : undefined"
             >
               <v-icon :icon="navIcons[item.icon]"></v-icon>
@@ -238,6 +241,7 @@
               :active="item.group && $route.meta.group === item.group"
               style="min-width: 0"
               :color="isHomeRoute ? 'white' : undefined"
+              :active-color="isHomeRoute ? 'cyan-accent-2' : 'primary'"
             >
               <v-icon :icon="navIcons[item.icon]"></v-icon>
             </v-btn>
@@ -281,6 +285,8 @@
           <v-icon :icon="navIcons[item.icon]"></v-icon>
         </v-btn>
       </template>
+
+      <NoticeMenu offset="10" />
 
       <template v-if="!authStore.isAuthReady">
         <v-btn disabled value="loading" style="min-width: 0">
@@ -366,6 +372,7 @@ import UserProfileModal from '@/components/ui/UserProfileModal.vue'
 import AppUpdateDialog from '@/components/ui/AppUpdateDialog.vue'
 import HomeBackground from '@/components/common/HomeBackground.vue'
 import SponsorNoticeDialog from '@/components/ui/SponsorNoticeDialog.vue'
+import NoticeMenu from '@/components/common/NoticeMenu.vue'
 import { HalfCircleSpinner } from 'epic-spinners'
 import { GAME_TYPE_OPTIONS } from '@/maps/series-map'
 

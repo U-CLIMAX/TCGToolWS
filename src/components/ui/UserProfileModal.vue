@@ -170,7 +170,7 @@ const userRoleText = computed(() => {
 const formattedExpireTime = computed(() => {
   if (!userStatus.value || !userStatus.value.premium_expire_time) return ''
   const date = new Date(userStatus.value.premium_expire_time * 1000)
-  return date.toLocaleString('zh-TW', {
+  return date.toLocaleString(undefined, {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
