@@ -145,28 +145,19 @@
           </div>
         </template>
         <template v-else>
-          <v-badge
+          <v-btn
             v-if="authStore.isAuthenticated"
-            :model-value="userRole === 0"
-            color="red"
-            dot
-            location="top end"
-            offset-x="12"
-            offset-y="11"
-          >
-            <v-btn
-              @click="isUserProfileModalOpen = true"
-              icon="mdi-account-circle"
-              :class="accountIconClass"
-            ></v-btn>
-          </v-badge>
+            @click="isUserProfileModalOpen = true"
+            icon="mdi-account-circle"
+            :class="accountIconClass"
+          ></v-btn>
 
           <template v-if="!isInSpecialFlow">
             <v-btn
               v-if="!authStore.isAuthenticated"
               @click="handleLogin"
               icon="mdi-account-circle"
-              color="blue-grey-lighten-2"
+              color="green-lighten-2"
             ></v-btn>
           </template>
         </template>
@@ -416,7 +407,7 @@ const accountIconClass = computed(() => {
   if (role === 2) {
     return isDark ? 'developer-user-icon-dark' : 'developer-user-icon-light'
   }
-  return 'text-blue-grey-lighten-5'
+  return 'text-blue-grey-lighten-2'
 })
 const authDialog = ref(null)
 const { show, text, color, triggerSnackbar } = useSnackbar()
