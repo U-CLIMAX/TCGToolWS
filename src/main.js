@@ -40,6 +40,7 @@ const bootstrap = async () => {
           colors: {
             'default': '#EEEEEE',
             'ws-rose': '#e85a6a',
+            'ws-cn': '#5e7794',
             'grey-btn': '#455A64',
           },
         },
@@ -47,6 +48,7 @@ const bootstrap = async () => {
           colors: {
             'default': '#424242',
             'ws-rose': '#FF8391',
+            'ws-cn': '#98C1F0',
             'grey-btn': '#ECEFF1',
           },
         },

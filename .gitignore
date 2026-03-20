@@ -55,9 +55,12 @@ icon_crawler.py
 
 public/ws_cards_db.*.bin
 public/wsr_cards_db.*.bin
+public/wsc_cards_db.*.bin
 public/ws_index*.json
 public/wsr_index*.json
+public/wsc_index*.json
 public/card-db-manifest-ws.json
 public/card-db-manifest-wsr.json
+public/card-db-manifest-wsc.json
 
 test-webhook.http

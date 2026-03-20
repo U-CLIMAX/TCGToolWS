@@ -78,6 +78,7 @@ console.log(`📁 Found ${files.length} card data files.`)
 const cardsByGame = {
   ws: [],
   wsr: [],
+  wsc: [],
 }
 
 let totalCardCount = 0
@@ -126,7 +127,9 @@ files.forEach((filename) => {
 })
 
 console.log(`     - Processed a total of ${totalCardCount} cards.`)
-console.log(`     - WS: ${cardsByGame.ws.length}, WSR: ${cardsByGame.wsr.length}`)
+console.log(
+  `     - WS: ${cardsByGame.ws.length}, WSR: ${cardsByGame.wsr.length}, WSC: ${cardsByGame.wsc.length}`
+)
 
 // 卡片連結處理函式
 const processCardLinks = (cards) => {
@@ -468,6 +471,7 @@ const processGameData = async (game, cards) => {
 ;(async () => {
   await processGameData('ws', cardsByGame.ws)
   await processGameData('wsr', cardsByGame.wsr)
+  await processGameData('wsc', cardsByGame.wsc)
 
   console.log('✨ Done!')
 })()
