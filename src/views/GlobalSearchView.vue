@@ -24,7 +24,7 @@
           <div class="header-center d-flex align-center">
             <h1
               class="text-h6 text-sm-h5 text-truncate text-center px-2 flex-grow-1 font-weight-bold"
-              :class="{ 'text-ws-rose': game === 'wsr' }"
+              :class="gameColorClass"
               style="min-width: 0"
             >
               {{ game.toUpperCase() }} 搜索结果
@@ -214,6 +214,7 @@ import { useUIStore } from '@/stores/ui'
 import { useDeckStore } from '@/stores/deck'
 import { useInfiniteScrollState } from '@/composables/useInfiniteScrollState.js'
 import { HalfCircleSpinner } from 'epic-spinners'
+import { GAME_TYPE_OPTIONS } from '@/maps/series-map'
 import CardInfiniteScrollList from '@/components/card/CardInfiniteScrollList.vue'
 import BaseFilterSidebar from '@/components/ui/FilterSidebar.vue'
 import DeckSidebar from '@/components/ui/DeckSidebar.vue'
@@ -224,6 +225,11 @@ const theme = useTheme()
 const game = computed(() => route.params.game || 'ws')
 const spinnerColor = computed(() => {
   return globalSearchStore.isInitialSetup ? '#82B1FF' : theme.global.current.value.colors.primary
+})
+
+const gameColorClass = computed(() => {
+  const color = GAME_TYPE_OPTIONS.find((opt) => opt.value === game.value)?.color
+  return color ? `text-${color}` : ''
 })
 
 const globalSearchStore = useGlobalSearchStore()
