@@ -203,8 +203,8 @@
               v-bind="props"
               :value="item.name"
               :active="$route.name === 'GlobalSearch'"
-              :base-color="$route.params.game === 'wsr' ? 'ws-rose' : undefined"
-              style="min-width: 0"
+              :base-color="routeGameColor"
+              class="rounded-3md mr-1"
               :color="isHomeRoute ? 'white' : undefined"
             >
               <v-icon :icon="navIcons[item.icon]"></v-icon>
@@ -217,15 +217,12 @@
             nav
           >
             <v-list-item
-              :to="{ name: 'GlobalSearch', params: { game: 'ws' } }"
-              title="Weiβ Schwarz"
-              class="rounded-3md"
-            >
-            </v-list-item>
-            <v-list-item
-              color="ws-rose"
-              :to="{ name: 'GlobalSearch', params: { game: 'wsr' } }"
-              title="Weiβ Schwarz Rose"
+              v-for="gameOpt in GAME_TYPE_OPTIONS"
+              :key="gameOpt.value"
+              :to="{ name: 'GlobalSearch', params: { game: gameOpt.value } }"
+              :title="`Weiβ Schwarz ${gameOpt.title === 'WS' ? '' : gameOpt.title === 'WSR' ? 'Rose' : '简中'}`"
+              :color="gameOpt.color"
+              slim
               class="rounded-3md"
             >
             </v-list-item>
@@ -298,7 +295,7 @@
           style="min-width: 0"
           :active="false"
         >
-          <v-icon icon="mdi-account-circle" color="blue-grey-lighten-2"></v-icon>
+          <v-icon icon="mdi-account-circle" color="green-lighten-2"></v-icon>
         </v-btn>
 
         <v-btn
@@ -309,9 +306,7 @@
           :class="accountIconClass"
           :active="false"
         >
-          <v-badge :model-value="userRole === 0" color="red" dot location="top start" offset-x="13">
-            <v-icon icon="mdi-account-circle" color="grey-lighten-1"></v-icon>
-          </v-badge>
+          <v-icon icon="mdi-account-circle"></v-icon>
         </v-btn>
       </template>
     </v-bottom-navigation>
