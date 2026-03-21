@@ -27,20 +27,21 @@
         <div class="d-flex ga-1">
           <v-btn
             icon="mdi-refresh"
-            variant="tonal"
+            variant="text"
             size="32"
             color="primary"
             class="rounded-lg"
+            :ripple="false"
             :loading="isRefreshing"
             @click="handleRefresh"
           ></v-btn>
           <v-btn
             v-if="isAdmin"
             icon="mdi-plus"
-            variant="flat"
+            variant="tonal"
             size="32"
             color="primary"
-            class="rounded-lg"
+            class="rounded-pill"
             @click="showCreateDialog = true"
           ></v-btn>
         </div>
@@ -150,13 +151,7 @@
 
       <v-card-actions class="pa-6">
         <v-spacer></v-spacer>
-        <v-btn
-          color="primary"
-          variant="flat"
-          rounded="pill"
-          class="px-6"
-          @click="showDetailDialog = false"
-        >
+        <v-btn color="primary" variant="tonal" class="px-6" @click="showDetailDialog = false">
           我知道了
         </v-btn>
       </v-card-actions>
@@ -197,13 +192,10 @@
       </v-card-text>
       <v-card-actions class="pa-6">
         <v-spacer></v-spacer>
-        <v-btn variant="text" rounded="pill" class="px-4" @click="showCreateDialog = false">
-          取消
-        </v-btn>
+        <v-btn variant="text" class="px-4" @click="showCreateDialog = false"> 取消 </v-btn>
         <v-btn
           color="primary"
-          variant="flat"
-          rounded="pill"
+          variant="tonal"
           class="px-6"
           :loading="loading"
           :disabled="!newNotice.title || !newNotice.content"

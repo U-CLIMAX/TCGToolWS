@@ -6,18 +6,18 @@
         账号资料
         <v-spacer></v-spacer>
         <v-btn
-          prepend-icon="mdi-refresh"
           text="刷新"
           @click="handleRefreshToken"
           :loading="isRefreshing"
           color="primary"
-          variant="text"
+          variant="tonal"
+          rounded="pill"
         ></v-btn>
       </v-card-title>
       <v-card-text>
         <div v-if="!userStatus" class="text-center">
           <v-progress-circular indeterminate color="primary"></v-progress-circular>
-          <p class="mt-2">讀取中...</p>
+          <p class="mt-2">读取中...</p>
         </div>
         <v-list v-else lines="two">
           <v-list-item title="账号 ID">
