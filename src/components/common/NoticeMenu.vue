@@ -5,7 +5,6 @@
     location="bottom end"
     width="380"
     :offset="offset"
-    transition="slide-y-transition"
   >
     <template v-slot:activator="{ props }">
       <v-btn v-bind="props" icon @click="handleOpen" style="min-width: 0" :ripple="false">
@@ -122,7 +121,7 @@
   </v-menu>
 
   <!-- 公告詳情 Dialog -->
-  <v-dialog v-model="showDetailDialog" max-width="500" transition="dialog-bottom-transition">
+  <v-dialog v-model="showDetailDialog" max-width="500">
     <v-card v-if="selectedNotice" class="rounded-2lg overflow-hidden">
       <v-card-title class="d-flex align-center pt-6 px-6">
         <v-avatar
