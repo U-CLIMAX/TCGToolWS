@@ -417,34 +417,47 @@
         </template>
 
         <v-card-text class="pb-2">
-          <v-select
-            v-model="shareForm.tournamentType"
-            :items="tournamentTypeOptions"
-            label="比赛类型"
-            variant="outlined"
+          <v-switch
+            v-model="shareForm.includeTournamentInfo"
+            label="添加比赛信息 (如店赛、WGP等)"
+            color="primary"
             density="compact"
-            class="mb-4"
-            hide-details
-          ></v-select>
+            inset
+            class="mb-2"
+          ></v-switch>
 
-          <v-select
-            v-model="shareForm.participantCount"
-            :items="participantCountOptions"
-            label="参赛人数"
-            variant="outlined"
-            density="compact"
-            class="mb-4"
-            hide-details
-          ></v-select>
+          <v-expand-transition>
+            <div v-if="shareForm.includeTournamentInfo">
+              <v-select
+                v-model="shareForm.tournamentType"
+                :items="tournamentTypeOptions"
+                label="比赛类型"
+                variant="outlined"
+                density="compact"
+                class="mb-4"
+                hide-details
+              ></v-select>
 
-          <v-select
-            v-model="shareForm.placement"
-            :items="placementOptions"
-            label="获得名次"
-            variant="outlined"
-            density="compact"
-            hide-details
-          ></v-select>
+              <v-select
+                v-model="shareForm.participantCount"
+                :items="participantCountOptions"
+                label="参赛人数"
+                variant="outlined"
+                density="compact"
+                class="mb-4"
+                hide-details
+              ></v-select>
+
+              <v-select
+                v-model="shareForm.placement"
+                :items="placementOptions"
+                label="获得名次"
+                variant="outlined"
+                density="compact"
+                hide-details
+              ></v-select>
+            </div>
+          </v-expand-transition>
         </v-card-text>
 
         <v-card-actions>
@@ -508,6 +521,7 @@ const renderShareImage = ref(false)
 // 分享到广场相关状态
 const isShareToGalleryDialogVisible = ref(false)
 const shareForm = ref({
+  includeTournamentInfo: false,
   tournamentType: 'shop',
   participantCount: 'under10',
   placement: 'champion',
@@ -634,9 +648,11 @@ const confirmShareToDeckGallery = async () => {
       coverCardId: deck.value.coverCardId,
       climaxCardsId: climaxCardsId,
       isDeckGallery: true,
-      tournamentType: shareForm.value.tournamentType,
-      participantCount: shareForm.value.participantCount,
-      placement: shareForm.value.placement,
+      tournamentType: shareForm.value.includeTournamentInfo ? shareForm.value.tournamentType : null,
+      participantCount: shareForm.value.includeTournamentInfo
+        ? shareForm.value.participantCount
+        : null,
+      placement: shareForm.value.includeTournamentInfo ? shareForm.value.placement : null,
     })
     triggerSnackbar('已成功分享到卡组广场！', 'success')
   } catch (error) {
