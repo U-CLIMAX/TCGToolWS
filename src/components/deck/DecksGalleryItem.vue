@@ -180,7 +180,7 @@ const participantText = computed(() => {
     'under10': '10人以下',
     '10to20': '10-20人',
     '20to30': '20-30人',
-    'over30': '30以上',
+    'over30': '30人以上',
   }
   return texts[props.deck.participant_count] || ''
 })
