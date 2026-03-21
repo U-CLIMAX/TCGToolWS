@@ -120,15 +120,26 @@
 
       <div v-if="initialLoadingComplete" class="px-3 mt-3">
         <div class="group-header">
-          <div class="d-flex align-center ga-2">
-            <v-icon :icon="DeckIcon" size="24"></v-icon>
-            <span>{{ deckCount }} / {{ maxDecks === Infinity ? '∞' : maxDecks }}</span>
-            <span
-              v-if="maxDecks !== Infinity && deckCount >= maxDecks"
-              class="text-error font-weight-bold"
-            >
-              已达上限
-            </span>
+          <div class="d-flex align-center ga-4 flex-wrap">
+            <div class="d-flex align-center ga-2">
+              <v-icon :icon="DeckIcon" size="24"></v-icon>
+              <span>{{ deckCount }} / {{ maxDecks === Infinity ? '∞' : maxDecks }}</span>
+              <span
+                v-if="maxDecks !== Infinity && deckCount >= maxDecks"
+                class="text-error font-weight-bold"
+              >
+                已达上限
+              </span>
+            </div>
+
+            <div class="d-flex align-center ga-3 text-caption text-medium-emphasis">
+              <div v-for="opt in GAME_TYPE_OPTIONS" :key="opt.value" class="d-flex align-center">
+                <span class="mr-1">{{ opt.title }}:</span>
+                <span class="font-weight-bold text-high-emphasis">
+                  {{ gameTypeCounts[opt.value] || 0 }}
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -254,6 +265,17 @@ const filteredDecks = computed(() => {
 })
 
 const deckCount = computed(() => Object.keys(deckStore.savedDecks).length)
+
+const gameTypeCounts = computed(() => {
+  const counts = {}
+  Object.values(deckStore.savedDecks).forEach((deck) => {
+    const seriesInfo = Object.values(seriesMap).find((s) => s.id === deck.seriesId)
+    const gameType = seriesInfo?.game || 'ws'
+    counts[gameType] = (counts[gameType] || 0) + 1
+  })
+  return counts
+})
+
 const maxDecks = computed(() => (authStore.userRole === 0 ? 15 : Infinity))
 
 const navigateToSharedDeck = () => {
