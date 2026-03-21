@@ -7,7 +7,16 @@ import { createErrorResponse } from './utils.js'
  */
 export const handleGetDecksGallery = async (c) => {
   try {
-    const { limit, series, game_type, sort = 'newest', cursor } = c.req.query()
+    const {
+      limit,
+      series,
+      game_type,
+      sort = 'newest',
+      cursor,
+      tournament_type,
+      participant_count,
+      placement,
+    } = c.req.query()
     const limitNum = Math.max(1, Math.min(100, parseInt(limit) || 20))
 
     let cursorObj = null
@@ -19,6 +28,21 @@ export const handleGetDecksGallery = async (c) => {
     if (series) {
       conditions.push('series_id = ?')
       params.push(series)
+    }
+
+    if (tournament_type) {
+      conditions.push('tournament_type = ?')
+      params.push(tournament_type)
+    }
+
+    if (participant_count) {
+      conditions.push('participant_count = ?')
+      params.push(participant_count)
+    }
+
+    if (placement) {
+      conditions.push('placement = ?')
+      params.push(placement)
     }
 
     let orderByClause = 'updated_at DESC, key DESC'
@@ -59,7 +83,7 @@ export const handleGetDecksGallery = async (c) => {
     const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : ''
 
     const query = `
-      SELECT key, user_id, deck_name, series_id, game_type, cover_cards_id, climax_cards_id, updated_at, rating_avg
+      SELECT key, user_id, deck_name, series_id, game_type, cover_cards_id, climax_cards_id, updated_at, rating_avg, tournament_type, participant_count, placement
       FROM decks_gallery
       ${whereClause}
       ORDER BY ${orderByClause}
@@ -108,7 +132,16 @@ export const handleGetDecksGallery = async (c) => {
 export const handleGetUserDecksGallery = async (c) => {
   try {
     const user = c.get('user')
-    const { limit, series, game_type, sort = 'newest', cursor } = c.req.query()
+    const {
+      limit,
+      series,
+      game_type,
+      sort = 'newest',
+      cursor,
+      tournament_type,
+      participant_count,
+      placement,
+    } = c.req.query()
     const limitNum = Math.max(1, Math.min(100, parseInt(limit) || 20))
 
     let cursorObj = null
@@ -120,6 +153,21 @@ export const handleGetUserDecksGallery = async (c) => {
     if (series) {
       conditions.push('series_id = ?')
       params.push(series)
+    }
+
+    if (tournament_type) {
+      conditions.push('tournament_type = ?')
+      params.push(tournament_type)
+    }
+
+    if (participant_count) {
+      conditions.push('participant_count = ?')
+      params.push(participant_count)
+    }
+
+    if (placement) {
+      conditions.push('placement = ?')
+      params.push(placement)
     }
 
     let orderByClause = 'updated_at DESC, key DESC'
@@ -160,7 +208,7 @@ export const handleGetUserDecksGallery = async (c) => {
     const whereClause = `WHERE ${conditions.join(' AND ')}`
 
     const query = `
-      SELECT key, user_id, deck_name, series_id, game_type, cover_cards_id, climax_cards_id, updated_at, rating_avg
+      SELECT key, user_id, deck_name, series_id, game_type, cover_cards_id, climax_cards_id, updated_at, rating_avg, tournament_type, participant_count, placement
       FROM decks_gallery
       ${whereClause}
       ORDER BY ${orderByClause}

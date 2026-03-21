@@ -21,6 +21,9 @@
 
   /* For sticky header */
   --header-bg-color: rgba(255, 255, 255, 0.8);
+
+  /* For info tags */
+  --info-pill-color: #0288d1;
 }
 
 .v-theme--dark {
@@ -46,4 +49,7 @@
 
   /* For sticky header */
   --header-bg-color: rgba(83, 81, 81, 0.8);
+
+  /* For info tags */
+  --info-pill-color: #81d4fa;
 }

@@ -43,7 +43,9 @@
                   class="d-flex flex-column flex-md-row justify-space-between align-start align-md-center mb-5 ga-3"
                 >
                   <div class="d-flex align-center ga-3">
-                    <v-icon icon="mdi-view-grid-outline" color="primary" size="32"></v-icon>
+                    <v-avatar color="primary" variant="tonal" size="48" class="rounded-xl">
+                      <v-icon icon="mdi-view-grid-outline" size="28" />
+                    </v-avatar>
                     <div>
                       <div class="text-h6 font-weight-bold" style="line-height: 1.2">卡组广场</div>
                       <div class="text-caption text-medium-emphasis d-none d-sm-block">
@@ -52,24 +54,26 @@
                     </div>
                   </div>
 
-                  <InsetTabs
-                    v-model="localFilters.source"
-                    :options="sourceOptions"
-                    color="primary"
-                    @update:model-value="handleSearch"
-                  >
-                    <template #tab-item="{ option }">
-                      <v-icon
-                        :icon="option.value === 'mine' ? 'mdi-account-star' : 'mdi-earth'"
-                        start
-                      ></v-icon>
-                      {{ option.title }}
-                    </template>
-                  </InsetTabs>
+                  <div class="d-flex ga-2 align-center">
+                    <InsetTabs
+                      v-model="localFilters.source"
+                      :options="sourceOptions"
+                      color="primary"
+                      @update:model-value="handleSearch"
+                    >
+                      <template #tab-item="{ option }">
+                        <v-icon
+                          :icon="option.value === 'mine' ? 'mdi-account-star' : 'mdi-earth'"
+                          start
+                        ></v-icon>
+                        {{ option.title }}
+                      </template>
+                    </InsetTabs>
+                  </div>
                 </div>
 
                 <v-row dense class="align-center">
-                  <!-- 遊戲種類選擇 -->
+                  <!-- 游戏种类选择 -->
                   <v-col cols="12" class="mb-2">
                     <InsetTabs
                       v-model="localFilters.gameType"
@@ -81,26 +85,27 @@
                     />
                   </v-col>
 
-                  <!-- 系列選擇 -->
-                  <v-col cols="12" sm="6">
+                  <!-- 搜索与主筛选 -->
+                  <v-col cols="12" md="6" lg="7">
                     <v-autocomplete
                       v-model="localFilters.seriesId"
                       :items="galleryStore.seriesOptions"
                       item-title="title"
                       item-value="value"
-                      label="选择系列"
+                      label="搜索作品系列..."
                       variant="solo-filled"
                       flat
                       rounded="pill"
                       density="comfortable"
                       hide-details
                       clearable
+                      prepend-inner-icon="mdi-magnify"
                       :menu-props="uiStore.menuProps"
+                      @update:model-value="handleSearch"
                     />
                   </v-col>
 
-                  <!-- 排序選擇 -->
-                  <v-col cols="12" sm="3">
+                  <v-col cols="12" md="6" lg="5" class="d-flex ga-2">
                     <v-select
                       v-model="localFilters.sort"
                       :items="sortOptions"
@@ -112,34 +117,91 @@
                       density="comfortable"
                       hide-details
                       prepend-inner-icon="mdi-sort"
+                      class="flex-grow-1"
                       :menu-props="uiStore.menuProps"
+                      @update:model-value="handleSearch"
                     />
-                  </v-col>
 
-                  <!-- 篩選操作按鈕 -->
-                  <v-col cols="12" sm="3" class="d-flex ga-2">
+                    <v-btn
+                      :color="isAdvancedFilterOpen ? 'primary' : 'grey-btn'"
+                      :variant="isAdvancedFilterOpen ? 'flat' : 'tonal'"
+                      rounded="pill"
+                      height="48"
+                      width="48"
+                      icon="mdi-filter-variant"
+                      elevation="0"
+                      @click="isAdvancedFilterOpen = !isAdvancedFilterOpen"
+                    />
+
                     <v-btn
                       variant="tonal"
                       rounded="pill"
                       color="grey-btn"
-                      class="flex-grow-1"
                       height="48"
+                      width="48"
+                      icon="mdi-refresh"
+                      elevation="0"
                       @click="resetFilters"
-                    >
-                      重置
-                    </v-btn>
-                    <v-btn
-                      color="secondary"
-                      variant="flat"
-                      rounded="pill"
-                      class="flex-grow-1"
-                      height="48"
-                      @click="handleSearch"
-                    >
-                      搜索
-                    </v-btn>
+                    />
                   </v-col>
                 </v-row>
+
+                <!-- 进阶比赛筛选面板 -->
+                <v-expand-transition>
+                  <div v-show="isAdvancedFilterOpen" class="advanced-filter-wrapper">
+                    <div class="mt-4 pt-4 border-top">
+                      <v-row dense>
+                        <v-col cols="12" sm="4">
+                          <v-select
+                            v-model="localFilters.tournamentType"
+                            :items="tournamentTypeOptions"
+                            label="比赛类型"
+                            variant="solo-filled"
+                            flat
+                            rounded="pill"
+                            density="compact"
+                            hide-details
+                            prepend-inner-icon="mdi-trophy-outline"
+                            :menu-props="uiStore.menuProps"
+                            @update:model-value="handleSearch"
+                          />
+                        </v-col>
+
+                        <v-col cols="12" sm="4">
+                          <v-select
+                            v-model="localFilters.participantCount"
+                            :items="participantCountOptions"
+                            label="参赛人数"
+                            variant="solo-filled"
+                            flat
+                            rounded="pill"
+                            density="compact"
+                            hide-details
+                            prepend-inner-icon="mdi-account-group-outline"
+                            :menu-props="uiStore.menuProps"
+                            @update:model-value="handleSearch"
+                          />
+                        </v-col>
+
+                        <v-col cols="12" sm="4">
+                          <v-select
+                            v-model="localFilters.placement"
+                            :items="placementOptions"
+                            label="获得名次"
+                            variant="solo-filled"
+                            flat
+                            rounded="pill"
+                            density="compact"
+                            hide-details
+                            prepend-inner-icon="mdi-medal-outline"
+                            :menu-props="uiStore.menuProps"
+                            @update:model-value="handleSearch"
+                          />
+                        </v-col>
+                      </v-row>
+                    </div>
+                  </div>
+                </v-expand-transition>
               </v-sheet>
             </v-col>
           </v-row>
@@ -243,10 +305,35 @@ const sourceOptions = computed(() => {
 })
 
 const sortOptions = [
-  { title: '时间从新到旧', value: 'newest' },
-  { title: '时间从旧到新', value: 'oldest' },
-  { title: '评分从高到低', value: 'rating_desc' },
-  { title: '评分从低到高', value: 'rating_asc' },
+  { title: '時間從新到舊', value: 'newest' },
+  { title: '時間從舊到新', value: 'oldest' },
+  { title: '評分從高到低', value: 'rating_desc' },
+  { title: '評分從低到高', value: 'rating_asc' },
+]
+
+const tournamentTypeOptions = [
+  { title: '所有比赛', value: null },
+  { title: '店赛', value: 'shop' },
+  { title: '巡回赛', value: 'circuit' },
+  { title: 'WGP', value: 'wgp' },
+  { title: 'BCF', value: 'bcf' },
+]
+
+const participantCountOptions = [
+  { title: '所有人数', value: null },
+  { title: '10人以下', value: 'under10' },
+  { title: '10-20', value: '10to20' },
+  { title: '20-30', value: '20to30' },
+  { title: '30以上', value: 'over30' },
+]
+
+const placementOptions = [
+  { title: '所有名次', value: null },
+  { title: '冠军', value: 'champion' },
+  { title: '亚军', value: 'runner_up' },
+  { title: '四强', value: 'top4' },
+  { title: '八强', value: 'top8' },
+  { title: '十六强', value: 'top16' },
 ]
 
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
@@ -256,7 +343,12 @@ const localFilters = ref({
   gameType: 'ws',
   seriesId: null,
   sort: 'newest',
+  tournamentType: null,
+  participantCount: null,
+  placement: null,
 })
+
+const isAdvancedFilterOpen = ref(false)
 
 const onGameTypeChange = () => {
   localFilters.value.seriesId = null
@@ -268,6 +360,9 @@ const handleSearch = async () => {
   galleryStore.filters.gameType = localFilters.value.gameType
   galleryStore.filters.seriesId = localFilters.value.seriesId
   galleryStore.filters.sort = localFilters.value.sort
+  galleryStore.filters.tournamentType = localFilters.value.tournamentType
+  galleryStore.filters.participantCount = localFilters.value.participantCount
+  galleryStore.filters.placement = localFilters.value.placement
 
   try {
     await galleryStore.fetchDecks()
@@ -280,9 +375,16 @@ const handleSearch = async () => {
 const resetFilters = async () => {
   localFilters.value.seriesId = null
   localFilters.value.sort = 'newest'
+  localFilters.value.tournamentType = null
+  localFilters.value.participantCount = null
+  localFilters.value.placement = null
+
   galleryStore.filters.source = localFilters.value.source
   galleryStore.filters.seriesId = localFilters.value.seriesId
   galleryStore.filters.sort = localFilters.value.sort
+  galleryStore.filters.tournamentType = localFilters.value.tournamentType
+  galleryStore.filters.participantCount = localFilters.value.participantCount
+  galleryStore.filters.placement = localFilters.value.placement
 
   try {
     await galleryStore.fetchDecks()
@@ -340,6 +442,9 @@ onMounted(async () => {
   localFilters.value.gameType = galleryStore.filters.gameType
   localFilters.value.seriesId = galleryStore.filters.seriesId
   localFilters.value.sort = galleryStore.filters.sort
+  localFilters.value.tournamentType = galleryStore.filters.tournamentType
+  localFilters.value.participantCount = galleryStore.filters.participantCount
+  localFilters.value.placement = galleryStore.filters.placement
 
   try {
     await galleryStore.fetchDecks()
@@ -383,12 +488,23 @@ watch(scrollKey, () => {
   gap: 12px;
   background-color: rgba(var(--v-theme-surface), 0.7);
   backdrop-filter: blur(4px) saturate(180%);
-  -webkit-backdrop-filter: blur(4px) saturate(180%); /* Safari 支援 */
+  -webkit-backdrop-filter: blur(4px) saturate(180%); /* Safari 支持 */
   padding: 4px 12px;
   border-radius: 16px;
   margin-bottom: 4px;
   border: 1px solid rgba(var(--v-border-color), var(--v-border-opacity));
   color: rgb(var(--v-theme-on-surface));
   font-size: 0.875rem;
+}
+
+.border-top {
+  border-top: 1px solid rgba(var(--v-border-color), 0.1);
+}
+
+.advanced-filter-wrapper {
+  will-change: height, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 </style>

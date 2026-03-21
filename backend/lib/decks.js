@@ -18,6 +18,9 @@ export const handleCreateDeck = async (c) => {
       history,
       isDeckGallery,
       climaxCardsId,
+      tournamentType,
+      participantCount,
+      placement,
     } = await c.req.json()
 
     if (isDeckGallery && !climaxCardsId) {
@@ -50,8 +53,8 @@ export const handleCreateDeck = async (c) => {
     if (isDeckGallery) {
       const climaxCardsIdStr = JSON.stringify(climaxCardsId)
       info = await c.env.DB.prepare(
-        `INSERT INTO decks_gallery (key, user_id, deck_name, series_id, game_type, cover_cards_id, climax_cards_id, deck_data, updated_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        `INSERT INTO decks_gallery (key, user_id, deck_name, series_id, game_type, cover_cards_id, climax_cards_id, deck_data, updated_at, tournament_type, participant_count, placement)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ON CONFLICT(key) DO UPDATE SET
         deck_name = excluded.deck_name,
         series_id = excluded.series_id,
@@ -59,7 +62,10 @@ export const handleCreateDeck = async (c) => {
         cover_cards_id = excluded.cover_cards_id,
         climax_cards_id = excluded.climax_cards_id,
         deck_data = excluded.deck_data,
-        updated_at = excluded.updated_at`
+        updated_at = excluded.updated_at,
+        tournament_type = excluded.tournament_type,
+        participant_count = excluded.participant_count,
+        placement = excluded.placement`
       )
         .bind(
           key,
@@ -70,7 +76,10 @@ export const handleCreateDeck = async (c) => {
           coverCardIdStr,
           climaxCardsIdStr,
           deckDataArray,
-          now
+          now,
+          tournamentType,
+          participantCount,
+          placement
         )
         .run()
     } else {

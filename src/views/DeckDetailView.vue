@@ -407,6 +407,58 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+
+    <!-- 分享到卡组广场弹窗 -->
+    <v-dialog v-model="isShareToGalleryDialogVisible" max-width="450">
+      <v-card class="rounded-2lg pa-2">
+        <template #prepend>
+          <v-icon color="primary">mdi-view-grid-plus</v-icon>
+          <v-card-title class="pl-2">分享到卡组广场</v-card-title>
+        </template>
+
+        <v-card-text class="pb-2">
+          <v-select
+            v-model="shareForm.tournamentType"
+            :items="tournamentTypeOptions"
+            label="比赛类型"
+            variant="outlined"
+            density="compact"
+            class="mb-4"
+            hide-details
+          ></v-select>
+
+          <v-select
+            v-model="shareForm.participantCount"
+            :items="participantCountOptions"
+            label="参赛人数"
+            variant="outlined"
+            density="compact"
+            class="mb-4"
+            hide-details
+          ></v-select>
+
+          <v-select
+            v-model="shareForm.placement"
+            :items="placementOptions"
+            label="获得名次"
+            variant="outlined"
+            density="compact"
+            hide-details
+          ></v-select>
+        </v-card-text>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn text="取消" @click="isShareToGalleryDialogVisible = false"></v-btn>
+          <v-btn
+            color="primary"
+            variant="tonal"
+            text="确认分享"
+            @click="confirmShareToDeckGallery"
+          ></v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -453,6 +505,52 @@ const isTextModalVisible = ref(false)
 const modalTextContent = ref('')
 const renderShareImage = ref(false)
 
+// 分享到广场相关状态
+const isShareToGalleryDialogVisible = ref(false)
+const shareForm = ref({
+  tournamentType: 'shop',
+  participantCount: 'under10',
+  placement: 'champion',
+})
+
+const tournamentTypeOptions = [
+  { title: '店赛', value: 'shop' },
+  { title: '巡回赛', value: 'circuit' },
+  { title: 'WGP', value: 'wgp' },
+  { title: 'BCF', value: 'bcf' },
+]
+
+const participantCountOptions = [
+  { title: '10人以下', value: 'under10' },
+  { title: '10-20', value: '10to20' },
+  { title: '20-30', value: '20to30' },
+  { title: '30以上', value: 'over30' },
+]
+
+const placementOptions = computed(() => {
+  const base = [
+    { title: '冠军', value: 'champion' },
+    { title: '亚军', value: 'runner_up' },
+    { title: '四强', value: 'top4' },
+  ]
+  if (['circuit', 'wgp', 'bcf'].includes(shareForm.value.tournamentType)) {
+    return [...base, { title: '八强', value: 'top8' }, { title: '十六强', value: 'top16' }]
+  }
+  return base
+})
+
+// 监听比赛类型变化，如果当前名次在非增强模式下不可用，则重置
+watch(
+  () => shareForm.value.tournamentType,
+  (newVal) => {
+    if (!['circuit', 'wgp', 'bcf'].includes(newVal)) {
+      if (['top8', 'top16'].includes(shareForm.value.placement)) {
+        shareForm.value.placement = 'champion'
+      }
+    }
+  }
+)
+
 const isHistoryDialogVisible = ref(false)
 const viewingHistoryIndex = ref(null)
 const historicalCards = ref([])
@@ -486,12 +584,16 @@ const handleShareCard = async () => {
   }
 }
 
-const handleShareToDeckGallery = async () => {
+const handleShareToDeckGallery = () => {
   if (!deck.value || originalCards.value.length === 0) {
     triggerSnackbar('卡组内容为空，无法分享', 'error')
     return
   }
+  isShareToGalleryDialogVisible.value = true
+}
 
+const confirmShareToDeckGallery = async () => {
+  isShareToGalleryDialogVisible.value = false
   uiStore.setLoading(true)
   try {
     const cardsToEncode = originalCards.value.reduce((acc, card) => {
@@ -532,6 +634,9 @@ const handleShareToDeckGallery = async () => {
       coverCardId: deck.value.coverCardId,
       climaxCardsId: climaxCardsId,
       isDeckGallery: true,
+      tournamentType: shareForm.value.tournamentType,
+      participantCount: shareForm.value.participantCount,
+      placement: shareForm.value.placement,
     })
     triggerSnackbar('已成功分享到卡组广场！', 'success')
   } catch (error) {

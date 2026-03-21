@@ -14,7 +14,10 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
     source: 'all', // 'all' or 'mine'
     gameType: 'ws',
     seriesId: null,
-    sort: 'newest', // Only 'newest' for now as per requirement
+    sort: 'newest',
+    tournamentType: null,
+    participantCount: null,
+    placement: null,
   })
 
   const seriesOptions = computed(() => {
@@ -43,6 +46,9 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
       params.append('game_type', filters.gameType)
       if (filters.seriesId) params.append('series', filters.seriesId)
       if (filters.sort) params.append('sort', filters.sort)
+      if (filters.tournamentType) params.append('tournament_type', filters.tournamentType)
+      if (filters.participantCount) params.append('participant_count', filters.participantCount)
+      if (filters.placement) params.append('placement', filters.placement)
       if (pagination.cursor) params.append('cursor', pagination.cursor)
 
       const endpoint = filters.source === 'mine' ? '/api/gallery/my-decks' : '/api/gallery/decks'

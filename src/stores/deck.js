@@ -206,6 +206,9 @@ export const useDeckStore = defineStore(
         history = [],
         isDeckGallery = false,
         climaxCardsId = [],
+        tournamentType = null,
+        participantCount = null,
+        placement = null,
       }
     ) => {
       if (!authStore.token) {
@@ -233,6 +236,9 @@ export const useDeckStore = defineStore(
           history,
           isDeckGallery,
           climaxCardsId,
+          tournamentType,
+          participantCount,
+          placement,
         }),
       })
 

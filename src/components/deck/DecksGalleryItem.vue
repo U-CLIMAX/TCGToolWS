@@ -28,7 +28,7 @@
                 class="text-h6 font-weight-bold text-truncate text-high-emphasis mr-2"
                 style="line-height: 1.2"
               >
-                {{ deck.deck_name || '未命名卡組' }}
+                {{ deck.deck_name || '未命名卡组' }}
               </h3>
 
               <div v-if="galleryStore.filters.source === 'mine'" class="flex-shrink-0">
@@ -79,7 +79,20 @@
           </div>
         </div>
 
-        <div class="d-flex justify-end pb-3 px-3">
+        <div class="d-flex align-center justify-space-between pt-1 pb-3 px-3 ga-2">
+          <div v-if="deck.tournament_type" class="d-flex align-center ga-1 overflow-hidden">
+            <div class="info-pill">
+              <span class="type-dot"></span>
+              {{ tournamentText }}
+            </div>
+            <div v-if="deck.placement" class="info-pill placement-pill">
+              {{ placementText }}
+            </div>
+            <span v-if="deck.participant_count" class="participant-text ml-1">
+              {{ participantText }}
+            </span>
+          </div>
+          <v-spacer v-else></v-spacer>
           <v-rating
             :model-value="deck.rating_avg"
             color="amber"
@@ -87,6 +100,7 @@
             half-increments
             readonly
             size="x-small"
+            class="flex-shrink-0"
           ></v-rating>
         </div>
       </div>
@@ -139,6 +153,37 @@ const seriesInfo = computed(() => {
 })
 
 const seriesName = computed(() => seriesInfo.value?.title || props.deck.series_id || '未知系列')
+
+const tournamentText = computed(() => {
+  const texts = {
+    shop: '店赛',
+    circuit: '巡回赛',
+    wgp: 'WGP',
+    bcf: 'BCF',
+  }
+  return texts[props.deck.tournament_type] || props.deck.tournament_type
+})
+
+const placementText = computed(() => {
+  const texts = {
+    champion: '冠军',
+    runner_up: '亚军',
+    top4: '四强',
+    top8: '八强',
+    top16: '十六强',
+  }
+  return texts[props.deck.placement] || props.deck.placement
+})
+
+const participantText = computed(() => {
+  const texts = {
+    'under10': '10人以下',
+    '10to20': '10-20人',
+    '20to30': '20-30人',
+    'over30': '30以上',
+  }
+  return texts[props.deck.participant_count] || ''
+})
 
 const timeAgo = computed(() => {
   if (!props.deck.updated_at) return ''
@@ -223,6 +268,41 @@ const handleDelete = () => {
   flex-shrink: 0;
   border-radius: 4px;
   overflow: hidden;
+}
+
+.info-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 8px;
+  border-radius: 12px;
+  background-color: rgba(var(--v-theme-surface), 0.8);
+  backdrop-filter: blur(4px) saturate(180%);
+  -webkit-backdrop-filter: blur(4px) saturate(180%);
+  border: 1px solid rgba(var(--v-border-color), 0.15);
+  font-size: 0.65rem;
+  font-weight: 700;
+  height: 18px;
+  white-space: nowrap;
+  color: var(--info-pill-color);
+}
+
+.type-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-right: 5px;
+  flex-shrink: 0;
+  background-color: var(--info-pill-color);
+}
+
+.placement-pill {
+  border-color: rgba(var(--v-theme-primary), 0.3);
+}
+
+.participant-text {
+  color: rgba(var(--v-theme-on-surface), 0.5);
+  font-size: 0.65rem;
+  font-weight: 500;
 }
 
 :deep(.mini-card-item .v-img__img.v-img__img--contain) {
