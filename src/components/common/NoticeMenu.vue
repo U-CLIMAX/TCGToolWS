@@ -48,7 +48,7 @@
 
       <v-divider class="opacity-10"></v-divider>
 
-      <v-list class="notice-list py-2 themed-scrollbar bg-transparent" max-height="480">
+      <v-list class="notice-list py-2 themed-scrollbar" max-height="480">
         <template v-if="noticeStore.notices.length > 0">
           <v-list-item
             v-for="notice in noticeStore.notices"
@@ -148,7 +148,7 @@
         {{ selectedNotice.content }}
       </v-card-text>
 
-      <v-card-actions class="pa-6 bg-surface-variant-low">
+      <v-card-actions class="pa-6">
         <v-spacer></v-spacer>
         <v-btn
           color="primary"
@@ -405,9 +405,5 @@ onMounted(() => {
 
 .notice-item:hover .delete-btn {
   opacity: 1;
-}
-
-.bg-surface-variant-low {
-  background-color: rgba(var(--v-theme-on-surface), 0.02);
 }
 </style>
