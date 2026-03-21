@@ -273,7 +273,7 @@ const { triggerSnackbar } = useSnackbar()
 const galleryStore = useDecksGalleryStore()
 const uiStore = useUIStore()
 const authStore = useAuthStore()
-const { smAndUp, width } = useDisplay()
+const { smAndDown, smAndUp, width } = useDisplay()
 
 const infiniteScrollRef = ref(null)
 const scrollContainer = ref(null)
@@ -286,7 +286,7 @@ const drawerWidth = computed(() => {
 })
 
 const scrollStyle = computed(() => {
-  const marginTop = smAndUp.value ? '50px' : '0'
+  const marginTop = !smAndDown.value ? '50px' : '0'
   return {
     '--sb-margin-top': '27px',
     'marginTop': marginTop,
