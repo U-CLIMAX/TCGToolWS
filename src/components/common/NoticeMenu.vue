@@ -3,8 +3,9 @@
     v-model="menuOpen"
     :close-on-content-click="false"
     location="bottom end"
-    width="400"
+    width="380"
     :offset="offset"
+    transition="slide-y-transition"
   >
     <template v-slot:activator="{ props }">
       <v-btn v-bind="props" icon @click="handleOpen" style="min-width: 0" :ripple="false">
@@ -14,130 +15,201 @@
       </v-btn>
     </template>
 
-    <v-card class="notice-card" :class="{ 'glass-menu': hasBackgroundImage }" rounded="3md">
-      <v-card-title class="d-flex align-center py-3 text-subtitle-1 font-weight-bold">
-        <span>最新公告</span>
+    <v-card
+      class="notice-card overflow-hidden"
+      :class="{ 'glass-menu': hasBackgroundImage }"
+      rounded="3md"
+      elevation="12"
+    >
+      <div class="d-flex align-center px-5 py-4">
+        <span class="text-h6 font-weight-bold">最近公告</span>
         <v-spacer></v-spacer>
-        <v-btn
-          icon="mdi-refresh"
-          variant="text"
-          size="small"
-          class="mr-1"
-          :loading="isRefreshing"
-          @click="handleRefresh"
-        ></v-btn>
-        <v-btn
-          v-if="isAdmin"
-          icon="mdi-plus"
-          variant="text"
-          size="small"
-          color="primary"
-          @click="showCreateDialog = true"
-        ></v-btn>
-      </v-card-title>
+        <div class="d-flex ga-1">
+          <v-btn
+            icon="mdi-refresh"
+            variant="tonal"
+            size="32"
+            color="primary"
+            class="rounded-lg"
+            :loading="isRefreshing"
+            @click="handleRefresh"
+          ></v-btn>
+          <v-btn
+            v-if="isAdmin"
+            icon="mdi-plus"
+            variant="flat"
+            size="32"
+            color="primary"
+            class="rounded-lg"
+            @click="showCreateDialog = true"
+          ></v-btn>
+        </div>
+      </div>
 
-      <v-divider></v-divider>
+      <v-divider class="opacity-10"></v-divider>
 
-      <v-list class="notice-list py-0 themed-scrollbar" max-height="500">
+      <v-list class="notice-list py-2 themed-scrollbar bg-transparent" max-height="480">
         <template v-if="noticeStore.notices.length > 0">
-          <template v-for="(notice, index) in noticeStore.notices" :key="notice.id">
-            <v-list-item class="py-3" @click="viewDetail(notice)">
-              <template v-slot:prepend>
+          <v-list-item
+            v-for="notice in noticeStore.notices"
+            :key="notice.id"
+            class="px-5 py-3 notice-item"
+            @click="viewDetail(notice)"
+          >
+            <template v-slot:prepend>
+              <div class="notice-indicator-wrapper mr-4">
+                <div :class="['notice-indicator', { 'is-important': notice.is_important }]"></div>
                 <v-icon
-                  :color="notice.is_important ? 'warning' : 'blue-grey-lighten-2'"
-                  :icon="notice.is_important ? 'mdi-alert-circle' : 'mdi-bell-outline'"
-                  size="small"
+                  :color="notice.is_important ? 'warning' : 'medium-emphasis'"
+                  :icon="
+                    notice.is_important ? 'mdi-alert-circle-outline' : 'mdi-information-outline'
+                  "
+                  size="20"
                 ></v-icon>
-              </template>
+              </div>
+            </template>
 
-              <v-list-item-title class="font-weight-bold text-truncate">
-                {{ notice.title }}
-              </v-list-item-title>
+            <div class="d-flex align-center mb-1 ga-2">
+              <span class="text-subtitle-2 font-weight-bold text-high-emphasis text-truncate">{{
+                notice.title
+              }}</span>
+              <v-chip
+                v-if="notice.is_important"
+                size="x-small"
+                color="warning"
+                variant="tonal"
+                class="font-weight-bold px-2"
+                style="height: 18px"
+              >
+                重要
+              </v-chip>
+            </div>
 
-              <v-list-item-subtitle class="mt-1 text-truncate text-body-2">
-                {{ notice.content }}
-              </v-list-item-subtitle>
+            <div class="text-caption text-medium-emphasis text-truncate-2 line-height-1-4">
+              {{ notice.content }}
+            </div>
 
-              <div class="mt-2 d-flex align-center text-caption text-medium-emphasis">
-                <span>{{ formatDate(notice.updated_at) }}</span>
-                <v-spacer></v-spacer>
+            <template v-slot:append>
+              <div class="d-flex flex-column align-end ga-2">
+                <span class="text-caption text-disabled whitespace-nowrap">{{
+                  formatDate(notice.updated_at)
+                }}</span>
                 <v-btn
                   v-if="isAdmin"
-                  icon="mdi-delete-outline"
+                  icon="mdi-trash-can-outline"
                   variant="text"
-                  size="x-small"
+                  size="30"
                   color="error"
+                  class="rounded-lg delete-btn"
                   @click.stop="handleDelete(notice.id)"
                 ></v-btn>
               </div>
-            </v-list-item>
-            <v-divider v-if="index < noticeStore.notices.length - 1"></v-divider>
-          </template>
+            </template>
+          </v-list-item>
         </template>
-        <v-list-item v-else class="text-center py-8">
-          <v-list-item-title class="text-medium-emphasis">目前暂无公告</v-list-item-title>
-        </v-list-item>
+        <div v-else class="d-flex flex-column align-center justify-center py-12 px-6 text-center">
+          <v-icon
+            icon="mdi-bell-off-outline"
+            size="48"
+            color="disabled"
+            class="mb-3 opacity-20"
+          ></v-icon>
+          <div class="text-body-2 text-disabled">目前暂无公告</div>
+        </div>
       </v-list>
     </v-card>
   </v-menu>
 
   <!-- 公告詳情 Dialog -->
-  <v-dialog v-model="showDetailDialog" max-width="500">
-    <v-card v-if="selectedNotice" class="rounded-2lg">
-      <v-card-title class="d-flex align-center pt-4 px-6">
-        <v-icon v-if="selectedNotice.is_important" color="warning" class="mr-2" size="x-small">
-          mdi-alert-circle
-        </v-icon>
+  <v-dialog v-model="showDetailDialog" max-width="500" transition="dialog-bottom-transition">
+    <v-card v-if="selectedNotice" class="rounded-2lg overflow-hidden">
+      <v-card-title class="d-flex align-center pt-6 px-6">
+        <v-avatar
+          :color="selectedNotice.is_important ? 'warning' : 'primary'"
+          variant="tonal"
+          size="32"
+          class="mr-3"
+        >
+          <v-icon
+            :icon="selectedNotice.is_important ? 'mdi-alert-circle' : 'mdi-information'"
+            size="18"
+          ></v-icon>
+        </v-avatar>
         <span class="text-h6 font-weight-bold">{{ selectedNotice.title }}</span>
       </v-card-title>
-      <v-card-subtitle class="px-6 pb-2">
-        {{ formatDate(selectedNotice.updated_at) }}
+      <v-card-subtitle class="px-6 pb-4 d-flex align-center">
+        <v-icon icon="mdi-clock-outline" size="14" class="mr-1"></v-icon>
+        {{ formatDateFull(selectedNotice.updated_at) }}
       </v-card-subtitle>
-      <v-divider class="mx-6"></v-divider>
-      <v-card-text class="pa-6 text-body-1 whitespace-pre-wrap">
+
+      <v-divider class="mx-6 opacity-10"></v-divider>
+
+      <v-card-text class="pa-8 text-body-1 whitespace-pre-wrap line-height-1-6 text-high-emphasis">
         {{ selectedNotice.content }}
       </v-card-text>
-      <v-card-actions class="pa-4 justify-end">
-        <v-btn color="primary" variant="tonal" @click="showDetailDialog = false">关闭</v-btn>
+
+      <v-card-actions class="pa-6 bg-surface-variant-low">
+        <v-spacer></v-spacer>
+        <v-btn
+          color="primary"
+          variant="flat"
+          rounded="pill"
+          class="px-6"
+          @click="showDetailDialog = false"
+        >
+          我知道了
+        </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
 
   <!-- 發布公告 Dialog -->
-  <v-dialog v-model="showCreateDialog" max-width="500">
-    <v-card title="发布新公告" class="rounded-2lg">
-      <v-card-text>
+  <v-dialog v-model="showCreateDialog" max-width="500" persistent>
+    <v-card class="rounded-2lg">
+      <v-card-title class="pt-6 px-6 font-weight-bold">发布新公告</v-card-title>
+      <v-card-text class="px-6 pt-2">
         <v-text-field
           v-model="newNotice.title"
-          label="标题"
+          label="公告标题"
+          placeholder="输入简洁明了的标题"
           variant="outlined"
-          density="comfortable"
+          rounded="lg"
+          class="mb-4"
+          hide-details
         ></v-text-field>
         <v-textarea
           v-model="newNotice.content"
-          label="内容"
+          label="公告內容"
           variant="outlined"
-          rows="4"
+          rounded="lg"
+          rows="5"
+          class="mb-4"
           hide-details
         ></v-textarea>
-        <v-checkbox
+        <v-switch
           v-model="newNotice.is_important"
           label="标记为重要公告"
+          color="warning"
           density="compact"
+          inset
           hide-details
-        ></v-checkbox>
+        ></v-switch>
       </v-card-text>
-      <v-card-actions class="pa-4">
+      <v-card-actions class="pa-6">
         <v-spacer></v-spacer>
-        <v-btn variant="text" @click="showCreateDialog = false">取消</v-btn>
+        <v-btn variant="text" rounded="pill" class="px-4" @click="showCreateDialog = false">
+          取消
+        </v-btn>
         <v-btn
           color="primary"
-          variant="tonal"
+          variant="flat"
+          rounded="pill"
+          class="px-6"
           :loading="loading"
           :disabled="!newNotice.title || !newNotice.content"
           @click="handleCreate"
         >
-          发布
+          立即发布
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -214,7 +286,7 @@ const handleCreate = async () => {
 }
 
 const handleDelete = async (id) => {
-  if (confirm('確定要刪除這條公告嗎？')) {
+  if (confirm('确定要删除这条公告吗？')) {
     await noticeStore.deleteNotice(id)
     if (selectedNotice.value?.id === id) {
       showDetailDialog.value = false
@@ -224,9 +296,24 @@ const handleDelete = async (id) => {
 
 const formatDate = (timestamp) => {
   const date = new Date(timestamp)
+  const now = new Date()
+  const diff = now - date
+
+  if (diff < 60000) return '刚刚'
+  if (diff < 3600000) return `${Math.floor(diff / 60000)} 分钟前`
+  if (diff < 86400000) return `${Math.floor(diff / 3600000)} 小时前`
+
+  return date.toLocaleDateString(undefined, {
+    month: 'short',
+    day: 'numeric',
+  })
+}
+
+const formatDateFull = (timestamp) => {
+  const date = new Date(timestamp)
   return date.toLocaleString(undefined, {
     year: 'numeric',
-    month: 'short',
+    month: 'long',
     day: 'numeric',
     hour: '2-digit',
     minute: '2-digit',
@@ -244,10 +331,83 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
 }
+
 .notice-list {
   overflow-y: auto;
 }
+
+.notice-item {
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid rgba(var(--v-border-color), 0.05);
+}
+
+.notice-item:last-child {
+  border-bottom: none;
+}
+
+.notice-item:hover {
+  background-color: rgba(var(--v-theme-primary), 0.04);
+}
+
+.notice-indicator-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notice-indicator {
+  position: absolute;
+  left: -12px;
+  width: 4px;
+  height: 0;
+  background-color: rgb(var(--v-theme-primary));
+  border-radius: 0 4px 4px 0;
+  transition: height 0.3s ease;
+}
+
+.notice-item:hover .notice-indicator {
+  height: 24px;
+}
+
+.notice-indicator.is-important {
+  background-color: rgb(var(--v-theme-warning));
+}
+
+.text-truncate-2 {
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-height-1-4 {
+  line-height: 1.4;
+}
+
+.line-height-1-6 {
+  line-height: 1.6;
+}
+
+.whitespace-nowrap {
+  white-space: nowrap;
+}
+
 .whitespace-pre-wrap {
   white-space: pre-wrap;
+}
+
+.delete-btn {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.notice-item:hover .delete-btn {
+  opacity: 1;
+}
+
+.bg-surface-variant-low {
+  background-color: rgba(var(--v-theme-on-surface), 0.02);
 }
 </style>
