@@ -322,9 +322,9 @@ const tournamentTypeOptions = [
 const participantCountOptions = [
   { title: '所有人数', value: null },
   { title: '10人以下', value: 'under10' },
-  { title: '10-20', value: '10to20' },
-  { title: '20-30', value: '20to30' },
-  { title: '30以上', value: 'over30' },
+  { title: '10-20人', value: '10to20' },
+  { title: '20-30人', value: '20to30' },
+  { title: '30人以上', value: 'over30' },
 ]
 
 const placementOptions = [
