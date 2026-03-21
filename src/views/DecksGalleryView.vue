@@ -54,11 +54,11 @@
                     </div>
                   </div>
 
-                  <div class="d-flex ga-2 align-center">
+                  <div class="d-flex ga-2 align-center flex-sm-grow-0 flex-grow-1 w-100 w-sm-auto">
                     <InsetTabs
                       v-model="localFilters.source"
                       :options="sourceOptions"
-                      color="primary"
+                      class="gallery-source-tabs"
                       @update:model-value="handleSearch"
                     >
                       <template #tab-item="{ option }">
@@ -305,10 +305,10 @@ const sourceOptions = computed(() => {
 })
 
 const sortOptions = [
-  { title: '時間從新到舊', value: 'newest' },
-  { title: '時間從舊到新', value: 'oldest' },
-  { title: '評分從高到低', value: 'rating_desc' },
-  { title: '評分從低到高', value: 'rating_asc' },
+  { title: '时间从新到旧', value: 'newest' },
+  { title: '时间从旧到新', value: 'oldest' },
+  { title: '评分从高到低', value: 'rating_desc' },
+  { title: '评分从低到高', value: 'rating_asc' },
 ]
 
 const tournamentTypeOptions = [

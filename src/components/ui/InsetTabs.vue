@@ -7,8 +7,9 @@
     slider-transition="shift"
     inset
     :inset-radius="100"
+    :grow="smAndDown"
     class="v-tabs-inset-custom h-auto text-medium-emphasis"
-    :class="themeClass"
+    :class="[themeClass, { 'w-100': smAndDown }]"
     :density="density"
     @update:model-value="$emit('update:modelValue', $event)"
   >
@@ -23,6 +24,9 @@
 <script setup>
 import { computed } from 'vue'
 import { useUIStore } from '@/stores/ui'
+import { useDisplay } from 'vuetify'
+
+const { smAndDown } = useDisplay()
 
 defineProps({
   modelValue: {
@@ -68,5 +72,12 @@ const themeClass = computed(() => {
 
 .v-tabs-inset-custom.theme-dark.v-tabs--inset {
   filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.2));
+}
+
+/* 僅在手機端 (小於 960px，對應 Vuetify smAndDown) 佔滿寬度 */
+@media (max-width: 959px) {
+  .v-tabs-inset-custom.v-tabs--inset {
+    max-width: none !important;
+  }
 }
 </style>
