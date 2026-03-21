@@ -29,7 +29,12 @@
           <div class="d-none d-sm-block">
             <template v-for="item in navItems" :key="item.to">
               <!-- Search Dropdown -->
-              <v-menu v-if="item.name === 'GlobalSearch'" offset="10" open-on-hover>
+              <v-menu
+                v-if="item.name === 'GlobalSearch'"
+                location="bottom center"
+                offset="10"
+                open-on-hover
+              >
                 <template v-slot:activator="{ props }">
                   <v-btn
                     variant="text"
@@ -65,7 +70,12 @@
               </v-menu>
 
               <!-- Decks Dropdown -->
-              <v-menu v-else-if="item.name === 'Decks'" offset="10" open-on-hover>
+              <v-menu
+                v-else-if="item.name === 'Decks'"
+                location="bottom center"
+                offset="10"
+                open-on-hover
+              >
                 <template v-slot:activator="{ props }">
                   <v-btn
                     variant="text"

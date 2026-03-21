@@ -25,7 +25,7 @@
                   @click="openExportDialog"
                   v-tooltip:bottom="'汇出卡组'"
                 ></v-btn>
-                <v-menu location="bottom end" offset="12" open-on-hover>
+                <v-menu location="bottom start" offset="12" open-on-hover>
                   <template v-slot:activator="{ props }">
                     <v-btn
                       v-bind="props"
