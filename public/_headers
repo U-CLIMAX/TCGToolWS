@@ -1,7 +1,19 @@
-/series-icons/*.webp
+/series-icons/*
   Cache-Control: public, max-age=31536000, immutable
 
-/assets/*.woff2
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/effect-icons/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/gpu-benchmarks/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/icons/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/intro/*
   Cache-Control: public, max-age=31536000, immutable
 
 /uclimax.ico
