@@ -97,12 +97,21 @@
 
             <!-- 中間 -->
             <div class="header-center d-flex align-center">
+              <v-btn
+                :size="resize"
+                icon="mdi-arrow-left"
+                variant="text"
+                density="compact"
+                :to="{ name: 'Decks' }"
+                class="flex-shrink-0"
+              ></v-btn>
+
               <div
                 v-if="isViewingHistory && viewingHistoryIndex !== null"
-                class="d-flex align-center justify-center flex-grow-1 text-truncate"
+                class="d-flex align-center justify-center"
               >
                 <h1
-                  class="text-h6 text-sm-h5 text-truncate text-warning"
+                  class="text-h6 text-sm-h5 text-truncate text-center px-2 flex-grow-1 text-warning"
                   v-tooltip:bottom="history[viewingHistoryIndex - 1].text"
                 >
                   检视变更: {{ history[viewingHistoryIndex - 1].text }}
@@ -112,10 +121,15 @@
                 >
               </div>
               <template v-else>
-                <h1 v-if="deck" class="text-h6 text-sm-h5 text-truncate">
+                <h1
+                  v-if="deck"
+                  class="text-h6 text-sm-h5 text-truncate text-center px-2 flex-grow-1"
+                >
                   {{ deck.name }}
                 </h1>
-                <h1 v-else class="text-h6 text-sm-h5 text-truncate">N/A</h1>
+                <h1 v-else class="text-h6 text-sm-h5 text-truncate text-center px-2 flex-grow-1">
+                  N/A
+                </h1>
               </template>
             </div>
 
