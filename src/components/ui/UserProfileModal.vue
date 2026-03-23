@@ -75,7 +75,7 @@
 
         <v-divider v-if="userStatus.role === 0" class="my-2"></v-divider>
 
-        <div class="pa-2">
+        <div class="pa-2 d-flex flex-column align-start ga-2">
           <v-btn
             variant="tonal"
             color="primary"
@@ -84,6 +84,17 @@
             @click="handleSettingsClick"
           >
             网站设置
+          </v-btn>
+          <v-btn
+            v-if="userRole === 2"
+            variant="tonal"
+            color="secondary"
+            rounded="pill"
+            prepend-icon="mdi-chart-bar"
+            :href="umami_share_url"
+            target="_blank"
+          >
+            访问统计
           </v-btn>
         </div>
       </v-card-text>
@@ -127,9 +138,11 @@ const handleLogout = () => {
 }
 
 const authStore = useAuthStore()
-const { userStatus } = storeToRefs(authStore)
+const { userStatus, userRole } = storeToRefs(authStore)
 const { triggerSnackbar } = useSnackbar()
 const isRefreshing = ref(false)
+
+const umami_share_url = import.meta.env.VITE_UMAMI_SHARE_URL
 
 const handleUpgradeClick = () => {
   isSponsorNoticeOpen.value = true
