@@ -144,7 +144,7 @@
           ></v-divider>
         </template>
 
-        <NoticeMenu offset="3" />
+        <NoticeMenu :offset="3" />
 
         <template v-if="!authStore.isAuthReady">
           <div class="d-flex align-center justify-center mx-2" style="width: 40px; height: 40px">
@@ -296,7 +296,7 @@
         </v-btn>
       </template>
 
-      <NoticeMenu offset="10" />
+      <NoticeMenu :offset="10" />
 
       <template v-if="!authStore.isAuthReady">
         <v-btn disabled value="loading" style="min-width: 0">
