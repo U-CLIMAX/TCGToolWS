@@ -166,6 +166,10 @@
       {
         "id": "WS/WPR-P09",
         "rarity": "PR"
+      },
+      {
+        "id": "WS/WPR-P09b",
+        "rarity": "PR"
       }
     ],
     "trigger_soul_count": 0
@@ -184,6 +188,10 @@
     "all_cards": [
       {
         "id": "WS/WPR-P10",
+        "rarity": "PR"
+      },
+      {
+        "id": "WS/WPR-P10b",
         "rarity": "PR"
       }
     ],

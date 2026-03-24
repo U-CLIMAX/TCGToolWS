@@ -466,7 +466,7 @@ const wsSeriesMap = {
   '青春猪头少年': {
     id: 'sby',
     prefixes: ['SBY', 'Gby'],
-    latestReleaseDate: '2024-03-15',
+    latestReleaseDate: '2026-03-27',
   },
   '魔卡少女樱': {
     id: 'ccs',
@@ -486,7 +486,7 @@ const wsSeriesMap = {
   '公主连结！Re:Dive': {
     id: 'prd',
     prefixes: ['PRD'],
-    latestReleaseDate: '2022-09-09',
+    latestReleaseDate: '2026-05-02',
   },
   '成神之日': {
     id: 'dbg',
@@ -931,7 +931,7 @@ const wsSeriesMap = {
   },
   '其他': {
     id: 'ws',
-    prefixes: ['WS'],
+    prefixes: ['WS', 'NSO'],
     latestReleaseDate: '-',
   },
 }

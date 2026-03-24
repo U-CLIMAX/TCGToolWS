@@ -17,5 +17,62 @@
         "rarity": "PR"
       }
     ]
+  },
+  "BDY/W135-P01": {
+    "name": "Bushiroad EXPO 2026",
+    "product_name": "PRカード【Wサイド】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 3000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["音楽", "夢限大みゅーたいぷ"],
+    "color": "黄色",
+    "effect": "",
+    "all_cards": [
+      {
+        "id": "BDY/W135-P01",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "BDY/W135-P03": {
+    "name": "“マーチング・セレモニー”千石ユノ",
+    "product_name": "PRカード【Wサイド】",
+    "type": "角色卡",
+    "level": 2,
+    "power": 1500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["音楽", "夢限大みゅーたいぷ"],
+    "color": "红色",
+    "effect": "【起】【反击】 助太刀3500 等级2 [(1) 手牌中此卡放置到休息室] （你选择自己1个被正面攻击的角色，那个回合中，战斗力+3500）",
+    "all_cards": [
+      {
+        "id": "BDY/W135-P03",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "BDY/W135-P04": {
+    "name": "アンバサダー活動！ あられ＆ののか",
+    "product_name": "PRカード【Wサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 2,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你全部的角色灵魂值+2。",
+    "all_cards": [
+      {
+        "id": "BDY/W135-P04",
+        "rarity": "PR"
+      }
+    ]
   }
 }

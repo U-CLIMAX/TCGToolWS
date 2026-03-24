@@ -416,13 +416,13 @@
     "name": "Seoul Cardgame Party 2025",
     "product_name": "PRカード【Sサイド】",
     "type": "高潮卡",
-    "level": 13,
+    "level": "-",
     "power": "-",
     "cost": "-",
     "trait": "-",
     "color": "红色",
     "soul": "-",
-    "effect": "永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
     "all_cards": [
       {
         "id": "WS/WSPR-P19",
@@ -430,5 +430,116 @@
       }
     ],
     "trigger_soul_count": 0
+  },
+  "WS/WSPR-P21": {
+    "name": "Happy 18th Anniversary !! [白]",
+    "product_name": "PRカード【WSサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "WS/WSPR-P21",
+        "rarity": "PR"
+      },
+      {
+        "id": "WS/WSPR-P21S",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "WS/WSPR-P22": {
+    "name": "BUSHIROAD CARD FIGHT 2026",
+    "product_name": "PRカード【WSサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 2,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你全部的角色灵魂值+2。",
+    "all_cards": [
+      {
+        "id": "WS/WSPR-P22a",
+        "rarity": "PR"
+      },
+      {
+        "id": "WS/WSPR-P22b",
+        "rarity": "PR"
+      },
+      {
+        "id": "WS/WSPR-P22c",
+        "rarity": "PR"
+      },
+      {
+        "id": "WS/WSPR-P22d",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "WS/WSPR-P23": {
+    "name": "Happy 18th Anniversary !! [思い出]",
+    "product_name": "PRカード【WSサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/draw.webp\">:此卡被触发时，你可以抽1张卡）",
+    "all_cards": [
+      {
+        "id": "WS/WSPR-P23",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "WS/WSPR-P24": {
+    "name": "Happy 18th Anniversary !! [祭]",
+    "product_name": "PRカード【WSサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "all_cards": [
+      {
+        "id": "WS/WSPR-P24",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "WS/WSPR-P25": {
+    "name": "18年の、その先へ",
+    "product_name": "PRカード【WSサイド】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 3000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["カードゲーム"],
+    "color": "蓝色",
+    "effect": "",
+    "all_cards": [
+      {
+        "id": "WS/WSPR-P25",
+        "rarity": "PR"
+      }
+    ]
   }
 }

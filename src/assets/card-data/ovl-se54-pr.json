@@ -48,5 +48,24 @@
         "rarity": "PR"
       }
     ]
+  },
+  "OVL/SE54-P03": {
+    "name": "ナザリックの一日",
+    "product_name": "PRカード【Sサイド】",
+    "type": "事件卡",
+    "level": 3,
+    "power": "-",
+    "cost": 0,
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "你没有绿色或《異形種》或《ナザリック》的角色的话，此卡不能从手牌中使用。<br>你可以从自己的休息室选择1张角色卡返回手牌。<br>此卡放置到库存区。",
+    "all_cards": [
+      {
+        "id": "OVL/SE54-P03S",
+        "rarity": "PR"
+      }
+    ]
   }
 }
