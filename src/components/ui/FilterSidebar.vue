@@ -151,6 +151,20 @@
         ></v-select>
 
         <v-select
+          label="等级"
+          :items="['0', '1', '2', '3', '4']"
+          hide-details
+          multiple
+          chips
+          clearable
+          v-model="filterStore.selectedLevels"
+          variant="outlined"
+          rounded="pill"
+          :menu-props="uiStore.menuProps"
+          :disabled="props.disabled"
+        ></v-select>
+
+        <v-select
           label="颜色"
           :items="[
             { title: '黄', value: '黄色' },
@@ -212,20 +226,6 @@
           chips
           clearable
           v-model="filterStore.selectedTraits"
-          variant="outlined"
-          rounded="pill"
-          :menu-props="uiStore.menuProps"
-          :disabled="props.disabled"
-        ></v-select>
-
-        <v-select
-          label="等级"
-          :items="['0', '1', '2', '3']"
-          hide-details
-          multiple
-          chips
-          clearable
-          v-model="filterStore.selectedLevels"
           variant="outlined"
           rounded="pill"
           :menu-props="uiStore.menuProps"
@@ -358,7 +358,18 @@ const uiStore = useUIStore()
 const theme = useTheme()
 
 const filterStore = props.globalFilter ? useGlobalSearchStore() : useFilterStore()
-const defaultKeywords = ['CX联动', '警铃', 'shift', '再演', '集中', '加速', '助太刀', '应援']
+const defaultKeywords = [
+  'CX联动',
+  '警铃',
+  'shift',
+  '再演',
+  '集中',
+  '加速',
+  '助太刀',
+  '应援',
+  'LINK',
+  'replay',
+]
 
 const allKeywords = computed(() => {
   return [...uiStore.customKeywords, ...defaultKeywords]
