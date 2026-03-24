@@ -5,7 +5,6 @@ const ICON_MAP = {
   '【起】': 'act',
   '【竖置】': 'stand',
   '【横置】': 'rest',
-  '【休息】': 'rest',
   '【反击】': 'backup',
   '【倒置】': 'reversed',
   '【一回合1次】': 'turn1',
