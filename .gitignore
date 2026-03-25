@@ -42,13 +42,11 @@ assets-source/
 # sprites
 temp_processed_images/
 
-
 ws_tcg_icons/
 ws-image-data/
 temp-images/
 icon_crawler.py
 
-.gemini/
 .env
 
 .wrangler/
@@ -64,3 +62,5 @@ public/card-db-manifest-wsr.json
 public/card-db-manifest-wsc.json
 
 test-webhook.http
+docs/
+GEMINI.md
