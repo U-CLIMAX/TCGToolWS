@@ -26,7 +26,6 @@
 
           <div class="header-center d-flex align-center">
             <v-btn
-              :size="resize"
               icon="mdi-arrow-left"
               variant="text"
               density="compact"
@@ -40,7 +39,7 @@
               {{ seriesName.replace('[cn]', '') }}
             </h1>
             <v-chip
-              :size="resize"
+              :size="smAndUp ? 'default' : 'x-small'"
               prepend-icon="mdi-cards-diamond-outline"
               class="counter-chip font-weight-bold flex-shrink-0"
             >
@@ -198,9 +197,6 @@ const props = defineProps({
 const route = useRoute()
 const router = useRouter()
 const { smAndUp, smAndDown, lgAndUp } = useDisplay()
-const resize = computed(() => {
-  return smAndUp.value ? 'default' : 'x-small'
-})
 
 const deckStore = useDeckStore()
 const filterStore = useFilterStore()

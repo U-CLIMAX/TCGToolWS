@@ -98,7 +98,6 @@
             <!-- 中間 -->
             <div class="header-center d-flex align-center">
               <v-btn
-                :size="resize"
                 icon="mdi-arrow-left"
                 variant="text"
                 density="compact"
