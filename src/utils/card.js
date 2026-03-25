@@ -1,7 +1,6 @@
 import { useFilterStore } from '@/stores/filter.js'
 import { seriesMap } from '@/maps/series-map.js'
 
-// 找出所有包含該 prefix 的系列的所有 prefixes
 const findAllPrefixesByCardPrefix = (prefix) => {
   const keyPart = prefix.split('-')[0].toLowerCase()
   const allPrefixes = new Set()
@@ -9,12 +8,10 @@ const findAllPrefixesByCardPrefix = (prefix) => {
   for (const series in seriesMap) {
     const found = seriesMap[series].prefixes.find((p) => p.toLowerCase() === keyPart)
     if (found) {
-      // 將該系列的所有 prefixes 加入 Set 中
       seriesMap[series].prefixes.forEach((p) => allPrefixes.add(p))
     }
   }
 
-  // 如果沒找到任何匹配，返回原始 prefix
   return allPrefixes.size > 0 ? Array.from(allPrefixes) : [prefix]
 }
 
@@ -32,16 +29,16 @@ export const fetchCardByIdAndPrefix = (id, prefix) => {
       const seriesPrefixes = findAllPrefixesByCardPrefix(prefix)
       const { allCards } = await filterStore.fetchAndProcessCards(seriesPrefixes)
 
-      let matchedCard = allCards.find((c) => c.id === id)
+      const matchedCard = allCards.find((c) => c.id === id)
 
       if (!matchedCard) {
-        console.warn(`Card with ID "${id}" not found in prefix "${prefix}"`)
+        console.warn(`Card ${id} not found in ${prefix}`)
         return null
       }
 
       return matchedCard
     } catch (e) {
-      console.error(`Failed to load card ${id} with prefix ${prefix}:`, e)
+      console.error(`Failed to load card ${id} (${prefix}):`, e)
       cardCache.delete(cacheKey)
       return null
     }
@@ -59,12 +56,12 @@ export const fetchCardsByBaseIdAndPrefix = async (baseId, prefix) => {
     const cards = allCards.filter((c) => c.baseId === baseId)
 
     if (cards.length === 0) {
-      console.warn(`Base card with ID "${baseId}" not found in prefix "${prefix}" `)
+      console.warn(`Base card ${baseId} not found in ${prefix}`)
     }
 
     return cards
   } catch (e) {
-    console.error(`Failed to load cards for baseId ${baseId} with prefix ${prefix}:`, e)
+    console.error(`Failed to load baseId ${baseId} (${prefix}):`, e)
     return []
   }
 }

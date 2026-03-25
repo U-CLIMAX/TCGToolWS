@@ -9,46 +9,37 @@ export const convertElementToPng = async (
   download = true
 ) => {
   const element = document.getElementById(elementId)
-  if (!element) {
-    console.error(`Element with ID "${elementId}" not found.`)
-    return
-  }
+  if (!element) return
+
   try {
     const rect = element.getBoundingClientRect()
     const options = {
-      embedFonts: embedFonts,
+      embedFonts,
       width: rect.width,
       height: rect.height,
       dpr: 1,
-      scale: scale,
+      scale,
     }
 
-    // WORKAROUND: Force-clear snapdom's cache before the actual capture.
-    // A single call with `cache: 'disabled'` was not reliable. This two-step process ensures
-    // that all stale assets are flushed by the first call, guaranteeing the second
-    // call captures the latest DOM state accurately.
-
-    // 1. Sacrificial call to clear caches. The result is intentionally ignored.
-    // eslint-disable-next-line no-unused-vars
-    const _ = await snapdom.toCanvas(element, {
-      embedFonts: embedFonts,
+    // Force-clear snapdom's cache via a sacrificial call.
+    await snapdom.toCanvas(element, {
+      embedFonts,
       width: 1,
       height: 1,
       dpr: 1,
       cache: 'disabled',
     })
 
-    // 2. The actual capture, now running with a clean cache.
     const result = await snapdom(element, options)
 
     if (download) {
-      const deckName = normalizeFileName(name)
-      await result.download({ format: 'png', filename: deckName })
+      const filename = normalizeFileName(name)
+      await result.download({ format: 'png', filename })
     } else {
       return await result.toPng()
     }
   } catch (error) {
-    console.error('Error during PNG conversion:', error)
+    console.error('PNG conversion failed:', error)
     throw error
   }
 }

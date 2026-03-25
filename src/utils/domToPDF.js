@@ -12,7 +12,6 @@ const PRINT_CSS = `
   .pdf-overlay img { height: 0.9em; vertical-align: -0.15em; display: inline-block; }
 `
 
-// 生成單張卡片 HTML
 const getCardHtml = (card, x, y, lang) => {
   const bottom = card.type === '事件卡' ? '9.51%' : '12.02%'
   let effectHtml = ''
@@ -29,7 +28,7 @@ export const convertDeckToPDF = async (cards, name, language) => {
   const flatCards = sortCards(cards)
     .flatMap((c) => Array(c.quantity || 1).fill(c))
     .filter((c) => c.imgUrl)
-  if (flatCards.length === 0) return
+  if (!flatCards.length) return
 
   await Promise.all(
     [...new Set(flatCards.map((c) => c.imgUrl))].map(
@@ -43,7 +42,6 @@ export const convertDeckToPDF = async (cards, name, language) => {
     )
   )
 
-  // 容器與樣式
   const style = document.createElement('style')
   style.innerHTML = PRINT_CSS
   document.head.appendChild(style)
@@ -66,8 +64,8 @@ export const convertDeckToPDF = async (cards, name, language) => {
 
       container.innerHTML = pageCards
         .map((card, idx) => {
-          const col = idx % PAGE_OPTS.cols,
-            row = Math.floor(idx / PAGE_OPTS.cols)
+          const col = idx % PAGE_OPTS.cols
+          const row = Math.floor(idx / PAGE_OPTS.cols)
           return getCardHtml(
             card,
             startX + col * (PAGE_OPTS.cardW + PAGE_OPTS.gap),
@@ -94,7 +92,7 @@ export const convertDeckToPDF = async (cards, name, language) => {
     const deckName = normalizeFileName(name)
     pdf.save(`${deckName || 'deck'}_${language}.pdf`)
   } catch (e) {
-    console.error(e)
+    console.error('PDF conversion failed:', e)
   } finally {
     container.remove()
     style.remove()
