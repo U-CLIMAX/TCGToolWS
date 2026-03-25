@@ -58,7 +58,6 @@
                       prepend-icon="mdi-plus"
                       height="40"
                       @click="openCreateDialog"
-                      :disabled="isLimitReached"
                     >
                       发布
                     </v-btn>
