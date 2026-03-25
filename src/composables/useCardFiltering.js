@@ -1,4 +1,12 @@
-import { ref, computed, watch, shallowRef, toRaw, onUnmounted } from 'vue'
+import {
+  ref,
+  computed,
+  watch,
+  shallowRef,
+  toRaw,
+  onUnmounted,
+  getCurrentInstance,
+} from 'vue'
 import { wrap } from 'comlink'
 import FilterWorker from '@/workers/filter.worker.js?worker'
 import { debounceRef } from '@/composables/useDebounceRef'
@@ -143,7 +151,9 @@ export const useCardFiltering = (
   // Note: This will only work if the composable is used within a component's setup context.
   // It has no effect when used directly inside a Pinia store's setup function,
   // but it's a good practice for safety and future refactoring.
-  onUnmounted(terminateWorker)
+  if (getCurrentInstance()) {
+    onUnmounted(terminateWorker)
+  }
 
   return {
     // State
