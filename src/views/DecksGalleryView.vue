@@ -218,7 +218,7 @@
                 {{ maxDecks === Infinity ? '∞' : maxDecks }}
               </span>
               <span
-                v-if="maxDecks !== Infinity && deckCount >= maxDecks"
+                v-if="maxDecks !== Infinity && galleryStore.userDeckCount >= maxDecks"
                 class="text-error font-weight-bold"
               >
                 已达上限
