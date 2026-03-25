@@ -1,5 +1,7 @@
 /**
- * 輔助函數：將 Base64 字符串解碼為 ArrayBuffer
+ * Utility: Decode Base64 string to ArrayBuffer
+ * @param {string} b64 - Base64 encoded string.
+ * @returns {ArrayBuffer}
  */
 const base64ToArrayBuffer = (b64) => {
   const binaryStr = atob(b64)
@@ -12,7 +14,9 @@ const base64ToArrayBuffer = (b64) => {
 }
 
 /**
- * 輔助函數：導入愛發電的公鑰
+ * Utility: Import Afdian Public Key for RSA verification
+ * @param {string} pemKey - RSA public key in PEM format.
+ * @returns {Promise<CryptoKey>}
  */
 const importAfdianPublicKey = async (pemKey) => {
   const pemHeader = '-----BEGIN PUBLIC KEY-----'
@@ -34,11 +38,11 @@ const importAfdianPublicKey = async (pemKey) => {
 }
 
 /**
- * 核心：驗證愛發電簽名 (導出)
- * @param {string} publicKeyPem - 來自 c.env.AFDIAN_PUBLIC_KEY 的公鑰
- * @param {object} payload - 完整的 Webhook payload
- * @param {string} sign - 來自 payload 的 'sign' 字段
- * @returns {Promise<boolean>} - 簽名是否有效
+ * Verifies the digital signature from Afdian Webhook payload.
+ * @param {string} publicKeyPem - RSA public key from environment.
+ * @param {object} payload - Full webhook payload.
+ * @param {string} sign - Signature string from payload.
+ * @returns {Promise<boolean>} - True if signature is valid.
  */
 export const verifyAfdianSignature = async (publicKeyPem, payload, sign) => {
   if (!publicKeyPem) {
@@ -48,15 +52,13 @@ export const verifyAfdianSignature = async (publicKeyPem, payload, sign) => {
 
   try {
     const order = payload.data.order
-    // 構造簽名字符串
+    // Construct signature string according to Afdian documentation
     const signStr = order.out_trade_no + order.user_id + order.plan_id + order.total_amount
 
-    // 準備數據
     const key = await importAfdianPublicKey(publicKeyPem)
     const signatureBuffer = base64ToArrayBuffer(sign)
     const dataBuffer = new TextEncoder().encode(signStr)
 
-    // 驗證
     const isValid = await crypto.subtle.verify(
       {
         name: 'RSASSA-PKCS1-v1_5',
@@ -69,7 +71,7 @@ export const verifyAfdianSignature = async (publicKeyPem, payload, sign) => {
 
     return isValid
   } catch (error) {
-    console.error('Signature verification failed:', error)
+    console.error('Afdian signature verification failed:', error)
     return false
   }
 }

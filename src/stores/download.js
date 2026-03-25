@@ -4,6 +4,7 @@ import { ref } from 'vue'
 export const useDownloadStore = defineStore(
   'download',
   () => {
+    // --- State ---
     const textWidth = ref(800)
     const textBgColor = ref('#FFFFFF')
     const textColor = ref('#000000')

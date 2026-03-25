@@ -10,7 +10,7 @@ const sensitiveWordTool = new SensitiveWordTool({ useDefaultWords: true })
 export const useDeckStore = defineStore(
   'deck',
   () => {
-    // --- 狀態 (State) ---
+    // --- State ---
     const version = ref(2)
     const cardsInDeck = ref({})
     const seriesId = ref('')
@@ -24,7 +24,7 @@ export const useDeckStore = defineStore(
 
     const authStore = useAuthStore()
 
-    // --- 計算屬性 (Getters / Computed) ---
+    // --- Computed ---
     const getCardCount = computed(() => {
       return (cardId) => cardsInDeck.value[cardId]?.quantity || 0
     })
@@ -34,6 +34,9 @@ export const useDeckStore = defineStore(
     })
 
     // --- Helper Functions ---
+    /**
+     * Validates deck against card restrictions (banned, limited, choice).
+     */
     const checkRestrictions = () => {
       const cards = Object.values(cardsInDeck.value)
       const violations = new Map()
@@ -122,7 +125,7 @@ export const useDeckStore = defineStore(
       restrictionViolations.value = Array.from(violations.values())
     }
 
-    // --- 同步操作 (Actions) ---
+    // --- Actions ---
     const addCard = (card) => {
       const cardId = card.id
       if (cardsInDeck.value[cardId]) {
@@ -172,7 +175,6 @@ export const useDeckStore = defineStore(
     }
 
     const setEditingDeck = (deck, key) => {
-      // Deep copy for diffing later
       originalCardsInDeck.value = JSON.parse(JSON.stringify(deck.deckData))
       cardsInDeck.value = deck.deckData
       seriesId.value = deck.seriesId
@@ -190,10 +192,10 @@ export const useDeckStore = defineStore(
       seriesId.value = findDeckSeriesId(currentCardIdPrefixes)
     }
 
-    // --- 非同步操作 (Async Actions) ---
+    // --- Async Actions ---
 
     /**
-     * 保存卡组。如果API调用失败，将抛出一个错误。
+     * Saves encoded deck to database.
      */
     const saveEncodedDeck = async (
       key,
@@ -211,14 +213,10 @@ export const useDeckStore = defineStore(
         placement = null,
       }
     ) => {
-      if (!authStore.token) {
-        throw new Error('请先登入')
-      }
+      if (!authStore.token) throw new Error('请先登录')
 
       const hasSensitiveWord = sensitiveWordTool.verify(name)
-      if (hasSensitiveWord) {
-        throw new Error('检测到敏感词!')
-      }
+      if (hasSensitiveWord) throw new Error('检测到敏感词！')
 
       const response = await fetch('/api/decks', {
         method: 'POST',
@@ -261,21 +259,17 @@ export const useDeckStore = defineStore(
     }
 
     /**
-     * 更新现有卡组。
+     * Updates an existing encoded deck.
      */
     const updateEncodedDeck = async (
       key,
       deckData,
       { name, seriesId, game_type, coverCardId, history = [] }
     ) => {
-      if (!authStore.token) {
-        throw new Error('请先登入')
-      }
+      if (!authStore.token) throw new Error('请先登录')
 
       const hasSensitiveWord = sensitiveWordTool.verify(name)
-      if (hasSensitiveWord) {
-        throw new Error('检测到敏感词!')
-      }
+      if (hasSensitiveWord) throw new Error('检测到敏感词！')
 
       const response = await fetch(`/api/decks/${key}`, {
         method: 'PUT',
@@ -310,12 +304,10 @@ export const useDeckStore = defineStore(
     }
 
     /**
-     * 获取用户的所有卡组。
+     * Fetches all decks for the current user.
      */
     const fetchDecks = async () => {
-      if (!authStore.token) {
-        throw new Error('请先登入')
-      }
+      if (!authStore.token) throw new Error('请先登录')
 
       const response = await fetch('/api/decks', {
         headers: {
@@ -346,7 +338,7 @@ export const useDeckStore = defineStore(
     }
 
     /**
-     * 获取一个公开分享的卡组。
+     * Fetches a publicly shared deck by key.
      */
     const fetchDeckByKey = async (key) => {
       const response = await fetch(`/api/shared-decks/${key}`)
@@ -359,7 +351,7 @@ export const useDeckStore = defineStore(
     }
 
     /**
-     * 從後端獲取 Decklog 的 JSON 資料
+     * Fetches Decklog JSON data from backend.
      */
     const fetchDecklog = async (key) => {
       const response = await fetch(`/api/decklog/${key}`)
@@ -369,17 +361,14 @@ export const useDeckStore = defineStore(
       }
 
       const payload = await response.json()
-
       return payload.data
     }
 
     /**
-     * 删除一个卡组。
+     * Deletes a deck by key.
      */
     const deleteDeck = async (key) => {
-      if (!authStore.token) {
-        throw new Error('请先登入')
-      }
+      if (!authStore.token) throw new Error('请先登录')
 
       const response = await fetch(`/api/decks/${key}`, {
         method: 'DELETE',

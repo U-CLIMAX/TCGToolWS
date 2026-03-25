@@ -10,7 +10,7 @@ export const useFilterStore = defineStore('filter', () => {
   // Cache for series data to prevent re-fetching
   const seriesDataCache = shallowRef({})
 
-  // 用於記錄所有已加入過 Queue 的路徑歷史，避免重複處理
+  // History of all paths added to the queue to avoid duplicate processing
   const processedPathsHistory = new Set()
 
   // Queue system for fetching files
@@ -18,6 +18,46 @@ export const useFilterStore = defineStore('filter', () => {
   const activeFetchPromises = new Map()
   let isProcessingQueue = false
 
+  // Raw data from API
+  const allCards = shallowRef([]) // Optimized: shallowRef for large dataset
+  const isLoading = ref(false)
+  const error = ref(null)
+
+  // Filter options derived from raw data
+  const productNames = ref([])
+  const traits = ref([])
+  const rarities = ref([])
+  const souls = ref([])
+  const costRange = ref({ min: 0, max: 0 })
+  const powerRange = ref({ min: 0, max: 0 })
+
+  // Use the composable for filtering logic
+  const {
+    keyword,
+    searchMode,
+    selectedCardTypes,
+    selectedColors,
+    selectedProductName,
+    selectedTraits,
+    selectedLevels,
+    selectedRarities,
+    showUniqueCards,
+    selectedCostRange,
+    selectedPowerRange,
+    showTriggerSoul,
+    selectedSoul,
+    resetFilters,
+    filteredCards,
+    terminateWorker,
+    initializeWorker,
+    processRawDataInWorker,
+  } = useCardFiltering(productNames, traits, rarities, costRange, powerRange)
+
+  // --- Actions ---
+
+  /**
+   * Processes the fetch queue in batches
+   */
   const processFetchQueue = async () => {
     if (isProcessingQueue) return
     isProcessingQueue = true
@@ -64,43 +104,10 @@ export const useFilterStore = defineStore('filter', () => {
     }
   }
 
-  // Raw data from API
-  const allCards = shallowRef([]) // Optimized: shallowRef for large dataset
-  const isLoading = ref(false)
-  const error = ref(null)
-
-  // Filter options derived from raw data
-  const productNames = ref([])
-  const traits = ref([])
-  const rarities = ref([])
-  const souls = ref([])
-  const costRange = ref({ min: 0, max: 0 })
-  const powerRange = ref({ min: 0, max: 0 })
-
-  // Use the composable for filtering logic
-  const {
-    keyword,
-    searchMode,
-    selectedCardTypes,
-    selectedColors,
-    selectedProductName,
-    selectedTraits,
-    selectedLevels,
-    selectedRarities,
-    showUniqueCards,
-    selectedCostRange,
-    selectedPowerRange,
-    showTriggerSoul,
-    selectedSoul,
-    resetFilters,
-    filteredCards,
-    terminateWorker,
-    initializeWorker,
-    processRawDataInWorker,
-  } = useCardFiltering(productNames, traits, rarities, costRange, powerRange)
-
-  // --- Actions ---
-
+  /**
+   * Fetches and processes card data for given prefixes
+   * @param {string[]} prefixes
+   */
   const fetchAndProcessCards = async (prefixes) => {
     if (!prefixes || prefixes.length === 0) {
       return {
@@ -116,24 +123,13 @@ export const useFilterStore = defineStore('filter', () => {
     error.value = null
 
     try {
-      // 取得所有需要的檔案路徑
       const dataFilePaths = findSeriesDataFileName(prefixes)
-
-      // 過濾出尚未存在於歷史紀錄中的新路徑
       const newPathsToFetch = dataFilePaths.filter((path) => !processedPathsHistory.has(path))
 
-      console.group('🔍 請求過濾檢查')
-      console.log('1. 這次需要的全部檔案:', dataFilePaths.length)
-      console.log('2. 歷史已記錄的檔案:', [...processedPathsHistory].length)
-      console.log('3. 過濾後，真正要下載的新檔案:', newPathsToFetch.length)
-      console.groupEnd()
-
-      // 將新路徑加入歷史紀錄，並建立 Fetch 任務
       if (newPathsToFetch.length > 0) {
         newPathsToFetch.forEach((path) => {
-          processedPathsHistory.add(path) // 記錄到歷史變數
+          processedPathsHistory.add(path)
 
-          // 雙重檢查：雖然 history 過濾了，但保險起見檢查 Cache 和進行中的 Promise
           if (seriesDataCache.value[path] || activeFetchPromises.has(path)) {
             return
           }
@@ -148,28 +144,19 @@ export const useFilterStore = defineStore('filter', () => {
           fetchQueue.push(path)
         })
 
-        // 啟動 Queue 處理
         processFetchQueue()
       }
 
-      // 收集結果：這裡必須對「原本請求的所有路徑 (dataFilePaths)」進行等待
-      // 因為舊的路徑雖然沒加入 Queue，但仍需要它的資料 (從 Cache 或正在進行的 Promise)
       const fetchTasks = dataFilePaths.map((path) => {
-        // Case A: 已經在 Cache 中
         if (seriesDataCache.value[path]) {
           return Promise.resolve(seriesDataCache.value[path])
         }
-
-        // Case B: 正在下載中 (包含剛剛加入 Queue 的)
         if (activeFetchPromises.has(path)) {
           return activeFetchPromises.get(path).promise
         }
-
-        // Case C: 異常狀況 (理論上不應發生，除非下載失敗且沒在 Cache)
         return Promise.resolve(null)
       })
 
-      // Wait for all fetches to complete (Main thread network I/O)
       const allFileContents = (await Promise.all(fetchTasks)).filter((item) => item !== null)
 
       if (allFileContents.length === 0) {
@@ -183,9 +170,7 @@ export const useFilterStore = defineStore('filter', () => {
         }
       }
 
-      const result = await processRawDataInWorker(allFileContents)
-
-      return result
+      return await processRawDataInWorker(allFileContents)
     } catch (e) {
       console.error('Failed to load series cards in filter store:', e)
       error.value = e
@@ -200,29 +185,26 @@ export const useFilterStore = defineStore('filter', () => {
     }
   }
 
+  /**
+   * Initializes the filter store with card data
+   * @param {string[]} prefixes
+   */
   const initialize = async (prefixes) => {
     isLoading.value = true
     error.value = null
     try {
-      const {
-        allCards: fetchedCards,
-        productNames: fetchedProductNames,
-        traits: fetchedTraits,
-        rarities: fetchedRarities,
-        souls: fetchedSouls,
-        costRange: fetchedCostRange,
-        powerRange: fetchedPowerRange,
-      } = await fetchAndProcessCards(prefixes)
+      const result = await fetchAndProcessCards(prefixes)
 
-      allCards.value = fetchedCards
-      productNames.value = fetchedProductNames
-      traits.value = fetchedTraits
-      rarities.value = fetchedRarities
-      souls.value = fetchedSouls
-      costRange.value = fetchedCostRange
-      powerRange.value = fetchedPowerRange
+      allCards.value = result.allCards
+      productNames.value = result.productNames
+      traits.value = result.traits
+      rarities.value = result.rarities
+      souls.value = result.souls
+      costRange.value = result.costRange
+      powerRange.value = result.powerRange
+
       resetFilters()
-      await initializeWorker(fetchedCards)
+      await initializeWorker(result.allCards)
     } catch (e) {
       console.error('Failed to initialize filter store:', e)
       error.value = e
@@ -231,9 +213,12 @@ export const useFilterStore = defineStore('filter', () => {
     }
   }
 
+  /**
+   * Resets the filter store state
+   */
   const reset = () => {
     terminateWorker()
-    processedPathsHistory.clear() // Reset history
+    processedPathsHistory.clear()
     allCards.value = []
     productNames.value = []
     traits.value = []
@@ -253,7 +238,6 @@ export const useFilterStore = defineStore('filter', () => {
     traits,
     rarities,
     souls,
-
     costRange,
     powerRange,
     keyword,
@@ -269,7 +253,7 @@ export const useFilterStore = defineStore('filter', () => {
     selectedPowerRange,
     showTriggerSoul,
     selectedSoul,
-    // Getters
+    // Computed
     filteredCards,
     // Actions
     initialize,

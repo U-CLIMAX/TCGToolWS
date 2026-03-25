@@ -81,7 +81,8 @@ const handleSaveDeck = async ({ name, coverCardId }) => {
     const key = generateDeckKey()
     const compressedData = await encodeData(cardsToEncode)
 
-    const gameType = Object.values(seriesMap).find((s) => s.id === deck.value.series_id)?.game || 'ws'
+    const gameType =
+      Object.values(seriesMap).find((s) => s.id === deck.value.series_id)?.game || 'ws'
 
     await deckStore.saveEncodedDeck(key, compressedData, {
       name: name,

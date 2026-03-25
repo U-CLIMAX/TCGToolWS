@@ -22,56 +22,56 @@ export const handleGetDecksGallery = async (c) => {
     let cursorObj = null
     if (cursor) cursorObj = JSON.parse(atob(cursor))
 
-    const conditions = ['game_type = ?']
+    const conditions = ['game_type = ?1']
     const params = [game_type]
 
     if (series) {
-      conditions.push('series_id = ?')
+      conditions.push(`series_id = ?${params.length + 1}`)
       params.push(series)
     }
 
     if (tournament_type) {
-      conditions.push('tournament_type = ?')
+      conditions.push(`tournament_type = ?${params.length + 1}`)
       params.push(tournament_type)
     }
 
     if (participant_count) {
-      conditions.push('participant_count = ?')
+      conditions.push(`participant_count = ?${params.length + 1}`)
       params.push(participant_count)
     }
 
     if (placement) {
-      conditions.push('placement = ?')
+      conditions.push(`placement = ?${params.length + 1}`)
       params.push(placement)
     }
 
     let orderByClause = 'updated_at DESC, key DESC'
     let cursorCondition = ''
 
+    // Configure order and cursor based on sort type
     if (sort === 'oldest') {
       orderByClause = 'updated_at ASC, key ASC'
       if (cursorObj) {
-        cursorCondition = '(updated_at, key) > (?, ?)'
+        cursorCondition = `(updated_at, key) > (?${params.length + 1}, ?${params.length + 2})`
         params.push(cursorObj.t, cursorObj.k)
       }
     } else if (sort === 'rating_desc') {
       orderByClause = 'rating_avg DESC, updated_at DESC, key DESC'
       if (cursorObj) {
-        cursorCondition = '(rating_avg, updated_at, key) < (?, ?, ?)'
+        cursorCondition = `(rating_avg, updated_at, key) < (?${params.length + 1}, ?${params.length + 2}, ?${params.length + 3})`
         params.push(cursorObj.r || 0, cursorObj.t, cursorObj.k)
       }
     } else if (sort === 'rating_asc') {
       orderByClause = 'rating_avg ASC, updated_at DESC, key DESC'
       if (cursorObj) {
-        cursorCondition =
-          '((rating_avg > ?) OR (rating_avg = ? AND (updated_at < ? OR (updated_at = ? AND key < ?))))'
+        cursorCondition = `((rating_avg > ?${params.length + 1}) OR (rating_avg = ?${params.length + 2} AND (updated_at < ?${params.length + 3} OR (updated_at = ?${params.length + 4} AND key < ?${params.length + 5}))))`
         params.push(cursorObj.r || 0, cursorObj.r || 0, cursorObj.t, cursorObj.t, cursorObj.k)
       }
     } else {
       // Default: newest
       orderByClause = 'updated_at DESC, key DESC'
       if (cursorObj) {
-        cursorCondition = '(updated_at, key) < (?, ?)'
+        cursorCondition = `(updated_at, key) < (?${params.length + 1}, ?${params.length + 2})`
         params.push(cursorObj.t, cursorObj.k)
       }
     }
@@ -87,7 +87,7 @@ export const handleGetDecksGallery = async (c) => {
       FROM decks_gallery
       ${whereClause}
       ORDER BY ${orderByClause}
-      LIMIT ?
+      LIMIT ?${params.length + 1}
     `
 
     const { results } = await c.env.DB.prepare(query)
@@ -120,7 +120,7 @@ export const handleGetDecksGallery = async (c) => {
     })
   } catch (error) {
     console.error('Error fetching gallery decks:', error)
-    return createErrorResponse(c, 500, '内部服务器错误')
+    return createErrorResponse(c, 500, '服务器内部错误')
   }
 }
 
@@ -147,26 +147,26 @@ export const handleGetUserDecksGallery = async (c) => {
     let cursorObj = null
     if (cursor) cursorObj = JSON.parse(atob(cursor))
 
-    const conditions = ['user_id = ?', 'game_type = ?']
+    const conditions = ['user_id = ?1', 'game_type = ?2']
     const params = [user.id, game_type]
 
     if (series) {
-      conditions.push('series_id = ?')
+      conditions.push(`series_id = ?${params.length + 1}`)
       params.push(series)
     }
 
     if (tournament_type) {
-      conditions.push('tournament_type = ?')
+      conditions.push(`tournament_type = ?${params.length + 1}`)
       params.push(tournament_type)
     }
 
     if (participant_count) {
-      conditions.push('participant_count = ?')
+      conditions.push(`participant_count = ?${params.length + 1}`)
       params.push(participant_count)
     }
 
     if (placement) {
-      conditions.push('placement = ?')
+      conditions.push(`placement = ?${params.length + 1}`)
       params.push(placement)
     }
 
@@ -176,27 +176,26 @@ export const handleGetUserDecksGallery = async (c) => {
     if (sort === 'oldest') {
       orderByClause = 'updated_at ASC, key ASC'
       if (cursorObj) {
-        cursorCondition = '(updated_at, key) > (?, ?)'
+        cursorCondition = `(updated_at, key) > (?${params.length + 1}, ?${params.length + 2})`
         params.push(cursorObj.t, cursorObj.k)
       }
     } else if (sort === 'rating_desc') {
       orderByClause = 'rating_avg DESC, updated_at DESC, key DESC'
       if (cursorObj) {
-        cursorCondition = '(rating_avg, updated_at, key) < (?, ?, ?)'
+        cursorCondition = `(rating_avg, updated_at, key) < (?${params.length + 1}, ?${params.length + 2}, ?${params.length + 3})`
         params.push(cursorObj.r || 0, cursorObj.t, cursorObj.k)
       }
     } else if (sort === 'rating_asc') {
       orderByClause = 'rating_avg ASC, updated_at DESC, key DESC'
       if (cursorObj) {
-        cursorCondition =
-          '((rating_avg > ?) OR (rating_avg = ? AND (updated_at < ? OR (updated_at = ? AND key < ?))))'
+        cursorCondition = `((rating_avg > ?${params.length + 1}) OR (rating_avg = ?${params.length + 2} AND (updated_at < ?${params.length + 3} OR (updated_at = ?${params.length + 4} AND key < ?${params.length + 5}))))`
         params.push(cursorObj.r || 0, cursorObj.r || 0, cursorObj.t, cursorObj.t, cursorObj.k)
       }
     } else {
       // Default: newest
       orderByClause = 'updated_at DESC, key DESC'
       if (cursorObj) {
-        cursorCondition = '(updated_at, key) < (?, ?)'
+        cursorCondition = `(updated_at, key) < (?${params.length + 1}, ?${params.length + 2})`
         params.push(cursorObj.t, cursorObj.k)
       }
     }
@@ -212,7 +211,7 @@ export const handleGetUserDecksGallery = async (c) => {
       FROM decks_gallery
       ${whereClause}
       ORDER BY ${orderByClause}
-      LIMIT ?
+      LIMIT ?${params.length + 1}
     `
 
     const { results } = await c.env.DB.prepare(query)
@@ -245,7 +244,7 @@ export const handleGetUserDecksGallery = async (c) => {
     })
   } catch (error) {
     console.error('Error fetching user gallery decks:', error)
-    return createErrorResponse(c, 500, '内部服务器错误')
+    return createErrorResponse(c, 500, '服务器内部错误')
   }
 }
 
@@ -261,7 +260,7 @@ export const handleDeleteGalleryDeck = async (c) => {
 
     if (!key) return createErrorResponse(c, 400, '缺少 key')
 
-    const info = await c.env.DB.prepare('DELETE FROM decks_gallery WHERE key = ? AND user_id = ?')
+    const info = await c.env.DB.prepare('DELETE FROM decks_gallery WHERE key = ?1 AND user_id = ?2')
       .bind(key, user.id)
       .run()
 
@@ -271,12 +270,12 @@ export const handleDeleteGalleryDeck = async (c) => {
     return c.json({ success: true })
   } catch (error) {
     console.error('Error deleting gallery deck:', error)
-    return createErrorResponse(c, 500, '内部服务器错误')
+    return createErrorResponse(c, 500, '服务器内部错误')
   }
 }
 
 /**
- * Gets the total count of decks in the gallery for the authenticated user.
+ * Gets the total count of gallery decks for the authenticated user.
  * @param {object} c - Hono context object.
  * @returns {Response}
  */
@@ -284,7 +283,7 @@ export const handleGetMyGalleryCount = async (c) => {
   try {
     const user = c.get('user')
     const { count } = await c.env.DB.prepare(
-      'SELECT COUNT(*) as count FROM decks_gallery WHERE user_id = ?'
+      'SELECT COUNT(*) as count FROM decks_gallery WHERE user_id = ?1'
     )
       .bind(user.id)
       .first()
@@ -292,7 +291,7 @@ export const handleGetMyGalleryCount = async (c) => {
     return c.json({ count: count || 0 })
   } catch (error) {
     console.error('Error fetching gallery count:', error)
-    return createErrorResponse(c, 500, '内部服务器错误')
+    return createErrorResponse(c, 500, '服务器内部错误')
   }
 }
 
@@ -319,15 +318,15 @@ export const handleRateDeck = async (c) => {
     const now = Math.floor(Date.now() / 1000)
 
     if (rating === 0) {
-      // Delete rating
-      await c.env.DB.prepare('DELETE FROM deck_ratings WHERE deck_key = ? AND user_id = ?')
+      // Remove rating
+      await c.env.DB.prepare('DELETE FROM deck_ratings WHERE deck_key = ?1 AND user_id = ?2')
         .bind(key, user.id)
         .run()
     } else {
-      // Insert or Update rating
+      // Upsert rating
       await c.env.DB.prepare(
         `INSERT INTO deck_ratings (deck_key, user_id, rating, updated_at)
-         VALUES (?, ?, ?, ?)
+         VALUES (?1, ?2, ?3, ?4)
          ON CONFLICT(deck_key, user_id) DO UPDATE SET
          rating = excluded.rating,
          updated_at = excluded.updated_at`
@@ -336,16 +335,16 @@ export const handleRateDeck = async (c) => {
         .run()
     }
 
-    // Recalculate average and count
+    // Recalculate average and total count
     const { avgRating, count } = await c.env.DB.prepare(
-      `SELECT AVG(rating) as avgRating, COUNT(*) as count FROM deck_ratings WHERE deck_key = ?`
+      `SELECT AVG(rating) as avgRating, COUNT(*) as count FROM deck_ratings WHERE deck_key = ?1`
     )
       .bind(key)
       .first()
 
-    // Calculate breakdown
+    // Fetch rating breakdown (1-5 stars)
     const { results } = await c.env.DB.prepare(
-      `SELECT rating, COUNT(*) as count FROM deck_ratings WHERE deck_key = ? GROUP BY rating`
+      `SELECT rating, COUNT(*) as count FROM deck_ratings WHERE deck_key = ?1 GROUP BY rating`
     )
       .bind(key)
       .all()
@@ -358,9 +357,9 @@ export const handleRateDeck = async (c) => {
     })
     const breakdownStr = JSON.stringify(breakdown)
 
-    // Update decks_gallery
+    // Update gallery record with new stats
     await c.env.DB.prepare(
-      `UPDATE decks_gallery SET rating_avg = ?, rating_count = ?, rating_breakdown = ? WHERE key = ?`
+      `UPDATE decks_gallery SET rating_avg = ?1, rating_count = ?2, rating_breakdown = ?3 WHERE key = ?4`
     )
       .bind(avgRating || 0, count || 0, breakdownStr, key)
       .run()
@@ -373,7 +372,7 @@ export const handleRateDeck = async (c) => {
     })
   } catch (error) {
     console.error('Error rating deck:', error)
-    return createErrorResponse(c, 500, '内部服务器错误')
+    return createErrorResponse(c, 500, '服务器内部错误')
   }
 }
 
@@ -388,7 +387,7 @@ export const handleGetMyDeckRating = async (c) => {
     const { key } = c.req.param()
 
     const result = await c.env.DB.prepare(
-      `SELECT rating FROM deck_ratings WHERE deck_key = ? AND user_id = ?`
+      `SELECT rating FROM deck_ratings WHERE deck_key = ?1 AND user_id = ?2`
     )
       .bind(key, user.id)
       .first()
@@ -396,6 +395,6 @@ export const handleGetMyDeckRating = async (c) => {
     return c.json({ rating: result ? result.rating : 0 })
   } catch (error) {
     console.error('Error fetching my deck rating:', error)
-    return createErrorResponse(c, 500, '内部服务器错误')
+    return createErrorResponse(c, 500, '服务器内部错误')
   }
 }

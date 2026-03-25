@@ -1,22 +1,25 @@
 import { createErrorResponse } from './utils.js'
 
 /**
- * 處理來自愛發電的 Webhook
- * (這是被 auth.js 調用的)
+ * Processes a successful order notification from Afdian.
+ * This is called internally by handleAfdianWebhook in auth.js.
+ * @param {object} c - Hono context object.
+ * @param {object} db - D1 database instance.
+ * @param {object} payload - Afdian webhook payload.
+ * @returns {Response}
  */
 export const processAfdianOrder = async (c, db, payload) => {
   const order = payload.data.order
   const customOrderId = order.custom_order_id
   const afdianTradeNo = order.out_trade_no
 
-  // 1. 檢查 custom_order_id
+  // 1. Validate custom_order_id
   if (!customOrderId) {
     console.warn(`Afdian Webhook: Order ${afdianTradeNo} has no custom_order_id.`)
-    // 我們無法追蹤，但必須返回 ok
     return c.json({ ec: 200, em: 'No custom_order_id' })
   }
 
-  // 2. 查找我們的 "pending" 訂單
+  // 2. Locate the "pending" order in local DB
   const localOrder = await db
     .prepare('SELECT * FROM afdian_orders WHERE id = ?1')
     .bind(customOrderId)
@@ -27,12 +30,12 @@ export const processAfdianOrder = async (c, db, payload) => {
     return c.json({ ec: 200, em: 'Order not found' })
   }
 
-  // 3. 處理冪等性：如果訂單已完成
+  // 3. Handle idempotency: if order is already completed
   if (localOrder.status === 'completed') {
     return c.json({ ec: 200, em: 'Already processed' })
   }
 
-  // 4. 查找用戶
+  // 4. Locate the associated user
   const user = await db
     .prepare('SELECT id, premium_expire_time FROM users WHERE id = ?1')
     .bind(localOrder.user_id)
@@ -48,17 +51,17 @@ export const processAfdianOrder = async (c, db, payload) => {
     return c.json({ ec: 400, em: 'Invalid month count' })
   }
 
-  // 6. 計算到期日 (根據 schema.sql)
+  // 5. Calculate new expiry date (subscription stacking support)
   const now = Math.floor(Date.now() / 1000)
   const currentExpiry = user.premium_expire_time || 0
-  const baseTime = currentExpiry > now ? currentExpiry : now // 確保了訂閱可以疊加
+  const baseTime = currentExpiry > now ? currentExpiry : now
 
-  // 計算總共要添加的秒數
-  const daysToAdd = months * 31 // 每個 'month' 算作 31 天
-  const secondsPerDay = 86400 // 24 * 60 * 60
+  // Each 'month' is counted as 31 days
+  const daysToAdd = months * 31
+  const secondsPerDay = 86400
   const newExpiryTimestamp = baseTime + daysToAdd * secondsPerDay
 
-  // 5. 更新用戶和訂單狀態 (理想情況下應使用事務)
+  // 6. Update user role and order status atomically via batch
   try {
     const statements = [
       db
@@ -77,7 +80,7 @@ export const processAfdianOrder = async (c, db, payload) => {
     return c.json({ ec: 200, em: 'ok' })
   } catch (error) {
     console.error('Afdian Webhook: DB update failed', error)
-    // 檢查錯誤是否為 afdian_trade_no UNIQUE 衝突 (表示另一個進程已處理)
+    // Check for unique constraint violation on afdian_trade_no (race condition handled)
     if (
       error.message &&
       error.message.includes('UNIQUE constraint failed: afdian_orders.afdian_trade_no')
@@ -89,34 +92,34 @@ export const processAfdianOrder = async (c, db, payload) => {
 }
 
 /**
- * 處理用戶發起的支付請求
- * (這是一個新的 API 端點)
+ * Initiates a payment request by generating an Afdian payment URL.
+ * @param {object} c - Hono context object.
+ * @returns {Response}
  */
 export const handleInitiatePayment = async (c) => {
   const db = c.env.DB
-  const user = c.get('user') // 來自 authMiddleware
-  const planId = '6c0d2ad4bb5711f0b39a52540025c377' // ⚠️ 替換成您的 Plan ID
+  const user = c.get('user')
+  const planId = '6c0d2ad4bb5711f0b39a52540025c377'
 
   try {
     const customOrderId = crypto.randomUUID()
     const now = Math.floor(Date.now() / 1000)
 
-    // 1. 寫入 "pending" 訂單到新表
+    // Log the "pending" order
     await db
       .prepare('INSERT INTO afdian_orders (id, user_id, created_at) VALUES (?1, ?2, ?3)')
       .bind(customOrderId, user.id, now)
       .run()
 
-    // 2. 構建愛發電 URL
+    // Construct Afdian checkout URL
     const afdianUrl = `https://ifdian.net/order/create?plan_id=${planId}&custom_order_id=${customOrderId}`
 
-    // 3. 返回 URL 給前端
     return c.json({
       success: true,
       url: afdianUrl,
     })
   } catch (error) {
-    console.error('Failed to initiate payment', error)
-    return createErrorResponse(500, '創建訂單失敗。')
+    console.error('Failed to initiate payment:', error)
+    return createErrorResponse(c, 500, '创建订单失败')
   }
 }

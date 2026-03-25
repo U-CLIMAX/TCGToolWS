@@ -1,17 +1,16 @@
 import { HTTPException } from 'hono/http-exception'
 
 /**
- * Creates a Hono middleware for rate limiting.
+ * Creates a Hono middleware for rate limiting using Cloudflare Workers RateLimiter.
  *
  * @param {object} options - The options for the rate limiter.
  * @param {import('@cloudflare/workers-types').RateLimiter} options.limiter - The rate limiter binding instance.
- * @param {(c: import('hono').Context) => Promise<string|null>|string|null} options.keyExtractor - A function to extract the unique key for rate limiting from the request context.
+ * @param {(c: import('hono').Context) => Promise<string|null>|string|null} options.keyExtractor - Function to extract the unique key.
  * @returns {import('hono').MiddlewareHandler}
  */
 export const createRateLimiter = ({ limiter, keyExtractor }) => {
   return async (c, next) => {
-    // If the limiter binding is not available (e.g., in certain test environments),
-    // log a warning and bypass the rate limit.
+    // Skip if limiter is not available (e.g., local development without binding)
     if (!limiter) {
       console.warn('Rate limiter binding is not available. Bypassing rate limit.')
       return next()
@@ -19,6 +18,7 @@ export const createRateLimiter = ({ limiter, keyExtractor }) => {
 
     const key = await keyExtractor(c)
 
+    // Skip if key could not be extracted
     if (!key) {
       console.warn('Rate limit key could not be extracted. Bypassing rate limit.')
       return next()
@@ -27,14 +27,14 @@ export const createRateLimiter = ({ limiter, keyExtractor }) => {
     try {
       const { success } = await limiter.limit({ key })
       if (!success) {
-        throw new HTTPException(429, { message: 'Too Many Requests' })
+        throw new HTTPException(429, { message: '请求过于频繁，请稍后再试' })
       }
     } catch (e) {
       if (e instanceof HTTPException) {
         throw e
       }
       console.error('Error applying rate limit:', e)
-      // Fail open: If the limiter fails for reasons other than exceeding the limit, allow the request.
+      // Fail open to avoid blocking legitimate users on internal errors
       return next()
     }
 
@@ -45,7 +45,7 @@ export const createRateLimiter = ({ limiter, keyExtractor }) => {
 // --- Key Extractors ---
 
 /**
- * Extracts the IP address from the request headers.
+ * Extracts the IP address from request headers.
  * @param {import('hono').Context} c
  * @returns {string}
  */
@@ -54,7 +54,7 @@ export const ipKeyExtractor = (c) => {
 }
 
 /**
- * Extracts the email from the JSON body of the request.
+ * Extracts the email address from JSON body for per-user rate limiting.
  * @param {import('hono').Context} c
  * @returns {Promise<string|null>}
  */
@@ -69,7 +69,7 @@ export const emailBodyKeyExtractor = async (c) => {
 }
 
 /**
- * Extracts the user ID from the JWT payload set by the auth middleware.
+ * Extracts user ID from JWT payload.
  * @param {import('hono').Context} c
  * @returns {string|null}
  */

@@ -3,6 +3,9 @@ import { ref, shallowRef, reactive, computed } from 'vue'
 import { useAuthStore } from './auth'
 import { ALL_SERIES_OPTIONS } from '@/maps/series-map'
 
+/**
+ * Constants for climax types and icons
+ */
 const CLIMAX_TYPE_OPTIONS = [
   { name: '爆', value: 'soul', icon: '/effect-icons/soul.webp' },
   { name: '门', value: 'salvage', icon: '/effect-icons/salvage.webp' },
@@ -18,6 +21,9 @@ const CLIMAX_TYPE_OPTIONS = [
   { name: '灯', value: 'chance', icon: '/effect-icons/chance.webp' },
 ]
 
+/**
+ * Constants for listing tags
+ */
 const TAG_OPTIONS = [
   { label: '全平', value: 0 },
   { label: '有闪', value: 1 },
@@ -33,6 +39,9 @@ const TAG_LABELS = TAG_OPTIONS.reduce((acc, t) => {
 }, [])
 
 export const useMarketStore = defineStore('market', () => {
+  const authStore = useAuthStore()
+
+  // --- State ---
   const listings = shallowRef([])
   const userListingCount = ref(0)
   const isLoading = ref(false)
@@ -49,25 +58,28 @@ export const useMarketStore = defineStore('market', () => {
   })
   const isRankingLoading = ref(false)
 
-  // 篩選條件
+  // --- Filters ---
   const filters = reactive({
     gameType: 'ws',
     seriesId: null,
     climaxType: [],
     tag: [],
     source: 'all', // 'all' or 'mine'
-    sort: 'newest', // 'newest'/ 'price_asc'/ 'price_desc'
+    sort: 'newest', // 'newest' | 'price_asc' | 'price_desc'
   })
 
+  // --- Computed ---
   const seriesOptions = computed(() => {
     return ALL_SERIES_OPTIONS.filter((opt) => opt.game === filters.gameType)
   })
 
-  const authStore = useAuthStore()
+  // --- Actions ---
 
-  // Actions
+  /**
+   * Fetches market listings based on active filters and pagination
+   * @param {boolean} isLoadMore - Whether to append results to existing list
+   */
   const fetchListings = async (isLoadMore = false) => {
-    // 如果不是加載更多，立即清空列表，防止切換時顯示舊資料
     if (!isLoadMore) {
       pagination.cursor = null
       listings.value = []
@@ -75,8 +87,6 @@ export const useMarketStore = defineStore('market', () => {
     }
 
     if (isLoading.value) return
-
-    // 如果沒有更多數據，直接返回
     if (isLoadMore && !pagination.hasMore) return
 
     isLoading.value = true
@@ -92,10 +102,10 @@ export const useMarketStore = defineStore('market', () => {
       }
 
       if (filters.seriesId) queryParams.append('series', filters.seriesId)
-      if (filters.climaxType && filters.climaxType.length > 0) {
+      if (filters.climaxType?.length > 0) {
         filters.climaxType.forEach((c) => queryParams.append('climax', c))
       }
-      if (filters.tag && filters.tag.length > 0) {
+      if (filters.tag?.length > 0) {
         filters.tag.forEach((t) => queryParams.append('tag', t))
       }
 
@@ -106,14 +116,9 @@ export const useMarketStore = defineStore('market', () => {
 
       const endpoint =
         filters.source === 'mine' ? '/api/market/my-listings' : '/api/market/listings'
+      const response = await fetch(`${endpoint}?${queryParams.toString()}`, { headers })
 
-      const response = await fetch(`${endpoint}?${queryParams.toString()}`, {
-        headers,
-      })
-
-      if (!response.ok) {
-        throw new Error('获取商品列表失败')
-      }
+      if (!response.ok) throw new Error('获取商品列表失败')
 
       const data = await response.json()
 
@@ -127,11 +132,9 @@ export const useMarketStore = defineStore('market', () => {
         listings.value = data.listings
       }
 
-      // Update cursor and hasMore status
       pagination.cursor = data.nextCursor
       pagination.hasMore = !!data.nextCursor
 
-      // Update total only if returned (backend might skip it for optimization)
       if (data.total !== undefined) {
         pagination.total = data.total
       }
@@ -143,31 +146,34 @@ export const useMarketStore = defineStore('market', () => {
     }
   }
 
+  /**
+   * Fetches the total listing count for the current user
+   */
   const fetchUserListingCount = async () => {
     if (!authStore.isAuthenticated) return
 
     try {
       const response = await fetch('/api/market/my-count', {
-        headers: {
-          Authorization: `Bearer ${authStore.token}`,
-        },
+        headers: { Authorization: `Bearer ${authStore.token}` },
       })
       if (!response.ok) throw new Error('获取商品数量失败')
       const data = await response.json()
       userListingCount.value = data.count
     } catch (error) {
-      console.error(error)
+      console.error('Fetch user listing count error:', error)
     }
   }
 
+  /**
+   * Fetches market ranking statistics
+   */
   const fetchRankingStats = async () => {
     if (isRankingLoading.value) return
     isRankingLoading.value = true
     try {
       const response = await fetch('/api/market/stats')
       if (!response.ok) throw new Error('获取排行榜统计失败')
-      const data = await response.json()
-      rankingStats.value = data
+      rankingStats.value = await response.json()
     } catch (error) {
       console.error('Failed to fetch ranking stats:', error)
     } finally {
@@ -175,8 +181,12 @@ export const useMarketStore = defineStore('market', () => {
     }
   }
 
+  /**
+   * Creates a new market listing
+   * @param {object} listingData
+   */
   const createListing = async (listingData) => {
-    if (!authStore.isAuthenticated) throw new Error('请先登入')
+    if (!authStore.isAuthenticated) throw new Error('请先登录')
 
     isLoading.value = true
     try {
@@ -194,16 +204,20 @@ export const useMarketStore = defineStore('market', () => {
         throw new Error(errorData.error || '发布商品失败')
       }
 
-      // Refresh count after creation
-      fetchUserListingCount()
+      await fetchUserListingCount()
       return await response.json()
     } finally {
       isLoading.value = false
     }
   }
 
+  /**
+   * Updates an existing market listing
+   * @param {string} listingId
+   * @param {object} listingData
+   */
   const updateListing = async (listingId, listingData) => {
-    if (!authStore.isAuthenticated) throw new Error('请先登入')
+    if (!authStore.isAuthenticated) throw new Error('请先登录')
 
     isLoading.value = true
     try {
@@ -227,28 +241,32 @@ export const useMarketStore = defineStore('market', () => {
     }
   }
 
+  /**
+   * Deletes a market listing by ID
+   * @param {string} listingId
+   */
   const deleteListing = async (listingId) => {
-    if (!authStore.isAuthenticated) throw new Error('请先登入')
+    if (!authStore.isAuthenticated) throw new Error('请先登录')
 
     try {
       const response = await fetch(`/api/market/listings/${listingId}`, {
         method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${authStore.token}`,
-        },
+        headers: { Authorization: `Bearer ${authStore.token}` },
       })
 
       if (!response.ok) throw new Error('删除商品失败')
 
       listings.value = listings.value.filter((l) => l.id !== listingId)
-      // Refresh count after deletion
-      fetchUserListingCount()
+      await fetchUserListingCount()
     } catch (error) {
-      console.error(error)
+      console.error('Delete listing error:', error)
       throw error
     }
   }
 
+  /**
+   * Resets the store state to initial values
+   */
   const reset = () => {
     listings.value = []
     userListingCount.value = 0

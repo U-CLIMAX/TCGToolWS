@@ -6,8 +6,15 @@ const MAX_RECENT_SERIES = 10
 export const useRecentStore = defineStore(
   'recent',
   () => {
+    // --- State ---
     const seriesIds = ref([])
 
+    // --- Actions ---
+
+    /**
+     * Adds a series ID to the recent list, maintaining a maximum limit
+     * @param {string} seriesId
+     */
     const addSeries = (seriesId) => {
       if (!seriesId) return
 

@@ -12,6 +12,7 @@ const BACKGROUND_IMAGE_KEY = 'background-image'
 export const useUIStore = defineStore(
   'ui',
   () => {
+    // --- State ---
     const version = ref(1)
     const theme = ref('dark')
     const isFilterOpen = ref(false)
@@ -29,10 +30,7 @@ export const useUIStore = defineStore(
     const showStatsDashboard = ref(true)
     const customKeywords = ref([])
     const headerHeight = ref(64) // Default height
-
-    const setHeaderHeight = (height) => {
-      headerHeight.value = height
-    }
+    const backgroundImage = ref(null)
 
     // State for SeriesCardTableView
     const seriesSearchTerm = debounceRef('', 300)
@@ -40,8 +38,15 @@ export const useUIStore = defineStore(
     const seriesSortAscending = ref(false)
     const selectedGameType = ref('ws')
 
-    const backgroundImage = ref(null)
+    // Update website
+    const showForceUpdate = ref(false)
+    const pollingWorker = shallowRef(null)
 
+    // --- Computed ---
+
+    /**
+     * Computed properties for menu configuration based on background state
+     */
     const menuProps = computed(() => {
       const classes = ['themed-scrollbar', 'rounded-xl']
       if (backgroundImage.value) {
@@ -49,10 +54,16 @@ export const useUIStore = defineStore(
       }
       return { contentClass: classes.join(' '), offset: 3 }
     })
+
     const menuPropsNoGlass = computed(() => {
       return { contentClass: 'themed-scrollbar' }
     })
 
+    // --- Actions ---
+
+    /**
+     * Restores background image from persistent storage
+     */
     const restoreBackgroundImage = async () => {
       const storedImage = await backgroundStore.getItem(BACKGROUND_IMAGE_KEY)
       if (storedImage) {
@@ -60,14 +71,26 @@ export const useUIStore = defineStore(
       }
     }
 
+    /**
+     * Sets the global loading state
+     * @param {boolean} status
+     */
     const setLoading = (status) => {
       isLoading.value = status
     }
 
+    /**
+     * Updates the count of rendered cards (for performance monitoring)
+     * @param {number} count
+     */
     const setRenderedCardsCount = (count) => {
       renderedCardsCount.value = count
     }
 
+    /**
+     * Updates performance optimization flags
+     * @param {object} updates
+     */
     const setPerformanceMode = (updates) => {
       if (typeof updates === 'object' && updates !== null) {
         isPerformanceMode.value = { ...isPerformanceMode.value, ...updates }
@@ -76,6 +99,19 @@ export const useUIStore = defineStore(
       }
     }
 
+    /**
+     * Sets a custom header height based on layout changes
+     * @param {number} height
+     */
+    const setHeaderHeight = (height) => {
+      headerHeight.value = height
+    }
+
+    /**
+     * Sets a new background image from a canvas element
+     * @param {object} options
+     * @param {HTMLCanvasElement} options.canvas
+     */
     const setBackgroundImage = ({ canvas }) => {
       if (!canvas) return
       let dataURL = canvas.toDataURL('image/webp', 0.9)
@@ -99,6 +135,10 @@ export const useUIStore = defineStore(
       backgroundStore.setItem(BACKGROUND_IMAGE_KEY, newImage)
     }
 
+    /**
+     * Updates properties of the current background image
+     * @param {object} updates
+     */
     const updateBackgroundImage = (updates) => {
       if (!backgroundImage.value) return
       const updatedImage = { ...backgroundImage.value, ...updates }
@@ -106,20 +146,26 @@ export const useUIStore = defineStore(
       backgroundStore.setItem(BACKGROUND_IMAGE_KEY, updatedImage)
     }
 
+    /**
+     * Clears the background image from state and storage
+     */
     const clearBackgroundImage = () => {
       backgroundImage.value = null
       backgroundStore.removeItem(BACKGROUND_IMAGE_KEY)
     }
 
-    // Update website
-    const showForceUpdate = ref(false)
-    const pollingWorker = shallowRef(null)
-
+    /**
+     * Triggers a force update notification
+     * @param {object} worker - Service worker instance
+     */
     const triggerForceUpdate = (worker) => {
       pollingWorker.value = worker
       showForceUpdate.value = true
     }
 
+    /**
+     * Confirms and applies the website update
+     */
     const confirmUpdate = () => {
       if (pollingWorker.value) {
         pollingWorker.value.onRefresh()
@@ -128,12 +174,20 @@ export const useUIStore = defineStore(
       }
     }
 
+    /**
+     * Adds a custom search keyword to history
+     * @param {string} keyword
+     */
     const addCustomKeyword = (keyword) => {
       if (keyword && !customKeywords.value.includes(keyword)) {
         customKeywords.value.unshift(keyword)
       }
     }
 
+    /**
+     * Removes a custom search keyword from history
+     * @param {string} keyword
+     */
     const removeCustomKeyword = (keyword) => {
       const index = customKeywords.value.indexOf(keyword)
       if (index > -1) {

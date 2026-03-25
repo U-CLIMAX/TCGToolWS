@@ -6,7 +6,7 @@ import { ALL_SERIES_OPTIONS } from '@/maps/series-map'
 export const useDecksGalleryStore = defineStore('decksGallery', () => {
   const authStore = useAuthStore()
 
-  // State
+  // --- State ---
   const decks = ref([])
   const userDeckCount = ref(0)
   const isLoading = ref(false)
@@ -20,49 +20,57 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
     placement: null,
   })
 
-  const seriesOptions = computed(() => {
-    return ALL_SERIES_OPTIONS.filter((opt) => opt.game === filters.gameType)
-  })
-
   const pagination = reactive({
     cursor: null,
     hasMore: true,
     limit: 20,
   })
 
+  // --- Computed ---
+  const seriesOptions = computed(() => {
+    return ALL_SERIES_OPTIONS.filter((opt) => opt.game === filters.gameType)
+  })
+
+  // --- Actions ---
+
+  /**
+   * Fetches decks for the gallery based on active filters and pagination
+   * @param {boolean} isLoadMore - Whether to append results to existing list
+   */
   const fetchDecks = async (isLoadMore = false) => {
+    if (!isLoadMore) {
+      pagination.cursor = null
+      pagination.hasMore = true
+      decks.value = []
+    }
+
     if (isLoading.value) return
+    if (isLoadMore && !pagination.hasMore) return
+
     isLoading.value = true
 
     try {
-      if (!isLoadMore) {
-        pagination.cursor = null
-        pagination.hasMore = true
-        decks.value = []
-      }
+      const params = new URLSearchParams({
+        limit: pagination.limit.toString(),
+        game_type: filters.gameType,
+        sort: filters.sort || 'newest',
+      })
 
-      const params = new URLSearchParams()
-      params.append('limit', pagination.limit.toString())
-      params.append('game_type', filters.gameType)
       if (filters.seriesId) params.append('series', filters.seriesId)
-      if (filters.sort) params.append('sort', filters.sort)
       if (filters.tournamentType) params.append('tournament_type', filters.tournamentType)
       if (filters.participantCount) params.append('participant_count', filters.participantCount)
       if (filters.placement) params.append('placement', filters.placement)
       if (pagination.cursor) params.append('cursor', pagination.cursor)
 
-      const endpoint = filters.source === 'mine' ? '/api/gallery/my-decks' : '/api/gallery/decks'
-
       const headers = {}
-      if (filters.source === 'mine' && authStore.token) {
+      if (authStore.isAuthenticated) {
         headers['Authorization'] = `Bearer ${authStore.token}`
       }
 
+      const endpoint = filters.source === 'mine' ? '/api/gallery/my-decks' : '/api/gallery/decks'
       const response = await fetch(`${endpoint}?${params.toString()}`, { headers })
 
-      if (!response.ok) {
-        throw new Error('获取广场卡组失败')
-      }
+      if (!response.ok) throw new Error('获取广场卡组失败')
 
       const data = await response.json()
 
@@ -71,7 +79,7 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
       }
 
       if (isLoadMore) {
-        decks.value.push(...data.decks)
+        decks.value = [...decks.value, ...data.decks]
       } else {
         decks.value = data.decks
       }
@@ -86,25 +94,31 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
     }
   }
 
+  /**
+   * Fetches the total number of gallery shares for the current user
+   */
   const fetchUserDeckCount = async () => {
-    if (!authStore.token) return
+    if (!authStore.isAuthenticated) return
 
     try {
       const response = await fetch('/api/gallery/my-count', {
-        headers: {
-          Authorization: `Bearer ${authStore.token}`,
-        },
+        headers: { Authorization: `Bearer ${authStore.token}` },
       })
       if (!response.ok) throw new Error('获取广场分享数量失败')
       const data = await response.json()
       userDeckCount.value = data.count
     } catch (error) {
-      console.error(error)
+      console.error('Fetch user deck count error:', error)
     }
   }
 
+  /**
+   * Submits a rating for a specific deck
+   * @param {string} key
+   * @param {number} rating
+   */
   const rateDeck = async (key, rating) => {
-    if (!authStore.token) throw new Error('请先登入')
+    if (!authStore.isAuthenticated) throw new Error('请先登录')
 
     const response = await fetch(`/api/gallery/decks/${key}/rating`, {
       method: 'POST',
@@ -123,13 +137,15 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
     return await response.json()
   }
 
+  /**
+   * Fetches the current user's rating for a specific deck
+   * @param {string} key
+   */
   const fetchMyRating = async (key) => {
-    if (!authStore.token) return 0
+    if (!authStore.isAuthenticated) return 0
 
     const response = await fetch(`/api/gallery/decks/${key}/rating`, {
-      headers: {
-        Authorization: `Bearer ${authStore.token}`,
-      },
+      headers: { Authorization: `Bearer ${authStore.token}` },
     })
 
     if (!response.ok) return 0
@@ -137,19 +153,21 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
     return data.rating
   }
 
+  /**
+   * Deletes a gallery share by deck key
+   * @param {string} key
+   */
   const deleteDeck = async (key) => {
-    if (!authStore.token) throw new Error('请先登入')
+    if (!authStore.isAuthenticated) throw new Error('请先登录')
 
     const response = await fetch(`/api/gallery/decks/${key}`, {
       method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${authStore.token}`,
-      },
+      headers: { Authorization: `Bearer ${authStore.token}` },
     })
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}))
-      throw new Error(errorData.error || '删除失败')
+      throw new Error(errorData.error || '删除分享失败')
     }
 
     decks.value = decks.value.filter((d) => d.key !== key)

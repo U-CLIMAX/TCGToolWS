@@ -1,3 +1,7 @@
+/**
+ * Updates market statistics and stores them in KV storage.
+ * @param {object} env - Cloudflare environment object.
+ */
 export const updateMarketStats = async (env) => {
   try {
     const query = `
@@ -21,12 +25,15 @@ export const updateMarketStats = async (env) => {
   }
 }
 
+/**
+ * Retrieves market statistics from KV storage.
+ * @param {object} env - Cloudflare environment object.
+ * @returns {Promise<object|null>}
+ */
 export const getMarketStats = async (env) => {
   try {
     const statsStr = await env.MARKET_KV.get('MARKET_STATS_SERIES_RANKING')
-    if (!statsStr) {
-      return null
-    }
+    if (!statsStr) return null
     return JSON.parse(statsStr)
   } catch (error) {
     console.error('Failed to get market stats:', error)

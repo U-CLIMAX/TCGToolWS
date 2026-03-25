@@ -44,7 +44,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     terminateWorker,
   } = useCardFiltering(productNames, traits, rarities, costRange, powerRange)
 
-  // --- Search Results ---
+  // --- Results ---
   const searchResults = ref([])
   const searchCountDetails = ref({
     isCountOverThreshold: false,
@@ -81,11 +81,11 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
   // --- Data Loading Logic ---
 
   /**
-   * 設定卡片資料並初始化 Worker
-   * @param {Object} data - 卡片資料物件
-   * @param {String} source - 資料來源 (log 用)
-   * @param {String} version - 版本號
-   * @param {Object} indexFiles - 預先建立的索引檔案路徑 Map
+   * Sets card data and initializes the worker
+   * @param {Object} data - Card data object
+   * @param {String} source - Data source (for logging)
+   * @param {String} version - Version number
+   * @param {Object} indexFiles - Map of pre-built index file paths
    */
   const setCardData = async (data, source, version, indexFiles) => {
     productNames.value = data.filterOptions.productNames
@@ -94,6 +94,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     souls.value = data.filterOptions.souls
     costRange.value = data.filterOptions.costRange
     powerRange.value = data.filterOptions.powerRange
+
     resetFilters()
     await initializeWorker(data.cards, {
       game: currentGame.value,
@@ -104,10 +105,10 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
   }
 
   /**
-   * 資料還原 helper：將 Columnar (Array) 轉回 Object，並解碼數值優化
-   * @param {Array} rows - 純資料陣列
-   * @param {Array} schema - 欄位名稱陣列
-   * @param {Object} valueMaps - 數值對照表 (colorMap, typeMap, traitMap)
+   * Helper: Hydrates cards from columnar format back to object format
+   * @param {Array} rows - Raw data rows
+   * @param {Array} schema - Field name array
+   * @param {Object} valueMaps - Maps for decoding optimized values
    */
   const hydrateCards = (rows, schema, valueMaps) => {
     if (!schema || !rows) return rows
@@ -123,27 +124,20 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     return rows.map((row) => {
       const card = {}
       row.forEach((val, idx) => {
-        // null 代表該欄位無值，跳過不存以省空間
         if (val === null) return
 
         let finalVal = val
 
-        // 如果有傳入對照表，則進行解碼 (Reverse Optimization)
         if (valueMaps) {
           if (idx === colorIdx) {
-            // Index -> String
             finalVal = colorMap[val]
           } else if (idx === typeIdx) {
-            // Index -> String
             finalVal = typeMap[val]
           } else if (idx === traitIdx && Array.isArray(val)) {
-            // Array<Index> -> Array<String>
             finalVal = val.map((v) => traitMap[v])
           } else if (idx === lowRarityIdx) {
-            // 0/1 -> Boolean
             finalVal = val === 1
           } else if (idx === powerIdx && typeof val === 'number') {
-            // Value -> Value * 500
             finalVal = val * 500
           }
         }
@@ -154,6 +148,10 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     })
   }
 
+  /**
+   * Fetches card data from remote server and stores it in local database
+   * @param {Object} manifest
+   */
   const fetchAndStoreData = async (manifest) => {
     const brotli = await brotliPromise
 
@@ -161,10 +159,8 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     error.value = null
     let db
     try {
-      // 1. 從 manifest 解構出 valueMaps
       const { version, chunked, chunks, fileName, indexFiles, schema, valueMaps } = manifest
 
-      // 建立一個來源串流，依序抓取 chunks
       const fileStream = new ReadableStream({
         async start(controller) {
           if (chunked) {
@@ -181,7 +177,6 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
               }
             }
           } else {
-            // 單一檔案模式
             const response = await fetch(`/${fileName}`)
             const reader = response.body.getReader()
             while (true) {
@@ -194,7 +189,6 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
         },
       })
 
-      // 設定 Brotli 解壓縮串流
       const decompressStream = new brotli.DecompressStream()
       const decompressionTransformer = new TransformStream({
         transform(chunk, controller) {
@@ -219,12 +213,10 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
         },
       })
 
-      // 串接pipeline：下載 -> 解壓縮 -> 轉字串
       const jsonStream = fileStream
         .pipeThrough(decompressionTransformer)
         .pipeThrough(new TextDecoderStream())
 
-      // 讀取最終字串
       const reader = jsonStream.getReader()
       let jsonString = ''
       while (true) {
@@ -235,8 +227,6 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
 
       console.log('Hz Decoding complete, parsing JSON...')
       const data = JSON.parse(jsonString)
-
-      // 將 valueMaps 傳入 hydrateCards 進行還原
       data.cards = hydrateCards(data.cards, schema, valueMaps)
 
       db = await openDB(dbName, storeName, 'key')
@@ -250,13 +240,18 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     } catch (e) {
       console.error('❌ Error loading or saving card data:', e)
       error.value = e
-      throw e // Re-throw to be caught by initialize
+      throw e
     } finally {
       if (db) db.close()
       isLoading.value = false
     }
   }
 
+  /**
+   * Loads card data from local database
+   * @param {String} version
+   * @param {Object} indexFiles
+   */
   const loadDataFromLocal = async (version, indexFiles) => {
     isLoading.value = true
     let db
@@ -266,19 +261,24 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
       const cachedData = result?.data
       if (!cachedData) {
         console.warn('⚠️ Local cache is empty or invalid.')
-        throw new Error('Local cache is empty.') // Trigger fallback
+        throw new Error('Local cache is empty.')
       }
-      // 傳入 indexFiles
       await setCardData(cachedData, 'local database (IndexedDB)', version, indexFiles)
     } catch (e) {
       console.error('❌ Failed to load from local database:', e)
-      throw e // Re-throw to be caught by initialize for fallback
+      throw e
     } finally {
       if (db) db.close()
       isLoading.value = false
     }
   }
 
+  // --- Actions ---
+
+  /**
+   * Initializes the global search store for a specific game
+   * @param {String} game
+   */
   const initialize = async (game = 'ws') => {
     if (game !== currentGame.value) {
       currentGame.value = game
@@ -296,10 +296,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
       const currentVersion = manifest.version
       const indexFiles = manifest.indexFiles || null
 
-      console.log(`📌 Current version: ${currentVersion}`)
-
       const storedVersion = localStorage.getItem(`global_search_index_version_${currentGame.value}`)
-      console.log(`📌 Local version: ${storedVersion || 'None'}`)
 
       let loadedFromLocal = false
       if (storedVersion === currentVersion) {
@@ -315,13 +312,11 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
 
       if (!loadedFromLocal) {
         isInitialSetup.value = true
-        await nextTick() // Wait for the DOM to update before performing time-consuming operations
+        await nextTick()
 
         if (storedVersion !== currentVersion) {
           console.log(
-            `🔄 Version mismatch (Local: ${
-              storedVersion || 'None'
-            }, Remote: ${currentVersion}), fetching new data...`
+            `🔄 Version mismatch (Local: ${storedVersion || 'None'}, Remote: ${currentVersion}), fetching new data...`
           )
         }
         await fetchAndStoreData(manifest)
@@ -340,6 +335,9 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     }
   }
 
+  /**
+   * Terminates the search and resets state
+   */
   const terminate = () => {
     terminateWorker()
     isReady.value = false

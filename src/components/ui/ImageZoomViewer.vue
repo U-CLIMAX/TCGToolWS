@@ -107,12 +107,12 @@ const isMobileFullscreen = computed(() => !smAndUp.value)
 // 必須在手機全螢幕佈局下，且「瀏覽器層級」沒有被明顯放大 (VisualViewport scale 接近 1)
 const canRunCustomZoom = computed(() => {
   if (!isMobileFullscreen.value) return false
-  
+
   // 如果 VisualViewport scale > 1.01，將控制權交還給瀏覽器。
   if (window.visualViewport && window.visualViewport.scale > 1.01) {
     return false
   }
-  
+
   return true
 })
 
@@ -140,13 +140,13 @@ const imageTransformStyle = computed(() => ({
 const limitTransform = (x, y, s) => {
   if (!containerRef.value || !canRunCustomZoom.value) return { x, y }
   const { width, height } = containerRef.value.getBoundingClientRect()
-  
+
   const maxX = Math.max(0, (width * s - width) / 2)
   const maxY = Math.max(0, (height * s - height) / 4)
-  
+
   return {
     x: Math.min(Math.max(-maxX, x), maxX),
-    y: Math.min(Math.max(-maxY, y), maxY)
+    y: Math.min(Math.max(-maxY, y), maxY),
   }
 }
 
@@ -205,7 +205,7 @@ const getMidpoint = (touches) => {
   // 返回相對於容器中心的座標
   return {
     x: cx - (rect.left + rect.width / 2),
-    y: cy - (rect.top + rect.height / 2)
+    y: cy - (rect.top + rect.height / 2),
   }
 }
 
@@ -234,14 +234,19 @@ const handleTouchMove = (e) => {
 
   if (isPinching.value && e.touches.length === 2) {
     const currentDistance = getDistance(e.touches)
-    const newScale = Math.min(Math.max(1, (currentDistance / startDistance.value) * lastScale.value), 5)
-    
+    const newScale = Math.min(
+      Math.max(1, (currentDistance / startDistance.value) * lastScale.value),
+      5
+    )
+
     // 計算縮放中心位移（兩根手指的中點）
     // 公式: tx_new = mid_x - (mid_x - tx_old) * (s_new / s_old)
     const mid = getMidpoint(e.touches)
-    const newTranslateX = mid.x - (startMidX.value - lastTranslateX.value) * (newScale / lastScale.value)
-    const newTranslateY = mid.y - (startMidY.value - lastTranslateY.value) * (newScale / lastScale.value)
-    
+    const newTranslateX =
+      mid.x - (startMidX.value - lastTranslateX.value) * (newScale / lastScale.value)
+    const newTranslateY =
+      mid.y - (startMidY.value - lastTranslateY.value) * (newScale / lastScale.value)
+
     const limited = limitTransform(newTranslateX, newTranslateY, newScale)
     scale.value = newScale
     translateX.value = limited.x

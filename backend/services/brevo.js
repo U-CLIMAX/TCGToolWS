@@ -1,8 +1,8 @@
 /**
- * 發送驗證碼郵件
- * @param {string} toEmail - 收件人郵箱
- * @param {string} verificationCode - 6 位數字驗證碼
- * @param {string} apiKey - Brevo API 金鑰
+ * Sends a verification code via email using Brevo SMTP API.
+ * @param {string} toEmail - Recipient email address.
+ * @param {string} verificationCode - 6-digit verification code.
+ * @param {string} apiKey - Brevo API key.
  * @returns {Promise<void>}
  */
 export const sendVerificationEmail = async (toEmail, verificationCode, apiKey) => {
@@ -33,21 +33,21 @@ export const sendVerificationEmail = async (toEmail, verificationCode, apiKey) =
 
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({}))
-    console.error('Brevo API Error:', response.status, errorData)
-    throw new Error('邮件发送失败，请稍后重试。')
+    console.error('Brevo API Error (Verification):', response.status, errorData)
+    throw new Error('邮件发送失败，请稍后重试')
   }
 }
 
 /**
- * 发送密码重置邮件
- * @param {string} toEmail - 收件人邮箱
- * @param {string} resetToken - 重置密码用的 Token
- * @param {string} apiKey - Brevo API 密钥
+ * Sends a password reset link via email.
+ * @param {string} toEmail - Recipient email address.
+ * @param {string} resetToken - Secure token for password reset.
+ * @param {string} apiKey - Brevo API key.
+ * @param {string} frontendUrl - Base URL of the frontend application.
  * @returns {Promise<void>}
  */
 export const sendPasswordResetEmail = async (toEmail, resetToken, apiKey, frontendUrl) => {
   const resetLink = `${frontendUrl}/reset-password?token=${resetToken}`
-
   const SENDER_NAME = 'Uclimax TCGTool'
   const SENDER_EMAIL = 'noreply@uclimax.top'
 
@@ -78,6 +78,6 @@ export const sendPasswordResetEmail = async (toEmail, resetToken, apiKey, fronte
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({}))
     console.error('Brevo API Error (Password Reset):', response.status, errorData)
-    throw new Error('密码重置邮件发送失败，请稍后重试。')
+    throw new Error('密码重置邮件发送失败，请稍后重试')
   }
 }

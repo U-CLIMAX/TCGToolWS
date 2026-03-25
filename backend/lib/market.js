@@ -18,9 +18,9 @@ export const handleCreateListing = async (c) => {
       return createErrorResponse(c, 400, '缺少必要参数')
     }
 
-    // Check listing limit based on role
+    // Check listing limit based on user role
     const countResult = await c.env.DB.prepare(
-      'SELECT COUNT(*) as total FROM market_listings WHERE user_id = ?'
+      'SELECT COUNT(*) as total FROM market_listings WHERE user_id = ?1'
     )
       .bind(user.id)
       .first()
@@ -46,7 +46,7 @@ export const handleCreateListing = async (c) => {
 
     const info = await c.env.DB.prepare(
       `INSERT INTO market_listings (id, user_id, series_id, game_type, cards_id, climax_types, tags, price, shop_url, deck_code, updated_at)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+       VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11)`
     )
       .bind(
         id,
@@ -63,14 +63,12 @@ export const handleCreateListing = async (c) => {
       )
       .run()
 
-    if (!info.success) {
-      return createErrorResponse(c, 500, '数据库操作失败')
-    }
+    if (!info.success) return createErrorResponse(c, 500, '数据库操作失败')
 
     return c.json({ success: true, id }, 201)
   } catch (error) {
     console.error('Error creating listing:', error)
-    return createErrorResponse(c, 500, '内部服务器错误')
+    return createErrorResponse(c, 500, '服务器内部错误')
   }
 }
 
@@ -101,8 +99,8 @@ export const handleUpdateListing = async (c) => {
 
     const info = await c.env.DB.prepare(
       `UPDATE market_listings
-       SET series_id = ?, game_type = ?, cards_id = ?, climax_types = ?, tags = ?, price = ?, shop_url = ?, deck_code = ?, updated_at = ?
-       WHERE id = ? AND user_id = ?`
+       SET series_id = ?1, game_type = ?2, cards_id = ?3, climax_types = ?4, tags = ?5, price = ?6, shop_url = ?7, deck_code = ?8, updated_at = ?9
+       WHERE id = ?10 AND user_id = ?11`
     )
       .bind(
         series_id,
@@ -119,23 +117,18 @@ export const handleUpdateListing = async (c) => {
       )
       .run()
 
-    if (!info.success) {
-      return createErrorResponse(c, 500, '数据库操作失败')
-    }
-
-    if (info.changes === 0) {
-      return createErrorResponse(c, 404, '商品未找到或无权编辑')
-    }
+    if (!info.success) return createErrorResponse(c, 500, '数据库操作失败')
+    if (info.changes === 0) return createErrorResponse(c, 404, '商品未找到或无权编辑')
 
     return c.json({ success: true })
   } catch (error) {
     console.error('Error updating listing:', error)
-    return createErrorResponse(c, 500, '内部服务器错误')
+    return createErrorResponse(c, 500, '服务器内部错误')
   }
 }
 
 /**
- * Retrieves market listings with cursor-based pagination.
+ * Retrieves market listings with cursor-based pagination and advanced filtering.
  * @param {object} c - Hono context object.
  * @returns {Response}
  */
@@ -144,53 +137,55 @@ export const handleGetListings = async (c) => {
     const { limit, series, game_type, sort = 'newest', cursor } = c.req.query()
     const limitNum = Math.max(1, Math.min(100, parseInt(limit) || 20))
 
-    // Decode cursor if present
     let cursorObj = null
     if (cursor) cursorObj = JSON.parse(atob(cursor))
 
-    const conditions = [' game_type = ?']
+    const conditions = ['game_type = ?1']
     const params = [game_type]
 
     const tagsQuery = c.req.queries('tag')
     if (tagsQuery && tagsQuery.length > 0) {
-      const tagConditions = tagsQuery.map(() => 'tags LIKE ?').join(' OR ')
+      const tagConditions = tagsQuery
+        .map((_, i) => `tags LIKE ?${params.length + i + 1}`)
+        .join(' OR ')
       conditions.push(`(${tagConditions})`)
       tagsQuery.forEach((t) => params.push(`%${t}%`))
     }
 
     if (series) {
-      conditions.push(' series_id = ?')
+      conditions.push(`series_id = ?${params.length + 1}`)
       params.push(series)
     }
 
     const climaxQuery = c.req.queries('climax')
     if (climaxQuery && climaxQuery.length > 0) {
-      const climaxConditions = climaxQuery.map(() => 'climax_types LIKE ?').join(' OR ')
+      const climaxConditions = climaxQuery
+        .map((_, i) => `climax_types LIKE ?${params.length + i + 1}`)
+        .join(' OR ')
       conditions.push(`(${climaxConditions})`)
-      climaxQuery.forEach((c) => params.push(`%"${c}"%`))
+      climaxQuery.forEach((cl) => params.push(`%"${cl}"%`))
     }
 
     let orderByClause = 'updated_at DESC, id DESC'
     let cursorCondition = ''
 
-    // Apply cursor filter based on sort method
     if (sort === 'price_asc') {
       orderByClause = 'price ASC, id ASC'
       if (cursorObj) {
-        cursorCondition = '(price, id) > (?, ?)'
+        cursorCondition = `(price, id) > (?${params.length + 1}, ?${params.length + 2})`
         params.push(cursorObj.p, cursorObj.i)
       }
     } else if (sort === 'price_desc') {
       orderByClause = 'price DESC, id DESC'
       if (cursorObj) {
-        cursorCondition = '(price, id) < (?, ?)'
+        cursorCondition = `(price, id) < (?${params.length + 1}, ?${params.length + 2})`
         params.push(cursorObj.p, cursorObj.i)
       }
     } else {
-      // Default: newest (updated_at DESC)
+      // Default: newest
       orderByClause = 'updated_at DESC, id DESC'
       if (cursorObj) {
-        cursorCondition = '(updated_at, id) < (?, ?)'
+        cursorCondition = `(updated_at, id) < (?${params.length + 1}, ?${params.length + 2})`
         params.push(cursorObj.t, cursorObj.i)
       }
     }
@@ -206,10 +201,9 @@ export const handleGetListings = async (c) => {
       FROM market_listings
       ${whereClause}
       ORDER BY ${orderByClause}
-      LIMIT ?
+      LIMIT ?${params.length + 1}
     `
 
-    // Fetch one extra item to check if there is a next page
     const { results } = await c.env.DB.prepare(query)
       .bind(...params, limitNum + 1)
       .all()
@@ -217,7 +211,6 @@ export const handleGetListings = async (c) => {
     const hasNextPage = results.length > limitNum
     const listings = hasNextPage ? results.slice(0, limitNum) : results
 
-    // Generate next cursor
     let nextCursor = null
     if (hasNextPage && listings.length > 0) {
       const lastItem = listings[listings.length - 1]
@@ -232,7 +225,6 @@ export const handleGetListings = async (c) => {
       nextCursor = btoa(JSON.stringify(nextCursorObj))
     }
 
-    // Parse JSON fields for response
     const parsedListings = listings.map((l) => ({
       ...l,
       cards_id: JSON.parse(l.cards_id),
@@ -247,7 +239,7 @@ export const handleGetListings = async (c) => {
     })
   } catch (error) {
     console.error('Error fetching listings:', error)
-    return createErrorResponse(c, 500, '内部服务器错误')
+    return createErrorResponse(c, 500, '服务器内部错误')
   }
 }
 
@@ -260,33 +252,35 @@ export const handleGetUserListings = async (c) => {
   try {
     const user = c.get('user')
     const { limit, series, game_type, sort = 'newest', cursor } = c.req.query()
-
     const limitNum = Math.max(1, Math.min(100, parseInt(limit) || 20))
 
-    // Decode cursor if present
     let cursorObj = null
     if (cursor) cursorObj = JSON.parse(atob(cursor))
 
-    const conditions = ['user_id = ?', 'game_type = ?']
+    const conditions = ['user_id = ?1', 'game_type = ?2']
     const params = [user.id, game_type]
 
     const tagsQuery = c.req.queries('tag')
     if (tagsQuery && tagsQuery.length > 0) {
-      const tagConditions = tagsQuery.map(() => 'tags LIKE ?').join(' OR ')
+      const tagConditions = tagsQuery
+        .map((_, i) => `tags LIKE ?${params.length + i + 1}`)
+        .join(' OR ')
       conditions.push(`(${tagConditions})`)
       tagsQuery.forEach((t) => params.push(`%${t}%`))
     }
 
     if (series) {
-      conditions.push(' series_id = ?')
+      conditions.push(`series_id = ?${params.length + 1}`)
       params.push(series)
     }
 
     const climaxQuery = c.req.queries('climax')
     if (climaxQuery && climaxQuery.length > 0) {
-      const climaxConditions = climaxQuery.map(() => 'climax_types LIKE ?').join(' OR ')
+      const climaxConditions = climaxQuery
+        .map((_, i) => `climax_types LIKE ?${params.length + i + 1}`)
+        .join(' OR ')
       conditions.push(`(${climaxConditions})`)
-      climaxQuery.forEach((c) => params.push(`%"${c}"%`))
+      climaxQuery.forEach((cl) => params.push(`%"${cl}"%`))
     }
 
     let orderByClause = 'updated_at DESC, id DESC'
@@ -295,20 +289,20 @@ export const handleGetUserListings = async (c) => {
     if (sort === 'price_asc') {
       orderByClause = 'price ASC, id ASC'
       if (cursorObj) {
-        cursorCondition = '(price, id) > (?, ?)'
+        cursorCondition = `(price, id) > (?${params.length + 1}, ?${params.length + 2})`
         params.push(cursorObj.p, cursorObj.i)
       }
     } else if (sort === 'price_desc') {
       orderByClause = 'price DESC, id DESC'
       if (cursorObj) {
-        cursorCondition = '(price, id) < (?, ?)'
+        cursorCondition = `(price, id) < (?${params.length + 1}, ?${params.length + 2})`
         params.push(cursorObj.p, cursorObj.i)
       }
     } else {
       // Default: newest
       orderByClause = 'updated_at DESC, id DESC'
       if (cursorObj) {
-        cursorCondition = '(updated_at, id) < (?, ?)'
+        cursorCondition = `(updated_at, id) < (?${params.length + 1}, ?${params.length + 2})`
         params.push(cursorObj.t, cursorObj.i)
       }
     }
@@ -324,10 +318,9 @@ export const handleGetUserListings = async (c) => {
       FROM market_listings
       ${whereClause}
       ORDER BY ${orderByClause}
-      LIMIT ?
+      LIMIT ?${params.length + 1}
     `
 
-    // Fetch one extra item
     const { results } = await c.env.DB.prepare(query)
       .bind(...params, limitNum + 1)
       .all()
@@ -335,7 +328,6 @@ export const handleGetUserListings = async (c) => {
     const hasNextPage = results.length > limitNum
     const listings = hasNextPage ? results.slice(0, limitNum) : results
 
-    // Generate next cursor
     let nextCursor = null
     if (hasNextPage && listings.length > 0) {
       const lastItem = listings[listings.length - 1]
@@ -350,7 +342,6 @@ export const handleGetUserListings = async (c) => {
       nextCursor = btoa(JSON.stringify(nextCursorObj))
     }
 
-    // Parse JSON fields
     const parsedListings = listings.map((l) => ({
       ...l,
       cards_id: JSON.parse(l.cards_id),
@@ -365,7 +356,7 @@ export const handleGetUserListings = async (c) => {
     })
   } catch (error) {
     console.error('Error fetching user listings:', error)
-    return createErrorResponse(c, 500, '内部服务器错误')
+    return createErrorResponse(c, 500, '服务器内部错误')
   }
 }
 
@@ -378,15 +369,15 @@ export const handleGetMyListingCount = async (c) => {
   try {
     const user = c.get('user')
     const result = await c.env.DB.prepare(
-      'SELECT COUNT(*) as total FROM market_listings WHERE user_id = ?'
+      'SELECT COUNT(*) as total FROM market_listings WHERE user_id = ?1'
     )
       .bind(user.id)
       .first()
 
-    return c.json({ count: result.total })
+    return c.json({ count: result.total || 0 })
   } catch (error) {
     console.error('Error fetching listing count:', error)
-    return createErrorResponse(c, 500, '内部服务器错误')
+    return createErrorResponse(c, 500, '服务器内部错误')
   }
 }
 
@@ -402,7 +393,9 @@ export const handleDeleteListing = async (c) => {
 
     if (!id) return createErrorResponse(c, 400, '缺少 ID')
 
-    const info = await c.env.DB.prepare('DELETE FROM market_listings WHERE id = ? AND user_id = ?')
+    const info = await c.env.DB.prepare(
+      'DELETE FROM market_listings WHERE id = ?1 AND user_id = ?2'
+    )
       .bind(id, user.id)
       .run()
 
@@ -412,7 +405,7 @@ export const handleDeleteListing = async (c) => {
     return c.json({ success: true })
   } catch (error) {
     console.error('Error deleting listing:', error)
-    return createErrorResponse(c, 500, '内部服务器错误')
+    return createErrorResponse(c, 500, '服务器内部错误')
   }
 }
 

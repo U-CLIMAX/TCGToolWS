@@ -4,12 +4,18 @@ import { verifyAfdianSignature } from '../services/afdian.js'
 import { processAfdianOrder } from './payments.js'
 import { createErrorResponse } from './utils.js'
 
+/**
+ * Utility: Convert ArrayBuffer to Hex string
+ */
 const arrayBufferToHex = (buffer) => {
   return Array.from(new Uint8Array(buffer))
     .map((b) => b.toString(16).padStart(2, '0'))
     .join('')
 }
 
+/**
+ * Utility: Hash password using SHA-256 with salt
+ */
 const hashPassword = async (password, salt) => {
   const encoder = new TextEncoder()
   const data = encoder.encode(password + salt)
@@ -17,38 +23,38 @@ const hashPassword = async (password, salt) => {
   return arrayBufferToHex(hashBuffer)
 }
 
+/**
+ * Utility: Generate 6-digit verification code
+ */
 const generateVerificationCode = () => {
   return Math.floor(100000 + Math.random() * 900000).toString()
 }
 
-// ... (Keep existing handlers mostly unchanged) ...
+/**
+ * Handler: Send registration verification code
+ */
 export const handleSendVerificationCode = async (c) => {
   const db = c.env.DB
   const brevoApiKey = c.env.BREVO_API_KEY
 
   try {
     const { email, password } = await c.req.json()
-    if (!email) {
-      return createErrorResponse(c, 400, '请提供邮箱地址')
-    }
-    if (!password) {
-      return createErrorResponse(c, 400, '请提供密码')
-    }
-    if (password.length < 8) {
-      return createErrorResponse(c, 400, '密码长度不能少于8位')
-    }
+
+    if (!email) return createErrorResponse(c, 400, '请提供邮箱地址')
+    if (!password) return createErrorResponse(c, 400, '请提供密码')
+    if (password.length < 8) return createErrorResponse(c, 400, '密码长度不能少于8位')
 
     const existingUser = await db
       .prepare('SELECT id FROM users WHERE email = ?1')
       .bind(email)
       .first()
+
     if (existingUser) {
       return createErrorResponse(c, 409, '此邮箱已被注册')
     }
 
     const verificationCode = generateVerificationCode()
     const expiresAt = Math.floor(Date.now() / 1000) + 600
-
     const salt = crypto.randomUUID()
     const hashedPassword = await hashPassword(password, salt)
 
@@ -59,44 +65,37 @@ export const handleSendVerificationCode = async (c) => {
       .bind(email, hashedPassword, salt, verificationCode, expiresAt)
       .run()
 
-    // 調用郵件服務
     await sendVerificationEmail(email, verificationCode, brevoApiKey)
 
     return c.json({ success: true, message: '验证码已发送至您的邮箱' })
   } catch (error) {
-    console.error('发送验证码时出错:', error)
+    console.error('Error sending verification code:', error)
     return createErrorResponse(c, 500, error.message || '服务器内部错误')
   }
 }
 
+/**
+ * Handler: Verify code and complete registration
+ */
 export const handleVerifyAndRegister = async (c) => {
   const db = c.env.DB
   try {
     const { email, code } = await c.req.json()
-    if (!email || !code) {
-      return createErrorResponse(c, 400, '需要邮箱和验证码')
-    }
+    if (!email || !code) return createErrorResponse(c, 400, '需要邮箱和验证码')
 
-    // 查找臨時註冊信息
     const pending = await db
       .prepare('SELECT * FROM pending_registrations WHERE email = ?1')
       .bind(email)
       .first()
-    if (!pending) {
-      return createErrorResponse(c, 400, '验证失败，请重新注册')
-    }
 
-    // 檢查驗證碼是否過期
+    if (!pending) return createErrorResponse(c, 400, '验证失败，请重新注册')
     if (Math.floor(Date.now() / 1000) > pending.expires_at) {
       return createErrorResponse(c, 400, '验证码已过期，请重新注册')
     }
-
-    // 檢查驗證碼是否正確
     if (pending.verification_code !== code) {
       return createErrorResponse(c, 400, '验证码错误')
     }
 
-    // 驗證成功
     const id = crypto.randomUUID()
     await db
       .prepare(
@@ -105,25 +104,25 @@ export const handleVerifyAndRegister = async (c) => {
       .bind(id, pending.email, pending.hashed_password, pending.salt, Math.floor(Date.now() / 1000))
       .run()
 
-    // 從臨時表中刪除記錄
     await db.prepare('DELETE FROM pending_registrations WHERE email = ?1').bind(email).run()
 
     return c.json({ success: true, message: '帐号注册成功！' }, 201)
   } catch (error) {
-    console.error('验证并注册时出错:', error)
+    console.error('Error in registration verification:', error)
     return createErrorResponse(c, 500, '服务器内部错误')
   }
 }
 
+/**
+ * Handler: User login
+ */
 export const handleLogin = async (c) => {
   const db = c.env.DB
   const secret = c.env.JWT_SECRET
 
   try {
     const { email, password } = await c.req.json()
-    if (!email || !password) {
-      return createErrorResponse(c, 400, '需要邮箱和密码')
-    }
+    if (!email || !password) return createErrorResponse(c, 400, '需要邮箱和密码')
 
     const user = await db
       .prepare(
@@ -131,9 +130,8 @@ export const handleLogin = async (c) => {
       )
       .bind(email)
       .first()
-    if (!user) {
-      return createErrorResponse(c, 401, '无效的邮箱或密码')
-    }
+
+    if (!user) return createErrorResponse(c, 401, '无效的邮箱或密码')
 
     const hashedPasswordAttempt = await hashPassword(password, user.salt)
     if (hashedPasswordAttempt !== user.hashed_password) {
@@ -150,21 +148,24 @@ export const handleLogin = async (c) => {
       sub: user.id,
       exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7, // 7 days
       role: user.role,
-      p_exp: user.premium_expire_time || null, // premium_expire_time
+      p_exp: user.premium_expire_time || null,
     }
     const token = await sign(payload, secret, 'HS256')
 
     return c.json({
       success: true,
       message: '登录成功',
-      token: token,
+      token,
     })
   } catch (error) {
-    console.error('登录时发生错误:', error)
+    console.error('Login error:', error)
     return createErrorResponse(c, 500, '服务器内部错误')
   }
 }
 
+/**
+ * Handler: Refresh session and issue new JWT
+ */
 export const handleRefreshSession = async (c) => {
   const db = c.env.DB
   const secret = c.env.JWT_SECRET
@@ -175,17 +176,14 @@ export const handleRefreshSession = async (c) => {
       return createErrorResponse(c, 401, '身份验证失败')
     }
     const token = authHeader.substring(7)
-
     const payload = await verify(token, secret, 'HS256')
 
-    const userId = payload.sub
     const user = await db
       .prepare('SELECT id, role, premium_expire_time FROM users WHERE id = ?1')
-      .bind(userId)
+      .bind(payload.sub)
       .first()
-    if (!user) {
-      return createErrorResponse(c, 401, '使用者不存在')
-    }
+
+    if (!user) return createErrorResponse(c, 401, '用户不存在')
 
     const currentTime = Math.floor(Date.now() / 1000)
     await db
@@ -195,40 +193,45 @@ export const handleRefreshSession = async (c) => {
 
     const newPayload = {
       sub: user.id,
-      exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7, // 全新的 7 天效期
+      exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7, // Renew 7 days
       role: user.role,
-      p_exp: user.premium_expire_time || null, // premium_expire_time
+      p_exp: user.premium_expire_time || null,
     }
     const newToken = await sign(newPayload, secret, 'HS256')
 
     return c.json({ success: true, token: newToken })
   } catch (error) {
     console.error('Session refresh error:', error.message)
-    return createErrorResponse(c, 401, '憑證失效')
+    return createErrorResponse(c, 401, '凭证失效')
   }
 }
 
+/**
+ * Handler: Refresh token with current user context
+ */
 export const handleRefreshUserToken = async (c) => {
   const secret = c.env.JWT_SECRET
-
   const user = c.get('user')
 
   try {
     const payload = {
       sub: user.id,
-      exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7, // 重新計算 7 天
+      exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7,
       role: user.role,
       p_exp: user.premium_expire_time,
     }
     const token = await sign(payload, secret, 'HS256')
 
-    return c.json({ success: true, token: token })
+    return c.json({ success: true, token })
   } catch (error) {
-    console.error('刷新 Token 時發生錯誤:', error)
-    return createErrorResponse(c, 500, '伺服器內部錯誤')
+    console.error('Token refresh error:', error)
+    return createErrorResponse(c, 500, '服务器内部错误')
   }
 }
 
+/**
+ * Handler: Request password reset email
+ */
 export const handleForgotPasswordRequest = async (c) => {
   const db = c.env.DB
   const brevoApiKey = c.env.BREVO_API_KEY
@@ -241,38 +244,33 @@ export const handleForgotPasswordRequest = async (c) => {
 
   try {
     const { email } = await c.req.json()
-    if (!email) {
-      return createErrorResponse(c, 400, '需要提供邮箱地址')
-    }
+    if (!email) return createErrorResponse(c, 400, '需要提供邮箱地址')
 
     const user = await db.prepare('SELECT id FROM users WHERE email = ?1').bind(email).first()
 
-    // 安全性：无论用户是否存在，都返回成功信息
+    // Security: Return same response regardless of user existence to prevent enumeration
     if (user) {
-      // 只有当用户存在时，才执行后续逻辑
       const resetToken = crypto.randomUUID()
-      const expiresAt = Math.floor(Date.now() / 1000) + 3600 // 1 小时后过期
+      const expiresAt = Math.floor(Date.now() / 1000) + 3600 // 1 hour
 
-      // 存入数据库
       await db
         .prepare('INSERT INTO password_resets (token, user_id, expires_at) VALUES (?1, ?2, ?3)')
         .bind(resetToken, user.id, expiresAt)
         .run()
 
-      // 发送邮件
       await sendPasswordResetEmail(email, resetToken, brevoApiKey, frontendUrl)
     }
 
-    // 统一返回成功响应，防止邮箱地址被枚举
     return c.json({ success: true, message: '如果该邮箱已注册，您将会收到一封密码重置邮件' })
   } catch (error) {
-    console.error('忘记密码请求处理出错:', error)
-    createErrorResponse(c, 500, error.message || '服务器内部错误')
-    // 即便内部出错，也返回一个通用的成功消息
+    console.error('Forgot password request error:', error)
     return c.json({ success: true, message: '如果该邮箱已注册，您将会收到一封密码重置邮件' })
   }
 }
 
+/**
+ * Handler: Reset password using token
+ */
 export const handleResetPassword = async (c) => {
   const db = c.env.DB
   try {
@@ -281,23 +279,18 @@ export const handleResetPassword = async (c) => {
       return createErrorResponse(c, 400, '需要提供有效的 Token 和至少 8 位的新密码')
     }
 
-    // 查找重置 Token
     const resetRequest = await db
       .prepare('SELECT * FROM password_resets WHERE token = ?1')
       .bind(token)
       .first()
-    if (!resetRequest) {
-      return createErrorResponse(c, 400, '无效的重置链接')
-    }
 
-    // 检查 Token 是否过期
+    if (!resetRequest) return createErrorResponse(c, 400, '无效的重置链接')
+
     if (Math.floor(Date.now() / 1000) > resetRequest.expires_at) {
-      // 为安全起见，删除已过期的 token
       await db.prepare('DELETE FROM password_resets WHERE token = ?1').bind(token).run()
       return createErrorResponse(c, 400, '重置链接已过期，请重新申请')
     }
 
-    // Token 有效，更新用户密码
     const salt = crypto.randomUUID()
     const hashedPassword = await hashPassword(password, salt)
 
@@ -306,16 +299,18 @@ export const handleResetPassword = async (c) => {
       .bind(hashedPassword, salt, resetRequest.user_id)
       .run()
 
-    // 使用过的 Token 必须立即删除
     await db.prepare('DELETE FROM password_resets WHERE token = ?1').bind(token).run()
 
     return c.json({ success: true, message: '密码重置成功，请使用新密码登录' })
   } catch (error) {
-    console.error('重置密码时出错:', error)
+    console.error('Reset password error:', error)
     return createErrorResponse(c, 500, '服务器内部错误，请稍后重试')
   }
 }
 
+/**
+ * Handler: Afdian Webhook (Donation/Payment)
+ */
 export const handleAfdianWebhook = async (c) => {
   const db = c.env.DB
   let payload
@@ -327,28 +322,22 @@ export const handleAfdianWebhook = async (c) => {
     return c.json({ ec: 400, em: 'Invalid JSON' })
   }
 
-  const sign = payload.data.sign
-
-  // 驗證簽名 (正式環境用)
-  const isVerified = await verifyAfdianSignature(c.env.AFDIAN_PUBLIC_KEY, payload, sign, c.env)
-  // 開發環境用
-  // const isVerified = true
+  const signStr = payload.data.sign
+  const isVerified = await verifyAfdianSignature(c.env.AFDIAN_PUBLIC_KEY, payload, signStr, c.env)
 
   if (!isVerified) {
     console.warn('Afdian Webhook: Invalid signature.')
     return c.json({ ec: 403, em: 'Invalid signature' })
   }
 
-  // 愛發電官方測試 payload 中的靜態 user_id
   const AFDIAN_TEST_USER_ID = 'adf397fe8374811eaacee52540025c377'
-
   if (
     payload &&
     payload.data &&
     payload.data.order &&
     payload.data.order.user_id === AFDIAN_TEST_USER_ID
   ) {
-    console.warn('Afdian official test webhook received. Bypassing signature check.')
+    console.warn('Afdian official test webhook received.')
     return c.json({ ec: 200, em: 'Test Request Received OK' })
   }
 
@@ -357,7 +346,6 @@ export const handleAfdianWebhook = async (c) => {
   }
 
   const order = payload.data.order
-
   if (order.status !== 2) {
     return c.json({ ec: 200, em: 'Order not successful' })
   }
@@ -365,6 +353,9 @@ export const handleAfdianWebhook = async (c) => {
   return processAfdianOrder(c, db, payload)
 }
 
+/**
+ * Middleware: Verify JWT and inject user context
+ */
 export const authMiddleware = async (c, next) => {
   const authHeader = c.req.header('Authorization')
   const secret = c.env.JWT_SECRET
@@ -377,34 +368,26 @@ export const authMiddleware = async (c, next) => {
 
   try {
     const payload = await verify(token, secret, 'HS256')
-
     const user = await c.env.DB.prepare(
-      'SELECT id, role, premium_expire_time FROM users WHERE id = ?'
+      'SELECT id, role, premium_expire_time FROM users WHERE id = ?1'
     )
       .bind(payload.sub)
       .first()
 
-    if (!user) {
-      return createErrorResponse(c, 401, 'Unauthorized: User not found')
-    }
+    if (!user) return createErrorResponse(c, 401, 'Unauthorized: User not found')
 
-    // 檢查會籍是否過期
     const now = Math.floor(Date.now() / 1000)
-    let effectiveRole = user.role // 預設為資料庫中的角色
+    let effectiveRole = user.role
     let effectivePremiumTime = user.premium_expire_time
 
-    if (
-      user.role === 1 && // 1 = premium
-      user.premium_expire_time &&
-      user.premium_expire_time < now
-    ) {
-      // 會籍已過期！
-      effectiveRole = 0 // 在此請求中，將他視為普通用戶
+    // Handle premium expiration
+    if (user.role === 1 && user.premium_expire_time && user.premium_expire_time < now) {
+      effectiveRole = 0
       effectivePremiumTime = null
 
-      // 異步將資料庫中的角色降級
+      // Downgrade user role asynchronously
       c.executionCtx.waitUntil(
-        c.env.DB.prepare('UPDATE users SET role = 0 WHERE id = ?').bind(user.id).run()
+        c.env.DB.prepare('UPDATE users SET role = 0 WHERE id = ?1').bind(user.id).run()
       )
     }
 
