@@ -85,7 +85,7 @@
               <span class="type-dot"></span>
               {{ tournamentText }}
             </div>
-            <div v-if="deck.placement" class="info-pill placement-pill">
+            <div v-if="deck.placement" class="info-pill">
               {{ placementText }}
             </div>
             <span v-if="deck.participant_count" class="participant-text ml-1">
@@ -278,7 +278,7 @@ const handleDelete = () => {
   background-color: rgba(var(--v-theme-surface), 0.8);
   backdrop-filter: blur(4px) saturate(180%);
   -webkit-backdrop-filter: blur(4px) saturate(180%);
-  border: 1px solid rgba(var(--v-border-color), 0.15);
+  border: 1px solid rgba(var(--v-theme-primary), 0.3);
   font-size: 0.65rem;
   font-weight: 700;
   height: 18px;
@@ -293,10 +293,6 @@ const handleDelete = () => {
   margin-right: 5px;
   flex-shrink: 0;
   background-color: var(--info-pill-color);
-}
-
-.placement-pill {
-  border-color: rgba(var(--v-theme-primary), 0.3);
 }
 
 .participant-text {
