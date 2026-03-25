@@ -387,13 +387,17 @@ const handleEdit = (listing) => {
   showCreateDialog.value = true
 }
 
-const localFilters = ref({
-  source: 'all',
-  gameType: 'ws',
+const createDefaultFilters = () => ({
   seriesId: null,
   climaxType: [],
   tag: [],
   sort: 'newest',
+})
+
+const localFilters = ref({
+  source: 'all',
+  gameType: 'ws',
+  ...createDefaultFilters(),
 })
 
 const onGameTypeChange = () => {
@@ -402,12 +406,7 @@ const onGameTypeChange = () => {
 }
 
 const handleSearch = async () => {
-  marketStore.filters.source = localFilters.value.source
-  marketStore.filters.gameType = localFilters.value.gameType
-  marketStore.filters.seriesId = localFilters.value.seriesId
-  marketStore.filters.climaxType = [...localFilters.value.climaxType]
-  marketStore.filters.tag = [...localFilters.value.tag]
-  marketStore.filters.sort = localFilters.value.sort
+  Object.assign(marketStore.filters, localFilters.value)
 
   try {
     await marketStore.fetchListings()
@@ -428,15 +427,8 @@ const handleRefresh = async () => {
 }
 
 const resetFilters = async () => {
-  localFilters.value.seriesId = null
-  localFilters.value.climaxType = []
-  localFilters.value.tag = []
-  localFilters.value.sort = 'newest'
-  marketStore.filters.source = localFilters.value.source
-  marketStore.filters.seriesId = localFilters.value.seriesId
-  marketStore.filters.climaxType = [...localFilters.value.climaxType]
-  marketStore.filters.tag = [...localFilters.value.tag]
-  marketStore.filters.sort = localFilters.value.sort
+  Object.assign(localFilters.value, createDefaultFilters())
+  Object.assign(marketStore.filters, localFilters.value)
 
   try {
     await marketStore.fetchListings()
@@ -478,12 +470,7 @@ const loadMore = async ({ done }) => {
 
 onMounted(async () => {
   // Initialize local filters from store
-  localFilters.value.source = marketStore.filters.source
-  localFilters.value.gameType = marketStore.filters.gameType
-  localFilters.value.seriesId = marketStore.filters.seriesId
-  localFilters.value.climaxType = [...marketStore.filters.climaxType]
-  localFilters.value.tag = [...marketStore.filters.tag]
-  localFilters.value.sort = marketStore.filters.sort
+  Object.assign(localFilters.value, marketStore.filters)
 
   try {
     // Parallel fetch

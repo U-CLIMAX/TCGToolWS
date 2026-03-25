@@ -338,14 +338,18 @@ const placementOptions = [
 
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
-const localFilters = ref({
-  source: 'all',
-  gameType: 'ws',
+const DEFAULT_FILTERS = {
   seriesId: null,
   sort: 'newest',
   tournamentType: null,
   participantCount: null,
   placement: null,
+}
+
+const localFilters = ref({
+  source: 'all',
+  gameType: 'ws',
+  ...DEFAULT_FILTERS,
 })
 
 const isAdvancedFilterOpen = ref(false)
@@ -356,13 +360,7 @@ const onGameTypeChange = () => {
 }
 
 const handleSearch = async () => {
-  galleryStore.filters.source = localFilters.value.source
-  galleryStore.filters.gameType = localFilters.value.gameType
-  galleryStore.filters.seriesId = localFilters.value.seriesId
-  galleryStore.filters.sort = localFilters.value.sort
-  galleryStore.filters.tournamentType = localFilters.value.tournamentType
-  galleryStore.filters.participantCount = localFilters.value.participantCount
-  galleryStore.filters.placement = localFilters.value.placement
+  Object.assign(galleryStore.filters, localFilters.value)
 
   try {
     await galleryStore.fetchDecks()
@@ -373,18 +371,8 @@ const handleSearch = async () => {
 }
 
 const resetFilters = async () => {
-  localFilters.value.seriesId = null
-  localFilters.value.sort = 'newest'
-  localFilters.value.tournamentType = null
-  localFilters.value.participantCount = null
-  localFilters.value.placement = null
-
-  galleryStore.filters.source = localFilters.value.source
-  galleryStore.filters.seriesId = localFilters.value.seriesId
-  galleryStore.filters.sort = localFilters.value.sort
-  galleryStore.filters.tournamentType = localFilters.value.tournamentType
-  galleryStore.filters.participantCount = localFilters.value.participantCount
-  galleryStore.filters.placement = localFilters.value.placement
+  Object.assign(localFilters.value, DEFAULT_FILTERS)
+  Object.assign(galleryStore.filters, localFilters.value)
 
   try {
     await galleryStore.fetchDecks()
@@ -438,13 +426,7 @@ onBeforeRouteLeave((to, from, next) => {
 
 onMounted(async () => {
   // Initialize local filters from store
-  localFilters.value.source = galleryStore.filters.source
-  localFilters.value.gameType = galleryStore.filters.gameType
-  localFilters.value.seriesId = galleryStore.filters.seriesId
-  localFilters.value.sort = galleryStore.filters.sort
-  localFilters.value.tournamentType = galleryStore.filters.tournamentType
-  localFilters.value.participantCount = galleryStore.filters.participantCount
-  localFilters.value.placement = galleryStore.filters.placement
+  Object.assign(localFilters.value, galleryStore.filters)
 
   try {
     await galleryStore.fetchDecks()
