@@ -25,7 +25,7 @@ export const useColorExtractor = (imageUrl) => {
 
         const colorArray = []
 
-        // 按照特定順序提取色票
+        // Extract swatches in a specific order
         const swatchOrder = [
           'Vibrant',
           'DarkVibrant',

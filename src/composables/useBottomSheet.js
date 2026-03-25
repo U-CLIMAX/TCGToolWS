@@ -1,13 +1,13 @@
 import { ref, computed, watch, onUnmounted, nextTick } from 'vue'
 import { useDisplay } from 'vuetify'
 
-// 定義吸附點 (相對於視窗頂部的距離)
+// Snap points relative to viewport top
 const SNAP_POINTS = {
-  FULL: 0.12, // 完全展開 (大部份螢幕)
-  LARGE: 0.4, // 展開更多 (60% 螢幕)
-  DEFAULT: 0.6, // 預設展開 (40% 螢幕)
-  PEEK: 0.9, // 縮起 (只露出 header + 一點點)
-  CLOSED: 1.0, // 完全關閉
+  FULL: 0.12, // Fully expanded
+  LARGE: 0.4, // Expanded (60% screen)
+  DEFAULT: 0.6, // Default (40% screen)
+  PEEK: 0.9, // Peek (header only)
+  CLOSED: 1.0, // Hidden
 }
 
 export const useBottomSheet = (externalSheetContent) => {
@@ -18,20 +18,20 @@ export const useBottomSheet = (externalSheetContent) => {
   const shouldRender = computed(() => sheetContent.value !== null || isAnimatingOut.value)
   const lastKnownContent = ref(sheetContent.value)
 
-  // 核心狀態: Y 軸位移 (以百分比表示，相對於視窗高度)
+  // Core state: Y translation percentage relative to viewport height
   const sheetTranslateYPercent = ref(SNAP_POINTS.CLOSED)
   const isDragging = ref(false)
   const isAnimating = ref(false)
 
-  // 計算實際的像素值和內容高度
+  // Calculate pixel translation and content height
   const sheetTranslateY = computed(() => {
     return window.innerHeight * sheetTranslateYPercent.value
   })
 
-  // 計算內容區域實際可用高度 (用於 v-card-text)
+  // Calculate available height for content area (v-card-text)
   const sheetContentHeight = computed(() => {
     const availableHeight = window.innerHeight * (1 - sheetTranslateYPercent.value)
-    // 減去 header 高度 (64px)
+    // Subtract header height (64px)
     return Math.max(0, availableHeight - 64)
   })
 
@@ -75,14 +75,14 @@ export const useBottomSheet = (externalSheetContent) => {
   const onDrag = (event) => {
     if (!isDragging.value) return
 
-    // 防止頁面滾動
+    // Prevent page scrolling
     event.preventDefault()
 
     const touch = event.touches ? event.touches[0] : event
     const deltaY = touch.clientY - startY
     const deltaPercent = deltaY / window.innerHeight
 
-    // 計算新的位置百分比
+    // Calculate new position percentage
     let newPercent = initialDragPercent + deltaPercent
 
     const now = performance.now()
@@ -93,11 +93,11 @@ export const useBottomSheet = (externalSheetContent) => {
     }
     lastDragEvent = { time: now, pos: newPercent }
 
-    // 限制在邊界內 (允許稍微超出,產生橡皮筋效果)
+    // Constrain within bounds with rubber-banding effect
     const MIN_PERCENT = SNAP_POINTS.FULL - 0.05
 
     if (newPercent < MIN_PERCENT) {
-      // 橡皮筋效果: 超出上邊界時減緩
+      // Rubber-banding: slow down beyond top boundary
       const overflow = MIN_PERCENT - newPercent
       newPercent = MIN_PERCENT - overflow * 0.3
     }
@@ -201,7 +201,7 @@ export const useBottomSheet = (externalSheetContent) => {
     runSpringAnimation(finalSnap)
   }
 
-  // 監聽開關狀態
+  // Watch content state
   watch(sheetContent, (newContent, oldContent) => {
     if (newContent) {
       lastKnownContent.value = newContent

@@ -381,7 +381,7 @@
                   color="primary"
                   variant="text"
                   size="small"
-                  @click="viewHistoryState(index + 1)"
+                  @click="handleViewHistoryState(index + 1)"
                 >
                   检视
                 </v-btn>
@@ -489,15 +489,23 @@
 </template>
 
 <script setup>
-import { computed, ref, onUnmounted, onMounted, nextTick, watch, toRaw, watchEffect } from 'vue'
+import {
+  computed,
+  ref,
+  shallowRef,
+  onUnmounted,
+  onMounted,
+  nextTick,
+  watch,
+  toRaw,
+  watchEffect,
+} from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useDeckEncoder } from '@/composables/useDeckEncoder'
 import { useDisplay } from 'vuetify'
 import { storeToRefs } from 'pinia'
 import { useDeckGrouping } from '@/composables/useDeckGrouping'
-import { getCardUrls } from '@/utils/getCardImage'
 import { fetchCardByIdAndPrefix, fetchCardsByBaseIdAndPrefix } from '@/utils/card'
-import { generateDeckKey } from '@/utils/nanoid'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useUIStore } from '@/stores/ui'
 import { useDeckStore } from '@/stores/deck'
@@ -505,21 +513,48 @@ import { useAuthStore } from '@/stores/auth'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import { sortCards } from '@/utils/cardsSort'
 import { convertElementToPng } from '@/utils/domToImage.js'
-import { convertDeckToPDF } from '@/utils/domToPDF'
+import { useDeckHistory } from '@/composables/useDeckHistory'
+import { useDeckExport } from '@/composables/useDeckExport'
 import DeckShareImage from '@/components/deck/DeckShareImage.vue'
 import DeckCardList from '@/components/deck/DeckCardList.vue'
 import DeckExportDialog from '@/components/deck/DeckExportDialog.vue'
-import * as clipboard from 'clipboard-polyfill'
 
 const { smAndUp } = useDisplay()
 const route = useRoute()
 const router = useRouter()
-const { decodeData, encodeData } = useDeckEncoder()
+const { decodeData } = useDeckEncoder()
 const { triggerSnackbar } = useSnackbar()
 const uiStore = useUIStore()
 const authStore = useAuthStore()
 const { userRole } = storeToRefs(authStore)
 const deckStore = useDeckStore()
+
+const {
+  isHistoryDialogVisible,
+  viewingHistoryIndex,
+  historicalCards,
+  isViewingHistory,
+  viewHistoryState,
+  exitHistoryView,
+} = useDeckHistory()
+
+const {
+  renderShareImage,
+  exportDialog,
+  imageExportMode,
+  generatedImageResult,
+  isGenerationTriggered,
+  isShareToGalleryDialogVisible,
+  shareForm,
+  placementOptions,
+  handleShareCard: baseHandleShareCard,
+  handleCopyDeckKey: baseHandleCopyDeckKey,
+  handleShareToDeckGallery: baseHandleShareToDeckGallery,
+  confirmShareToDeckGallery: baseConfirmShareToDeckGallery,
+  openExportDialog: baseOpenExportDialog,
+  handleGenerateDeckImage: baseHandleGenerateDeckImage,
+  handleDownloadDeckPDF: baseHandleDownloadDeckPDF,
+} = useDeckExport()
 
 const deckKey = route.params.key
 const isLocalDeck = computed(() => deckKey === 'local')
@@ -529,16 +564,6 @@ const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 const isConfirmEditDialogVisible = ref(false)
 const isTextModalVisible = ref(false)
 const modalTextContent = ref('')
-const renderShareImage = ref(false)
-
-// 分享到广场相关状态
-const isShareToGalleryDialogVisible = ref(false)
-const shareForm = ref({
-  includeTournamentInfo: false,
-  tournamentType: 'shop',
-  participantCount: 'under10',
-  placement: 'champion',
-})
 
 const tournamentTypeOptions = [
   { title: '店赛', value: 'shop' },
@@ -554,38 +579,11 @@ const participantCountOptions = [
   { title: '30人以上', value: 'over30' },
 ]
 
-const placementOptions = computed(() => {
-  const base = [
-    { title: '冠军', value: 'champion' },
-    { title: '亚军', value: 'runner_up' },
-    { title: '四强', value: 'top4' },
-  ]
-  if (['circuit', 'wgp', 'bcf'].includes(shareForm.value.tournamentType)) {
-    return [...base, { title: '八强', value: 'top8' }, { title: '十六强', value: 'top16' }]
-  }
-  return base
-})
-
-// 监听比赛类型变化，如果当前名次在非增强模式下不可用，则重置
-watch(
-  () => shareForm.value.tournamentType,
-  (newVal) => {
-    if (!['circuit', 'wgp', 'bcf'].includes(newVal)) {
-      if (['top8', 'top16'].includes(shareForm.value.placement)) {
-        shareForm.value.placement = 'champion'
-      }
-    }
-  }
-)
-
-const isHistoryDialogVisible = ref(false)
-const viewingHistoryIndex = ref(null)
-const historicalCards = ref([])
-const isViewingHistory = ref(false)
 const history = computed(() => deck.value?.history || [])
 
-const originalCards = ref([])
-const editedCards = ref([])
+// Use shallowRef for performance optimization when handling large lists
+const originalCards = shallowRef([])
+const editedCards = shallowRef([])
 const showDifferences = ref(true)
 const isEditing = computed(() => {
   if (isLocalDeck.value) {
@@ -596,99 +594,11 @@ const isEditing = computed(() => {
 
 const isDataReady = ref(false)
 
-const handleShareCard = async () => {
-  if (!deckKey || isLocalDeck.value) {
-    triggerSnackbar('无法生成分享链接', 'error')
-    return
-  }
-  const shareUrl = `${window.location.origin}/share-decks/${deckKey}`
-  try {
-    await clipboard.writeText(shareUrl)
-    triggerSnackbar('分享链接已复制', 'success')
-  } catch (err) {
-    console.error('Failed to copy: ', err)
-    triggerSnackbar('复制失败', 'error')
-  }
-}
-
-const handleShareToDeckGallery = () => {
-  if (!deck.value || originalCards.value.length === 0) {
-    triggerSnackbar('卡组内容为空，无法分享', 'error')
-    return
-  }
-  isShareToGalleryDialogVisible.value = true
-}
-
-const confirmShareToDeckGallery = async () => {
-  isShareToGalleryDialogVisible.value = false
-  uiStore.setLoading(true)
-  try {
-    const cardsToEncode = originalCards.value.reduce((acc, card) => {
-      acc[card.id] = {
-        id: card.id,
-        cardIdPrefix: card.cardIdPrefix,
-        product_name: card.product_name,
-        level: card.level,
-        color: card.color,
-        cost: card.cost,
-        type: card.type,
-        quantity: card.quantity,
-      }
-      return acc
-    }, {})
-
-    // 提取高潮卡並去重 (保留 ID 最長者)
-    const climaxCardsMap = new Map()
-    originalCards.value
-      .filter((card) => card.type === '高潮卡')
-      .forEach((card) => {
-        const existing = climaxCardsMap.get(card.baseId)
-        if (!existing || card.id.length > existing.id.length) {
-          climaxCardsMap.set(card.baseId, {
-            id: card.id,
-            cardIdPrefix: card.cardIdPrefix,
-          })
-        }
-      })
-    const climaxCardsId = Array.from(climaxCardsMap.values()).slice(0, 3)
-    const key = generateDeckKey()
-    const data = await encodeData(cardsToEncode)
-
-    await deckStore.saveEncodedDeck(key, data, {
-      name: deck.value.name,
-      seriesId: deck.value.seriesId,
-      game_type: deck.value.game_type,
-      coverCardId: deck.value.coverCardId,
-      climaxCardsId: climaxCardsId,
-      isDeckGallery: true,
-      tournamentType: shareForm.value.includeTournamentInfo ? shareForm.value.tournamentType : null,
-      participantCount: shareForm.value.includeTournamentInfo
-        ? shareForm.value.participantCount
-        : null,
-      placement: shareForm.value.includeTournamentInfo ? shareForm.value.placement : null,
-    })
-    triggerSnackbar('已成功分享到卡组广场！', 'success')
-  } catch (error) {
-    console.error('❌ 分享失败:', error)
-    triggerSnackbar(error.message || '分享失败', 'error')
-  } finally {
-    uiStore.setLoading(false)
-  }
-}
-
-const handleCopyDeckKey = async () => {
-  if (!deckKey || isLocalDeck.value) {
-    triggerSnackbar('无法复制卡组代码', 'error')
-    return
-  }
-  try {
-    await clipboard.writeText(deckKey)
-    triggerSnackbar('卡组代码已复制', 'success')
-  } catch (err) {
-    console.error('Failed to copy: ', err)
-    triggerSnackbar('复制失败', 'error')
-  }
-}
+const handleShareCard = () => baseHandleShareCard(deckKey, isLocalDeck.value)
+const handleShareToDeckGallery = () => baseHandleShareToDeckGallery(deck.value, originalCards.value)
+const confirmShareToDeckGallery = () =>
+  baseConfirmShareToDeckGallery(deck.value, originalCards.value)
+const handleCopyDeckKey = () => baseHandleCopyDeckKey(deckKey, isLocalDeck.value)
 
 const handleEditDeck = async () => {
   if (!deck.value) {
@@ -982,36 +892,16 @@ const handleCardClick = async (item) => {
 }
 
 const deckShareImageRef = ref(null)
-const isGenerationTriggered = ref(false)
-const exportDialog = ref(false)
-const imageExportMode = ref('u_climax')
-const generatedImageResult = ref(null)
 
-const openExportDialog = () => {
-  if (!deck.value) {
-    triggerSnackbar('无法导出，卡组数据缺失。', 'error')
-    return
-  }
-  generatedImageResult.value = null
-  exportDialog.value = true
-}
+const openExportDialog = () => baseOpenExportDialog(deck.value)
 
-const handleGenerateDeckImage = async (mode = 'u_climax') => {
-  if (!deck.value) {
-    triggerSnackbar('无法生成图片，卡组数据缺失。', 'error')
-    return
-  }
-  generatedImageResult.value = null
-  imageExportMode.value = mode
+const handleGenerateDeckImage = (mode = 'u_climax') => baseHandleGenerateDeckImage(deck.value, mode)
 
-  uiStore.setLoading(true)
-  renderShareImage.value = true
-  await nextTick()
-  isGenerationTriggered.value = true
-}
+const handleDownloadDeckPDF = (language) =>
+  baseHandleDownloadDeckPDF(originalCards.value, deck.value.name, language)
 
 watch(
-  [isGenerationTriggered, () => deckShareImageRef.value?.allImagesLoaded],
+  [() => isGenerationTriggered.value, () => deckShareImageRef.value?.allImagesLoaded],
   async ([triggered, loaded]) => {
     if (triggered && loaded && deckShareImageRef.value) {
       const imageRef = deckShareImageRef.value
@@ -1052,26 +942,6 @@ watch(
   }
 )
 
-const handleDownloadDeckPDF = async (language) => {
-  uiStore.setLoading(true)
-  try {
-    const cardsWithImages = originalCards.value.map((card) => {
-      const { base } = getCardUrls(card.cardIdPrefix, card.id)
-      return {
-        ...card,
-        imgUrl: base,
-      }
-    })
-
-    await convertDeckToPDF(cardsWithImages, deck.value.name, language)
-  } catch (error) {
-    console.error('生成PDF失败:', error)
-    triggerSnackbar('生成PDF失败，请稍后再试。', 'error')
-  } finally {
-    uiStore.setLoading(false)
-  }
-}
-
 const showBottomSheet = ref(false)
 const selectGroupBy = (value) => {
   groupBy.value = value
@@ -1100,105 +970,8 @@ const handleCopyClick = () => {
   showMoreActionsBottomSheet.value = false
 }
 
-const viewHistoryState = async (index) => {
-  uiStore.setLoading(true)
-  try {
-    const historyIndex = index - 1
-    const targetHistoryEntry = history.value[historyIndex]
-    if (!targetHistoryEntry) return
-
-    viewingHistoryIndex.value = index
-    isViewingHistory.value = true
-    isHistoryDialogVisible.value = false
-
-    // Step 1: Calculate the full deck state at that point in time by reverting changes.
-    // The history is newest first (index 0), so we revert changes from 0 to historyIndex - 1.
-    const cardMap = new Map(JSON.parse(JSON.stringify(originalCards.value)).map((c) => [c.id, c]))
-
-    for (let i = 0; i < historyIndex; i++) {
-      const entry = history.value[i]
-      if (!entry.diff) continue
-
-      for (const change of entry.diff) {
-        const cardId = change.cardId
-        const card = cardMap.get(cardId)
-        const prefix = change.cardId.split('/')[0].toLowerCase()
-
-        switch (change.status) {
-          case 'added': // Revert an add = remove
-            if (card) {
-              card.quantity -= change.quantity
-              if (card.quantity <= 0) {
-                cardMap.delete(cardId)
-              }
-            }
-            break
-          case 'removed': // Revert a remove = add back
-            // eslint-disable-next-line no-case-declarations
-            const fullCardData = await fetchCardByIdAndPrefix(cardId, prefix)
-            if (fullCardData) {
-              if (card) {
-                card.quantity += change.quantity
-              } else {
-                cardMap.set(cardId, { ...fullCardData, quantity: change.quantity })
-              }
-            }
-            break
-          case 'modified': // Revert a modification = set back to 'from'
-            if (card) {
-              card.quantity = change.from
-            }
-            break
-        }
-      }
-    }
-    // Now `cardMap` holds the complete deck state right AFTER the target change.
-
-    // Step 2: Apply diffStatus to the calculated state based on the target change.
-    const targetDiffMap = new Map((targetHistoryEntry.diff || []).map((d) => [d.cardId, d]))
-
-    const finalCards = Array.from(cardMap.values()).map((card) => {
-      const change = targetDiffMap.get(card.id)
-      if (change) {
-        let diffStatus = change.status
-        if (change.status === 'modified') {
-          diffStatus = change.to > change.from ? 'increased' : 'decreased'
-        }
-        return { ...card, diffStatus }
-      } else {
-        return { ...card, diffStatus: 'unchanged' }
-      }
-    })
-
-    // Step 3: Add back any cards that were 'removed' in this specific change, so they appear in the list.
-    for (const change of targetHistoryEntry.diff || []) {
-      if (change.status === 'removed') {
-        const fullCardData = await fetchCardByIdAndPrefix(change.cardId, deck.value.seriesId)
-        if (fullCardData) {
-          finalCards.push({
-            ...fullCardData,
-            quantity: 0, // Show quantity as 0 as it was removed.
-            diffStatus: 'removed',
-          })
-        }
-      }
-    }
-
-    historicalCards.value = finalCards
-  } catch (error) {
-    triggerSnackbar('加载历史记录失败', 'error')
-    console.error(error)
-    exitHistoryView() // Reset state on error
-  } finally {
-    uiStore.setLoading(false)
-  }
-}
-
-const exitHistoryView = () => {
-  isViewingHistory.value = false
-  viewingHistoryIndex.value = null
-  historicalCards.value = []
-}
+const handleViewHistoryState = (index) =>
+  viewHistoryState(index, history.value, originalCards.value, deck.value.seriesId)
 
 const handleHistoryClick = () => {
   isHistoryDialogVisible.value = true

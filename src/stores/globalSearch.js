@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref, watch, nextTick } from 'vue'
+import { ref, watch, nextTick, shallowRef } from 'vue'
 import { useCardFiltering } from '@/composables/useCardFiltering.js'
 import { openDB, saveData, loadData } from '@/utils/db.js'
 import brotliPromise from 'brotli-wasm'
@@ -45,7 +45,8 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
   } = useCardFiltering(productNames, traits, rarities, costRange, powerRange)
 
   // --- Results ---
-  const searchResults = ref([])
+  // Use shallowRef for performance optimization when handling large lists
+  const searchResults = shallowRef([])
   const searchCountDetails = ref({
     isCountOverThreshold: false,
     actualResultCount: 0,

@@ -18,9 +18,9 @@ export const useCardFiltering = (
   costRangeRef,
   powerRangeRef
 ) => {
-  // User-selected filter values
+  // --- State ---
   const keyword = debounceRef(null, 300)
-  const searchMode = ref('precise') // precise or fuzzy
+  const searchMode = ref('precise') // 'precise' or 'fuzzy'
   const selectedCardTypes = ref([])
   const selectedColors = ref([])
   const selectedProductName = ref(null)
@@ -35,39 +35,65 @@ export const useCardFiltering = (
 
   const workerResults = shallowRef([])
   const filteredCards = computed(() => workerResults.value)
+
+  // --- Worker Management ---
   let workerInstance = null
   let workerApiInstance = null
+  let workerReadyPromise = null
+  let resolveWorkerReady = null
 
+  // Used to track the latest request and ignore stale results
+  let lastRequestId = 0
+
+  /**
+   * Initializes or returns the worker instance
+   */
   const ensureWorker = () => {
     if (!workerInstance) {
-      console.log('正在建立 Worker...')
       workerInstance = new FilterWorker()
       workerApiInstance = wrap(workerInstance)
+      workerReadyPromise = new Promise((resolve) => {
+        resolveWorkerReady = resolve
+      })
     }
+    return workerApiInstance
   }
 
+  /**
+   * Processes raw card data in the worker
+   */
   const processRawDataInWorker = async (rawFiles) => {
-    ensureWorker()
-    return await workerApiInstance.processRawData(rawFiles)
+    const api = ensureWorker()
+    return await api.processRawData(rawFiles)
   }
 
+  /**
+   * Initializes the worker with card data and options
+   */
   const initializeWorker = async (cards, options) => {
-    ensureWorker()
+    const api = ensureWorker()
 
     if (cards && cards.length > 0) {
-      await workerApiInstance.init(toRaw(cards), toRaw(options))
-      await applyKeywordSearchAndFilter() // Trigger initial filtering after worker is ready
+      await api.init(toRaw(cards), toRaw(options))
+      if (resolveWorkerReady) {
+        resolveWorkerReady()
+        resolveWorkerReady = null // Only resolve once
+      }
+      // Trigger initial filtering after worker is ready
+      await applyKeywordSearchAndFilter()
     } else {
-      // If no cards, ensure results are empty
       workerResults.value = []
     }
   }
 
+  /**
+   * Applies attribute filters to the current search results
+   */
   const applyAttributeFilters = async () => {
-    if (!workerApiInstance) {
-      console.warn('Worker API not initialized, cannot apply attribute filters.')
-      return
-    }
+    if (workerReadyPromise) await workerReadyPromise
+    if (!workerApiInstance) return
+
+    const requestId = ++lastRequestId
     const attributeFilters = {
       selectedCardTypes: toRaw(selectedCardTypes.value),
       selectedColors: toRaw(selectedColors.value),
@@ -81,39 +107,75 @@ export const useCardFiltering = (
       showTriggerSoul: toRaw(showTriggerSoul.value),
       selectedSoul: toRaw(selectedSoul.value),
     }
-    const results = await workerApiInstance.filterByAttributes(attributeFilters)
-    workerResults.value = results
-  }
 
-  const applyKeywordSearchAndFilter = async () => {
-    if (!workerApiInstance) {
-      console.warn('Worker API not initialized, cannot apply keyword search.')
-      return
+    try {
+      const results = await workerApiInstance.filterByAttributes(attributeFilters)
+      // Only update if this is still the latest request
+      if (requestId === lastRequestId) {
+        workerResults.value = results
+      }
+    } catch (error) {
+      console.error('Error applying attribute filters:', error)
     }
-    await workerApiInstance.searchByKeyword(toRaw(keyword.value), toRaw(searchMode.value))
-    await applyAttributeFilters()
   }
 
+  /**
+   * Performs keyword search and then applies attribute filters
+   */
+  const applyKeywordSearchAndFilter = async () => {
+    if (workerReadyPromise) await workerReadyPromise
+    if (!workerApiInstance) return
+
+    const requestId = ++lastRequestId
+    try {
+      await workerApiInstance.searchByKeyword(toRaw(keyword.value), toRaw(searchMode.value))
+      const results = await workerApiInstance.filterByAttributes({
+        selectedCardTypes: toRaw(selectedCardTypes.value),
+        selectedColors: toRaw(selectedColors.value),
+        selectedProductName: toRaw(selectedProductName.value),
+        selectedTraits: toRaw(selectedTraits.value),
+        selectedLevels: toRaw(selectedLevels.value),
+        selectedRarities: toRaw(selectedRarities.value),
+        showUniqueCards: toRaw(showUniqueCards.value),
+        selectedCostRange: toRaw(selectedCostRange.value),
+        selectedPowerRange: toRaw(selectedPowerRange.value),
+        showTriggerSoul: toRaw(showTriggerSoul.value),
+        selectedSoul: toRaw(selectedSoul.value),
+      })
+
+      // Only update if this is still the latest request
+      if (requestId === lastRequestId) {
+        workerResults.value = results
+      }
+    } catch (error) {
+      console.error('Error applying keyword search and filter:', error)
+    }
+  }
+
+  /**
+   * Terminates the worker and cleans up resources
+   */
   const terminateWorker = () => {
     if (workerInstance) {
-      console.log('正在終止 Worker。')
       workerInstance.terminate()
       workerInstance = null
       workerApiInstance = null
+      workerReadyPromise = null
+      resolveWorkerReady = null
     }
   }
 
-  // Watch for keyword changes to perform a new search
+  // --- Watchers ---
   watch(keyword, () => {
     applyKeywordSearchAndFilter()
   })
 
   watch(searchMode, () => {
-    if (keyword.value.length < 2) return // Do not trigger search when searchMode is changed and keyword is shorter than 2 characters
+    // Only search if keyword is meaningful
+    if ((keyword.value || '').length < 2) return
     applyKeywordSearchAndFilter()
   })
 
-  // Watch for other filter changes to refine the current search results
   watch(
     [
       selectedCardTypes,
@@ -128,9 +190,14 @@ export const useCardFiltering = (
       showTriggerSoul,
       selectedSoul,
     ],
-    applyAttributeFilters
+    () => {
+      applyAttributeFilters()
+    }
   )
 
+  /**
+   * Resets all filter values to their defaults
+   */
   const resetFilters = () => {
     keyword.value = null
     searchMode.value = 'precise'
@@ -147,10 +214,7 @@ export const useCardFiltering = (
     selectedSoul.value = []
   }
 
-  // Automatically terminate the worker when the component using this composable is unmounted.
-  // Note: This will only work if the composable is used within a component's setup context.
-  // It has no effect when used directly inside a Pinia store's setup function,
-  // but it's a good practice for safety and future refactoring.
+  // Cleanup on unmount if used within a component
   if (getCurrentInstance()) {
     onUnmounted(terminateWorker)
   }
