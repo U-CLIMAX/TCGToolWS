@@ -86,7 +86,24 @@
                   </v-col>
 
                   <!-- 搜索与主筛选 -->
-                  <v-col cols="12" md="6" lg="7">
+                  <v-col cols="12" md="6" lg="7" class="d-flex ga-2">
+                    <v-btn
+                      :color="localFilters.hasArticle ? 'blue-accent-2' : 'grey-btn'"
+                      :variant="localFilters.hasArticle ? 'flat' : 'tonal'"
+                      rounded="pill"
+                      height="48"
+                      width="48"
+                      icon
+                      elevation="0"
+                      @click="toggleHasArticle"
+                      v-tooltip:bottom="
+                        localFilters.hasArticle ? '显示全部卡组' : '仅显有文章的卡组'
+                      "
+                    >
+                      <v-icon
+                        :icon="localFilters.hasArticle ? 'mdi-text-box' : 'mdi-text-box-outline'"
+                      ></v-icon>
+                    </v-btn>
                     <v-autocomplete
                       v-model="localFilters.seriesId"
                       :items="galleryStore.seriesOptions"
@@ -100,6 +117,7 @@
                       hide-details
                       clearable
                       prepend-inner-icon="mdi-magnify"
+                      class="flex-grow-1"
                       :menu-props="uiStore.menuProps"
                       @update:model-value="handleSearch"
                     />
@@ -236,7 +254,12 @@
 
         <div v-else class="gallery-grid-container">
           <LazyCardWrapper v-for="item in galleryStore.decks" :key="item.key">
-            <DecksGalleryItem :deck="item" @delete="handleDelete" @select="handleSelectDeck" />
+            <DecksGalleryItem
+              :deck="item"
+              @delete="handleDelete"
+              @select="handleSelectDeck"
+              @edit="openEditDialog"
+            />
           </LazyCardWrapper>
         </div>
       </v-container>
@@ -247,6 +270,14 @@
         </div>
       </template>
     </v-infinite-scroll>
+
+    <ShareToGalleryDialog
+      v-if="isEditDialogVisible"
+      v-model="isEditDialogVisible"
+      :form="shareForm"
+      :is-edit="true"
+      @confirm="handleConfirmEdit"
+    />
 
     <BackToTopButton :scroll-container="scrollContainer" />
   </v-container>
@@ -260,10 +291,12 @@ import { useUIStore } from '@/stores/ui'
 import { useAuthStore } from '@/stores/auth'
 import LazyCardWrapper from '@/components/common/LazyCardWrapper.vue'
 import DecksGalleryItem from '@/components/deck/DecksGalleryItem.vue'
+import ShareToGalleryDialog from '@/components/deck/ShareToGalleryDialog.vue'
 import ShareDeckDetailView from '@/views/ShareDeckDetailView.vue'
 import InsetTabs from '@/components/ui/InsetTabs.vue'
 import BackToTopButton from '@/components/ui/BackToTopButton.vue'
 import { useSnackbar } from '@/composables/useSnackbar'
+import { useDeckExport } from '@/composables/useDeckExport'
 import { useDisplay } from 'vuetify'
 import { GAME_TYPE_OPTIONS } from '@/maps/series-map'
 
@@ -274,6 +307,7 @@ const galleryStore = useDecksGalleryStore()
 const uiStore = useUIStore()
 const authStore = useAuthStore()
 const { smAndDown, smAndUp, width } = useDisplay()
+const { shareForm, updateGalleryDeckMetadata } = useDeckExport()
 
 const infiniteScrollRef = ref(null)
 const scrollContainer = ref(null)
@@ -344,6 +378,7 @@ const DEFAULT_FILTERS = {
   tournamentType: null,
   participantCount: null,
   placement: null,
+  hasArticle: false,
 }
 
 const localFilters = ref({
@@ -353,9 +388,69 @@ const localFilters = ref({
 })
 
 const isAdvancedFilterOpen = ref(false)
+const isEditDialogVisible = ref(false)
+const editingDeckKey = ref(null)
+
+const openEditDialog = (deck) => {
+  editingDeckKey.value = deck.key
+  shareForm.value.includeTournamentInfo = !!deck.tournament_type
+  shareForm.value.tournamentType = deck.tournament_type || 'shop'
+  shareForm.value.participantCount = deck.participant_count || 'under10'
+  shareForm.value.placement = deck.placement || 'champion'
+  shareForm.value.articleLink = deck.article_link || ''
+  isEditDialogVisible.value = true
+}
+
+const handleConfirmEdit = async (formData) => {
+  if (formData) {
+    Object.assign(shareForm.value, formData)
+  }
+
+  const success = await updateGalleryDeckMetadata(editingDeckKey.value, {
+    tournamentType: shareForm.value.includeTournamentInfo ? shareForm.value.tournamentType : null,
+    participantCount: shareForm.value.includeTournamentInfo
+      ? shareForm.value.participantCount
+      : null,
+    placement: shareForm.value.includeTournamentInfo ? shareForm.value.placement : null,
+    articleLink: shareForm.value.articleLink || null,
+  })
+
+  if (success) {
+    isEditDialogVisible.value = false
+    // Update local deck data
+    const deckIndex = galleryStore.decks.findIndex((d) => d.key === editingDeckKey.value)
+    if (deckIndex !== -1) {
+      galleryStore.decks[deckIndex] = {
+        ...galleryStore.decks[deckIndex],
+        tournament_type: shareForm.value.includeTournamentInfo
+          ? shareForm.value.tournamentType
+          : null,
+        participant_count: shareForm.value.includeTournamentInfo
+          ? shareForm.value.participantCount
+          : null,
+        placement: shareForm.value.includeTournamentInfo ? shareForm.value.placement : null,
+        article_link: shareForm.value.articleLink || null,
+      }
+    }
+
+    // Force update sidebar detail view if it's currently showing the edited deck
+    if (selectedDeckKey.value === editingDeckKey.value) {
+      const currentKey = selectedDeckKey.value
+      selectedDeckKey.value = null
+      nextTick(() => {
+        selectedDeckKey.value = currentKey
+      })
+    }
+  }
+}
 
 const onGameTypeChange = () => {
   localFilters.value.seriesId = null
+  handleSearch()
+}
+
+const toggleHasArticle = () => {
+  localFilters.value.hasArticle = !localFilters.value.hasArticle
   handleSearch()
 }
 

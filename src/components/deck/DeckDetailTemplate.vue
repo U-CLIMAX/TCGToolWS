@@ -29,6 +29,17 @@
               }"
             >
               <v-btn
+                v-if="deck?.article_link"
+                icon
+                color="blue-accent-2"
+                variant="text"
+                density="compact"
+                @click="copyArticleLink(deck.article_link)"
+                v-tooltip:bottom="'复制文章链接'"
+              >
+                <v-icon size="24">mdi-link-variant</v-icon>
+              </v-btn>
+              <v-btn
                 icon
                 color="blue-accent-2"
                 variant="text"
@@ -243,6 +254,7 @@ import { useDeckGrouping } from '@/composables/useDeckGrouping'
 import { fetchCardsByBaseIdAndPrefix } from '@/utils/card'
 import { useAuthStore } from '@/stores/auth'
 import { useUIStore } from '@/stores/ui'
+import { useDeckExport } from '@/composables/useDeckExport'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import DeckCardList from '@/components/deck/DeckCardList.vue'
 import { sortCards } from '@/utils/cardsSort'
@@ -275,6 +287,7 @@ const emit = defineEmits(['save', 'close'])
 const { smAndUp } = useDisplay()
 const authStore = useAuthStore()
 const uiStore = useUIStore()
+const { copyArticleLink } = useDeckExport()
 
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 

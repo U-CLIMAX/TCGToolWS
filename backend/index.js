@@ -25,6 +25,7 @@ import {
   handleGetMyGalleryCount,
   handleRateDeck,
   handleGetMyDeckRating,
+  handleUpdateGalleryDeckMetadata,
 } from './lib/gallery.js'
 import {
   handleGetNotices,
@@ -132,6 +133,7 @@ galleryRoutes.get('/decks', publicReadLimiter, handleGetDecksGallery)
 galleryRoutes.use('/*', authMiddleware, apiUserLimiter)
 galleryRoutes.get('/my-decks', handleGetUserDecksGallery)
 galleryRoutes.get('/my-count', handleGetMyGalleryCount)
+galleryRoutes.put('/decks/:key', handleUpdateGalleryDeckMetadata)
 galleryRoutes.delete('/decks/:key', handleDeleteGalleryDeck)
 galleryRoutes.post('/decks/:key/rating', handleRateDeck)
 galleryRoutes.get('/decks/:key/rating', handleGetMyDeckRating)

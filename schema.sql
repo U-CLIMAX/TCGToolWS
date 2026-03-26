@@ -85,6 +85,7 @@ CREATE TABLE IF NOT EXISTS decks_gallery (
     tournament_type TEXT DEFAULT NULL,      -- 比賽類型: 'shop'|'circuit'|'wgp'|'bcf'
     participant_count TEXT DEFAULT NULL,    -- 參賽人數: 'under10'|'10to20'|'20to30'|'over30'
     placement TEXT DEFAULT NULL,           -- 名次: 'top4'|'runner_up'|'champion'|'top16'|'top8'
+    article_link TEXT DEFAULT NULL,         -- 文章連結
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 CREATE INDEX IF NOT EXISTS idx_decks_gallery_user_id ON decks_gallery(user_id);

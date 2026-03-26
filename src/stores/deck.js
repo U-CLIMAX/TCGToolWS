@@ -211,6 +211,7 @@ export const useDeckStore = defineStore(
         tournamentType = null,
         participantCount = null,
         placement = null,
+        articleLink = null,
       }
     ) => {
       if (!authStore.token) throw new Error('请先登录')
@@ -237,6 +238,7 @@ export const useDeckStore = defineStore(
           tournamentType,
           participantCount,
           placement,
+          articleLink,
         }),
       })
 

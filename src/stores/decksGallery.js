@@ -18,6 +18,7 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
     tournamentType: null,
     participantCount: null,
     placement: null,
+    hasArticle: false,
   })
 
   const pagination = reactive({
@@ -60,6 +61,7 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
       if (filters.tournamentType) params.append('tournament_type', filters.tournamentType)
       if (filters.participantCount) params.append('participant_count', filters.participantCount)
       if (filters.placement) params.append('placement', filters.placement)
+      if (filters.hasArticle) params.append('has_article', 'true')
       if (pagination.cursor) params.append('cursor', pagination.cursor)
 
       const headers = {}
@@ -174,6 +176,43 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
     await fetchUserDeckCount()
   }
 
+  /**
+   * Updates metadata for a gallery share.
+   * @param {string} key
+   * @param {object} metadata
+   */
+  const updateDeckMetadata = async (key, metadata) => {
+    if (!authStore.isAuthenticated) throw new Error('请先登录')
+
+    const response = await fetch(`/api/gallery/decks/${key}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${authStore.token}`,
+      },
+      body: JSON.stringify(metadata),
+    })
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}))
+      throw new Error(errorData.error || '更新失败')
+    }
+
+    // Update local state if the deck is in the current list
+    const index = decks.value.findIndex((d) => d.key === key)
+    if (index !== -1) {
+      decks.value[index] = {
+        ...decks.value[index],
+        tournament_type: metadata.tournamentType,
+        participant_count: metadata.participantCount,
+        placement: metadata.placement,
+        article_link: metadata.articleLink,
+      }
+    }
+
+    return await response.json()
+  }
+
   return {
     decks,
     userDeckCount,
@@ -187,5 +226,6 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
     deleteDeck,
     rateDeck,
     fetchMyRating,
+    updateDeckMetadata,
   }
 })

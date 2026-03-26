@@ -2,6 +2,7 @@ import { ref, computed, watch, nextTick } from 'vue'
 import * as clipboard from 'clipboard-polyfill'
 import { useUIStore } from '@/stores/ui'
 import { useDeckStore } from '@/stores/deck'
+import { useDecksGalleryStore } from '@/stores/decksGallery'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useDeckEncoder } from '@/composables/useDeckEncoder'
 import { generateDeckKey } from '@/utils/nanoid'
@@ -14,6 +15,7 @@ import { convertDeckToPDF } from '@/utils/domToPDF'
 export function useDeckExport() {
   const uiStore = useUIStore()
   const deckStore = useDeckStore()
+  const galleryStore = useDecksGalleryStore()
   const { triggerSnackbar } = useSnackbar()
   const { encodeData } = useDeckEncoder()
 
@@ -31,6 +33,7 @@ export function useDeckExport() {
     tournamentType: 'shop',
     participantCount: 'under10',
     placement: 'champion',
+    articleLink: '',
   })
 
   const placementOptions = computed(() => {
@@ -128,6 +131,7 @@ export function useDeckExport() {
       const climaxCardsId = Array.from(climaxCardsMap.values()).slice(0, 3)
       const key = generateDeckKey()
       const data = await encodeData(cardsToEncode)
+      console.log(shareForm.value.articleLink)
 
       await deckStore.saveEncodedDeck(key, data, {
         name: deck.name,
@@ -136,11 +140,14 @@ export function useDeckExport() {
         coverCardId: deck.coverCardId,
         climaxCardsId: climaxCardsId,
         isDeckGallery: true,
-        tournamentType: shareForm.value.includeTournamentInfo ? shareForm.value.tournamentType : null,
+        tournamentType: shareForm.value.includeTournamentInfo
+          ? shareForm.value.tournamentType
+          : null,
         participantCount: shareForm.value.includeTournamentInfo
           ? shareForm.value.participantCount
           : null,
         placement: shareForm.value.includeTournamentInfo ? shareForm.value.placement : null,
+        articleLink: shareForm.value.articleLink || null,
       })
       triggerSnackbar('已成功分享到卡组广场！', 'success')
     } catch (error) {
@@ -194,6 +201,35 @@ export function useDeckExport() {
     }
   }
 
+  const updateGalleryDeckMetadata = async (key, metadata) => {
+    uiStore.setLoading(true)
+    try {
+      await galleryStore.updateDeckMetadata(key, metadata)
+      triggerSnackbar('已更新分享信息！', 'success')
+      return true
+    } catch (error) {
+      console.error('❌ 更新失败:', error)
+      triggerSnackbar(error.message || '更新失败', 'error')
+      return false
+    } finally {
+      uiStore.setLoading(false)
+    }
+  }
+
+  const copyArticleLink = async (link) => {
+    if (!link) {
+      triggerSnackbar('没有文章链接', 'error')
+      return
+    }
+    try {
+      await clipboard.writeText(link)
+      triggerSnackbar('文章链接已复制', 'success')
+    } catch (err) {
+      console.error('Failed to copy: ', err)
+      triggerSnackbar('复制失败', 'error')
+    }
+  }
+
   return {
     renderShareImage,
     exportDialog,
@@ -207,6 +243,8 @@ export function useDeckExport() {
     handleCopyDeckKey,
     handleShareToDeckGallery,
     confirmShareToDeckGallery,
+    updateGalleryDeckMetadata,
+    copyArticleLink,
     openExportDialog,
     handleGenerateDeckImage,
     handleDownloadDeckPDF,

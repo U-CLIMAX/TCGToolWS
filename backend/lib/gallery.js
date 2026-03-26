@@ -16,6 +16,7 @@ export const handleGetDecksGallery = async (c) => {
       tournament_type,
       participant_count,
       placement,
+      has_article,
     } = c.req.query()
     const limitNum = Math.max(1, Math.min(100, parseInt(limit) || 20))
 
@@ -43,6 +44,10 @@ export const handleGetDecksGallery = async (c) => {
     if (placement) {
       conditions.push(`placement = ?${params.length + 1}`)
       params.push(placement)
+    }
+
+    if (has_article === 'true') {
+      conditions.push('article_link IS NOT NULL AND article_link != ""')
     }
 
     let orderByClause = 'updated_at DESC, key DESC'
@@ -83,7 +88,7 @@ export const handleGetDecksGallery = async (c) => {
     const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : ''
 
     const query = `
-      SELECT key, user_id, deck_name, series_id, game_type, cover_cards_id, climax_cards_id, updated_at, rating_avg, tournament_type, participant_count, placement
+      SELECT key, user_id, deck_name, series_id, game_type, cover_cards_id, climax_cards_id, updated_at, rating_avg, tournament_type, participant_count, placement, article_link
       FROM decks_gallery
       ${whereClause}
       ORDER BY ${orderByClause}
@@ -207,7 +212,7 @@ export const handleGetUserDecksGallery = async (c) => {
     const whereClause = `WHERE ${conditions.join(' AND ')}`
 
     const query = `
-      SELECT key, user_id, deck_name, series_id, game_type, cover_cards_id, climax_cards_id, updated_at, rating_avg, tournament_type, participant_count, placement
+      SELECT key, user_id, deck_name, series_id, game_type, cover_cards_id, climax_cards_id, updated_at, rating_avg, tournament_type, participant_count, placement, article_link
       FROM decks_gallery
       ${whereClause}
       ORDER BY ${orderByClause}
@@ -395,6 +400,47 @@ export const handleGetMyDeckRating = async (c) => {
     return c.json({ rating: result ? result.rating : 0 })
   } catch (error) {
     console.error('Error fetching my deck rating:', error)
+    return createErrorResponse(c, 500, '服务器内部错误')
+  }
+}
+
+/**
+ * Updates metadata for a gallery deck.
+ * @param {object} c - Hono context object.
+ * @returns {Response}
+ */
+export const handleUpdateGalleryDeckMetadata = async (c) => {
+  try {
+    const user = c.get('user')
+    const { key } = c.req.param()
+    const { tournamentType, participantCount, placement, articleLink } = await c.req.json()
+
+    if (!key) return createErrorResponse(c, 400, '缺少 key')
+
+    const info = await c.env.DB.prepare(
+      `UPDATE decks_gallery SET 
+       tournament_type = ?1, 
+       participant_count = ?2, 
+       placement = ?3, 
+       article_link = ?4
+       WHERE key = ?5 AND user_id = ?6`
+    )
+      .bind(
+        tournamentType || null,
+        participantCount || null,
+        placement || null,
+        articleLink || null,
+        key,
+        user.id
+      )
+      .run()
+
+    if (!info.success) return createErrorResponse(c, 500, '数据库操作失败')
+    if (info.changes === 0) return createErrorResponse(c, 404, '卡组未找到或无权更新')
+
+    return c.json({ success: true })
+  } catch (error) {
+    console.error('Error updating gallery deck metadata:', error)
     return createErrorResponse(c, 500, '服务器内部错误')
   }
 }

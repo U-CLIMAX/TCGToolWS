@@ -21,6 +21,7 @@ export const handleCreateDeck = async (c) => {
       tournamentType,
       participantCount,
       placement,
+      articleLink,
     } = await c.req.json()
 
     if (isDeckGallery && !climaxCardsId) {
@@ -53,8 +54,8 @@ export const handleCreateDeck = async (c) => {
     if (isDeckGallery) {
       const climaxCardsIdStr = JSON.stringify(climaxCardsId)
       info = await c.env.DB.prepare(
-        `INSERT INTO decks_gallery (key, user_id, deck_name, series_id, game_type, cover_cards_id, climax_cards_id, deck_data, updated_at, tournament_type, participant_count, placement)
-        VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12)
+        `INSERT INTO decks_gallery (key, user_id, deck_name, series_id, game_type, cover_cards_id, climax_cards_id, deck_data, updated_at, tournament_type, participant_count, placement, article_link)
+        VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13)
         ON CONFLICT(key) DO UPDATE SET
         deck_name = excluded.deck_name,
         series_id = excluded.series_id,
@@ -65,7 +66,8 @@ export const handleCreateDeck = async (c) => {
         updated_at = excluded.updated_at,
         tournament_type = excluded.tournament_type,
         participant_count = excluded.participant_count,
-        placement = excluded.placement`
+        placement = excluded.placement,
+        article_link = excluded.article_link`
       )
         .bind(
           key,
@@ -77,9 +79,10 @@ export const handleCreateDeck = async (c) => {
           climaxCardsIdStr,
           deckDataArray,
           now,
-          tournamentType,
-          participantCount,
-          placement
+          tournamentType || null,
+          participantCount || null,
+          placement || null,
+          articleLink || null
         )
         .run()
     } else {
@@ -157,7 +160,7 @@ export const handleGetDeckByKey = async (c) => {
     const { key } = c.req.param()
 
     let result = await c.env.DB.prepare(
-      'SELECT key, deck_name, series_id, game_type, cover_cards_id, deck_data, rating_avg, rating_count, rating_breakdown FROM decks_gallery WHERE key = ?1'
+      'SELECT key, deck_name, series_id, game_type, cover_cards_id, deck_data, rating_avg, rating_count, rating_breakdown, article_link FROM decks_gallery WHERE key = ?1'
     )
       .bind(key)
       .first()

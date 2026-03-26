@@ -33,6 +33,14 @@
 
               <div v-if="galleryStore.filters.source === 'mine'" class="flex-shrink-0">
                 <v-btn
+                  color="primary"
+                  variant="text"
+                  icon="mdi-pencil-outline"
+                  size="small"
+                  density="comfortable"
+                  @click.stop="$emit('edit', deck)"
+                ></v-btn>
+                <v-btn
                   color="red-accent-2"
                   variant="text"
                   icon="mdi-trash-can-outline"
@@ -80,7 +88,7 @@
         </div>
 
         <div class="d-flex align-center justify-space-between pt-1 pb-3 px-3 ga-2">
-          <div v-if="deck.tournament_type" class="d-flex align-center ga-1 overflow-hidden">
+          <div v-if="deck.tournament_type" class="d-flex align-center ga-1 mt-auto overflow-hidden">
             <div class="info-pill">
               <span class="type-dot"></span>
               {{ tournamentText }}
@@ -93,15 +101,23 @@
             </span>
           </div>
           <v-spacer v-else></v-spacer>
-          <v-rating
-            :model-value="deck.rating_avg"
-            color="amber"
-            density="compact"
-            half-increments
-            readonly
-            size="x-small"
-            class="flex-shrink-0"
-          ></v-rating>
+          <div class="d-flex align-center ga-2 flex-shrink-0">
+            <v-icon
+              v-if="deck.article_link"
+              icon="mdi-text-box-outline"
+              class="mt-auto"
+              style="color: rgba(var(--v-theme-on-surface), 0.5)"
+              size="x-small"
+            ></v-icon>
+            <v-rating
+              :model-value="deck.rating_avg"
+              color="amber"
+              density="compact"
+              half-increments
+              readonly
+              size="x-small"
+            ></v-rating>
+          </div>
         </div>
       </div>
 
@@ -137,7 +153,7 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['delete', 'select'])
+const emit = defineEmits(['delete', 'select', 'edit'])
 
 const { isTouch } = useDevice()
 const galleryStore = useDecksGalleryStore()

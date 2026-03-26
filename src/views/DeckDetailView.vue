@@ -422,69 +422,12 @@
     </v-dialog>
 
     <!-- 分享到卡组广场弹窗 -->
-    <v-dialog v-model="isShareToGalleryDialogVisible" max-width="450">
-      <v-card class="rounded-2lg pa-2">
-        <template #prepend>
-          <v-icon color="primary">mdi-view-grid-plus</v-icon>
-          <v-card-title class="pl-2">分享到卡组广场</v-card-title>
-        </template>
-
-        <v-card-text class="pb-2">
-          <v-switch
-            v-model="shareForm.includeTournamentInfo"
-            label="添加比赛信息 (如店赛、WGP等)"
-            color="primary"
-            density="compact"
-            inset
-            class="mb-2"
-          ></v-switch>
-
-          <v-expand-transition>
-            <div v-if="shareForm.includeTournamentInfo">
-              <v-select
-                v-model="shareForm.tournamentType"
-                :items="tournamentTypeOptions"
-                label="比赛类型"
-                variant="outlined"
-                density="compact"
-                class="mb-4"
-                hide-details
-              ></v-select>
-
-              <v-select
-                v-model="shareForm.participantCount"
-                :items="participantCountOptions"
-                label="参赛人数"
-                variant="outlined"
-                density="compact"
-                class="mb-4"
-                hide-details
-              ></v-select>
-
-              <v-select
-                v-model="shareForm.placement"
-                :items="placementOptions"
-                label="获得名次"
-                variant="outlined"
-                density="compact"
-                hide-details
-              ></v-select>
-            </div>
-          </v-expand-transition>
-        </v-card-text>
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn text="取消" @click="isShareToGalleryDialogVisible = false"></v-btn>
-          <v-btn
-            color="primary"
-            variant="tonal"
-            text="确认分享"
-            @click="confirmShareToDeckGallery"
-          ></v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+    <ShareToGalleryDialog
+      v-if="isShareToGalleryDialogVisible"
+      v-model="isShareToGalleryDialogVisible"
+      :form="shareForm"
+      @confirm="confirmShareToDeckGallery"
+    />
   </div>
 </template>
 
@@ -518,6 +461,7 @@ import { useDeckExport } from '@/composables/useDeckExport'
 import DeckShareImage from '@/components/deck/DeckShareImage.vue'
 import DeckCardList from '@/components/deck/DeckCardList.vue'
 import DeckExportDialog from '@/components/deck/DeckExportDialog.vue'
+import ShareToGalleryDialog from '@/components/deck/ShareToGalleryDialog.vue'
 
 const { smAndUp } = useDisplay()
 const route = useRoute()
@@ -546,7 +490,6 @@ const {
   isGenerationTriggered,
   isShareToGalleryDialogVisible,
   shareForm,
-  placementOptions,
   handleShareCard: baseHandleShareCard,
   handleCopyDeckKey: baseHandleCopyDeckKey,
   handleShareToDeckGallery: baseHandleShareToDeckGallery,
@@ -565,20 +508,6 @@ const isConfirmEditDialogVisible = ref(false)
 const isTextModalVisible = ref(false)
 const modalTextContent = ref('')
 
-const tournamentTypeOptions = [
-  { title: '店赛', value: 'shop' },
-  { title: '巡回赛', value: 'circuit' },
-  { title: 'WGP', value: 'wgp' },
-  { title: 'BCF', value: 'bcf' },
-]
-
-const participantCountOptions = [
-  { title: '10人以下', value: 'under10' },
-  { title: '10-20人', value: '10to20' },
-  { title: '20-30人', value: '20to30' },
-  { title: '30人以上', value: 'over30' },
-]
-
 const history = computed(() => deck.value?.history || [])
 
 // Use shallowRef for performance optimization when handling large lists
@@ -596,8 +525,12 @@ const isDataReady = ref(false)
 
 const handleShareCard = () => baseHandleShareCard(deckKey, isLocalDeck.value)
 const handleShareToDeckGallery = () => baseHandleShareToDeckGallery(deck.value, originalCards.value)
-const confirmShareToDeckGallery = () =>
+const confirmShareToDeckGallery = (formData) => {
+  if (formData) {
+    Object.assign(shareForm.value, formData)
+  }
   baseConfirmShareToDeckGallery(deck.value, originalCards.value)
+}
 const handleCopyDeckKey = () => baseHandleCopyDeckKey(deckKey, isLocalDeck.value)
 
 const handleEditDeck = async () => {
