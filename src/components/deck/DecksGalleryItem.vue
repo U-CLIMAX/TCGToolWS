@@ -8,7 +8,7 @@
         'glass-card': hasBackgroundImage,
         'is-top-tier': isTopTier,
       }"
-      :elevation="isHovering ? 2 : 0"
+      :elevation="isHovering && !isTopTier ? 2 : 0"
       @click="navigateToDeckDetail"
     >
       <div class="d-flex flex-column h-100">
