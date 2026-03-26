@@ -3,7 +3,11 @@
     <v-card
       v-bind="props"
       class="gallery-item-card rounded-xl"
-      :class="{ 'is-lifted': isHovering && !isTouch, 'glass-card': hasBackgroundImage }"
+      :class="{
+        'is-lifted': isHovering && !isTouch,
+        'glass-card': hasBackgroundImage,
+        'is-top-tier': isTopTier,
+      }"
       :elevation="isHovering ? 2 : 0"
       @click="navigateToDeckDetail"
     >
@@ -162,6 +166,8 @@ const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 const showDeleteDialog = ref(false)
 
+const isTopTier = computed(() => !!props.deck.tournament_type)
+
 const seriesInfo = computed(() => {
   if (!props.deck.series_id) return null
   const entry = Object.entries(seriesMap).find(([, val]) => val.id === props.deck.series_id)
@@ -239,6 +245,81 @@ const handleDelete = () => {
 
 .gallery-item-card.is-lifted {
   transform: translateY(-2px);
+}
+
+/* 上位卡組特殊樣式：古典典雅金色質感 */
+
+/* --- 頂部金屬光線（兩個主題共用 ::before）--- */
+.gallery-item-card.is-top-tier::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  pointer-events: none;
+}
+
+/* --- 淺色主題：玫瑰金 --- */
+.v-theme--light .gallery-item-card.is-top-tier {
+  border: 1px solid rgba(180, 145, 55, 0.55) !important;
+  box-shadow:
+    0 0 0 1px rgba(200, 160, 55, 0.12),
+    0 2px 8px rgba(140, 100, 20, 0.12),
+    0 6px 20px rgba(160, 120, 30, 0.1),
+    inset 0 1px 0 rgba(230, 190, 80, 0.4) !important;
+}
+
+.v-theme--light .gallery-item-card.is-top-tier:hover {
+  border-color: rgba(180, 145, 55, 0.8) !important;
+  box-shadow:
+    0 0 0 1px rgba(200, 160, 55, 0.2),
+    0 4px 12px rgba(140, 100, 20, 0.16),
+    0 12px 28px rgba(160, 120, 30, 0.14),
+    inset 0 1px 0 rgba(230, 190, 80, 0.55) !important;
+}
+
+.v-theme--light .gallery-item-card.is-top-tier::before {
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(200, 155, 40, 0.5) 15%,
+    rgba(240, 195, 60, 1) 50%,
+    rgba(200, 155, 40, 0.5) 85%,
+    transparent
+  );
+}
+
+/* --- 深色主題 --- */
+.v-theme--dark .gallery-item-card.is-top-tier {
+  border: 0.5px solid rgba(200, 160, 55, 0.3) !important;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.4),
+    0 4px 16px rgba(180, 130, 30, 0.18),
+    0 0 0 1px rgba(180, 140, 40, 0.08),
+    inset 0 1px 0 rgba(220, 175, 60, 0.12) !important;
+}
+
+.v-theme--dark .gallery-item-card.is-top-tier:hover {
+  border-color: rgba(200, 160, 55, 0.55) !important;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.5),
+    0 12px 28px rgba(180, 130, 30, 0.28),
+    0 0 0 1px rgba(180, 140, 40, 0.15),
+    inset 0 1px 0 rgba(220, 175, 60, 0.2) !important;
+}
+
+.v-theme--dark .gallery-item-card.is-top-tier::before {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(180, 130, 30, 0.3) 15%,
+    rgba(230, 185, 60, 0.85) 50%,
+    rgba(180, 130, 30, 0.3) 85%,
+    transparent,
+    transparent 100%
+  );
 }
 
 /* 左側封面區塊 */
