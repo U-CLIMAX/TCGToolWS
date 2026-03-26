@@ -148,7 +148,7 @@
                       width="48"
                       icon="mdi-filter-variant"
                       elevation="0"
-                      @click="isAdvancedFilterOpen = !isAdvancedFilterOpen"
+                      @click="toggleAdvancedFilter"
                     />
 
                     <v-btn
@@ -346,7 +346,7 @@ const sortOptions = [
 ]
 
 const tournamentTypeOptions = [
-  { title: '所有比赛', value: null },
+  { title: '所有比赛', value: 'any' },
   { title: '店赛', value: 'shop' },
   { title: '巡回赛', value: 'circuit' },
   { title: 'WGP', value: 'wgp' },
@@ -388,6 +388,21 @@ const localFilters = ref({
 })
 
 const isAdvancedFilterOpen = ref(false)
+
+const toggleAdvancedFilter = () => {
+  isAdvancedFilterOpen.value = !isAdvancedFilterOpen.value
+
+  if (isAdvancedFilterOpen.value) {
+    // When opening, default to 'any' to show only tournament decks
+    localFilters.value.tournamentType = 'any'
+  } else {
+    // When closing, reset to null to show all decks
+    localFilters.value.tournamentType = null
+    localFilters.value.participantCount = null
+    localFilters.value.placement = null
+  }
+  handleSearch()
+}
 const isEditDialogVisible = ref(false)
 const editingDeckKey = ref(null)
 
@@ -452,6 +467,7 @@ const handleSearch = async () => {
 }
 
 const resetFilters = async () => {
+  isAdvancedFilterOpen.value = false
   Object.assign(localFilters.value, DEFAULT_FILTERS)
   Object.assign(galleryStore.filters, localFilters.value)
 
@@ -511,6 +527,11 @@ onBeforeRouteLeave((to, from, next) => {
 onMounted(async () => {
   // Initialize local filters from store
   Object.assign(localFilters.value, galleryStore.filters)
+
+  // Open advanced filter if any tournament filters are set
+  if (localFilters.value.tournamentType) {
+    isAdvancedFilterOpen.value = true
+  }
 
   try {
     await galleryStore.fetchDecks()

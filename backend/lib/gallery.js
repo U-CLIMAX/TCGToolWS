@@ -31,7 +31,9 @@ export const handleGetDecksGallery = async (c) => {
       params.push(series)
     }
 
-    if (tournament_type) {
+    if (tournament_type === 'any') {
+      conditions.push('tournament_type IS NOT NULL')
+    } else if (tournament_type) {
       conditions.push(`tournament_type = ?${params.length + 1}`)
       params.push(tournament_type)
     }
@@ -160,7 +162,9 @@ export const handleGetUserDecksGallery = async (c) => {
       params.push(series)
     }
 
-    if (tournament_type) {
+    if (tournament_type === 'any') {
+      conditions.push('tournament_type IS NOT NULL')
+    } else if (tournament_type) {
       conditions.push(`tournament_type = ?${params.length + 1}`)
       params.push(tournament_type)
     }
