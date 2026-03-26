@@ -14,7 +14,7 @@
         <v-text-field
           v-model="localForm.articleLink"
           label="Bilibili文章 (可选)"
-          placeholder="https://www.bilibili.com/opus/..."
+          placeholder="https://www.bilibili.com/..."
           variant="outlined"
           density="compact"
           class="mb-4"
@@ -139,11 +139,11 @@ const placementOptions = computed(() => {
 
 const articleLinkRule = (v) => {
   if (!v) return true
-  return v.startsWith('https://www.bilibili.com/opus') || '必须包含 https://www.bilibili.com/opus'
+  return v.startsWith('https://www.bilibili.com/') || '必须包含 https://www.bilibili.com/'
 }
 
 const isFormValid = computed(() => {
-  if (localForm.articleLink && !localForm.articleLink.startsWith('https://www.bilibili.com/opus')) {
+  if (localForm.articleLink && !localForm.articleLink.startsWith('https://www.bilibili.com/')) {
     return false
   }
   return true
