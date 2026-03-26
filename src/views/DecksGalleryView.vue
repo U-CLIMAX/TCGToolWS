@@ -411,7 +411,10 @@ const loadMore = async ({ done }) => {
 }
 
 onBeforeRouteLeave((to, from, next) => {
-  if (smAndUp.value) next()
+  if (smAndUp.value) {
+    next()
+    return
+  }
 
   if (uiStore.isCardDetailModalOpen) {
     uiStore.isCardDetailModalOpen = false
