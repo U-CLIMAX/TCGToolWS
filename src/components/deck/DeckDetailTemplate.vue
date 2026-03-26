@@ -29,17 +29,6 @@
               }"
             >
               <v-btn
-                v-if="deck?.article_link"
-                icon
-                color="blue-accent-2"
-                variant="text"
-                density="compact"
-                @click="copyArticleLink(deck.article_link)"
-                v-tooltip:bottom="'复制文章链接'"
-              >
-                <v-icon size="24">mdi-link-variant</v-icon>
-              </v-btn>
-              <v-btn
                 icon
                 color="blue-accent-2"
                 variant="text"
@@ -48,6 +37,17 @@
                 :disabled="!deck"
               >
                 <v-icon size="24">mdi-content-save-outline</v-icon>
+              </v-btn>
+
+              <v-btn
+                v-if="deck?.article_link"
+                icon
+                variant="text"
+                density="compact"
+                @click="copyArticleLink(deck.article_link)"
+                v-tooltip:bottom="'复制文章链接'"
+              >
+                <v-icon size="24">mdi-text-box-outline</v-icon>
               </v-btn>
             </div>
 

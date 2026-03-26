@@ -417,21 +417,7 @@ const handleConfirmEdit = async (formData) => {
 
   if (success) {
     isEditDialogVisible.value = false
-    // Update local deck data
-    const deckIndex = galleryStore.decks.findIndex((d) => d.key === editingDeckKey.value)
-    if (deckIndex !== -1) {
-      galleryStore.decks[deckIndex] = {
-        ...galleryStore.decks[deckIndex],
-        tournament_type: shareForm.value.includeTournamentInfo
-          ? shareForm.value.tournamentType
-          : null,
-        participant_count: shareForm.value.includeTournamentInfo
-          ? shareForm.value.participantCount
-          : null,
-        placement: shareForm.value.includeTournamentInfo ? shareForm.value.placement : null,
-        article_link: shareForm.value.articleLink || null,
-      }
-    }
+    await handleSearch()
 
     // Force update sidebar detail view if it's currently showing the edited deck
     if (selectedDeckKey.value === editingDeckKey.value) {

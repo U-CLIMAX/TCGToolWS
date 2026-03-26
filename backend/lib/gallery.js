@@ -417,19 +417,23 @@ export const handleUpdateGalleryDeckMetadata = async (c) => {
 
     if (!key) return createErrorResponse(c, 400, '缺少 key')
 
+    const now = Math.floor(Date.now() / 1000)
+
     const info = await c.env.DB.prepare(
-      `UPDATE decks_gallery SET 
-       tournament_type = ?1, 
-       participant_count = ?2, 
-       placement = ?3, 
-       article_link = ?4
-       WHERE key = ?5 AND user_id = ?6`
+      `UPDATE decks_gallery SET
+       tournament_type = ?1,
+       participant_count = ?2,
+       placement = ?3,
+       article_link = ?4,
+       updated_at = ?5
+       WHERE key = ?6 AND user_id = ?7`
     )
       .bind(
         tournamentType || null,
         participantCount || null,
         placement || null,
         articleLink || null,
+        now,
         key,
         user.id
       )
