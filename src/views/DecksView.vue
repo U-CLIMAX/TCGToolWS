@@ -155,6 +155,7 @@
           v-if="displayedDecks.length > 0"
           tag="div"
           class="v-row ma-1 mt-0"
+          :class="{ 'pb-8': smAndUp }"
           name="deck-fade"
           appear
         >
