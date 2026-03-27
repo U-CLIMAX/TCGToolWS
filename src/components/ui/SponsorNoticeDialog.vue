@@ -29,7 +29,7 @@
         <v-list density="compact" bg-color="transparent" class="py-0">
           <v-list-item prepend-icon="mdi-numeric-1-circle-outline" class="px-1">
             <v-list-item-title class="text-wrap">
-              充电完成後，请前往<b>「账号资料」</b>，点击<b>「刷新」</b>按钮以更新您的帐号身份。
+              充电完成後，请刷新网页或是前往<b>「账号资料」</b>，点击<b>「刷新」</b>按钮以更新您的帐号身份。
             </v-list-item-title>
           </v-list-item>
 
