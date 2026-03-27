@@ -368,7 +368,7 @@
 </template>
 
 <script setup>
-import { ref, watch, computed } from 'vue'
+import { ref, watch, computed, onMounted } from 'vue'
 import { useTheme, useDisplay } from 'vuetify'
 import { useRoute, useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
@@ -402,6 +402,17 @@ const { userRole } = storeToRefs(authStore)
 const vuetifyTheme = useTheme()
 const uiStore = useUIStore()
 const { mdAndDown, smAndUp, smAndDown } = useDisplay()
+
+onMounted(async () => {
+  if (authStore.isAuthenticated) {
+    try {
+      await authStore.refreshUserToken()
+    } catch (e) {
+      // refreshUserToken internal error handling already triggers logout
+      console.warn('Initial token refresh skipped or failed:', e.message)
+    }
+  }
+})
 
 const titleImgStyle = computed(() => {
   return {
