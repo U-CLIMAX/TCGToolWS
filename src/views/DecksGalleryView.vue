@@ -97,7 +97,7 @@
                       elevation="0"
                       @click="toggleHasArticle"
                       v-tooltip:bottom="
-                        localFilters.hasArticle ? '显示全部卡组' : '仅显有文章的卡组'
+                        localFilters.hasArticle ? '显示全部卡组' : '仅显示有文章/视频的卡组'
                       "
                     >
                       <v-icon

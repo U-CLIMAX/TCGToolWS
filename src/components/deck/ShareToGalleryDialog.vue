@@ -13,7 +13,7 @@
       <v-card-text class="pb-2">
         <v-text-field
           v-model="localForm.articleLink"
-          label="Bilibili文章 (可选)"
+          label="Bilibili文章/视频 (可选)"
           placeholder="https://www.bilibili.com/..."
           variant="outlined"
           density="compact"

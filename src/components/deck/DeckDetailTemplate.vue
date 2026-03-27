@@ -30,7 +30,6 @@
             >
               <v-btn
                 icon
-                color="blue-accent-2"
                 variant="text"
                 density="compact"
                 @click="openSaveDialog"
@@ -45,7 +44,7 @@
                 variant="text"
                 density="compact"
                 @click="copyArticleLink(deck.article_link)"
-                v-tooltip:bottom="'复制文章链接'"
+                v-tooltip:bottom="'复制文章/视频链接'"
               >
                 <v-icon size="24">mdi-text-box-outline</v-icon>
               </v-btn>
