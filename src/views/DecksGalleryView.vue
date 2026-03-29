@@ -86,24 +86,51 @@
                   </v-col>
 
                   <!-- 搜索与主筛选 -->
-                  <v-col cols="12" md="6" lg="7" class="d-flex ga-2">
+                  <v-col cols="12" md="6" lg="5" class="d-flex ga-2">
                     <v-btn
                       :color="localFilters.hasArticle ? 'blue-accent-2' : 'grey-btn'"
                       :variant="localFilters.hasArticle ? 'flat' : 'tonal'"
                       rounded="pill"
                       height="48"
                       width="48"
-                      icon
+                      :icon="localFilters.hasArticle ? 'mdi-text-box' : 'mdi-text-box-outline'"
                       elevation="0"
                       @click="toggleHasArticle"
                       v-tooltip:bottom="
                         localFilters.hasArticle ? '显示全部卡组' : '仅显示有文章/视频的卡组'
                       "
-                    >
-                      <v-icon
-                        :icon="localFilters.hasArticle ? 'mdi-text-box' : 'mdi-text-box-outline'"
-                      ></v-icon>
-                    </v-btn>
+                    />
+
+                    <v-btn
+                      :color="isAdvancedFilterOpen ? 'blue-accent-2' : 'grey-btn'"
+                      :variant="isAdvancedFilterOpen ? 'flat' : 'tonal'"
+                      rounded="pill"
+                      height="48"
+                      width="48"
+                      icon="mdi-trophy-variant-outline"
+                      elevation="0"
+                      @click="toggleAdvancedFilter"
+                      v-tooltip:bottom="isAdvancedFilterOpen ? '显示全部卡组' : '仅显示上位卡组'"
+                    />
+
+                    <v-select
+                      v-model="localFilters.sort"
+                      :items="sortOptions"
+                      item-title="title"
+                      item-value="value"
+                      variant="solo-filled"
+                      flat
+                      rounded="pill"
+                      density="comfortable"
+                      hide-details
+                      prepend-inner-icon="mdi-sort"
+                      class="flex-grow-1"
+                      :menu-props="uiStore.menuProps"
+                      @update:model-value="handleSearch"
+                    />
+                  </v-col>
+
+                  <v-col cols="12" md="6" lg="7" class="d-flex ga-2">
                     <v-autocomplete
                       v-model="localFilters.seriesId"
                       :items="galleryStore.seriesOptions"
@@ -120,35 +147,6 @@
                       class="flex-grow-1"
                       :menu-props="uiStore.menuProps"
                       @update:model-value="handleSearch"
-                    />
-                  </v-col>
-
-                  <v-col cols="12" md="6" lg="5" class="d-flex ga-2">
-                    <v-select
-                      v-model="localFilters.sort"
-                      :items="sortOptions"
-                      item-title="title"
-                      item-value="value"
-                      variant="solo-filled"
-                      flat
-                      rounded="pill"
-                      density="comfortable"
-                      hide-details
-                      prepend-inner-icon="mdi-sort"
-                      class="flex-grow-1"
-                      :menu-props="uiStore.menuProps"
-                      @update:model-value="handleSearch"
-                    />
-
-                    <v-btn
-                      :color="isAdvancedFilterOpen ? 'primary' : 'grey-btn'"
-                      :variant="isAdvancedFilterOpen ? 'flat' : 'tonal'"
-                      rounded="pill"
-                      height="48"
-                      width="48"
-                      icon="mdi-filter-variant"
-                      elevation="0"
-                      @click="toggleAdvancedFilter"
                     />
 
                     <v-btn
