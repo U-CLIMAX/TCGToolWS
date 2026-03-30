@@ -16,6 +16,30 @@
 /intro/*
   Cache-Control: public, max-age=31536000, immutable
 
+/*.bin
+  Cache-Control: public, max-age=31536000, immutable
+
+/card-db-manifest-ws.json
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/card-db-manifest-wsr.json
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/card-db-manifest-wsc.json
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/manifest.json
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/ws_index*.json
+  Cache-Control: public, max-age=31536000, immutable
+
+/wsr_index*.json
+  Cache-Control: public, max-age=31536000, immutable
+
+/wsc_index*.json
+  Cache-Control: public, max-age=31536000, immutable
+
 /uclimax.ico
   Cache-Control: public, max-age=604800
   CF-Cache-Level: cache_everything
