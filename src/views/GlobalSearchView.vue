@@ -17,7 +17,7 @@
               variant="text"
               @click="isFilterOpen = !isFilterOpen"
               :disabled="globalSearchStore.isLoading"
-              v-tooltip:bottom="isFilterOpen ? '关闭搜索' : '开启搜索'"
+              v-tooltip:bottom="{ text: isFilterOpen ? '关闭搜索' : '开启搜索', disabled: isTouch }"
             ></v-btn>
           </div>
 
@@ -60,7 +60,10 @@
               variant="text"
               @click="isTableModeActive = !isTableModeActive"
               :disabled="globalSearchStore.isLoading"
-              v-tooltip:bottom="isTableModeActive ? '切换预设模式' : '切换紧凑模式'"
+              v-tooltip:bottom="{
+                text: isTableModeActive ? '切换预设模式' : '切换紧凑模式',
+                disabled: isTouch,
+              }"
             ></v-btn>
             <v-badge
               v-if="smAndUp"
@@ -76,7 +79,10 @@
                 variant="text"
                 @click="isCardDeckOpen = !isCardDeckOpen"
                 :disabled="globalSearchStore.isLoading"
-                v-tooltip:bottom="isCardDeckOpen ? '隐藏卡组' : '检视卡组'"
+                v-tooltip:bottom="{
+                  text: isCardDeckOpen ? '隐藏卡组' : '检视卡组',
+                  disabled: isTouch,
+                }"
               ></v-btn>
             </v-badge>
           </div>
@@ -213,6 +219,7 @@ import { useGlobalSearchStore } from '@/stores/globalSearch'
 import { useUIStore } from '@/stores/ui'
 import { useDeckStore } from '@/stores/deck'
 import { useInfiniteScrollState } from '@/composables/useInfiniteScrollState.js'
+import { useDevice } from '@/composables/useDevice'
 import { HalfCircleSpinner } from 'epic-spinners'
 import { GAME_TYPE_OPTIONS } from '@/maps/series-map'
 import CardInfiniteScrollList from '@/components/card/CardInfiniteScrollList.vue'
@@ -222,6 +229,7 @@ import DraggableBottomSheet from '@/components/ui/DraggableBottomSheet.vue'
 
 const route = useRoute()
 const theme = useTheme()
+const { isTouch } = useDevice()
 const game = computed(() => route.params.game || 'ws')
 const spinnerColor = computed(() => {
   return globalSearchStore.isInitialSetup ? '#82B1FF' : theme.global.current.value.colors.primary

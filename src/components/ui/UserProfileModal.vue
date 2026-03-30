@@ -30,7 +30,6 @@
                   size="x-small"
                   class="ml-2"
                   @click.stop="copyUserId(userStatus.id)"
-                  v-tooltip:bottom="'复制 ID'"
                 ></v-btn>
               </div>
             </template>

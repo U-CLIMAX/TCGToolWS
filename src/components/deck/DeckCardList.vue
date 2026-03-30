@@ -64,7 +64,7 @@
                 md="2"
                 :style="{ '--stagger-index': itemIndex }"
               >
-                <v-tooltip :text="item.id" location="top center" :disabled="isTouch ? true : false">
+                <v-tooltip :text="item.id" location="top center" :disabled="isTouch">
                   <template v-slot:activator="{ props }">
                     <div
                       v-bind="props"

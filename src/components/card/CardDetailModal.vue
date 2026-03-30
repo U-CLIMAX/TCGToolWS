@@ -176,7 +176,12 @@
                 "
               >
                 {{ r }}
-                <v-tooltip v-if="isFilterable" activator="parent" location="top">
+                <v-tooltip
+                  v-if="isFilterable"
+                  activator="parent"
+                  location="top"
+                  :disabled="isTouch"
+                >
                   {{
                     activeFilterStore.selectedTraits.includes(r)
                       ? '移除此特征筛选'

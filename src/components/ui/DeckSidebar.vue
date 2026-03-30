@@ -45,7 +45,7 @@
             color="teal-lighten-1"
             density="compact"
             @click="navigateToDeckDetail"
-            v-tooltip:top-center="'前往卡组页面'"
+            v-tooltip:top-center="{ text: '前往卡组页面', disabled: isTouch }"
           ></v-btn>
         </div>
         <v-btn

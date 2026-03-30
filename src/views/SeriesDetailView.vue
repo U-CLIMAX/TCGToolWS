@@ -20,7 +20,7 @@
               variant="text"
               density="compact"
               @click="isFilterOpen = !isFilterOpen"
-              v-tooltip:bottom="isFilterOpen ? '关闭筛选' : '开启筛选'"
+              v-tooltip:bottom="{ text: isFilterOpen ? '关闭筛选' : '开启筛选', disabled: isTouch }"
             ></v-btn>
           </div>
 
@@ -60,7 +60,10 @@
               variant="text"
               density="compact"
               @click="isTableModeActive = !isTableModeActive"
-              v-tooltip:bottom="isTableModeActive ? '切换预设模式' : '切换紧凑模式'"
+              v-tooltip:bottom="{
+                text: isTableModeActive ? '切换预设模式' : '切换紧凑模式',
+                disabled: isTouch,
+              }"
             ></v-btn>
             <v-badge
               v-if="smAndUp"
@@ -75,7 +78,10 @@
                 variant="text"
                 density="compact"
                 @click="isCardDeckOpen = !isCardDeckOpen"
-                v-tooltip:bottom="isCardDeckOpen ? '隐藏卡组' : '检视卡组'"
+                v-tooltip:bottom="{
+                  text: isCardDeckOpen ? '隐藏卡组' : '检视卡组',
+                  disabled: isTouch,
+                }"
               ></v-btn>
             </v-badge>
           </div>
@@ -178,6 +184,7 @@ import { useFilterStore } from '@/stores/filter'
 import { useUIStore } from '@/stores/ui'
 import { useRecentStore } from '@/stores/recent'
 import { useInfiniteScrollState } from '@/composables/useInfiniteScrollState.js'
+import { useDevice } from '@/composables/useDevice'
 import CardInfiniteScrollList from '@/components/card/CardInfiniteScrollList.vue'
 import BaseFilterSidebar from '@/components/ui/FilterSidebar.vue'
 import DeckSidebar from '@/components/ui/DeckSidebar.vue'
@@ -202,6 +209,7 @@ const deckStore = useDeckStore()
 const filterStore = useFilterStore()
 const uiStore = useUIStore()
 const recentStore = useRecentStore()
+const { isTouch } = useDevice()
 const headerRef = ref(null)
 const { isCardDeckOpen, isFilterOpen, isTableModeActive, isPerformanceMode } = storeToRefs(uiStore)
 const rawHeaderHeight = ref(0)

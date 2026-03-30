@@ -44,7 +44,7 @@
                 variant="text"
                 density="compact"
                 @click="copyArticleLink(deck.article_link)"
-                v-tooltip:bottom="'复制文章/视频链接'"
+                v-tooltip:bottom="{ text: '复制文章/视频链接', disabled: isTouch }"
               >
                 <v-icon size="24">mdi-text-box-outline</v-icon>
               </v-btn>
@@ -75,7 +75,7 @@
                   :href="`/share-decks/${deckKey}`"
                   target="_blank"
                   color="teal-lighten-1"
-                  v-tooltip:bottom="'在新窗口打开'"
+                  v-tooltip:bottom="{ text: '在新窗口打开', disabled: isTouch }"
                 >
                   <v-icon size="24">mdi-open-in-new</v-icon>
                 </v-btn>
@@ -254,6 +254,7 @@ import { fetchCardsByBaseIdAndPrefix } from '@/utils/card'
 import { useAuthStore } from '@/stores/auth'
 import { useUIStore } from '@/stores/ui'
 import { useDeckExport } from '@/composables/useDeckExport'
+import { useDevice } from '@/composables/useDevice'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import DeckCardList from '@/components/deck/DeckCardList.vue'
 import { sortCards } from '@/utils/cardsSort'
@@ -287,6 +288,7 @@ const { smAndUp } = useDisplay()
 const authStore = useAuthStore()
 const uiStore = useUIStore()
 const { copyArticleLink } = useDeckExport()
+const { isTouch } = useDevice()
 
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 

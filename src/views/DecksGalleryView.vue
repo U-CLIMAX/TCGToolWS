@@ -96,9 +96,10 @@
                       :icon="localFilters.hasArticle ? 'mdi-text-box' : 'mdi-text-box-outline'"
                       elevation="0"
                       @click="toggleHasArticle"
-                      v-tooltip:bottom="
-                        localFilters.hasArticle ? '显示全部卡组' : '仅显示有文章/视频的卡组'
-                      "
+                      v-tooltip:bottom="{
+                        text: localFilters.hasArticle ? '显示全部卡组' : '仅显示有文章/视频的卡组',
+                        disabled: isTouch,
+                      }"
                     />
 
                     <v-btn
@@ -110,7 +111,10 @@
                       icon="mdi-trophy-variant-outline"
                       elevation="0"
                       @click="toggleAdvancedFilter"
-                      v-tooltip:bottom="isAdvancedFilterOpen ? '显示全部卡组' : '仅显示上位卡组'"
+                      v-tooltip:bottom="{
+                        text: isAdvancedFilterOpen ? '显示全部卡组' : '仅显示上位卡组',
+                        disabled: isTouch,
+                      }"
                     />
 
                     <v-select
@@ -295,6 +299,7 @@ import InsetTabs from '@/components/ui/InsetTabs.vue'
 import BackToTopButton from '@/components/ui/BackToTopButton.vue'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useDeckExport } from '@/composables/useDeckExport'
+import { useDevice } from '@/composables/useDevice'
 import { useDisplay } from 'vuetify'
 import { GAME_TYPE_OPTIONS } from '@/maps/series-map'
 
@@ -306,6 +311,7 @@ const uiStore = useUIStore()
 const authStore = useAuthStore()
 const { smAndDown, smAndUp, width } = useDisplay()
 const { shareForm, updateGalleryDeckMetadata } = useDeckExport()
+const { isTouch } = useDevice()
 
 const infiniteScrollRef = ref(null)
 const scrollContainer = ref(null)

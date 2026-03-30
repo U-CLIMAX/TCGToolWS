@@ -23,7 +23,7 @@
                   variant="text"
                   density="compact"
                   @click="openExportDialog"
-                  v-tooltip:bottom="'汇出卡组'"
+                  v-tooltip:bottom="{ text: '汇出卡组', disabled: isTouch }"
                 ></v-btn>
                 <v-menu location="bottom start" offset="12" open-on-hover>
                   <template v-slot:activator="{ props }">
@@ -65,14 +65,14 @@
                   density="compact"
                   :disabled="isLocalDeck"
                   @click="handleCopyDeckKey"
-                  v-tooltip:bottom="'复制卡组代码'"
+                  v-tooltip:bottom="{ text: '复制卡组代码', disabled: isTouch }"
                 ></v-btn>
                 <v-btn
                   icon="mdi-pencil"
                   variant="text"
                   density="compact"
                   @click="handleEditDeck"
-                  v-tooltip:bottom="'编辑卡组'"
+                  v-tooltip:bottom="{ text: '编辑卡组', disabled: isTouch }"
                 ></v-btn>
                 <v-btn
                   v-if="userRole !== 0 && !isLocalDeck"
@@ -80,7 +80,7 @@
                   variant="text"
                   density="compact"
                   @click="isHistoryDialogVisible = true"
-                  v-tooltip:bottom="'卡组历史'"
+                  v-tooltip:bottom="{ text: '卡组历史', disabled: isTouch }"
                 ></v-btn>
               </template>
               <template v-else>
@@ -146,6 +146,7 @@
                   v-if="!isViewingHistory"
                   :text="showDifferences ? '隐藏差异' : '显示差异'"
                   location="bottom"
+                  :disabled="isTouch"
                 >
                   <template v-slot:activator="{ props }">
                     <v-btn
@@ -166,7 +167,10 @@
                   variant="text"
                   density="compact"
                   @click="uiStore.showStatsDashboard = !uiStore.showStatsDashboard"
-                  v-tooltip:bottom="uiStore.showStatsDashboard ? '隐藏统计' : '显示统计'"
+                  v-tooltip:bottom="{
+                    text: uiStore.showStatsDashboard ? '隐藏统计' : '显示统计',
+                    disabled: isTouch,
+                  }"
                 ></v-btn>
                 <div style="width: 120px" class="header-select">
                   <v-select
@@ -454,6 +458,7 @@ import { useUIStore } from '@/stores/ui'
 import { useDeckStore } from '@/stores/deck'
 import { useAuthStore } from '@/stores/auth'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
+import { useDevice } from '@/composables/useDevice'
 import { sortCards } from '@/utils/cardsSort'
 import { convertElementToPng } from '@/utils/domToImage.js'
 import { useDeckHistory } from '@/composables/useDeckHistory'
@@ -470,6 +475,7 @@ const { decodeData } = useDeckEncoder()
 const { triggerSnackbar } = useSnackbar()
 const uiStore = useUIStore()
 const authStore = useAuthStore()
+const { isTouch } = useDevice()
 const { userRole } = storeToRefs(authStore)
 const deckStore = useDeckStore()
 
