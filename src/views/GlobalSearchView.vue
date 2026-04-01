@@ -65,26 +65,6 @@
                 disabled: isTouch,
               }"
             ></v-btn>
-            <v-badge
-              v-if="smAndUp"
-              :content="deckStore.totalCardCount"
-              :model-value="deckStore.totalCardCount > 0"
-              color="primary"
-              offset-x="3"
-              offset-y="3"
-            >
-              <v-btn
-                :icon="isCardDeckOpen ? 'mdi-cards' : 'mdi-cards-outline'"
-                density="compact"
-                variant="text"
-                @click="isCardDeckOpen = !isCardDeckOpen"
-                :disabled="globalSearchStore.isLoading"
-                v-tooltip:bottom="{
-                  text: isCardDeckOpen ? '隐藏卡组' : '检视卡组',
-                  disabled: isTouch,
-                }"
-              ></v-btn>
-            </v-badge>
           </div>
         </div>
       </div>
@@ -146,7 +126,7 @@
           :style="{ '--sb-margin-top': `${headerOffsetHeight + 20}px` }"
         />
         <template v-if="smAndUp">
-          <div class="sidebar-container" :class="{ 'right-sidebar-open': isCardDeckOpen }">
+          <div class="sidebar-container">
             <DeckSidebar class="fill-height pr-4 pb-4" :header-offset-height="headerOffsetHeight" />
           </div>
         </template>
@@ -164,23 +144,6 @@
             @click="sheetContent = 'filter'"
             :disabled="globalSearchStore.isLoading"
           ></v-btn>
-          <v-badge
-            :content="deckStore.totalCardCount"
-            :model-value="deckStore.totalCardCount > 0"
-            color="on-background"
-            offset-x="8"
-            offset-y="8"
-            class="opacity-90"
-          >
-            <v-btn
-              icon="mdi-cards"
-              size="default"
-              color="primary"
-              class="opacity-90"
-              @click="sheetContent = 'deck'"
-              :disabled="globalSearchStore.isLoading"
-            ></v-btn>
-          </v-badge>
         </div>
       </div>
 
@@ -198,12 +161,6 @@
             :disabled="globalSearchStore.isLoading"
             transparent
           />
-          <DeckSidebar
-            v-if="content === 'deck'"
-            :header-offset-height="0"
-            :container-height="contentHeight"
-            transparent
-          />
         </template>
       </DraggableBottomSheet>
     </div>
@@ -217,7 +174,6 @@ import { useDisplay, useTheme } from 'vuetify'
 import { storeToRefs } from 'pinia'
 import { useGlobalSearchStore } from '@/stores/globalSearch'
 import { useUIStore } from '@/stores/ui'
-import { useDeckStore } from '@/stores/deck'
 import { useInfiniteScrollState } from '@/composables/useInfiniteScrollState.js'
 import { useDevice } from '@/composables/useDevice'
 import { HalfCircleSpinner } from 'epic-spinners'
@@ -242,16 +198,15 @@ const gameColorClass = computed(() => {
 
 const globalSearchStore = useGlobalSearchStore()
 const uiStore = useUIStore()
-const deckStore = useDeckStore()
 const cardListRef = ref(null)
 const headerRef = ref(null)
-const { isFilterOpen, isTableModeActive, isCardDeckOpen, isPerformanceMode } = storeToRefs(uiStore)
+const { isFilterOpen, isTableModeActive, isPerformanceMode } = storeToRefs(uiStore)
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 const { searchCountDetails, hasActiveFilters, searchResults } = storeToRefs(globalSearchStore)
 const rawHeaderHeight = ref(0)
 
 const sheetContent = ref(null)
-const { smAndUp, smAndDown, lgAndUp } = useDisplay()
+const { smAndUp, smAndDown } = useDisplay()
 
 const searchIcon = computed(() =>
   isFilterOpen.value ? 'mdi-layers-search' : 'mdi-layers-search-outline'
@@ -272,25 +227,6 @@ const observer = new ResizeObserver(([entry]) => {
 watchEffect(() => {
   if (headerRef.value) {
     observer.observe(headerRef.value)
-  }
-})
-
-watch(isFilterOpen, (newValue) => {
-  if (newValue && !lgAndUp.value) {
-    isCardDeckOpen.value = false
-  }
-})
-
-watch(isCardDeckOpen, (newValue) => {
-  if (newValue && !lgAndUp.value) {
-    isFilterOpen.value = false
-  }
-})
-
-// Close one sidebar if resizing from desktop to a smaller screen with both sidebars open
-watch(lgAndUp, (isDesktop) => {
-  if (!isDesktop && isFilterOpen.value && isCardDeckOpen.value) {
-    isCardDeckOpen.value = false
   }
 })
 
@@ -364,8 +300,7 @@ useInfiniteScrollState({
     width 0s ease-in-out 0.2s;
 }
 
-.performance-mode > .sidebar-container.left-sidebar-open,
-.performance-mode > .sidebar-container.right-sidebar-open {
+.performance-mode > .sidebar-container.left-sidebar-open {
   opacity: 1;
   pointer-events: auto;
   /*
@@ -377,16 +312,14 @@ useInfiniteScrollState({
 
 /* Small tablet (sm) */
 @media (min-width: 600px) and (max-width: 959.98px) {
-  .sidebar-container.left-sidebar-open,
-  .sidebar-container.right-sidebar-open {
+  .sidebar-container.left-sidebar-open {
     width: 51%;
   }
 }
 
 /* Medium tablet (md) */
 @media (min-width: 960px) and (max-width: 1279.98px) {
-  .sidebar-container.left-sidebar-open,
-  .sidebar-container.right-sidebar-open {
+  .sidebar-container.left-sidebar-open {
     width: 35%;
   }
 }
@@ -395,10 +328,6 @@ useInfiniteScrollState({
 @media (min-width: 1280px) {
   .sidebar-container.left-sidebar-open {
     width: 15%;
-  }
-
-  .sidebar-container.right-sidebar-open {
-    width: 25%;
   }
 }
 
@@ -419,8 +348,7 @@ useInfiniteScrollState({
     right: 0;
   }
 
-  .sidebar-container.left-sidebar-open,
-  .sidebar-container.right-sidebar-open {
+  .sidebar-container.left-sidebar-open {
     width: 100%;
   }
 }

@@ -62,7 +62,7 @@
       :blur-url="selectedCardData.blurUrl"
       :linked-cards="selectedLinkedCards"
       :is-loading-links="isLoadingLinks"
-      :showActions="true"
+      :showActions="$route.name === 'GlobalSearch' ? false : true"
       :card-index="selectedCardIndex"
       :total-cards="displayedCards.length"
       @close="isModalVisible = false"

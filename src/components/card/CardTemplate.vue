@@ -26,7 +26,7 @@
 
           <v-fade-transition>
             <div
-              v-if="isHovering && !smAndDown && !isTouch"
+              v-if="isHovering && !smAndDown && !isTouch && $route.name !== 'GlobalSearch'"
               class="d-flex flex-row-reverse"
               style="position: absolute; bottom: 8px; right: 8px; opacity: 0.9; gap: 6px"
             >
@@ -84,7 +84,7 @@
 
           <div style="position: absolute; top: 8px; right: 8px">
             <v-avatar
-              v-if="cardCount > 0"
+              v-if="cardCount > 0 && $route.name !== 'GlobalSearch'"
               :size="smAndDown ? 'x-small' : 'small'"
               color="primary"
               class="counter-avatar"
