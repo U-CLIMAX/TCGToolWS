@@ -27,6 +27,10 @@
     {
       "binding": "MARKET_KV",
       "id": "661c290e76c34ba492ddf8299c6a21ac"
+    },
+    {
+      "binding": "DAILY_SERIES_PRICE_KV",
+      "id": "5e530c71611b4393a478b31cb27b6ca3"
     }
   ],
   "triggers": {

@@ -28,6 +28,7 @@ export const useUIStore = defineStore(
     const renderedCardsCount = ref(0)
     const useAdaptiveColor = ref(true)
     const showStatsDashboard = ref(true)
+    const showCardPrices = ref(true)
     const customKeywords = ref([])
     const headerHeight = ref(64) // Default height
     const backgroundImage = ref(null)
@@ -213,6 +214,7 @@ export const useUIStore = defineStore(
       setRenderedCardsCount,
       useAdaptiveColor,
       showStatsDashboard,
+      showCardPrices,
       customKeywords,
       addCustomKeyword,
       removeCustomKeyword,

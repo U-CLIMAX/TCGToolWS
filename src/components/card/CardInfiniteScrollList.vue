@@ -60,6 +60,7 @@
       :card="selectedCardData.card"
       :img-url="selectedCardData.imageUrl"
       :blur-url="selectedCardData.blurUrl"
+      :price="selectedCardData.price"
       :linked-cards="selectedLinkedCards"
       :is-loading-links="isLoadingLinks"
       :showActions="$route.name === 'GlobalSearch' ? false : true"
@@ -87,6 +88,8 @@ import { fetchCardByIdAndPrefix, fetchCardsByBaseIdAndPrefix } from '@/utils/car
 import { getCardUrls } from '@/utils/getCardImage'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import { useUIStore } from '@/stores/ui'
+import { usePriceStore } from '@/stores/price'
+import { useRoute } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { sortCards } from '@/utils/cardsSort'
 
@@ -119,6 +122,8 @@ const props = defineProps({
 
 const { smAndUp, smAndDown, xs } = useDisplay()
 const uiStore = useUIStore()
+const priceStore = usePriceStore()
+const route = useRoute()
 const { isPerformanceMode } = storeToRefs(uiStore)
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
@@ -152,6 +157,13 @@ const { selectedCardIndex, getPrevCard, getNextCard } = useCardNavigation(
 
 const isTableMode = computed(() => props.isTableModeActive || !smAndUp.value)
 
+const getPrice = (card) => {
+  const seriesId = route.params.seriesId
+  if (!seriesId) return null
+  const price = priceStore.getPrice(seriesId, card.id)
+  return price ? price.toLocaleString() : null
+}
+
 const onPrevCard = () => {
   const prevCard = getPrevCard()
   if (prevCard) {
@@ -160,18 +172,20 @@ const onPrevCard = () => {
       card: prevCard,
       imageUrl: base,
       blurUrl: blur,
+      price: getPrice(prevCard),
     })
   }
 }
 
 const onNextCard = () => {
   const nextCard = getNextCard()
-  const { base, blur } = getCardUrls(nextCard.cardIdPrefix, nextCard.id)
   if (nextCard) {
+    const { base, blur } = getCardUrls(nextCard.cardIdPrefix, nextCard.id)
     onShowDetails({
       card: nextCard,
       imageUrl: base,
       blurUrl: blur,
+      price: getPrice(nextCard),
     })
   }
 }
@@ -188,7 +202,12 @@ const fetchLinkedCards = async (card) => {
       )
 
       if (selectedCardData.value?.card?.id === card.id) {
-        selectedLinkedCards.value = sortCards(linkedCardsData.flat().filter(Boolean))
+        const flatCards = linkedCardsData.flat().filter(Boolean)
+        const cardsWithPrice = flatCards.map((c) => ({
+          ...c,
+          price: getPrice(c),
+        }))
+        selectedLinkedCards.value = sortCards(cardsWithPrice)
       }
     }
   } catch (error) {

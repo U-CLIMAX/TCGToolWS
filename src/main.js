@@ -42,6 +42,7 @@ const bootstrap = async () => {
             'ws-rose': '#e85a6a',
             'ws-cn': '#52CFCF',
             'grey-btn': '#455A64',
+            'currency': '#F6C400',
           },
         },
         dark: {
@@ -50,6 +51,7 @@ const bootstrap = async () => {
             'ws-rose': '#FF8391',
             'ws-cn': '#7ae3d2',
             'grey-btn': '#ECEFF1',
+            'currency': '#FFD54F',
           },
         },
       },

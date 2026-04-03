@@ -48,6 +48,7 @@ const handleCardClick = () => {
     card: props.card,
     imageUrl: imageUrl,
     blurUrl: blurUrl,
+    price: props.card.price,
   })
 }
 </script>

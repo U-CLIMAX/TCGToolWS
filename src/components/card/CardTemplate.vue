@@ -99,8 +99,13 @@
         :class="isTableMode ? 'pa-2' : 'pa-3'"
         class="card-content pt-0"
       >
-        <div class="text-caption text-medium-emphasis text-md-body-2 mb-1 text-truncate">
-          {{ card.id }}
+        <div class="d-flex justify-space-between align-center mb-1">
+          <div class="text-caption text-medium-emphasis text-md-body-2 text-truncate">
+            {{ card.id }}
+          </div>
+          <div v-if="cardPrice" class="text-body-2 font-weight-bold font-DINCond text-primary">
+            {{ cardPrice }} 円
+          </div>
         </div>
         <h3 class="text-subtitle-2 text-md-subtitle-1 text-truncate">{{ card.name }}</h3>
         <v-expand-transition>
@@ -136,7 +141,9 @@ import { getCardUrls } from '@/utils/getCardImage'
 import { useAuthStore } from '@/stores/auth'
 import { useDeckStore } from '@/stores/deck'
 import { useUIStore } from '@/stores/ui'
+import { usePriceStore } from '@/stores/price'
 import { useDevice } from '@/composables/useDevice'
+import { useRoute } from 'vue-router'
 
 const props = defineProps({
   card: { type: Object, required: true },
@@ -149,9 +156,18 @@ const authStore = useAuthStore()
 const { userRole } = storeToRefs(authStore)
 const deckStore = useDeckStore()
 const uiStore = useUIStore()
+const priceStore = usePriceStore()
+const route = useRoute()
 const { smAndDown, lgAndUp } = useDisplay()
 const { isTouch } = useDevice()
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
+
+const seriesId = computed(() => route.params.seriesId)
+const cardPrice = computed(() => {
+  if (!seriesId.value) return null
+  const price = priceStore.getPrice(seriesId.value, props.card.id)
+  return price ? price.toLocaleString() : null
+})
 
 const { base: imageUrl, blur: blurUrl } = getCardUrls(props.card.cardIdPrefix, props.card.id)
 const cardCount = computed(() => deckStore.getCardCount(props.card.id))
@@ -165,6 +181,7 @@ const handleCardClick = () => {
     card: props.card,
     imageUrl: imageUrl,
     blurUrl: blurUrl,
+    price: cardPrice.value,
   })
 }
 </script>

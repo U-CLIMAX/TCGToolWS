@@ -130,6 +130,20 @@
                   N/A
                 </h1>
               </template>
+
+              <v-fade-transition>
+                <div v-if="priceStore.isLoading" class="ml-2 d-flex align-center flex-shrink-0">
+                  <v-progress-circular
+                    indeterminate
+                    :size="smAndUp ? 18 : 14"
+                    :width="2"
+                    color="primary"
+                  ></v-progress-circular>
+                  <span v-if="smAndUp" class="text-caption ml-1 text-medium-emphasis">
+                    价格加载中
+                  </span>
+                </div>
+              </v-fade-transition>
             </div>
 
             <!-- 右侧 -->
@@ -161,6 +175,16 @@
                     ></v-btn>
                   </template>
                 </v-tooltip>
+                <v-btn
+                  :icon="uiStore.showCardPrices ? 'mdi-cash' : 'mdi-cash-off'"
+                  variant="text"
+                  density="compact"
+                  @click="uiStore.showCardPrices = !uiStore.showCardPrices"
+                  v-tooltip:bottom="{
+                    text: uiStore.showCardPrices ? '隐藏价格' : '显示价格',
+                    disabled: isTouch,
+                  }"
+                ></v-btn>
                 <v-btn
                   :icon="uiStore.showStatsDashboard ? 'mdi-chart-pie' : 'mdi-chart-pie-outline'"
                   class="mr-2"
@@ -209,6 +233,7 @@
             :stats-grouped-cards="statsGroupedCards"
             :group-by="groupBy"
             :selected-card="selectedCardData"
+            :selected-card-price="selectedCardPrice"
             :is-modal-visible="isModalVisible"
             :linked-cards="linkedCardsDetails"
             :is-loading-links="isLoadingLinkedCards"
@@ -259,6 +284,14 @@
           </template>
           <v-list-item-title v-if="!uiStore.showStatsDashboard">显示统计</v-list-item-title>
           <v-list-item-title v-else>隐藏统计</v-list-item-title>
+        </v-list-item>
+        <v-list-item @click="handleShowCardPricesClick">
+          <template #prepend>
+            <v-icon v-if="!uiStore.showCardPrices">mdi-cash-off</v-icon>
+            <v-icon v-else>mdi-cash</v-icon>
+          </template>
+          <v-list-item-title v-if="!uiStore.showCardPrices">显示价格</v-list-item-title>
+          <v-list-item-title v-else>隐藏价格</v-list-item-title>
         </v-list-item>
         <v-list-item
           v-if="isEditing && deckStore.editingDeckKey && !isViewingHistory"
@@ -457,9 +490,11 @@ import { useSnackbar } from '@/composables/useSnackbar'
 import { useUIStore } from '@/stores/ui'
 import { useDeckStore } from '@/stores/deck'
 import { useAuthStore } from '@/stores/auth'
+import { usePriceStore } from '@/stores/price'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import { useDevice } from '@/composables/useDevice'
 import { sortCards } from '@/utils/cardsSort'
+import { getCardSeriesId } from '@/utils/card'
 import { convertElementToPng } from '@/utils/domToImage.js'
 import { useDeckHistory } from '@/composables/useDeckHistory'
 import { useDeckExport } from '@/composables/useDeckExport'
@@ -475,6 +510,7 @@ const { decodeData } = useDeckEncoder()
 const { triggerSnackbar } = useSnackbar()
 const uiStore = useUIStore()
 const authStore = useAuthStore()
+const priceStore = usePriceStore()
 const { isTouch } = useDevice()
 const { userRole } = storeToRefs(authStore)
 const deckStore = useDeckStore()
@@ -526,6 +562,29 @@ const isEditing = computed(() => {
   }
   return deckStore.editingDeckKey === deckKey
 })
+
+const initializePrices = async () => {
+  const configs = []
+  const cardsToProcess = Object.values(cards.value)
+
+  if (cardsToProcess.length > 0) {
+    const seriesConfigMap = new Map()
+    cardsToProcess.forEach((c) => {
+      const info = getCardSeriesId(c.id)
+      if (info && info.id && info.yytUrl && !seriesConfigMap.has(info.id)) {
+        seriesConfigMap.set(info.id, { seriesId: info.id, yytUrl: info.yytUrl })
+      }
+    })
+
+    seriesConfigMap.forEach((config) => {
+      configs.push(config)
+    })
+  }
+
+  if (configs.length > 0) {
+    await priceStore.fetchPrices(configs)
+  }
+}
 
 const isDataReady = ref(false)
 
@@ -665,6 +724,7 @@ onMounted(async () => {
     // 確保所有資料都準備好
     await nextTick()
     isDataReady.value = true
+    initializePrices()
   } catch (error) {
     triggerSnackbar(error.message, 'error')
   } finally {
@@ -779,6 +839,7 @@ watchEffect(() => {
 
 const isModalVisible = ref(false)
 const selectedCardData = ref(null)
+const selectedCardPrice = ref(null)
 const linkedCardsDetails = ref([])
 const isLoadingLinkedCards = ref(false)
 
@@ -803,20 +864,40 @@ const onNextCard = () => {
 
 const handleShowNewCard = async (cardPayload) => {
   try {
-    const card = cardPayload.card || cardPayload
-    if (!card) return
+    const cardToDisplay = cardPayload.card || cardPayload
+    if (!cardToDisplay) return
+
+    // Set price for the main card
+    if (cardPayload.price !== undefined) {
+      selectedCardPrice.value = cardPayload.price
+    } else {
+      const info = getCardSeriesId(cardToDisplay.id)
+      const p = info ? priceStore.getPrice(info.id, cardToDisplay.id) : null
+      selectedCardPrice.value = p ? p.toLocaleString() : null
+    }
 
     linkedCardsDetails.value = []
     isLoadingLinkedCards.value = true
-    selectedCardData.value = card
+    selectedCardData.value = cardToDisplay
     isModalVisible.value = true
 
-    if (card.link && Array.isArray(card.link) && card.link.length > 0) {
+    if (cardToDisplay.link && Array.isArray(cardToDisplay.link) && cardToDisplay.link.length > 0) {
       const linkedCardsData = await Promise.all(
-        card.link.map(async (linkId) => fetchCardsByBaseIdAndPrefix(linkId, card.cardIdPrefix))
+        cardToDisplay.link.map(async (linkId) =>
+          fetchCardsByBaseIdAndPrefix(linkId, cardToDisplay.cardIdPrefix)
+        )
       )
-      if (selectedCardData.value && selectedCardData.value.id === card.id) {
-        linkedCardsDetails.value = sortCards(linkedCardsData.flat().filter(Boolean))
+      if (selectedCardData.value && selectedCardData.value.id === cardToDisplay.id) {
+        const flatCards = linkedCardsData.flat().filter(Boolean)
+        const cardsWithPrice = flatCards.map((c) => {
+          const info = getCardSeriesId(c.id)
+          const p = info ? priceStore.getPrice(info.id, c.id) : null
+          return {
+            ...c,
+            price: p ? p.toLocaleString() : null,
+          }
+        })
+        linkedCardsDetails.value = sortCards(cardsWithPrice)
       }
     }
   } catch (error) {
@@ -890,6 +971,10 @@ const selectGroupBy = (value) => {
 const showMoreActionsBottomSheet = ref(false)
 const handleStatsDashboardClick = () => {
   uiStore.showStatsDashboard = !uiStore.showStatsDashboard
+  showMoreActionsBottomSheet.value = false
+}
+const handleShowCardPricesClick = () => {
+  uiStore.showCardPrices = !uiStore.showCardPrices
   showMoreActionsBottomSheet.value = false
 }
 const handleShowDifferencesClick = () => {

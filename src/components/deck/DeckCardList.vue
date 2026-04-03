@@ -78,6 +78,15 @@
                       @click="$emit('card-click', item)"
                     >
                       <div
+                        v-if="uiStore.showCardPrices && $route.name == 'DeckDetail'"
+                        class="price-container d-flex align-center justify-center font-DINCond text-currency"
+                      >
+                        <template v-if="getItemPrice(item)">
+                          <v-icon size="10" class="mr-1">mdi-currency-jpy</v-icon>
+                          {{ getItemPrice(item) }}
+                        </template>
+                      </div>
+                      <div
                         v-if="item.diffStatus"
                         class="diff-label"
                         :class="`diff-label-${item.diffStatus}`"
@@ -131,6 +140,7 @@
         :card="selectedCard"
         :img-url="modalCardImageUrl.base"
         :blur-url="modalCardImageUrl.blur"
+        :price="selectedCardPrice"
         :linked-cards="linkedCards"
         :is-loading-links="isLoadingLinks"
         :show-actions="false"
@@ -152,6 +162,8 @@ import { useTheme } from 'vuetify'
 import { useDisplay } from 'vuetify'
 import { getCardUrls } from '@/utils/getCardImage'
 import { useDevice } from '@/composables/useDevice'
+import { usePriceStore } from '@/stores/price'
+import { getCardSeriesId } from '@/utils/card'
 import CardDetailModal from '@/components/card/CardDetailModal.vue'
 import DeckStatsDashboard from '@/components/deck/DeckStatsDashboard.vue'
 import DeckRating from '@/components/deck/DeckRating.vue'
@@ -173,6 +185,10 @@ const props = defineProps({
   },
   selectedCard: {
     type: Object,
+    default: null,
+  },
+  selectedCardPrice: {
+    type: [String, Number],
     default: null,
   },
   isModalVisible: {
@@ -222,6 +238,7 @@ defineEmits(['card-click', 'update:isModalVisible', 'show-new-card', 'prev-card'
 const { smAndUp, smAndDown } = useDisplay()
 const theme = useTheme()
 const uiStore = useUIStore()
+const priceStore = usePriceStore()
 const { isTouch } = useDevice()
 const route = useRoute()
 
@@ -275,6 +292,13 @@ const getGroupName = (groupName) => {
     default:
       return groupName
   }
+}
+
+const getItemPrice = (item) => {
+  const info = getCardSeriesId(item.id)
+  if (!info) return null
+  const price = priceStore.getPrice(info.id, item.id)
+  return price ? price.toLocaleString() : null
 }
 </script>
 
@@ -440,6 +464,11 @@ const getGroupName = (groupName) => {
 }
 .diff-label-decreased {
   background-color: rgba(var(--v-theme-error), 0.9);
+}
+
+.price-container {
+  min-height: 24px;
+  width: 100%;
 }
 
 /* 響應式設計 (Responsive) */

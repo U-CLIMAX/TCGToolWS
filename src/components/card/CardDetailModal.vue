@@ -120,14 +120,29 @@
           :style="{ overflowY: $vuetify.display.mdAndUp ? undefined : 'visible' }"
         >
           <div class="pa-4">
-            <v-card-subtitle class="pb-1 text-body-2 pa-0">
+            <v-card-subtitle class="pb-1 text-body-2 pa-0 pr-8">
               <v-icon size="18" class="mr-1">mdi-cube-outline</v-icon>
               {{ card.product_name }}
             </v-card-subtitle>
-            <v-card-title class="pt-0 text-h5 text-wrap pa-0">{{ card.name }}</v-card-title>
+
+            <v-card-title class="pt-0 text-h5 text-wrap pa-0">
+              {{ card.name }}
+            </v-card-title>
+
             <v-card-subtitle class="pt-0 text-body-2 pa-0 mb-4">
               {{ card.id }}
             </v-card-subtitle>
+
+            <div v-if="price != null" class="mb-4 d-flex align-center">
+              <span class="font-weight-bold d-flex align-center text-currency">
+                <v-icon size="16" class="mr-1">mdi-currency-jpy</v-icon>
+                <span class="font-DINCond text-h6">{{ price }}</span>
+              </span>
+
+              <span class="text-caption text-grey d-flex align-center ml-2">
+                价格数据来自 : 遊々亭
+              </span>
+            </div>
 
             <v-row dense class="my-4 text-center">
               <v-col>
@@ -269,6 +284,7 @@ const props = defineProps({
   card: { type: Object, required: true },
   imgUrl: { type: String, required: true },
   blurUrl: { type: String, required: true },
+  price: { type: [String, Number], default: null },
   linkedCards: { type: Array, default: () => [] },
   isLoadingLinks: { type: Boolean, default: false },
   showActions: { type: Boolean, default: false },

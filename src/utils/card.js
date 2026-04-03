@@ -65,3 +65,9 @@ export const fetchCardsByBaseIdAndPrefix = async (baseId, prefix) => {
     return []
   }
 }
+
+export const getCardSeriesId = (id) => {
+  const prefix = id.split('/')[0]
+  const series = Object.values(seriesMap).find((s) => s.prefixes && s.prefixes.includes(prefix))
+  return series ? { id: series.id, yytUrl: series.yytUrl } : null
+}

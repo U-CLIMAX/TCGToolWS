@@ -70,6 +70,15 @@
             <div class="font-DINCond text-h5 mb-1">{{ totalSoulCount }}</div>
             <div class="text-body-2 text-disabled">触发魂标</div>
           </div>
+          <template v-if="totalPrice > 0">
+            <v-divider></v-divider>
+            <div class="text-center px-4 py-4">
+              <div class="font-DINCond text-h5 mb-1 text-currency">
+                {{ totalPrice.toLocaleString() }}
+              </div>
+              <div class="text-body-2 text-disabled">参考总价 (JPY)</div>
+            </div>
+          </template>
         </div>
       </div>
 
@@ -144,6 +153,15 @@
             <div class="text-h5 font-weight-bold mb-1">{{ totalSoulCount }}</div>
             <div class="text-body-2 text-disabled">触发魂标</div>
           </div>
+          <template v-if="totalPrice > 0">
+            <v-divider vertical></v-divider>
+            <div class="flex-1 px-2 w-100">
+              <div class="text-h5 font-weight-bold mb-1 text-currency">
+                {{ totalPrice.toLocaleString() }}
+              </div>
+              <div class="text-body-2 text-disabled">参考总价</div>
+            </div>
+          </template>
         </v-card-text>
       </div>
     </v-card>
@@ -154,6 +172,8 @@
 import { computed } from 'vue'
 import { useDisplay } from 'vuetify'
 import { useUIStore } from '@/stores/ui'
+import { usePriceStore } from '@/stores/price'
+import { getCardSeriesId } from '@/utils/card'
 import { useColorExtractor } from '@/composables/useColorExtractor'
 
 const props = defineProps({
@@ -163,6 +183,7 @@ const props = defineProps({
 
 const { smAndUp } = useDisplay()
 const uiStore = useUIStore()
+const priceStore = usePriceStore()
 
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 const backgroundImageSrc = computed(() => uiStore.backgroundImage?.src)
@@ -178,6 +199,13 @@ const climaxCardCount = computed(() =>
 )
 const totalSoulCount = computed(() =>
   allCards.value.reduce((s, c) => s + c.quantity * (c.trigger_soul_count || 0), 0)
+)
+const totalPrice = computed(() =>
+  allCards.value.reduce((sum, c) => {
+    const info = getCardSeriesId(c.id)
+    const p = info.id ? priceStore.getPrice(info.id, c.id) : null
+    return sum + (p ? p * c.quantity : 0)
+  }, 0)
 )
 
 const addAlpha = (color, alpha) => {

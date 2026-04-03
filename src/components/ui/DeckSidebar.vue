@@ -113,6 +113,15 @@
         </div>
 
         <div v-else>
+          <!-- Total Price Display -->
+          <div v-if="totalPrice > 0" class="d-flex align-center justify-center">
+            <span class="text-caption text-grey mr-2">参考总价:</span>
+            <span class="font-weight-bold d-flex align-center text-currency">
+              <v-icon size="14" class="mr-1">mdi-currency-jpy</v-icon>
+              <span class="font-DINCond text-h6">{{ totalPrice.toLocaleString() }}</span>
+            </span>
+          </div>
+
           <div v-for="([groupName, group], index) in groupedCards" :key="groupName">
             <div
               class="d-flex justify-space-between align-center text-subtitle-2 text-disabled mb-1"
@@ -167,6 +176,7 @@
       :card="selectedCardData"
       :img-url="modalCardImageUrl.base"
       :blur-url="modalCardImageUrl.blur"
+      :price="selectedCardPrice"
       :linked-cards="linkedCardsDetails"
       :is-loading-links="isLoadingLinkedCards"
       :show-actions="true"
@@ -408,7 +418,7 @@
 import { ref, computed, toRaw } from 'vue'
 import { useDeckStore } from '@/stores/deck'
 import { getCardUrls } from '@/utils/getCardImage'
-import { fetchCardByIdAndPrefix, fetchCardsByBaseIdAndPrefix } from '@/utils/card'
+import { fetchCardByIdAndPrefix, fetchCardsByBaseIdAndPrefix, getCardSeriesId } from '@/utils/card'
 import CardDetailModal from '@/components/card/CardDetailModal.vue'
 import { useDisplay } from 'vuetify'
 import { storeToRefs } from 'pinia'
@@ -419,6 +429,7 @@ import { useAuthStore } from '@/stores/auth'
 import { useRouter } from 'vue-router'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useUIStore } from '@/stores/ui'
+import { usePriceStore } from '@/stores/price'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import { sortCards } from '@/utils/cardsSort'
 import { deckRestrictionsLastUpdated } from '@/maps/deck-restrictions'
@@ -446,8 +457,18 @@ const deckStore = useDeckStore()
 const { encodeData } = useDeckEncoder()
 const { triggerSnackbar } = useSnackbar()
 const uiStore = useUIStore()
+const priceStore = usePriceStore()
 const { isTouch } = useDevice()
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
+
+const totalPrice = computed(() => {
+  return Object.values(deckStore.cardsInDeck).reduce((sum, item) => {
+    const info = getCardSeriesId(item.id)
+    if (!info) return sum
+    const price = priceStore.getPrice(info.id, item.id)
+    return sum + (price ? price * item.quantity : 0)
+  }, 0)
+})
 
 // Loading State
 const authStore = useAuthStore()
@@ -698,6 +719,7 @@ const isModalVisible = ref(false)
 
 // Card Data for Modal
 const selectedCardData = ref(null)
+const selectedCardPrice = ref(null)
 const linkedCardsDetails = ref([])
 const isLoadingLinkedCards = ref(false)
 
@@ -743,6 +765,16 @@ const modalCardImageUrl = computed(() => {
 const handleShowNewCard = async (cardPayload) => {
   try {
     const cardToDisplay = cardPayload.card || cardPayload
+
+    // Set price for the main card
+    if (cardPayload.price !== undefined) {
+      selectedCardPrice.value = cardPayload.price
+    } else {
+      const info = getCardSeriesId(cardToDisplay.id)
+      const p = info ? priceStore.getPrice(info.id, cardToDisplay.id) : null
+      selectedCardPrice.value = p ? p.toLocaleString() : null
+    }
+
     const card = await fetchCardByIdAndPrefix(cardToDisplay.id, cardToDisplay.cardIdPrefix)
     if (!card) {
       console.error('Failed to fetch card details for', cardToDisplay.id)
@@ -758,12 +790,20 @@ const handleShowNewCard = async (cardPayload) => {
         card.link.map(async (linkId) => fetchCardsByBaseIdAndPrefix(linkId, card.cardIdPrefix))
       )
       if (selectedCardData.value && selectedCardData.value.id === card.id) {
-        linkedCardsDetails.value = sortCards(linkedCardsData.flat().filter(Boolean))
+        const flatCards = linkedCardsData.flat().filter(Boolean)
+        const cardsWithPrice = flatCards.map((c) => {
+          const info = getCardSeriesId(c.id)
+          const p = info ? priceStore.getPrice(info.id, c.id) : null
+          return {
+            ...c,
+            price: p ? p.toLocaleString() : null,
+          }
+        })
+        linkedCardsDetails.value = sortCards(cardsWithPrice)
       }
     }
   } catch (error) {
     console.error('Error handling show new card:', error)
-    // Optionally, show a snackbar or other user-facing error message
   } finally {
     isLoadingLinkedCards.value = false
   }

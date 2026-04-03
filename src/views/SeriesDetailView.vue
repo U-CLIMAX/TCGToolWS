@@ -45,6 +45,19 @@
             >
               {{ filterStore.filteredCards.length }}
             </v-chip>
+            <v-fade-transition>
+              <div v-if="priceStore.isLoading" class="ml-2 d-flex align-center flex-shrink-0">
+                <v-progress-circular
+                  indeterminate
+                  :size="smAndUp ? 18 : 14"
+                  :width="2"
+                  color="primary"
+                ></v-progress-circular>
+                <span v-if="smAndUp" class="text-caption ml-1 text-medium-emphasis">
+                  价格加载中
+                </span>
+              </div>
+            </v-fade-transition>
           </div>
 
           <div
@@ -183,8 +196,10 @@ import { useDeckStore } from '@/stores/deck'
 import { useFilterStore } from '@/stores/filter'
 import { useUIStore } from '@/stores/ui'
 import { useRecentStore } from '@/stores/recent'
+import { usePriceStore } from '@/stores/price'
 import { useInfiniteScrollState } from '@/composables/useInfiniteScrollState.js'
 import { useDevice } from '@/composables/useDevice'
+import { getCardSeriesId } from '@/utils/card'
 import CardInfiniteScrollList from '@/components/card/CardInfiniteScrollList.vue'
 import BaseFilterSidebar from '@/components/ui/FilterSidebar.vue'
 import DeckSidebar from '@/components/ui/DeckSidebar.vue'
@@ -209,6 +224,7 @@ const deckStore = useDeckStore()
 const filterStore = useFilterStore()
 const uiStore = useUIStore()
 const recentStore = useRecentStore()
+const priceStore = usePriceStore()
 const { isTouch } = useDevice()
 const headerRef = ref(null)
 const { isCardDeckOpen, isFilterOpen, isTableModeActive, isPerformanceMode } = storeToRefs(uiStore)
@@ -259,6 +275,7 @@ const seriesName = computed(() => {
   return foundEntry ? foundEntry[0] : '未知系列'
 })
 const prefixes = computed(() => seriesMap[seriesName.value]?.prefixes ?? [])
+const yytUrl = computed(() => seriesMap[seriesName.value]?.yytUrl)
 
 // 使用雜湊函式，將長名稱轉換為短序號 (Base36)
 const getShortHash = (str) => {
@@ -325,8 +342,43 @@ watch([() => filterStore.filteredCards], () => {
   }
 })
 
+const initializePrices = async () => {
+  const configs = []
+
+  // Current series
+  if (yytUrl.value) {
+    configs.push({ seriesId: props.seriesId, yytUrl: yytUrl.value })
+  }
+
+  // Cards in deck series
+  const cards = Object.values(deckStore.cardsInDeck)
+  if (cards.length > 0) {
+    // Collect unique series configs from deck cards
+    const seriesConfigMap = new Map()
+    cards.forEach((c) => {
+      const info = getCardSeriesId(c.id)
+      if (info && info.id && info.yytUrl && !seriesConfigMap.has(info.id)) {
+        seriesConfigMap.set(info.id, { seriesId: info.id, yytUrl: info.yytUrl })
+      }
+    })
+
+    seriesConfigMap.forEach((config) => {
+      // Avoid duplicate config if it's already the current series
+      if (config.seriesId !== props.seriesId) {
+        configs.push(config)
+      }
+    })
+  }
+
+  if (configs.length > 0) {
+    // Use the updated bulk fetch method
+    await priceStore.fetchPrices(configs)
+  }
+}
+
 onMounted(() => {
   recentStore.addSeries(props.seriesId)
+  initializePrices()
 })
 
 onUnmounted(() => {
@@ -426,5 +478,9 @@ useInfiniteScrollState({
   .sidebar-container.right-sidebar-open {
     width: 100%;
   }
+}
+
+t-sidebar-open {
+  width: 100%;
 }
 </style>
