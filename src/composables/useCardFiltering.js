@@ -1,12 +1,4 @@
-import {
-  ref,
-  computed,
-  watch,
-  shallowRef,
-  toRaw,
-  onUnmounted,
-  getCurrentInstance,
-} from 'vue'
+import { ref, computed, watch, shallowRef, toRaw, onUnmounted, getCurrentInstance } from 'vue'
 import { wrap } from 'comlink'
 import FilterWorker from '@/workers/filter.worker.js?worker'
 import { debounceRef } from '@/composables/useDebounceRef'
