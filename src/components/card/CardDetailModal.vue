@@ -256,7 +256,7 @@
         <v-list nav density="compact">
           <v-list-item
             v-if="card.type !== '高潮卡'"
-            prepend-icon="mdi-text-box-outline"
+            prepend-icon="mdi-card-text-outline"
             title="包含效果文字"
             @click="handleDownloadCard(true)"
           ></v-list-item>
