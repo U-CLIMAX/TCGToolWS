@@ -20,9 +20,8 @@ export function useDeckHistory() {
    * @param {number} index - The 1-based index of the history entry to view.
    * @param {Array} history - The full history array.
    * @param {Array} originalCards - The current (latest) cards in the deck.
-   * @param {string} seriesId - The series ID for fetching card data.
    */
-  const viewHistoryState = async (index, history, originalCards, seriesId) => {
+  const viewHistoryState = async (index, history, originalCards) => {
     uiStore.setLoading(true)
     try {
       const historyIndex = index - 1
@@ -94,7 +93,8 @@ export function useDeckHistory() {
       // Step 3: Add back any cards that were 'removed' in this specific change, so they appear in the list.
       for (const change of targetHistoryEntry.diff || []) {
         if (change.status === 'removed') {
-          const fullCardData = await fetchCardByIdAndPrefix(change.cardId, seriesId)
+          const prefix = change.cardId.split('/')[0].toLowerCase()
+          const fullCardData = await fetchCardByIdAndPrefix(change.cardId, prefix)
           if (fullCardData) {
             finalCards.push({
               ...fullCardData,
