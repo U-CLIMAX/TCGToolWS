@@ -71,12 +71,12 @@
             </v-fade-transition>
             <v-fade-transition>
               <v-btn
-                v-if="(isHovering || isTouch) && card.type != '高潮卡'"
+                v-if="isHovering || isTouch"
                 icon="mdi-download"
                 variant="tonal"
                 size="small"
                 class="download-card-button"
-                @click="handleDownloadCard"
+                @click="isDownloadCardDialogOpen = true"
               ></v-btn>
             </v-fade-transition>
           </div>
@@ -248,6 +248,26 @@
     ></v-btn>
 
     <DownloadTextDialog v-model="isDownloadTextDialogOpen" @confirm="executeDownloadText" />
+
+    <!-- Download Card Option Dialog -->
+    <v-dialog v-model="isDownloadCardDialogOpen" max-width="300">
+      <v-card class="rounded-2lg pa-2">
+        <v-card-title class="text-subtitle-1">选择下载版本</v-card-title>
+        <v-list nav density="compact">
+          <v-list-item
+            v-if="card.type !== '高潮卡'"
+            prepend-icon="mdi-text-box-outline"
+            title="包含效果文字"
+            @click="handleDownloadCard(true)"
+          ></v-list-item>
+          <v-list-item
+            prepend-icon="mdi-image-outline"
+            title="原图"
+            @click="handleDownloadCard(false)"
+          ></v-list-item>
+        </v-list>
+      </v-card>
+    </v-dialog>
   </v-card>
 </template>
 
@@ -269,6 +289,7 @@ import { useFilterStore } from '@/stores/filter'
 import { useGlobalSearchStore } from '@/stores/globalSearch'
 import { useDevice } from '@/composables/useDevice'
 import { formatEffectToHtml } from '@/utils/cardEffectFormatter'
+import { normalizeFileName } from '@/utils/sanitizeFilename'
 
 const { triggerSnackbar } = useSnackbar()
 const { smAndUp } = useDisplay()
@@ -304,6 +325,7 @@ const activeFilterStore = computed(() =>
 )
 
 const isDownloadTextDialogOpen = ref(false)
+const isDownloadCardDialogOpen = ref(false)
 
 const showOnTap = ref(false)
 let hideTimeout = null
@@ -470,95 +492,151 @@ const executeDownloadText = async () => {
   }
 }
 
-const handleDownloadCard = async () => {
-  uiStore.setLoading(true)
+const triggerDownload = (url, filename) => {
+  const a = document.createElement('a')
+  a.href = url
+  a.download = filename
+  document.body.appendChild(a)
+  a.click()
+  document.body.removeChild(a)
+}
 
-  const exportContainer = document.createElement('div')
-  exportContainer.id = 'temp-export-container'
+const waitForImages = (container) => {
+  const images = Array.from(container.querySelectorAll('img'))
+  return Promise.all(
+    images.map(
+      (img) =>
+        new Promise((resolve) => {
+          img.complete ? resolve() : ((img.onload = resolve), (img.onerror = resolve))
+        })
+    )
+  )
+}
 
-  exportContainer.style.position = 'absolute'
-  exportContainer.style.left = '-9999px'
-  exportContainer.style.top = '-9999px'
-  exportContainer.style.width = '400px'
-  exportContainer.style.height = '557px'
-  exportContainer.style.borderRadius = '8px'
-  exportContainer.style.overflow = 'hidden'
-  exportContainer.style.fontFamily = 'LXGW WenKai Lite, system-ui, sans-serif'
+const waitForRender = async () => {
+  await new Promise((resolve) => setTimeout(resolve, 100))
+  await new Promise((resolve) => requestAnimationFrame(resolve))
+  await new Promise((resolve) => requestAnimationFrame(resolve))
+}
 
-  const img = document.createElement('img')
-  img.crossOrigin = 'anonymous'
-  img.src = props.imgUrl
-  img.style.width = '100%'
-  img.style.height = '100%'
-  img.style.objectFit = 'cover'
-  img.style.display = 'block'
+// ─── 无文字模式：直接下载原图 ──────────────────────────────────
 
-  const overlay = document.createElement('div')
-  overlay.style.position = 'absolute'
-  overlay.style.bottom = props.card.type === '事件卡' ? '53px' : '67px'
-  overlay.style.left = '12px'
-  overlay.style.right = '12px'
-  overlay.style.backgroundColor = 'rgba(255, 255, 255, 0.85)'
-  overlay.style.color = 'black'
-  overlay.style.padding = '10px'
-  overlay.style.boxSizing = 'border-box'
-  overlay.style.borderRadius = '8px'
+const downloadOriginalImage = async () => {
+  await new Promise((resolve, reject) => {
+    const img = new Image()
+    img.crossOrigin = 'anonymous'
 
-  const effectText = document.createElement('div')
-  effectText.innerHTML = formattedEffect.value
-  effectText.style.fontSize = '0.9rem'
-  effectText.style.lineHeight = '1.2'
-  effectText.style.wordBreak = 'break-word'
-  effectText.style.textAlign = 'justify'
+    img.onload = () => {
+      const canvas = document.createElement('canvas')
+      canvas.width = img.width
+      canvas.height = img.height
+      canvas.getContext('2d').drawImage(img, 0, 0)
 
-  effectText.querySelectorAll('img').forEach((icon) => {
-    let src = icon.getAttribute('src')
-    if (src && src.endsWith('.svg')) {
-      icon.setAttribute('src', src.replace(/\.svg$/, '.webp'))
+      canvas.toBlob((blob) => {
+        if (!blob) return reject(new Error('Canvas 转换 Blob 失败'))
+        const objectUrl = URL.createObjectURL(blob)
+        triggerDownload(objectUrl, `${normalizeFileName(props.card.id)}.png`)
+        URL.revokeObjectURL(objectUrl)
+        resolve()
+      }, 'image/png')
     }
 
-    icon.crossOrigin = 'anonymous'
-    icon.style.height = '0.9rem'
-    icon.style.verticalAlign = '-0.15rem'
-    icon.style.display = 'inline-block'
+    img.onerror = () => reject(new Error('图片加载失败'))
+    img.src = props.imgUrl
+  })
+}
+
+// ─── 有文字模式：生成带文字覆层的图片 ─────────────────────────
+
+const buildExportContainer = () => {
+  const container = document.createElement('div')
+  Object.assign(container, { id: 'temp-export-container' })
+  Object.assign(container.style, {
+    position: 'absolute',
+    left: '-9999px',
+    top: '-9999px',
+    width: '400px',
+    height: '557px',
+    borderRadius: '8px',
+    overflow: 'hidden',
+    fontFamily: 'LXGW WenKai Lite, system-ui, sans-serif',
+  })
+
+  const img = document.createElement('img')
+  Object.assign(img, { crossOrigin: 'anonymous', src: props.imgUrl })
+  Object.assign(img.style, { width: '100%', height: '100%', objectFit: 'cover', display: 'block' })
+
+  // 文字覆层
+  const overlay = document.createElement('div')
+  Object.assign(overlay.style, {
+    position: 'absolute',
+    bottom: props.card.type === '事件卡' ? '53px' : '67px',
+    left: '12px',
+    right: '12px',
+    backgroundColor: 'rgba(255, 255, 255, 0.85)',
+    color: 'black',
+    padding: '10px',
+    boxSizing: 'border-box',
+    borderRadius: '8px',
+  })
+
+  // 效果文字
+  const effectText = document.createElement('div')
+  effectText.innerHTML = formattedEffect.value
+  Object.assign(effectText.style, {
+    fontSize: '0.9rem',
+    lineHeight: '1.2',
+    wordBreak: 'break-word',
+    textAlign: 'justify',
+  })
+
+  // 替换 SVG 图标为 webp，设置跨域与尺寸
+  effectText.querySelectorAll('img').forEach((icon) => {
+    const src = icon.getAttribute('src')
+    if (src?.endsWith('.svg')) icon.setAttribute('src', src.replace(/\.svg$/, '.webp'))
+    Object.assign(icon, { crossOrigin: 'anonymous' })
+    Object.assign(icon.style, {
+      height: '0.9rem',
+      verticalAlign: '-0.15rem',
+      display: 'inline-block',
+    })
   })
 
   overlay.appendChild(effectText)
+  container.append(img, overlay)
+  return container
+}
 
-  exportContainer.appendChild(img)
-  exportContainer.appendChild(overlay)
-
+const downloadCardWithText = async () => {
+  const exportContainer = buildExportContainer()
   document.body.appendChild(exportContainer)
-
   try {
-    const images = Array.from(exportContainer.querySelectorAll('img'))
-    const imageLoadPromises = images.map(
-      (image) =>
-        new Promise((resolve) => {
-          if (image.complete) {
-            resolve()
-          } else {
-            image.onload = resolve
-            image.onerror = resolve
-          }
-        })
-    )
-
-    await Promise.all(imageLoadPromises)
-    // wait for browser to render (100ms + 2rAF)
-    await new Promise((resolve) => setTimeout(resolve, 100))
-    await new Promise((resolve) => requestAnimationFrame(resolve))
-    await new Promise((resolve) => requestAnimationFrame(resolve))
-
-    const filename = props.card.id || 'card'
-    await convertElementToPng('temp-export-container', filename, 2, true)
-
-    triggerSnackbar('图片已成功汇出', 'success')
+    await waitForImages(exportContainer)
+    await waitForRender()
+    await convertElementToPng('temp-export-container', props.card.id || 'card', 2, true)
+    triggerSnackbar('图片已成功导出', 'success')
   } catch (error) {
-    console.error('Failed to export card image:', error)
+    console.error('导出卡片图片失败:', error)
     triggerSnackbar(`导出失败: ${error.message || '未知错误'}`, 'error')
   } finally {
     document.body.removeChild(exportContainer)
+  }
+}
+
+const handleDownloadCard = async (withText = true) => {
+  isDownloadCardDialogOpen.value = false
+  uiStore.setLoading(true)
+  try {
+    if (withText) {
+      await downloadCardWithText()
+    } else {
+      await downloadOriginalImage()
+      triggerSnackbar('图片已成功导出', 'success')
+    }
+  } catch (error) {
+    console.error('下载卡片失败:', error)
+    triggerSnackbar(`导出失败: ${error.message || '未知错误'}`, 'error')
+  } finally {
     uiStore.setLoading(false)
   }
 }
