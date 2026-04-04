@@ -214,7 +214,7 @@ const searchIcon = computed(() =>
 const headerOffsetHeight = computed(() => rawHeaderHeight.value)
 
 watchEffect(() => {
-  const extra = smAndUp.value ? 80 : 10
+  const extra = !smAndDown.value ? 80 : 25
   uiStore.setHeaderHeight(headerOffsetHeight.value + extra)
 })
 
