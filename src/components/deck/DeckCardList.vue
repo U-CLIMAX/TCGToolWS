@@ -69,7 +69,8 @@
                       v-if="
                         (uiStore.showCardPrices || shouldForceElementsOpen) &&
                         $route.name !== 'DecksGallery' &&
-                        !priceStore.isLoading
+                        !priceStore.isLoading &&
+                        shouldShowPriceContainer(item, itemIndex, group)
                       "
                       class="price-container d-flex align-center justify-center font-DINCond text-currency"
                     >
@@ -298,9 +299,21 @@ const getGroupName = (groupName) => {
 
 const getItemPrice = (item) => {
   const info = getCardSeriesId(item.id)
-  if (!info) return null
-  const price = priceStore.getPrice(info.id, item.id)
+  if (!info || !info.id) return null
+
+  const seriesPrices = priceStore.prices[info.id]
+  if (!seriesPrices) return null
+
+  const price = seriesPrices[item.id]
   return price ? price.toLocaleString() : null
+}
+
+const shouldShowPriceContainer = (item, index, group) => {
+  if (getItemPrice(item)) return true
+  if (index === 0) {
+    return group.length > 1 && !!getItemPrice(group[1])
+  }
+  return !!getItemPrice(group[index - 1])
 }
 </script>
 
