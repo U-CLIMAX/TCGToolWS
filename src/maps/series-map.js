@@ -1253,6 +1253,11 @@ const wscSeriesMap = {
     prefixes: ['[cn]STG'],
     latestReleaseDate: '2026-01-30',
   },
+  '[cn]魔卡少女樱透明牌篇': {
+    id: '[cn]ccs',
+    prefixes: ['[cn]CCS'],
+    latestReleaseDate: '2019-04-26',
+  },
 }
 
 export const seriesMap = {
