@@ -56,6 +56,20 @@
                 {{ deckTitle }}
               </h1>
               <h1 v-else class="text-h6 text-sm-h5 text-truncate">N/A</h1>
+
+              <v-fade-transition>
+                <div v-if="priceStore.isLoading" class="ml-2 d-flex align-center flex-shrink-0">
+                  <v-progress-circular
+                    indeterminate
+                    :size="smAndUp ? 18 : 14"
+                    :width="2"
+                    color="primary"
+                  ></v-progress-circular>
+                  <span v-if="smAndUp" class="text-caption ml-1 text-medium-emphasis">
+                    价格加载中
+                  </span>
+                </div>
+              </v-fade-transition>
             </div>
 
             <!-- 右側 -->
@@ -120,6 +134,7 @@
             :stats-grouped-cards="groupedCards"
             :group-by="groupBy"
             :selected-card="selectedCardData"
+            :selected-card-price="selectedCardPrice"
             :is-modal-visible="isModalVisible"
             :linked-cards="linkedCardsDetails"
             :is-loading-links="isLoadingLinkedCards"
@@ -246,13 +261,15 @@
 </template>
 
 <script setup>
-import { computed, ref, onUnmounted, onMounted, watchEffect } from 'vue'
+import { computed, ref, onUnmounted, onMounted, watchEffect, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import { getCardUrls } from '@/utils/getCardImage'
 import { useDisplay } from 'vuetify'
 import { useDeckGrouping } from '@/composables/useDeckGrouping'
-import { fetchCardsByBaseIdAndPrefix } from '@/utils/card'
+import { fetchCardsByBaseIdAndPrefix, getCardSeriesId } from '@/utils/card'
 import { useAuthStore } from '@/stores/auth'
 import { useUIStore } from '@/stores/ui'
+import { usePriceStore } from '@/stores/price'
 import { useDeckExport } from '@/composables/useDeckExport'
 import { useDevice } from '@/composables/useDevice'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
@@ -284,9 +301,11 @@ const props = defineProps({
 
 const emit = defineEmits(['save', 'close'])
 
+const route = useRoute()
 const { smAndUp } = useDisplay()
 const authStore = useAuthStore()
 const uiStore = useUIStore()
+const priceStore = usePriceStore()
 const { copyArticleLink } = useDeckExport()
 const { isTouch } = useDevice()
 
@@ -349,11 +368,34 @@ const selectGroupBy = (value) => {
   groupBy.value = value
   showBottomSheet.value = false
 }
-
 // Header Height Calculation
 const headerRef = ref(null)
 const headerOffsetHeight = ref(0)
 let observer = null
+
+const initializePrices = async () => {
+  if (route.name === 'DecksGallery') return
+  const configs = []
+  const cardsToProcess = Object.values(props.cards)
+
+  if (cardsToProcess.length > 0) {
+    const seriesConfigMap = new Map()
+    cardsToProcess.forEach((c) => {
+      const info = getCardSeriesId(c.id)
+      if (info && info.id && info.yytUrl && !seriesConfigMap.has(info.id)) {
+        seriesConfigMap.set(info.id, { seriesId: info.id, yytUrl: info.yytUrl })
+      }
+    })
+
+    seriesConfigMap.forEach((config) => {
+      configs.push(config)
+    })
+  }
+
+  if (configs.length > 0) {
+    await priceStore.fetchPrices(configs)
+  }
+}
 
 onMounted(() => {
   if (headerRef.value) {
@@ -365,6 +407,17 @@ onMounted(() => {
     observer.observe(headerRef.value)
   }
 })
+
+// 監聽卡片數據變化，確保異步加載後能初始化價格
+watch(
+  () => props.cards,
+  (newCards) => {
+    if (Object.keys(newCards).length > 0) {
+      initializePrices()
+    }
+  },
+  { deep: true }
+)
 
 onUnmounted(() => {
   if (observer) {
@@ -383,6 +436,7 @@ const isModalVisible = computed({
   set: (val) => (uiStore.isCardDetailModalOpen = val),
 })
 const selectedCardData = ref(null)
+const selectedCardPrice = ref(null)
 const linkedCardsDetails = ref([])
 const isLoadingLinkedCards = ref(false)
 
@@ -410,6 +464,15 @@ const handleShowNewCard = async (cardPayload) => {
     const card = cardPayload.card || cardPayload
     if (!card) return
 
+    // Set price for the main card
+    if (cardPayload.price !== undefined) {
+      selectedCardPrice.value = cardPayload.price
+    } else {
+      const info = getCardSeriesId(card.id)
+      const p = info ? priceStore.getPrice(info.id, card.id) : null
+      selectedCardPrice.value = p ? p.toLocaleString() : null
+    }
+
     linkedCardsDetails.value = []
     isLoadingLinkedCards.value = true
     selectedCardData.value = card
@@ -420,7 +483,16 @@ const handleShowNewCard = async (cardPayload) => {
         card.link.map(async (linkId) => fetchCardsByBaseIdAndPrefix(linkId, card.cardIdPrefix))
       )
       if (selectedCardData.value && selectedCardData.value.id === card.id) {
-        linkedCardsDetails.value = sortCards(linkedCardsData.flat().filter(Boolean))
+        const flatCards = linkedCardsData.flat().filter(Boolean)
+        const cardsWithPrice = flatCards.map((c) => {
+          const info = getCardSeriesId(c.id)
+          const p = info ? priceStore.getPrice(info.id, c.id) : null
+          return {
+            ...c,
+            price: p ? p.toLocaleString() : null,
+          }
+        })
+        linkedCardsDetails.value = sortCards(cardsWithPrice)
       }
     }
   } catch (error) {

@@ -4,8 +4,7 @@
       <v-fab-transition>
         <DeckStatsDashboard
           v-if="
-            route.name !== 'DecksGallery' &&
-            (uiStore.showStatsDashboard || shouldForceDashboardOpen)
+            route.name !== 'DecksGallery' && (uiStore.showStatsDashboard || shouldForceElementsOpen)
           "
           :grouped-cards="statsGroupedCards"
           :group-by="groupBy"
@@ -67,7 +66,11 @@
                 <v-tooltip :text="item.id" location="top center" :disabled="isTouch">
                   <template v-slot:activator="{ props }">
                     <div
-                      v-if="uiStore.showCardPrices && $route.name == 'DeckDetail'"
+                      v-if="
+                        (uiStore.showCardPrices || shouldForceElementsOpen) &&
+                        $route.name !== 'DecksGallery' &&
+                        !priceStore.isLoading
+                      "
                       class="price-container d-flex align-center justify-center font-DINCond text-currency"
                     >
                       <template v-if="getItemPrice(item)">
@@ -242,10 +245,9 @@ const priceStore = usePriceStore()
 const { isTouch } = useDevice()
 const route = useRoute()
 
-const shouldForceDashboardOpen = computed(() => {
+const shouldForceElementsOpen = computed(() => {
   return ['DeckLog', 'ShareDeckDetail'].includes(route.name)
 })
-
 const showCards = ref(true)
 
 watch(
