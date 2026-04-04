@@ -61,7 +61,7 @@
             </v-img>
             <v-fade-transition>
               <v-btn
-                v-if="(isHovering || isTouch) && card.type != '高潮卡'"
+                v-if="isHovering || isTouch"
                 icon="mdi-file-document-arrow-right"
                 variant="tonal"
                 size="small"
