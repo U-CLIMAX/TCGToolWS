@@ -67,6 +67,15 @@
                 <v-tooltip :text="item.id" location="top center" :disabled="isTouch">
                   <template v-slot:activator="{ props }">
                     <div
+                      v-if="uiStore.showCardPrices && $route.name == 'DeckDetail'"
+                      class="price-container d-flex align-center justify-center font-DINCond text-currency"
+                    >
+                      <template v-if="getItemPrice(item)">
+                        <v-icon size="10" class="mr-1">mdi-currency-jpy</v-icon>
+                        {{ getItemPrice(item) }}
+                      </template>
+                    </div>
+                    <div
                       v-bind="props"
                       class="card-container deck-detail-card"
                       :class="{
@@ -77,15 +86,6 @@
                       }"
                       @click="$emit('card-click', item)"
                     >
-                      <div
-                        v-if="uiStore.showCardPrices && $route.name == 'DeckDetail'"
-                        class="price-container d-flex align-center justify-center font-DINCond text-currency"
-                      >
-                        <template v-if="getItemPrice(item)">
-                          <v-icon size="10" class="mr-1">mdi-currency-jpy</v-icon>
-                          {{ getItemPrice(item) }}
-                        </template>
-                      </div>
                       <div
                         v-if="item.diffStatus"
                         class="diff-label"
