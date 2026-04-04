@@ -153,16 +153,13 @@
             <div class="text-h5 font-weight-bold mb-1">{{ totalSoulCount }}</div>
             <div class="text-body-2 text-disabled">触发魂标</div>
           </div>
-          <template v-if="totalPrice > 0">
-            <v-divider vertical></v-divider>
-            <div class="flex-1 px-2 w-100">
-              <div class="text-h5 font-weight-bold mb-1 text-currency">
-                {{ totalPrice.toLocaleString() }}
-              </div>
-              <div class="text-body-2 text-disabled">参考总价</div>
-            </div>
-          </template>
         </v-card-text>
+        <div v-if="totalPrice > 0" class="text-center pb-6 pt-0">
+          <div class="text-h5 font-weight-bold mb-1 text-currency font-DINCond">
+            {{ totalPrice.toLocaleString() }}
+          </div>
+          <div class="text-body-2 text-disabled">参考总价 (JPY)</div>
+        </div>
       </div>
     </v-card>
   </div>
