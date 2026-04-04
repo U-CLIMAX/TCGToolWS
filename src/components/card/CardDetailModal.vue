@@ -133,7 +133,7 @@
               {{ card.id }}
             </v-card-subtitle>
 
-            <div v-if="price != null" class="mb-4 d-flex align-center">
+            <div v-if="price != null && route.meta.showCardPrice" class="mb-4 d-flex align-center">
               <span class="font-weight-bold d-flex align-center text-currency">
                 <v-icon size="16" class="mr-1">mdi-currency-jpy</v-icon>
                 <span class="font-DINCond text-h6">{{ price }}</span>

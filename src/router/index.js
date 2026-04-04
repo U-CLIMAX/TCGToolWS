@@ -30,7 +30,7 @@ const routes = [
       seriesId: route.params.seriesId,
       initialProductName: route.query.p,
     }),
-    meta: { group: 'series', headerBlur: true },
+    meta: { group: 'series', headerBlur: true, showCardPrice: true },
   },
   {
     path: '/decks',
@@ -49,21 +49,21 @@ const routes = [
     name: 'DeckDetail',
     component: () => import('@/views/DeckDetailView.vue'),
     props: true,
-    meta: { requiresAuth: true, group: 'decks', headerBlur: true },
+    meta: { requiresAuth: true, group: 'decks', headerBlur: true, showCardPrice: true },
   },
   {
     path: '/share-decks/:key',
     name: 'ShareDeckDetail',
     component: () => import('@/views/ShareDeckDetailView.vue'),
     props: true,
-    meta: { headerBlur: true },
+    meta: { headerBlur: true, showCardPrice: true },
   },
   {
     path: '/decklog/:key',
     name: 'DeckLog',
     component: () => import('@/views/DeckLogView.vue'),
     props: true,
-    meta: { headerBlur: true },
+    meta: { headerBlur: true, showCardPrice: true },
   },
   {
     path: '/forgot-password',

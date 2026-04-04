@@ -68,7 +68,7 @@
                     <div
                       v-if="
                         (uiStore.showCardPrices || shouldForceElementsOpen) &&
-                        $route.name !== 'DecksGallery' &&
+                        route.meta.showCardPrice &&
                         !priceStore.isLoading &&
                         shouldShowPriceContainer(item, itemIndex, group)
                       "
