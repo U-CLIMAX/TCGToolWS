@@ -563,9 +563,9 @@ const isEditing = computed(() => {
   return deckStore.editingDeckKey === deckKey
 })
 
-const initializePrices = async () => {
+const initializePrices = async (cardsToUse = null) => {
   const configs = []
-  const cardsToProcess = Object.values(cards.value)
+  const cardsToProcess = cardsToUse || Object.values(cards.value)
 
   if (cardsToProcess.length > 0) {
     const seriesConfigMap = new Map()
@@ -994,8 +994,13 @@ const handleCopyClick = () => {
   showMoreActionsBottomSheet.value = false
 }
 
-const handleViewHistoryState = (index) =>
-  viewHistoryState(index, history.value, originalCards.value, deck.value.seriesId)
+const handleViewHistoryState = async (index) => {
+  await viewHistoryState(index, history.value, originalCards.value)
+  // Initialize prices for historical cards (in case they belong to different series)
+  if (historicalCards.value.length > 0) {
+    initializePrices(historicalCards.value)
+  }
+}
 
 const handleHistoryClick = () => {
   isHistoryDialogVisible.value = true
