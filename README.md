@@ -134,6 +134,17 @@ VVITE_BLUR_IMAGE_BASE_URL=ws-blur-image-data
    - **账号**: `admin@example.com`
    - **密码**: `12345678`
 
+#### 定时任务测试 (Scheduler)
+
+本专案后端包含排程任务。若要在本地测试 Scheduler，请参考 Cloudflare 官方文件：
+[Testing Cron Triggers Locally](https://developers.cloudflare.com/workers/configuration/cron-triggers/#test-cron-triggers-locally)
+
+您可以在本地 Worker 运行时，透过 curl 发送请求来手动触发：
+
+```bash
+curl "http://localhost:5173/cdn-cgi/handler/scheduled"
+```
+
 ## 开发规范
 
 - **组件风格**: 统一使用 `<script setup>` 与 Composition API。
