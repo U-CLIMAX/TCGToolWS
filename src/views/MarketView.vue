@@ -2,7 +2,6 @@
   <v-container fluid class="h-100 pa-0">
     <v-infinite-scroll
       ref="infiniteScrollRef"
-      :key="scrollKey"
       class="h-100 themed-scrollbar py-4"
       :style="{ '--sb-margin-top': '27px' }"
       :onLoad="loadMore"
@@ -326,7 +325,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch, nextTick } from 'vue'
+import { ref, computed, onMounted, nextTick } from 'vue'
 import { useDisplay } from 'vuetify'
 import { useMarketStore } from '@/stores/market'
 import { useUIStore } from '@/stores/ui'
@@ -347,7 +346,6 @@ const { smAndUp } = useDisplay()
 
 const infiniteScrollRef = ref(null)
 const scrollContainer = ref(null)
-const scrollKey = ref(0)
 
 const sourceOptions = computed(() => {
   const options = [{ title: '全部商品', value: 'all' }]
@@ -410,7 +408,10 @@ const handleSearch = async () => {
 
   try {
     await marketStore.fetchListings()
-    scrollKey.value++
+    nextTick(() => {
+      infiniteScrollRef.value?.reset()
+      infiniteScrollRef.value?.$el.scrollTo({ top: 0, behavior: 'instant' })
+    })
   } catch (error) {
     triggerSnackbar(error.message || '搜索失败', 'error')
   }
@@ -420,7 +421,10 @@ const handleRefresh = async () => {
   if (marketStore.filters.source === 'all') return
   try {
     await marketStore.fetchListings()
-    scrollKey.value++
+    nextTick(() => {
+      infiniteScrollRef.value?.reset()
+      infiniteScrollRef.value?.$el.scrollTo({ top: 0, behavior: 'instant' })
+    })
   } catch (error) {
     triggerSnackbar(error.message || '刷新失败', 'error')
   }
@@ -432,7 +436,10 @@ const resetFilters = async () => {
 
   try {
     await marketStore.fetchListings()
-    scrollKey.value++
+    nextTick(() => {
+      infiniteScrollRef.value?.reset()
+      infiniteScrollRef.value?.$el.scrollTo({ top: 0, behavior: 'instant' })
+    })
   } catch (error) {
     triggerSnackbar(error.message || '搜索失败', 'error')
   }
@@ -479,12 +486,6 @@ onMounted(async () => {
     triggerSnackbar(error.message || '加载失败', 'error')
   }
 
-  nextTick(() => {
-    scrollContainer.value = infiniteScrollRef.value?.$el
-  })
-})
-
-watch(scrollKey, () => {
   nextTick(() => {
     scrollContainer.value = infiniteScrollRef.value?.$el
   })

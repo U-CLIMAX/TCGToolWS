@@ -23,7 +23,6 @@
 
     <v-infinite-scroll
       ref="infiniteScrollRef"
-      :key="scrollKey"
       class="themed-scrollbar py-4"
       :style="scrollStyle"
       :onLoad="loadMore"
@@ -168,7 +167,7 @@
 
                 <!-- 进阶比赛筛选面板 -->
                 <v-expand-transition>
-                  <div v-show="isAdvancedFilterOpen" class="advanced-filter-wrapper">
+                  <div v-show="isAdvancedFilterOpen">
                     <div class="mt-4 pt-4 border-top">
                       <v-row dense>
                         <v-col cols="12" sm="4">
@@ -286,7 +285,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch, nextTick } from 'vue'
+import { ref, computed, onMounted, nextTick } from 'vue'
 import { onBeforeRouteLeave } from 'vue-router'
 import { useDecksGalleryStore } from '@/stores/decksGallery'
 import { useUIStore } from '@/stores/ui'
@@ -315,7 +314,6 @@ const { isTouch } = useDevice()
 
 const infiniteScrollRef = ref(null)
 const scrollContainer = ref(null)
-const scrollKey = ref(0)
 const drawer = ref(false)
 const selectedDeckKey = ref(null)
 
@@ -464,7 +462,10 @@ const handleSearch = async () => {
 
   try {
     await galleryStore.fetchDecks()
-    scrollKey.value++
+    nextTick(() => {
+      infiniteScrollRef.value?.reset()
+      infiniteScrollRef.value?.$el.scrollTo({ top: 0, behavior: 'instant' })
+    })
   } catch (error) {
     triggerSnackbar(error.message || '搜索失败', 'error')
   }
@@ -477,7 +478,10 @@ const resetFilters = async () => {
 
   try {
     await galleryStore.fetchDecks()
-    scrollKey.value++
+    nextTick(() => {
+      infiniteScrollRef.value?.reset()
+      infiniteScrollRef.value?.$el.scrollTo({ top: 0, behavior: 'instant' })
+    })
   } catch (error) {
     triggerSnackbar(error.message || '搜索失败', 'error')
   }
@@ -547,12 +551,6 @@ onMounted(async () => {
     scrollContainer.value = infiniteScrollRef.value?.$el
   })
 })
-
-watch(scrollKey, () => {
-  nextTick(() => {
-    scrollContainer.value = infiniteScrollRef.value?.$el
-  })
-})
 </script>
 
 <style scoped>
@@ -590,12 +588,5 @@ watch(scrollKey, () => {
 
 .border-top {
   border-top: 1px solid rgba(var(--v-border-color), 0.1);
-}
-
-.advanced-filter-wrapper {
-  will-change: height, opacity;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  perspective: 1000px;
 }
 </style>
