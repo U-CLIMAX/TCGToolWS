@@ -296,16 +296,19 @@ const getGroupName = (groupName) => {
       return groupName
   }
 }
-
 const getItemPrice = (item) => {
-  const info = getCardSeriesId(item.id)
-  if (!info || !info.id) return null
+  const infos = getCardSeriesId(item.id)
+  if (!infos || infos.length === 0) return null
 
-  const seriesPrices = priceStore.prices[info.id]
-  if (!seriesPrices) return null
+  for (const info of infos) {
+    // 明確訪問 prices.value 以觸發響應式
+    const seriesPrices = priceStore.prices[info.id]
+    if (seriesPrices && seriesPrices[item.id]) {
+      return seriesPrices[item.id].toLocaleString()
+    }
+  }
 
-  const price = seriesPrices[item.id]
-  return price ? price.toLocaleString() : null
+  return null
 }
 
 const shouldShowPriceContainer = (item, index, group) => {

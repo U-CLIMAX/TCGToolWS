@@ -84,12 +84,11 @@ import CardTemplate from '@/components/card/CardTemplate.vue'
 import LazyCardWrapper from '@/components/common/LazyCardWrapper.vue'
 import CardDetailModal from '@/components/card/CardDetailModal.vue'
 import BackToTopButton from '@/components/ui/BackToTopButton.vue'
-import { fetchCardByIdAndPrefix, fetchCardsByBaseIdAndPrefix } from '@/utils/card'
+import { fetchCardByIdAndPrefix, fetchCardsByBaseIdAndPrefix, getCardSeriesId } from '@/utils/card'
 import { getCardUrls } from '@/utils/getCardImage'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import { useUIStore } from '@/stores/ui'
 import { usePriceStore } from '@/stores/price'
-import { useRoute } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { sortCards } from '@/utils/cardsSort'
 
@@ -123,7 +122,6 @@ const props = defineProps({
 const { smAndUp, smAndDown, xs } = useDisplay()
 const uiStore = useUIStore()
 const priceStore = usePriceStore()
-const route = useRoute()
 const { isPerformanceMode } = storeToRefs(uiStore)
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
@@ -158,10 +156,16 @@ const { selectedCardIndex, getPrevCard, getNextCard } = useCardNavigation(
 const isTableMode = computed(() => props.isTableModeActive || !smAndUp.value)
 
 const getPrice = (card) => {
-  const seriesId = route.params.seriesId
-  if (!seriesId) return null
-  const price = priceStore.getPrice(seriesId, card.id)
-  return price ? price.toLocaleString() : null
+  const infos = getCardSeriesId(card.id)
+  if (!infos || infos.length === 0) return null
+
+  for (const info of infos) {
+    const price = priceStore.getPrice(info.id, card.id)
+    if (price) {
+      return price.toLocaleString()
+    }
+  }
+  return null
 }
 
 const onPrevCard = () => {

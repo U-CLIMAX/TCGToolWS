@@ -143,7 +143,7 @@ import { useDeckStore } from '@/stores/deck'
 import { useUIStore } from '@/stores/ui'
 import { usePriceStore } from '@/stores/price'
 import { useDevice } from '@/composables/useDevice'
-import { useRoute } from 'vue-router'
+import { getCardSeriesId } from '@/utils/card'
 
 const props = defineProps({
   card: { type: Object, required: true },
@@ -157,16 +157,21 @@ const { userRole } = storeToRefs(authStore)
 const deckStore = useDeckStore()
 const uiStore = useUIStore()
 const priceStore = usePriceStore()
-const route = useRoute()
 const { smAndDown, mdAndUp } = useDisplay()
 const { isTouch } = useDevice()
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
-const seriesId = computed(() => route.params.seriesId)
 const cardPrice = computed(() => {
-  if (!seriesId.value) return null
-  const price = priceStore.getPrice(seriesId.value, props.card.id)
-  return price ? price.toLocaleString() : null
+  const infos = getCardSeriesId(props.card.id)
+  if (!infos || infos.length === 0) return null
+
+  for (const info of infos) {
+    const price = priceStore.getPrice(info.id, props.card.id)
+    if (price) {
+      return price.toLocaleString()
+    }
+  }
+  return null
 })
 
 const { base: imageUrl, blur: blurUrl } = getCardUrls(props.card.cardIdPrefix, props.card.id)

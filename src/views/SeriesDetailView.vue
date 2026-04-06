@@ -275,7 +275,6 @@ const seriesName = computed(() => {
   return foundEntry ? foundEntry[0] : '未知系列'
 })
 const prefixes = computed(() => seriesMap[seriesName.value]?.prefixes ?? [])
-const yytUrl = computed(() => seriesMap[seriesName.value]?.yytUrl)
 
 // 使用雜湊函式，將長名稱轉換為短序號 (Base36)
 const getShortHash = (str) => {
@@ -345,9 +344,20 @@ watch([() => filterStore.filteredCards], () => {
 const initializePrices = async () => {
   const configs = []
 
-  // Current series
-  if (yytUrl.value) {
-    configs.push({ seriesId: props.seriesId, yytUrl: yytUrl.value })
+  // Current series and its related series (sharing the same prefixes)
+  const currentPrefixes = prefixes.value
+  if (currentPrefixes.length > 0) {
+    const relatedSeriesConfigMap = new Map()
+    currentPrefixes.forEach((prefix) => {
+      Object.values(seriesMap).forEach((s) => {
+        if (s.prefixes && s.prefixes.some((p) => p === prefix)) {
+          if (s.id && s.yytUrl && !relatedSeriesConfigMap.has(s.id)) {
+            relatedSeriesConfigMap.set(s.id, { seriesId: s.id, yytUrl: s.yytUrl })
+          }
+        }
+      })
+    })
+    relatedSeriesConfigMap.forEach((config) => configs.push(config))
   }
 
   // Cards in deck series
@@ -356,10 +366,12 @@ const initializePrices = async () => {
     // Collect unique series configs from deck cards
     const seriesConfigMap = new Map()
     cards.forEach((c) => {
-      const info = getCardSeriesId(c.id)
-      if (info && info.id && info.yytUrl && !seriesConfigMap.has(info.id)) {
-        seriesConfigMap.set(info.id, { seriesId: info.id, yytUrl: info.yytUrl })
-      }
+      const infos = getCardSeriesId(c.id)
+      infos.forEach((info) => {
+        if (info.id && info.yytUrl && !seriesConfigMap.has(info.id)) {
+          seriesConfigMap.set(info.id, { seriesId: info.id, yytUrl: info.yytUrl })
+        }
+      })
     })
 
     seriesConfigMap.forEach((config) => {
@@ -369,7 +381,7 @@ const initializePrices = async () => {
       }
     })
   }
-
+  console.log(configs)
   if (configs.length > 0) {
     // Use the updated bulk fetch method
     await priceStore.fetchPrices(configs)

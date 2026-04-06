@@ -381,10 +381,12 @@ const initializePrices = async () => {
   if (cardsToProcess.length > 0) {
     const seriesConfigMap = new Map()
     cardsToProcess.forEach((c) => {
-      const info = getCardSeriesId(c.id)
-      if (info && info.id && info.yytUrl && !seriesConfigMap.has(info.id)) {
-        seriesConfigMap.set(info.id, { seriesId: info.id, yytUrl: info.yytUrl })
-      }
+      const infos = getCardSeriesId(c.id)
+      infos.forEach((info) => {
+        if (info.id && info.yytUrl && !seriesConfigMap.has(info.id)) {
+          seriesConfigMap.set(info.id, { seriesId: info.id, yytUrl: info.yytUrl })
+        }
+      })
     })
 
     seriesConfigMap.forEach((config) => {
@@ -468,8 +470,15 @@ const handleShowNewCard = async (cardPayload) => {
     if (cardPayload.price !== undefined) {
       selectedCardPrice.value = cardPayload.price
     } else {
-      const info = getCardSeriesId(card.id)
-      const p = info ? priceStore.getPrice(info.id, card.id) : null
+      const infos = getCardSeriesId(card.id)
+      let p = null
+      for (const info of infos) {
+        const foundPrice = priceStore.getPrice(info.id, card.id)
+        if (foundPrice) {
+          p = foundPrice
+          break
+        }
+      }
       selectedCardPrice.value = p ? p.toLocaleString() : null
     }
 
@@ -485,8 +494,15 @@ const handleShowNewCard = async (cardPayload) => {
       if (selectedCardData.value && selectedCardData.value.id === card.id) {
         const flatCards = linkedCardsData.flat().filter(Boolean)
         const cardsWithPrice = flatCards.map((c) => {
-          const info = getCardSeriesId(c.id)
-          const p = info ? priceStore.getPrice(info.id, c.id) : null
+          const infos = getCardSeriesId(c.id)
+          let p = null
+          for (const info of infos) {
+            const foundPrice = priceStore.getPrice(info.id, c.id)
+            if (foundPrice) {
+              p = foundPrice
+              break
+            }
+          }
           return {
             ...c,
             price: p ? p.toLocaleString() : null,

@@ -463,9 +463,15 @@ const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 const totalPrice = computed(() => {
   return Object.values(deckStore.cardsInDeck).reduce((sum, item) => {
-    const info = getCardSeriesId(item.id)
-    if (!info) return sum
-    const price = priceStore.getPrice(info.id, item.id)
+    const infos = getCardSeriesId(item.id)
+    let price = null
+    for (const info of infos) {
+      const p = priceStore.getPrice(info.id, item.id)
+      if (p) {
+        price = p
+        break
+      }
+    }
     return sum + (price ? price * item.quantity : 0)
   }, 0)
 })
@@ -770,8 +776,15 @@ const handleShowNewCard = async (cardPayload) => {
     if (cardPayload.price !== undefined) {
       selectedCardPrice.value = cardPayload.price
     } else {
-      const info = getCardSeriesId(cardToDisplay.id)
-      const p = info ? priceStore.getPrice(info.id, cardToDisplay.id) : null
+      const infos = getCardSeriesId(cardToDisplay.id)
+      let p = null
+      for (const info of infos) {
+        const foundPrice = priceStore.getPrice(info.id, cardToDisplay.id)
+        if (foundPrice) {
+          p = foundPrice
+          break
+        }
+      }
       selectedCardPrice.value = p ? p.toLocaleString() : null
     }
 
@@ -792,8 +805,15 @@ const handleShowNewCard = async (cardPayload) => {
       if (selectedCardData.value && selectedCardData.value.id === card.id) {
         const flatCards = linkedCardsData.flat().filter(Boolean)
         const cardsWithPrice = flatCards.map((c) => {
-          const info = getCardSeriesId(c.id)
-          const p = info ? priceStore.getPrice(info.id, c.id) : null
+          const infos = getCardSeriesId(c.id)
+          let p = null
+          for (const info of infos) {
+            const foundPrice = priceStore.getPrice(info.id, c.id)
+            if (foundPrice) {
+              p = foundPrice
+              break
+            }
+          }
           return {
             ...c,
             price: p ? p.toLocaleString() : null,
