@@ -95,7 +95,7 @@
       </div>
 
       <div
-        v-show="!isTableMode || lgAndUp"
+        v-show="!isTableMode || mdAndUp"
         :class="isTableMode ? 'pa-2' : 'pa-3'"
         class="card-content pt-0"
       >
@@ -158,7 +158,7 @@ const deckStore = useDeckStore()
 const uiStore = useUIStore()
 const priceStore = usePriceStore()
 const route = useRoute()
-const { smAndDown, lgAndUp } = useDisplay()
+const { smAndDown, mdAndUp } = useDisplay()
 const { isTouch } = useDevice()
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
