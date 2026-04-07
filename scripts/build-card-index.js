@@ -83,6 +83,7 @@ const cardsByGame = {
 
 let totalCardCount = 0
 
+const NON_LOWEST_RARITIES = ['AGR']
 files.forEach((filename) => {
   const filePath = path.join(CARD_DATA_DIR, filename)
   const content = JSON.parse(fs.readFileSync(filePath, 'utf-8'))
@@ -110,8 +111,11 @@ files.forEach((filename) => {
 
         // 判斷卡號是否等於最短長度
         const isShortestLength = cardVersion.id.length === minIdLength
-
-        const isLowest = all_cards.length === 1 && isLastCharLetter ? false : isShortestLength
+        const isLowest = NON_LOWEST_RARITIES.includes(cardVersion.rarity)
+          ? false
+          : all_cards.length === 1 && isLastCharLetter
+            ? false
+            : isShortestLength
 
         cardsByGame[game].push({
           ...baseCardData,
