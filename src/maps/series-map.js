@@ -539,7 +539,7 @@ const wsSeriesMap = {
   'Summer Pockets': {
     id: 'smp',
     prefixes: ['SMP', 'Ksm'],
-    latestReleaseDate: '2025-07-18',
+    latestReleaseDate: '2026-04-10',
     yytUrl:
       'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=smp&vers[]=smp2.0&vers[]=smpre&vers[]=key2.0&vers[]=keypb&rare=&type=&kizu=0',
   },
