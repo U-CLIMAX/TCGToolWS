@@ -1689,6 +1689,10 @@
     "all_cards": [
       {
         "id": "SMP/W137-070a",
+        "rarity": "CR"
+      },
+      {
+        "id": "SMP/W137-070A",
         "rarity": "AGR"
       },
       {
