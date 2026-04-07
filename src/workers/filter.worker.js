@@ -36,6 +36,7 @@ const escapeRegex = (str) => {
   return str.replace(/[.*+?^${}()|[\]]/g, '\\$&')
 }
 
+const NON_LOWEST_RARITIES = ['AGR']
 const CardFilterService = {
   /**
    * Processes raw card data (flattening, linking, stats) without fetching.
@@ -86,7 +87,11 @@ const CardFilterService = {
             const isLastCharLetter =
               (lastChar >= 'A' && lastChar <= 'Z') || (lastChar >= 'a' && lastChar <= 'z')
             const isShortestLength = cardVersion.id.length === minIdLength
-            const isLowest = all_cards.length === 1 && isLastCharLetter ? false : isShortestLength
+            const isLowest = NON_LOWEST_RARITIES.includes(cardVersion.rarity)
+              ? false
+              : all_cards.length === 1 && isLastCharLetter
+                ? false
+                : isShortestLength
 
             fetchedCards.push({
               ...baseCardData,
