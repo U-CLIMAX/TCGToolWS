@@ -26,7 +26,7 @@
     "dompurify": "^3.3.3",
     "epic-spinners": "^2.0.0",
     "flexsearch": "^0.8.212",
-    "hono": "^4.12.10",
+    "hono": "^4.12.12",
     "htmlparser2": "^12.0.0",
     "jsoncrush": "^1.1.8",
     "jspdf": "^4.2.1",
