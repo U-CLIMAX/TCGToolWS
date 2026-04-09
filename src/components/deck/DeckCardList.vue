@@ -312,11 +312,7 @@ const getItemPrice = (item) => {
 }
 
 const shouldShowPriceContainer = (item, index, group) => {
-  if (getItemPrice(item)) return true
-  if (index === 0) {
-    return group.length > 1 && !!getItemPrice(group[1])
-  }
-  return !!getItemPrice(group[index - 1])
+  return group.some((item) => !!getItemPrice(item))
 }
 </script>
 
