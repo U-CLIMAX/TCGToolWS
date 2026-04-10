@@ -541,7 +541,7 @@ const wsSeriesMap = {
     prefixes: ['SMP', 'Ksm'],
     latestReleaseDate: '2026-04-10',
     yytUrl:
-      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=smp&vers[]=smp2.0&vers[]=smpre&vers[]=key2.0&vers[]=keypb&rare=&type=&kizu=0',
+      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=smp&vers[]=smp2.0&vers[]=smpre&vers[]=smp3.0&vers[]=key2.0&vers[]=keypb&rare=&type=&kizu=0',
   },
   '摇曳庄的幽奈小姐': {
     id: 'yys',
