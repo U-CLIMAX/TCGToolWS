@@ -148,6 +148,7 @@ export const handleGetUserDecksGallery = async (c) => {
       tournament_type,
       participant_count,
       placement,
+      has_article,
     } = c.req.query()
     const limitNum = Math.max(1, Math.min(100, parseInt(limit) || 20))
 
@@ -177,6 +178,10 @@ export const handleGetUserDecksGallery = async (c) => {
     if (placement) {
       conditions.push(`placement = ?${params.length + 1}`)
       params.push(placement)
+    }
+
+    if (has_article === 'true') {
+      conditions.push('article_link IS NOT NULL AND article_link != ""')
     }
 
     let orderByClause = 'updated_at DESC, key DESC'
