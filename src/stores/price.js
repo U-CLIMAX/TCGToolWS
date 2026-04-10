@@ -68,10 +68,17 @@ export const usePriceStore = defineStore('price', () => {
     return prices.value[seriesId]?.[cardId]
   }
 
+  const clearCache = async () => {
+    if (!priceCache) return
+    await priceCache.clear()
+    prices.value = {}
+  }
+
   return {
     prices,
     isLoading,
     fetchPrices,
     getPrice,
+    clearCache,
   }
 })

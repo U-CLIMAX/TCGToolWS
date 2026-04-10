@@ -170,6 +170,26 @@
               </v-list-item>
             </div>
           </template>
+
+          <v-divider />
+
+          <v-list-item>
+            <v-list-item-title class="mt-4 pb-1">数据管理</v-list-item-title>
+            <div class="d-flex align-center justify-space-between ga-2 mt-2">
+              <div class="text-body-2 text-medium-emphasis">
+                如果遇到价格无法显示或过旧，可以尝试清空本地缓存
+              </div>
+              <v-btn
+                variant="tonal"
+                color="warning"
+                prepend-icon="mdi-cached"
+                @click="handleClearPriceCache"
+                :loading="isClearingCache"
+              >
+                清空价格缓存
+              </v-btn>
+            </div>
+          </v-list-item>
         </v-list>
       </v-card-text>
     </v-card>
@@ -186,16 +206,21 @@
 <script setup>
 import { ref, watch, computed } from 'vue'
 import { useUIStore } from '@/stores/ui'
+import { usePriceStore } from '@/stores/price'
 import { useDisplay } from 'vuetify'
+import { useSnackbar } from '@/composables/useSnackbar'
 import ImageCropperModal from './ImageCropperModal.vue'
 
 const { smAndUp, xs } = useDisplay()
+const { triggerSnackbar } = useSnackbar()
 
 const uiStore = useUIStore()
+const priceStore = usePriceStore()
 const fileInputRef = ref(null)
 const isCropperOpen = ref(false)
 const imageToCrop = ref(null)
 const isDraggingSlider = ref(false)
+const isClearingCache = ref(false)
 
 const props = defineProps({
   modelValue: {
@@ -261,6 +286,19 @@ const clearBackground = () => {
 
 const handleUploadClick = () => {
   fileInputRef.value?.click()
+}
+
+const handleClearPriceCache = async () => {
+  try {
+    isClearingCache.value = true
+    await priceStore.clearCache()
+    triggerSnackbar('价格缓存已清空', 'success')
+  } catch (error) {
+    console.error('Clear price cache error:', error)
+    triggerSnackbar('清空价格缓存失败', 'error')
+  } finally {
+    isClearingCache.value = false
+  }
 }
 </script>
 
