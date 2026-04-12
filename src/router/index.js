@@ -90,6 +90,11 @@ const routes = [
     name: 'Market',
     component: () => import('@/views/MarketView.vue'),
   },
+  {
+    path: '/community',
+    name: 'Community',
+    component: () => import('@/views/CommunityView.vue'),
+  },
 ]
 
 const router = createRouter({
