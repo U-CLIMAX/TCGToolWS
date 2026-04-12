@@ -179,7 +179,6 @@ defineExpose({
   font-family:
     'Microsoft JhengHei', 'PingFang TC', 'Heiti TC', 'Noto Sans TC', 'Noto Sans CJK TC', sans-serif;
   font-weight: 400;
-  color: #000;
 }
 
 .header-section {
