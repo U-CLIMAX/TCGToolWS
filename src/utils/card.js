@@ -67,9 +67,9 @@ export const fetchCardsByBaseIdAndPrefix = async (baseId, prefix) => {
 }
 
 export const getCardSeriesId = (id) => {
-  const prefix = id.split('/')[0].toUpperCase()
+  const prefix = id.split('/')[0]
   const matchingSeries = Object.values(seriesMap).filter(
-    (s) => s.prefixes && s.prefixes.some((p) => p.toUpperCase() === prefix)
+    (s) => s.prefixes && s.prefixes.some((p) => p === prefix)
   )
   return matchingSeries.map((s) => ({ id: s.id, yytUrl: s.yytUrl }))
 }
