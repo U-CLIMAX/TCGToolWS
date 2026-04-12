@@ -726,7 +726,7 @@ onMounted(async () => {
     // 確保所有資料都準備好
     await nextTick()
     isDataReady.value = true
-    initializePrices()
+    initializePrices([...originalCards.value, ...editedCards.value])
   } catch (error) {
     triggerSnackbar(error.message, 'error')
   } finally {
