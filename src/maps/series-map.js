@@ -1186,6 +1186,11 @@ const wsSeriesMap = {
 }
 
 const wsrSeriesMap = {
+  'ALICESOFT': {
+    id: 'os09',
+    prefixes: ['OS09'],
+    latestReleaseDate: '2026-04-17',
+  },
   'AQUAPLUS': {
     id: 'os08',
     prefixes: ['OS08'],

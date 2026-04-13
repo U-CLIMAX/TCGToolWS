@@ -63,5 +63,157 @@
       }
     ],
     "trigger_soul_count": 0
+  },
+  "ISC/S110-P04": {
+    "name": "泡沫の石たちに乾杯",
+    "product_name": "PRカード【Sサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 1,
+    "trait": "-",
+    "color": "红色",
+    "effect": "【自】此卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br>（<img src=\"/effect-icons/standby.webp\">:此卡被触发时，你可以从自己的休息室选择1张等级在自己等级+1以下的角色卡，【横置】放置到舞台的任意位置）",
+    "all_cards": [
+      {
+        "id": "ISC/S110-P04",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "ISC/S110-P05": {
+    "name": "煌・煌・星・娘",
+    "product_name": "PRカード【Sサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "ISC/S110-P05",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "ISC/S110-P06": {
+    "name": "グロウン・メイク・アップ！",
+    "product_name": "PRカード【Sサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/treasure.webp\">:此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
+    "all_cards": [
+      {
+        "id": "ISC/S110-P06",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "ISC/S110-P07": {
+    "name": "Cherry Jelly",
+    "product_name": "PRカード【Sサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "all_cards": [
+      {
+        "id": "ISC/S110-P07",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "ISC/S110-P08": {
+    "name": "秋の実りの配達係",
+    "product_name": "PRカード【Sサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/treasure.webp\">:此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
+    "all_cards": [
+      {
+        "id": "ISC/S110-P08",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "ISC/S110-P09": {
+    "name": "floooat",
+    "product_name": "PRカード【Sサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 1,
+    "trait": ["ー", "ー", "ー"],
+    "color": "蓝色",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "ISC/S110-P09",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "ISC/S110-P10": {
+    "name": "短二度、一番線",
+    "product_name": "PRカード【Sサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/treasure.webp\">:此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
+    "all_cards": [
+      {
+        "id": "ISC/S110-P10",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "ISC/S110-P11": {
+    "name": "黒色彗星",
+    "product_name": "PRカード【Sサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "ISC/S110-P11",
+        "rarity": "PR"
+      }
+    ]
   }
 }
