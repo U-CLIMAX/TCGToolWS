@@ -189,7 +189,7 @@
       <div v-else-if="isHomeRoute && smAndUp" class="home-header-progressive-blur"></div>
     </v-fade-transition>
 
-    <v-main :scrollable="true" :class="{ 'pa-0': !smAndUp || isGalleryRoute }">
+    <v-main :scrollable="true" :class="{ 'pa-0': !smAndUp || noPaddingsRoute }">
       <router-view v-slot="{ Component }">
         <transition :name="transitionName" mode="out-in">
           <component :is="Component" />
@@ -438,7 +438,7 @@ const route = useRoute()
 const isSettingsModalOpen = ref(false)
 const isUserProfileModalOpen = ref(false)
 const isHomeRoute = computed(() => route.name === 'Home')
-const isGalleryRoute = computed(() => route.name === 'DecksGallery')
+const noPaddingsRoute = computed(() => route.name === 'DecksGallery' || route.name === 'Community')
 
 const routeGameColor = computed(() => {
   const game = route.params.game
