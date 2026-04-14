@@ -47,7 +47,7 @@ export const usePriceStore = defineStore('price', () => {
           const parsedPrices = await priceWorker.parsePrices(htmls)
           workerInstance.terminate()
 
-          const ttl = Date.now() + 21600000 // 6 hours
+          const ttl = Date.now() + 129600000 // 36 hours
 
           prices.value[seriesId] = parsedPrices
           await priceCache.setItem(`meta_${seriesId}`, {
