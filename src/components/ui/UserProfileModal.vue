@@ -74,9 +74,8 @@
 
         <v-divider v-if="userStatus.role === 0" class="my-2"></v-divider>
 
-        <div class="pa-2 d-flex flex-column ga-2">
+        <div class="pa-2 d-flex flex-column align-start ga-2">
           <v-btn
-            block
             variant="tonal"
             color="primary"
             rounded="pill"
@@ -86,18 +85,7 @@
             网站设置
           </v-btn>
           <v-btn
-            block
-            variant="tonal"
-            color="primary"
-            rounded="pill"
-            prepend-icon="mdi-account-group-outline"
-            @click="handleGroupClick"
-          >
-            WS 社区
-          </v-btn>
-          <v-btn
             v-if="userRole === 2"
-            block
             variant="tonal"
             color="secondary"
             rounded="pill"
@@ -122,7 +110,6 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { storeToRefs } from 'pinia'
-import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { useUIStore } from '@/stores/ui'
 import { useSnackbar } from '@/composables/useSnackbar'
@@ -139,7 +126,6 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue', 'logout'])
 const uiStore = useUIStore()
-const router = useRouter()
 const { theme } = storeToRefs(uiStore)
 
 const isSponsorNoticeOpen = ref(false)
@@ -163,11 +149,6 @@ const handleUpgradeClick = () => {
 
 const handleSettingsClick = () => {
   isSettingsModalOpen.value = true
-}
-
-const handleGroupClick = () => {
-  isDialogOpen.value = false
-  router.push({ name: 'Community' })
 }
 
 const proceedToPayment = async () => {

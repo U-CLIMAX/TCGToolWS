@@ -128,40 +128,6 @@
         </div>
       </div>
 
-      <!-- Community Section -->
-      <div ref="communitySection" class="community-section animated-section">
-        <v-container class="pa-0" style="max-width: var(--max-layout-width)">
-          <v-row justify="center">
-            <v-col cols="12" md="10">
-              <v-card
-                class="glass-block pa-6 pa-md-10 d-flex flex-column flex-md-row align-center ga-6"
-                :class="{ 'has-blur': isHardwareAccelerated === true }"
-              >
-                <v-avatar color="primary" variant="tonal" size="120" class="rounded-2lg">
-                  <v-icon icon="mdi-account-group" size="64" color="primary"></v-icon>
-                </v-avatar>
-                <div class="text-center text-md-left flex-grow-1">
-                  <div class="text-h4 font-weight-bold text-white mb-2">WS 社区查询</div>
-                  <div class="text-body-1 text-grey-lighten-2 mb-4">
-                    寻找志同道合的小伙伴！汇集全国各地的 WS 玩家群、卡牌店铺以及校园社团信息。
-                  </div>
-                  <v-btn
-                    color="primary"
-                    variant="flat"
-                    size="large"
-                    rounded="pill"
-                    prepend-icon="mdi-magnify"
-                    @click="$router.push({ name: 'Community' })"
-                  >
-                    立即查看
-                  </v-btn>
-                </div>
-              </v-card>
-            </v-col>
-          </v-row>
-        </v-container>
-      </div>
-
       <!-- Support Section -->
       <div ref="supportSection" class="support-section animated-section">
         <!-- Left Block -->
@@ -575,7 +541,6 @@ const updateScrollPadding = () => {
 // --- Animation on Scroll ---
 const featuresSection = ref(null)
 const pcPhoneSection = ref(null)
-const communitySection = ref(null)
 const promoSection = ref(null)
 const copyrightSection = ref(null)
 const supportSection = ref(null)
@@ -641,7 +606,6 @@ onMounted(() => {
   setupObserver(homeLayout)
   setupObserver(featuresSection)
   setupObserver(pcPhoneSection)
-  setupObserver(communitySection)
   setupObserver(promoSection)
   setupObserver(copyrightSection)
   setupObserver(supportSection)
@@ -752,13 +716,6 @@ onUnmounted(() => {
 }
 
 .pc-phone-section {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-top: 12rem;
-}
-
-.community-section {
   width: 100%;
   display: flex;
   justify-content: center;
