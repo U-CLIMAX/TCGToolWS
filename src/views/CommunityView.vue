@@ -30,6 +30,9 @@
                   <p :class="smAndUp ? 'text-subtitle-1' : 'text-body-2'">
                     查看 ws 玩家与店家交流群信息
                   </p>
+                  <div class="text-caption text-medium-emphasis mt-n1" style="opacity: 0.8">
+                    数据来源：银龙的TCG上位搬运
+                  </div>
                 </div>
               </div>
 
