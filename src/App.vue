@@ -69,6 +69,52 @@
                 </v-list>
               </v-menu>
 
+              <!-- Community Dropdown -->
+              <v-menu
+                v-else-if="item.name === 'Community'"
+                location="bottom center"
+                offset="10"
+                open-on-hover
+              >
+                <template v-slot:activator="{ props }">
+                  <v-btn
+                    variant="text"
+                    :active="item.group && $route.meta.group === item.group"
+                    class="rounded-3md mr-1"
+                    v-bind="props"
+                    :color="isHomeRoute ? 'white' : undefined"
+                  >
+                    <template #prepend>
+                      <v-icon :icon="navIcons[item.icon]" size="24"></v-icon>
+                    </template>
+                    {{ item.text }}
+                  </v-btn>
+                </template>
+                <v-list
+                  density="compact"
+                  :class="{ 'glass-menu': hasBackgroundImage }"
+                  class="rounded-3md"
+                  nav
+                >
+                  <v-list-item
+                    :to="{ name: 'Market' }"
+                    title="集换大厅"
+                    prepend-icon="mdi-store-outline"
+                    slim
+                    class="rounded-3md"
+                  >
+                  </v-list-item>
+                  <v-list-item
+                    :to="{ name: 'Community' }"
+                    title="玩家社群查询"
+                    prepend-icon="mdi-account-group-outline"
+                    slim
+                    class="rounded-3md"
+                  >
+                  </v-list-item>
+                </v-list>
+              </v-menu>
+
               <!-- Decks Dropdown -->
               <v-menu
                 v-else-if="item.name === 'Decks'"
@@ -189,7 +235,7 @@
       <div v-else-if="isHomeRoute && smAndUp" class="home-header-progressive-blur"></div>
     </v-fade-transition>
 
-    <v-main :scrollable="true" :class="{ 'pa-0': !smAndUp || isGalleryRoute }">
+    <v-main :scrollable="true" :class="{ 'pa-0': !smAndUp || noPaddingsRoute }">
       <router-view v-slot="{ Component }">
         <transition :name="transitionName" mode="out-in">
           <component :is="Component" />
@@ -204,6 +250,7 @@
       :height="50"
       grow
       app
+      mandatory
       :elevation="isHomeRoute ? 0 : 3"
       :color="isHomeRoute ? 'transparent' : undefined"
       :bg-color="isHomeRoute ? 'rgb(33, 33, 33)' : undefined"
@@ -235,6 +282,45 @@
               :to="{ name: 'GlobalSearch', params: { game: gameOpt.value } }"
               :title="`Weiβ Schwarz ${gameOpt.title === 'WS' ? '' : gameOpt.title === 'WSR' ? 'Rose' : '简中'}`"
               :color="gameOpt.color"
+              slim
+              class="rounded-3md"
+            >
+            </v-list-item>
+          </v-list>
+        </v-menu>
+
+        <!-- Community Menu -->
+        <v-menu v-else-if="item.name === 'Community'" location="top center" offset="10">
+          <template v-slot:activator="{ props }">
+            <v-btn
+              v-bind="props"
+              :value="item.name"
+              :active="item.group && $route.meta.group === item.group"
+              style="min-width: 0"
+              :color="isHomeRoute ? 'white' : undefined"
+              :active-color="isHomeRoute ? 'cyan-accent-2' : 'primary'"
+            >
+              <v-icon :icon="navIcons[item.icon]"></v-icon>
+            </v-btn>
+          </template>
+          <v-list
+            density="compact"
+            :class="{ 'glass-menu': hasBackgroundImage }"
+            class="rounded-3md"
+            nav
+          >
+            <v-list-item
+              :to="{ name: 'Market' }"
+              title="集换大厅"
+              prepend-icon="mdi-store-outline"
+              slim
+              class="rounded-3md"
+            >
+            </v-list-item>
+            <v-list-item
+              :to="{ name: 'Community' }"
+              title="玩家社群查询"
+              prepend-icon="mdi-account-group-outline"
               slim
               class="rounded-3md"
             >
@@ -438,7 +524,7 @@ const route = useRoute()
 const isSettingsModalOpen = ref(false)
 const isUserProfileModalOpen = ref(false)
 const isHomeRoute = computed(() => route.name === 'Home')
-const isGalleryRoute = computed(() => route.name === 'DecksGallery')
+const noPaddingsRoute = computed(() => route.name === 'DecksGallery' || route.name === 'Community')
 
 const routeGameColor = computed(() => {
   const game = route.params.game
@@ -498,7 +584,7 @@ const navIcons = {
 
 const navItems = [
   { text: '首页', name: 'Home', requiresAuth: false, icon: 'home.svg' },
-  { text: '集换大厅', name: 'Market', requiresAuth: false, icon: 'market.svg' },
+  { text: '社群', name: 'Community', requiresAuth: false, icon: 'market.svg', group: 'community' },
   {
     text: '卡片搜索',
     name: 'GlobalSearch',
