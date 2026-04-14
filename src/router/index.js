@@ -89,11 +89,13 @@ const routes = [
     path: '/market',
     name: 'Market',
     component: () => import('@/views/MarketView.vue'),
+    meta: { group: 'community' },
   },
   {
     path: '/community',
     name: 'Community',
     component: () => import('@/views/CommunityView.vue'),
+    meta: { group: 'community' },
   },
 ]
 
