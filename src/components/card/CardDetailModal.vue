@@ -784,6 +784,11 @@ const handleSwipeRight = () => {
   border-radius: inherit;
 }
 
+.card-image :deep(.v-img__img) {
+  transform: scale(1.005);
+  transform-origin: center;
+}
+
 .card-image.hover-scale {
   transform: scale(1.02);
 }
