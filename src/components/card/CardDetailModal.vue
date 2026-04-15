@@ -25,13 +25,7 @@
 
     <v-card-text class="pa-0 d-flex flex-column flex-md-row">
       <div
-        class="image-container flex-shrink-0 d-flex flex-column justify-center pa-4"
-        :style="{
-          width: $vuetify.display.mdAndUp ? '40%' : '100%',
-          maxWidth: '400px',
-          alignSelf: 'center',
-          position: 'relative',
-        }"
+        class="image-container flex-shrink-0 d-flex flex-column justify-center"
       >
         <v-hover v-slot="{ isHovering, props: hoverProps }">
           <div
@@ -44,9 +38,8 @@
               :alt="card.name"
               cover
               :aspect-ratio="400 / 559"
-              :max-width="400"
               :lazy-src="blurUrl"
-              class="card-image preload-img"
+              class="card-image preload-img w-100"
               :class="{ 'hover-scale': isHovering }"
             >
               <template #error>
@@ -55,7 +48,7 @@
                   :aspect-ratio="400 / 559"
                   rounded="lg"
                   cover
-                  :max-width="400"
+                  class="w-100"
                 />
               </template>
             </v-img>
@@ -119,7 +112,7 @@
           }"
           :style="{ overflowY: $vuetify.display.mdAndUp ? undefined : 'visible' }"
         >
-          <div class="pa-4">
+          <div class="pa-4 pl-md-0">
             <v-card-subtitle class="pb-1 text-body-2 pa-0 pr-8">
               <v-icon size="18" class="mr-1">mdi-cube-outline</v-icon>
               {{ card.product_name }}
@@ -793,5 +786,21 @@ const handleSwipeRight = () => {
 
 .card-image.hover-scale {
   transform: scale(1.02);
+}
+
+.image-container {
+  padding: 16px;
+  width: 100%;
+  max-width: 400px;
+  align-self: center;
+  position: relative;
+}
+
+@media (min-width: 960px) {
+  .image-container {
+    width: 40%;
+    max-width: clamp(400px, 22vw, 550px);
+    padding: clamp(16px, 1.3vw, 32px);
+  }
 }
 </style>
