@@ -40,7 +40,7 @@
               <div class="w-100 py-4">
                 <!-- Text Search -->
                 <v-row class="mb-4">
-                  <v-col cols="12" md="6" lg="3">
+                  <v-col cols="12" sm="6" xl="3">
                     <v-text-field
                       v-model="filters.search"
                       placeholder="搜索地区或者群聊名称"
@@ -59,7 +59,7 @@
                 </v-row>
 
                 <v-row dense class="align-center ga-2">
-                  <v-col cols="12" sm="5" md="3" lg="2">
+                  <v-col cols="12" sm="5" md="3" xl="2">
                     <div
                       class="d-flex align-center pa-1 border-md border-primary rounded-pill pa-2"
                     >
@@ -86,7 +86,7 @@
                   </v-col>
 
                   <!-- City Filter -->
-                  <v-col cols="12" sm="3" md="2" lg="1">
+                  <v-col cols="12" sm="3" md="2" xl="1">
                     <v-autocomplete
                       v-model="filters.city"
                       :items="cities"
@@ -107,7 +107,7 @@
                   </v-col>
 
                   <!-- District Filter -->
-                  <v-col cols="12" sm="3" md="2" lg="1" class="flex-grow-1">
+                  <v-col cols="12" sm="3" md="2" xl="1" class="flex-grow-1">
                     <v-autocomplete
                       v-model="filters.district"
                       :items="districts"
