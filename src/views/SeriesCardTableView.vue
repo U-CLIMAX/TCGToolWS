@@ -107,8 +107,10 @@
             v-for="item in displayedSeries"
             :key="item.data.id"
             cols="6"
+            xs="6"
             sm="3"
             md="2"
+            xl="1"
             class="d-flex pa-1"
           >
             <LazyCardWrapper>

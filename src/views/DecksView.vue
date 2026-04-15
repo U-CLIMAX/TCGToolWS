@@ -159,7 +159,16 @@
           name="deck-fade"
           appear
         >
-          <v-col v-for="item in displayedDecks" :key="item.key" class="pa-2" cols="4" sm="2">
+          <v-col
+            v-for="item in displayedDecks"
+            :key="item.key"
+            class="pa-2"
+            cols="4"
+            xs="6"
+            sm="3"
+            md="2"
+            xl="1"
+          >
             <LazyCardWrapper>
               <DeckCard :deck="item.deck" :deckKey="item.key" :is-editing="item.isEditing" />
             </LazyCardWrapper>

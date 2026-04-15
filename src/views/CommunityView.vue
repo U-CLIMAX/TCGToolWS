@@ -10,7 +10,7 @@
       <!-- Header Area -->
       <v-container class="pa-0 flex-grow-0" :class="{ 'mt-3': smAndUp }">
         <div class="d-flex justify-center px-3">
-          <v-row class="w-100" style="max-width: 1280px">
+          <v-row class="w-100">
             <v-col cols="12">
               <div
                 class="header-section d-flex align-center mb-8"
@@ -37,10 +37,10 @@
               </div>
 
               <!-- Search & Filter -->
-              <div class="filter-container w-100 py-4">
+              <div class="w-100 py-4">
                 <!-- Text Search -->
                 <v-row class="mb-4">
-                  <v-col cols="12" md="6">
+                  <v-col cols="12" md="6" lg="3">
                     <v-text-field
                       v-model="filters.search"
                       placeholder="搜索地区或者群聊名称"
@@ -59,7 +59,7 @@
                 </v-row>
 
                 <v-row dense class="align-center ga-2">
-                  <v-col cols="12" sm="5" md="3">
+                  <v-col cols="12" sm="5" md="3" lg="2">
                     <div
                       class="d-flex align-center pa-1 border-md border-primary rounded-pill pa-2"
                     >
@@ -86,7 +86,7 @@
                   </v-col>
 
                   <!-- City Filter -->
-                  <v-col cols="12" sm="3" md="2">
+                  <v-col cols="12" sm="3" md="2" lg="1">
                     <v-autocomplete
                       v-model="filters.city"
                       :items="cities"
@@ -107,7 +107,7 @@
                   </v-col>
 
                   <!-- District Filter -->
-                  <v-col cols="12" sm="3" md="2" class="flex-grow-1">
+                  <v-col cols="12" sm="3" md="2" lg="1" class="flex-grow-1">
                     <v-autocomplete
                       v-model="filters.district"
                       :items="districts"
@@ -144,6 +144,7 @@
             sm="6"
             md="4"
             lg="3"
+            xl="2"
             :class="smAndDown ? 'py-1' : 'py-3'"
           >
             <LazyCardWrapper>
@@ -431,10 +432,6 @@ onMounted(() => {
   padding-left: 8px;
 }
 
-.filter-container {
-  background-color: transparent !important;
-}
-
 .bg-watermark-icon {
   position: absolute;
   right: 4px;
@@ -443,6 +440,9 @@ onMounted(() => {
   opacity: 0.7;
   pointer-events: none;
   z-index: 0;
+}
+
+.bg-watermark-icon.mdi-qqchat {
   transform: scaleX(0.85);
 }
 </style>
