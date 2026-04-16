@@ -103,7 +103,10 @@
           <div class="text-caption text-medium-emphasis text-md-body-2 text-truncate">
             {{ card.id }}
           </div>
-          <div v-if="cardPrice" class="text-body-2 font-weight-bold font-DINCond text-primary">
+          <div
+            v-if="cardPrice"
+            class="text-body-2 font-weight-bold font-DINCond text-primary text-truncate"
+          >
             {{ cardPrice }} 円
           </div>
         </div>
