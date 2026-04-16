@@ -1179,7 +1179,7 @@ const wsSeriesMap = {
   },
   '其他': {
     id: 'ws',
-    prefixes: ['WS', 'NSO'],
+    prefixes: ['WS', 'NSO', 'CJ', 'VG'],
     latestReleaseDate: '-',
     yytUrl: 'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=promo&rare=&type=&kizu=0',
   },

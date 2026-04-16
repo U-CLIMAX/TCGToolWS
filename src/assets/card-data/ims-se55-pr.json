@@ -1,0 +1,29 @@
+{
+  "IMS/SE55-P01": {
+    "name": "765プロの愛され事務員♪ 青羽美咲",
+    "product_name": "PRカード【Sサイド】",
+    "type": "事件卡",
+    "level": 3,
+    "power": "-",
+    "cost": 1,
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "你的《音楽》的角色在2个以下的话，此卡不能从手牌中使用。此卡可以不满足颜色条件从手牌中使用。<br>你从自己的休息室选择1张卡返回手牌。将此卡放置到思出区。",
+    "all_cards": [
+      {
+        "id": "IMS/SE55-P01",
+        "rarity": "PR"
+      },
+      {
+        "id": "IMS/SE55-P01EX",
+        "rarity": "PR+"
+      },
+      {
+        "id": "IMS/SE55-P01S",
+        "rarity": "PR"
+      }
+    ]
+  }
+}

@@ -541,5 +541,43 @@
         "rarity": "PR"
       }
     ]
+  },
+  "WS/WSPR-P26": {
+    "name": "GiGOのたい焼き 青木陽菜",
+    "product_name": "PRカード【WSサイド】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 3000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["音楽", "声優"],
+    "color": "蓝色",
+    "effect": "",
+    "all_cards": [
+      {
+        "id": "WS/WSPR-P26",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "WS/WSPR-P27": {
+    "name": "GiGO 青木陽菜",
+    "product_name": "PRカード【WSサイド】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 3000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["音楽", "声優"],
+    "color": "蓝色",
+    "effect": "",
+    "all_cards": [
+      {
+        "id": "WS/WSPR-P27",
+        "rarity": "PR"
+      }
+    ]
   }
 }

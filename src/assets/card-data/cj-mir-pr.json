@@ -1,0 +1,21 @@
+{
+  "CJ/MIR-001": {
+    "name": "カルチャージャパンのアイドル みらい",
+    "product_name": "PRカード【Wサイド】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["音楽", "未来"],
+    "color": "黄色",
+    "effect": "【永】你的回合中，此卡的战斗力+1000。",
+    "all_cards": [
+      {
+        "id": "CJ/MIR-001",
+        "rarity": "PR"
+      }
+    ]
+  }
+}
