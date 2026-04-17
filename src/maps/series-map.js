@@ -1190,6 +1190,7 @@ const wsrSeriesMap = {
     id: 'os09',
     prefixes: ['OS09'],
     latestReleaseDate: '2026-04-17',
+    yytUrl: 'https://yuyu-tei.jp/sell/wsr/s/search?search_word=&vers[]=os09&rare=&type=&kizu=0',
   },
   'AQUAPLUS': {
     id: 'os08',
