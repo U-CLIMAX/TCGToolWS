@@ -46,6 +46,7 @@
         s.defer = true
         s.src = '%VITE_UMAMI_SCRIPT_URL%'
         s.setAttribute('data-website-id', '%VITE_UMAMI_ID%')
+        s.setAttribute('data-performance', 'true')
         document.head.appendChild(s)
       }
     </script>
