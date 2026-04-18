@@ -19,6 +19,7 @@ const CLIMAX_TYPE_OPTIONS = [
   { name: 'Y', value: 'choice', icon: '/effect-icons/choice.webp' },
   { name: '镜', value: 'discovery', icon: '/effect-icons/discovery.webp' },
   { name: '灯', value: 'chance', icon: '/effect-icons/chance.webp' },
+  { name: '橘', value: 'focus', icon: '/effect-icons/focus.webp' },
 ]
 
 /**
