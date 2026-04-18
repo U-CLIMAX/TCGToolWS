@@ -1015,7 +1015,7 @@ const wsSeriesMap = {
   '偶像大师 MILLION LIVE!': {
     id: 'ims',
     prefixes: ['IMS', 'IAS'],
-    latestReleaseDate: '2022-06-24',
+    latestReleaseDate: '2026-04-24',
     yytUrl:
       'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=impb&vers[]=ims&vers[]=ims2.0&rare=&type=&kizu=0',
   },
