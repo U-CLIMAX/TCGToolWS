@@ -17,7 +17,7 @@
                 :class="smAndUp ? 'ga-4' : 'ga-3 mb-4'"
               >
                 <v-avatar
-                  color="blue-lighten-4"
+                  color="light-blue-accent-3"
                   :size="smAndUp ? 77 : 56"
                   class="rounded-circle shadow-sm pa-2"
                 >
@@ -44,9 +44,10 @@
                     <v-text-field
                       v-model="filters.search"
                       placeholder="搜索地区或者群聊名称"
-                      variant="solo"
+                      variant="outlined"
                       flat
                       rounded="pill"
+                      color="primary"
                       hide-details
                       clearable
                       @update:model-value="handleSearch"
@@ -136,10 +137,10 @@
       <!-- Content Area -->
       <v-container class="pt-4 px-3">
         <v-row>
-          <!-- Community Cards -->
+          <!-- Community Cards (survey card always first) -->
           <v-col
-            v-for="(item, index) in displayItems"
-            :key="index"
+            v-for="(item, index) in displayItemsWithSurvey"
+            :key="item._isSurvey ? 'survey' : `item-${index}`"
             cols="12"
             sm="6"
             md="4"
@@ -147,8 +148,46 @@
             xl="2"
             :class="smAndDown ? 'py-1' : 'py-3'"
           >
-            <LazyCardWrapper>
+            <LazyCardWrapper class="h-100">
+              <!-- ===== 问卷调查卡片 ===== -->
+              <template v-if="item._isSurvey">
+                <v-card
+                  class="h-100 position-relative overflow-hidden survey-card"
+                  rounded="xl"
+                  elevation="0"
+                >
+                  <v-card-text class="pa-5 d-flex flex-column h-100 position-relative z-1">
+                    <!-- Top row -->
+                    <div class="d-flex justify-space-between align-start mb-1">
+                      <div>
+                        <div class="text-h6 font-weight-bold text-white mb-1">填写问卷</div>
+                        <div class="text-white">用于上传群组信息</div>
+                      </div>
+                      <v-icon color="white" size="13" class="pt-3"> mdi-arrow-collapse-up </v-icon>
+                    </div>
+
+                    <!-- Bottom row -->
+                    <div class="mt-auto d-flex justify-space-between align-end">
+                      <div class="text-caption text-white pr-3 my-auto">
+                        各地区TCG社群团体联系方式收集表
+                      </div>
+                      <v-btn
+                        elevation="2"
+                        rounded="pill"
+                        color="white"
+                        slim
+                        @click.prevent="openSurvey"
+                      >
+                        <v-icon color="primary" size="32">mdi-arrow-right-thin</v-icon>
+                      </v-btn>
+                    </div>
+                  </v-card-text>
+                </v-card>
+              </template>
+
+              <!-- ===== 普通社区卡片 ===== -->
               <v-card
+                v-else
                 class="h-100 position-relative overflow-hidden"
                 :class="{ 'glass-card': hasBackgroundImage }"
                 rounded="xl"
@@ -263,6 +302,14 @@ const theme = useTheme()
 const { smAndUp, smAndDown } = useDisplay()
 const { triggerSnackbar } = useSnackbar()
 
+// 问卷
+const SURVEY_URL = 'https://docs.qq.com/form/page/DYUtZZ0V0dU9mcWtB'
+const SURVEY_ITEM = { _isSurvey: true }
+
+const openSurvey = () => {
+  window.open(SURVEY_URL, '_blank', 'noopener,noreferrer')
+}
+
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 const infiniteScrollRef = ref(null)
@@ -345,6 +392,11 @@ const filteredAllItems = computed(() => {
     }
     return true
   })
+})
+
+// 始终在第一位插入问卷卡片，不受任何筛选影响
+const displayItemsWithSurvey = computed(() => {
+  return [SURVEY_ITEM, ...displayItems.value]
 })
 
 const scrollStyle = computed(() => {
@@ -444,5 +496,16 @@ onMounted(() => {
 
 .bg-watermark-icon.mdi-qqchat {
   transform: scaleX(0.85);
+}
+
+/* ── 问卷卡片样式 ── */
+.survey-card {
+  background: linear-gradient(90deg, #1a0455 0%, #010645 100%) !important;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 4px 24px rgba(45, 52, 128, 0.45),
+    0 1px 4px rgba(0, 0, 0, 0.2) !important;
 }
 </style>
