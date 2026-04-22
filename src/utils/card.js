@@ -16,6 +16,7 @@ const findAllPrefixesByCardPrefix = (prefix) => {
 }
 
 const cardCache = new Map()
+const seriesIdCache = new Map()
 
 export const fetchCardByIdAndPrefix = (id, prefix) => {
   const cacheKey = `${prefix}-${id}`
@@ -68,8 +69,17 @@ export const fetchCardsByBaseIdAndPrefix = async (baseId, prefix) => {
 
 export const getCardSeriesId = (id) => {
   const prefix = id.split('/')[0]
+
+  if (seriesIdCache.has(prefix)) {
+    return seriesIdCache.get(prefix)
+  }
+
   const matchingSeries = Object.values(seriesMap).filter(
     (s) => s.prefixes && s.prefixes.some((p) => p === prefix)
   )
-  return matchingSeries.map((s) => ({ id: s.id, yytUrl: s.yytUrl }))
+
+  const result = matchingSeries.map((s) => ({ id: s.id, yytUrl: s.yytUrl }))
+  seriesIdCache.set(prefix, result)
+
+  return result
 }
