@@ -147,8 +147,9 @@
             lg="3"
             xl="2"
             :class="smAndDown ? 'py-1' : 'py-3'"
+            class="d-flex"
           >
-            <LazyCardWrapper class="h-100">
+            <LazyCardWrapper>
               <!-- ===== 问卷调查卡片 ===== -->
               <template v-if="item._isSurvey">
                 <v-card
