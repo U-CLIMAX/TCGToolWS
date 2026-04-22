@@ -208,22 +208,9 @@ export const handleLogin = async (c) => {
 export const handleRefreshSession = async (c) => {
   const db = c.env.DB
   const secret = c.env.JWT_SECRET
+  const user = c.get('user')
 
   try {
-    const authHeader = c.req.header('Authorization')
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return createErrorResponse(c, 401, '身份验证失败')
-    }
-    const token = authHeader.substring(7)
-    const payload = await verify(token, secret, 'HS256')
-
-    const user = await db
-      .prepare('SELECT id, role, premium_expire_time FROM users WHERE id = ?1')
-      .bind(payload.sub)
-      .first()
-
-    if (!user) return createErrorResponse(c, 401, '用户不存在')
-
     const currentTime = Math.floor(Date.now() / 1000)
     await db
       .prepare('UPDATE users SET last_login_time = ?1 WHERE id = ?2')
@@ -241,29 +228,6 @@ export const handleRefreshSession = async (c) => {
     return c.json({ success: true, token: newToken })
   } catch (error) {
     console.error('Session refresh error:', error.message)
-    return createErrorResponse(c, 401, '凭证失效')
-  }
-}
-
-/**
- * Handler: Refresh token with current user context
- */
-export const handleRefreshUserToken = async (c) => {
-  const secret = c.env.JWT_SECRET
-  const user = c.get('user')
-
-  try {
-    const payload = {
-      sub: user.id,
-      exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7,
-      role: user.role,
-      p_exp: user.premium_expire_time,
-    }
-    const token = await sign(payload, secret, 'HS256')
-
-    return c.json({ success: true, token })
-  } catch (error) {
-    console.error('Token refresh error:', error)
     return createErrorResponse(c, 500, '服务器内部错误')
   }
 }

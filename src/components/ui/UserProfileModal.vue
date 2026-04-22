@@ -194,7 +194,7 @@ const formattedExpireTime = computed(() => {
 const handleRefreshToken = async () => {
   isRefreshing.value = true
   try {
-    await authStore.refreshUserToken()
+    await authStore.refreshSession()
     triggerSnackbar('已成功刷新！')
   } catch (error) {
     console.error('刷新失敗:', error)

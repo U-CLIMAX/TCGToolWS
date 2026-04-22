@@ -492,10 +492,10 @@ const { mdAndDown, smAndUp, smAndDown } = useDisplay()
 onMounted(async () => {
   if (authStore.isAuthenticated) {
     try {
-      await authStore.refreshUserToken()
+      await authStore.refreshSession()
     } catch (e) {
-      // refreshUserToken internal error handling already triggers logout
-      console.warn('Initial token refresh skipped or failed:', e.message)
+      // refreshSession internal error handling already triggers logout
+      console.warn('Initial session refresh skipped or failed:', e.message)
     }
   }
 })

@@ -123,7 +123,7 @@ export const useAuthStore = defineStore('auth', () => {
       if (response.ok && data.token) {
         token.value = data.token
         saveToStorage()
-        await fetchUserStatus()
+        updateUserFromToken(data.token)
         console.log('Session refreshed successfully.')
       } else {
         logout()
@@ -186,81 +186,16 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  const refreshUserToken = async () => {
-    if (!token.value) throw new Error('No token to refresh.')
-    try {
-      const response = await fetch('/api/refresh-token', {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token.value}`,
-        },
-      })
-      if (!response.ok) throw new Error('Failed to refresh token')
-      const data = await response.json()
-      if (data.success && data.token) {
-        token.value = data.token
-        saveToStorage()
-        await fetchUserStatus()
-      } else {
-        throw new Error('Invalid data from refresh token endpoint')
-      }
-    } catch (error) {
-      console.error('refreshUserToken failed:', error)
-      logout()
-      throw error
+  const updateUserFromToken = (tokenString) => {
+    if (!tokenString) {
+      userStatus.value = null
+      userRole.value = 0
+      return
     }
-  }
 
-  const fetchUserStatus = async () => {
-    const getUserStatus = async () => {
-      if (!token.value) return null
-
-      const REQUIRED_KEYS = ['sub', 'exp', 'role', 'p_exp']
-      const hasAllKeys = (decoded) => REQUIRED_KEYS.every((key) => key in decoded)
-
-      let decodedToken
-      try {
-        decodedToken = jwtDecode(token.value)
-        // eslint-disable-next-line no-unused-vars
-      } catch (e) {
-        logout()
-        return null
-      }
-
+    try {
+      const decodedToken = jwtDecode(tokenString)
       const now = Math.floor(Date.now() / 1000)
-      if (decodedToken.exp < now) {
-        logout()
-        return null
-      }
-
-      // Check if token structure is stale or premium has expired
-      const isTokenStale = (t) => !hasAllKeys(t) || (t.role === 1 && t.p_exp && t.p_exp < now)
-
-      if (isTokenStale(decodedToken)) {
-        try {
-          await refreshUserToken()
-          decodedToken = jwtDecode(token.value)
-          if (isTokenStale(decodedToken)) {
-            logout()
-            return null
-          }
-          // eslint-disable-next-line no-unused-vars
-        } catch (e) {
-          return null
-        }
-      } else {
-        // Proactive session refresh (if expiring within 24 hours)
-        const oneDay = 24 * 60 * 60
-        if (decodedToken.exp < now + oneDay) {
-          try {
-            await refreshSession()
-            decodedToken = jwtDecode(token.value)
-            // eslint-disable-next-line no-unused-vars
-          } catch (e) {
-            return null
-          }
-        }
-      }
 
       let effectiveRole = decodedToken.role
       let effectivePremiumTime = decodedToken.p_exp
@@ -268,17 +203,51 @@ export const useAuthStore = defineStore('auth', () => {
         effectivePremiumTime = null
       }
 
-      return {
+      const status = {
         id: decodedToken.sub,
         role: effectiveRole,
         premium_expire_time: effectivePremiumTime,
       }
+
+      userStatus.value = status
+      userRole.value = status.role
+    } catch (e) {
+      console.error('Failed to decode token:', e)
+      logout()
+    }
+  }
+
+  const fetchUserStatus = async () => {
+    if (!token.value) {
+      userStatus.value = null
+      userRole.value = 0
+      isAuthReady.value = true
+      return
     }
 
     try {
-      const status = await getUserStatus()
-      userStatus.value = status
-      userRole.value = status ? status.role : 0
+      let decodedToken
+      try {
+        decodedToken = jwtDecode(token.value)
+        // eslint-disable-next-line no-unused-vars
+      } catch (e) {
+        logout()
+        return
+      }
+
+      const now = Math.floor(Date.now() / 1000)
+      if (decodedToken.exp < now) {
+        logout()
+        return
+      }
+
+      // Proactive session refresh (if expiring within 24 hours)
+      const oneDay = 24 * 60 * 60
+      if (decodedToken.exp < now + oneDay) {
+        await refreshSession()
+      } else {
+        updateUserFromToken(token.value)
+      }
       // eslint-disable-next-line no-unused-vars
     } catch (e) {
       userStatus.value = null
@@ -304,7 +273,6 @@ export const useAuthStore = defineStore('auth', () => {
     refreshSession,
     forgotPassword,
     resetPassword,
-    refreshUserToken,
     fetchUserStatus,
   }
 })
