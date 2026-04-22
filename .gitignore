@@ -64,3 +64,4 @@ public/card-db-manifest-wsc.json
 test-webhook.http
 docs/
 GEMINI.md
+.gemini_security/
