@@ -15,6 +15,16 @@ export const handleGetSeriesPrices = async (c) => {
       return createErrorResponse(c, 400, '缺少 seriesId 或 url')
     }
 
+    // SSRF Protection: Validate URL domain and protocol
+    try {
+      const url = new URL(yytUrl)
+      if (url.protocol !== 'https:' || !url.hostname.endsWith('yuyu-tei.jp')) {
+        return createErrorResponse(c, 400, '无效的 url')
+      }
+    } catch {
+      return createErrorResponse(c, 400, '无效的 url')
+    }
+
     // 1. Check KV cache
     const cachedData = await c.env.DAILY_SERIES_PRICE_KV.get(seriesId, 'arrayBuffer')
     if (cachedData) {

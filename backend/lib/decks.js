@@ -31,7 +31,7 @@ export const handleCreateDeck = async (c) => {
     }
 
     const user = c.get('user')
-    const tableName = isDeckGallery ? 'decks_gallery' : 'decks'
+    const tableName = isDeckGallery === true ? 'decks_gallery' : 'decks'
 
     // Check existing deck count for the user
     const { count } = await c.env.DB.prepare(
