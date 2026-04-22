@@ -1,8 +1,14 @@
 import { sign, verify } from 'hono/jwt'
+import { scrypt, randomBytes } from 'node:crypto'
+import { promisify } from 'node:util'
 import { sendVerificationEmail, sendPasswordResetEmail } from '../services/brevo.js'
 import { verifyAfdianSignature } from '../services/afdian.js'
 import { processAfdianOrder } from './payments.js'
 import { createErrorResponse } from './utils.js'
+
+const scryptAsync = promisify(scrypt)
+const SCRYPT_PREFIX = '$scrypt$v1$'
+const SCRYPT_PARAMS = { N: 16384, r: 8, p: 1, keyLen: 64 }
 
 /**
  * Utility: Convert ArrayBuffer to Hex string
@@ -14,9 +20,21 @@ const arrayBufferToHex = (buffer) => {
 }
 
 /**
- * Utility: Hash password using SHA-256 with salt
+ * Utility: Hash password using scrypt
  */
 const hashPassword = async (password, salt) => {
+  const derivedKey = await scryptAsync(password, salt, SCRYPT_PARAMS.keyLen, {
+    N: SCRYPT_PARAMS.N,
+    r: SCRYPT_PARAMS.r,
+    p: SCRYPT_PARAMS.p,
+  })
+  return SCRYPT_PREFIX + derivedKey.toString('hex')
+}
+
+/**
+ * Utility: Hash password using SHA-256 with salt (Legacy)
+ */
+const hashPasswordLegacy = async (password, salt) => {
   const encoder = new TextEncoder()
   const data = encoder.encode(password + salt)
   const hashBuffer = await crypto.subtle.digest('SHA-256', data)
@@ -55,7 +73,7 @@ export const handleSendVerificationCode = async (c) => {
 
     const verificationCode = generateVerificationCode()
     const expiresAt = Math.floor(Date.now() / 1000) + 600
-    const salt = crypto.randomUUID()
+    const salt = randomBytes(16).toString('hex')
     const hashedPassword = await hashPassword(password, salt)
 
     await db
@@ -133,16 +151,37 @@ export const handleLogin = async (c) => {
 
     if (!user) return createErrorResponse(c, 401, '无效的邮箱或密码')
 
-    const hashedPasswordAttempt = await hashPassword(password, user.salt)
-    if (hashedPasswordAttempt !== user.hashed_password) {
-      return createErrorResponse(c, 401, '无效的邮箱或密码')
+    const isScrypt = user.hashed_password.startsWith(SCRYPT_PREFIX)
+    let isPasswordCorrect = false
+    let migrationNeeded = false
+
+    if (isScrypt) {
+      const hashedPasswordAttempt = await hashPassword(password, user.salt)
+      isPasswordCorrect = hashedPasswordAttempt === user.hashed_password
+    } else {
+      const hashedPasswordAttempt = await hashPasswordLegacy(password, user.salt)
+      isPasswordCorrect = hashedPasswordAttempt === user.hashed_password
+      if (isPasswordCorrect) migrationNeeded = true
     }
 
+    if (!isPasswordCorrect) return createErrorResponse(c, 401, '无效的邮箱或密码')
+
     const currentTime = Math.floor(Date.now() / 1000)
-    await db
-      .prepare('UPDATE users SET last_login_time = ?1 WHERE id = ?2')
-      .bind(currentTime, user.id)
-      .run()
+    if (migrationNeeded) {
+      const newSalt = randomBytes(16).toString('hex')
+      const newHashedPassword = await hashPassword(password, newSalt)
+      await db
+        .prepare(
+          'UPDATE users SET hashed_password = ?1, salt = ?2, last_login_time = ?3 WHERE id = ?4'
+        )
+        .bind(newHashedPassword, newSalt, currentTime, user.id)
+        .run()
+    } else {
+      await db
+        .prepare('UPDATE users SET last_login_time = ?1 WHERE id = ?2')
+        .bind(currentTime, user.id)
+        .run()
+    }
 
     const payload = {
       sub: user.id,
@@ -291,7 +330,7 @@ export const handleResetPassword = async (c) => {
       return createErrorResponse(c, 400, '重置链接已过期，请重新申请')
     }
 
-    const salt = crypto.randomUUID()
+    const salt = randomBytes(16).toString('hex')
     const hashedPassword = await hashPassword(password, salt)
 
     await db
