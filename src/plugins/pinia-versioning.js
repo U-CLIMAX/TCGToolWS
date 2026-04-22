@@ -37,6 +37,7 @@ export const piniaVersioningPlugin = ({ store }) => {
               `Clearing persisted state.`
           )
           localStorage.removeItem(storeId)
+          window.location.href = '/home'
         }
       }
     } catch (error) {

@@ -6,7 +6,7 @@ import { useMarketStore } from './market'
 import { jwtDecode } from 'jwt-decode'
 
 export const useAuthStore = defineStore('auth', () => {
-  const codeVersion = 1
+  const codeVersion = ref(1)
   const router = useRouter()
 
   /**
@@ -19,7 +19,7 @@ export const useAuthStore = defineStore('auth', () => {
     if (stored) {
       try {
         const parsed = JSON.parse(stored)
-        if (parsed.version === codeVersion) {
+        if (parsed.version === codeVersion.value) {
           return { token: parsed.token, rememberMe: parsed.rememberMe ?? true }
         }
         // eslint-disable-next-line no-unused-vars
@@ -49,7 +49,11 @@ export const useAuthStore = defineStore('auth', () => {
       const storage = rememberMe.value ? localStorage : sessionStorage
       storage.setItem(
         'auth',
-        JSON.stringify({ token: token.value, rememberMe: rememberMe.value, version: codeVersion })
+        JSON.stringify({
+          token: token.value,
+          rememberMe: rememberMe.value,
+          version: codeVersion.value,
+        })
       )
     }
   }
@@ -285,6 +289,7 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   return {
+    version: codeVersion,
     token,
     isAuthenticated,
     isAuthReady,
