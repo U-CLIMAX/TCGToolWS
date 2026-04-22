@@ -23,7 +23,7 @@
           <v-list-item title="账号 ID">
             <template #subtitle>
               <div class="d-flex align-center">
-                <span>{{ userStatus.id }}</span>
+                <span style="min-width: 0">{{ userStatus.id }}</span>
                 <v-btn
                   icon="mdi-content-copy"
                   variant="text"
