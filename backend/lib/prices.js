@@ -87,9 +87,9 @@ export const handleGetSeriesPrices = async (c) => {
     const compressedResponse = new Response(compressionStream.readable)
     const compressedArrayBuffer = await compressedResponse.arrayBuffer()
 
-    // 5. Store in KV with 3 days TTL
+    // 5. Store in KV with 7 days TTL
     await c.env.DAILY_SERIES_PRICE_KV.put(seriesId, compressedArrayBuffer, {
-      expirationTtl: 259200,
+      expirationTtl: 7 * 24 * 60 * 60,
     })
 
     return c.body(compressedArrayBuffer, 200, {
