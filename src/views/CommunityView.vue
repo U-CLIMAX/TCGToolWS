@@ -66,7 +66,7 @@
                     >
                       <div class="d-flex align-center px-6 flex-shrink-0 ga-2">
                         <v-icon icon="mdi-map-marker-outline" class="text-medium-emphasis" />
-                        <span class="text-body-1 text-medium-emphasis">省份</span>
+                        <span class="text-body-1 text-medium-emphasis">省市</span>
                       </div>
 
                       <v-autocomplete
