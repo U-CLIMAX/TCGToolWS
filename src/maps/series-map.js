@@ -797,7 +797,7 @@ const wsSeriesMap = {
     prefixes: ['IM', 'IAS'],
     latestReleaseDate: '2025-07-26',
     yytUrl:
-      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=im&vers[]=imd&vers[]=im2.0&vers[]=animeim&vers[]=imm&vers[]=im765proext&vers[]=impset&vers[]=impb&vers[]=ims&vers[]=ims2.0&rare=&type=&kizu=0',
+      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=im&vers[]=imd&vers[]=im2.0&vers[]=animeim&vers[]=imm&vers[]=im765proext&vers[]=impset&vers[]=impb&vers[]=ims&vers[]=ims2.0&vers[]=imspb&rare=&type=&kizu=0',
   },
   '妖精的尾巴': {
     id: 'ft',
@@ -1017,7 +1017,7 @@ const wsSeriesMap = {
     prefixes: ['IMS', 'IAS'],
     latestReleaseDate: '2026-04-24',
     yytUrl:
-      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=impb&vers[]=ims&vers[]=ims2.0&rare=&type=&kizu=0',
+      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=impb&vers[]=ims&vers[]=ims2.0&vers[]=imspb&rare=&type=&kizu=0',
   },
   'STEINS;GATE': {
     id: 'stg',
