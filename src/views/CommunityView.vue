@@ -43,7 +43,7 @@
                   <v-col cols="12" sm="6" xl="3">
                     <v-text-field
                       v-model="filters.search"
-                      placeholder="搜索地区或者群聊名称"
+                      placeholder="搜索群聊名称"
                       variant="outlined"
                       flat
                       rounded="pill"
@@ -393,12 +393,7 @@ const filteredAllItems = computed(() => {
     if (filters.value.district && item.district !== filters.value.district) return false
     if (filters.value.search) {
       const searchLower = filters.value.search.toLowerCase()
-      const matchesName = item.name.toLowerCase().includes(searchLower)
-      const matchesLocation =
-        item.province.toLowerCase().includes(searchLower) ||
-        item.city.toLowerCase().includes(searchLower) ||
-        item.district.toLowerCase().includes(searchLower)
-      if (!matchesName && !matchesLocation) return false
+      if (!item.name.toLowerCase().includes(searchLower)) return false
     }
     return true
   })
