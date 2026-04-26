@@ -101,7 +101,7 @@
                       :bg-color="
                         theme.global.current.value.dark ? 'grey-lighten-2' : 'grey-lighten-3'
                       "
-                      :disabled="!filters.province"
+                      :disabled="!filters.province || cities.length === 0"
                       :menu-props="uiStore.menuProps"
                       @update:model-value="handleCityChange"
                     />
@@ -122,7 +122,11 @@
                       :bg-color="
                         theme.global.current.value.dark ? 'grey-lighten-4' : 'grey-lighten-3'
                       "
-                      :disabled="!filters.city"
+                      :disabled="
+                        !filters.province ||
+                        (cities.length > 0 && !filters.city) ||
+                        districts.length === 0
+                      "
                       :menu-props="uiStore.menuProps"
                       @update:model-value="handleSearch"
                     />
@@ -365,12 +369,17 @@ const cities = computed(() => {
 })
 
 const districts = computed(() => {
-  if (!filters.value.city) return []
+  if (!filters.value.province) return []
+  // 如果当前省份有城市列表，则必须选择城市
+  if (cities.value.length > 0 && !filters.value.city) return []
+
   const set = new Set(
     allItems.value
-      .filter(
-        (item) => item.province === filters.value.province && item.city === filters.value.city
-      )
+      .filter((item) => {
+        const provinceMatch = item.province === filters.value.province
+        const cityMatch = cities.value.length > 0 ? item.city === filters.value.city : true
+        return provinceMatch && cityMatch
+      })
       .map((item) => item.district)
       .filter(Boolean)
   )
