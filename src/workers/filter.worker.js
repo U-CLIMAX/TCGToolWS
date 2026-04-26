@@ -49,6 +49,7 @@ const CardFilterService = {
     const traitsSet = new Set()
     const raritiesSet = new Set()
     const soulsSet = new Set()
+    const levelsSet = new Set()
     let minCost = Infinity,
       maxCost = -Infinity,
       minPower = Infinity,
@@ -61,6 +62,12 @@ const CardFilterService = {
         if (cardData.product_name) productNamesSet.add(cardData.product_name)
         if (cardData.trait && Array.isArray(cardData.trait))
           cardData.trait.forEach((t) => traitsSet.add(t))
+
+        const levelValue = cardData.level === '-' ? 0 : cardData.level
+        if (typeof levelValue === 'number') {
+          levelsSet.add(levelValue)
+        }
+
         if (typeof cardData.cost === 'number') {
           minCost = Math.min(minCost, cardData.cost)
           maxCost = Math.max(maxCost, cardData.cost)
@@ -163,6 +170,7 @@ const CardFilterService = {
       traits: [...traitsSet],
       rarities: [...raritiesSet].sort(),
       souls: [...soulsSet].sort((a, b) => a - b),
+      levels: [...levelsSet].sort((a, b) => a - b),
       costRange: {
         min: minCost === Infinity ? 0 : minCost,
         max: maxCost === -Infinity ? 0 : maxCost,
@@ -233,7 +241,8 @@ const CardFilterService = {
       return
     }
 
-    const effectiveTargets = searchTargets && searchTargets.length > 0 ? searchTargets : ['id', 'name', 'effect']
+    const effectiveTargets =
+      searchTargets && searchTargets.length > 0 ? searchTargets : ['id', 'name', 'effect']
 
     if (keyword.length >= 2) {
       console.log(
@@ -267,7 +276,9 @@ const CardFilterService = {
             card.name &&
             card.name.toLowerCase().includes(lowerKeyword)
           const inId =
-            effectiveTargets.includes('id') && card.id && card.id.toLowerCase().includes(lowerKeyword)
+            effectiveTargets.includes('id') &&
+            card.id &&
+            card.id.toLowerCase().includes(lowerKeyword)
           const inEffect =
             effectiveTargets.includes('effect') &&
             card.effect &&

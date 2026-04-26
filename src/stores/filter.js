@@ -28,6 +28,7 @@ export const useFilterStore = defineStore('filter', () => {
   const traits = ref([])
   const rarities = ref([])
   const souls = ref([])
+  const levels = ref([])
   const costRange = ref({ min: 0, max: 0 })
   const powerRange = ref({ min: 0, max: 0 })
 
@@ -115,7 +116,9 @@ export const useFilterStore = defineStore('filter', () => {
         allCards: [],
         productNames: [],
         traits: [],
+        rarities: [],
         souls: [],
+        levels: [],
         costRange: { min: 0, max: 0 },
         powerRange: { min: 0, max: 0 },
       }
@@ -179,7 +182,9 @@ export const useFilterStore = defineStore('filter', () => {
         allCards: [],
         productNames: [],
         traits: [],
+        rarities: [],
         souls: [],
+        levels: [],
         costRange: { min: 0, max: 0 },
         powerRange: { min: 0, max: 0 },
       }
@@ -201,6 +206,7 @@ export const useFilterStore = defineStore('filter', () => {
       traits.value = result.traits
       rarities.value = result.rarities
       souls.value = result.souls
+      levels.value = result.levels
       costRange.value = result.costRange
       powerRange.value = result.powerRange
 
@@ -225,6 +231,7 @@ export const useFilterStore = defineStore('filter', () => {
     traits.value = []
     rarities.value = []
     souls.value = []
+    levels.value = []
     costRange.value = { min: 0, max: 0 }
     powerRange.value = { min: 0, max: 0 }
     resetFilters()
@@ -239,6 +246,7 @@ export const useFilterStore = defineStore('filter', () => {
     traits,
     rarities,
     souls,
+    levels,
     costRange,
     powerRange,
     keyword,

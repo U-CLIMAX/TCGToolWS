@@ -185,7 +185,7 @@
 
         <v-select
           label="等级"
-          :items="['0', '1', '2', '3', '4']"
+          :items="filterStore.levels"
           hide-details
           multiple
           chips

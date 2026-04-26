@@ -12,6 +12,9 @@ const __dirname = path.dirname(__filename)
 const CARD_DATA_DIR = path.join(__dirname, '../src/assets/card-data')
 const OUTPUT_DIR = path.join(__dirname, '../public')
 
+// 腳本邏輯版本
+const BUILD_LOGIC_VERSION = 'v1'
+
 console.log('🔍 Starting to build card index...')
 
 // --- FlexSearch 配置與生成函式 ---
@@ -306,6 +309,7 @@ const processGameData = async (game, cards) => {
   const traitsSet = new Set()
   const raritiesSet = new Set()
   const soulsSet = new Set()
+  const levelsSet = new Set()
   let minCost = Infinity,
     maxCost = -Infinity,
     minPower = Infinity,
@@ -315,8 +319,13 @@ const processGameData = async (game, cards) => {
     if (card.product_name) productNamesSet.add(card.product_name)
     if (card.trait && Array.isArray(card.trait)) card.trait.forEach((t) => traitsSet.add(t))
     if (card.rarity) raritiesSet.add(card.rarity)
+
     let soulValue = card.soul === '-' ? 0 : card.soul
     if (typeof soulValue === 'number') soulsSet.add(soulValue)
+
+    let levelValue = card.level === '-' ? 0 : card.level
+    if (typeof levelValue === 'number') levelsSet.add(levelValue)
+
     if (typeof card.cost === 'number') {
       minCost = Math.min(minCost, card.cost)
       maxCost = Math.max(maxCost, card.cost)
@@ -328,7 +337,7 @@ const processGameData = async (game, cards) => {
   })
 
   // 計算基礎卡片資料的 hash，這步不包含 link
-  const cardDataContent = JSON.stringify(cards)
+  const cardDataContent = JSON.stringify(cards) + BUILD_LOGIC_VERSION
   const hash = crypto.createHash('sha256').update(cardDataContent).digest('hex').substring(0, 8)
   const version = `v${hash}`
 
@@ -358,6 +367,7 @@ const processGameData = async (game, cards) => {
     traits: [...traitsSet],
     rarities: [...raritiesSet].sort(),
     souls: [...soulsSet].sort((a, b) => a - b),
+    levels: [...levelsSet].sort((a, b) => a - b),
     costRange: {
       min: minCost === Infinity ? 0 : minCost,
       max: maxCost === -Infinity ? 0 : maxCost,
