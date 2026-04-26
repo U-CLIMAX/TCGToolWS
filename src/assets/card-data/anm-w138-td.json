@@ -1,0 +1,482 @@
+{
+  "ANM/W138-T01": {
+    "name": "“兄全肯定の妹”六花",
+    "product_name": "[TD]anemoi",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["風", "妹"],
+    "color": "黄色",
+    "effect": "【自】［将1张手牌放置入休息室］ 你的高潮卡被放置入高潮区时，你可以支付费用。如果这么做的话，你公开自己卡组顶1张卡，从自己的休息室选择1张等级X以下的角色卡返回手牌。X是公开的卡的等级。（高潮卡视为0级。公开的卡放回原处）<br>【起】 集中 ［(1) 此卡【横置】］ 你将自己卡组顶5张卡放置入休息室。那些卡中每有1张高潮卡，你抽至多1张卡。",
+    "all_cards": [
+      {
+        "id": "ANM/W138-T01SP",
+        "rarity": "TDSP"
+      },
+      {
+        "id": "ANM/W138-T01",
+        "rarity": "TD"
+      },
+      {
+        "id": "ANM/W138-T01S",
+        "rarity": "TDP"
+      }
+    ]
+  },
+  "ANM/W138-T02": {
+    "name": "“兄さんの嫁検定ノート”六花",
+    "product_name": "[TD]anemoi",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["風", "妹"],
+    "color": "黄色",
+    "effect": "【永】你其他全部的「“妹とともに旅をする青年”麦」，给予以下2个能力。『【永】你的回合中，此卡的战斗力+3000。』『【自】再演 [手牌中1张角色卡放置到休息室]』<br>【自】絆／「“妹とともに旅をする青年”麦」 [手牌中1张卡放置到休息室] （此卡从手牌放置到舞台或被使用放置到舞台时，你可以支付费用。如果这么做的话，你从自己的休息室选择1张「“妹とともに旅をする青年”麦」返回手牌）",
+    "all_cards": [
+      {
+        "id": "ANM/W138-T02",
+        "rarity": "TD"
+      },
+      {
+        "id": "ANM/W138-T02S",
+        "rarity": "TDP"
+      }
+    ]
+  },
+  "ANM/W138-T03": {
+    "name": "“息ぴったりの音合わせ”朱比華",
+    "product_name": "[TD]anemoi",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["風", "ピザ"],
+    "color": "黄色",
+    "effect": "【永】你的手牌有5张以上的话，此卡的战斗力+2000。<br>【自】[(1) 1张手牌放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你从自己的卡组找至多1张《風》的角色卡展示给对手，加入手牌，卡组洗切。",
+    "all_cards": [
+      {
+        "id": "ANM/W138-T03",
+        "rarity": "TD"
+      },
+      {
+        "id": "ANM/W138-T03S",
+        "rarity": "TDP"
+      }
+    ]
+  },
+  "ANM/W138-T04": {
+    "name": "“謎めいた少女”朱比華",
+    "product_name": "[TD]anemoi",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["風", "ピザ"],
+    "color": "黄色",
+    "effect": "【永】你的回合中，你其他《風》的角色有2个以上的话，此卡的战斗力+40。 <br>【自】【CX联动】此卡攻击时，高潮区有「茶色い馬の迎え」，你其他《風》的角色有2个以上的话，你看自己卡组顶至多4张卡，选择至多1张《風》的角色卡展示给对手，加入手牌，其余的卡放置到休息室。选择的角色等级在3级以上的话，你选择自己的1张手牌放置到休息室，从自己的休息室选择至多1张角色卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "ANM/W138-T04",
+        "rarity": "TD"
+      },
+      {
+        "id": "ANM/W138-T04S",
+        "rarity": "TDP"
+      },
+      {
+        "id": "ANM/W138-T04SP",
+        "rarity": "TDSP"
+      }
+    ]
+  },
+  "ANM/W138-T05": {
+    "name": "“妹とともに旅をする青年”麦",
+    "product_name": "[TD]anemoi",
+    "type": "角色卡",
+    "level": 1,
+    "power": 7000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["風", "旅人"],
+    "color": "黄色",
+    "effect": "",
+    "all_cards": [
+      {
+        "id": "ANM/W138-T05S",
+        "rarity": "TDP"
+      },
+      {
+        "id": "ANM/W138-T05",
+        "rarity": "TD"
+      }
+    ]
+  },
+  "ANM/W138-T06": {
+    "name": "“君はさながら……”朱比華",
+    "product_name": "[TD]anemoi",
+    "type": "角色卡",
+    "level": 2,
+    "power": 3500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["風", "ピザ"],
+    "color": "黄色",
+    "effect": "【永】 应援 你此卡前全部的角色，战斗力+X。X等于那个角色的等级×500。<br>【起】［此卡【横置】］ 你选择自己的1个角色，那个回合中，战斗力+2000。",
+    "all_cards": [
+      {
+        "id": "ANM/W138-T06",
+        "rarity": "TD"
+      },
+      {
+        "id": "ANM/W138-T06S",
+        "rarity": "TDP"
+      }
+    ]
+  },
+  "ANM/W138-T07": {
+    "name": "“初めての制服”六花",
+    "product_name": "[TD]anemoi",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["風", "妹"],
+    "color": "黄色",
+    "effect": "【永】你的回合中，你其他《風》的角色有4个以上的话，此卡的战斗力+50，此卡获得以下能力。『【永】此卡的战斗中，对手不能从手牌中使用事件卡和『助太刀』。』<br>【自】【一回合1次】此卡从手牌放置到舞台的回合中，此卡造成的伤害被取消时，你将自己卡组顶1张卡放置到休息室，给对手造成X点伤害。X是那张卡的等级+1。（高潮卡视为0级。发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "ANM/W138-T07",
+        "rarity": "TD"
+      },
+      {
+        "id": "ANM/W138-T07S",
+        "rarity": "TDP"
+      }
+    ]
+  },
+  "ANM/W138-T08": {
+    "name": "真澄町の風車",
+    "product_name": "[TD]anemoi",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 0,
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "集中 你将自己卡组顶3张卡放置到休息室。你从自己的休息室选择1个等级X以下的《風》的角色卡返回手牌。X是那些卡中《風》的角色卡的数量。",
+    "all_cards": [
+      {
+        "id": "ANM/W138-T08",
+        "rarity": "TD"
+      },
+      {
+        "id": "ANM/W138-T08S",
+        "rarity": "TDP"
+      }
+    ]
+  },
+  "ANM/W138-T09": {
+    "name": "茶色い馬の迎え",
+    "product_name": "[TD]anemoi",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡被触发时，你从自己的休息室选择1张拥有<img src=\"/effect-icons/soul.webp\">触发标记的角色卡，可以将其返回手牌或放置入库存区）",
+    "all_cards": [
+      {
+        "id": "ANM/W138-T09S",
+        "rarity": "TDP"
+      },
+      {
+        "id": "ANM/W138-T09",
+        "rarity": "TD"
+      }
+    ]
+  },
+  "ANM/W138-T10": {
+    "name": "約束は、風のなかに――",
+    "product_name": "[TD]anemoi",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 2,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你全部的角色，灵魂值+2。",
+    "all_cards": [
+      {
+        "id": "ANM/W138-T10S",
+        "rarity": "TDP"
+      },
+      {
+        "id": "ANM/W138-T10",
+        "rarity": "TD"
+      }
+    ]
+  },
+  "ANM/W138-T11": {
+    "name": "“星空よりも美しい”陽彩",
+    "product_name": "[TD]anemoi",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["風", "美"],
+    "color": "蓝色",
+    "effect": "【自】此卡【倒置】时，此卡的战斗对手的等级是0级以下的话，你可以将那个角色放置到卡组底。<br>【自】[(1) 你将自己卡组顶1张卡放置到时计区] 此卡从舞台放置到休息室时，你可以支付费用。如果这么做的话，你从自己的休息室选择1个《風》的角色返回手牌。",
+    "all_cards": [
+      {
+        "id": "ANM/W138-T11",
+        "rarity": "TD"
+      },
+      {
+        "id": "ANM/W138-T11S",
+        "rarity": "TDP"
+      }
+    ]
+  },
+  "ANM/W138-T12": {
+    "name": "“ふわふわした名前？”愛乃",
+    "product_name": "[TD]anemoi",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["風", "空"],
+    "color": "蓝色",
+    "effect": "【永】应援 你此卡前全部的角色，战斗力+500。<br>【起】[(1) 1张手牌放置到休息室，此卡【横置】] 你从自己的休息室选择1张角色卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "ANM/W138-T12",
+        "rarity": "TD"
+      },
+      {
+        "id": "ANM/W138-T12S",
+        "rarity": "TDP"
+      }
+    ]
+  },
+  "ANM/W138-T13": {
+    "name": "“町唯一の郵便屋”小詠",
+    "product_name": "[TD]anemoi",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["風", "手紙"],
+    "color": "蓝色",
+    "effect": "【自】你的高潮阶段开始时，你选择自己1个《風》的角色，那个回合中，战斗力+1000。<br>【自】[将1张手牌放置入休息室] 此卡攻击时，你可以支付费用。如果这么做的话，你看自己卡组顶至多4张卡，选择至多1张《風》的角色卡展示给对手，加入手牌，其余的卡放置入休息室。",
+    "all_cards": [
+      {
+        "id": "ANM/W138-T13S",
+        "rarity": "TDP"
+      },
+      {
+        "id": "ANM/W138-T13",
+        "rarity": "TD"
+      },
+      {
+        "id": "ANM/W138-T13SP",
+        "rarity": "TDSP"
+      }
+    ]
+  },
+  "ANM/W138-T14": {
+    "name": "“鳥頭”小詠",
+    "product_name": "[TD]anemoi",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["風", "手紙"],
+    "color": "蓝色",
+    "effect": "【自】[将1张手牌放置入休息室] 此卡从手牌放置入舞台时，你可以支付费用。如果这么做的话，你从自己的休息室选择1个等级0以下的《風》的角色卡，放置入舞台任意位置。<br>【自】此卡攻击时，你选择自己的1个角色，那个回合中，其战斗力+3000。",
+    "all_cards": [
+      {
+        "id": "ANM/W138-T14",
+        "rarity": "TD"
+      },
+      {
+        "id": "ANM/W138-T14S",
+        "rarity": "TDP"
+      }
+    ]
+  },
+  "ANM/W138-T16": {
+    "name": "“淡雪ポイント”陽彩",
+    "product_name": "[TD]anemoi",
+    "type": "角色卡",
+    "level": 1,
+    "power": 500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["風", "美"],
+    "color": "蓝色",
+    "effect": "【自】你使用此卡的『助太刀』时，你公开自己卡组顶1张卡。若那张卡是《風》的角色卡，则加入手牌，你选择自己的1张手牌放置到休息室。（否则放回原处）<br>【起】【反击】助太刀2000 等级1 [(1) 将手牌中此卡放置到休息室] （你选择自己1个被正面攻击的角色，那个回合中，其战斗力+2000）",
+    "all_cards": [
+      {
+        "id": "ANM/W138-T16",
+        "rarity": "TD"
+      },
+      {
+        "id": "ANM/W138-T16S",
+        "rarity": "TDP"
+      }
+    ]
+  },
+  "ANM/W138-T15": {
+    "name": "“まどろみの膝枕”愛乃",
+    "product_name": "[TD]anemoi",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["風", "空"],
+    "color": "蓝色",
+    "effect": "【永】你其他《風》的角色有2个以上的话，此卡的战斗力+2000。<br>【自】此卡的战斗对手【倒置】时，你从自己的休息室选择1张《風》的角色卡返回手牌，选择自己的1张手牌放置到休息室。",
+    "all_cards": [
+      {
+        "id": "ANM/W138-T15S",
+        "rarity": "TDP"
+      },
+      {
+        "id": "ANM/W138-T15",
+        "rarity": "TD"
+      }
+    ]
+  },
+  "ANM/W138-T17": {
+    "name": "“転んだ出会い”小詠",
+    "product_name": "[TD]anemoi",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["風", "手紙"],
+    "color": "蓝色",
+    "effect": "【自】此卡攻击时，你其他《風》的角色有2个以上的话，那个回合中，此卡的战斗力+4000。<br>【自】再演 [将手牌中1张《風》的角色卡放置到休息室] （此卡从舞台放置到休息室时，你可以支付费用。如果这么做的话，将此卡【横置】放置到原来的位置）",
+    "all_cards": [
+      {
+        "id": "ANM/W138-T17S",
+        "rarity": "TDP"
+      },
+      {
+        "id": "ANM/W138-T17",
+        "rarity": "TD"
+      }
+    ]
+  },
+  "ANM/W138-T18": {
+    "name": "“天文台に住む少女”陽彩",
+    "product_name": "[TD]anemoi",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["風", "美"],
+    "color": "蓝色",
+    "effect": "【自】此卡从手牌放置到舞台时，你将自己时计区顶至多1张卡放置到休息室，那个回合中，此卡的战斗力+3000。<br>【自】[(1) 将1张手牌放置到休息室] 此卡攻击时，你其他《風》的角色有2个以上的话，你可以支付费用。如果这么做的话，你将对手卡组底4张卡放置到休息室，给对手造成X点伤害。X是那些卡中高潮卡的数量。（发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "ANM/W138-T18S",
+        "rarity": "TDP"
+      },
+      {
+        "id": "ANM/W138-T18SP",
+        "rarity": "TDSP"
+      },
+      {
+        "id": "ANM/W138-T18",
+        "rarity": "TD"
+      }
+    ]
+  },
+  "ANM/W138-T19": {
+    "name": "“空から降ってくる少女”愛乃",
+    "product_name": "[TD]anemoi",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["風", "空"],
+    "color": "蓝色",
+    "effect": "【自】此卡从手牌放置到舞台时，你看自己卡组顶至多X张卡，选择至多1张卡加入手牌，其余的卡放置到休息室。X是你《風》的角色的数量。<br>【自】【CX联动】[(1) 手牌中1张卡放置到休息室] 此卡攻击时，高潮区有「愛乃降臨」，你其他《風》的角色有2个以上的话，你可以支付费用。如果这么做的话，给对手造成2点伤害，你看对手卡组顶1张卡，放置到卡组顶或休息室。（发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "ANM/W138-T19S",
+        "rarity": "TDP"
+      },
+      {
+        "id": "ANM/W138-T19",
+        "rarity": "TD"
+      },
+      {
+        "id": "ANM/W138-T19SP",
+        "rarity": "TDSP"
+      }
+    ]
+  },
+  "ANM/W138-T20": {
+    "name": "愛乃降臨",
+    "product_name": "[TD]anemoi",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【永】你全部的角色战斗力+1000，灵魂值+1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "ANM/W138-T20",
+        "rarity": "TD"
+      },
+      {
+        "id": "ANM/W138-T20S",
+        "rarity": "TDP"
+      }
+    ]
+  }
+}

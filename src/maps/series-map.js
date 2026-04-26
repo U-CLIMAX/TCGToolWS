@@ -1,4 +1,9 @@
 const wsSeriesMap = {
+  'anemoi': {
+    id: 'anm',
+    prefixes: ['ANM'],
+    latestReleaseDate: '2026-05-01',
+  },
   'VIRTUAL GIRL': {
     id: 'vrg',
     prefixes: ['VRG', 'BDY'],
