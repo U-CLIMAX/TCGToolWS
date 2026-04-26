@@ -225,12 +225,15 @@ const CardFilterService = {
    * 根據關鍵字搜尋卡片，並將結果暫存起來
    * @param {string} keyword - 用於搜尋的關鍵字
    * @param {string} searchMode - 搜尋模式 ('fuzzy' 或 'precise')
+   * @param {string[]} searchTargets - 搜尋目標 ('id', 'name', 'effect')
    */
-  searchByKeyword: (keyword, searchMode = 'precise') => {
+  searchByKeyword: (keyword, searchMode = 'precise', searchTargets = []) => {
     if (!keyword) {
       keywordResultsCache = allCards
       return
     }
+
+    const effectiveTargets = searchTargets && searchTargets.length > 0 ? searchTargets : ['id', 'name', 'effect']
 
     if (keyword.length >= 2) {
       console.log(
@@ -238,8 +241,11 @@ const CardFilterService = {
       )
       console.time('search time')
 
-      // FlexSearch 搜索
-      const searchResults = searchIndex.search(keyword, { limit: Infinity })
+      // FlexSearch 搜索，傳遞 index 參數限制搜索欄位
+      const searchResults = searchIndex.search(keyword, {
+        limit: Infinity,
+        index: effectiveTargets,
+      })
 
       // 收集所有匹配索引
       const matchedIndices = new Set()
@@ -255,18 +261,27 @@ const CardFilterService = {
       // precise 模式下用 includes 過濾
       if (searchMode === 'precise') {
         const lowerKeyword = keyword.toLowerCase()
-        results = results.filter(
-          (card) =>
-            (card.name && card.name.toLowerCase().includes(lowerKeyword)) ||
-            (card.id && card.id.toLowerCase().includes(lowerKeyword)) ||
-            (card.effect && card.effect.toLowerCase().includes(lowerKeyword))
-        )
+        results = results.filter((card) => {
+          const inName =
+            effectiveTargets.includes('name') &&
+            card.name &&
+            card.name.toLowerCase().includes(lowerKeyword)
+          const inId =
+            effectiveTargets.includes('id') && card.id && card.id.toLowerCase().includes(lowerKeyword)
+          const inEffect =
+            effectiveTargets.includes('effect') &&
+            card.effect &&
+            card.effect.toLowerCase().includes(lowerKeyword)
+          return inName || inId || inEffect
+        })
       }
 
       // 精確匹配排前面
       results.sort((a, b) => {
-        const aExact = a.name === keyword || a.id === keyword || a.effect.includes(keyword)
-        const bExact = b.name === keyword || b.id === keyword || b.effect.includes(keyword)
+        const aExact =
+          a.name === keyword || a.id === keyword || (a.effect && a.effect.includes(keyword))
+        const bExact =
+          b.name === keyword || b.id === keyword || (b.effect && b.effect.includes(keyword))
         if (aExact && !bExact) return -1
         if (!aExact && bExact) return 1
         return 0

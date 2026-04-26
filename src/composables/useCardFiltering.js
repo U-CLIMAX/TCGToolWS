@@ -13,6 +13,7 @@ export const useCardFiltering = (
   // --- State ---
   const keyword = debounceRef(null, 300)
   const searchMode = ref('precise') // 'precise' or 'fuzzy'
+  const searchTargets = ref([])
   const selectedCardTypes = ref([])
   const selectedColors = ref([])
   const selectedProductName = ref(null)
@@ -120,7 +121,11 @@ export const useCardFiltering = (
 
     const requestId = ++lastRequestId
     try {
-      await workerApiInstance.searchByKeyword(toRaw(keyword.value), toRaw(searchMode.value))
+      await workerApiInstance.searchByKeyword(
+        toRaw(keyword.value),
+        toRaw(searchMode.value),
+        toRaw(searchTargets.value)
+      )
       const results = await workerApiInstance.filterByAttributes({
         selectedCardTypes: toRaw(selectedCardTypes.value),
         selectedColors: toRaw(selectedColors.value),
@@ -168,6 +173,11 @@ export const useCardFiltering = (
     applyKeywordSearchAndFilter()
   })
 
+  watch(searchTargets, () => {
+    if ((keyword.value || '').length < 2) return
+    applyKeywordSearchAndFilter()
+  })
+
   watch(
     [
       selectedCardTypes,
@@ -193,6 +203,7 @@ export const useCardFiltering = (
   const resetFilters = () => {
     keyword.value = null
     searchMode.value = 'precise'
+    searchTargets.value = []
     selectedCardTypes.value = []
     selectedColors.value = []
     selectedProductName.value = null
@@ -215,6 +226,7 @@ export const useCardFiltering = (
     // State
     keyword,
     searchMode,
+    searchTargets,
     selectedCardTypes,
     selectedColors,
     selectedProductName,

@@ -97,6 +97,39 @@
           </v-combobox>
         </div>
 
+        <div class="d-flex flex-wrap ga-x-4 ga-y-0 mt-n5 ml-n1">
+          <v-checkbox
+            v-model="filterStore.searchTargets"
+            label="卡号"
+            value="id"
+            hide-details
+            density="compact"
+            color="primary"
+            :disabled="props.disabled"
+            :ripple="false"
+          ></v-checkbox>
+          <v-checkbox
+            v-model="filterStore.searchTargets"
+            label="卡名"
+            value="name"
+            hide-details
+            density="compact"
+            color="primary"
+            :disabled="props.disabled"
+            :ripple="false"
+          ></v-checkbox>
+          <v-checkbox
+            v-model="filterStore.searchTargets"
+            label="效果"
+            value="effect"
+            hide-details
+            density="compact"
+            color="primary"
+            :disabled="props.disabled"
+            :ripple="false"
+          ></v-checkbox>
+        </div>
+
         <v-switch
           label="高罕过滤"
           hide-details
@@ -112,7 +145,7 @@
           v-model="filterStore.showTriggerSoul"
           color="primary"
           density="compact"
-          :disabled="props.disabled"
+          :disabled="props.disabled || (!filterStore.hasActiveFilters && globalFilter)"
         >
           <template v-slot:label>
             <div class="d-flex align-center">

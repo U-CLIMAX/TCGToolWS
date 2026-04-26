@@ -35,6 +35,7 @@ export const useFilterStore = defineStore('filter', () => {
   const {
     keyword,
     searchMode,
+    searchTargets,
     selectedCardTypes,
     selectedColors,
     selectedProductName,
@@ -242,6 +243,7 @@ export const useFilterStore = defineStore('filter', () => {
     powerRange,
     keyword,
     searchMode,
+    searchTargets,
     selectedCardTypes,
     selectedColors,
     selectedProductName,

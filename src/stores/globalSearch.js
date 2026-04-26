@@ -27,6 +27,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
   const {
     keyword,
     searchMode,
+    searchTargets,
     selectedCardTypes,
     selectedColors,
     selectedProductName,
@@ -364,6 +365,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     // Selected Filters
     keyword,
     searchMode,
+    searchTargets,
     selectedCardTypes,
     selectedColors,
     selectedProductName,
