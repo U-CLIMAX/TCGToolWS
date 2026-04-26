@@ -10,7 +10,7 @@ export const findDeckSeriesId = (cardIds) => {
   if (!cardIds || cardIds.length === 0) return null
 
   // 取得目前卡組中所有出現過的 Prefix
-  const deckUniquePrefixes = [...new Set(cardIds.map((id) => id.split('-')[0]))]
+  const deckUniquePrefixes = [...new Set(cardIds.map((id) => id.split('/')[0]))]
 
   let bestSeriesId = null
   let maxMatchCount = -1
@@ -18,9 +18,7 @@ export const findDeckSeriesId = (cardIds) => {
   // 遍歷 SeriesMap 尋找命中數最高的
   Object.values(seriesMap).forEach((series) => {
     const matchCount = deckUniquePrefixes.reduce((count, prefix) => {
-      return series.prefixes.map((p) => p.toLowerCase()).includes(prefix.toLowerCase())
-        ? count + 1
-        : count
+      return series.prefixes.map((p) => p).includes(prefix) ? count + 1 : count
     }, 0)
 
     if (matchCount > maxMatchCount) {
