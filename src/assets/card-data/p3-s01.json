@@ -2278,7 +2278,7 @@
     "product_name": "2008年度トライアルデッキ【S】",
     "type": "角色卡",
     "level": 2,
-    "power": "-",
+    "power": 6000,
     "cost": 1,
     "trait": ["生徒会", "神"],
     "color": "蓝色",
