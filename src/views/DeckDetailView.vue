@@ -928,10 +928,15 @@ const handleCardClick = async (item) => {
 }
 
 const deckShareImageRef = ref(null)
+const includeQrCodeInImage = ref(true)
 
 const openExportDialog = () => baseOpenExportDialog(deck.value)
 
-const handleGenerateDeckImage = (mode = 'u_climax') => baseHandleGenerateDeckImage(deck.value, mode)
+const handleGenerateDeckImage = (options) => {
+  const mode = typeof options === 'string' ? options : options.mode
+  includeQrCodeInImage.value = typeof options === 'object' ? options.includeQrCode : true
+  baseHandleGenerateDeckImage(deck.value, mode)
+}
 
 const handleDownloadDeckPDF = (language) =>
   baseHandleDownloadDeckPDF(originalCards.value, deck.value.name, language)
@@ -945,7 +950,7 @@ watch(
         isGenerationTriggered.value = false
 
         if (imageRef) {
-          imageRef.toggleQrCode(!isLocalDeck.value)
+          imageRef.toggleQrCode(includeQrCodeInImage.value && !isLocalDeck.value)
           await nextTick()
         }
 
@@ -963,9 +968,6 @@ watch(
         console.error('生成图片失败:', error)
         triggerSnackbar('生成图片失败，请稍后再试。', 'error')
       } finally {
-        if (imageRef) {
-          imageRef.toggleQrCode(!isLocalDeck.value)
-        }
         uiStore.setLoading(false)
         renderShareImage.value = false
       }

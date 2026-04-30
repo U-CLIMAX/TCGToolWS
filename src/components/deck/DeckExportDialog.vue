@@ -41,6 +41,17 @@
           </v-btn-toggle>
         </div>
 
+        <div v-if="selectedImageMode === 'u_climax' && !isLocalDeck" class="mb-4 mt-n4">
+          <v-checkbox
+            v-model="includeQrCode"
+            label="添加二维码"
+            hide-details
+            density="compact"
+            color="primary"
+          ></v-checkbox>
+          <v-divider></v-divider>
+        </div>
+
         <div v-if="generatedImageResult" class="mb-5 flex-shrink-0">
           <v-img
             :src="generatedImageResult.src"
@@ -121,6 +132,7 @@
 
 <script setup>
 import { computed, ref } from 'vue'
+import { useRoute } from 'vue-router'
 import { useDisplay } from 'vuetify'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { sortCards } from '@/utils/cardsSort.js'
@@ -149,9 +161,14 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue', 'download-image', 'download-pdf'])
 const { triggerSnackbar } = useSnackbar()
+const route = useRoute()
 
 const selectedLanguage = ref('jp')
 const selectedImageMode = ref('u_climax')
+const includeQrCode = ref(false)
+
+const deckKey = route.params.key
+const isLocalDeck = computed(() => deckKey === 'local')
 
 const uiStore = useUIStore()
 const { xs, smAndUp } = useDisplay()
@@ -187,7 +204,10 @@ const closeDialog = () => {
 }
 
 const onGenerateImage = () => {
-  emit('generate-image', selectedImageMode.value)
+  emit('generate-image', {
+    mode: selectedImageMode.value,
+    includeQrCode: includeQrCode.value,
+  })
 }
 
 const handleDownloadResult = async () => {
