@@ -3,6 +3,7 @@ const wsSeriesMap = {
     id: 'anm',
     prefixes: ['ANM'],
     latestReleaseDate: '2026-05-01',
+    yytUrl: 'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=anm&rare=&type=&kizu=0',
   },
   'VIRTUAL GIRL': {
     id: 'vrg',
