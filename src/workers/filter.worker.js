@@ -335,7 +335,7 @@ const CardFilterService = {
         return false
       if (
         filters.selectedTraits.length > 0 &&
-        !filters.selectedTraits.every((trait) => card.trait && card.trait.includes(trait))
+        !filters.selectedTraits.some((trait) => card.trait && card.trait.includes(trait))
       )
         return false
       if (mappedLevels && !mappedLevels.has(toZero(card.level))) return false
