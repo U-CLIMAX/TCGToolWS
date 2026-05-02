@@ -7,7 +7,14 @@
     :offset="offset"
   >
     <template v-slot:activator="{ props }">
-      <v-btn v-bind="props" icon @click="handleOpen" style="min-width: 0" :ripple="false">
+      <v-btn
+        v-bind="props"
+        icon
+        @click="handleOpen"
+        style="min-width: 0"
+        :ripple="false"
+        :active="false"
+      >
         <v-badge :model-value="noticeStore.hasNew" color="error" dot offset-x="2" offset-y="2">
           <v-icon :color="isHomeRoute ? 'white' : undefined">mdi-bell-outline</v-icon>
         </v-badge>
