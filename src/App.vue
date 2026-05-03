@@ -298,7 +298,6 @@
               :active="item.group && $route.meta.group === item.group"
               style="min-width: 0"
               :color="isHomeRoute ? 'white' : undefined"
-              :active-color="isHomeRoute ? 'cyan-accent-2' : 'primary'"
             >
               <v-icon :icon="navIcons[item.icon]"></v-icon>
             </v-btn>
@@ -337,7 +336,6 @@
               :active="item.group && $route.meta.group === item.group"
               style="min-width: 0"
               :color="isHomeRoute ? 'white' : undefined"
-              :active-color="isHomeRoute ? 'cyan-accent-2' : 'primary'"
             >
               <v-icon :icon="navIcons[item.icon]"></v-icon>
             </v-btn>
@@ -375,7 +373,7 @@
           :value="item.name"
           :active="item.group && $route.meta.group === item.group"
           style="min-width: 0"
-          :active-color="isHomeRoute ? 'cyan-accent-2' : 'primary'"
+          :active-color="isHomeRoute ? 'cyan-accent-2' : undefined"
           :color="isHomeRoute ? 'white' : undefined"
         >
           <v-icon :icon="navIcons[item.icon]"></v-icon>
