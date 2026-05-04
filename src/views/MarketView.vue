@@ -241,8 +241,8 @@
                       </div>
                       <v-avatar size="24" rounded="0" class="mr-2">
                         <v-img
-                          :src="`/series-icons/original/${item.series_id}.webp`"
-                          :lazy-src="`/series-icons/blur/${item.series_id}.webp`"
+                          :src="`/series-icons/original/${encodeURIComponent(item.series_id)}.webp`"
+                          :lazy-src="`/series-icons/blur/${encodeURIComponent(item.series_id)}.webp`"
                           cover
                           class="preload-img"
                         />

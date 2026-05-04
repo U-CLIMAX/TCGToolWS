@@ -14,8 +14,8 @@
     >
       <div class="image-wrapper position-relative overflow-hidden rounded-3md mb-2">
         <v-img
-          :src="`/series-icons/original/${seriesData.id}.webp`"
-          :lazy-src="`/series-icons/blur/${seriesData.id}.webp`"
+          :src="`/series-icons/original/${encodeURIComponent(seriesData.id)}.webp`"
+          :lazy-src="`/series-icons/blur/${encodeURIComponent(seriesData.id)}.webp`"
           aspect-ratio="1"
           cover
           rounded="3md"
