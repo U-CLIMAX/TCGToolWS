@@ -5,37 +5,37 @@
   "main": "./backend/index.js",
   "workers_dev": false,
   "placement": {
-    "mode": "smart"
+    "mode": "smart",
   },
   "observability": {
     "logs": {
       "enabled": true,
-      "head_sampling_rate": 1
-    }
+      "head_sampling_rate": 1,
+    },
   },
   "assets": {
     "directory": "./dist/client/",
-    "not_found_handling": "single-page-application"
+    "not_found_handling": "single-page-application",
   },
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "ws-account-db",
-      "database_id": "8368900c-fb02-483c-8f71-43882ec6ab6b"
-    }
+      "database_id": "8368900c-fb02-483c-8f71-43882ec6ab6b",
+    },
   ],
   "kv_namespaces": [
     {
       "binding": "MARKET_KV",
-      "id": "661c290e76c34ba492ddf8299c6a21ac"
+      "id": "661c290e76c34ba492ddf8299c6a21ac",
     },
     {
       "binding": "DAILY_SERIES_PRICE_KV",
-      "id": "5e530c71611b4393a478b31cb27b6ca3"
-    }
+      "id": "5e530c71611b4393a478b31cb27b6ca3",
+    },
   ],
   "triggers": {
-    "crons": ["0 * * * *"]
+    "crons": ["0 * * * *"],
   },
   "ratelimits": [
     {
@@ -43,32 +43,32 @@
       "namespace_id": "1001",
       "simple": {
         "limit": 5,
-        "period": 60
-      }
+        "period": 60,
+      },
     },
     {
       "name": "AUTH_ACTION_LIMITER",
       "namespace_id": "1002",
       "simple": {
         "limit": 10,
-        "period": 60
-      }
+        "period": 60,
+      },
     },
     {
       "name": "API_USER_LIMITER",
       "namespace_id": "1003",
       "simple": {
         "limit": 50,
-        "period": 60
-      }
+        "period": 60,
+      },
     },
     {
       "name": "PUBLIC_READ_LIMITER",
       "namespace_id": "1004",
       "simple": {
         "limit": 200,
-        "period": 60
-      }
-    }
-  ]
+        "period": 60,
+      },
+    },
+  ],
 }

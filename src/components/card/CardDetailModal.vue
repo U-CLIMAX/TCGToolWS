@@ -24,9 +24,7 @@
     ></v-btn>
 
     <v-card-text class="pa-0 d-flex flex-column flex-md-row">
-      <div
-        class="image-container flex-shrink-0 d-flex flex-column justify-center"
-      >
+      <div class="image-container flex-shrink-0 d-flex flex-column justify-center">
         <v-hover v-slot="{ isHovering, props: hoverProps }">
           <div
             v-bind="hoverProps"

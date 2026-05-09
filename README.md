@@ -9,7 +9,7 @@
     <img src="https://img.shields.io/badge/Vue.js-3.x-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white" alt="Vue 3">
   </a>
   <a href="https://vitejs.dev/">
-    <img src="https://img.shields.io/badge/Vite-7.x-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite">
+    <img src="https://img.shields.io/badge/Vite-8.x-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite">
   </a>
   <a href="https://vuetifyjs.com/">
     <img src="https://img.shields.io/badge/Vuetify-3.x-1867C0?style=for-the-badge&logo=vuetify&logoColor=white" alt="Vuetify">
@@ -150,7 +150,7 @@ curl "http://localhost:5173/cdn-cgi/handler/scheduled"
 - **组件风格**: 统一使用 `<script setup>` 与 Composition API。
 - **函数风格**: 优先使用 **箭头函数 (Arrow Functions)**。
 - **路径引用**: 使用 `@` 别名指向 `src/` 目录。
-- **代码质量**: 提交前请运行 `npm run lint` 和 `npm run format`。
+- **代码质量**: 提交前请运行 `npm run lint` 和 `npm run fmt`。
 
 ## 免责声明
 

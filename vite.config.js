@@ -5,7 +5,6 @@ import { VitePWA } from 'vite-plugin-pwa'
 import { visualizer } from 'rollup-plugin-visualizer'
 import { cloudflare } from '@cloudflare/vite-plugin'
 import vue from '@vitejs/plugin-vue'
-import legacy from '@vitejs/plugin-legacy'
 import vuetify from 'vite-plugin-vuetify'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import svgLoader from 'vite-svg-loader'
@@ -25,9 +24,6 @@ export default defineConfig({
     vue(),
     vueDevTools(),
     lqip(),
-    legacy({
-      targets: ['defaults', 'not IE 11'],
-    }),
     svgLoader({
       svgoConfig: {
         multipass: true,
@@ -70,31 +66,37 @@ export default defineConfig({
     },
   },
   build: {
-    rollupOptions: {
-      output: {
-        entryFileNames: 'assets/[name].[hash].js',
-        chunkFileNames: 'assets/[name].[hash].js',
-        assetFileNames: 'assets/[name].[hash].[ext]',
-        manualChunks(id) {
-          if (id.includes('node_modules')) {
-            if (id.includes('lottie-web')) {
-              return 'lottie'
-            }
-            if (id.includes('vuetify')) {
-              return 'ui'
-            }
-            if (id.includes('vue') || id.includes('vue-router')) {
-              return 'vendor'
-            }
-          }
-        },
-      },
-    },
+    cssMinify: false,
     minify: 'terser',
     terserOptions: {
       compress: {
         drop_console: true,
         drop_debugger: true,
+      },
+    },
+    rolldownOptions: {
+      transform: {
+        define: {
+          'import.meta.url': '__import_meta_url__',
+          'import.meta.dirname': '__import_meta_dirname__',
+          'import.meta.filename': '__import_meta_filename__',
+        },
+      },
+      output: {
+        intro:
+          "var __import_meta_url__ = (typeof self !== 'undefined' && self.location ? self.location.href : 'http://localhost/');" +
+          "var __import_meta_dirname__ = __import_meta_url__.replace(/\\/[^\\/]*$/, '');" +
+          "var __import_meta_filename__ = __import_meta_url__.split('/').pop();",
+        entryFileNames: 'assets/[name].[hash].js',
+        chunkFileNames: 'assets/[name].[hash].js',
+        assetFileNames: 'assets/[name].[hash].[ext]',
+        codeSplitting: {
+          groups: [
+            { name: 'lottie', test: /\/lottie-web\//, priority: 30 },
+            { name: 'ui', test: /\/vuetify\//, priority: 20 },
+            { name: 'vendor', test: /\/vue(?:-router)?\//, priority: 10 },
+          ],
+        },
       },
     },
   },

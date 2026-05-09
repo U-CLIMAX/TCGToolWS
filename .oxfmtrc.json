@@ -1,0 +1,26 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "semi": false,
+  "singleQuote": true,
+  "printWidth": 100,
+  "trailingComma": "es5",
+  "quoteProps": "consistent",
+  "sortPackageJson": false,
+  "ignorePatterns": [
+    "dist/",
+    "build/",
+    "node_modules/",
+    "package-lock.json",
+    "pnpm-lock.yaml",
+    "yarn.lock",
+    ".env",
+    ".env.*",
+    "*.min.js",
+    "*.svg",
+    "*.png",
+    "*.jpg",
+    "*.webp",
+    "*.woff2",
+    "src/assets/animations/*.json"
+  ]
+}
