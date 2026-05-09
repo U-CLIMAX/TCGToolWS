@@ -97,7 +97,7 @@
           </v-combobox>
         </div>
 
-        <div class="d-flex flex-wrap ga-x-4 ga-y-0 mt-n5 ml-n1">
+        <div class="d-flex flex-nowrap ga-x-0 mt-n5 ml-n1">
           <v-checkbox
             v-model="filterStore.searchTargets"
             label="卡号"
@@ -107,6 +107,7 @@
             color="primary"
             :disabled="props.disabled"
             :ripple="false"
+            class="compact-checkbox"
           ></v-checkbox>
           <v-checkbox
             v-model="filterStore.searchTargets"
@@ -117,6 +118,7 @@
             color="primary"
             :disabled="props.disabled"
             :ripple="false"
+            class="compact-checkbox"
           ></v-checkbox>
           <v-checkbox
             v-model="filterStore.searchTargets"
@@ -127,6 +129,7 @@
             color="primary"
             :disabled="props.disabled"
             :ripple="false"
+            class="compact-checkbox"
           ></v-checkbox>
         </div>
 
@@ -471,4 +474,10 @@ const toggleSearchMode = () => {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.compact-checkbox :deep(.v-label) {
+  white-space: nowrap !important;
+  width: max-content !important;
+  flex-shrink: 0 !important;
+}
+</style>
