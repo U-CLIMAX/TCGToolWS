@@ -159,7 +159,7 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['update:modelValue', 'download-image', 'download-pdf'])
+const emit = defineEmits(['update:modelValue', 'download-image', 'download-pdf', 'generate-image'])
 const { triggerSnackbar } = useSnackbar()
 const route = useRoute()
 
