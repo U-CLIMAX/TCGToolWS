@@ -15,6 +15,7 @@ export const useUIStore = defineStore(
     // --- State ---
     const version = ref(1)
     const theme = ref('dark')
+    const country = ref(null) // Country will be set by IP Geolocation
     const isFilterOpen = ref(false)
     const isCardDeckOpen = ref(false)
     const isCardDetailModalOpen = ref(false)
@@ -199,6 +200,7 @@ export const useUIStore = defineStore(
     return {
       version,
       theme,
+      country,
       isFilterOpen,
       isCardDeckOpen,
       isCardDetailModalOpen,

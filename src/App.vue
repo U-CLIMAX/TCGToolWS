@@ -452,7 +452,7 @@
 </template>
 
 <script setup>
-import { ref, watch, computed, onMounted } from 'vue'
+import { ref, watch, computed, onMounted, onBeforeMount } from 'vue'
 import { useTheme, useDisplay } from 'vuetify'
 import { useRoute, useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
@@ -469,6 +469,7 @@ import SponsorNoticeDialog from '@/components/ui/SponsorNoticeDialog.vue'
 import NoticeMenu from '@/components/common/NoticeMenu.vue'
 import { HalfCircleSpinner } from 'epic-spinners'
 import { GAME_TYPE_OPTIONS } from '@/maps/series-map'
+import { runIPGeolocation } from '@/utils/ipGeolocation'
 
 import titleDarkImg from '@/assets/ui/title-dark.webp'
 import titleLightImg from '@/assets/ui/title-light.webp'
@@ -487,6 +488,9 @@ const vuetifyTheme = useTheme()
 const uiStore = useUIStore()
 const { mdAndDown, smAndUp, smAndDown } = useDisplay()
 
+onBeforeMount(async () => {
+  await runIPGeolocation()
+})
 onMounted(async () => {
   if (authStore.isAuthenticated) {
     try {
