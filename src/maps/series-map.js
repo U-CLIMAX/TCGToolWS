@@ -1168,7 +1168,7 @@ const wsSeriesMap = {
   '胆大党': {
     id: 'ddd',
     prefixes: ['DDD'],
-    latestReleaseDate: '2025-03-28',
+    latestReleaseDate: '2026-05-15',
     yytUrl: 'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=ddd&rare=&type=&kizu=0',
   },
   '怪兽8号': {
