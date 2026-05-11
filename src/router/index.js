@@ -42,7 +42,7 @@ const routes = [
     path: '/gallery',
     name: 'DecksGallery',
     component: () => import('@/views/DecksGalleryView.vue'),
-    meta: { group: 'decks' },
+    meta: { group: 'community' },
   },
   {
     path: '/decks/:key',

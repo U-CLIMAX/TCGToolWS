@@ -105,56 +105,17 @@
                   >
                   </v-list-item>
                   <v-list-item
-                    :to="{ name: 'Community' }"
-                    title="玩家社群查询"
-                    prepend-icon="mdi-account-group-outline"
-                    slim
-                    class="rounded-3md"
-                  >
-                  </v-list-item>
-                </v-list>
-              </v-menu>
-
-              <!-- Decks Dropdown -->
-              <v-menu
-                v-else-if="item.name === 'Decks'"
-                location="bottom center"
-                offset="10"
-                open-on-hover
-              >
-                <template v-slot:activator="{ props }">
-                  <v-btn
-                    variant="text"
-                    :active="item.group && $route.meta.group === item.group"
-                    class="rounded-3md"
-                    v-bind="props"
-                    :color="isHomeRoute ? 'white' : undefined"
-                  >
-                    <template #prepend>
-                      <v-icon :icon="navIcons[item.icon]" size="24"></v-icon>
-                    </template>
-                    {{ item.text }}
-                  </v-btn>
-                </template>
-                <v-list
-                  density="compact"
-                  :class="{ 'glass-menu': hasBackgroundImage }"
-                  class="rounded-3md"
-                  nav
-                >
-                  <v-list-item
-                    v-if="authStore.isAuthenticated"
-                    :to="{ name: 'Decks' }"
-                    title="我的卡组"
-                    prepend-icon="mdi-cards-variant"
-                    slim
-                    class="rounded-3md"
-                  >
-                  </v-list-item>
-                  <v-list-item
                     :to="{ name: 'DecksGallery' }"
                     title="卡组广场"
                     prepend-icon="mdi-view-grid-outline"
+                    slim
+                    class="rounded-3md"
+                  >
+                  </v-list-item>
+                  <v-list-item
+                    :to="{ name: 'Community' }"
+                    title="玩家社群查询"
+                    prepend-icon="mdi-account-group-outline"
                     slim
                     class="rounded-3md"
                   >
@@ -317,48 +278,17 @@
             >
             </v-list-item>
             <v-list-item
-              :to="{ name: 'Community' }"
-              title="玩家社群查询"
-              prepend-icon="mdi-account-group-outline"
-              slim
-              class="rounded-3md"
-            >
-            </v-list-item>
-          </v-list>
-        </v-menu>
-
-        <!-- Decks Menu -->
-        <v-menu v-else-if="item.name === 'Decks'" location="top center" offset="10">
-          <template v-slot:activator="{ props }">
-            <v-btn
-              v-bind="props"
-              :value="item.name"
-              :active="item.group && $route.meta.group === item.group"
-              style="min-width: 0"
-              :color="isHomeRoute ? 'white' : undefined"
-            >
-              <v-icon :icon="navIcons[item.icon]"></v-icon>
-            </v-btn>
-          </template>
-          <v-list
-            density="compact"
-            :class="{ 'glass-menu': hasBackgroundImage }"
-            class="rounded-3md"
-            nav
-          >
-            <v-list-item
-              v-if="authStore.isAuthenticated"
-              :to="{ name: 'Decks' }"
-              title="我的卡组"
-              prepend-icon="mdi-cards-variant"
-              slim
-              class="rounded-3md"
-            >
-            </v-list-item>
-            <v-list-item
               :to="{ name: 'DecksGallery' }"
               title="卡组广场"
               prepend-icon="mdi-view-grid-outline"
+              slim
+              class="rounded-3md"
+            >
+            </v-list-item>
+            <v-list-item
+              :to="{ name: 'Community' }"
+              title="玩家社群查询"
+              prepend-icon="mdi-account-group-outline"
               slim
               class="rounded-3md"
             >
@@ -600,7 +530,7 @@ const navItems = [
     icon: 'series-card-table.svg',
     group: 'series',
   },
-  { text: '卡组', name: 'Decks', requiresAuth: false, icon: 'deck.svg', group: 'decks' },
+  { text: '我的卡组', name: 'Decks', requiresAuth: false, icon: 'deck.svg', group: 'decks' },
 ]
 
 const appStyle = computed(() => {
