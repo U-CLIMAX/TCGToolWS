@@ -530,7 +530,7 @@ const navItems = [
     icon: 'series-card-table.svg',
     group: 'series',
   },
-  { text: '我的卡组', name: 'Decks', requiresAuth: false, icon: 'deck.svg', group: 'decks' },
+  { text: '我的卡组', name: 'Decks', requiresAuth: true, icon: 'deck.svg', group: 'decks' },
 ]
 
 const appStyle = computed(() => {
