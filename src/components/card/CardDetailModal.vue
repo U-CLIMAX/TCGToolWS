@@ -171,6 +171,7 @@
                 :key="r"
                 class="font-wenkai mr-2 mb-2"
                 label
+                rounded="pill"
                 :link="isFilterable"
                 @click="isFilterable ? handleTraitClick(r) : undefined"
                 :color="
