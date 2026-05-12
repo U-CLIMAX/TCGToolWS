@@ -42,14 +42,9 @@ export default defineConfig({
     VitePWA({
       workbox: {
         globPatterns: [],
+        navigateFallback: null,
         skipWaiting: true,
         clientsClaim: true,
-        runtimeCaching: [
-          {
-            urlPattern: /.*/,
-            handler: 'NetworkOnly',
-          },
-        ],
       },
       devOptions: {
         enabled: false,
