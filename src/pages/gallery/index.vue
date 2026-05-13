@@ -520,20 +520,19 @@ const loadMore = async ({ done }) => {
   }
 }
 
-onBeforeRouteLeave((to, from, next) => {
+onBeforeRouteLeave((to, from) => {
   if (smAndUp.value) {
-    next()
-    return
+    return true
   }
 
   if (uiStore.isCardDetailModalOpen) {
     uiStore.isCardDetailModalOpen = false
-    next(false)
+    return false
   } else if (drawer.value) {
     drawer.value = false
-    next(false)
+    return false
   } else {
-    next()
+    return true
   }
 })
 

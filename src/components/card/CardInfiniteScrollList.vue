@@ -55,6 +55,7 @@
     :max-width="!smAndUp ? undefined : smAndDown ? '80%' : '60%'"
     :max-height="!smAndUp ? undefined : '95%'"
     :min-height="!smAndUp ? undefined : '60%'"
+    :close-on-back="!smAndUp ? true : false"
   >
     <CardDetailModal
       :card="selectedCardData.card"
