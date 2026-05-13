@@ -81,10 +81,6 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
 import { useDisplay } from 'vuetify'
-import CardTemplate from '@/components/card/CardTemplate.vue'
-import LazyCardWrapper from '@/components/common/LazyCardWrapper.vue'
-import CardDetailModal from '@/components/card/CardDetailModal.vue'
-import BackToTopButton from '@/components/ui/BackToTopButton.vue'
 import { fetchCardByIdAndPrefix, fetchCardsByBaseIdAndPrefix, getCardSeriesId } from '@/utils/card'
 import { getCardUrls } from '@/utils/getCardImage'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'

@@ -1,5 +1,5 @@
 <template>
-  <DeckDetail
+  <DeckDetailTemplate
     :deck="deck"
     :cards="cards"
     :deck-title="deck ? deck.title : deckKey"
@@ -15,7 +15,6 @@ import { fetchCardByIdAndPrefix } from '@/utils/card'
 import { useUIStore } from '@/stores/ui'
 import { useDeckStore } from '@/stores/deck'
 import { useSnackbar } from '@/composables/useSnackbar'
-import DeckDetail from '@/components/deck/DeckDetailTemplate.vue'
 import { findDeckSeriesId } from '@/utils/findDeckSeriesId'
 import { seriesMap } from '@/maps/series-map'
 import { generateDeckKey } from '@/utils/nanoid'

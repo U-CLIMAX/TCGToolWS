@@ -11,6 +11,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 import svgLoader from 'vite-svg-loader'
 import lqip from 'vite-plugin-lqip'
 import UnoCSS from 'unocss/vite'
+import Components from 'unplugin-vue-components/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -58,6 +59,16 @@ export default defineConfig({
         type: 'module',
       },
     }),
+    Components({
+      dts: 'src/components.d.ts',
+      extensions: ['vue', 'js'],
+      include: [
+        /\.vue$/,
+        /\.vue\?vue/,
+        /\.vue\.[tj]sx?\?vue/,
+        /\.js$/,
+      ],
+     }),
   ],
   optimizeDeps: {
     exclude: ['brotli-wasm'],

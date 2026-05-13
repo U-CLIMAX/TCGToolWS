@@ -80,7 +80,6 @@
 <script setup>
 import { getCardUrls } from '@/utils/getCardImage'
 import { computed, ref, watch, readonly } from 'vue'
-import { QR } from '@/components/common/QR.js'
 import { sortCards } from '@/utils/cardsSort.js'
 
 import logoUrl from '@/assets/ui/logo.webp'

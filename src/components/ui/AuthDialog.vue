@@ -174,7 +174,6 @@ import { ref, computed } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useCooldown } from '@/composables/useCooldown'
-import SettingsModal from '@/components/ui/SettingsModal.vue'
 
 const authStore = useAuthStore()
 const { triggerSnackbar } = useSnackbar()

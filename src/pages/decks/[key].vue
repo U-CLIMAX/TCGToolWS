@@ -501,10 +501,6 @@ import { getCardSeriesId } from '@/utils/card'
 import { convertElementToPng } from '@/utils/domToImage.js'
 import { useDeckHistory } from '@/composables/useDeckHistory'
 import { useDeckExport } from '@/composables/useDeckExport'
-import DeckShareImage from '@/components/deck/DeckShareImage.vue'
-import DeckCardList from '@/components/deck/DeckCardList.vue'
-import DeckExportDialog from '@/components/deck/DeckExportDialog.vue'
-import ShareToGalleryDialog from '@/components/deck/ShareToGalleryDialog.vue'
 
 definePage({
   name: 'DeckDetail',

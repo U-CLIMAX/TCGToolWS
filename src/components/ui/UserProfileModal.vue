@@ -113,8 +113,6 @@ import { storeToRefs } from 'pinia'
 import { useAuthStore } from '@/stores/auth'
 import { useUIStore } from '@/stores/ui'
 import { useSnackbar } from '@/composables/useSnackbar'
-import SponsorNoticeDialog from '@/components/ui/SponsorNoticeDialog.vue'
-import SettingsModal from '@/components/ui/SettingsModal.vue'
 import * as clipboard from 'clipboard-polyfill'
 
 const props = defineProps({

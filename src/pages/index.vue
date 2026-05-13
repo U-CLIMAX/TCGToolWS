@@ -383,9 +383,6 @@ import { useDisplay } from 'vuetify'
 import { useAuthStore } from '@/stores/auth'
 import { useUIStore } from '@/stores/ui'
 import { useIntersectionObserver } from '@/composables/useIntersectionObserver'
-import SplashAnimation from '@/components/common/SplashAnimation.vue'
-import ImageZoomViewer from '@/components/ui/ImageZoomViewer.vue'
-import SponsorNoticeDialog from '@/components/ui/SponsorNoticeDialog.vue'
 import { useHardwareAcceleration } from '@/composables/useHardwareAcceleration'
 
 // 使用 ?lqip 後綴，插件返回 Object：{ lqip, src, width, height }

@@ -12,7 +12,7 @@
       <v-progress-circular indeterminate color="primary" size="64" />
     </v-overlay>
 
-    <DeckDetail
+    <DeckDetailTemplate
       :deck="deck"
       :cards="cards"
       :deck-title="deck ? deck.deck_name : deckKey"
@@ -34,7 +34,6 @@ import { useSnackbar } from '@/composables/useSnackbar'
 import { useDeckStore } from '@/stores/deck'
 import { generateDeckKey } from '@/utils/nanoid'
 import { seriesMap } from '@/maps/series-map'
-import DeckDetail from '@/components/deck/DeckDetailTemplate.vue'
 
 const props = defineProps({
   deckKey: {

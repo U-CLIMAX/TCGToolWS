@@ -295,8 +295,6 @@ import { ref, computed, onMounted, nextTick } from 'vue'
 import { useDisplay, useTheme } from 'vuetify'
 import { useUIStore } from '@/stores/ui'
 import { useSnackbar } from '@/composables/useSnackbar'
-import BackToTopButton from '@/components/ui/BackToTopButton.vue'
-import LazyCardWrapper from '@/components/common/LazyCardWrapper.vue'
 import * as clipboard from 'clipboard-polyfill'
 import rawCSV from '@/assets/community/ws.csv?raw'
 

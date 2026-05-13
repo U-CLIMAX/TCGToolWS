@@ -227,7 +227,6 @@ import { GAME_TYPE_OPTIONS, seriesMap } from '@/maps/series-map'
 import { useFilterStore } from '@/stores/filter'
 import { useMarketStore } from '@/stores/market'
 import { useUIStore } from '@/stores/ui'
-import InsetTabs from '@/components/ui/InsetTabs.vue'
 import { getCardUrls } from '@/utils/getCardImage'
 import { useSnackbar } from '@/composables/useSnackbar'
 

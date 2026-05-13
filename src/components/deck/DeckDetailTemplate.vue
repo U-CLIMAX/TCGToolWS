@@ -273,7 +273,6 @@ import { usePriceStore } from '@/stores/price'
 import { useDeckExport } from '@/composables/useDeckExport'
 import { useDevice } from '@/composables/useDevice'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
-import DeckCardList from '@/components/deck/DeckCardList.vue'
 import { sortCards } from '@/utils/cardsSort'
 
 const props = defineProps({

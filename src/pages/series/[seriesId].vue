@@ -108,7 +108,7 @@
       >
         <template v-if="smAndUp">
           <div class="sidebar-container" :class="{ 'left-sidebar-open': isFilterOpen }">
-            <BaseFilterSidebar
+            <FilterSidebar
               class="fill-height pl-4 pb-4"
               :header-offset-height="headerOffsetHeight"
             />
@@ -168,7 +168,7 @@
           <span class="text-h6">{{ content === 'filter' ? '筛选' : '卡组' }}</span>
         </template>
         <template #default="{ contentHeight, content }">
-          <BaseFilterSidebar
+          <FilterSidebar
             v-if="content === 'filter'"
             :header-offset-height="0"
             :container-height="contentHeight"
@@ -200,10 +200,6 @@ import { usePriceStore } from '@/stores/price'
 import { useInfiniteScrollState } from '@/composables/useInfiniteScrollState.js'
 import { useDevice } from '@/composables/useDevice'
 import { getCardSeriesId } from '@/utils/card'
-import CardInfiniteScrollList from '@/components/card/CardInfiniteScrollList.vue'
-import BaseFilterSidebar from '@/components/ui/FilterSidebar.vue'
-import DeckSidebar from '@/components/ui/DeckSidebar.vue'
-import DraggableBottomSheet from '@/components/ui/DraggableBottomSheet.vue'
 
 definePage({
   name: 'SeriesDetail',

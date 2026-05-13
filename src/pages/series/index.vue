@@ -143,11 +143,6 @@ import { useUIStore } from '@/stores/ui'
 import { useRecentStore } from '@/stores/recent'
 import { useInfiniteScrollState } from '@/composables/useInfiniteScrollState.js'
 import { seriesMap, GAME_TYPE_OPTIONS } from '@/maps/series-map.js'
-import SeriesCard from '@/components/card/SeriesCard.vue'
-import LazyCardWrapper from '@/components/common/LazyCardWrapper.vue'
-import FloatingSearch from '@/components/ui/FloatingSearchBar.vue'
-import BackToTopButton from '@/components/ui/BackToTopButton.vue'
-import InsetTabs from '@/components/ui/InsetTabs.vue'
 import collator from '@/utils/collator.js'
 
 definePage({
