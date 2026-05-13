@@ -10,7 +10,7 @@
       <v-card-title class="d-flex align-center">
         <span>设定</span>
         <v-spacer />
-        <v-btn icon="mdi-close" variant="text" @click="$emit('update:modelValue', false)"></v-btn>
+        <v-btn icon="i-mdi:close" variant="text" @click="$emit('update:modelValue', false)"></v-btn>
       </v-card-title>
       <v-divider />
       <v-card-text class="pt-0 themed-scrollbar">
@@ -41,10 +41,10 @@
                 <template #activator="{ props: tooltipProps }">
                   <v-icon
                     v-bind="tooltipProps"
-                    icon="mdi-help-circle-outline"
+                    icon="i-mdi:help-circle-outline"
                     size="x-small"
                     class="ml-1"
-                  ></v-icon>
+                  />
                 </template>
               </v-tooltip>
             </v-list-item-title>
@@ -61,19 +61,19 @@
               <v-btn :value="0" class="flex-grow-1" style="min-width: 0px">
                 <span v-if="!xs" class="text-caption">永久开启</span>
                 <span v-else class="text-caption">无</span>
-                <v-icon v-if="!xs" end icon="mdi-lightning-bolt"></v-icon>
+                <v-icon v-if="!xs" end icon="i-mdi:lightning-bolt" />
               </v-btn>
               <v-btn :value="300" class="flex-grow-1" style="min-width: 0px">
                 <span class="text-caption">低</span>
-                <v-icon v-if="!xs" end icon="mdi-speedometer-slow"></v-icon>
+                <v-icon v-if="!xs" end icon="i-mdi:speedometer-slow" />
               </v-btn>
               <v-btn :value="600" class="flex-grow-1" style="min-width: 0px">
                 <span class="text-caption">中</span>
-                <v-icon v-if="!xs" end icon="mdi-speedometer-medium"></v-icon>
+                <v-icon v-if="!xs" end icon="i-mdi:speedometer-medium" />
               </v-btn>
               <v-btn :value="1000" class="flex-grow-1" style="min-width: 0px">
                 <span class="text-caption">高</span>
-                <v-icon v-if="!xs" end icon="mdi-speedometer"></v-icon>
+                <v-icon v-if="!xs" end icon="i-mdi:speedometer" />
               </v-btn>
             </v-btn-toggle>
           </div>
@@ -101,7 +101,7 @@
             <div class="d-flex ga-2 mt-2">
               <v-btn
                 @click="handleUploadClick"
-                prepend-icon="mdi-image"
+                prepend-icon="i-mdi:image"
                 variant="tonal"
                 class="flex-grow-1"
               >
@@ -114,7 +114,7 @@
                 variant="tonal"
                 class="flex-grow-0"
               >
-                <v-icon icon="mdi-trash-can"></v-icon>
+                <v-icon icon="i-mdi:trash-can" />
               </v-btn>
             </div>
           </v-list-item>
@@ -133,7 +133,7 @@
                 max="1"
                 step="0.05"
                 thumb-label
-                prepend-icon="mdi-opacity"
+                prepend-icon="i-mdi:opacity"
               ></v-slider>
               <v-slider
                 :model-value="uiStore.backgroundImage.blur"
@@ -145,7 +145,7 @@
                 max="20"
                 step="1"
                 thumb-label
-                prepend-icon="mdi-blur"
+                prepend-icon="i-mdi:blur"
               ></v-slider>
               <v-select
                 :model-value="uiStore.backgroundImage.size"
@@ -157,7 +157,7 @@
                   { title: '等比例缩放', value: 'contain' },
                   { title: '保持原比例', value: 'auto' },
                 ]"
-                prepend-icon="mdi-fit-to-page-outline"
+                prepend-icon="i-mdi:fit-to-page-outline"
                 hide-details
                 variant="solo-filled"
               ></v-select>
@@ -182,7 +182,7 @@
               <v-btn
                 variant="tonal"
                 color="warning"
-                prepend-icon="mdi-cached"
+                prepend-icon="i-mdi:cached"
                 @click="handleClearPriceCache"
                 :loading="isClearingCache"
               >

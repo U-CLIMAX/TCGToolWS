@@ -16,7 +16,7 @@
     }"
   >
     <v-btn
-      icon="mdi-close"
+      icon="i-mdi:close"
       variant="tonal"
       size="small"
       class="close-button"
@@ -53,7 +53,7 @@
             <v-fade-transition>
               <v-btn
                 v-if="isHovering || isTouch"
-                icon="mdi-file-document-arrow-right"
+                icon="i-mdi:file-document-arrow-right"
                 variant="tonal"
                 size="small"
                 class="download-text-button"
@@ -63,7 +63,7 @@
             <v-fade-transition>
               <v-btn
                 v-if="isHovering || isTouch"
-                icon="mdi-download"
+                icon="i-mdi:download"
                 variant="tonal"
                 size="small"
                 class="download-card-button"
@@ -75,7 +75,7 @@
         <div>
           <v-card-actions v-if="showActions" class="d-flex justify-center align-center pa-0 pt-4">
             <v-btn
-              icon="mdi-minus"
+              icon="i-mdi:minus"
               size="small"
               variant="tonal"
               color="primary"
@@ -86,7 +86,7 @@
               {{ cardCount }}
             </div>
             <v-btn
-              icon="mdi-plus"
+              icon="i-mdi:plus"
               size="small"
               variant="tonal"
               color="primary"
@@ -112,7 +112,7 @@
         >
           <div class="pa-4 pl-md-0">
             <v-card-subtitle class="pb-1 text-body-2 pa-0 pr-8">
-              <v-icon size="18" class="mr-1">mdi-cube-outline</v-icon>
+              <v-icon size="18" class="mr-1" icon="i-mdi:cube-outline" />
               {{ card.product_name }}
             </v-card-subtitle>
 
@@ -126,7 +126,7 @@
 
             <div v-if="price != null && route.meta.showCardPrice" class="mb-4 d-flex align-center">
               <span class="font-weight-bold d-flex align-center text-currency">
-                <v-icon size="16" class="mr-1">mdi-currency-jpy</v-icon>
+                <v-icon size="16" class="mr-1" icon="i-mdi:currency-jpy" />
                 <span class="font-DINCond text-h6">{{ price }}</span>
               </span>
 
@@ -156,14 +156,14 @@
             <v-divider class="mb-4"></v-divider>
             <div>
               <div class="text-body-2 mb-2 text-grey d-flex align-center">
-                <v-icon size="18" class="mr-1">mdi-information-outline</v-icon>
+                <v-icon size="18" class="mr-1" icon="i-mdi:information-outline" />
                 效果
               </div>
               <div class="font-wenkai text-body-1" v-html="formattedEffect"></div>
             </div>
             <div v-if="card.trait && card.trait.length > 0 && card.trait[0] !== '-'" class="mt-4">
               <div class="text-body-2 mb-2 text-grey">
-                <v-icon size="18" class="mr-1">mdi-feather</v-icon>
+                <v-icon size="18" class="mr-1" icon="i-mdi:feather" />
                 特征
               </div>
               <v-chip
@@ -199,7 +199,7 @@
             </div>
             <div v-if="card.link && card.link.length > 0" :key="`${card.id}-links`" class="mt-4">
               <div class="text-body-2 mb-2 text-grey">
-                <v-icon size="18" class="mr-1">mdi-link-variant</v-icon>
+                <v-icon size="18" class="mr-1" icon="i-mdi:link-variant" />
                 关联卡片
               </div>
               <v-slide-y-reverse-transition mode="out-in">
@@ -223,7 +223,7 @@
       </div>
     </v-card-text>
     <v-btn
-      icon="mdi-chevron-left"
+      icon="i-mdi:chevron-left"
       variant="tonal"
       class="nav-button-left"
       :class="{ 'button-hidden': !navButtonsVisible }"
@@ -231,7 +231,7 @@
       :disabled="cardIndex === 0"
     ></v-btn>
     <v-btn
-      icon="mdi-chevron-right"
+      icon="i-mdi:chevron-right"
       variant="tonal"
       class="nav-button-right"
       :class="{ 'button-hidden': !navButtonsVisible }"
@@ -248,12 +248,12 @@
         <v-list nav density="compact">
           <v-list-item
             v-if="card.type !== '高潮卡'"
-            prepend-icon="mdi-card-text-outline"
+            prepend-icon="i-mdi:card-text-outline"
             title="包含效果文字"
             @click="handleDownloadCard(true)"
           ></v-list-item>
           <v-list-item
-            prepend-icon="mdi-image-outline"
+            prepend-icon="i-mdi:image-outline"
             title="原图"
             @click="handleDownloadCard(false)"
           ></v-list-item>

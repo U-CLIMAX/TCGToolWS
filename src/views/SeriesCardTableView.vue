@@ -31,7 +31,7 @@
               <v-icon
                 class="text-medium-emphasis"
                 :class="smAndDown ? 'mb-1' : 'mr-2'"
-                icon="mdi-history"
+                icon="i-mdi:history"
                 size="small"
               />
               <div
@@ -94,9 +94,13 @@
               :ripple="false"
               @click="toggleSort(field.value)"
             >
-              <v-icon v-if="seriesSortBy === field.value" size="large">
-                {{ seriesSortAscending ? 'mdi-triangle-small-up' : 'mdi-triangle-small-down' }}
-              </v-icon>
+              <v-icon
+                v-if="seriesSortBy === field.value"
+                size="large"
+                :icon="
+                  seriesSortAscending ? 'i-mdi:triangle-small-up' : 'i-mdi:triangle-small-down'
+                "
+              />
               {{ field.label }}
             </v-btn>
           </div>

@@ -1,4 +1,5 @@
 import { createVuetify } from 'vuetify'
+import { aliases, mdi } from 'vuetify/iconsets/mdi-unocss'
 import { VPie } from 'vuetify/labs/VPie'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
@@ -10,7 +11,7 @@ import { useUIStore } from './stores/ui'
 import { registerSW } from 'virtual:pwa-register'
 import { createVersionPolling } from 'version-polling'
 
-import '@mdi/font/css/materialdesignicons.css'
+import 'virtual:uno.css'
 import '@/assets/styles/main.css'
 import 'vuetify/styles'
 
@@ -33,6 +34,13 @@ const bootstrap = async () => {
   const app = createApp(App)
   const pinia = createPinia()
   const vuetify = createVuetify({
+    icons: {
+      defaultSet: 'mdi',
+      aliases,
+      sets: {
+        mdi,
+      },
+    },
     theme: {
       defaultTheme: 'dark',
       themes: {

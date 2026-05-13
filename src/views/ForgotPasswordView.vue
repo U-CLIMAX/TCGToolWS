@@ -20,7 +20,7 @@
               <v-text-field
                 v-model="email"
                 label="邮箱"
-                prepend-inner-icon="mdi-email"
+                prepend-inner-icon="i-mdi:email"
                 type="email"
                 variant="outlined"
                 :readonly="loading"

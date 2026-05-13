@@ -26,7 +26,7 @@
 
           <div class="header-center d-flex align-center">
             <v-btn
-              icon="mdi-arrow-left"
+              icon="i-mdi:arrow-left"
               variant="text"
               density="compact"
               :to="{ name: 'SeriesCardTable' }"
@@ -40,7 +40,7 @@
             </h1>
             <v-chip
               :size="smAndUp ? 'default' : 'x-small'"
-              prepend-icon="mdi-cards-diamond-outline"
+              prepend-icon="i-mdi:cards-diamond-outline"
               class="counter-chip font-weight-bold flex-shrink-0"
             >
               {{ filterStore.filteredCards.length }}
@@ -69,7 +69,7 @@
           >
             <v-btn
               v-if="smAndUp"
-              :icon="isTableModeActive ? 'mdi-grid' : 'mdi-grid-large'"
+              :icon="isTableModeActive ? 'i-mdi:grid' : 'i-mdi:grid-large'"
               variant="text"
               density="compact"
               @click="isTableModeActive = !isTableModeActive"
@@ -87,7 +87,7 @@
               offset-y="3"
             >
               <v-btn
-                :icon="isCardDeckOpen ? 'mdi-cards' : 'mdi-cards-outline'"
+                :icon="isCardDeckOpen ? 'i-mdi:cards' : 'i-mdi:cards-outline'"
                 variant="text"
                 density="compact"
                 @click="isCardDeckOpen = !isCardDeckOpen"
@@ -135,7 +135,7 @@
       <div v-if="!smAndUp" style="height: 0px; overflow-y: hidden">
         <div class="fab-bottom-left-container d-flex ga-3">
           <v-btn
-            icon="mdi-filter"
+            icon="i-mdi:filter"
             size="default"
             color="primary"
             class="opacity-90"
@@ -152,7 +152,7 @@
             class="opacity-90"
           >
             <v-btn
-              icon="mdi-cards"
+              icon="i-mdi:cards"
               size="default"
               color="primary"
               class="opacity-90"
@@ -229,7 +229,7 @@ const { isTouch } = useDevice()
 const headerRef = ref(null)
 const { isCardDeckOpen, isFilterOpen, isTableModeActive, isPerformanceMode } = storeToRefs(uiStore)
 const rawHeaderHeight = ref(0)
-const filterIcon = computed(() => (isFilterOpen.value ? 'mdi-filter-off' : 'mdi-filter'))
+const filterIcon = computed(() => (isFilterOpen.value ? 'i-mdi:filter-off' : 'i-mdi:filter'))
 const headerOffsetHeight = computed(() => rawHeaderHeight.value)
 const listRef = ref(null)
 const sheetContent = ref(null)

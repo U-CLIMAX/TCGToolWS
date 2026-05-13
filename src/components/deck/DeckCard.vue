@@ -39,9 +39,11 @@
             color="black"
             @click.prevent="handleDeleteDeck"
           >
-            <v-icon color="red-accent-4" style="font-size: clamp(16px, 2vw, 24px)">
-              mdi-trash-can-outline
-            </v-icon>
+            <v-icon
+              color="red-accent-4"
+              style="font-size: clamp(16px, 2vw, 24px)"
+              icon="i-mdi:trash-can-outline"
+            />
           </v-btn>
         </div>
       </v-scale-transition>

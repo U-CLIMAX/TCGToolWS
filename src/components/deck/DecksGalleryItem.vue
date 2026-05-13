@@ -39,7 +39,7 @@
                 <v-btn
                   color="primary"
                   variant="text"
-                  icon="mdi-pencil-outline"
+                  icon="i-mdi:pencil-outline"
                   size="small"
                   density="comfortable"
                   @click.stop="$emit('edit', deck)"
@@ -47,7 +47,7 @@
                 <v-btn
                   color="red-accent-2"
                   variant="text"
-                  icon="mdi-trash-can-outline"
+                  icon="i-mdi:trash-can-outline"
                   size="small"
                   density="comfortable"
                   @click.stop="confirmDelete"
@@ -57,7 +57,7 @@
                 v-else
                 class="d-flex align-center text-caption text-medium-emphasis flex-shrink-0 mt-auto"
               >
-                <v-icon icon="mdi-clock-time-eight-outline" size="small" class="mr-1"></v-icon>
+                <v-icon icon="i-mdi:clock-time-eight-outline" size="small" class="mr-1" />
                 {{ timeAgo }}
               </div>
             </div>
@@ -108,11 +108,11 @@
           <div class="d-flex align-center ga-2 flex-shrink-0">
             <v-icon
               v-if="deck.article_link"
-              icon="mdi-text-box-outline"
+              icon="i-mdi:text-box-outline"
               class="mt-auto"
               style="color: rgba(var(--v-theme-on-surface), 0.5)"
               size="x-small"
-            ></v-icon>
+            />
             <v-rating
               :model-value="deck.rating_avg"
               color="amber"

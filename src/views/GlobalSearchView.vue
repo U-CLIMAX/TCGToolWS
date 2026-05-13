@@ -30,7 +30,7 @@
               {{ game.toUpperCase() }} 搜索结果
             </h1>
             <v-chip
-              prepend-icon="mdi-cards-diamond-outline"
+              prepend-icon="i-mdi:cards-diamond-outline"
               class="counter-chip font-weight-bold flex-shrink-0"
               :color="isChipShowWarning ? 'warning' : undefined"
               :style="{ cursor: isChipShowWarning ? 'help' : undefined }"
@@ -55,7 +55,7 @@
           >
             <v-btn
               v-if="smAndUp"
-              :icon="isTableModeActive ? 'mdi-grid' : 'mdi-grid-large'"
+              :icon="isTableModeActive ? 'i-mdi:grid' : 'i-mdi:grid-large'"
               density="compact"
               variant="text"
               @click="isTableModeActive = !isTableModeActive"
@@ -136,7 +136,7 @@
       <div v-if="!smAndUp" style="height: 0px; overflow-y: hidden">
         <div class="fab-bottom-left-container d-flex ga-3">
           <v-btn
-            icon="mdi-layers-search"
+            icon="i-mdi:layers-search"
             size="default"
             color="primary"
             class="opacity-90"
@@ -209,7 +209,7 @@ const sheetContent = ref(null)
 const { smAndUp, smAndDown } = useDisplay()
 
 const searchIcon = computed(() =>
-  isFilterOpen.value ? 'mdi-layers-search' : 'mdi-layers-search-outline'
+  isFilterOpen.value ? 'i-mdi:layers-search' : 'i-mdi:layers-search-outline'
 )
 const headerOffsetHeight = computed(() => rawHeaderHeight.value)
 

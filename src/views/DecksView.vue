@@ -14,7 +14,7 @@
         >
           <!-- 標題區域 -->
           <div class="d-flex align-center ga-3 mb-5">
-            <v-icon icon="mdi-cards-variant" color="primary" size="32"></v-icon>
+            <v-icon icon="i-mdi:cards-variant" color="primary" size="32" />
             <div>
               <div class="text-h6 font-weight-bold" style="line-height: 1.2">我的卡组</div>
               <div class="text-caption text-medium-emphasis">管理并搜索您收藏的卡组</div>
@@ -43,7 +43,7 @@
                 flat
                 rounded="pill"
                 density="comfortable"
-                append-inner-icon="mdi-magnify"
+                append-inner-icon="i-mdi:magnify"
                 hide-details
               />
             </v-col>
@@ -70,7 +70,7 @@
             variant="tonal"
             rounded="pill"
             color="primary"
-            prepend-icon="mdi-import"
+            prepend-icon="i-mdi:import"
             height="44"
             class="mt-2"
             @click="showDeckCodeDialog = true"
@@ -128,7 +128,7 @@
         <div class="group-header">
           <div class="d-flex align-center ga-4 flex-wrap">
             <div class="d-flex align-center ga-2">
-              <v-icon :icon="DeckIcon" size="24"></v-icon>
+              <v-icon :icon="DeckIcon" size="24" />
               <span>{{ deckCount }} / {{ maxDecks === Infinity ? '∞' : maxDecks }}</span>
               <span
                 v-if="maxDecks !== Infinity && deckCount >= maxDecks"

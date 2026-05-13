@@ -35,7 +35,7 @@
                 @click="openSaveDialog"
                 :disabled="!deck"
               >
-                <v-icon size="24">mdi-content-save-outline</v-icon>
+                <v-icon size="24" icon="i-mdi:content-save-outline" />
               </v-btn>
 
               <v-btn
@@ -46,7 +46,7 @@
                 @click="copyArticleLink(deck.article_link)"
                 v-tooltip:bottom="{ text: '复制文章/视频链接', disabled: isTouch }"
               >
-                <v-icon size="24">mdi-text-box-outline</v-icon>
+                <v-icon size="24" icon="i-mdi:text-box-outline" />
               </v-btn>
             </div>
 
@@ -91,10 +91,10 @@
                   color="teal-lighten-1"
                   v-tooltip:bottom="{ text: '在新窗口打开', disabled: isTouch }"
                 >
-                  <v-icon size="24">mdi-open-in-new</v-icon>
+                  <v-icon size="24" icon="i-mdi:open-in-new" />
                 </v-btn>
                 <v-btn icon variant="text" density="compact" @click="$emit('close')">
-                  <v-icon size="24">mdi-arrow-collapse-right</v-icon>
+                  <v-icon size="24" icon="i-mdi:arrow-collapse-right" />
                 </v-btn>
               </template>
               <template v-else-if="smAndUp">
@@ -114,7 +114,7 @@
               </template>
               <template v-else>
                 <v-btn icon variant="text" density="compact" @click="showBottomSheet = true">
-                  <v-icon size="24">mdi-format-list-bulleted-type</v-icon>
+                  <v-icon size="24" icon="i-mdi:format-list-bulleted-type" />
                 </v-btn>
               </template>
             </div>

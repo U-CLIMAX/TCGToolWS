@@ -3,7 +3,7 @@
     <v-card class="text-center rounded-2lg">
       <v-card-text class="pt-8 pb-2">
         <v-avatar size="80" color="primary" variant="tonal">
-          <v-icon icon="mdi-sync-circle" size="48" color="primary"></v-icon>
+          <v-icon icon="i-mdi:sync-circle" size="48" color="primary" />
         </v-avatar>
       </v-card-text>
 

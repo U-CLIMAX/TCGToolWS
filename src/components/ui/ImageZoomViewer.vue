@@ -25,7 +25,7 @@
       </div>
       <div class="mobile-viewer__controls">
         <v-btn v-if="images.length > 1" icon variant="text" @click.stop="prevImage">
-          <v-icon size="large">mdi-chevron-left</v-icon>
+          <v-icon size="large" icon="i-mdi:chevron-left" />
         </v-btn>
         <v-spacer v-if="images.length > 1"></v-spacer>
         <div v-if="images.length > 1" class="mobile-viewer__indicator">
@@ -33,13 +33,13 @@
         </div>
         <v-spacer v-if="images.length > 1"></v-spacer>
         <v-btn v-if="images.length > 1" icon variant="text" @click.stop="nextImage">
-          <v-icon size="large">mdi-chevron-right</v-icon>
+          <v-icon size="large" icon="i-mdi:chevron-right" />
         </v-btn>
 
         <!-- 佔位，確保關閉按鈕在最右邊 -->
         <v-spacer v-if="images.length <= 1"></v-spacer>
         <v-btn icon variant="text" @click="closeDialog">
-          <v-icon>mdi-close</v-icon>
+          <v-icon icon="i-mdi:close" />
         </v-btn>
       </div>
     </v-card>
@@ -48,16 +48,16 @@
     <v-card v-else color="transparent" elevation="0">
       <!-- 關閉按鈕 -->
       <v-btn icon class="dialog-close-btn" @click="closeDialog">
-        <v-icon>mdi-close</v-icon>
+        <v-icon icon="i-mdi:close" />
       </v-btn>
 
       <!-- 左右切換按鈕 (如果有多張圖片) -->
       <template v-if="images.length > 1">
         <v-btn icon class="dialog-nav-btn dialog-nav-prev" @click.stop="prevImage">
-          <v-icon>mdi-chevron-left</v-icon>
+          <v-icon icon="i-mdi:chevron-left" />
         </v-btn>
         <v-btn icon class="dialog-nav-btn dialog-nav-next" @click.stop="nextImage">
-          <v-icon>mdi-chevron-right</v-icon>
+          <v-icon icon="i-mdi:chevron-right" />
         </v-btn>
       </template>
 

@@ -21,7 +21,7 @@
               </p>
               <template v-else-if="!success">
                 <v-text-field
-                  :append-inner-icon="password_visible ? 'mdi-eye-off' : 'mdi-eye'"
+                  :append-inner-icon="password_visible ? 'i-mdi:eye-off' : 'i-mdi:eye'"
                   :type="password_visible ? 'text' : 'password'"
                   v-model="password"
                   label="新密码"

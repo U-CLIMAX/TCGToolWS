@@ -30,7 +30,7 @@
         <div v-if="isCompact" class="hover-overlay rounded-3md d-flex align-end">
           <div class="overlay-content pa-2 w-100">
             <div class="text-caption text-white text-truncate mb-1">
-              <v-icon size="x-small" class="mr-1">mdi-layers-outline</v-icon>
+              <v-icon size="x-small" class="mr-1" icon="i-mdi:layers-outline" />
               {{ seriesData.prefixes.join(', ') }}
             </div>
             <div class="text-caption text-white">
@@ -50,7 +50,7 @@
             class="text-truncate text-medium-emphasis d-flex align-center"
             style="min-height: 18px"
           >
-            <v-icon size="x-small" class="mr-1">mdi-layers-outline</v-icon>
+            <v-icon size="x-small" class="mr-1" icon="i-mdi:layers-outline" />
             <span class="text-caption text-truncate">
               {{ seriesData.prefixes.map((p) => p.replace('[cn]', '')).join(', ') }}
             </span>

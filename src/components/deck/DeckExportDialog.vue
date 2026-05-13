@@ -13,7 +13,7 @@
     >
       <v-card-title class="d-flex justify-space-between align-center flex-shrink-0">
         <span>汇出卡组</span>
-        <v-btn icon="mdi-close" variant="text" @click="closeDialog"></v-btn>
+        <v-btn icon="i-mdi:close" variant="text" @click="closeDialog"></v-btn>
       </v-card-title>
 
       <v-card-text class="pt-0 flex-grow-1 d-flex flex-column themed-scrollbar">
@@ -21,7 +21,7 @@
           <v-btn
             color="primary"
             class="mw-200"
-            prepend-icon="mdi-image-outline"
+            prepend-icon="i-mdi:image-outline"
             @click="onGenerateImage"
             elevation="0"
           >
@@ -62,7 +62,7 @@
           <div class="d-flex gap-2">
             <v-btn
               color="secondary"
-              prepend-icon="mdi-download"
+              prepend-icon="i-mdi:download"
               variant="tonal"
               class="flex-grow-1 mr-2"
               @click="handleDownloadResult"
@@ -71,7 +71,7 @@
             </v-btn>
             <v-btn
               color="secondary"
-              prepend-icon="mdi-content-copy"
+              prepend-icon="i-mdi:content-copy"
               variant="tonal"
               class="flex-grow-1"
               @click="handleCopyResult"
@@ -85,7 +85,7 @@
           <v-btn
             color="primary"
             class="mw-200"
-            prepend-icon="mdi-file-pdf-box"
+            prepend-icon="i-mdi:file-pdf-box"
             @click="onDownloadPDF"
             elevation="0"
           >
@@ -117,7 +117,7 @@
             class="themed-scrollbar flex-grow-1"
           ></v-textarea>
           <v-btn
-            icon="mdi-content-copy"
+            icon="i-mdi:content-copy"
             size="small"
             variant="text"
             class="position-absolute"

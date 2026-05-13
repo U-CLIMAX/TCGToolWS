@@ -138,15 +138,18 @@
           <v-row class="pa-4 fill-height" align="center">
             <v-col cols="12" md="7" class="d-flex flex-column align-center justify-center">
               <div class="d-flex align-center mb-4">
-                <v-icon color="light-blue-lighten-3" size="small" class="mr-2">
-                  mdi-star-circle
-                </v-icon>
+                <v-icon
+                  color="light-blue-lighten-3"
+                  size="small"
+                  class="mr-2"
+                  icon="i-mdi:star-circle"
+                />
                 <span class="text-h6 font-weight-bold text-white">充电福利</span>
               </div>
               <v-list bg-color="transparent" class="flex-grow-1">
                 <v-list-item class="px-0 mb-3">
                   <template v-slot:prepend>
-                    <v-icon color="green-accent-2" size="20">mdi-check-circle</v-icon>
+                    <v-icon color="green-accent-2" size="20" icon="i-mdi:check-circle" />
                   </template>
                   <v-list-item-title class="text-body-1 text-white font-weight-medium">
                     无限卡组数量
@@ -157,7 +160,7 @@
                 </v-list-item>
                 <v-list-item class="px-0 mb-3">
                   <template v-slot:prepend>
-                    <v-icon color="green-accent-2" size="20">mdi-check-circle</v-icon>
+                    <v-icon color="green-accent-2" size="20" icon="i-mdi:check-circle" />
                   </template>
                   <v-list-item-title class="text-body-1 text-white font-weight-medium">
                     卡组历史记录
@@ -168,7 +171,7 @@
                 </v-list-item>
                 <v-list-item class="px-0 mb-3">
                   <template v-slot:prepend>
-                    <v-icon color="green-accent-2" size="20">mdi-check-circle</v-icon>
+                    <v-icon color="green-accent-2" size="20" icon="i-mdi:check-circle" />
                   </template>
                   <v-list-item-title class="text-body-1 text-white font-weight-medium">
                     解除编辑卡组限制
@@ -179,7 +182,7 @@
                 </v-list-item>
                 <v-list-item class="px-0 mb-3">
                   <template v-slot:prepend>
-                    <v-icon color="green-accent-2" size="20">mdi-check-circle</v-icon>
+                    <v-icon color="green-accent-2" size="20" icon="i-mdi:check-circle" />
                   </template>
                   <v-list-item-title class="text-body-1 text-white font-weight-medium">
                     更多功能开发中...
@@ -192,14 +195,19 @@
               md="5"
               class="d-flex flex-column align-center justify-center text-center pa-6"
             >
-              <v-icon color="light-blue-lighten-3" size="48" class="mb-3">mdi-heart-circle</v-icon>
+              <v-icon
+                color="light-blue-lighten-3"
+                size="48"
+                class="mb-3"
+                icon="i-mdi:heart-circle"
+              />
               <div class="text-h5 font-weight-bold text-white mb-2">替网站充电</div>
               <v-btn
                 color="orange-darken-1"
                 size="large"
                 variant="elevated"
                 @click="handleSupportClick"
-                prepend-icon="mdi-heart"
+                prepend-icon="i-mdi:heart"
                 class="mb-4"
                 min-width="160"
               >
@@ -207,7 +215,7 @@
               </v-btn>
               <v-divider class="my-3" width="60%" opacity="30"></v-divider>
               <div class="d-flex align-center justify-center">
-                <v-icon size="16" class="mr-1" color="warning">mdi-lightning-bolt</v-icon>
+                <v-icon size="16" class="mr-1" color="warning" icon="i-mdi:lightning-bolt" />
                 <span class="text-caption text-white">由爱发电平台提供支付服务</span>
               </div>
             </v-col>
@@ -301,15 +309,8 @@
           :class="smAndDown ? 'd-flex flex-column  ga-2' : 'd-flex justify-center  ga-3'"
         >
           <div class="d-flex align-center ga-1">
-            <a href="https://github.com/U-CLIMAX/TCGToolWS" target="_blank">
-              <v-img
-                src="/github.svg"
-                width="20"
-                height="20"
-                alt="GitHub Icon"
-                class="flex-grow-0"
-                style="filter: invert(1) brightness(0.5)"
-              ></v-img>
+            <a href="https://github.com/U-CLIMAX/TCGToolWS" target="_blank" style="color: inherit">
+              <v-icon icon="i-mdi:github" :size="20" />
             </a>
             Developed by
             <a
@@ -330,14 +331,14 @@
           </div>
 
           <div class="d-flex align-center ga-1">
-            <v-icon icon="mdi-palette" :size="20"></v-icon>
+            <v-icon icon="i-mdi:palette" :size="20" />
             <div>
               <a class="text-grey-darken-1"> Kamomim </a>
             </div>
           </div>
 
           <div class="d-flex align-center ga-1">
-            <v-icon icon="mdi-translate" :size="20" />
+            <v-icon icon="i-mdi:translate" :size="20" />
             <a
               href="https://space.bilibili.com/3546826156280707"
               target="_blank"

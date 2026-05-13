@@ -21,7 +21,7 @@
                   class="d-flex flex-column flex-md-row justify-space-between align-start align-md-center mb-5 ga-3"
                 >
                   <div class="d-flex align-center ga-3 flex-grow-1">
-                    <v-icon icon="mdi-shopping" color="primary" size="32"></v-icon>
+                    <v-icon icon="i-mdi:shopping" color="primary" size="32" />
                     <div>
                       <div class="text-h6 font-weight-bold" style="line-height: 1.2">集换大厅</div>
                       <div
@@ -42,9 +42,9 @@
                     >
                       <template #tab-item="{ option }">
                         <v-icon
-                          :icon="option.value === 'mine' ? 'mdi-store' : 'mdi-shopping'"
+                          :icon="option.value === 'mine' ? 'i-mdi:store' : 'i-mdi:shopping'"
                           start
-                        ></v-icon>
+                        />
                         {{ option.title }}
                       </template>
                     </InsetTabs>
@@ -54,7 +54,7 @@
                       color="primary"
                       variant="flat"
                       rounded="pill"
-                      prepend-icon="mdi-plus"
+                      prepend-icon="i-mdi:plus"
                       height="40"
                       @click="openCreateDialog"
                     >
@@ -89,7 +89,7 @@
                       rounded="pill"
                       density="comfortable"
                       hide-details
-                      prepend-inner-icon="mdi-sort"
+                      prepend-inner-icon="i-mdi:sort"
                       :menu-props="uiStore.menuProps"
                     />
                   </v-col>
@@ -171,7 +171,7 @@
                       density="comfortable"
                       hide-details
                       clearable
-                      prepend-inner-icon="mdi-tag-outline"
+                      prepend-inner-icon="i-mdi:tag-outline"
                       :menu-props="uiStore.menuProps"
                     />
                   </v-col>
@@ -212,7 +212,7 @@
                 elevation="2"
               >
                 <div class="d-flex align-center mb-3">
-                  <v-icon icon="mdi-podium" color="yellow-darken-3" class="mr-2"></v-icon>
+                  <v-icon icon="i-mdi:podium" color="yellow-darken-3" class="mr-2" />
                   <span class="font-weight-bold">热门系列 TOP 5</span>
                 </div>
 
@@ -283,7 +283,7 @@
         <div v-if="authStore.isAuthenticated && marketStore.filters.source === 'mine'">
           <div class="group-header">
             <div class="d-flex align-center ga-2">
-              <v-icon icon="mdi-package-check" size="24"></v-icon>
+              <v-icon icon="i-mdi:package-check" size="24" />
               <span
                 >{{ marketStore.userListingCount }} /
                 {{ maxListings === Infinity ? '∞' : maxListings }}</span

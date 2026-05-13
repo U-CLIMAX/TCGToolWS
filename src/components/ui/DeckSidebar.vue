@@ -26,12 +26,12 @@
           </v-btn>
           <h2 class="text-h6">当前卡组</h2>
           <v-chip pill size="small" :color="deckStore.totalCardCount > 50 ? 'warning' : undefined">
-            <v-icon start icon="mdi-cards-diamond-outline"></v-icon>
+            <v-icon start icon="i-mdi:cards-diamond-outline" />
             {{ deckStore.totalCardCount }} / 50
           </v-chip>
           <v-btn
             v-if="deckStore.restrictionViolations.length > 0"
-            icon="mdi-alert-circle"
+            icon="i-mdi:alert-circle"
             variant="text"
             color="error"
             density="compact"
@@ -40,7 +40,7 @@
           ></v-btn>
           <v-btn
             :disabled="deckStore.totalCardCount <= 0"
-            icon="mdi-open-in-new"
+            icon="i-mdi:open-in-new"
             variant="text"
             color="teal-lighten-1"
             density="compact"
@@ -49,7 +49,7 @@
           ></v-btn>
         </div>
         <v-btn
-          icon="mdi-content-save-outline"
+          icon="i-mdi:content-save-outline"
           variant="text"
           color="primary"
           density="compact"
@@ -72,10 +72,10 @@
             class="w-100 h-100"
           >
             <v-btn value="remove" class="flex-1-1" style="min-width: 0">
-              <v-icon icon="mdi-minus"></v-icon>
+              <v-icon icon="i-mdi:minus" />
             </v-btn>
             <v-btn value="none" class="flex-1-1" style="min-width: 0">
-              <v-icon icon="mdi-cursor-default-click-outline"></v-icon>
+              <v-icon icon="i-mdi:cursor-default-click-outline" />
             </v-btn>
             <v-btn
               value="add"
@@ -83,7 +83,7 @@
               style="min-width: 0"
               :disabled="deckStore.totalCardCount >= 50 && userRole === 0"
             >
-              <v-icon icon="mdi-plus"></v-icon>
+              <v-icon icon="i-mdi:plus" />
             </v-btn>
           </v-btn-toggle>
         </v-col>
@@ -108,7 +108,7 @@
           v-if="Object.keys(deckStore.cardsInDeck).length === 0"
           class="text-center text-disabled mt-8"
         >
-          <v-icon size="48" icon="mdi-cards-outline"></v-icon>
+          <v-icon size="48" icon="i-mdi:cards-outline" />
           <p class="mt-2">尚未加入卡片</p>
         </div>
 
@@ -117,7 +117,7 @@
           <div v-if="totalPrice > 0" class="d-flex align-center justify-center">
             <span class="text-caption text-grey mr-2">参考总价:</span>
             <span class="font-weight-bold d-flex align-center text-currency">
-              <v-icon size="14" class="mr-1">mdi-currency-jpy</v-icon>
+              <v-icon size="14" class="mr-1" icon="i-mdi:currency-jpy" />
               <span class="font-DINCond text-h6">{{ totalPrice.toLocaleString() }}</span>
             </span>
           </div>
@@ -322,7 +322,7 @@
   <v-dialog v-model="isRestrictionDialogOpen" max-width="500" scrollable :fullscreen="!smAndUp">
     <v-card class="rounded-2lg">
       <v-card-title class="text-error">
-        <v-icon start icon="mdi-alert-circle"></v-icon>
+        <v-icon start icon="i-mdi:alert-circle" />
         卡组限制提醒
         <span class="text-caption text-medium-emphasis ml-2">
           (更新日期: {{ deckRestrictionsLastUpdated }})
@@ -401,7 +401,7 @@
   <v-dialog v-model="isClearConfirmDialogOpen" max-width="320">
     <v-card class="rounded-2lg pa-2">
       <template #prepend>
-        <v-icon color="warning">mdi-alert-outline</v-icon>
+        <v-icon color="warning" icon="i-mdi:alert-outline" />
         <v-card-title class="text-warning pl-2"> {{ clearDialogTitle }} </v-card-title>
       </template>
       <v-card-text class="text-body-2 text-medium-emphasis">{{ clearDialogContent }}</v-card-text>
@@ -500,7 +500,7 @@ const clearDialogTitle = ref('')
 const clearDialogContent = ref('')
 
 const clearButtonIcon = computed(() => {
-  return deckStore.editingDeckKey ? 'mdi-exit-run' : 'mdi-delete-sweep-outline'
+  return deckStore.editingDeckKey ? 'i-mdi:exit-run' : 'i-mdi:delete-sweep-outline'
 })
 
 const flattenedDisplayCards = computed(() => {

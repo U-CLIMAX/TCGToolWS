@@ -9,6 +9,7 @@ import vuetify from 'vite-plugin-vuetify'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import svgLoader from 'vite-svg-loader'
 import lqip from 'vite-plugin-lqip'
+import UnoCSS from 'unocss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -24,6 +25,7 @@ export default defineConfig({
     vue(),
     vueDevTools(),
     lqip(),
+    UnoCSS(),
     svgLoader({
       svgoConfig: {
         multipass: true,

@@ -19,7 +19,7 @@
             >
               <template v-if="smAndUp">
                 <v-btn
-                  icon="mdi-export-variant"
+                  icon="i-mdi:export-variant"
                   variant="text"
                   density="compact"
                   @click="openExportDialog"
@@ -29,7 +29,7 @@
                   <template v-slot:activator="{ props }">
                     <v-btn
                       v-bind="props"
-                      icon="mdi-share-variant"
+                      icon="i-mdi:share-variant"
                       variant="text"
                       density="compact"
                       :disabled="isLocalDeck"
@@ -44,7 +44,7 @@
                     <v-list-item
                       @click="handleShareCard"
                       title="复制分享链接"
-                      prepend-icon="mdi-link"
+                      prepend-icon="i-mdi:link"
                       slim
                       class="rounded-3md"
                     >
@@ -52,7 +52,7 @@
                     <v-list-item
                       @click="handleShareToDeckGallery"
                       title="分享到卡组广场"
-                      prepend-icon="mdi-view-grid-plus"
+                      prepend-icon="i-mdi:view-grid-plus"
                       slim
                       class="rounded-3md"
                     >
@@ -60,7 +60,7 @@
                   </v-list>
                 </v-menu>
                 <v-btn
-                  icon="mdi-link-variant"
+                  icon="i-mdi:link-variant"
                   variant="text"
                   density="compact"
                   :disabled="isLocalDeck"
@@ -68,7 +68,7 @@
                   v-tooltip:bottom="{ text: '复制卡组代码', disabled: isTouch }"
                 ></v-btn>
                 <v-btn
-                  icon="mdi-pencil"
+                  icon="i-mdi:pencil"
                   variant="text"
                   density="compact"
                   @click="handleEditDeck"
@@ -76,7 +76,7 @@
                 ></v-btn>
                 <v-btn
                   v-if="userRole !== 0 && !isLocalDeck"
-                  icon="mdi-history"
+                  icon="i-mdi:history"
                   variant="text"
                   density="compact"
                   @click="isHistoryDialogVisible = true"
@@ -90,7 +90,7 @@
                   density="compact"
                   @click="showMoreActionsBottomSheet = true"
                 >
-                  <v-icon size="24">mdi-dots-vertical</v-icon>
+                  <v-icon size="24" icon="i-mdi:dots-vertical" />
                 </v-btn>
               </template>
             </div>
@@ -98,7 +98,7 @@
             <!-- 中間 -->
             <div class="header-center d-flex align-center">
               <v-btn
-                icon="mdi-arrow-left"
+                icon="i-mdi:arrow-left"
                 variant="text"
                 density="compact"
                 :to="{ name: 'Decks' }"
@@ -167,7 +167,9 @@
                       v-bind="props"
                       v-if="isEditing && deckStore.editingDeckKey"
                       :icon="
-                        showDifferences ? 'mdi-vector-difference-ba' : 'mdi-vector-difference-ab'
+                        showDifferences
+                          ? 'i-mdi:vector-difference-ba'
+                          : 'i-mdi:vector-difference-ab'
                       "
                       variant="text"
                       density="compact"
@@ -176,7 +178,7 @@
                   </template>
                 </v-tooltip>
                 <v-btn
-                  :icon="uiStore.showCardPrices ? 'mdi-cash' : 'mdi-cash-off'"
+                  :icon="uiStore.showCardPrices ? 'i-mdi:cash' : 'i-mdi:cash-off'"
                   variant="text"
                   density="compact"
                   @click="uiStore.showCardPrices = !uiStore.showCardPrices"
@@ -186,7 +188,7 @@
                   }"
                 ></v-btn>
                 <v-btn
-                  :icon="uiStore.showStatsDashboard ? 'mdi-chart-pie' : 'mdi-chart-pie-outline'"
+                  :icon="uiStore.showStatsDashboard ? 'i-mdi:chart-pie' : 'i-mdi:chart-pie-outline'"
                   class="mr-2"
                   variant="text"
                   density="compact"
@@ -211,7 +213,7 @@
               </template>
               <template v-else>
                 <v-btn icon variant="text" density="compact" @click="showBottomSheet = true">
-                  <v-icon size="24">mdi-format-list-bulleted-type</v-icon>
+                  <v-icon size="24" icon="i-mdi:format-list-bulleted-type" />
                 </v-btn>
               </template>
             </div>
@@ -279,16 +281,16 @@
         <v-list-subheader>更多操作</v-list-subheader>
         <v-list-item @click="handleStatsDashboardClick">
           <template #prepend>
-            <v-icon v-if="!uiStore.showStatsDashboard">mdi-chart-pie-outline</v-icon>
-            <v-icon v-else>mdi-chart-pie</v-icon>
+            <v-icon
+              :icon="!uiStore.showStatsDashboard ? 'i-mdi:chart-pie-outline' : 'i-mdi:chart-pie'"
+            />
           </template>
           <v-list-item-title v-if="!uiStore.showStatsDashboard">显示统计</v-list-item-title>
           <v-list-item-title v-else>隐藏统计</v-list-item-title>
         </v-list-item>
         <v-list-item @click="handleShowCardPricesClick">
           <template #prepend>
-            <v-icon v-if="!uiStore.showCardPrices">mdi-cash-off</v-icon>
-            <v-icon v-else>mdi-cash</v-icon>
+            <v-icon :icon="!uiStore.showCardPrices ? 'i-mdi:cash-off' : 'i-mdi:cash'" />
           </template>
           <v-list-item-title v-if="!uiStore.showCardPrices">显示价格</v-list-item-title>
           <v-list-item-title v-else>隐藏价格</v-list-item-title>
@@ -298,45 +300,46 @@
           @click="handleShowDifferencesClick"
         >
           <template #prepend>
-            <v-icon v-if="!showDifferences">mdi-vector-difference-ab</v-icon>
-            <v-icon v-else>mdi-vector-difference-ba</v-icon>
+            <v-icon
+              :icon="!showDifferences ? 'i-mdi:vector-difference-ab' : 'i-mdi:vector-difference-ba'"
+            />
           </template>
           <v-list-item-title v-if="!showDifferences">显示差异</v-list-item-title>
           <v-list-item-title v-else>隐藏差异</v-list-item-title>
         </v-list-item>
         <v-list-item @click="handleEditDeck">
           <template #prepend>
-            <v-icon>mdi-pencil</v-icon>
+            <v-icon icon="i-mdi:pencil" />
           </template>
           <v-list-item-title>编辑卡组</v-list-item-title>
         </v-list-item>
         <v-list-item v-if="userRole !== 0 && !isLocalDeck" @click="handleHistoryClick">
           <template #prepend>
-            <v-icon>mdi-history</v-icon>
+            <v-icon icon="i-mdi:history" />
           </template>
           <v-list-item-title>卡组历史</v-list-item-title>
         </v-list-item>
         <v-list-item v-if="!isLocalDeck" @click="handleShareClick">
           <template #prepend>
-            <v-icon>mdi-link</v-icon>
+            <v-icon icon="i-mdi:link" />
           </template>
           <v-list-item-title>复制分享链接</v-list-item-title>
         </v-list-item>
         <v-list-item v-if="!isLocalDeck" @click="handleShareToDeckGallery">
           <template #prepend>
-            <v-icon>mdi-view-grid-plus</v-icon>
+            <v-icon icon="i-mdi:view-grid-plus" />
           </template>
           <v-list-item-title>分享到卡组广场</v-list-item-title>
         </v-list-item>
         <v-list-item v-if="!isLocalDeck" @click="handleCopyClick">
           <template #prepend>
-            <v-icon>mdi-link-variant</v-icon>
+            <v-icon icon="i-mdi:link-variant" />
           </template>
           <v-list-item-title>复制卡组代码</v-list-item-title>
         </v-list-item>
         <v-list-item @click="handleExportClick">
           <template #prepend>
-            <v-icon>mdi-export-variant</v-icon>
+            <v-icon icon="i-mdi:export-variant" />
           </template>
           <v-list-item-title>汇出卡组</v-list-item-title>
         </v-list-item>
@@ -346,7 +349,7 @@
     <v-dialog v-model="isConfirmEditDialogVisible" max-width="420">
       <v-card class="rounded-2lg pa-2">
         <template #prepend>
-          <v-icon color="warning">mdi-alert-outline</v-icon>
+          <v-icon color="warning" icon="i-mdi:alert-outline" />
           <v-card-title class="text-warning pl-2"> 确认编辑 </v-card-title>
         </template>
 
@@ -375,7 +378,7 @@
       <v-card elevation="0" class="rounded-2lg">
         <!-- 头部 -->
         <v-card-title class="px-6 py-5 d-flex align-center">
-          <v-icon icon="mdi-history" size="24" class="mr-3 text-primary"></v-icon>
+          <v-icon icon="i-mdi:history" size="24" class="mr-3 text-primary" />
           <span class="text-h6">卡组历史纪录</span>
         </v-card-title>
 
@@ -392,7 +395,7 @@
               elevation="0"
             >
               <template #prepend>
-                <v-icon icon="mdi-card-text" size="20" class="text-medium-emphasis mr-3"></v-icon>
+                <v-icon icon="i-mdi:card-text" size="20" class="text-medium-emphasis mr-3" />
               </template>
 
               <v-list-item-title
@@ -428,7 +431,7 @@
 
           <!-- 空状态 -->
           <div v-else class="text-center py-16">
-            <v-icon icon="mdi-history" size="64" class="text-disabled mb-4"></v-icon>
+            <v-icon icon="i-mdi:history" size="64" class="text-disabled mb-4" />
             <p class="text-body-1 text-medium-emphasis">暂无历史纪录</p>
           </div>
         </v-card-text>

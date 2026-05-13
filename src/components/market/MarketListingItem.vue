@@ -110,7 +110,7 @@
               color="secondary"
               variant="flat"
               size="small"
-              prepend-icon="mdi-pencil"
+              prepend-icon="i-mdi:pencil"
               class="font-weight-regular px-8 rounded-t-2lg rounded-b-3sm"
               block
               elevation="0"
@@ -136,7 +136,7 @@
               color="error"
               variant="tonal"
               size="small"
-              prepend-icon="mdi-delete"
+              prepend-icon="i-mdi:delete"
               class="font-weight-regular px-8 rounded-b-2lg rounded-t-3sm"
               block
               elevation="0"

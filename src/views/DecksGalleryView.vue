@@ -43,7 +43,7 @@
                 >
                   <div class="d-flex align-center ga-3">
                     <v-avatar color="primary" variant="tonal" size="48" class="rounded-xl">
-                      <v-icon icon="mdi-view-grid-outline" size="28" />
+                      <v-icon icon="i-mdi:view-grid-outline" size="28" />
                     </v-avatar>
                     <div>
                       <div class="text-h6 font-weight-bold" style="line-height: 1.2">卡组广场</div>
@@ -62,9 +62,9 @@
                     >
                       <template #tab-item="{ option }">
                         <v-icon
-                          :icon="option.value === 'mine' ? 'mdi-account-star' : 'mdi-earth'"
+                          :icon="option.value === 'mine' ? 'i-mdi:account-star' : 'i-mdi:earth'"
                           start
-                        ></v-icon>
+                        />
                         {{ option.title }}
                       </template>
                     </InsetTabs>
@@ -92,7 +92,7 @@
                       rounded="pill"
                       height="48"
                       width="48"
-                      :icon="localFilters.hasArticle ? 'mdi-text-box' : 'mdi-text-box-outline'"
+                      :icon="localFilters.hasArticle ? 'i-mdi:text-box' : 'i-mdi:text-box-outline'"
                       elevation="0"
                       @click="toggleHasArticle"
                       v-tooltip:bottom="{
@@ -107,7 +107,7 @@
                       rounded="pill"
                       height="48"
                       width="48"
-                      icon="mdi-trophy-variant-outline"
+                      icon="i-mdi:trophy-variant-outline"
                       elevation="0"
                       @click="toggleAdvancedFilter"
                       v-tooltip:bottom="{
@@ -126,7 +126,7 @@
                       rounded="pill"
                       density="comfortable"
                       hide-details
-                      prepend-inner-icon="mdi-sort"
+                      prepend-inner-icon="i-mdi:sort"
                       class="flex-grow-1"
                       :menu-props="uiStore.menuProps"
                       @update:model-value="handleSearch"
@@ -146,7 +146,7 @@
                       density="comfortable"
                       hide-details
                       clearable
-                      prepend-inner-icon="mdi-magnify"
+                      prepend-inner-icon="i-mdi:magnify"
                       class="flex-grow-1"
                       :menu-props="uiStore.menuProps"
                       @update:model-value="handleSearch"
@@ -158,7 +158,7 @@
                       color="grey-btn"
                       height="48"
                       width="48"
-                      icon="mdi-refresh"
+                      icon="i-mdi:refresh"
                       elevation="0"
                       @click="resetFilters"
                     />
@@ -180,7 +180,7 @@
                             rounded="pill"
                             density="compact"
                             hide-details
-                            prepend-inner-icon="mdi-trophy-outline"
+                            prepend-inner-icon="i-mdi:trophy-outline"
                             :menu-props="uiStore.menuProps"
                             @update:model-value="handleSearch"
                           />
@@ -196,7 +196,7 @@
                             rounded="pill"
                             density="compact"
                             hide-details
-                            prepend-inner-icon="mdi-account-group-outline"
+                            prepend-inner-icon="i-mdi:account-group-outline"
                             :menu-props="uiStore.menuProps"
                             @update:model-value="handleSearch"
                           />
@@ -212,7 +212,7 @@
                             rounded="pill"
                             density="compact"
                             hide-details
-                            prepend-inner-icon="mdi-medal-outline"
+                            prepend-inner-icon="i-mdi:medal-outline"
                             :menu-props="uiStore.menuProps"
                             @update:model-value="handleSearch"
                           />
@@ -231,7 +231,7 @@
         <div v-if="galleryStore.filters.source === 'mine'">
           <div class="group-header">
             <div class="d-flex align-center ga-2">
-              <v-icon :icon="DeckGalleryIcon" size="24"></v-icon>
+              <v-icon :icon="DeckGalleryIcon" size="24" />
               <span>
                 {{ galleryStore.userDeckCount }} /
                 {{ maxDecks === Infinity ? '∞' : maxDecks }}

@@ -31,7 +31,7 @@
               style="position: absolute; bottom: 8px; right: 8px; opacity: 0.9; gap: 6px"
             >
               <v-btn
-                icon="mdi-plus"
+                icon="i-mdi:plus"
                 :size="buttonSize"
                 variant="flat"
                 color="grey-darken-3"
@@ -40,7 +40,7 @@
                 @click.stop="deckStore.addCard(card)"
               ></v-btn>
               <v-btn
-                icon="mdi-minus"
+                icon="i-mdi:minus"
                 :size="buttonSize"
                 variant="flat"
                 color="grey-lighten-2"
@@ -59,7 +59,7 @@
             <v-btn
               variant="flat"
               size="x-small"
-              icon="mdi-minus"
+              icon="i-mdi:minus"
               color="grey-lighten-2"
               class="disabled-button"
               :disabled="cardCount === 0"
@@ -71,7 +71,7 @@
             <v-btn
               variant="flat"
               size="x-small"
-              icon="mdi-plus"
+              icon="i-mdi:plus"
               color="grey-darken-3"
               class="disabled-button"
               :disabled="deckStore.totalCardCount >= 50 && userRole === 0"

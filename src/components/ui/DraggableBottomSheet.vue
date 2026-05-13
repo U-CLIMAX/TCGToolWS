@@ -21,7 +21,12 @@
           </div>
         </div>
         <div class="header-close-area">
-          <v-btn icon="mdi-close" variant="text" @click.stop="closeSheet" @touchstart.stop></v-btn>
+          <v-btn
+            icon="i-mdi:close"
+            variant="text"
+            @click.stop="closeSheet"
+            @touchstart.stop
+          ></v-btn>
         </div>
       </div>
       <v-divider></v-divider>

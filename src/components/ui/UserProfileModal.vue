@@ -2,7 +2,7 @@
   <v-dialog v-model="isDialogOpen" max-width="400">
     <v-card class="rounded-2lg pa-2">
       <v-card-title class="d-flex align-center">
-        <v-icon>mdi-account</v-icon>
+        <v-icon icon="i-mdi:account" />
         账号资料
         <v-spacer></v-spacer>
         <v-btn
@@ -25,7 +25,7 @@
               <div class="d-flex align-center">
                 <span style="min-width: 0">{{ userStatus.id }}</span>
                 <v-btn
-                  icon="mdi-content-copy"
+                  icon="i-mdi:content-copy"
                   variant="text"
                   size="x-small"
                   class="ml-2"
@@ -68,7 +68,7 @@
             rounded
           >
             升级 Premium
-            <v-icon end icon="mdi-arrow-up-bold-circle-outline"></v-icon>
+            <v-icon end icon="i-mdi:arrow-up-bold-circle-outline" />
           </v-btn>
         </div>
 
@@ -79,7 +79,7 @@
             variant="tonal"
             color="primary"
             rounded="pill"
-            prepend-icon="mdi-cog"
+            prepend-icon="i-mdi:cog"
             @click="handleSettingsClick"
           >
             网站设置
@@ -89,7 +89,7 @@
             variant="tonal"
             color="secondary"
             rounded="pill"
-            prepend-icon="mdi-chart-bar"
+            prepend-icon="i-mdi:chart-bar"
             :href="umami_share_url"
             target="_blank"
           >

@@ -22,7 +22,7 @@
         @keydown.enter="collapse"
       />
       <v-btn class="search-button" icon variant="text" @mousedown="startDrag" @click="handleTap">
-        <v-icon>mdi-magnify</v-icon>
+        <v-icon icon="i-mdi:magnify" />
       </v-btn>
     </div>
   </div>

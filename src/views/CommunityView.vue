@@ -53,7 +53,7 @@
                       @update:model-value="handleSearch"
                     >
                       <template #prepend-inner>
-                        <v-icon color="primary">mdi-magnify</v-icon>
+                        <v-icon color="primary" icon="i-mdi:magnify" />
                       </template>
                     </v-text-field>
                   </v-col>
@@ -65,7 +65,7 @@
                       class="d-flex align-center pa-1 border-md border-primary rounded-pill pa-2"
                     >
                       <div class="d-flex align-center px-6 flex-shrink-0 ga-2">
-                        <v-icon icon="mdi-map-marker-outline" class="text-medium-emphasis" />
+                        <v-icon icon="i-mdi:map-marker-outline" class="text-medium-emphasis" />
                         <span class="text-body-1 text-medium-emphasis">省市</span>
                       </div>
 
@@ -168,7 +168,7 @@
                         <div class="text-h6 font-weight-bold text-white mb-1">填写问卷</div>
                         <div class="text-white">用于上传群组信息</div>
                       </div>
-                      <v-icon color="white" size="13" class="pt-3"> mdi-arrow-collapse-up </v-icon>
+                      <v-icon color="white" size="13" class="pt-3" icon="i-mdi:arrow-collapse-up" />
                     </div>
 
                     <!-- Bottom row -->
@@ -183,7 +183,7 @@
                         slim
                         @click.prevent="openSurvey"
                       >
-                        <v-icon color="primary" size="32">mdi-arrow-right-thin</v-icon>
+                        <v-icon color="primary" size="32" icon="i-mdi:arrow-right-thin" />
                       </v-btn>
                     </div>
                   </v-card-text>
@@ -265,7 +265,7 @@
                       class="rounded-circle"
                       @click="copyContact(item.contactInfo)"
                     >
-                      <v-icon size="16">mdi-content-copy</v-icon>
+                      <v-icon size="16" icon="i-mdi:content-copy" />
                     </v-btn>
                   </v-sheet>
                 </v-card-text>
@@ -449,9 +449,9 @@ const loadMore = async ({ done }) => {
 
 // ✅ 使用 getContactIcon() 根据联系类型返回对应图标
 const getContactIcon = (type) => {
-  if (type.includes('QQ')) return 'mdi-qqchat'
-  if (type.includes('微信')) return 'mdi-wechat'
-  return 'mdi-account-box-outline'
+  if (type.includes('QQ')) return 'i-mdi:qqchat'
+  if (type.includes('微信')) return 'i-mdi:wechat'
+  return 'i-mdi:account-box-outline'
 }
 
 // ✅ 根据联系类型返回友好标签
@@ -499,7 +499,7 @@ onMounted(() => {
   z-index: 0;
 }
 
-.bg-watermark-icon.mdi-qqchat {
+.bg-watermark-icon.i-mdi\:qqchat {
   transform: scaleX(0.85);
 }
 

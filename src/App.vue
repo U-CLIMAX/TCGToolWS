@@ -45,7 +45,7 @@
                     :color="isHomeRoute ? 'white' : undefined"
                   >
                     <template #prepend>
-                      <v-icon :icon="navIcons[item.icon]" size="24"></v-icon>
+                      <v-icon :icon="navIcons[item.icon]" size="24" />
                     </template>
                     {{ item.text }}
                   </v-btn>
@@ -85,7 +85,7 @@
                     :color="isHomeRoute ? 'white' : undefined"
                   >
                     <template #prepend>
-                      <v-icon :icon="navIcons[item.icon]" size="24"></v-icon>
+                      <v-icon :icon="navIcons[item.icon]" size="24" />
                     </template>
                     {{ item.text }}
                   </v-btn>
@@ -99,7 +99,7 @@
                   <v-list-item
                     :to="{ name: 'Market' }"
                     title="集换大厅"
-                    prepend-icon="mdi-store-outline"
+                    prepend-icon="i-mdi:store-outline"
                     slim
                     class="rounded-3md"
                   >
@@ -107,7 +107,7 @@
                   <v-list-item
                     :to="{ name: 'DecksGallery' }"
                     title="卡组广场"
-                    prepend-icon="mdi-view-grid-outline"
+                    prepend-icon="i-mdi:view-grid-outline"
                     slim
                     class="rounded-3md"
                   >
@@ -115,7 +115,7 @@
                   <v-list-item
                     :to="{ name: 'Community' }"
                     title="玩家社群查询"
-                    prepend-icon="mdi-account-group-outline"
+                    prepend-icon="i-mdi:account-group-outline"
                     slim
                     class="rounded-3md"
                   >
@@ -137,7 +137,7 @@
                 :color="isHomeRoute ? 'white' : undefined"
               >
                 <template #prepend>
-                  <v-icon :icon="navIcons[item.icon]" size="24"></v-icon>
+                  <v-icon :icon="navIcons[item.icon]" size="24" />
                 </template>
               </v-btn>
             </template>
@@ -167,7 +167,8 @@
           <v-btn
             v-if="authStore.isAuthenticated"
             @click="isUserProfileModalOpen = true"
-            icon="mdi-account-circle"
+            :ripple="false"
+            icon="i-mdi:account-circle"
             :class="accountIconClass"
           ></v-btn>
 
@@ -176,7 +177,7 @@
               v-if="!authStore.isAuthenticated"
               @click="handleLogin"
               :ripple="false"
-              icon="mdi-account-circle"
+              icon="i-mdi:account-circle"
               color="green-lighten-2"
             ></v-btn>
           </template>
@@ -228,7 +229,7 @@
               :base-color="routeGameColor"
               :color="isHomeRoute ? 'white' : undefined"
             >
-              <v-icon :icon="navIcons[item.icon]"></v-icon>
+              <v-icon :icon="navIcons[item.icon]" />
             </v-btn>
           </template>
           <v-list
@@ -260,7 +261,7 @@
               style="min-width: 0"
               :color="isHomeRoute ? 'white' : undefined"
             >
-              <v-icon :icon="navIcons[item.icon]"></v-icon>
+              <v-icon :icon="navIcons[item.icon]" />
             </v-btn>
           </template>
           <v-list
@@ -272,7 +273,7 @@
             <v-list-item
               :to="{ name: 'Market' }"
               title="集换大厅"
-              prepend-icon="mdi-store-outline"
+              prepend-icon="i-mdi:store-outline"
               slim
               class="rounded-3md"
             >
@@ -280,7 +281,7 @@
             <v-list-item
               :to="{ name: 'DecksGallery' }"
               title="卡组广场"
-              prepend-icon="mdi-view-grid-outline"
+              prepend-icon="i-mdi:view-grid-outline"
               slim
               class="rounded-3md"
             >
@@ -288,7 +289,7 @@
             <v-list-item
               :to="{ name: 'Community' }"
               title="玩家社群查询"
-              prepend-icon="mdi-account-group-outline"
+              prepend-icon="i-mdi:account-group-outline"
               slim
               class="rounded-3md"
             >
@@ -306,7 +307,7 @@
           :active-color="isHomeRoute ? 'cyan-accent-2' : undefined"
           :color="isHomeRoute ? 'white' : undefined"
         >
-          <v-icon :icon="navIcons[item.icon]"></v-icon>
+          <v-icon :icon="navIcons[item.icon]" />
         </v-btn>
       </template>
 
@@ -325,7 +326,7 @@
           style="min-width: 0"
           :active="false"
         >
-          <v-icon icon="mdi-account-circle" color="green-lighten-2"></v-icon>
+          <v-icon icon="i-mdi:account-circle" color="green-lighten-2" />
         </v-btn>
 
         <v-btn
@@ -336,7 +337,7 @@
           :class="accountIconClass"
           :active="false"
         >
-          <v-icon icon="mdi-account-circle"></v-icon>
+          <v-icon icon="i-mdi:account-circle" />
         </v-btn>
       </template>
     </v-bottom-navigation>
@@ -683,9 +684,6 @@ watch(
 .premium-user-icon-light .v-icon {
   background: var(--golden-gradirnt-light);
   background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
   animation: gradient-loop 3s linear infinite;
 }
 
@@ -693,9 +691,6 @@ watch(
 .premium-user-icon-dark .v-icon {
   background: var(--golden-gradirnt-dark);
   background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
   animation: gradient-loop 3s linear infinite;
 }
 
@@ -703,9 +698,6 @@ watch(
 .developer-user-icon-light .v-icon {
   background: var(--rainbow-gradirnt-light);
   background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
   animation: gradient-loop 3s linear infinite;
 }
 
@@ -713,9 +705,6 @@ watch(
 .developer-user-icon-dark .v-icon {
   background: var(--rainbow-gradirnt-dark);
   background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
   animation: gradient-loop 3s linear infinite;
 }
 </style>

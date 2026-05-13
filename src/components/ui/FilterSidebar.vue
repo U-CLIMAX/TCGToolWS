@@ -21,7 +21,7 @@
             variant="text"
             color="primary"
             density="compact"
-            prepend-icon="mdi-filter-remove"
+            prepend-icon="i-mdi:filter-remove"
             text="清空筛选"
             @click="filterStore.resetFilters()"
             :disabled="props.disabled"
@@ -49,7 +49,7 @@
               <v-list-item :title="null" @click="openAddKeywordDialog">
                 <v-list-item-title class="text-green">
                   新增关键字
-                  <v-icon icon="mdi-plus-circle" size="x-small"></v-icon>
+                  <v-icon icon="i-mdi:plus-circle" size="x-small" />
                 </v-list-item-title>
               </v-list-item>
               <v-divider></v-divider>
@@ -67,7 +67,7 @@
                     color="error"
                     @click.stop.prevent="removeKeyword(item.raw)"
                   >
-                    <v-icon icon="mdi-delete"></v-icon>
+                    <v-icon icon="i-mdi:delete" />
                   </v-btn>
                 </template>
               </v-list-item>
@@ -91,7 +91,7 @@
                 <v-icon
                   :icon="filterStore.searchMode === 'fuzzy' ? fuzzyIcon : preciseIcon"
                   size="17"
-                ></v-icon>
+                />
               </v-btn>
             </template>
           </v-combobox>

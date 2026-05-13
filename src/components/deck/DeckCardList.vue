@@ -28,7 +28,7 @@
 
               <!-- 卡片數量 -->
               <div class="d-flex align-center ga-2">
-                <v-icon size="14">mdi-cards</v-icon>
+                <v-icon size="14" icon="i-mdi:cards" />
                 <span>
                   {{ group.reduce((sum, item) => sum + item.quantity, 0) }}
                 </span>
@@ -75,7 +75,7 @@
                       class="price-container d-flex align-center justify-center font-DINCond text-currency"
                     >
                       <template v-if="getItemPrice(item)">
-                        <v-icon size="10" class="mr-1">mdi-currency-jpy</v-icon>
+                        <v-icon size="12" class="mr-1" icon="i-mdi:currency-jpy" />
                         {{ getItemPrice(item) }}
                       </template>
                     </div>

@@ -100,7 +100,7 @@
                   variant="outlined"
                   density="comfortable"
                   placeholder="选择标签"
-                  prepend-inner-icon="mdi-tag-outline"
+                  prepend-inner-icon="i-mdi:tag-outline"
                   :menu-props="uiStore.menuPropsNoGlass"
                 ></v-select>
               </v-col>
@@ -116,7 +116,7 @@
                   ]"
                   variant="outlined"
                   density="comfortable"
-                  prepend-inner-icon="mdi-link"
+                  prepend-inner-icon="i-mdi:link"
                 ></v-text-field>
               </v-col>
 
@@ -127,7 +127,7 @@
                   :rules="[(v) => !v || v.length === 6 || '长度必须等于 6 个字符']"
                   variant="outlined"
                   density="comfortable"
-                  prepend-inner-icon="mdi-code-json"
+                  prepend-inner-icon="i-mdi:code-json"
                 ></v-text-field>
               </v-col>
             </v-row>
@@ -144,7 +144,7 @@
               label="卡号搜索"
               variant="outlined"
               density="compact"
-              prepend-inner-icon="mdi-magnify"
+              prepend-inner-icon="i-mdi:magnify"
               class="mb-3"
               clearable
               hide-details
@@ -180,7 +180,7 @@
                         v-if="formData.selectedCardIds.includes(card.id)"
                         class="selection-overlay d-flex align-center justify-center"
                       >
-                        <v-icon color="white" size="32">mdi-check-circle</v-icon>
+                        <v-icon color="white" size="32" icon="i-mdi:check-circle" />
                       </div>
                     </div>
                   </v-col>

@@ -9,13 +9,13 @@
           <template #append>
             <v-btn
               v-if="isLoginMode"
-              icon="mdi-cog"
+              icon="i-mdi:cog"
               variant="text"
               @click="handleSettingsClick"
               :disabled="loading"
             ></v-btn>
             <v-btn
-              icon="mdi-close"
+              icon="i-mdi:close"
               variant="text"
               @click="dialog = false"
               :disabled="loading"
@@ -40,7 +40,7 @@
               ></v-text-field>
 
               <v-text-field
-                :append-inner-icon="password_visible ? 'mdi-eye-off' : 'mdi-eye'"
+                :append-inner-icon="password_visible ? 'i-mdi:eye-off' : 'i-mdi:eye'"
                 :type="password_visible ? 'text' : 'password'"
                 v-model="password"
                 label="密码"
@@ -120,7 +120,7 @@
         <v-card title="输入验证码">
           <template #append>
             <v-btn
-              icon="mdi-close"
+              icon="i-mdi:close"
               variant="text"
               @click="dialog = false"
               :disabled="loading"

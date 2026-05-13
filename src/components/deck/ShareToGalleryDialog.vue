@@ -6,7 +6,7 @@
   >
     <v-card class="rounded-2lg pa-2">
       <template #prepend>
-        <v-icon color="primary">{{ isEdit ? 'mdi-pencil' : 'mdi-view-grid-plus' }}</v-icon>
+        <v-icon color="primary" :icon="isEdit ? 'i-mdi:pencil' : 'i-mdi:view-grid-plus'" />
         <v-card-title class="pl-2">{{ isEdit ? '编辑分享信息' : '分享到卡组广场' }}</v-card-title>
       </template>
 
@@ -20,7 +20,7 @@
           class="mb-4"
           :rules="[articleLinkRule]"
           clearable
-          prepend-inner-icon="mdi-link-variant"
+          prepend-inner-icon="i-mdi:link-variant"
           hide-details="auto"
         ></v-text-field>
 

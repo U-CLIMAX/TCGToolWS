@@ -2,7 +2,7 @@
   <v-dialog v-model="model" max-width="500px">
     <v-card class="overflow-y-auto themed-scrollbar rounded-2lg pa-2">
       <v-card-title class="d-flex align-center">
-        <v-icon color="warning" class="mr-2">mdi-alert-circle-outline</v-icon>
+        <v-icon color="warning" class="mr-2" icon="i-mdi:alert-circle-outline" />
         網站充電须知
       </v-card-title>
 
@@ -10,7 +10,7 @@
         <v-alert
           color="error"
           variant="tonal"
-          icon="mdi-link-variant-off"
+          icon="i-mdi:link-variant-off"
           class="mb-4"
           border="start"
           density="comfortable"
@@ -27,19 +27,19 @@
         <p class="mb-4">感谢您的支持！在您完成充电后，请注意以下事项：</p>
 
         <v-list density="compact" bg-color="transparent" class="py-0">
-          <v-list-item prepend-icon="mdi-numeric-1-circle-outline" class="px-1">
+          <v-list-item prepend-icon="i-mdi:numeric-1-circle-outline" class="px-1">
             <v-list-item-title class="text-wrap">
               充电完成後，请刷新网页或是前往<b>「账号资料」</b>，点击<b>「刷新」</b>按钮以更新您的帐号身份。
             </v-list-item-title>
           </v-list-item>
 
-          <v-list-item prepend-icon="mdi-numeric-2-circle-outline" class="px-1">
+          <v-list-item prepend-icon="i-mdi:numeric-2-circle-outline" class="px-1">
             <v-list-item-title class="text-wrap">
               可能存在<b>时间延迟</b>，如果第一次刷新未成功，请<b>等待约 1 分钟</b>后再试。
             </v-list-item-title>
           </v-list-item>
 
-          <v-list-item prepend-icon="mdi-numeric-3-circle-outline" class="px-1">
+          <v-list-item prepend-icon="i-mdi:numeric-3-circle-outline" class="px-1">
             <v-list-item-title class="text-wrap">
               若多次刷新仍无效，请将您的 <b>「帐号 ID」和 爱发电的「订单号」</b> 复制后，发送至
               <a href="mailto:issues@uclimax.cn">issues@uclimax.cn</a>
@@ -53,16 +53,19 @@
         <v-expansion-panels class="mb-4" elevation="0">
           <v-expansion-panel>
             <v-expansion-panel-title class="font-weight-bold">
-              <v-icon color="light-blue-lighten-3" size="small" class="mr-2">
-                mdi-star-circle
-              </v-icon>
+              <v-icon
+                color="light-blue-lighten-3"
+                size="small"
+                class="mr-2"
+                icon="i-mdi:star-circle"
+              />
               充电福利
             </v-expansion-panel-title>
             <v-expansion-panel-text>
               <v-list bg-color="transparent" class="flex-grow-1">
                 <v-list-item class="px-0 mb-3">
                   <template v-slot:prepend>
-                    <v-icon color="green-accent-2" size="20">mdi-check-circle</v-icon>
+                    <v-icon color="green-accent-2" size="20" icon="i-mdi:check-circle" />
                   </template>
                   <v-list-item-title class="text-body-1 font-weight-medium">
                     无限卡组数量
@@ -73,7 +76,7 @@
                 </v-list-item>
                 <v-list-item class="px-0 mb-3">
                   <template v-slot:prepend>
-                    <v-icon color="green-accent-2" size="20">mdi-check-circle</v-icon>
+                    <v-icon color="green-accent-2" size="20" icon="i-mdi:check-circle" />
                   </template>
                   <v-list-item-title class="text-body-1 font-weight-medium">
                     卡组历史记录
@@ -84,7 +87,7 @@
                 </v-list-item>
                 <v-list-item class="px-0 mb-3">
                   <template v-slot:prepend>
-                    <v-icon color="green-accent-2" size="20">mdi-check-circle</v-icon>
+                    <v-icon color="green-accent-2" size="20" icon="i-mdi:check-circle" />
                   </template>
                   <v-list-item-title class="text-body-1 font-weight-medium">
                     解除编辑卡组限制
@@ -95,7 +98,7 @@
                 </v-list-item>
                 <v-list-item class="px-0 mb-3">
                   <template v-slot:prepend>
-                    <v-icon color="green-accent-2" size="20">mdi-check-circle</v-icon>
+                    <v-icon color="green-accent-2" size="20" icon="i-mdi:check-circle" />
                   </template>
                   <v-list-item-title class="text-body-1 font-weight-medium">
                     在集换大厅发布更多的卡组

@@ -16,7 +16,7 @@
         :active="false"
       >
         <v-badge :model-value="noticeStore.hasNew" color="error" dot offset-x="2" offset-y="2">
-          <v-icon :color="isHomeRoute ? 'white' : undefined">mdi-bell-outline</v-icon>
+          <v-icon :color="isHomeRoute ? 'white' : undefined" icon="i-mdi:bell-outline" />
         </v-badge>
       </v-btn>
     </template>
@@ -32,7 +32,7 @@
         <v-spacer></v-spacer>
         <div class="d-flex ga-1">
           <v-btn
-            icon="mdi-refresh"
+            icon="i-mdi:refresh"
             variant="text"
             size="32"
             color="primary"
@@ -43,7 +43,7 @@
           ></v-btn>
           <v-btn
             v-if="isAdmin"
-            icon="mdi-plus"
+            icon="i-mdi:plus"
             variant="tonal"
             size="32"
             color="primary"
@@ -69,10 +69,10 @@
                 <v-icon
                   :color="notice.is_important ? 'warning' : 'medium-emphasis'"
                   :icon="
-                    notice.is_important ? 'mdi-alert-circle-outline' : 'mdi-information-outline'
+                    notice.is_important ? 'i-mdi:alert-circle-outline' : 'i-mdi:information-outline'
                   "
                   size="20"
-                ></v-icon>
+                />
               </div>
             </template>
 
@@ -103,7 +103,7 @@
                 }}</span>
                 <v-btn
                   v-if="isAdmin"
-                  icon="mdi-trash-can-outline"
+                  icon="i-mdi:trash-can-outline"
                   variant="text"
                   size="30"
                   color="error"
@@ -116,11 +116,11 @@
         </template>
         <div v-else class="d-flex flex-column align-center justify-center py-12 px-6 text-center">
           <v-icon
-            icon="mdi-bell-off-outline"
+            icon="i-mdi:bell-off-outline"
             size="48"
             color="disabled"
             class="mb-3 opacity-20"
-          ></v-icon>
+          />
           <div class="text-body-2 text-disabled">目前暂无公告</div>
         </div>
       </v-list>
@@ -138,14 +138,14 @@
           class="mr-3"
         >
           <v-icon
-            :icon="selectedNotice.is_important ? 'mdi-alert-circle' : 'mdi-information'"
+            :icon="selectedNotice.is_important ? 'i-mdi:alert-circle' : 'i-mdi:information'"
             size="18"
-          ></v-icon>
+          />
         </v-avatar>
         <span class="text-h6 font-weight-bold">{{ selectedNotice.title }}</span>
       </v-card-title>
       <v-card-subtitle class="px-6 pb-4 d-flex align-center">
-        <v-icon icon="mdi-clock-outline" size="14" class="mr-1"></v-icon>
+        <v-icon icon="i-mdi:clock-outline" size="14" class="mr-1" />
         {{ formatDateFull(selectedNotice.updated_at) }}
       </v-card-subtitle>
 
