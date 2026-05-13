@@ -150,6 +150,13 @@ import BackToTopButton from '@/components/ui/BackToTopButton.vue'
 import InsetTabs from '@/components/ui/InsetTabs.vue'
 import collator from '@/utils/collator.js'
 
+definePage({
+  name: 'SeriesCardTable',
+  meta: {
+    group: 'series',
+  },
+})
+
 const itemsPerLoad = 24
 const allSeries = ref(
   Object.entries(seriesMap).map(([name, data]) => ({

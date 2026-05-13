@@ -20,6 +20,12 @@ import { findDeckSeriesId } from '@/utils/findDeckSeriesId'
 import { seriesMap } from '@/maps/series-map'
 import { generateDeckKey } from '@/utils/nanoid'
 
+definePage({
+  name: 'DeckLog',
+  props: true,
+  meta: { headerBlur: true, showCardPrice: true },
+})
+
 const route = useRoute()
 const router = useRouter()
 const { encodeData } = useDeckEncoder()

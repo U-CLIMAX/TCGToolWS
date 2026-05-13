@@ -398,6 +398,11 @@ import featureDeckImg from '@/assets/feature/deck-edit.webp?lqip'
 import featureSearchImg from '@/assets/feature/global-search.webp?lqip'
 import pcPhoneImg from '@/assets/pc_and_ph.webp?lqip'
 
+definePage({
+  name: 'Home',
+  alias: '/home',
+})
+
 const { isHardwareAccelerated } = useHardwareAcceleration()
 const authStore = useAuthStore()
 const uiStore = useUIStore()

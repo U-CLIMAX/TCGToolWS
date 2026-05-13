@@ -12,7 +12,7 @@
       }"
       touchless
     >
-      <ShareDeckDetailView
+      <ShareDeckDetail
         v-if="selectedDeckKey"
         :key="selectedDeckKey"
         :deck-key="selectedDeckKey"
@@ -293,7 +293,7 @@ import { useAuthStore } from '@/stores/auth'
 import LazyCardWrapper from '@/components/common/LazyCardWrapper.vue'
 import DecksGalleryItem from '@/components/deck/DecksGalleryItem.vue'
 import ShareToGalleryDialog from '@/components/deck/ShareToGalleryDialog.vue'
-import ShareDeckDetailView from '@/views/ShareDeckDetailView.vue'
+import ShareDeckDetail from '@/components/deck/ShareDeckDetail.vue'
 import InsetTabs from '@/components/ui/InsetTabs.vue'
 import BackToTopButton from '@/components/ui/BackToTopButton.vue'
 import { useSnackbar } from '@/composables/useSnackbar'
@@ -303,6 +303,11 @@ import { useDisplay } from 'vuetify'
 import { GAME_TYPE_OPTIONS } from '@/maps/series-map'
 
 import DeckGalleryIcon from '@/assets/ui/deck-gallery.svg'
+
+definePage({
+  name: 'DecksGallery',
+  meta: { group: 'community' },
+})
 
 const { triggerSnackbar } = useSnackbar()
 const galleryStore = useDecksGalleryStore()

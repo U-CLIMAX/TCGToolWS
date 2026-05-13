@@ -302,6 +302,11 @@ import rawCSV from '@/assets/community/ws.csv?raw'
 
 import crowdIcon from '@/assets/ui/crowd.svg'
 
+definePage({
+  name: 'Community',
+  meta: { group: 'community' },
+})
+
 const uiStore = useUIStore()
 const theme = useTheme()
 const { smAndUp, smAndDown } = useDisplay()

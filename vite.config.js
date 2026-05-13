@@ -1,6 +1,7 @@
 import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
+import VueRouter from 'vue-router/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import { visualizer } from 'rollup-plugin-visualizer'
 import { cloudflare } from '@cloudflare/vite-plugin'
@@ -22,6 +23,10 @@ export default defineConfig({
     cors: true,
   },
   plugins: [
+    VueRouter({
+      routesFolder: 'src/pages',
+      dts: 'src/route-map.d.ts',
+    }),
     vue(),
     vueDevTools(),
     lqip(),

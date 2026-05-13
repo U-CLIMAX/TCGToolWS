@@ -183,6 +183,12 @@ import BaseFilterSidebar from '@/components/ui/FilterSidebar.vue'
 import DeckSidebar from '@/components/ui/DeckSidebar.vue'
 import DraggableBottomSheet from '@/components/ui/DraggableBottomSheet.vue'
 
+definePage({
+  name: 'GlobalSearch',
+  props: true,
+  meta: { headerBlur: true },
+})
+
 const route = useRoute()
 const theme = useTheme()
 const { isTouch } = useDevice()

@@ -15,9 +15,9 @@
     <DeckDetail
       :deck="deck"
       :cards="cards"
-      :deck-title="deck ? deck.deck_name : effectiveKey"
+      :deck-title="deck ? deck.deck_name : deckKey"
       :embedded="embedded"
-      :deck-key="effectiveKey"
+      :deck-key="deckKey"
       @save="handleSaveDeck"
       @close="$emit('close')"
     />
@@ -25,8 +25,8 @@
 </template>
 
 <script setup>
-import { ref, onMounted, toRaw, computed, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { ref, onMounted, toRaw, watch } from 'vue'
+import { useRouter } from 'vue-router'
 import { useDeckEncoder } from '@/composables/useDeckEncoder'
 import { fetchCardByIdAndPrefix } from '@/utils/card'
 import { useUIStore } from '@/stores/ui'
@@ -39,7 +39,7 @@ import DeckDetail from '@/components/deck/DeckDetailTemplate.vue'
 const props = defineProps({
   deckKey: {
     type: String,
-    default: null,
+    required: true,
   },
   embedded: {
     type: Boolean,
@@ -47,14 +47,14 @@ const props = defineProps({
   },
 })
 
-const route = useRoute()
+defineEmits(['close'])
+
 const router = useRouter()
 const { decodeData, encodeData } = useDeckEncoder()
 const uiStore = useUIStore()
 const deckStore = useDeckStore()
 const { triggerSnackbar } = useSnackbar()
 
-const effectiveKey = computed(() => props.deckKey || route.params.key)
 const deck = ref(null)
 const cards = ref({})
 const isLoading = ref(false)
@@ -102,14 +102,14 @@ const handleSaveDeck = async ({ name, coverCardId }) => {
 }
 
 const loadDeckData = async () => {
-  if (!effectiveKey.value) return
+  if (!props.deckKey) return
 
   const setLoading = (val) => (props.embedded ? (isLoading.value = val) : uiStore.setLoading(val))
   setLoading(true)
 
   try {
     let initialCards = {}
-    const data = await deckStore.fetchDeckByKey(effectiveKey.value)
+    const data = await deckStore.fetchDeckByKey(props.deckKey)
     deck.value = {
       ...data,
       deckData: await decodeData(toRaw(data.deck_data)),
@@ -137,7 +137,7 @@ const loadDeckData = async () => {
   }
 }
 
-watch(effectiveKey, loadDeckData)
+watch(() => props.deckKey, loadDeckData)
 
 onMounted(() => {
   loadDeckData()

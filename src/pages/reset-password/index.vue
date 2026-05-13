@@ -1,4 +1,3 @@
-<!-- src/views/ResetPasswordView.vue -->
 <template>
   <v-container class="fill-height">
     <v-row align="center" justify="center">
@@ -69,6 +68,12 @@ import { ref, onMounted } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { useRouter } from 'vue-router'
 import { useSnackbar } from '@/composables/useSnackbar'
+
+definePage({
+  name: 'ResetPassword',
+  props: (route) => ({ token: route.query.token }),
+  meta: { requiresGuest: true, isSpecialFlow: true },
+})
 
 const props = defineProps({
   token: {

@@ -338,6 +338,11 @@ import BackToTopButton from '@/components/ui/BackToTopButton.vue'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { GAME_TYPE_OPTIONS } from '@/maps/series-map'
 
+definePage({
+  name: 'Market',
+  meta: { group: 'community' },
+})
+
 const { triggerSnackbar } = useSnackbar()
 const marketStore = useMarketStore()
 const uiStore = useUIStore()

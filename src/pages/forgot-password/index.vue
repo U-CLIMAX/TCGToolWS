@@ -1,4 +1,3 @@
-<!-- src/views/ForgotPasswordView.vue -->
 <template>
   <v-container class="fill-height">
     <v-row align="center" justify="center">
@@ -52,6 +51,11 @@
 import { ref } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { useCooldown } from '@/composables/useCooldown'
+
+definePage({
+  name: 'ForgotPassword',
+  meta: { requiresGuest: true, isSpecialFlow: true },
+})
 
 const { isCoolingDown, cooldownText, startCooldown } = useCooldown()
 

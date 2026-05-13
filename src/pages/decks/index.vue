@@ -196,6 +196,11 @@ import { seriesMap, GAME_TYPE_OPTIONS } from '@/maps/series-map'
 
 import DeckIcon from '@/assets/ui/deck.svg'
 
+definePage({
+  name: 'Decks',
+  meta: { group: 'decks' },
+})
+
 const router = useRouter()
 const deckStore = useDeckStore()
 const authStore = useAuthStore()

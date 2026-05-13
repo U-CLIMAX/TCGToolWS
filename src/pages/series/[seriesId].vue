@@ -205,6 +205,15 @@ import BaseFilterSidebar from '@/components/ui/FilterSidebar.vue'
 import DeckSidebar from '@/components/ui/DeckSidebar.vue'
 import DraggableBottomSheet from '@/components/ui/DraggableBottomSheet.vue'
 
+definePage({
+  name: 'SeriesDetail',
+  props: (route) => ({
+    seriesId: route.params.seriesId,
+    initialProductName: route.query.p,
+  }),
+  meta: { group: 'series', headerBlur: true, showCardPrice: true },
+})
+
 const props = defineProps({
   seriesId: {
     type: String,

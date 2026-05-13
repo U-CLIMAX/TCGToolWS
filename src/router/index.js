@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { routes } from 'vue-router/auto-routes'
 import { useAuthStore } from '@/stores/auth'
 import { useUIStore } from '@/stores/ui'
 import NProgress from 'nprogress'
@@ -6,105 +7,12 @@ import 'nprogress/nprogress.css'
 
 NProgress.configure({ showSpinner: false })
 
-const routes = [
-  {
-    path: '/',
-    redirect: { name: 'Home' },
-  },
-  {
-    path: '/home',
-    name: 'Home',
-    component: () => import('@/views/HomeView.vue'),
-  },
-  {
-    path: '/series',
-    name: 'SeriesCardTable',
-    component: () => import('@/views/SeriesCardTableView.vue'),
-    meta: { group: 'series' },
-  },
-  {
-    path: '/series/:seriesId',
-    name: 'SeriesDetail',
-    component: () => import('@/views/SeriesDetailView.vue'),
-    props: (route) => ({
-      seriesId: route.params.seriesId,
-      initialProductName: route.query.p,
-    }),
-    meta: { group: 'series', headerBlur: true, showCardPrice: true },
-  },
-  {
-    path: '/decks',
-    name: 'Decks',
-    component: () => import('@/views/DecksView.vue'),
-    meta: { group: 'decks' },
-  },
-  {
-    path: '/gallery',
-    name: 'DecksGallery',
-    component: () => import('@/views/DecksGalleryView.vue'),
-    meta: { group: 'community' },
-  },
-  {
-    path: '/decks/:key',
-    name: 'DeckDetail',
-    component: () => import('@/views/DeckDetailView.vue'),
-    props: true,
-    meta: { requiresAuth: true, group: 'decks', headerBlur: true, showCardPrice: true },
-  },
-  {
-    path: '/share-decks/:key',
-    name: 'ShareDeckDetail',
-    component: () => import('@/views/ShareDeckDetailView.vue'),
-    props: true,
-    meta: { headerBlur: true, showCardPrice: true },
-  },
-  {
-    path: '/decklog/:key',
-    name: 'DeckLog',
-    component: () => import('@/views/DeckLogView.vue'),
-    props: true,
-    meta: { headerBlur: true, showCardPrice: true },
-  },
-  {
-    path: '/forgot-password',
-    name: 'ForgotPassword',
-    component: () => import('@/views/ForgotPasswordView.vue'),
-    meta: { requiresGuest: true, isSpecialFlow: true },
-  },
-  {
-    path: '/reset-password',
-    name: 'ResetPassword',
-    component: () => import('@/views/ResetPasswordView.vue'),
-    props: (route) => ({ token: route.query.token }),
-    meta: { requiresGuest: true, isSpecialFlow: true },
-  },
-  {
-    path: '/search/:game',
-    name: 'GlobalSearch',
-    component: () => import('@/views/GlobalSearchView.vue'),
-    props: true,
-    meta: { headerBlur: true },
-  },
-  {
-    path: '/market',
-    name: 'Market',
-    component: () => import('@/views/MarketView.vue'),
-    meta: { group: 'community' },
-  },
-  {
-    path: '/community',
-    name: 'Community',
-    component: () => import('@/views/CommunityView.vue'),
-    meta: { group: 'community' },
-  },
-]
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 })
 
-router.beforeEach(async (to, from, next) => {
+router.beforeEach(async (to, from) => {
   NProgress.start()
 
   const authStore = useAuthStore()
@@ -121,11 +29,11 @@ router.beforeEach(async (to, from, next) => {
   const requiresGuest = to.matched.some((record) => record.meta.requiresGuest)
 
   if (requiresAuth && !isAuthenticated) {
-    next({ name: 'Home' })
+    return { name: 'Home' }
   } else if (requiresGuest && isAuthenticated) {
-    next({ name: 'Home' })
+    return { name: 'Home' }
   } else {
-    next()
+    return true
   }
 })
 

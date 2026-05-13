@@ -506,6 +506,12 @@ import DeckCardList from '@/components/deck/DeckCardList.vue'
 import DeckExportDialog from '@/components/deck/DeckExportDialog.vue'
 import ShareToGalleryDialog from '@/components/deck/ShareToGalleryDialog.vue'
 
+definePage({
+  name: 'DeckDetail',
+  props: true,
+  meta: { requiresAuth: true, group: 'decks', headerBlur: true, showCardPrice: true },
+})
+
 const { smAndUp } = useDisplay()
 const route = useRoute()
 const router = useRouter()
