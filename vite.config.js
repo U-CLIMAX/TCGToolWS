@@ -23,22 +23,22 @@ export default defineConfig({
     cors: true,
   },
   plugins: [
+    UnoCSS(),
     VueRouter({
       routesFolder: 'src/pages',
       dts: 'src/route-map.d.ts',
     }),
     vue(),
-    vueDevTools(),
-    lqip(),
-    UnoCSS(),
-    svgLoader({
-      svgoConfig: {
-        multipass: true,
-      },
-    }),
     vuetify({
       styles: {
         configFile: 'src/assets/styles/libs/_vuetify.scss',
+      },
+    }),
+    vueDevTools(),
+    lqip(),
+    svgLoader({
+      svgoConfig: {
+        multipass: true,
       },
     }),
     visualizer({
