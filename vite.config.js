@@ -27,7 +27,7 @@ export default defineConfig({
     UnoCSS(),
     VueRouter({
       routesFolder: 'src/pages',
-      dts: 'src/route-map.d.ts',
+      dts: 'src/types/route-map.d.ts',
     }),
     vue(),
     vuetify({
@@ -60,7 +60,7 @@ export default defineConfig({
       },
     }),
     Components({
-      dts: 'src/components.d.ts',
+      dts: 'src/types/components.d.ts',
       extensions: ['vue', 'js'],
       include: [
         /\.vue$/,
