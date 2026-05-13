@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { routes } from 'vue-router/auto-routes'
+import { routes, handleHotUpdate } from 'vue-router/auto-routes'
 import { useAuthStore } from '@/stores/auth'
 import { useUIStore } from '@/stores/ui'
 import NProgress from 'nprogress'
@@ -12,6 +12,11 @@ const router = createRouter({
   routes,
 })
 
+if (import.meta.hot) {
+  handleHotUpdate(router)
+}
+
+// oxlint-disable-next-line no-unused-vars
 router.beforeEach(async (to, from) => {
   NProgress.start()
 
