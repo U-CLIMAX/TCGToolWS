@@ -1,6 +1,5 @@
 .themed-scrollbar {
   --sb-size: 5px;
-  scrollbar-gutter: stable;
 }
 
 /* Chrome / Edge / Safari */
