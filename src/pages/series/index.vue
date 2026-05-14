@@ -1,6 +1,6 @@
 <template>
   <v-container fluid class="h-100 pa-0">
-    <FloatingSearch />
+    <FloatingSearchBar />
     <v-infinite-scroll
       ref="infiniteScrollRef"
       @load="load"
