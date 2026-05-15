@@ -1169,7 +1169,8 @@ const wsSeriesMap = {
     id: 'ddd',
     prefixes: ['DDD'],
     latestReleaseDate: '2026-05-15',
-    yytUrl: 'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=ddd&rare=&type=&kizu=0',
+    yytUrl:
+      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=ddd&vers[]=ddd2.0&rare=&type=&kizu=0',
   },
   '怪兽8号': {
     id: 'kj8',
