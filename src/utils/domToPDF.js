@@ -12,7 +12,8 @@ const PRINT_CSS = `
   .pdf-overlay img { height: 0.9em; vertical-align: -0.15em; display: inline-block; }
 `
 
-const getCardHtml = (card, x, y, lang) => {
+const getCardHtml = (card, x, y, lang, imgCache) => {
+  const cachedSrc = imgCache.get(card.imgUrl) || card.imgUrl
   const bottom = card.type === '事件卡' ? '9.51%' : '12.02%'
   let effectHtml = ''
 
@@ -21,23 +22,38 @@ const getCardHtml = (card, x, y, lang) => {
     effectHtml = `<div class="pdf-overlay" style="bottom: ${bottom}"><div style="font-size:0.9em; line-height:1.2; text-align:justify; word-break:break-word;">${html}</div></div>`
   }
 
-  return `<div class="pdf-card" style="left:${x}pt; top:${y}pt"><img src="${card.imgUrl}" crossorigin="anonymous" style="width:100%; height:100%; object-fit:cover;">${effectHtml}</div>`
+  return `<div class="pdf-card" style="left:${x}pt; top:${y}pt"><img src="${cachedSrc}" crossorigin="anonymous" style="width:100%; height:100%; object-fit:cover;">${effectHtml}</div>`
 }
 
 export const convertDeckToPDF = async (cards, name, language) => {
+  console.time('PDF conversion')
   const flatCards = sortCards(cards)
     .flatMap((c) => Array(c.quantity || 1).fill(c))
     .filter((c) => c.imgUrl)
   if (!flatCards.length) return
 
+  const imgCache = new Map()
   await Promise.all(
     [...new Set(flatCards.map((c) => c.imgUrl))].map(
       (src) =>
         new Promise((r) => {
           const img = new Image()
           img.crossOrigin = 'anonymous'
+          img.onload = () => {
+            const canvas = document.createElement('canvas')
+            canvas.width = img.naturalWidth
+            canvas.height = img.naturalHeight
+            const ctx = canvas.getContext('2d')
+
+            ctx.fillStyle = '#ffffff'
+            ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+            ctx.drawImage(img, 0, 0)
+            imgCache.set(src, canvas.toDataURL('image/jpeg', 0.8))
+            r()
+          }
+          img.onerror = r
           img.src = src
-          img.onload = img.onerror = r
         })
     )
   )
@@ -70,7 +86,8 @@ export const convertDeckToPDF = async (cards, name, language) => {
             card,
             startX + col * (PAGE_OPTS.cardW + PAGE_OPTS.gap),
             startY + row * (PAGE_OPTS.cardH + PAGE_OPTS.gap),
-            language
+            language,
+            imgCache
           )
         })
         .join('')
@@ -96,5 +113,6 @@ export const convertDeckToPDF = async (cards, name, language) => {
   } finally {
     container.remove()
     style.remove()
+    console.timeEnd('PDF conversion')
   }
 }
