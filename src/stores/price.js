@@ -68,10 +68,16 @@ export const usePriceStore = defineStore('price', () => {
     return prices.value[seriesId]?.[cardId]
   }
 
-  const clearCache = async () => {
-    if (!priceCache) return
-    await priceCache.clear()
-    prices.value = {}
+  const getCachedSeriesIds = async () => {
+    if (!priceCache) return []
+    const keys = await priceCache.keys()
+    return keys.filter((k) => k.startsWith('meta_')).map((k) => k.replace('meta_', ''))
+  }
+
+  const clearCache = async (seriesId) => {
+    if (!priceCache || !seriesId) return
+    await priceCache.removeItem(`meta_${seriesId}`)
+    delete prices.value[seriesId]
   }
 
   return {
@@ -79,6 +85,7 @@ export const usePriceStore = defineStore('price', () => {
     isLoading,
     fetchPrices,
     getPrice,
+    getCachedSeriesIds,
     clearCache,
   }
 })
