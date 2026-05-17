@@ -51,37 +51,6 @@
             </div>
           </v-fade-transition>
 
-          <div
-            v-if="(isTouch || smAndDown) && !isTableMode"
-            class="d-flex justify-center ga-10"
-            style="position: absolute; bottom: 8px; left: 8px; right: 8px; opacity: 0.95"
-          >
-            <v-btn
-              variant="flat"
-              size="x-small"
-              icon="i-mdi:minus"
-              color="grey-lighten-2"
-              class="disabled-button"
-              :disabled="cardCount === 0"
-              @click.stop="cardCount > 0 && deckStore.removeCard(card.id)"
-              @mousedown.stop
-              @touchstart.stop
-            >
-            </v-btn>
-            <v-btn
-              variant="flat"
-              size="x-small"
-              icon="i-mdi:plus"
-              color="grey-darken-3"
-              class="disabled-button"
-              :disabled="deckStore.totalCardCount >= 50 && userRole === 0"
-              @click.stop="deckStore.addCard(card)"
-              @mousedown.stop
-              @touchstart.stop
-            >
-            </v-btn>
-          </div>
-
           <div style="position: absolute; top: 8px; right: 8px">
             <v-avatar
               v-if="cardCount > 0 && $route.name !== 'GlobalSearch'"
