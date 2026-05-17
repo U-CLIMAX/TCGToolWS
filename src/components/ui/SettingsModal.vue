@@ -58,20 +58,20 @@
               variant="text"
               class="w-100"
             >
-              <v-btn :value="0" class="flex-grow-1" style="min-width: 0px">
+              <v-btn :value="0" class="flex-grow-1 rounded-lg" style="min-width: 0px">
                 <span v-if="!xs" class="text-caption">永久开启</span>
                 <span v-else class="text-caption">无</span>
                 <v-icon v-if="!xs" end icon="i-mdi:lightning-bolt" />
               </v-btn>
-              <v-btn :value="300" class="flex-grow-1" style="min-width: 0px">
+              <v-btn :value="300" class="flex-grow-1 rounded-lg" style="min-width: 0px">
                 <span class="text-caption">低</span>
                 <v-icon v-if="!xs" end icon="i-mdi:speedometer-slow" />
               </v-btn>
-              <v-btn :value="600" class="flex-grow-1" style="min-width: 0px">
+              <v-btn :value="600" class="flex-grow-1 rounded-lg" style="min-width: 0px">
                 <span class="text-caption">中</span>
                 <v-icon v-if="!xs" end icon="i-mdi:speedometer-medium" />
               </v-btn>
-              <v-btn :value="1000" class="flex-grow-1" style="min-width: 0px">
+              <v-btn :value="1000" class="flex-grow-1 rounded-lg" style="min-width: 0px">
                 <span class="text-caption">高</span>
                 <v-icon v-if="!xs" end icon="i-mdi:speedometer" />
               </v-btn>
