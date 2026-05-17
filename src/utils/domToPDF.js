@@ -113,6 +113,7 @@ export const convertDeckToPDF = async (cards, name, language) => {
   } finally {
     container.remove()
     style.remove()
+    imgCache.clear()
     console.timeEnd('PDF conversion')
   }
 }

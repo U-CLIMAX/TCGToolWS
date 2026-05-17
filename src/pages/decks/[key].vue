@@ -966,7 +966,8 @@ watch(
           deck.value.name.trim(),
           2,
           false,
-          false
+          false,
+          true
         )
         generatedImageResult.value = result
       } catch (error) {
