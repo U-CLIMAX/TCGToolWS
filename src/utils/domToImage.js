@@ -9,17 +9,18 @@ export const convertElementToPng = async (
   download = true,
   useImageCache = false
 ) => {
+  console.time('PNG conversion')
   const element = document.getElementById(elementId)
   if (!element) return
 
   const imgElements = useImageCache ? Array.from(element.querySelectorAll('img')) : []
-  const originalSrcs = new Map()
   const imgCache = new Map()
 
   try {
     if (useImageCache && imgElements.length > 0) {
-      // 1. Pre-fetch and convert all images to base64 JPEG
       const uniqueSrcs = [...new Set(imgElements.map((img) => img.src))]
+
+      // Pre-fetch and cache
       await Promise.all(
         uniqueSrcs.map(
           (src) =>
@@ -31,12 +32,10 @@ export const convertElementToPng = async (
                 canvas.width = img.naturalWidth
                 canvas.height = img.naturalHeight
                 const ctx = canvas.getContext('2d')
-
                 ctx.fillStyle = '#ffffff'
                 ctx.fillRect(0, 0, canvas.width, canvas.height)
-
                 ctx.drawImage(img, 0, 0)
-                imgCache.set(src, canvas.toDataURL('image/jpeg', 0.6))
+                imgCache.set(src, canvas.toDataURL('image/jpeg', 0.4))
                 resolve()
               }
               img.onerror = resolve
@@ -45,14 +44,16 @@ export const convertElementToPng = async (
         )
       )
 
-      // 2. Temporarily replace img src in the DOM with the base64 versions
-      imgElements.forEach((img) => {
-        const cachedSrc = imgCache.get(img.src)
-        if (cachedSrc) {
-          originalSrcs.set(img, img.src)
-          img.src = cachedSrc
-        }
-      })
+      // Replace src + decode
+      await Promise.all(
+        imgElements.map((img) => {
+          const cachedSrc = imgCache.get(img.src)
+          if (cachedSrc) {
+            img.src = cachedSrc
+            return img.decode().catch(() => {})
+          }
+        })
+      )
     }
 
     const rect = element.getBoundingClientRect()
@@ -85,6 +86,7 @@ export const convertElementToPng = async (
     console.error('PNG conversion failed:', error)
     throw error
   } finally {
+    console.timeEnd('PNG conversion')
     imgCache.clear()
   }
 }
