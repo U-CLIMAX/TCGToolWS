@@ -62,16 +62,11 @@ export default defineConfig({
     Components({
       dts: 'src/types/components.d.ts',
       extensions: ['vue', 'js'],
-      include: [
-        /\.vue$/,
-        /\.vue\?vue/,
-        /\.vue\.[tj]sx?\?vue/,
-        /\.js$/,
-      ],
-     }),
+      include: [/\.vue$/, /\.vue\?vue/, /\.vue\.[tj]sx?\?vue/, /\.js$/],
+    }),
   ],
   optimizeDeps: {
-    exclude: ['brotli-wasm'],
+    exclude: ['brotli-wasm', 'vuetify'],
   },
   resolve: {
     alias: {
