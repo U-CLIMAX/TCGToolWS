@@ -30,7 +30,7 @@
         <div class="d-flex ga-2 align-center">
           <v-combobox
             class="flex-grow-1"
-            label="关键字"
+            :label="`关键字 (${filterStore.searchMode === 'fuzzy' ? '模糊搜索' : '精准搜索'})`"
             placeholder="卡号、卡名、效果"
             :items="allKeywords"
             hide-details="auto"
