@@ -1,4 +1,4 @@
-import { onMounted, onUnmounted, nextTick, watch } from 'vue'
+import { onMounted, onScopeDispose, nextTick, watch } from 'vue'
 import { onBeforeRouteLeave } from 'vue-router'
 
 /**
@@ -68,17 +68,14 @@ export const useInfiniteScrollState = ({
     } else {
       tryRestore()
     }
-
-    onUnmounted(() => {
-      window.removeEventListener('beforeunload', saveState)
-    })
   })
 
   onBeforeRouteLeave(() => {
     saveState()
   })
 
-  onUnmounted(() => {
+  onScopeDispose(() => {
+    window.removeEventListener('beforeunload', saveState)
     if (watcher) {
       watcher()
     }

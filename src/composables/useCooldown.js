@@ -1,4 +1,4 @@
-import { ref, computed, onUnmounted } from 'vue'
+import { ref, computed, onScopeDispose } from 'vue'
 
 export const useCooldown = (durationSeconds = 60) => {
   const cooldownEndTime = ref(0)
@@ -29,7 +29,7 @@ export const useCooldown = (durationSeconds = 60) => {
     }
   }
 
-  onUnmounted(() => {
+  onScopeDispose(() => {
     if (timer) {
       clearInterval(timer)
     }

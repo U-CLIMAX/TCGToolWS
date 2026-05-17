@@ -1,4 +1,4 @@
-import { ref, computed, watch, onUnmounted, nextTick } from 'vue'
+import { ref, computed, watch, onScopeDispose, nextTick } from 'vue'
 import { useDisplay } from 'vuetify'
 
 // Snap points relative to viewport top
@@ -235,7 +235,7 @@ export const useBottomSheet = (externalSheetContent) => {
     }
   })
 
-  onUnmounted(() => {
+  onScopeDispose(() => {
     cleanupEventListeners()
     cancelAnimation()
   })

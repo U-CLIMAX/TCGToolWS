@@ -1,4 +1,4 @@
-import { ref, computed, watch, shallowRef, toRaw, onUnmounted, getCurrentInstance } from 'vue'
+import { ref, computed, watch, shallowRef, toRaw, onScopeDispose } from 'vue'
 import { wrap } from 'comlink'
 import FilterWorker from '@/workers/filter.worker.js?worker'
 import { debounceRef } from '@/composables/useDebounceRef'
@@ -217,10 +217,8 @@ export const useCardFiltering = (
     selectedSoul.value = []
   }
 
-  // Cleanup on unmount if used within a component
-  if (getCurrentInstance()) {
-    onUnmounted(terminateWorker)
-  }
+  // Cleanup on scope dispose (works in components, stores, or manual scopes)
+  onScopeDispose(terminateWorker)
 
   return {
     // State

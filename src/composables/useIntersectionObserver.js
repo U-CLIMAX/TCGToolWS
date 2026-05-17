@@ -1,4 +1,4 @@
-import { onUnmounted } from 'vue'
+import { onScopeDispose } from 'vue'
 
 export const useIntersectionObserver = (target, onIntersect, options = { threshold: 0.1 }) => {
   let observer
@@ -24,7 +24,7 @@ export const useIntersectionObserver = (target, onIntersect, options = { thresho
     }
   }
 
-  onUnmounted(stop)
+  onScopeDispose(stop)
 
   return {
     start,

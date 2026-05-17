@@ -1,12 +1,12 @@
 import { wrap } from 'comlink'
-import { onUnmounted } from 'vue'
+import { onScopeDispose } from 'vue'
 import DeckWorker from '@/workers/deck.worker.js?worker'
 
 export const useDeckEncoder = () => {
   const workerInstance = new DeckWorker()
   const deckWorker = wrap(workerInstance)
 
-  onUnmounted(() => {
+  onScopeDispose(() => {
     workerInstance.terminate()
   })
 
