@@ -186,7 +186,10 @@ export const useDeckStore = defineStore(
     }
 
     const updateDominantSeriesId = () => {
-      seriesId.value = findDeckSeriesId(Object.keys(cardsInDeck.value))
+      const currentCardIdPrefixes = Object.values(cardsInDeck.value).map(
+        (card) => card.cardIdPrefix
+      )
+      seriesId.value = findDeckSeriesId(currentCardIdPrefixes)
     }
 
     // --- Async Actions ---
