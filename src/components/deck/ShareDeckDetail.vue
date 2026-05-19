@@ -3,7 +3,8 @@
     <v-overlay
       v-if="embedded"
       :model-value="isLoading"
-      class="align-center justify-center rounded-3md"
+      class="align-center justify-center"
+      :class="!smAndUp ? 'rounded-0' : 'rounded-3md'"
       contained
       persistent
       no-click-animation
@@ -26,6 +27,7 @@
 
 <script setup>
 import { ref, onMounted, toRaw, watch } from 'vue'
+import { useDisplay } from 'vuetify'
 import { useRouter } from 'vue-router'
 import { useDeckEncoder } from '@/composables/useDeckEncoder'
 import { fetchCardByIdAndPrefix } from '@/utils/card'
@@ -53,6 +55,7 @@ const { decodeData, encodeData } = useDeckEncoder()
 const uiStore = useUIStore()
 const deckStore = useDeckStore()
 const { triggerSnackbar } = useSnackbar()
+const { smAndUp } = useDisplay()
 
 const deck = ref(null)
 const cards = ref({})

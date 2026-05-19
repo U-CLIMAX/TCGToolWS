@@ -61,7 +61,7 @@
 .header-right {
   display: flex;
   align-items: center;
-  border-radius: 12px;
+  border-radius: 999px;
   padding: 8px 20px;
   gap: 20px;
   width: fit-content;
@@ -76,6 +76,14 @@
   grid-column: 2;
   min-width: 0;
   overflow: hidden;
+  padding: 4px 20px;
+
+  /* Pill 毛玻璃 */
+  background: rgba(var(--v-theme-surface), 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 999px;
+  border: 1px solid rgba(var(--v-theme-surface), 0.15);
 }
 
 .header-right {

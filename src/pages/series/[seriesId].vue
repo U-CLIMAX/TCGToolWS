@@ -207,7 +207,7 @@ definePage({
     seriesId: route.params.seriesId,
     initialProductName: route.query.p,
   }),
-  meta: { group: 'series', headerBlur: true, showCardPrice: true },
+  meta: { group: 'series', showCardPrice: true },
 })
 
 const props = defineProps({
@@ -249,11 +249,6 @@ watchEffect(() => {
   if (headerRef.value) {
     observer.observe(headerRef.value)
   }
-})
-
-watchEffect(() => {
-  const extra = !smAndDown.value ? 80 : 25
-  uiStore.setHeaderHeight(headerOffsetHeight.value + extra)
 })
 
 watch(isFilterOpen, (newValue) => {

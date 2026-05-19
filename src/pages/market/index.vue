@@ -21,7 +21,7 @@
                   class="d-flex flex-column flex-md-row justify-space-between align-start align-md-center mb-5 ga-3"
                 >
                   <div class="d-flex align-center ga-3 flex-grow-1">
-                    <v-icon icon="i-mdi:shopping" color="primary" size="32" />
+                    <v-icon :icon="MarketIcon" color="primary" size="32" />
                     <div>
                       <div class="text-h6 font-weight-bold" style="line-height: 1.2">集换大厅</div>
                       <div
@@ -333,9 +333,11 @@ import { useAuthStore } from '@/stores/auth'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { GAME_TYPE_OPTIONS } from '@/maps/series-map'
 
+import MarketIcon from '@/assets/ui/market.svg'
+
 definePage({
   name: 'Market',
-  meta: { group: 'community' },
+  meta: { group: 'toolbox' },
 })
 
 const { triggerSnackbar } = useSnackbar()

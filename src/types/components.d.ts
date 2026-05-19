@@ -38,7 +38,7 @@ declare module 'vue' {
     LinkedCard: typeof import('./../components/card/LinkedCard.vue')['default']
     MarketCreateDialog: typeof import('./../components/market/MarketCreateDialog.vue')['default']
     MarketListingItem: typeof import('./../components/market/MarketListingItem.vue')['default']
-    NoticeMenu: typeof import('./../components/common/NoticeMenu.vue')['default']
+    NoticeDialog: typeof import('./../components/common/NoticeDialog.vue')['default']
     QR: typeof import('./../components/common/QR.js')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

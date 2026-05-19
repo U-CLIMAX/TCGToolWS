@@ -31,7 +31,6 @@ export const useUIStore = defineStore(
     const showStatsDashboard = ref(true)
     const showCardPrices = ref(true)
     const customKeywords = ref([])
-    const headerHeight = ref(64) // Default height
     const backgroundImage = ref(null)
 
     // State for SeriesCardTableView
@@ -99,14 +98,6 @@ export const useUIStore = defineStore(
       } else {
         console.warn('setPerformanceMode expects an object with performance flags.')
       }
-    }
-
-    /**
-     * Sets a custom header height based on layout changes
-     * @param {number} height
-     */
-    const setHeaderHeight = (height) => {
-      headerHeight.value = height
     }
 
     /**
@@ -206,8 +197,6 @@ export const useUIStore = defineStore(
       isCardDetailModalOpen,
       isLoading,
       setLoading,
-      headerHeight,
-      setHeaderHeight,
       isTableModeActive,
       performanceThreshold,
       isPerformanceMode,

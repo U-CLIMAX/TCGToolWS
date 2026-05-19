@@ -261,7 +261,7 @@
 </template>
 
 <script setup>
-import { computed, ref, onUnmounted, onMounted, watchEffect, watch } from 'vue'
+import { computed, ref, onUnmounted, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { getCardUrls } from '@/utils/getCardImage'
 import { useDisplay } from 'vuetify'
@@ -424,11 +424,6 @@ onUnmounted(() => {
   if (observer) {
     observer.disconnect()
   }
-})
-
-watchEffect(() => {
-  const extra = smAndUp.value ? 69 : 0
-  uiStore.setHeaderHeight(headerOffsetHeight.value + extra)
 })
 
 // Card Navigation & Details Modal

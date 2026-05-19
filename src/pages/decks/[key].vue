@@ -84,12 +84,7 @@
                 ></v-btn>
               </template>
               <template v-else>
-                <v-btn
-                  icon
-                  variant="text"
-                  density="compact"
-                  @click="showMoreActionsBottomSheet = true"
-                >
+                <v-btn icon elevation="1" @click="showMoreActionsBottomSheet = true">
                   <v-icon size="24" icon="i-mdi:dots-vertical" />
                 </v-btn>
               </template>
@@ -212,7 +207,7 @@
                 </div>
               </template>
               <template v-else>
-                <v-btn icon variant="text" density="compact" @click="showBottomSheet = true">
+                <v-btn icon elevation="1" @click="showBottomSheet = true">
                   <v-icon size="24" icon="i-mdi:format-list-bulleted-type" />
                 </v-btn>
               </template>
@@ -472,17 +467,7 @@
 </template>
 
 <script setup>
-import {
-  computed,
-  ref,
-  shallowRef,
-  onUnmounted,
-  onMounted,
-  nextTick,
-  watch,
-  toRaw,
-  watchEffect,
-} from 'vue'
+import { computed, ref, shallowRef, onUnmounted, onMounted, nextTick, watch, toRaw } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useDeckEncoder } from '@/composables/useDeckEncoder'
 import { useDisplay } from 'vuetify'
@@ -505,7 +490,7 @@ import { useDeckExport } from '@/composables/useDeckExport'
 definePage({
   name: 'DeckDetail',
   props: true,
-  meta: { requiresAuth: true, group: 'decks', headerBlur: true, showCardPrice: true },
+  meta: { requiresAuth: true, group: 'decks', showCardPrice: true },
 })
 
 const { smAndUp } = useDisplay()
@@ -837,11 +822,6 @@ onUnmounted(() => {
   if (observer) {
     observer.disconnect()
   }
-})
-
-watchEffect(() => {
-  const extra = smAndUp.value ? 69 : 0
-  uiStore.setHeaderHeight(headerOffsetHeight.value + extra)
 })
 
 const isModalVisible = ref(false)

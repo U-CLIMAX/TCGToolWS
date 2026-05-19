@@ -182,7 +182,7 @@ import { GAME_TYPE_OPTIONS } from '@/maps/series-map'
 definePage({
   name: 'GlobalSearch',
   props: true,
-  meta: { headerBlur: true },
+  meta: { group: 'toolbox' },
 })
 
 const route = useRoute()
@@ -214,11 +214,6 @@ const searchIcon = computed(() =>
   isFilterOpen.value ? 'i-mdi:layers-search' : 'i-mdi:layers-search-outline'
 )
 const headerOffsetHeight = computed(() => rawHeaderHeight.value)
-
-watchEffect(() => {
-  const extra = !smAndDown.value ? 80 : 25
-  uiStore.setHeaderHeight(headerOffsetHeight.value + extra)
-})
 
 const observer = new ResizeObserver(([entry]) => {
   if (entry && entry.target) {

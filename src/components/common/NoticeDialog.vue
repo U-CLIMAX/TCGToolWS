@@ -1,30 +1,9 @@
 <template>
-  <v-menu
-    v-model="menuOpen"
-    :close-on-content-click="false"
-    location="bottom end"
-    width="380"
-    :offset="offset"
-  >
-    <template v-slot:activator="{ props }">
-      <v-btn
-        v-bind="props"
-        icon
-        @click="handleOpen"
-        style="min-width: 0"
-        :ripple="false"
-        :active="false"
-      >
-        <v-badge :model-value="noticeStore.hasNew" color="error" dot offset-x="2" offset-y="2">
-          <v-icon :color="isHomeRoute ? 'white' : undefined" icon="i-mdi:bell-outline" />
-        </v-badge>
-      </v-btn>
-    </template>
-
+  <v-dialog v-model="menuOpen" max-width="500px" :fullscreen="!smAndUp">
     <v-card
-      class="notice-card overflow-hidden"
+      class="overflow-hidden"
       :class="{ 'glass-menu': hasBackgroundImage }"
-      rounded="3md"
+      :rounded="smAndUp ? '3md' : false"
       elevation="12"
     >
       <div class="d-flex align-center px-5 py-4">
@@ -124,8 +103,12 @@
           <div class="text-body-2 text-disabled">目前暂无公告</div>
         </div>
       </v-list>
+      <v-card-actions class="pa-4 pt-0" :class="{ 'mt-3': smAndUp, 'mt-auto': !smAndUp }">
+        <v-spacer></v-spacer>
+        <v-btn variant="text" @click="menuOpen = false"> 关闭 </v-btn>
+      </v-card-actions>
     </v-card>
-  </v-menu>
+  </v-dialog>
 
   <!-- 公告詳情 Dialog -->
   <v-dialog v-model="showDetailDialog" max-width="500">
@@ -216,22 +199,15 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { useDisplay } from 'vuetify'
 import { useNoticeStore } from '@/stores/notice'
 import { useAuthStore } from '@/stores/auth'
 import { useUIStore } from '@/stores/ui'
 
-defineProps({
-  offset: {
-    type: Number,
-    required: true,
-  },
-})
-
 const uiStore = useUIStore()
 const noticeStore = useNoticeStore()
 const authStore = useAuthStore()
-const route = useRoute()
+const { smAndUp } = useDisplay()
 
 const menuOpen = ref(false)
 const showCreateDialog = ref(false)
@@ -241,7 +217,6 @@ const loading = ref(false)
 const isRefreshing = ref(false)
 
 const isAdmin = computed(() => authStore.userRole === 2)
-const isHomeRoute = computed(() => route.name === 'Home')
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 const newNotice = ref({
@@ -249,10 +224,6 @@ const newNotice = ref({
   content: '',
   is_important: false,
 })
-
-const handleOpen = () => {
-  noticeStore.markAsRead()
-}
 
 const handleRefresh = async () => {
   isRefreshing.value = true
@@ -318,18 +289,21 @@ const formatDateFull = (timestamp) => {
   })
 }
 
+const open = () => {
+  menuOpen.value = true
+  noticeStore.markAsRead()
+}
+
+defineExpose({
+  open,
+})
+
 onMounted(() => {
   noticeStore.fetchNotices()
 })
 </script>
 
 <style scoped>
-.notice-card {
-  max-height: 600px;
-  display: flex;
-  flex-direction: column;
-}
-
 .notice-list {
   overflow-y: auto;
 }
