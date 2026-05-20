@@ -110,9 +110,15 @@
                 >
                   检视变更: {{ history[viewingHistoryIndex - 1].text }}
                 </h1>
-                <v-btn small color="warning" variant="tonal" @click="exitHistoryView" class="ml-2"
-                  >退出</v-btn
+                <v-btn
+                  small
+                  color="warning"
+                  variant="tonal"
+                  @click="exitHistoryView"
+                  class="ml-2 rounded-pill"
                 >
+                  退出
+                </v-btn>
               </div>
               <template v-else>
                 <h1
