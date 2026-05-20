@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="h-100 pa-0 d-flex flex-column">
+  <v-container fluid class="community-view h-100 pa-0 d-flex flex-column">
     <v-infinite-scroll
       ref="infiniteScrollRef"
       class="themed-scrollbar py-4"
@@ -60,7 +60,7 @@
                 </v-row>
 
                 <v-row dense class="align-center ga-2">
-                  <v-col cols="12" sm="5" md="4" xl="2">
+                  <v-col cols="12" sm="5" md="3" xl="2">
                     <div
                       class="d-flex align-center pa-1 border-md border-primary rounded-pill pa-2"
                     >
@@ -302,7 +302,7 @@ import crowdIcon from '@/assets/ui/crowd.svg'
 
 definePage({
   name: 'Community',
-  meta: { group: 'toolbox' },
+  meta: { group: 'community' },
 })
 
 const uiStore = useUIStore()
@@ -408,7 +408,7 @@ const displayItemsWithSurvey = computed(() => {
 })
 
 const scrollStyle = computed(() => {
-  const marginTop = smAndUp.value ? '50px' : '0'
+  const marginTop = !smAndDown.value ? '50px' : '0'
   return {
     '--sb-margin-top': '27px',
     'marginTop': marginTop,
@@ -480,6 +480,14 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.v-theme--light .community-view {
+  background-color: rgba(243, 241, 241, 0.7);
+}
+
+.v-theme--dark .community-view {
+  background-color: rgba(44, 43, 43, 0.7);
+}
+
 .header-section {
   padding-left: 8px;
 }
