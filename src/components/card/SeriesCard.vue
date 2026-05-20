@@ -2,32 +2,33 @@
   <v-hover v-slot:default="{ isHovering, props }">
     <v-card
       v-bind="props"
-      class="series-card d-flex flex-column flex-grow-1 overflow-hidden"
+      class="series-card d-flex flex-column flex-grow-1 overflow-visible"
       :class="[
-        { 'glass-card': hasBackgroundImage, 'compact': isCompact },
-        isCompact ? 'pa-2' : 'pa-3',
+        { 'compact': isCompact },
       ]"
       :to="{ name: 'SeriesDetail', params: { seriesId: seriesData.id } }"
-      variant="flat"
-      rounded="2lg"
-      :elevation="isHovering ? 2 : 0"
+      :ripple="false"
+      variant="text"
     >
-      <div class="image-wrapper position-relative overflow-hidden rounded-3md mb-2">
+      <div
+        class="image-wrapper position-relative"
+        :class="isCompact ? 'mb-1 rounded-2lg' : 'mb-2 rounded-xl'"
+      >
         <v-img
           :src="`/series-icons/original/${encodeURIComponent(seriesData.id)}.webp`"
           :lazy-src="`/series-icons/blur/${encodeURIComponent(seriesData.id)}.webp`"
           aspect-ratio="1"
           cover
-          rounded="3md"
+          :rounded="isCompact ? '2lg' : 'xl'"
           class="series-image preload-img"
         >
           <template #error>
-            <v-img src="/placehold.webp" aspect-ratio="1" cover rounded="3md" />
+            <v-img src="/placehold.webp" aspect-ratio="1" cover rounded="5xl" />
           </template>
         </v-img>
 
         <!-- Compact 模式下 Hover 時顯示的資訊覆蓋層 -->
-        <div v-if="isCompact" class="hover-overlay rounded-3md d-flex align-end">
+        <div v-if="isCompact" class="hover-overlay rounded-2lg d-flex align-end">
           <div class="overlay-content pa-2 w-100">
             <div class="text-caption text-white text-truncate mb-1">
               <v-icon size="x-small" class="mr-1" icon="i-mdi:layers-outline" />
@@ -40,41 +41,36 @@
         </div>
       </div>
 
-      <!-- card-content -->
-      <div class="card-content d-flex flex-column flex-grow-1 ga-1">
-        <!-- info-section -->
-        <div class="d-flex flex-column ga-1">
-          <!-- prefixes-line -->
-          <div
-            v-if="!isCompact"
-            class="text-truncate text-medium-emphasis d-flex align-center"
-            style="min-height: 18px"
-          >
+      <!-- pill-content -->
+      <div 
+        v-if="!isCompact"
+        class="pill-content d-flex flex-column rounded-pill px-6 py-1 mt-auto"
+        :class="{ 'glass-card': hasBackgroundImage, 'bg-surface': !hasBackgroundImage }"
+      >
+        <div class="d-flex justify-space-between align-center mb-1" style="font-size: 0.7rem">
+          <div class="text-truncate text-medium-emphasis d-flex align-center" style="min-height: 18px">
             <v-icon size="x-small" class="mr-1" icon="i-mdi:layers-outline" />
-            <span class="text-caption text-truncate">
+            <span class="text-truncate">
               {{ seriesData.prefixes.map((p) => p.replace('[cn]', '')).join(', ') }}
             </span>
           </div>
-
-          <!-- series-title -->
-          <p
-            class="text-truncate"
-            :class="
-              isCompact
-                ? 'text-body-2 font-weight-medium'
-                : 'text-subtitle-2 text-sm-subtitle-1 font-weight-medium'
-            "
-            :style="isCompact ? 'line-height: 1.4' : 'line-height: 1.3'"
-          >
-            {{ seriesName }}
-          </p>
-        </div>
-
-        <div v-if="!isCompact" class="date-section mt-auto pt-1">
-          <p class="text-caption text-medium-emphasis">
+          <div class="text-medium-emphasis ml-2 flex-shrink-0">
             {{ seriesData.latestReleaseDate }}
-          </p>
+          </div>
         </div>
+        <div
+          class="text-truncate font-weight-medium text-subtitle-2"
+        >
+          {{ seriesName }}
+        </div>
+      </div>
+
+      <!-- Compact 模式下的簡易名稱 -->
+      <div
+        v-else
+        class="text-truncate font-weight-medium text-body-2"
+      >
+        {{ seriesName }}
       </div>
     </v-card>
   </v-hover>
@@ -105,31 +101,64 @@ const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 <style scoped>
 .series-card {
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.series-card:hover {
-  transform: translateY(-6px);
-  box-shadow: none;
+.series-card :deep(.v-card__overlay) {
+  background-color: transparent;
 }
 
-.series-card.compact:hover {
-  transform: translateY(-4px);
+.image-wrapper {
+  flex: 0 0 auto;
+  aspect-ratio: 1;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 
+    0 0 0 1px rgba(0, 0, 0, 0.05),
+    0 0 4px rgba(0, 0, 0, 0.08);
+    /* In standard mode, setting the outer card to hidden prevents the image from overflowing when zoomed in, but setting it to visible prevents shadows from being clipped. */
+    overflow: hidden; 
 }
 
-.series-card.compact .image-wrapper {
-  margin-bottom: 6px;
+.pill-content {
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1px solid rgba(var(--v-border-color), var(--v-border-opacity));
+  box-shadow: 
+    0 0 0 1px rgba(0, 0, 0, 0.03),
+    0 0 4px rgba(0, 0, 0, 0.05);
 }
 
 .series-image {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.series-card:hover .series-image {
+/* === Standard Mode Hover === */
+.series-card:not(.compact):hover .image-wrapper {
+  transform: scale(1.05);
+  box-shadow: 
+    0 0 0 1px rgba(0, 0, 0, 0.1),
+    0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.series-card:not(.compact):hover .pill-content {
+  transform: scale(1.05);
+  box-shadow: 
+    0 0 0 1px rgba(0, 0, 0, 0.08),
+    0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* === Compact Mode Hover === */
+.series-card.compact:hover {
+  transform: translateY(-4px);
+}
+
+.series-card.compact:hover .series-image {
   transform: scale(1.08);
 }
 
-/* Compact 模式的 Hover 覆蓋層效果 */
+.series-card.compact .image-wrapper {
+  overflow: hidden; /* Ensure the enlarged image is cropped within the container */
+}
+
 .hover-overlay {
   position: absolute;
   top: 0;
@@ -139,6 +168,7 @@ const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
+  z-index: 2;
 }
 
 .series-card.compact:hover .hover-overlay {

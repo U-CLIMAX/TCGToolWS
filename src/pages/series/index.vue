@@ -56,7 +56,7 @@
               :show-arrows="smAndDown ? false : true"
             >
               <v-slide-group-item v-for="item in recentlyViewed" :key="item.data.id">
-                <div class="ma-1" :style="{ width: smAndDown ? '100px' : '150px' }">
+                <div class="ma-2" :style="{ width: smAndDown ? '100px' : '150px' }">
                   <SeriesCard
                     :series-name="item.name"
                     :series-data="item.data"
@@ -115,7 +115,7 @@
             sm="3"
             md="2"
             xl="1"
-            class="d-flex pa-1"
+            class="d-flex pa-3"
           >
             <LazyCardWrapper>
               <SeriesCard :series-name="item.name.replace('[cn]', '')" :series-data="item.data" />
