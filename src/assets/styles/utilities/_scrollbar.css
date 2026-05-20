@@ -1,5 +1,6 @@
 .themed-scrollbar {
   --sb-size: 5px;
+  scrollbar-gutter: stable;
 }
 
 /* Chrome / Edge / Safari */
@@ -50,4 +51,8 @@
       scrollbar-width: none;
     }
   }
+}
+
+.scrollbar-gutter-auto {
+  scrollbar-gutter: auto !important;
 }

@@ -49,7 +49,7 @@ export const useUIStore = defineStore(
      * Computed properties for menu configuration based on background state
      */
     const menuProps = computed(() => {
-      const classes = ['themed-scrollbar', 'rounded-xl']
+      const classes = ['themed-scrollbar', 'scrollbar-gutter-auto', 'rounded-xl']
       if (backgroundImage.value) {
         classes.unshift('glass-menu')
       }
@@ -57,7 +57,7 @@ export const useUIStore = defineStore(
     })
 
     const menuPropsNoGlass = computed(() => {
-      return { contentClass: 'themed-scrollbar' }
+      return { contentClass: 'themed-scrollbar scrollbar-gutter-auto' }
     })
 
     // --- Actions ---
