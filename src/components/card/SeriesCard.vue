@@ -44,7 +44,7 @@
       <!-- pill-content -->
       <v-sheet
         v-if="!isCompact"
-        class="pill-content d-flex flex-column px-3 px-sm-6 py-1 mt-auto"
+        class="pill-content d-flex flex-column px-6 py-1 mt-auto"
         :class="{ 'glass-card': hasBackgroundImage }"
         :color="hasBackgroundImage ? 'transparent' : 'surface'"
         rounded="pill"

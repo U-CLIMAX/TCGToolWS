@@ -106,22 +106,13 @@
           </div>
         </div>
 
-        <v-row class="ma-0">
-          <v-col
-            v-for="item in displayedSeries"
-            :key="item.data.id"
-            cols="6"
-            xs="6"
-            sm="3"
-            md="2"
-            xl="1"
-            class="d-flex pa-3"
-          >
+        <div class="series-grid-container">
+          <div v-for="item in displayedSeries" :key="item.data.id" class="d-flex justify-center">
             <LazyCardWrapper>
               <SeriesCard :series-name="item.name.replace('[cn]', '')" :series-data="item.data" />
             </LazyCardWrapper>
-          </v-col>
-        </v-row>
+          </div>
+        </div>
 
         <template v-slot:loading>
           <v-row justify="center" class="my-4">
@@ -283,5 +274,19 @@ onMounted(() => {
   background: rgba(var(--v-theme-surface), 0.6) !important;
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
+}
+
+.series-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
+@media (max-width: 740px) {
+  .series-grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(46%, 1fr));
+    gap: 16px;
+  }
 }
 </style>
