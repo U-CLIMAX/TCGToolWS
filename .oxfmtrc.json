@@ -7,6 +7,7 @@
   "quoteProps": "consistent",
   "sortPackageJson": false,
   "ignorePatterns": [
+    "src/types/*.d.ts",
     "dist/",
     "build/",
     "node_modules/",
