@@ -3,9 +3,7 @@
     <v-card
       v-bind="props"
       class="series-card d-flex flex-column flex-grow-1 overflow-visible"
-      :class="[
-        { 'compact': isCompact },
-      ]"
+      :class="[{ compact: isCompact }]"
       :to="{ name: 'SeriesDetail', params: { seriesId: seriesData.id } }"
       :ripple="false"
       variant="text"
@@ -51,28 +49,26 @@
         border
       >
         <div class="pill-sub-content d-flex align-center mb-1">
-          <div class="d-flex align-center flex-grow-1 text-medium-emphasis overflow-hidden" style="min-width: 0">
+          <div
+            class="d-flex align-center flex-grow-1 text-medium-emphasis overflow-hidden"
+            style="min-width: 0"
+          >
             <v-icon size="x-small" class="mr-1 flex-shrink-0" icon="i-mdi:layers-outline" />
-            <div class="text-truncate pr-px">
+            <div class="text-truncate pr-px font-DINCond font-weight-regular">
               {{ seriesData.prefixes.map((p) => p.replace('[cn]', '')).join(', ') }}
             </div>
           </div>
-          <div class="text-medium-emphasis ml-2 flex-shrink-0">
+          <div class="text-medium-emphasis ml-2 flex-shrink-0 font-DINCond font-weight-regular">
             {{ seriesData.latestReleaseDate }}
           </div>
         </div>
-        <div
-          class="text-truncate font-weight-medium text-subtitle-2"
-        >
+        <div class="text-truncate font-weight-medium text-subtitle-2">
           {{ seriesName }}
         </div>
       </v-sheet>
 
       <!-- Compact 模式下的簡易名稱 -->
-      <div
-        v-else
-        class="text-truncate font-weight-medium text-body-2"
-      >
+      <div v-else class="text-truncate font-weight-medium text-body-2">
         {{ seriesName }}
       </div>
     </v-card>
@@ -117,17 +113,17 @@ const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
   flex: 0 0 auto;
   aspect-ratio: 1;
   transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow: 
+  box-shadow:
     0 0 0 1px rgba(0, 0, 0, 0.05),
     0 0 4px rgba(0, 0, 0, 0.08);
-    /* In standard mode, setting the outer card to hidden prevents the image from overflowing when zoomed in, but setting it to visible prevents shadows from being clipped. */
-    overflow: hidden; 
-    will-change: transform;
+  /* In standard mode, setting the outer card to hidden prevents the image from overflowing when zoomed in, but setting it to visible prevents shadows from being clipped. */
+  overflow: hidden;
+  will-change: transform;
 }
 
 .pill-content {
   transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow: 
+  box-shadow:
     0 0 0 1px rgba(0, 0, 0, 0.03),
     0 0 4px rgba(0, 0, 0, 0.05);
   will-change: transform;
@@ -140,14 +136,14 @@ const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 /* === Standard Mode Hover === */
 .series-card:not(.compact):hover .image-wrapper {
   transform: scale(1.05);
-  box-shadow: 
+  box-shadow:
     0 0 0 1px rgba(0, 0, 0, 0.1),
     0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
 .series-card:not(.compact):hover .pill-content {
   transform: scale(1.05);
-  box-shadow: 
+  box-shadow:
     0 0 0 1px rgba(0, 0, 0, 0.08),
     0 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -183,7 +179,7 @@ const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 .pill-sub-content {
   font-size: 0.7rem;
-  min-width: 0
+  min-width: 0;
 }
 
 @media (max-width: 959.98px) {
