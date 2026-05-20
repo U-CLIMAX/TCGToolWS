@@ -13,7 +13,7 @@ const CARD_DATA_DIR = path.join(__dirname, '../src/assets/card-data')
 const OUTPUT_DIR = path.join(__dirname, '../public')
 
 // 腳本邏輯版本
-const BUILD_LOGIC_VERSION = 'v1'
+const BUILD_LOGIC_VERSION = 'v2'
 
 console.log('🔍 Starting to build card index...')
 
@@ -161,7 +161,7 @@ const processCardLinks = (cards) => {
 
   const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
   const allNamesPattern = [...nameToCardBaseIds.keys()].map(escapeRegex).join('|')
-  const nameMatcherRegex = new RegExp(`「(${allNamesPattern})」`, 'g')
+  const nameMatcherRegex = new RegExp(`[「｢](${allNamesPattern})[」｣]`, 'g')
 
   // Stage 1: One-Way Link Detection (僅掃描唯一卡片)
   const oneWayLinks = new Map()

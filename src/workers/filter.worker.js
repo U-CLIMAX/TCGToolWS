@@ -133,7 +133,7 @@ const CardFilterService = {
     // Regex Matching
     if (nameToCardBaseIds.size > 0) {
       const allNamesPattern = [...nameToCardBaseIds.keys()].map(escapeRegex).join('|')
-      const nameMatcherRegex = new RegExp(`「(${allNamesPattern})」`, 'g')
+      const nameMatcherRegex = new RegExp(`[「｢](${allNamesPattern})[」｣]`, 'g')
 
       for (const targetCard of fetchedCards) {
         const effectText = targetCard.effect || ''
