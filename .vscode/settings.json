@@ -18,5 +18,11 @@
   "files.readonlyInclude": {
     "src/types/route-map.d.ts": true,
     "src/types/components.d.ts": true
+  },
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/.git/objects/**": true,
+    "**/dist/**": true,
+    "**/build/**": true
   }
 }
