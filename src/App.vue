@@ -746,7 +746,7 @@ watch(
 }
 
 .floating-bottom-bar {
-  margin: 0 15% 20px 15% !important;
+  margin: 0 12% 20px 12% !important;
   left: 0 !important;
   right: 0 !important;
   bottom: 0 !important;
