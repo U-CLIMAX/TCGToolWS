@@ -42,17 +42,20 @@
       </div>
 
       <!-- pill-content -->
-      <div 
+      <v-sheet
         v-if="!isCompact"
-        class="pill-content d-flex flex-column rounded-pill px-6 py-1 mt-auto"
-        :class="{ 'glass-card': hasBackgroundImage, 'bg-surface': !hasBackgroundImage }"
+        class="pill-content d-flex flex-column px-3 px-sm-6 py-1 mt-auto"
+        :class="{ 'glass-card': hasBackgroundImage }"
+        :color="hasBackgroundImage ? 'transparent' : 'surface'"
+        rounded="pill"
+        border
       >
-        <div class="d-flex justify-space-between align-center mb-1" style="font-size: 0.7rem">
-          <div class="text-truncate text-medium-emphasis d-flex align-center" style="min-height: 18px">
-            <v-icon size="x-small" class="mr-1" icon="i-mdi:layers-outline" />
-            <span class="text-truncate">
+        <div class="pill-sub-content d-flex align-center mb-1">
+          <div class="d-flex align-center flex-grow-1 text-medium-emphasis overflow-hidden" style="min-width: 0">
+            <v-icon size="x-small" class="mr-1 flex-shrink-0" icon="i-mdi:layers-outline" />
+            <div class="text-truncate pr-px">
               {{ seriesData.prefixes.map((p) => p.replace('[cn]', '')).join(', ') }}
-            </span>
+            </div>
           </div>
           <div class="text-medium-emphasis ml-2 flex-shrink-0">
             {{ seriesData.latestReleaseDate }}
@@ -63,7 +66,7 @@
         >
           {{ seriesName }}
         </div>
-      </div>
+      </v-sheet>
 
       <!-- Compact 模式下的簡易名稱 -->
       <div
@@ -102,6 +105,8 @@ const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 <style scoped>
 .series-card {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-rendering: geometricPrecision;
+  backface-visibility: hidden;
 }
 
 .series-card :deep(.v-card__overlay) {
@@ -117,14 +122,15 @@ const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
     0 0 4px rgba(0, 0, 0, 0.08);
     /* In standard mode, setting the outer card to hidden prevents the image from overflowing when zoomed in, but setting it to visible prevents shadows from being clipped. */
     overflow: hidden; 
+    will-change: transform;
 }
 
 .pill-content {
   transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  border: 1px solid rgba(var(--v-border-color), var(--v-border-opacity));
   box-shadow: 
     0 0 0 1px rgba(0, 0, 0, 0.03),
     0 0 4px rgba(0, 0, 0, 0.05);
+  will-change: transform;
 }
 
 .series-image {
@@ -173,5 +179,22 @@ const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 .series-card.compact:hover .hover-overlay {
   opacity: 1;
+}
+
+.pill-sub-content {
+  font-size: 0.7rem;
+  min-width: 0
+}
+
+@media (max-width: 959.98px) {
+  .pill-sub-content {
+    font-size: 0.6rem;
+  }
+}
+
+@media (max-width: 599.98px) {
+  .pill-sub-content {
+    font-size: 0.5rem;
+  }
 }
 </style>
