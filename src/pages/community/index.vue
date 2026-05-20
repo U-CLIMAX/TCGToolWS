@@ -408,7 +408,7 @@ const displayItemsWithSurvey = computed(() => {
 })
 
 const scrollStyle = computed(() => {
-  const marginTop = !smAndDown.value ? '50px' : '0'
+  const marginTop = smAndUp.value ? '50px' : '0'
   return {
     '--sb-margin-top': '27px',
     'marginTop': marginTop,
