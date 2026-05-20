@@ -7,8 +7,6 @@ export default defineConfig({
     }),
   ],
   content: {
-    filesystem: [
-      './node_modules/vuetify/lib/iconsets/mdi-unocss.js',
-    ],
+    filesystem: ['./node_modules/vuetify/lib/iconsets/mdi-unocss.js'],
   },
 })

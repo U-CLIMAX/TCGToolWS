@@ -5,16 +5,16 @@
       position="fixed"
       location="bottom right"
       icon
-      :size="smAndDown ? 'small' : 'large'"
+      :size="!smAndUp ? 'small' : 'large'"
       class="ma-4 back-to-top-btn"
-      :class="{ 'mb-19': smAndDown }"
+      :class="{ 'mb-19': !smAndUp }"
       @click="scrollToTop"
     >
       <v-img
         :src="WsIcon"
         alt="Back to top"
-        :width="smAndDown ? 24 : 28"
-        :height="smAndDown ? 24 : 28"
+        :width="!smAndUp ? 24 : 28"
+        :height="!smAndUp ? 24 : 28"
         draggable="false"
         :style="{ filter: iconFilterStyle }"
       />
@@ -35,7 +35,7 @@ const props = defineProps({
 })
 
 const theme = useTheme()
-const { smAndDown } = useDisplay()
+const { smAndUp } = useDisplay()
 const isFabVisible = ref(false)
 
 const iconFilterStyle = computed(() => {

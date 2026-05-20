@@ -14,7 +14,7 @@
         >
           <!-- 標題區域 -->
           <div class="d-flex align-center ga-3 mb-5">
-            <v-icon icon="i-mdi:cards-variant" color="primary" size="32" />
+            <v-icon :icon="DeckIcon" color="primary" size="32" />
             <div>
               <div class="text-h6 font-weight-bold" style="line-height: 1.2">我的卡组</div>
               <div class="text-caption text-medium-emphasis">管理并搜索您收藏的卡组</div>

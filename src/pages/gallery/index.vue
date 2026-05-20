@@ -10,6 +10,9 @@
         'rounded-3md mt-7 mb-3 h-auto': smAndUp,
         'mr-4': drawer && smAndUp,
       }"
+      :style="{
+        top: smAndUp ? '50px' : '0px',
+      }"
       touchless
     >
       <ShareDeckDetail
@@ -42,9 +45,7 @@
                   class="d-flex flex-column flex-md-row justify-space-between align-start align-md-center mb-5 ga-3"
                 >
                   <div class="d-flex align-center ga-3">
-                    <v-avatar color="primary" variant="tonal" size="48" class="rounded-xl">
-                      <v-icon icon="i-mdi:view-grid-outline" size="28" />
-                    </v-avatar>
+                    <v-icon :icon="DeckGalleryIcon" color="primary" size="32" />
                     <div>
                       <div class="text-h6 font-weight-bold" style="line-height: 1.2">卡组广场</div>
                       <div class="text-caption text-medium-emphasis d-none d-sm-block">
@@ -300,14 +301,14 @@ import DeckGalleryIcon from '@/assets/ui/deck-gallery.svg'
 
 definePage({
   name: 'DecksGallery',
-  meta: { group: 'community' },
+  meta: { group: 'toolbox' },
 })
 
 const { triggerSnackbar } = useSnackbar()
 const galleryStore = useDecksGalleryStore()
 const uiStore = useUIStore()
 const authStore = useAuthStore()
-const { smAndDown, smAndUp, width } = useDisplay()
+const { smAndUp, width } = useDisplay()
 const { shareForm, updateGalleryDeckMetadata } = useDeckExport()
 const { isTouch } = useDevice()
 
@@ -321,7 +322,7 @@ const drawerWidth = computed(() => {
 })
 
 const scrollStyle = computed(() => {
-  const marginTop = !smAndDown.value ? '50px' : '0'
+  const marginTop = smAndUp.value ? '50px' : '0'
   return {
     '--sb-margin-top': '27px',
     'marginTop': marginTop,

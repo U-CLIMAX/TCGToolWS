@@ -22,7 +22,7 @@ import { generateDeckKey } from '@/utils/nanoid'
 definePage({
   name: 'DeckLog',
   props: true,
-  meta: { headerBlur: true, showCardPrice: true },
+  meta: { showCardPrice: true },
 })
 
 const route = useRoute()

@@ -3,8 +3,8 @@
     <HomeBackground v-show="isHomeRoute" />
 
     <v-app-bar
-      v-if="!smAndDown"
-      class="floating-bar"
+      v-if="smAndUp"
+      class="floating-bar main-bar rounded-pill pr-3"
       :class="{ 'glass-header': !isHomeRoute && hasBackgroundImage }"
       scroll-behavior="elevate"
       scroll-threshold="160"
@@ -16,7 +16,7 @@
         <v-img
           :src="titleImg"
           alt="UClimax for ws"
-          class="ml-16"
+          :class="mdAndUp ? 'ml-16' : 'ml-1'"
           contain
           eager
           :style="titleImgStyle"
@@ -27,35 +27,72 @@
       <template #append>
         <template v-if="!isInSpecialFlow">
           <div class="d-none d-sm-block">
-            <template v-for="item in navItems" :key="item.to">
-              <!-- Search Dropdown -->
-              <v-menu
-                v-if="item.name === 'GlobalSearch'"
-                location="bottom center"
-                offset="10"
-                open-on-hover
+            <template v-for="item in navItems" :key="item.name">
+              <v-btn
+                variant="text"
+                :to="{ name: item.name }"
+                :text="item.text"
+                class="rounded-3md mr-1"
+                :class="{ 'home-route-btn': isHomeRoute }"
+                :active="item.group && $route.meta.group === item.group"
+                :active-color="isHomeRoute ? 'cyan-accent-2' : undefined"
+                :color="isHomeRoute ? 'white' : undefined"
+                :disabled="item.requiresAuth && !authStore.isAuthenticated"
               >
-                <template v-slot:activator="{ props }">
-                  <v-btn
-                    variant="text"
-                    :active="$route.name === 'GlobalSearch'"
-                    :base-color="routeGameColor"
-                    class="rounded-3md mr-1"
-                    v-bind="props"
-                    :color="isHomeRoute ? 'white' : undefined"
-                  >
-                    <template #prepend>
-                      <v-icon :icon="navIcons[item.icon]" size="24" />
-                    </template>
-                    {{ item.text }}
-                  </v-btn>
+                <template #prepend>
+                  <v-icon :icon="navIcons[item.icon]" size="24" />
                 </template>
-                <v-list
-                  density="compact"
-                  :class="{ 'glass-menu': hasBackgroundImage }"
-                  class="rounded-3md"
-                  nav
+              </v-btn>
+            </template>
+
+            <!-- Toolbox Dropdown -->
+            <v-menu
+              :close-on-content-click="false"
+              location="bottom center"
+              offset="10"
+              open-on-hover
+            >
+              <template v-slot:activator="{ props }">
+                <v-btn
+                  variant="text"
+                  class="rounded-3md mr-1"
+                  v-bind="props"
+                  :active="$route.meta.group === 'toolbox'"
+                  :active-color="isHomeRoute ? 'cyan-accent-2' : undefined"
+                  :color="isHomeRoute ? 'white' : undefined"
                 >
+                  <template #prepend>
+                    <v-icon :icon="navIcons['toolbox.svg']" size="24" />
+                  </template>
+                  工具箱
+                </v-btn>
+              </template>
+              <v-list
+                v-model:opened="desktopOpenedGroups"
+                density="compact"
+                :class="{ 'glass-menu': hasBackgroundImage }"
+                class="rounded-3md"
+                nav
+                indent="20"
+              >
+                <!-- Nested Search Menu -->
+                <v-list-group
+                  value="search"
+                  expand-icon="i-mdi:menu-right"
+                  collapse-icon="i-mdi:menu-down"
+                >
+                  <template v-slot:activator="{ props }">
+                    <v-list-item
+                      v-bind="props"
+                      title="卡片搜索"
+                      :prepend-icon="navIcons['search.svg']"
+                      :active="$route.name === 'GlobalSearch'"
+                      :color="routeGameColor"
+                      slim
+                      class="rounded-3md"
+                    >
+                    </v-list-item>
+                  </template>
                   <v-list-item
                     v-for="gameOpt in GAME_TYPE_OPTIONS"
                     :key="gameOpt.value"
@@ -66,81 +103,23 @@
                     class="rounded-3md"
                   >
                   </v-list-item>
-                </v-list>
-              </v-menu>
-
-              <!-- Community Dropdown -->
-              <v-menu
-                v-else-if="item.name === 'Community'"
-                location="bottom center"
-                offset="10"
-                open-on-hover
-              >
-                <template v-slot:activator="{ props }">
-                  <v-btn
-                    variant="text"
-                    :active="item.group && $route.meta.group === item.group"
-                    class="rounded-3md mr-1"
-                    v-bind="props"
-                    :color="isHomeRoute ? 'white' : undefined"
-                  >
-                    <template #prepend>
-                      <v-icon :icon="navIcons[item.icon]" size="24" />
-                    </template>
-                    {{ item.text }}
-                  </v-btn>
-                </template>
-                <v-list
-                  density="compact"
-                  :class="{ 'glass-menu': hasBackgroundImage }"
-                  class="rounded-3md"
-                  nav
+                </v-list-group>
+                <template
+                  v-for="subItem in toolboxItems.filter((i) => i.name !== 'GlobalSearch')"
+                  :key="subItem.name"
                 >
                   <v-list-item
-                    :to="{ name: 'Market' }"
-                    title="集换大厅"
-                    prepend-icon="i-mdi:store-outline"
+                    :to="{ name: subItem.name }"
+                    :title="subItem.text"
+                    :prepend-icon="navIcons[subItem.icon]"
                     slim
                     class="rounded-3md"
+                    :disabled="subItem.requiresAuth && !authStore.isAuthenticated"
                   >
                   </v-list-item>
-                  <v-list-item
-                    :to="{ name: 'DecksGallery' }"
-                    title="卡组广场"
-                    prepend-icon="i-mdi:view-grid-outline"
-                    slim
-                    class="rounded-3md"
-                  >
-                  </v-list-item>
-                  <v-list-item
-                    :to="{ name: 'Community' }"
-                    title="玩家社群查询"
-                    prepend-icon="i-mdi:account-group-outline"
-                    slim
-                    class="rounded-3md"
-                  >
-                  </v-list-item>
-                </v-list>
-              </v-menu>
-
-              <!-- Standard Buttons -->
-              <v-btn
-                v-else-if="!item.requiresAuth || authStore.isAuthenticated"
-                variant="text"
-                :to="{ name: item.name }"
-                :text="item.text"
-                class="rounded-3md mr-1"
-                :class="{ 'home-route-btn': isHomeRoute }"
-                :active="item.group && $route.meta.group === item.group"
-                :prepend-icon="navIcons[item.icon]"
-                :active-color="isHomeRoute ? 'cyan-accent-2' : undefined"
-                :color="isHomeRoute ? 'white' : undefined"
-              >
-                <template #prepend>
-                  <v-icon :icon="navIcons[item.icon]" size="24" />
                 </template>
-              </v-btn>
-            </template>
+              </v-list>
+            </v-menu>
           </div>
           <v-divider
             class="mx-3 align-self-center d-none d-md-block"
@@ -149,55 +128,78 @@
             vertical
             :color="isHomeRoute ? 'transparent' : undefined"
           ></v-divider>
+          <v-btn icon @click="NoticeDialogRef?.open()" style="min-width: 0" size="x-small">
+            <v-badge :model-value="noticeStore.hasNew" color="error" dot offset-x="2" offset-y="2">
+              <v-icon :color="isHomeRoute ? 'white' : undefined" icon="i-mdi:bell" size="24" />
+            </v-badge>
+          </v-btn>
         </template>
+      </template>
+    </v-app-bar>
 
-        <NoticeMenu :offset="3" />
-
+    <v-app-bar
+      v-if="smAndUp"
+      class="floating-bar sub-bar rounded-pill"
+      :class="{ 'glass-header': !isHomeRoute && hasBackgroundImage }"
+      scroll-behavior="elevate"
+      scroll-threshold="160"
+      height="50"
+      :elevation="isHomeRoute ? 0 : 3"
+      :color="isHomeRoute ? 'transparent' : undefined"
+    >
+      <div class="d-flex align-center justify-center w-100 h-100">
         <template v-if="!authStore.isAuthReady">
-          <div class="d-flex align-center justify-center mx-2" style="width: 40px; height: 40px">
-            <v-progress-circular
-              indeterminate
-              size="24"
-              width="2"
-              color="grey"
-            ></v-progress-circular>
-          </div>
+          <v-progress-circular indeterminate size="24" width="2" color="grey"></v-progress-circular>
         </template>
         <template v-else>
           <v-btn
             v-if="authStore.isAuthenticated"
             @click="isUserProfileModalOpen = true"
             :ripple="false"
-            icon="i-mdi:account-circle"
             :class="accountIconClass"
-          ></v-btn>
+            size="x-small"
+            icon
+          >
+            <v-icon icon="i-mdi:account-circle" size="24" />
+          </v-btn>
 
           <template v-if="!isInSpecialFlow">
             <v-btn
               v-if="!authStore.isAuthenticated"
               @click="handleLogin"
               :ripple="false"
-              icon="i-mdi:account-circle"
               color="green-lighten-2"
-            ></v-btn>
+              size="x-small"
+              icon
+            >
+              <v-icon icon="i-mdi:account-circle" size="24" />
+            </v-btn>
           </template>
         </template>
-      </template>
+      </div>
     </v-app-bar>
 
     <!-- Progressive Header Blur -->
     <v-fade-transition>
       <div
-        v-if="route.meta.headerBlur"
+        v-if="!isHomeRoute"
         class="header-progressive-blur"
         :style="{
-          '--header-height': `${uiStore.headerHeight}px`,
+          '--header-height': smAndUp ? 'calc(var(--v-layout-top) + 40px)' : '0',
         }"
       ></div>
-      <div v-else-if="isHomeRoute && smAndUp" class="home-header-progressive-blur"></div>
+      <div v-else-if="smAndUp" class="home-header-progressive-blur"></div>
     </v-fade-transition>
 
-    <v-main :scrollable="true" :class="{ 'pa-0': !smAndUp || noPaddingsRoute }">
+    <v-main
+      :scrollable="true"
+      :class="{ 'pa-0': !smAndUp || noPaddingsRoute }"
+      :style="
+        smAndUp
+          ? 'padding-top: calc(var(--v-layout-top) / 2);'
+          : 'padding-bottom: calc(var(--v-layout-bottom) / 2);'
+      "
+    >
       <router-view v-slot="{ Component }">
         <transition :name="transitionName" mode="out-in">
           <component :is="Component" />
@@ -206,38 +208,102 @@
     </v-main>
 
     <v-bottom-navigation
-      v-if="smAndDown"
-      class="floating-bottom-bar"
+      v-if="!smAndUp"
+      class="floating-bottom-bar main-bottom-bar rounded-pill pa-2"
       :class="{ 'glass-header': !isHomeRoute && hasBackgroundImage }"
       :height="50"
-      grow
       app
       mandatory
       :elevation="isHomeRoute ? 0 : 3"
       :color="isHomeRoute ? 'transparent' : undefined"
       :bg-color="isHomeRoute ? 'rgb(33, 33, 33)' : undefined"
     >
-      <template v-for="item in navItems" :key="item.to">
-        <!-- Search Menu -->
-        <v-menu v-if="item.name === 'GlobalSearch'" location="top center" offset="10">
-          <template v-slot:activator="{ props }">
-            <v-btn
-              v-bind="props"
-              :value="item.name"
-              style="min-width: 0"
-              :active="$route.name === 'GlobalSearch'"
-              :base-color="routeGameColor"
-              :color="isHomeRoute ? 'white' : undefined"
-            >
-              <v-icon :icon="navIcons[item.icon]" />
-            </v-btn>
-          </template>
-          <v-list
-            density="compact"
-            :class="{ 'glass-menu': hasBackgroundImage }"
-            class="rounded-3md"
-            nav
+      <template v-for="item in navItems" :key="item.name">
+        <v-btn
+          :to="{ name: item.name }"
+          :value="item.name"
+          :active="item.group && $route.meta.group === item.group"
+          style="min-width: 0"
+          :active-color="isHomeRoute ? 'cyan-accent-2' : undefined"
+          :color="isHomeRoute ? 'white' : undefined"
+          class="rounded-pill"
+          :disabled="item.requiresAuth && !authStore.isAuthenticated"
+        >
+          <v-icon :icon="navIcons[item.icon]" size="32" />
+        </v-btn>
+      </template>
+    </v-bottom-navigation>
+
+    <v-bottom-navigation
+      v-if="!smAndUp"
+      class="floating-bottom-bar sub-bottom-bar rounded-circle"
+      :class="{ 'glass-header': !isHomeRoute && hasBackgroundImage }"
+      :height="50"
+      app
+      :elevation="isHomeRoute ? 0 : 3"
+      :color="isHomeRoute ? 'transparent' : undefined"
+      :bg-color="isHomeRoute ? 'rgb(33, 33, 33)' : undefined"
+    >
+      <!-- Toolbox Menu Activator instead of Profile btn -->
+      <v-menu :close-on-content-click="false" location="top right" offset="10">
+        <template v-slot:activator="{ props }">
+          <v-btn
+            v-bind="props"
+            style="min-width: 0"
+            :active="$route.meta.group === 'toolbox'"
+            :active-color="isHomeRoute ? 'cyan-accent-2' : undefined"
+            :color="isHomeRoute ? 'white' : undefined"
           >
+            <v-icon :icon="navIcons['toolbox.svg']" size="32" />
+          </v-btn>
+        </template>
+        <v-list
+          v-model:opened="mobileOpenedGroups"
+          density="compact"
+          :class="{ 'glass-menu': hasBackgroundImage }"
+          class="rounded-3md"
+          nav
+          indent="20"
+        >
+          <!-- Notice at top right -->
+          <div class="d-flex justify-end">
+            <v-btn
+              icon
+              @click="NoticeDialogRef?.open()"
+              style="min-width: 0"
+              variant="text"
+              size="x-small"
+            >
+              <v-badge
+                :model-value="noticeStore.hasNew"
+                color="error"
+                dot
+                offset-x="2"
+                offset-y="2"
+              >
+                <v-icon icon="i-mdi:bell" size="22" />
+              </v-badge>
+            </v-btn>
+          </div>
+
+          <!-- Search Menu -->
+          <v-list-group
+            value="search"
+            expand-icon="i-mdi:menu-right"
+            collapse-icon="i-mdi:menu-down"
+          >
+            <template v-slot:activator="{ props }">
+              <v-list-item
+                v-bind="props"
+                title="卡片搜索"
+                :prepend-icon="navIcons['search.svg']"
+                :active="$route.name === 'GlobalSearch'"
+                :color="routeGameColor"
+                slim
+                class="rounded-3md"
+              >
+              </v-list-item>
+            </template>
             <v-list-item
               v-for="gameOpt in GAME_TYPE_OPTIONS"
               :key="gameOpt.value"
@@ -248,98 +314,60 @@
               class="rounded-3md"
             >
             </v-list-item>
-          </v-list>
-        </v-menu>
-
-        <!-- Community Menu -->
-        <v-menu v-else-if="item.name === 'Community'" location="top center" offset="10">
-          <template v-slot:activator="{ props }">
-            <v-btn
-              v-bind="props"
-              :value="item.name"
-              :active="item.group && $route.meta.group === item.group"
-              style="min-width: 0"
-              :color="isHomeRoute ? 'white' : undefined"
-            >
-              <v-icon :icon="navIcons[item.icon]" />
-            </v-btn>
-          </template>
-          <v-list
-            density="compact"
-            :class="{ 'glass-menu': hasBackgroundImage }"
-            class="rounded-3md"
-            nav
+          </v-list-group>
+          <template
+            v-for="subItem in toolboxItems.filter((i) => i.name !== 'GlobalSearch')"
+            :key="subItem.name"
           >
             <v-list-item
-              :to="{ name: 'Market' }"
-              title="集换大厅"
-              prepend-icon="i-mdi:store-outline"
+              :to="{ name: subItem.name }"
+              :title="subItem.text"
+              :prepend-icon="navIcons[subItem.icon]"
               slim
               class="rounded-3md"
+              :disabled="subItem.requiresAuth && !authStore.isAuthenticated"
             >
             </v-list-item>
-            <v-list-item
-              :to="{ name: 'DecksGallery' }"
-              title="卡组广场"
-              prepend-icon="i-mdi:view-grid-outline"
-              slim
-              class="rounded-3md"
-            >
-            </v-list-item>
-            <v-list-item
-              :to="{ name: 'Community' }"
-              title="玩家社群查询"
-              prepend-icon="i-mdi:account-group-outline"
-              slim
-              class="rounded-3md"
-            >
-            </v-list-item>
-          </v-list>
-        </v-menu>
+          </template>
 
-        <!-- Standard Button -->
-        <v-btn
-          v-else-if="!item.requiresAuth || authStore.isAuthenticated"
-          :to="{ name: item.name }"
-          :value="item.name"
-          :active="item.group && $route.meta.group === item.group"
-          style="min-width: 0"
-          :active-color="isHomeRoute ? 'cyan-accent-2' : undefined"
-          :color="isHomeRoute ? 'white' : undefined"
-        >
-          <v-icon :icon="navIcons[item.icon]" />
-        </v-btn>
-      </template>
+          <v-divider class="mt-2 mx-auto" style="width: 65%" />
 
-      <NoticeMenu :offset="10" />
-
-      <template v-if="!authStore.isAuthReady">
-        <v-btn disabled value="loading" style="min-width: 0">
-          <v-progress-circular indeterminate size="24" width="2" color="grey"></v-progress-circular>
-        </v-btn>
-      </template>
-      <template v-else>
-        <v-btn
-          v-if="!authStore.isAuthenticated"
-          @click="handleLogin"
-          value="login"
-          style="min-width: 0"
-          :active="false"
-        >
-          <v-icon icon="i-mdi:account-circle" color="green-lighten-2" />
-        </v-btn>
-
-        <v-btn
-          v-else
-          @click="isUserProfileModalOpen = true"
-          value="profile"
-          style="min-width: 0"
-          :class="accountIconClass"
-          :active="false"
-        >
-          <v-icon icon="i-mdi:account-circle" />
-        </v-btn>
-      </template>
+          <!-- Avatar buttons at bottom right -->
+          <div class="d-flex justify-end align-center">
+            <template v-if="!authStore.isAuthReady">
+              <v-progress-circular
+                indeterminate
+                size="24"
+                width="2"
+                color="grey"
+                class="ma-2"
+              ></v-progress-circular>
+            </template>
+            <template v-else>
+              <v-btn
+                v-if="!authStore.isAuthenticated"
+                @click="handleLogin"
+                color="green-lighten-2"
+                variant="text"
+                size="x-small"
+                icon
+              >
+                <v-icon icon="i-mdi:account-circle" size="22" />
+              </v-btn>
+              <v-btn
+                v-else
+                @click="isUserProfileModalOpen = true"
+                :class="accountIconClass"
+                variant="text"
+                size="x-small"
+                icon
+              >
+                <v-icon icon="i-mdi:account-circle" size="22" />
+              </v-btn>
+            </template>
+          </div>
+        </v-list>
+      </v-menu>
     </v-bottom-navigation>
 
     <v-snackbar
@@ -374,6 +402,7 @@
     </v-dialog>
 
     <AppUpdateDialog />
+    <NoticeDialog ref="NoticeDialogRef" />
 
     <!-- Global Loading Overlay -->
     <v-overlay v-model="uiStore.isLoading" class="d-flex align-center justify-center" persistent>
@@ -389,28 +418,32 @@ import { useRoute, useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useUIStore } from '@/stores/ui'
 import { useAuthStore } from '@/stores/auth'
+import { useNoticeStore } from '@/stores/notice'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { usePerformanceManager } from '@/composables/usePerformanceManager'
 import { HalfCircleSpinner } from 'epic-spinners'
 import { GAME_TYPE_OPTIONS } from '@/maps/series-map'
 import { runIPGeolocation } from '@/utils/ipGeolocation'
 
-import titleDarkImg from '@/assets/ui/title-dark.webp'
-import titleLightImg from '@/assets/ui/title-light.webp'
+import titleDefaultImg from '@/assets/ui/title-default.webp'
 import titleMonochrome from '@/assets/ui/title-monochrome.webp'
 import HomeIcon from '@/assets/ui/home.svg'
 import SeriesCardTableIcon from '@/assets/ui/series-card-table.svg'
 import DeckIcon from '@/assets/ui/deck.svg'
 import SearchIcon from '@/assets/ui/search.svg'
 import MarketIcon from '@/assets/ui/market.svg'
+import ToolboxIcon from '@/assets/ui/toolbox.svg'
+import DeckGalleryIcon from '@/assets/ui/deck-gallery.svg'
+import CommunityIcon from '@/assets/ui/community.svg'
 
 usePerformanceManager()
 
 const authStore = useAuthStore()
+const noticeStore = useNoticeStore()
 const { userRole } = storeToRefs(authStore)
 const vuetifyTheme = useTheme()
 const uiStore = useUIStore()
-const { mdAndDown, smAndUp, smAndDown } = useDisplay()
+const { smAndUp, mdAndUp } = useDisplay()
 
 onBeforeMount(async () => {
   await runIPGeolocation()
@@ -427,8 +460,10 @@ onMounted(async () => {
 })
 
 const titleImgStyle = computed(() => {
+  const isDark = vuetifyTheme.global.current.value.dark
   return {
-    maxWidth: mdAndDown.value ? '140px' : '170px',
+    maxWidth: '110px',
+    filter: !isHomeRoute.value && isDark ? 'invert(1)' : undefined,
   }
 })
 
@@ -445,6 +480,7 @@ const accountIconClass = computed(() => {
   return 'text-blue-grey-lighten-2'
 })
 const authDialog = ref(null)
+const NoticeDialogRef = ref(null)
 const { show, text, color, triggerSnackbar } = useSnackbar()
 const route = useRoute()
 const isSettingsModalOpen = ref(false)
@@ -459,8 +495,7 @@ const routeGameColor = computed(() => {
 })
 
 const titleImg = computed(() => {
-  const isLightTheme = vuetifyTheme.global.name.value === 'light'
-  return isHomeRoute.value ? titleMonochrome : isLightTheme ? titleLightImg : titleDarkImg
+  return isHomeRoute.value ? titleMonochrome : titleDefaultImg
 })
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 const spinnerColor = computed(() => {
@@ -472,6 +507,8 @@ const isInSpecialFlow = computed(() => {
 })
 
 const isSponsorNoticeOpen = ref(false)
+const desktopOpenedGroups = ref([])
+const mobileOpenedGroups = ref([])
 
 const handleLogin = () => {
   authDialog.value?.open()
@@ -506,17 +543,13 @@ const navIcons = {
   'series-card-table.svg': SeriesCardTableIcon,
   'deck.svg': DeckIcon,
   'search.svg': SearchIcon,
+  'toolbox.svg': ToolboxIcon,
+  'deck-gallery.svg': DeckGalleryIcon,
+  'community.svg': CommunityIcon,
 }
 
 const navItems = [
   { text: '首页', name: 'Home', requiresAuth: false, icon: 'home.svg' },
-  { text: '社群', name: 'Community', requiresAuth: false, icon: 'market.svg', group: 'community' },
-  {
-    text: '卡片搜索',
-    name: 'GlobalSearch',
-    requiresAuth: false,
-    icon: 'search.svg',
-  },
   {
     text: '系列卡表',
     name: 'SeriesCardTable',
@@ -525,6 +558,36 @@ const navItems = [
     group: 'series',
   },
   { text: '我的卡组', name: 'Decks', requiresAuth: true, icon: 'deck.svg', group: 'decks' },
+]
+
+const toolboxItems = [
+  {
+    text: '集换大厅',
+    name: 'Market',
+    icon: 'market.svg',
+    requiresAuth: false,
+    group: 'toolbox',
+  },
+  {
+    text: '卡组广场',
+    name: 'DecksGallery',
+    icon: 'deck-gallery.svg',
+    requiresAuth: false,
+    group: 'toolbox',
+  },
+  {
+    text: '玩家社群',
+    name: 'Community',
+    icon: 'community.svg',
+    requiresAuth: false,
+    group: 'toolbox',
+  },
+  {
+    text: '卡片搜索',
+    name: 'GlobalSearch',
+    icon: 'search.svg',
+    group: 'toolbox',
+  },
 ]
 
 const appStyle = computed(() => {
@@ -580,6 +643,8 @@ watch(
 #app {
   position: relative;
   isolation: isolate;
+  --v-layout-top: 50px !important;
+  --v-layout-bottom: 50px !important;
 }
 
 #app::before {
@@ -657,11 +722,31 @@ watch(
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
+.floating-bar.main-bar {
+  width: calc(100% - 32px - 60px - 20px) !important;
+  right: auto !important;
+}
+
+.floating-bar.sub-bar {
+  width: 60px !important;
+  left: auto !important;
+  top: 0px !important;
+}
+
+.floating-bottom-bar.main-bottom-bar {
+  width: fit-content !important;
+  max-width: calc(100% - 32px - 50px - 20px) !important;
+  right: auto !important;
+}
+
+.floating-bottom-bar.sub-bottom-bar {
+  width: 50px !important;
+  height: 50px !important;
+  left: auto !important;
+}
+
 .floating-bottom-bar {
-  margin: 12px 16px !important;
-  margin-bottom: 20px !important;
-  border-radius: 18px !important;
-  width: calc(100% - 32px) !important;
+  margin: 0 12% 20px 12% !important;
   left: 0 !important;
   right: 0 !important;
   bottom: 0 !important;
