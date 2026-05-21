@@ -66,7 +66,7 @@ export default defineConfig({
     }),
   ],
   optimizeDeps: {
-    exclude: ['brotli-wasm', 'vuetify'],
+    exclude: ['brotli-wasm'],
   },
   resolve: {
     alias: {
