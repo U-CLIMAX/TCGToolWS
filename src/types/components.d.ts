@@ -12,6 +12,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AppUpdateDialog: typeof import('./../components/ui/AppUpdateDialog.vue')['default']
+    AuthAlertDialog: typeof import('./../components/common/AuthAlertDialog.vue')['default']
     AuthDialog: typeof import('./../components/ui/AuthDialog.vue')['default']
     BackToTopButton: typeof import('./../components/ui/BackToTopButton.vue')['default']
     CardDetailModal: typeof import('./../components/card/CardDetailModal.vue')['default']

@@ -206,7 +206,7 @@
                 color="orange-darken-1"
                 size="large"
                 variant="elevated"
-                @click="handleSupportClick"
+                @click="isSponsorNoticeOpen = true"
                 prepend-icon="i-mdi:heart"
                 class="mb-4"
                 min-width="160"
@@ -360,19 +360,6 @@
       @dialog-closed="startAutoScroll"
     />
 
-    <!-- Auth Alert Dialog -->
-    <v-dialog v-model="isAuthAlertOpen" max-width="400px">
-      <v-card class="rounded-2lg pa-2">
-        <v-card-title>需要登入</v-card-title>
-        <v-card-text class="text-body-2 text-medium-emphasis">
-          充电功能需要登入后才能使用。
-        </v-card-text>
-        <v-card-actions>
-          <v-btn color="primary" variant="tonal" text @click="isAuthAlertOpen = false">确定</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-
     <SponsorNoticeDialog v-model="isSponsorNoticeOpen" @confirm="proceedToPayment" />
   </v-container>
 </template>
@@ -405,7 +392,6 @@ const authStore = useAuthStore()
 const uiStore = useUIStore()
 const { smAndDown } = useDisplay()
 
-const isAuthAlertOpen = ref(false)
 const isSponsorNoticeOpen = ref(false)
 
 const proceedToPayment = async () => {
@@ -418,16 +404,6 @@ const proceedToPayment = async () => {
   } finally {
     uiStore.setLoading(false)
   }
-}
-
-const handleSupportClick = async () => {
-  if (!authStore.isAuthenticated) {
-    isAuthAlertOpen.value = true
-    return
-  }
-
-  // 不直接付款，而是打開「須知 Modal」
-  isSponsorNoticeOpen.value = true
 }
 
 // --- Splash Animation State ---

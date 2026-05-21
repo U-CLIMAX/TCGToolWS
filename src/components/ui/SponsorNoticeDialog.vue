@@ -119,13 +119,26 @@
       </v-card-actions>
     </v-card>
   </v-dialog>
+
+  <!-- Auth Alert Dialog -->
+  <AuthAlertDialog v-model="isAuthAlertOpen" />
 </template>
 
 <script setup>
+import { ref } from 'vue'
+import { useAuthStore } from '@/stores/auth'
+
 const model = defineModel({ type: Boolean, default: false })
 const emit = defineEmits(['confirm'])
 
+const authStore = useAuthStore()
+const isAuthAlertOpen = ref(false)
+
 const handleConfirm = () => {
+  if (!authStore.isAuthenticated) {
+    isAuthAlertOpen.value = true
+    return
+  }
   model.value = false
   emit('confirm')
 }
