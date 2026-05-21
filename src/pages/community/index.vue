@@ -239,7 +239,7 @@
                   </div>
 
                   <v-sheet
-                    rounded="lg"
+                    rounded="2lg"
                     class="pa-2 mt-auto d-flex align-center position-relative"
                     style="
                       background-color: rgba(var(--v-theme-surface), 0.3);
