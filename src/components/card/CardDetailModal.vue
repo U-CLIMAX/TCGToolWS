@@ -132,6 +132,21 @@
 
               <span class="text-caption text-grey d-flex align-center ml-2">
                 价格数据来自 : 遊々亭
+                <v-tooltip
+                  text="若卡片编号存在带下划线的平行版本，价格可能未精确细分，请自行确认"
+                  location="top"
+                  open-on-click
+                >
+                  <template #activator="{ props: tooltipProps }">
+                    <v-icon
+                      v-bind="tooltipProps"
+                      icon="i-mdi:alert-circle-outline"
+                      size="small"
+                      class="ml-1"
+                      color="warning"
+                    />
+                  </template>
+                </v-tooltip>
               </span>
             </div>
 
