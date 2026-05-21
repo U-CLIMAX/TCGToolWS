@@ -15,12 +15,12 @@
             <v-img :src="logoUrl" alt="Logo" width="200" eager transition="false"></v-img>
           </div>
 
-          <div class="pl-0">
-            <div class="d-flex align-center ga-6">
-              <span class="info-label">卡组名称</span>
-              <span class="info-value">{{ deckName }}</span>
-              <span class="info-label ml-4">卡组代码</span>
-              <span class="info-value">{{ deckKey }}</span>
+          <div class="pl-0 w-100">
+            <div class="d-flex align-center ga-6 w-100 text-no-wrap">
+              <span class="info-label flex-shrink-0">卡组名称</span>
+              <span class="info-value text-truncate">{{ deckName }}</span>
+              <span class="info-label ml-4 flex-shrink-0">卡组代码</span>
+              <span class="info-value flex-shrink-0">{{ deckKey }}</span>
             </div>
           </div>
         </div>
@@ -178,6 +178,7 @@ defineExpose({
   font-family:
     'Microsoft JhengHei', 'PingFang TC', 'Heiti TC', 'Noto Sans TC', 'Noto Sans CJK TC', sans-serif;
   font-weight: 400;
+  max-width: none !important;
 }
 
 .header-section {
@@ -191,6 +192,8 @@ defineExpose({
   flex-direction: column;
   align-items: flex-start;
   gap: 20px;
+  flex: 1;
+  min-width: 0;
 }
 
 .logo-container {
