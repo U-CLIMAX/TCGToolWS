@@ -331,8 +331,10 @@ const emitSaveDeck = () => {
   emit('save', {
     name: deckName.value,
     coverCardId: selectedCoverCardId.value,
+    closeDialog: () => {
+      isSaveDialogOpen.value = false
+    },
   })
-  isSaveDialogOpen.value = false
 }
 
 // Group By Logic

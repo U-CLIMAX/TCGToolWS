@@ -36,7 +36,7 @@ const deckKey = route.params.key
 const deck = ref(null)
 const cards = ref({})
 
-const handleSaveDeck = async ({ name, coverCardId }) => {
+const handleSaveDeck = async ({ name, coverCardId, closeDialog }) => {
   uiStore.setLoading(true)
 
   try {
@@ -68,6 +68,7 @@ const handleSaveDeck = async ({ name, coverCardId }) => {
     })
 
     triggerSnackbar('卡组保存成功！', 'success')
+    if (closeDialog) closeDialog()
     await router.push(`/decks/${key}`)
   } catch (error) {
     triggerSnackbar(error.message, 'error')
