@@ -372,12 +372,17 @@
 
     <v-snackbar
       v-model="show"
-      :color="color"
-      timeout="2000"
+      timeout="1600"
+      :timer="color"
       location="top"
-      :style="{ opacity: 0.85 }"
-      rounded="pill"
+      rounded="2lg"
       eager
+      :close-on-content-click="true"
+      :style="
+        smAndUp
+          ? 'padding-top: calc(var(--v-layout-top) / 2);'
+          : 'padding-bottom: calc(var(--v-layout-bottom) / 2);'
+      "
     >
       {{ text }}
     </v-snackbar>
