@@ -372,6 +372,7 @@
 
     <v-snackbar
       v-model="show"
+      :color="vuetifyTheme.global.current.value.dark ? 'grey-darken-4' : 'grey-lighten-5'"
       timeout="1600"
       :timer="color"
       location="top"
