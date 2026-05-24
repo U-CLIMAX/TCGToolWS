@@ -23,6 +23,12 @@ export const useFilterStore = defineStore('filter', () => {
   const isLoading = ref(false)
   const error = ref(null)
 
+  // --- Progress ---
+  const fetchProgress = ref({
+    current: 0,
+    total: 0,
+  })
+
   // Filter options derived from raw data
   const productNames = ref([])
   const traits = ref([])
@@ -91,6 +97,7 @@ export const useFilterStore = defineStore('filter', () => {
                 ...seriesDataCache.value,
                 [path]: result,
               }
+              fetchProgress.value.current++
               deferred.resolve(result)
             } catch (err) {
               console.warn(`Error loading ${path}:`, err)
@@ -128,6 +135,11 @@ export const useFilterStore = defineStore('filter', () => {
 
     try {
       const dataFilePaths = findSeriesDataFileName(prefixes)
+      fetchProgress.value.total = dataFilePaths.length
+      fetchProgress.value.current = dataFilePaths.filter(
+        (path) => seriesDataCache.value[path]
+      ).length
+
       const newPathsToFetch = dataFilePaths.filter((path) => !processedPathsHistory.has(path))
 
       if (newPathsToFetch.length > 0) {
@@ -241,6 +253,7 @@ export const useFilterStore = defineStore('filter', () => {
     // State
     allCards,
     isLoading,
+    fetchProgress,
     error,
     productNames,
     traits,

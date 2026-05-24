@@ -15,6 +15,12 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
   const error = ref(null)
   const currentGame = ref('ws')
 
+  // --- Progress ---
+  const downloadProgress = ref({
+    current: 0,
+    total: 0,
+  })
+
   // --- Filter Options ---
   const productNames = ref([])
   const traits = ref([])
@@ -168,8 +174,11 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
       const fileStream = new ReadableStream({
         async start(controller) {
           if (chunked) {
+            downloadProgress.value.total = chunks.length
             console.log(`📥 Streaming ${chunks.length} chunks...`)
-            for (const chunkFile of chunks) {
+            for (let i = 0; i < chunks.length; i++) {
+              const chunkFile = chunks[i]
+              downloadProgress.value.current = i + 1
               const response = await fetch(`/${chunkFile}`)
               if (!response.ok) throw new Error(`Fetch error: ${chunkFile}`)
 
@@ -181,6 +190,8 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
               }
             }
           } else {
+            downloadProgress.value.total = 1
+            downloadProgress.value.current = 1
             const response = await fetch(`/${fileName}`)
             const reader = response.body.getReader()
             while (true) {
@@ -269,7 +280,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
       }
       await setCardData(cachedData, 'local database (IndexedDB)', version, indexFiles)
     } catch (e) {
-      console.error('❌ Failed to load from local database:', e)
+      console.warn('ℹ️ Local data hydration skipped:', e.message)
       throw e
     } finally {
       if (db) db.close()
@@ -291,6 +302,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     console.log(`🔍 Checking card database version for ${currentGame.value}...`)
     isLoading.value = true
     error.value = null
+    downloadProgress.value = { current: 0, total: 0 }
 
     try {
       const manifestResponse = await fetch(`/card-db-manifest-${currentGame.value}.json`)
@@ -303,14 +315,16 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
       const storedVersion = localStorage.getItem(`global_search_index_version_${currentGame.value}`)
 
       let loadedFromLocal = false
-      if (storedVersion === currentVersion) {
+      if (storedVersion && storedVersion === currentVersion) {
         console.log('✅ Versions match, trying to load from local database...')
         try {
           await loadDataFromLocal(currentVersion, indexFiles)
           loadedFromLocal = true
-          // eslint-disable-next-line no-unused-vars
+          // oxlint-disable-next-line no-unused-vars
         } catch (e) {
           console.log('↪️ Local load failed, will fetch from remote as a fallback.')
+          // Clear invalid version to prevent repeated failed local load attempts
+          localStorage.removeItem(`global_search_index_version_${currentGame.value}`)
         }
       }
 
@@ -356,6 +370,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     isReady,
     isInitialSetup,
     isLoading,
+    downloadProgress,
     error,
     // Filter Options
     productNames,

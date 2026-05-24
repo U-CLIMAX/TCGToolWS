@@ -102,6 +102,35 @@
           >
             初始化中，这可能会需要一点时间...
           </div>
+          <div
+            v-if="globalSearchStore.isInitialSetup && globalSearchStore.downloadProgress.total > 0"
+            class="w-50 mt-4 px-4"
+            style="max-width: 400px"
+          >
+            <v-progress-linear
+              :model-value="
+                (globalSearchStore.downloadProgress.current /
+                  globalSearchStore.downloadProgress.total) *
+                100
+              "
+              color="blue-accent-1"
+              height="20"
+              rounded
+              striped
+            >
+              <template v-slot:default>
+                <span class="text-caption text-white font-weight-bold">
+                  {{
+                    Math.round(
+                      (globalSearchStore.downloadProgress.current /
+                        globalSearchStore.downloadProgress.total) *
+                        100
+                    )
+                  }}%
+                </span>
+              </template>
+            </v-progress-linear>
+          </div>
         </div>
 
         <v-container

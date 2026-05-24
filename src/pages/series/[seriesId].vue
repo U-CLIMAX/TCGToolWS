@@ -1,7 +1,32 @@
 <template>
   <v-container fluid class="h-100 pa-0">
-    <div v-if="filterStore.isLoading" class="d-flex justify-center align-center h-100">
-      <v-progress-circular indeterminate color="primary" size="64"></v-progress-circular>
+    <div v-if="filterStore.isLoading" class="d-flex flex-column justify-center align-center h-100">
+      <v-progress-circular
+        indeterminate
+        color="primary"
+        size="64"
+        width="7"
+        class="mb-4"
+      ></v-progress-circular>
+      <div v-if="filterStore.fetchProgress.total > 0" class="w-50 px-4" style="max-width: 400px">
+        <v-progress-linear
+          :model-value="(filterStore.fetchProgress.current / filterStore.fetchProgress.total) * 100"
+          color="primary"
+          height="20"
+          rounded
+          striped
+        >
+          <template v-slot:default>
+            <span class="text-caption text-white font-weight-bold">
+              {{
+                Math.round(
+                  (filterStore.fetchProgress.current / filterStore.fetchProgress.total) * 100
+                )
+              }}%
+            </span>
+          </template>
+        </v-progress-linear>
+      </div>
     </div>
 
     <div v-else class="d-flex flex-column h-100">
