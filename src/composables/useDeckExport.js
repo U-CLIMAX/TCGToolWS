@@ -218,12 +218,12 @@ export function useDeckExport() {
 
   const copyArticleLink = async (link) => {
     if (!link) {
-      triggerSnackbar('没有文章链接', 'error')
+      triggerSnackbar('没有链接', 'error')
       return
     }
     try {
       await clipboard.writeText(link)
-      triggerSnackbar('文章链接已复制', 'success')
+      triggerSnackbar('复制成功!', 'success')
     } catch (err) {
       console.error('Failed to copy: ', err)
       triggerSnackbar('复制失败', 'error')
