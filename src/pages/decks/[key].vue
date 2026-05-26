@@ -102,20 +102,26 @@
 
               <div
                 v-if="isViewingHistory && viewingHistoryIndex !== null"
-                class="d-flex align-center justify-center"
+                class="d-flex align-center justify-center gap-2"
               >
                 <h1
-                  class="text-h6 text-sm-h5 text-truncate text-center px-2 flex-grow-1 text-warning"
-                  v-tooltip:bottom="history[viewingHistoryIndex - 1].text"
+                  class="text-h6 text-sm-h5 text-center px-2 text-warning"
+                  :class="{ 'text-truncate flex-grow-1': smAndUp, 'flex-shrink-0': !smAndUp }"
+                  v-tooltip:bottom="{
+                    text: history[viewingHistoryIndex - 1].text,
+                    openOnClick: true,
+                  }"
                 >
-                  检视变更: {{ history[viewingHistoryIndex - 1].text }}
+                  <span>
+                    {{ /#(\d+)/.exec(history[viewingHistoryIndex - 1].text)?.[0] || '#?' }}
+                  </span>
                 </h1>
                 <v-btn
-                  small
+                  size="small"
                   color="warning"
                   variant="tonal"
                   @click="exitHistoryView"
-                  class="ml-2 rounded-pill"
+                  class="rounded-pill flex-shrink-0"
                 >
                   退出
                 </v-btn>
