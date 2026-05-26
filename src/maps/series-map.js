@@ -1,4 +1,9 @@
 const wsSeriesMap = {
+  '東方Project': {
+    id: 'thp',
+    prefixes: ['THP'],
+    latestReleaseDate: '2026-05-30',
+  },
   'anemoi': {
     id: 'anm',
     prefixes: ['ANM'],
@@ -1193,6 +1198,7 @@ const wsSeriesMap = {
 }
 
 const wsrSeriesMap = {
+  'Navel': { id: 'os10', prefixes: ['OS10'], latestReleaseDate: '2026-05-29' },
   'ALICESOFT': {
     id: 'os09',
     prefixes: ['OS09'],
