@@ -1198,7 +1198,12 @@ const wsSeriesMap = {
 }
 
 const wsrSeriesMap = {
-  'Navel': { id: 'os10', prefixes: ['OS10'], latestReleaseDate: '2026-05-29' },
+  'Navel': {
+    id: 'os10',
+    prefixes: ['OS10'],
+    latestReleaseDate: '2026-05-29',
+    yytUrl: 'https://yuyu-tei.jp/sell/wsr/s/search?search_word=&vers[]=os10&rare=&type=&kizu=0',
+  },
   'ALICESOFT': {
     id: 'os09',
     prefixes: ['OS09'],
@@ -1262,6 +1267,11 @@ const wsrSeriesMap = {
 }
 
 const wscSeriesMap = {
+  '[cn]Fate/stay night [Unlimited Blade Works]': {
+    id: '[cn]fate',
+    prefixes: ['[cn]FS'],
+    latestReleaseDate: '2026-05-29',
+  },
   '[cn]蕾斯莱莉娅娜的炼金工房 ～忘却的炼金术与极夜的解放者～': {
     id: '[cn]rsa',
     prefixes: ['[cn]RSA'],
