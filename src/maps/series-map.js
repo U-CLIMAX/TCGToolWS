@@ -3,6 +3,7 @@ const wsSeriesMap = {
     id: 'thp',
     prefixes: ['THP'],
     latestReleaseDate: '2026-05-30',
+    yytUrl: 'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=thp&rare=&type=&kizu=0',
   },
   'anemoi': {
     id: 'anm',
