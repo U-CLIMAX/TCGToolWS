@@ -135,6 +135,7 @@
             :group-by="groupBy"
             :selected-card="selectedCardData"
             :selected-card-price="selectedCardPrice"
+            :price-update-times="selectedCardPriceUpdateTimes"
             :is-modal-visible="isModalVisible"
             :linked-cards="linkedCardsDetails"
             :is-loading-links="isLoadingLinkedCards"
@@ -425,6 +426,7 @@ const isModalVisible = computed({
 })
 const selectedCardData = ref(null)
 const selectedCardPrice = ref(null)
+const selectedCardPriceUpdateTimes = ref(null)
 const linkedCardsDetails = ref([])
 const isLoadingLinkedCards = ref(false)
 
@@ -447,6 +449,20 @@ const onNextCard = () => {
   }
 }
 
+const getPriceUpdateTimes = async (card) => {
+  const infos = getCardSeriesId(card.id)
+  if (!infos || infos.length === 0) return null
+
+  for (const info of infos) {
+    const price = priceStore.getPrice(info.id, card.id)
+    if (price) {
+      const times = await priceStore.getPriceUpdateTime(info.id)
+      return times
+    }
+  }
+  return null
+}
+
 const handleShowNewCard = async (cardPayload) => {
   try {
     const card = cardPayload.card || cardPayload
@@ -467,6 +483,8 @@ const handleShowNewCard = async (cardPayload) => {
       }
       selectedCardPrice.value = p ? p.toLocaleString() : null
     }
+
+    selectedCardPriceUpdateTimes.value = await getPriceUpdateTimes(card)
 
     linkedCardsDetails.value = []
     isLoadingLinkedCards.value = true

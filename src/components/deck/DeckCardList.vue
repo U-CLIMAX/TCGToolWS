@@ -146,6 +146,7 @@
         :img-url="modalCardImageUrl.base"
         :blur-url="modalCardImageUrl.blur"
         :price="selectedCardPrice"
+        :price-update-times="priceUpdateTimes"
         :linked-cards="linkedCards"
         :is-loading-links="isLoadingLinks"
         :show-actions="false"
@@ -191,6 +192,10 @@ const props = defineProps({
   },
   selectedCardPrice: {
     type: [String, Number],
+    default: null,
+  },
+  priceUpdateTimes: {
+    type: Object,
     default: null,
   },
   isModalVisible: {

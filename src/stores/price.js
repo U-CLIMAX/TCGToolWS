@@ -68,6 +68,20 @@ export const usePriceStore = defineStore('price', () => {
     return prices.value[seriesId]?.[cardId]
   }
 
+  const getPriceUpdateTime = async (seriesId) => {
+    if (!priceCache || !seriesId) return null
+    const seriesMeta = await priceCache.getItem(`meta_${seriesId}`)
+    if (!seriesMeta || !seriesMeta.ttl) return null
+
+    const ttl = seriesMeta.ttl
+    const lastUpdateTime = ttl - 7 * 24 * 60 * 60 * 1000 // Subtract 7 days to get when it was last updated
+
+    return {
+      lastUpdate: lastUpdateTime,
+      nextUpdate: ttl,
+    }
+  }
+
   const getCachedSeriesIds = async () => {
     if (!priceCache) return []
     const keys = await priceCache.keys()
@@ -85,6 +99,7 @@ export const usePriceStore = defineStore('price', () => {
     isLoading,
     fetchPrices,
     getPrice,
+    getPriceUpdateTime,
     getCachedSeriesIds,
     clearCache,
   }

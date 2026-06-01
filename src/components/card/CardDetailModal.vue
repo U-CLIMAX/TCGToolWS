@@ -132,6 +132,21 @@
 
               <span class="text-caption text-grey d-flex align-center ml-2">
                 价格数据来自 : 遊々亭
+                <v-tooltip location="top" open-on-click>
+                  <template #activator="{ props: tooltipProps }">
+                    <v-icon
+                      v-bind="tooltipProps"
+                      icon="i-mdi:sync"
+                      size="small"
+                      class="ml-1"
+                      color="teal-lighten-1"
+                    />
+                  </template>
+                  <div class="text-caption">
+                    <div v-if="formattedLastUpdate">上次更新: {{ formattedLastUpdate }}</div>
+                    <div v-if="formattedNextUpdate">下次更新: {{ formattedNextUpdate }}</div>
+                  </div>
+                </v-tooltip>
                 <v-tooltip
                   text="若卡片编号存在带下划线的平行版本，价格可能未精确细分，请自行确认"
                   location="top"
@@ -140,7 +155,7 @@
                   <template #activator="{ props: tooltipProps }">
                     <v-icon
                       v-bind="tooltipProps"
-                      icon="i-mdi:alert-circle-outline"
+                      icon="i-mdi:help-circle-outline"
                       size="small"
                       class="ml-1"
                       color="warning"
@@ -313,6 +328,7 @@ const props = defineProps({
   imgUrl: { type: String, required: true },
   blurUrl: { type: String, required: true },
   price: { type: [String, Number], default: null },
+  priceUpdateTimes: { type: Object, default: null },
   linkedCards: { type: Array, default: () => [] },
   isLoadingLinks: { type: Boolean, default: false },
   showActions: { type: Boolean, default: false },
@@ -651,6 +667,30 @@ const handleDownloadCard = async (withText = true) => {
 const handleShowNewCard = (payload) => {
   emit('show-new-card', payload)
 }
+
+const formatDateTime = (timestamp) => {
+  if (!timestamp) return null
+  const date = new Date(timestamp)
+  return date.toLocaleString(undefined, {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+  })
+}
+
+const formattedLastUpdate = computed(() => {
+  return props.priceUpdateTimes?.lastUpdate
+    ? formatDateTime(props.priceUpdateTimes.lastUpdate)
+    : null
+})
+
+const formattedNextUpdate = computed(() => {
+  return props.priceUpdateTimes?.nextUpdate
+    ? formatDateTime(props.priceUpdateTimes.nextUpdate)
+    : null
+})
 
 const handleNextCard = () => {
   if (props.cardIndex >= props.totalCards - 5) {

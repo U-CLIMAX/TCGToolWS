@@ -62,6 +62,7 @@
       :img-url="selectedCardData.imageUrl"
       :blur-url="selectedCardData.blurUrl"
       :price="selectedCardData.price"
+      :price-update-times="selectedCardData.priceUpdateTimes"
       :linked-cards="selectedLinkedCards"
       :is-loading-links="isLoadingLinks"
       :showActions="$route.name === 'GlobalSearch' ? false : true"
@@ -165,28 +166,46 @@ const getPrice = (card) => {
   return null
 }
 
-const onPrevCard = () => {
+const getPriceUpdateTimes = async (card) => {
+  const infos = getCardSeriesId(card.id)
+  if (!infos || infos.length === 0) return null
+
+  for (const info of infos) {
+    const price = priceStore.getPrice(info.id, card.id)
+    if (price) {
+      const times = await priceStore.getPriceUpdateTime(info.id)
+      return times
+    }
+  }
+  return null
+}
+
+const onPrevCard = async () => {
   const prevCard = getPrevCard()
   if (prevCard) {
     const { base, blur } = getCardUrls(prevCard.cardIdPrefix, prevCard.id)
+    const updateTimes = await getPriceUpdateTimes(prevCard)
     onShowDetails({
       card: prevCard,
       imageUrl: base,
       blurUrl: blur,
       price: getPrice(prevCard),
+      priceUpdateTimes: updateTimes,
     })
   }
 }
 
-const onNextCard = () => {
+const onNextCard = async () => {
   const nextCard = getNextCard()
   if (nextCard) {
     const { base, blur } = getCardUrls(nextCard.cardIdPrefix, nextCard.id)
+    const updateTimes = await getPriceUpdateTimes(nextCard)
     onShowDetails({
       card: nextCard,
       imageUrl: base,
       blurUrl: blur,
       price: getPrice(nextCard),
+      priceUpdateTimes: updateTimes,
     })
   }
 }
@@ -221,7 +240,11 @@ const fetchLinkedCards = async (card) => {
 const onShowDetails = async (payload) => {
   isLoadingLinks.value = true
   selectedLinkedCards.value = []
-  selectedCardData.value = payload
+  const updateTimes = await getPriceUpdateTimes(payload.card)
+  selectedCardData.value = {
+    ...payload,
+    priceUpdateTimes: updateTimes,
+  }
   isModalVisible.value = true
   await fetchLinkedCards(payload.card)
 }
@@ -229,7 +252,11 @@ const onShowDetails = async (payload) => {
 const onShowNewCard = async (payload) => {
   isLoadingLinks.value = true
   selectedLinkedCards.value = []
-  selectedCardData.value = payload
+  const updateTimes = await getPriceUpdateTimes(payload.card)
+  selectedCardData.value = {
+    ...payload,
+    priceUpdateTimes: updateTimes,
+  }
   await fetchLinkedCards(payload.card)
 }
 

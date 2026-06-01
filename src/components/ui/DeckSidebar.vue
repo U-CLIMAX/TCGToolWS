@@ -178,6 +178,7 @@
       :img-url="modalCardImageUrl.base"
       :blur-url="modalCardImageUrl.blur"
       :price="selectedCardPrice"
+      :price-update-times="selectedCardPriceUpdateTimes"
       :linked-cards="linkedCardsDetails"
       :is-loading-links="isLoadingLinkedCards"
       :show-actions="true"
@@ -716,6 +717,7 @@ const isModalVisible = ref(false)
 // Card Data for Modal
 const selectedCardData = ref(null)
 const selectedCardPrice = ref(null)
+const selectedCardPriceUpdateTimes = ref(null)
 const linkedCardsDetails = ref([])
 const isLoadingLinkedCards = ref(false)
 
@@ -736,6 +738,20 @@ const onNextCard = () => {
   if (nextCard) {
     handleShowNewCard({ card: nextCard })
   }
+}
+
+const getPriceUpdateTimes = async (card) => {
+  const infos = getCardSeriesId(card.id)
+  if (!infos || infos.length === 0) return null
+
+  for (const info of infos) {
+    const price = priceStore.getPrice(info.id, card.id)
+    if (price) {
+      const times = await priceStore.getPriceUpdateTime(info.id)
+      return times
+    }
+  }
+  return null
 }
 
 const modalCardImageUrl = computed(() => {
@@ -777,6 +793,8 @@ const handleShowNewCard = async (cardPayload) => {
       }
       selectedCardPrice.value = p ? p.toLocaleString() : null
     }
+
+    selectedCardPriceUpdateTimes.value = await getPriceUpdateTimes(cardToDisplay)
 
     const card = await fetchCardByIdAndPrefix(cardToDisplay.id, cardToDisplay.cardIdPrefix)
     if (!card) {
