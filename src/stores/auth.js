@@ -3,6 +3,7 @@ import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useDeckStore } from './deck'
 import { useMarketStore } from './market'
+import { usePriceStore } from './price'
 import { jwtDecode } from 'jwt-decode'
 
 export const useAuthStore = defineStore('auth', () => {
@@ -90,7 +91,16 @@ export const useAuthStore = defineStore('auth', () => {
     if (!response.ok) throw new Error(data.error || '登录失败')
     token.value = data.token
     saveToStorage()
+
+    const priceStore = usePriceStore()
+    priceStore.reset()
+
     await fetchUserStatus()
+
+    if (router.currentRoute.value.name !== 'Home') {
+      window.location.reload()
+    }
+
     return data
   }
 
@@ -103,9 +113,11 @@ export const useAuthStore = defineStore('auth', () => {
 
     const deckStore = useDeckStore()
     const marketStore = useMarketStore()
+    const priceStore = usePriceStore()
 
     deckStore.reset()
     marketStore.reset()
+    priceStore.reset()
     router.push({ name: 'Home' })
   }
 

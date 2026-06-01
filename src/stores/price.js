@@ -4,6 +4,7 @@ import localforage from 'localforage'
 import { wrap } from 'comlink'
 import PriceWorker from '@/workers/price.worker.js?worker'
 import pako from 'pako'
+import { useAuthStore } from './auth'
 
 const priceCache = localforage.createInstance({
   name: 'card-prices',
@@ -12,6 +13,7 @@ const priceCache = localforage.createInstance({
 export const usePriceStore = defineStore('price', () => {
   const prices = ref({}) // { seriesId: { [cardId]: price } }
   const isLoading = ref(false)
+  const authStore = useAuthStore()
 
   const fetchPrices = async (configs) => {
     const configArray = Array.isArray(configs) ? configs : [configs]
@@ -25,8 +27,12 @@ export const usePriceStore = defineStore('price', () => {
     try {
       await Promise.all(
         validConfigs.map(async ({ seriesId, yytUrl }) => {
+          const isPremium = authStore.userRole !== 0
+          const cachePrefix = isPremium ? 'meta_premium_' : 'meta_'
+          const cacheKey = `${cachePrefix}${seriesId}`
+
           // Check localforage cache first
-          const seriesMeta = await priceCache.getItem(`meta_${seriesId}`)
+          const seriesMeta = await priceCache.getItem(cacheKey)
           const now = Date.now()
 
           if (seriesMeta && now < seriesMeta.ttl) {
@@ -35,7 +41,14 @@ export const usePriceStore = defineStore('price', () => {
           }
 
           // Fetch from backend
-          const res = await fetch(`/api/prices/${seriesId}?url=${encodeURIComponent(yytUrl)}`)
+          const headers = {}
+          if (authStore.token) {
+            headers['Authorization'] = `Bearer ${authStore.token}`
+          }
+
+          const res = await fetch(`/api/prices/${seriesId}?url=${encodeURIComponent(yytUrl)}`, {
+            headers,
+          })
           if (!res.ok) return // Silently fail for individual series
 
           const compressedBuffer = await res.arrayBuffer()
@@ -47,10 +60,11 @@ export const usePriceStore = defineStore('price', () => {
           const parsedPrices = await priceWorker.parsePrices(htmls)
           workerInstance.terminate()
 
-          const ttl = Date.now() + 7 * 24 * 60 * 60 * 1000 // 7 days in milliseconds
+          const refreshInterval = isPremium ? 1 * 60 * 60 * 1000 : 7 * 24 * 60 * 60 * 1000
+          const ttl = Date.now() + refreshInterval
 
           prices.value[seriesId] = parsedPrices
-          await priceCache.setItem(`meta_${seriesId}`, {
+          await priceCache.setItem(cacheKey, {
             data: parsedPrices,
             ttl,
           })
@@ -70,11 +84,16 @@ export const usePriceStore = defineStore('price', () => {
 
   const getPriceUpdateTime = async (seriesId) => {
     if (!priceCache || !seriesId) return null
-    const seriesMeta = await priceCache.getItem(`meta_${seriesId}`)
+    const isPremium = authStore.userRole !== 0
+    const cachePrefix = isPremium ? 'meta_premium_' : 'meta_'
+    const cacheKey = `${cachePrefix}${seriesId}`
+
+    const seriesMeta = await priceCache.getItem(cacheKey)
     if (!seriesMeta || !seriesMeta.ttl) return null
 
     const ttl = seriesMeta.ttl
-    const lastUpdateTime = ttl - 7 * 24 * 60 * 60 * 1000 // Subtract 7 days to get when it was last updated
+    const refreshInterval = isPremium ? 1 * 60 * 60 * 1000 : 7 * 24 * 60 * 60 * 1000
+    const lastUpdateTime = ttl - refreshInterval
 
     return {
       lastUpdate: lastUpdateTime,
@@ -85,13 +104,20 @@ export const usePriceStore = defineStore('price', () => {
   const getCachedSeriesIds = async () => {
     if (!priceCache) return []
     const keys = await priceCache.keys()
-    return keys.filter((k) => k.startsWith('meta_')).map((k) => k.replace('meta_', ''))
+    return keys
+      .filter((k) => k.startsWith('meta_') || k.startsWith('meta_premium_'))
+      .map((k) => k.replace(/^meta_premium_|^meta_/, ''))
   }
 
   const clearCache = async (seriesId) => {
     if (!priceCache || !seriesId) return
     await priceCache.removeItem(`meta_${seriesId}`)
+    await priceCache.removeItem(`meta_premium_${seriesId}`)
     delete prices.value[seriesId]
+  }
+
+  const reset = () => {
+    prices.value = {}
   }
 
   return {
@@ -102,5 +128,6 @@ export const usePriceStore = defineStore('price', () => {
     getPriceUpdateTime,
     getCachedSeriesIds,
     clearCache,
+    reset,
   }
 })

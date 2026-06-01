@@ -1,3 +1,4 @@
+import { verify } from 'hono/jwt'
 import { createErrorResponse } from './utils.js'
 
 /**
@@ -25,8 +26,26 @@ export const handleGetSeriesPrices = async (c) => {
       return createErrorResponse(c, 400, '无效的 url')
     }
 
+    // 0. Determine user role from optional JWT
+    let isPremium = false
+    const authHeader = c.req.header('Authorization')
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+      const token = authHeader.substring(7)
+      try {
+        const payload = await verify(token, c.env.JWT_SECRET, 'HS256')
+        if (payload && payload.role !== 0) {
+          isPremium = true
+        }
+      } catch {
+        // Ignore invalid tokens for this optional check
+      }
+    }
+
+    const kvKey = isPremium ? `premium:${seriesId}` : seriesId
+    const ttl = isPremium ? 1 * 60 * 60 : 7 * 24 * 60 * 60 // 1 hour vs 7 days
+
     // 1. Check KV cache
-    const cachedData = await c.env.DAILY_SERIES_PRICE_KV.get(seriesId, 'arrayBuffer')
+    const cachedData = await c.env.DAILY_SERIES_PRICE_KV.get(kvKey, 'arrayBuffer')
     if (cachedData) {
       return c.body(cachedData, 200, {
         'Content-Type': 'application/octet-stream',
@@ -45,7 +64,7 @@ export const handleGetSeriesPrices = async (c) => {
 
     const firstPageRes = await fetch(yytUrl, { headers })
     if (!firstPageRes.ok) {
-      return createErrorResponse(c, 502, '無法從 Yuyu-tei 獲取數據')
+      return createErrorResponse(c, 502, '无法从 Yuyu-tei 获取数据')
     }
     const firstPageHtml = await firstPageRes.text()
 
@@ -87,9 +106,9 @@ export const handleGetSeriesPrices = async (c) => {
     const compressedResponse = new Response(compressionStream.readable)
     const compressedArrayBuffer = await compressedResponse.arrayBuffer()
 
-    // 5. Store in KV with 7 days TTL
-    await c.env.DAILY_SERIES_PRICE_KV.put(seriesId, compressedArrayBuffer, {
-      expirationTtl: 7 * 24 * 60 * 60,
+    // 5. Store in KV
+    await c.env.DAILY_SERIES_PRICE_KV.put(kvKey, compressedArrayBuffer, {
+      expirationTtl: ttl,
     })
 
     return c.body(compressedArrayBuffer, 200, {
