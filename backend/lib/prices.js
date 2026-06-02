@@ -90,8 +90,6 @@ export const handleGetSeriesPrices = async (c) => {
     // 3. Fetch subsequent pages if any sequentially with delay
     if (maxPage > 1) {
       for (let p = 2; p <= maxPage; p++) {
-        await new Promise((resolve) => setTimeout(resolve, 1))
-
         const pageUrl = `${yytUrl}&page=${p}`
         try {
           const res = await fetch(pageUrl, { headers })
