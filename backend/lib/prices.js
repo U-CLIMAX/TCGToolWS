@@ -90,8 +90,7 @@ export const handleGetSeriesPrices = async (c) => {
     // 3. Fetch subsequent pages if any sequentially with delay
     if (maxPage > 1) {
       for (let p = 2; p <= maxPage; p++) {
-        // Wait 500ms between requests to avoid WAF/Rate limit
-        await new Promise((resolve) => setTimeout(resolve, 500))
+        await new Promise((resolve) => setTimeout(resolve, 1))
 
         const pageUrl = `${yytUrl}&page=${p}`
         try {
