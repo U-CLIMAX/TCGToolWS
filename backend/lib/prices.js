@@ -57,9 +57,15 @@ export const handleGetSeriesPrices = async (c) => {
     const headers = {
       'User-Agent':
         'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+      'Accept':
+        'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
       'Accept-Language': 'ja-JP,ja;q=0.9,en-US;q=0.8,en;q=0.7',
       'Referer': yytUrl,
+      'Upgrade-Insecure-Requests': '1',
+      'Sec-Fetch-Dest': 'document',
+      'Sec-Fetch-Mode': 'navigate',
+      'Sec-Fetch-Site': 'same-origin',
+      'Sec-Fetch-User': '?1',
     }
 
     const firstPageRes = await fetch(yytUrl, { headers })
@@ -80,17 +86,25 @@ export const handleGetSeriesPrices = async (c) => {
 
     const htmls = [firstPageHtml]
 
-    // 3. Fetch subsequent pages if any
+    // 3. Fetch subsequent pages if any sequentially with delay
     if (maxPage > 1) {
-      const fetchPromises = []
       for (let p = 2; p <= maxPage; p++) {
+        // Wait 500ms between requests to avoid WAF/Rate limit
+        await new Promise((resolve) => setTimeout(resolve, 500))
+
         const pageUrl = `${yytUrl}&page=${p}`
-        fetchPromises.push(fetch(pageUrl, { headers }).then((res) => (res.ok ? res.text() : null)))
+        try {
+          const res = await fetch(pageUrl, { headers })
+          if (res.ok) {
+            const html = await res.text()
+            htmls.push(html)
+          } else {
+            console.error(`Failed to fetch page ${p}: ${res.status} ${res.statusText}`)
+          }
+        } catch (err) {
+          console.error(`Error fetching page ${p}:`, err)
+        }
       }
-      const otherPages = await Promise.all(fetchPromises)
-      otherPages.forEach((html) => {
-        if (html) htmls.push(html)
-      })
     }
 
     // 4. Compress the data
