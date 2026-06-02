@@ -5,6 +5,7 @@ import { wrap } from 'comlink'
 import PriceWorker from '@/workers/price.worker.js?worker'
 import pako from 'pako'
 import { useAuthStore } from './auth'
+import { compressToEncodedURIComponent } from 'lz-string'
 
 const priceCache = localforage.createInstance({
   name: 'card-prices',
@@ -46,9 +47,12 @@ export const usePriceStore = defineStore('price', () => {
             headers['Authorization'] = `Bearer ${authStore.token}`
           }
 
-          const res = await fetch(`/api/prices/${seriesId}?url=${encodeURIComponent(yytUrl)}`, {
-            headers,
-          })
+          const res = await fetch(
+            `/api/prices/${seriesId}?ref=${compressToEncodedURIComponent(yytUrl)}`,
+            {
+              headers,
+            }
+          )
           if (!res.ok) return // Silently fail for individual series
 
           const compressedBuffer = await res.arrayBuffer()

@@ -1,5 +1,6 @@
 import { verify } from 'hono/jwt'
 import { createErrorResponse } from './utils.js'
+import { decompressFromEncodedURIComponent } from 'lz-string'
 
 /**
  * Handles fetching series prices from Yuyu-tei.
@@ -10,7 +11,7 @@ import { createErrorResponse } from './utils.js'
 export const handleGetSeriesPrices = async (c) => {
   try {
     const seriesId = c.req.param('seriesId')
-    const yytUrl = c.req.query('url')
+    const yytUrl = decompressFromEncodedURIComponent(c.req.query('ref'))
 
     if (!seriesId || !yytUrl) {
       return createErrorResponse(c, 400, '缺少 seriesId 或 url')
