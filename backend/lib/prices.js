@@ -98,9 +98,11 @@ export const handleGetSeriesPrices = async (c) => {
             htmls.push(html)
           } else {
             console.error(`Failed to fetch page ${p}: ${res.status} ${res.statusText}`)
+            return createErrorResponse(c, 502, '无法从 Yuyu-tei 获取数据')
           }
         } catch (err) {
           console.error(`Error fetching page ${p}:`, err)
+          return createErrorResponse(c, 502, '无法从 Yuyu-tei 获取数据')
         }
       }
     }
