@@ -1,6 +1,8 @@
 import { expose } from 'comlink'
 import { Parser } from 'htmlparser2'
 
+const priceRegex = /[,円\s]/g
+
 const priceProcessor = {
   /**
    * Parses multiple HTML strings to extract card prices.
@@ -8,6 +10,7 @@ const priceProcessor = {
    * @returns {object} Map of card numbers to prices.
    */
   parsePrices(htmls) {
+    console.time('parsePrices Worker')
     const prices = {}
     const seenCount = {}
 
@@ -17,17 +20,19 @@ const priceProcessor = {
 
     const parser = new Parser({
       onopentag(name, attribs) {
+        const className = attribs.class
+        if (!className) return
+
         // Look for <span class="d-block border border-dark p-1 w-100 text-center my-2">DC/WE30-08SSP</span>
         if (
           name === 'span' &&
-          attribs.class &&
-          attribs.class.includes('border-dark') &&
-          attribs.class.includes('text-center')
+          className.includes('border-dark') &&
+          className.includes('text-center')
         ) {
           isIdSpan = true
         }
         // Look for <strong class="d-block text-end ">6,980 円</strong>
-        if (name === 'strong' && attribs.class && attribs.class.includes('text-end')) {
+        else if (name === 'strong' && className.includes('text-end')) {
           isPriceStrong = true
         }
       },
@@ -36,25 +41,20 @@ const priceProcessor = {
           currentCardId = text.trim()
         } else if (isPriceStrong && currentCardId) {
           // Extract number from "6,980 円" or "6980円"
-          const priceValue = text.replace(/[,円\s]/g, '')
+          const priceValue = text.replace(priceRegex, '')
           const priceNum = parseInt(priceValue, 10)
+
           if (!isNaN(priceNum)) {
             const key = currentCardId
+            const count = (seenCount[key] || 0) + 1
+            seenCount[key] = count
 
-            if (!seenCount[key]) {
-              seenCount[key] = 0
-            }
-
-            seenCount[key]++
-
-            if (seenCount[key] === 1) {
+            if (count === 1) {
               // 第一次
               prices[key] = priceNum
-            } else if (seenCount[key] === 2) {
+            } else if (count === 2) {
               // 第二次：把第一次改名
               prices[key + '_'] = prices[key]
-              delete prices[key]
-
               // 再寫入新的第二筆
               prices[key] = priceNum
             }
@@ -66,15 +66,16 @@ const priceProcessor = {
       },
       onclosetag(name) {
         if (name === 'span') isIdSpan = false
-        if (name === 'strong') isPriceStrong = false
+        else if (name === 'strong') isPriceStrong = false
       },
     })
 
-    for (const html of htmls) {
-      parser.write(html)
+    for (let i = 0; i < htmls.length; i++) {
+      parser.write(htmls[i])
     }
     parser.end()
 
+    console.timeEnd('parsePrices Worker')
     return prices
   },
 }
