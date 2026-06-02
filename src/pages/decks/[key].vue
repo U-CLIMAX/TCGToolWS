@@ -587,7 +587,12 @@ const initializePrices = async (cardsToUse = null) => {
   }
 
   if (configs.length > 0) {
-    await priceStore.fetchPrices(configs)
+    try {
+      await priceStore.fetchPrices(configs)
+    } catch (error) {
+      console.error('Error fetching prices:', error)
+      triggerSnackbar('价格加载失败，请稍后再试', 'error')
+    }
   }
 }
 

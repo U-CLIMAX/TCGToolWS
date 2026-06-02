@@ -224,6 +224,7 @@ import { useRecentStore } from '@/stores/recent'
 import { usePriceStore } from '@/stores/price'
 import { useInfiniteScrollState } from '@/composables/useInfiniteScrollState.js'
 import { useDevice } from '@/composables/useDevice'
+import { useSnackbar } from '@/composables/useSnackbar'
 import { getCardSeriesId } from '@/utils/card'
 
 definePage({
@@ -256,6 +257,7 @@ const uiStore = useUIStore()
 const recentStore = useRecentStore()
 const priceStore = usePriceStore()
 const { isTouch } = useDevice()
+const { triggerSnackbar } = useSnackbar()
 const headerRef = ref(null)
 const { isCardDeckOpen, isFilterOpen, isTableModeActive, isPerformanceMode } = storeToRefs(uiStore)
 const rawHeaderHeight = ref(0)
@@ -408,8 +410,12 @@ const initializePrices = async () => {
   }
   console.log(configs)
   if (configs.length > 0) {
-    // Use the updated bulk fetch method
-    await priceStore.fetchPrices(configs)
+    try {
+      await priceStore.fetchPrices(configs)
+    } catch (error) {
+      console.error('Error fetching prices:', error)
+      triggerSnackbar('价格加载失败，请稍后再试', 'error')
+    }
   }
 }
 

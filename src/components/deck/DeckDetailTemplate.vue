@@ -263,6 +263,7 @@ import { useUIStore } from '@/stores/ui'
 import { usePriceStore } from '@/stores/price'
 import { useDeckExport } from '@/composables/useDeckExport'
 import { useDevice } from '@/composables/useDevice'
+import { useSnackbar } from '@/composables/useSnackbar'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import { sortCards } from '@/utils/cardsSort'
 
@@ -298,6 +299,7 @@ const uiStore = useUIStore()
 const priceStore = usePriceStore()
 const { copyArticleLink } = useDeckExport()
 const { isTouch } = useDevice()
+const { triggerSnackbar } = useSnackbar()
 
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
@@ -387,7 +389,12 @@ const initializePrices = async () => {
   }
 
   if (configs.length > 0) {
-    await priceStore.fetchPrices(configs)
+    try {
+      await priceStore.fetchPrices(configs)
+    } catch (error) {
+      console.error('Error fetching prices:', error)
+      triggerSnackbar('价格加载失败，请稍后再试', 'error')
+    }
   }
 }
 

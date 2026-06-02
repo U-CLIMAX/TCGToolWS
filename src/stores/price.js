@@ -53,7 +53,9 @@ export const usePriceStore = defineStore('price', () => {
               headers,
             }
           )
-          if (!res.ok) return // Silently fail for individual series
+          if (!res.ok) {
+            throw new Error(`Failed to fetch prices for series ${seriesId}: ${res.statusText}`)
+          }
 
           const compressedBuffer = await res.arrayBuffer()
           const decompressed = pako.ungzip(new Uint8Array(compressedBuffer), { to: 'string' })
@@ -76,6 +78,7 @@ export const usePriceStore = defineStore('price', () => {
       )
     } catch (error) {
       console.error('[PriceStore] Error fetching prices:', error)
+      throw error
     } finally {
       isLoading.value = false
     }
