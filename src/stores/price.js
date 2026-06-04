@@ -18,9 +18,7 @@ export const usePriceStore = defineStore('price', () => {
 
   const fetchPrices = async (configs) => {
     const configArray = Array.isArray(configs) ? configs : [configs]
-    const validConfigs = configArray.filter(
-      (c) => c.seriesId && c.yytUrl && !prices.value[c.seriesId]
-    )
+    const validConfigs = configArray.filter((c) => c.seriesId && c.yytUrl)
 
     if (validConfigs.length === 0) return
 

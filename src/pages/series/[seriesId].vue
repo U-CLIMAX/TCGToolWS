@@ -408,8 +408,9 @@ const initializePrices = async () => {
       }
     })
   }
-  console.log(configs)
+
   if (configs.length > 0) {
+    console.log('Fetching prices for configs:', configs)
     try {
       await priceStore.fetchPrices(configs)
     } catch (error) {
