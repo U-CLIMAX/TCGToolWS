@@ -44,7 +44,9 @@ export const usePriceStore = defineStore('price', () => {
         }
 
         // Fetch from backend
-        const headers = {}
+        const headers = {
+          UA: navigator.userAgent,
+        }
         if (authStore.token) {
           headers['Authorization'] = `Bearer ${authStore.token}`
         }
