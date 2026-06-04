@@ -1,6 +1,20 @@
 import { verify } from 'hono/jwt'
 import { createErrorResponse } from './utils.js'
 import { decompressFromEncodedURIComponent } from 'lz-string'
+import browserslist from 'browserslist'
+import { matchesUA } from 'browserslist-useragent'
+import UserAgent from 'user-agents'
+
+/**
+ * Generate random user agent to avoid detection
+ */
+const browsers = browserslist('last 2 versions and not dead')
+const isModernBrowser = (data) => {
+  return matchesUA(data.userAgent, { browsers, allowHigherVersions: true })
+}
+const getRandomUserAgent = () => {
+  return new UserAgent(isModernBrowser).toString()
+}
 
 /**
  * Handles fetching series prices from Yuyu-tei.
@@ -56,8 +70,7 @@ export const handleGetSeriesPrices = async (c) => {
 
     // 2. Fetch the first page to get pagination info
     const headers = {
-      'User-Agent':
-        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+      'User-Agent': getRandomUserAgent(),
       'Accept':
         'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
       'Accept-Language': 'ja-JP,ja;q=0.9,en-US;q=0.8,en;q=0.7',
@@ -92,7 +105,12 @@ export const handleGetSeriesPrices = async (c) => {
       for (let p = 2; p <= maxPage; p++) {
         const pageUrl = `${yytUrl}&page=${p}`
         try {
-          const res = await fetch(pageUrl, { headers })
+          const res = await fetch(pageUrl, {
+            headers: {
+              ...headers,
+              'User-Agent': getRandomUserAgent(),
+            },
+          })
           if (res.ok) {
             const html = await res.text()
             htmls.push(html)

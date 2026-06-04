@@ -24,56 +24,59 @@ export const usePriceStore = defineStore('price', () => {
 
     isLoading.value = true
     try {
-      await Promise.all(
-        validConfigs.map(async ({ seriesId, yytUrl }) => {
-          const isPremium = authStore.userRole !== 0
-          const cachePrefix = isPremium ? 'meta_premium_' : 'meta_'
-          const cacheKey = `${cachePrefix}${seriesId}`
+      for (let i = 0; i < validConfigs.length; i++) {
+        if (i > 0) {
+          await new Promise((resolve) => setTimeout(resolve, 500))
+        }
 
-          // Check localforage cache first
-          const seriesMeta = await priceCache.getItem(cacheKey)
-          const now = Date.now()
+        const { seriesId, yytUrl } = validConfigs[i]
+        const isPremium = authStore.userRole !== 0
+        const cachePrefix = isPremium ? 'meta_premium_' : 'meta_'
+        const cacheKey = `${cachePrefix}${seriesId}`
 
-          if (seriesMeta && now < seriesMeta.ttl) {
-            prices.value[seriesId] = seriesMeta.data
-            return
+        // Check localforage cache first
+        const seriesMeta = await priceCache.getItem(cacheKey)
+        const now = Date.now()
+
+        if (seriesMeta && now < seriesMeta.ttl) {
+          prices.value[seriesId] = seriesMeta.data
+          continue
+        }
+
+        // Fetch from backend
+        const headers = {}
+        if (authStore.token) {
+          headers['Authorization'] = `Bearer ${authStore.token}`
+        }
+
+        const res = await fetch(
+          `/api/prices/${seriesId}?ref=${compressToEncodedURIComponent(yytUrl)}`,
+          {
+            headers,
           }
+        )
+        if (!res.ok) {
+          throw new Error(`Failed to fetch prices for series ${seriesId}: ${res.statusText}`)
+        }
 
-          // Fetch from backend
-          const headers = {}
-          if (authStore.token) {
-            headers['Authorization'] = `Bearer ${authStore.token}`
-          }
+        const compressedBuffer = await res.arrayBuffer()
+        const decompressed = pako.ungzip(new Uint8Array(compressedBuffer), { to: 'string' })
+        const htmls = JSON.parse(decompressed)
 
-          const res = await fetch(
-            `/api/prices/${seriesId}?ref=${compressToEncodedURIComponent(yytUrl)}`,
-            {
-              headers,
-            }
-          )
-          if (!res.ok) {
-            throw new Error(`Failed to fetch prices for series ${seriesId}: ${res.statusText}`)
-          }
+        const workerInstance = new PriceWorker()
+        const priceWorker = wrap(workerInstance)
+        const parsedPrices = await priceWorker.parsePrices(htmls)
+        workerInstance.terminate()
 
-          const compressedBuffer = await res.arrayBuffer()
-          const decompressed = pako.ungzip(new Uint8Array(compressedBuffer), { to: 'string' })
-          const htmls = JSON.parse(decompressed)
+        const refreshInterval = isPremium ? 1 * 60 * 60 * 1000 : 7 * 24 * 60 * 60 * 1000
+        const ttl = Date.now() + refreshInterval
 
-          const workerInstance = new PriceWorker()
-          const priceWorker = wrap(workerInstance)
-          const parsedPrices = await priceWorker.parsePrices(htmls)
-          workerInstance.terminate()
-
-          const refreshInterval = isPremium ? 1 * 60 * 60 * 1000 : 7 * 24 * 60 * 60 * 1000
-          const ttl = Date.now() + refreshInterval
-
-          prices.value[seriesId] = parsedPrices
-          await priceCache.setItem(cacheKey, {
-            data: parsedPrices,
-            ttl,
-          })
+        prices.value[seriesId] = parsedPrices
+        await priceCache.setItem(cacheKey, {
+          data: parsedPrices,
+          ttl,
         })
-      )
+      }
     } catch (error) {
       console.error('[PriceStore] Error fetching prices:', error)
       throw error
