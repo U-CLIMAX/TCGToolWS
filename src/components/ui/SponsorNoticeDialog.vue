@@ -115,7 +115,7 @@
                     参考价格更新时间缩短
                   </v-list-item-title>
                   <v-list-item-subtitle class="text-caption">
-                    价格每小时会自动更新一次，方便您随时了解市场动态
+                    价格每3小时会自动更新一次，方便您随时了解市场动态
                   </v-list-item-subtitle>
                 </v-list-item>
               </v-list>
