@@ -43,7 +43,7 @@ export const handleGetSeriesPrices = async (c) => {
     }
 
     const kvKey = isPremium ? `premium:${seriesId}` : seriesId
-    const ttl = isPremium ? 1 * 60 * 60 : 7 * 24 * 60 * 60 // 1 hour vs 7 days
+    const ttl = isPremium ? 3 * 60 * 60 : 7 * 24 * 60 * 60 // 3 hour vs 7 days
 
     // 1. Check KV cache
     const cachedData = await c.env.DAILY_SERIES_PRICE_KV.get(kvKey, 'arrayBuffer')

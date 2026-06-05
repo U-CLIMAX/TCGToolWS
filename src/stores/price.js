@@ -66,7 +66,7 @@ export const usePriceStore = defineStore('price', () => {
           const parsedPrices = await priceWorker.parsePrices(htmls)
           workerInstance.terminate()
 
-          const refreshInterval = isPremium ? 1 * 60 * 60 * 1000 : 7 * 24 * 60 * 60 * 1000
+          const refreshInterval = isPremium ? 3 * 60 * 60 * 1000 : 7 * 24 * 60 * 60 * 1000
           const ttl = Date.now() + refreshInterval
 
           prices.value[seriesId] = parsedPrices
@@ -99,7 +99,7 @@ export const usePriceStore = defineStore('price', () => {
     if (!seriesMeta || !seriesMeta.ttl) return null
 
     const ttl = seriesMeta.ttl
-    const refreshInterval = isPremium ? 1 * 60 * 60 * 1000 : 7 * 24 * 60 * 60 * 1000
+    const refreshInterval = isPremium ? 3 * 60 * 60 * 1000 : 7 * 24 * 60 * 60 * 1000
     const lastUpdateTime = ttl - refreshInterval
 
     return {
