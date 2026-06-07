@@ -3,6 +3,34 @@ import { createErrorResponse } from './utils.js'
 import { decompressFromEncodedURIComponent } from 'lz-string'
 
 /**
+ * Fetch a page, using ScrapingAnt for premium users (production only), direct fetch for others.
+ * @param {string} url - The URL to fetch.
+ * @param {boolean} isPremium - Whether the user is premium.
+ * @param {object} headers - Headers for direct fetch.
+ * @param {string|undefined} antApiKey - ScrapingAnt API key.
+ * @returns {Promise<Response>}
+ */
+const fetchPage = async (url, headers, antApiKey) => {
+  const isProd = import.meta.env.PROD
+
+  const res = await fetch(url, { headers })
+
+  if (!res.ok && isProd && antApiKey) {
+    console.warn(`Direct fetch blocked (${res.status}), falling back to ScrapingAnt`)
+    const countries = ['JP', 'HK', 'SG']
+    const proxyCountry = countries[Math.floor(Math.random() * countries.length)]
+    const antUrl = new URL('https://api.scrapingant.com/v2/general')
+    antUrl.searchParams.set('url', url)
+    antUrl.searchParams.set('x-api-key', antApiKey)
+    antUrl.searchParams.set('proxy_country', proxyCountry)
+    antUrl.searchParams.set('browser', 'false')
+    return fetch(antUrl.toString())
+  }
+
+  return res
+}
+
+/**
  * Handles fetching series prices from Yuyu-tei.
  * Fetches all pages, combines them, compresses the result, and caches in KV.
  * @param {object} c - Hono context object.
@@ -43,7 +71,7 @@ export const handleGetSeriesPrices = async (c) => {
     }
 
     const kvKey = isPremium ? `premium:${seriesId}` : seriesId
-    const ttl = isPremium ? 3 * 60 * 60 : 7 * 24 * 60 * 60 // 3 hour vs 7 days
+    const ttl = isPremium ? 3 * 60 * 60 : 7 * 24 * 60 * 60 // 3 hours vs 7 days
 
     // 1. Check KV cache
     const cachedData = await c.env.DAILY_SERIES_PRICE_KV.get(kvKey, 'arrayBuffer')
@@ -58,7 +86,6 @@ export const handleGetSeriesPrices = async (c) => {
       c.req.header('UA') ||
       'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
 
-    // 2. Fetch the first page to get pagination info
     const headers = {
       'User-Agent': userAgent,
       'Accept':
@@ -72,7 +99,10 @@ export const handleGetSeriesPrices = async (c) => {
       'Sec-Fetch-User': '?1',
     }
 
-    const firstPageRes = await fetch(yytUrl, { headers })
+    const antApiKey = c.env.SCRAPING_ANT_API_KEY
+
+    // 2. Fetch the first page to get pagination info
+    const firstPageRes = await fetchPage(yytUrl, headers, antApiKey)
     if (!firstPageRes.ok) {
       return createErrorResponse(c, 502, '无法从 Yuyu-tei 获取数据')
     }
@@ -80,7 +110,6 @@ export const handleGetSeriesPrices = async (c) => {
 
     // Find max page from pagination
     // Example: <li class="page-item"> <a ... page=3">3</a></li>
-    // Or simpler: find all page=X and take the max
     const pageMatches = firstPageHtml.match(/page=(\d+)/g)
     let maxPage = 1
     if (pageMatches) {
@@ -90,14 +119,12 @@ export const handleGetSeriesPrices = async (c) => {
 
     const htmls = [firstPageHtml]
 
-    // 3. Fetch subsequent pages if any sequentially with delay
+    // 3. Fetch subsequent pages if any
     if (maxPage > 1) {
       for (let p = 2; p <= maxPage; p++) {
         const pageUrl = `${yytUrl}&page=${p}`
         try {
-          const res = await fetch(pageUrl, {
-            headers,
-          })
+          const res = await fetchPage(pageUrl, headers, antApiKey)
           if (res.ok) {
             const html = await res.text()
             htmls.push(html)
