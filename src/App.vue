@@ -226,7 +226,7 @@
           style="min-width: 0"
           :active-color="isHomeRoute ? 'cyan-accent-2' : undefined"
           :color="isHomeRoute ? 'white' : undefined"
-          class="rounded-pill"
+          class="rounded-pill mx-1"
           :disabled="item.requiresAuth && !authStore.isAuthenticated"
         >
           <v-icon :icon="navIcons[item.icon]" size="32" />
@@ -741,7 +741,7 @@ watch(
 
 .floating-bottom-bar.main-bottom-bar {
   width: fit-content !important;
-  max-width: calc(100% - 32px - 50px - 20px) !important;
+  max-width: calc(100% - 32px - 50px - 10px) !important;
   right: auto !important;
 }
 
@@ -752,7 +752,7 @@ watch(
 }
 
 .floating-bottom-bar {
-  margin: 0 12% 20px 12% !important;
+  margin: 0 9% 20px 9% !important;
   left: 0 !important;
   right: 0 !important;
   bottom: 0 !important;
