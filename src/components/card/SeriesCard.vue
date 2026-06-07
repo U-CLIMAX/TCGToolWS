@@ -1,5 +1,5 @@
 <template>
-  <v-hover v-slot:default="{ isHovering, props }">
+  <v-hover v-slot:default="{ props }">
     <v-card
       v-bind="props"
       class="series-card d-flex flex-column flex-grow-1 overflow-visible"
