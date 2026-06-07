@@ -30,7 +30,7 @@
           <div class="overlay-content pa-2 w-100">
             <div class="text-caption text-white text-truncate mb-1">
               <v-icon size="x-small" class="mr-1" icon="i-mdi:layers-outline" />
-              {{ seriesData.prefixes.join(', ') }}
+              {{ seriesData.prefixes.map((p) => p.replace('[cn]', '')).join(', ') }}
             </div>
             <div class="text-caption text-white">
               {{ seriesData.latestReleaseDate }}
