@@ -24,7 +24,7 @@
     "clipboard-polyfill": "^4.1.1",
     "comlink": "^4.4.2",
     "detect-gpu": "^5.0.70",
-    "dompurify": "^3.4.2",
+    "dompurify": "^3.4.8",
     "epic-spinners": "^2.0.0",
     "flexsearch": "^0.8.212",
     "hono": "^4.12.23",
