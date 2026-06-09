@@ -1,0 +1,44 @@
+{
+  "GA17/S131-130": {
+    "name": "灰の魔女",
+    "product_name": "GA文庫",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "all_cards": [
+      {
+        "id": "GA17/S131-130",
+        "rarity": "PR"
+      },
+      {
+        "id": "GA17/S131-130S",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "GA17/S131-142": {
+    "name": "私の物語 イレイナ",
+    "product_name": "GA文庫",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["GA文庫", "魔法"],
+    "color": "黄色",
+    "effect": "【自】【一回合1次】你其他《GA文庫》的角色从手牌或思出区放置到舞台时，那个回合中，那个角色的战斗力＋1000。<br>【起】集中 [(1) 此卡【横置】] 你将自己卡组顶4张卡放置到休息室。那些卡中每有1张高潮卡，你从自己的休息室选择至多1张角色卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "GA17/S131-142S",
+        "rarity": "PR"
+      }
+    ]
+  }
+}

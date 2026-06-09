@@ -1,0 +1,121 @@
+{
+  "GA17/S131-T15": {
+    "name": "始まりの物語 イレイナ",
+    "product_name": "[TD]GA文庫",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["GA文庫", "魔法"],
+    "color": "蓝色",
+    "effect": "【自】此卡从手牌放置到舞台时或通过「新米魔女 サヤ」的【自】效果放置到舞台时，那个回合中，此卡的战斗力＋3000。<br>【自】【CX联动】[你高潮区的1张「旅の始まり」放置到休息室] 此卡的攻击结束时，你有其他《GA文庫》的角色的话，你可以支付费用。如果这么做的话，你从自己的休息室选择至多2张《GA文庫》的角色卡或「入れ替わり騒動」返回手牌。",
+    "all_cards": [
+      {
+        "id": "GA17/S131-T15",
+        "rarity": "TD"
+      },
+      {
+        "id": "GA17/S131-T15S",
+        "rarity": "TDP"
+      },
+      {
+        "id": "GA17/S131-T15SP",
+        "rarity": "TDSP"
+      }
+    ]
+  },
+  "GA17/S131-T12": {
+    "name": "別々の旅路 アムネシア",
+    "product_name": "[TD]GA文庫",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["GA文庫", "武器"],
+    "color": "蓝色",
+    "effect": "【永】你的费用在3张以下的话，此卡的战斗力＋2000。<br>【自】此卡从舞台放置到休息室时，你将费用洗切。",
+    "all_cards": [
+      {
+        "id": "GA17/S131-T12",
+        "rarity": "TD"
+      },
+      {
+        "id": "GA17/S131-T12S",
+        "rarity": "TDP"
+      }
+    ]
+  },
+  "GA17/S131-T17": {
+    "name": "新米魔女 サヤ",
+    "product_name": "[TD]GA文庫",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["GA文庫", "魔法"],
+    "color": "蓝色",
+    "effect": "【永】你的回合中，你有其他「始まりの物語 イレイナ」的话，此卡的战斗力＋6000。<br>【自】[1张手牌放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你从自己的休息室选择1张「始まりの物語 イレイナ」，放置到舞台任意位置，那个回合中，那个角色的战斗力＋2000。",
+    "all_cards": [
+      {
+        "id": "GA17/S131-T17S",
+        "rarity": "TDP"
+      },
+      {
+        "id": "GA17/S131-T17",
+        "rarity": "TD"
+      }
+    ]
+  },
+  "GA17/S131-T19": {
+    "name": "入れ替わり騒動",
+    "product_name": "[TD]GA文庫",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 0,
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "你看自己卡组顶至多3张卡，选择至多1张《GA文庫》的角色卡展示给对手后加入手牌或放置到库存区，其余的卡放置到休息室。",
+    "all_cards": [
+      {
+        "id": "GA17/S131-T19",
+        "rarity": "TD"
+      },
+      {
+        "id": "GA17/S131-T19S",
+        "rarity": "TDP"
+      }
+    ]
+  },
+  "GA17/S131-T21": {
+    "name": "旅の始まり",
+    "product_name": "[TD]GA文庫",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "GA17/S131-T21",
+        "rarity": "TD"
+      },
+      {
+        "id": "GA17/S131-T21S",
+        "rarity": "TDP"
+      }
+    ]
+  }
+}

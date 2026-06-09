@@ -1,4 +1,29 @@
 const wsSeriesMap = {
+  'GA文库': {
+    id: 'ga',
+    prefixes: [
+      'GA01',
+      'GA02',
+      'GA03',
+      'GA04',
+      'GA05',
+      'GA06',
+      'GA07',
+      'GA08',
+      'GA09',
+      'GA10',
+      'GA11',
+      'GA12',
+      'GA13',
+      'GA14',
+      'GA15',
+      'GA16',
+      'GA17',
+      'GA18',
+      'GA19',
+    ],
+    latestReleaseDate: '2026-06-12',
+  },
   '東方Project': {
     id: 'thp',
     prefixes: ['THP'],
@@ -1039,7 +1064,7 @@ const wsSeriesMap = {
   },
   '哥布林杀手': {
     id: 'gbs',
-    prefixes: ['GBS'],
+    prefixes: ['GBS', 'GA04'],
     latestReleaseDate: '2019-04-19',
     yytUrl: 'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=gbs&rare=&type=&kizu=0',
   },
@@ -1104,7 +1129,7 @@ const wsSeriesMap = {
   },
   '在地下城寻求邂逅是否搞错了什么': {
     id: 'ddm',
-    prefixes: ['DDM'],
+    prefixes: ['DDM', 'GA10'],
     latestReleaseDate: '2021-11-26',
     yytUrl: 'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=ddm&rare=&type=&kizu=0',
   },
