@@ -1,4 +1,4 @@
-import { ref, shallowRef, computed } from 'vue'
+import { ref, reactive, shallowRef, computed } from 'vue'
 import { defineStore } from 'pinia'
 import localforage from 'localforage'
 import { debounceRef } from '@/composables/useDebounceRef'
@@ -15,7 +15,10 @@ export const useUIStore = defineStore(
     // --- State ---
     const version = ref(1)
     const theme = ref('dark')
-    const country = ref(null) // Country will be set by IP Geolocation
+    const geo = reactive({
+      country: null,
+      fetchedAt: null,
+    })
     const isFilterOpen = ref(false)
     const isCardDeckOpen = ref(false)
     const isCardDetailModalOpen = ref(false)
@@ -191,7 +194,7 @@ export const useUIStore = defineStore(
     return {
       version,
       theme,
-      country,
+      geo,
       isFilterOpen,
       isCardDeckOpen,
       isCardDetailModalOpen,
