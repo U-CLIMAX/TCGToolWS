@@ -38,47 +38,20 @@ const fetchWithScraperApi = async (url, tokens) => {
 }
 
 /**
- * Fetch via ScrapingAnt, trying each token until one succeeds.
- * @param {string} url
- * @param {string[]} tokens
- * @returns {Promise<Response|null>} null if all tokens failed
- */
-const fetchWithScrapingAnt = async (url, tokens) => {
-  const countries = ['JP', 'HK', 'SG']
-  for (const token of tokens) {
-    const proxyCountry = countries[Math.floor(Math.random() * countries.length)]
-    const antUrl = new URL('https://api.scrapingant.com/v2/general')
-    antUrl.searchParams.set('url', url)
-    antUrl.searchParams.set('x-api-key', token)
-    antUrl.searchParams.set('proxy_country', proxyCountry)
-    antUrl.searchParams.set('browser', 'false')
-    try {
-      const res = await fetch(antUrl.toString())
-      if (res.ok) return res
-      console.warn(`ScrapingAnt token failed (${res.status}), trying next...`)
-    } catch (err) {
-      console.warn(`ScrapingAnt token error:`, err)
-    }
-  }
-  return null
-}
-
-/**
- * Fetch a page with fallback chain: direct → ScraperAPI → ScrapingAnt
+ * Fetch a page with fallback chain: direct → ScraperAPI
  * @param {string} url
  * @param {object} headers
  * @param {string[]} scraperApiTokens
- * @param {string[]} antTokens
  * @returns {Promise<Response>}
  */
-const fetchPage = async (url, headers, scraperApiTokens, antTokens) => {
+const fetchPage = async (url, headers, scraperApiTokens) => {
   const isProd = import.meta.env.PROD
 
   // 1. Try direct fetch first
   const res = await fetch(url, { headers })
   if (res.ok) return res
 
-  console.warn(`Direct fetch blocked (${res.status}), falling back to proxies...`)
+  console.warn(`Direct fetch blocked (${res.status}), falling back to ScraperAPI...`)
 
   if (!isProd) return res
 
@@ -86,17 +59,10 @@ const fetchPage = async (url, headers, scraperApiTokens, antTokens) => {
   if (scraperApiTokens.length > 0) {
     const scraperApiRes = await fetchWithScraperApi(url, scraperApiTokens)
     if (scraperApiRes) return scraperApiRes
-    console.warn('All ScraperAPI tokens failed, trying ScrapingAnt...')
+    console.warn('All ScraperAPI tokens failed.')
   }
 
-  // 3. Try ScrapingAnt
-  if (antTokens.length > 0) {
-    const antRes = await fetchWithScrapingAnt(url, antTokens)
-    if (antRes) return antRes
-    console.warn('All ScrapingAnt tokens failed.')
-  }
-
-  // 4. All failed, return original failed response
+  // 3. All failed, return original failed response
   return res
 }
 
@@ -170,10 +136,9 @@ export const handleGetSeriesPrices = async (c) => {
     }
 
     const scraperApiTokens = parseTokens(c.env.SCRAPER_API_KEY)
-    const antTokens = parseTokens(c.env.SCRAPING_ANT_API_KEY)
 
     // 2. Fetch the first page to get pagination info
-    const firstPageRes = await fetchPage(yytUrl, headers, scraperApiTokens, antTokens)
+    const firstPageRes = await fetchPage(yytUrl, headers, scraperApiTokens)
     if (!firstPageRes.ok) {
       return createErrorResponse(c, 502, '无法从 Yuyu-tei 获取数据')
     }
@@ -202,7 +167,7 @@ export const handleGetSeriesPrices = async (c) => {
         const results = await Promise.all(
           batch.map(async ({ page, index }) => {
             const pageUrl = `${yytUrl}&page=${page}`
-            const res = await fetchPage(pageUrl, headers, scraperApiTokens, antTokens)
+            const res = await fetchPage(pageUrl, headers, scraperApiTokens)
             if (!res.ok) {
               console.error(`Failed to fetch page ${page}: ${res.status} ${res.statusText}`)
               return { index, html: null }
