@@ -155,31 +155,23 @@ export const handleGetSeriesPrices = async (c) => {
     const htmls = new Array(maxPage)
     htmls[0] = firstPageHtml
 
-    // 3. Fetch subsequent pages with max 3 concurrent requests
+    // 3. Fetch subsequent pages
     if (maxPage > 1) {
-      const CONCURRENCY = 3
-      for (let i = 1; i < maxPage; i += CONCURRENCY) {
-        const batch = []
-        for (let j = i; j < Math.min(i + CONCURRENCY, maxPage); j++) {
-          batch.push({ page: j + 1, index: j })
+      const pagePromises = Array.from({ length: maxPage - 1 }, async (_, i) => {
+        const page = i + 2
+        const pageUrl = `${yytUrl}&page=${page}`
+        const res = await fetchPage(pageUrl, headers, scraperApiTokens)
+        return {
+          index: i + 1,
+          html: res.ok ? await res.text() : null,
         }
+      })
 
-        const results = await Promise.all(
-          batch.map(async ({ page, index }) => {
-            const pageUrl = `${yytUrl}&page=${page}`
-            const res = await fetchPage(pageUrl, headers, scraperApiTokens)
-            if (!res.ok) {
-              console.error(`Failed to fetch page ${page}: ${res.status} ${res.statusText}`)
-              return { index, html: null }
-            }
-            return { index, html: await res.text() }
-          })
-        )
+      const results = await Promise.all(pagePromises)
 
-        for (const { index, html } of results) {
-          if (!html) return createErrorResponse(c, 502, '无法从 Yuyu-tei 获取数据')
-          htmls[index] = html
-        }
+      for (const { index, html } of results) {
+        if (!html) return createErrorResponse(c, 502, '无法从 Yuyu-tei 获取数据')
+        htmls[index] = html
       }
     }
 
