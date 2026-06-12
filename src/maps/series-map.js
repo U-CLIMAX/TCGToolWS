@@ -23,6 +23,7 @@ const wsSeriesMap = {
       'GA19',
     ],
     latestReleaseDate: '2026-06-12',
+    yytUrl: 'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=ga&rare=&type=&kizu=0',
   },
   '東方Project': {
     id: 'thp',
