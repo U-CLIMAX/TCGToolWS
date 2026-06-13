@@ -2,7 +2,7 @@ import { useUIStore } from '@/stores/ui'
 
 const uiStore = useUIStore()
 
-const isCN = uiStore.country === 'CN'
+const isCN = uiStore.geo.country === 'CN'
 const imageBaseUrl = import.meta.env[isCN ? 'VITE_IMAGE_BASE_URL' : 'VITE_IMAGE_GLOBAL_URL']
 const imageBlurUrl = import.meta.env[
   isCN ? 'VITE_BLUR_IMAGE_BASE_URL' : 'VITE_BLUR_IMAGE_GLOBAL_URL'
