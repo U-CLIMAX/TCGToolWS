@@ -103,7 +103,7 @@
 
       <v-divider></v-divider>
 
-      <div class="fill-height overflow-y-auto overflow-x-hidden themed-scrollbar pr-2">
+      <div class="fill-height overflow-y-auto overflow-x-hidden themed-scrollbar pr-sm-2">
         <div
           v-if="Object.keys(deckStore.cardsInDeck).length === 0"
           class="text-center text-disabled mt-8"
