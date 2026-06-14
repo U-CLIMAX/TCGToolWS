@@ -1,70 +1,7 @@
 import { verify } from 'hono/jwt'
 import { createErrorResponse } from './utils.js'
 import { decompressFromEncodedURIComponent } from 'lz-string'
-
-/**
- * Parse comma-separated tokens from env string.
- * @param {string|undefined} envValue
- * @returns {string[]}
- */
-const parseTokens = (envValue) => {
-  if (!envValue) return []
-  return envValue
-    .split(',')
-    .map((t) => t.trim())
-    .filter(Boolean)
-}
-
-/**
- * Fetch via ScraperAPI, trying each token until one succeeds.
- * @param {string} url
- * @param {string[]} tokens
- * @returns {Promise<Response|null>} null if all tokens failed
- */
-const fetchWithScraperApi = async (url, tokens) => {
-  const countries = ['jp', 'hk', 'sg', 'tw']
-  for (const token of tokens) {
-    const countryCode = countries[Math.floor(Math.random() * countries.length)]
-    const scraperUrl = `https://api.scraperapi.com/?api_key=${token}&url=${encodeURIComponent(url)}&country_code=${countryCode}`
-    try {
-      const res = await fetch(scraperUrl)
-      if (res.ok) return res
-      console.warn(`ScraperAPI token failed (${res.status}), trying next...`)
-    } catch (err) {
-      console.warn(`ScraperAPI token error:`, err)
-    }
-  }
-  return null
-}
-
-/**
- * Fetch a page with fallback chain: direct → ScraperAPI
- * @param {string} url
- * @param {object} headers
- * @param {string[]} scraperApiTokens
- * @returns {Promise<Response>}
- */
-const fetchPage = async (url, headers, scraperApiTokens) => {
-  const isProd = import.meta.env.PROD
-
-  // 1. Try direct fetch first
-  const res = await fetch(url, { headers })
-  if (res.ok) return res
-
-  console.warn(`Direct fetch blocked (${res.status}), falling back to ScraperAPI...`)
-
-  if (!isProd) return res
-
-  // 2. Try ScraperAPI
-  if (scraperApiTokens.length > 0) {
-    const scraperApiRes = await fetchWithScraperApi(url, scraperApiTokens)
-    if (scraperApiRes) return scraperApiRes
-    console.warn('All ScraperAPI tokens failed.')
-  }
-
-  // 3. All failed, return original failed response
-  return res
-}
+import { parseTokens, fetchPageWithFallback } from '../services/scraper.js'
 
 /**
  * Handles fetching series prices from Yuyu-tei.
@@ -138,7 +75,8 @@ export const handleGetSeriesPrices = async (c) => {
     const scraperApiTokens = parseTokens(c.env.SCRAPER_API_KEY)
 
     // 2. Fetch the first page to get pagination info
-    const firstPageRes = await fetchPage(yytUrl, headers, scraperApiTokens)
+    const isProd = import.meta.env.PROD
+    const firstPageRes = await fetchPageWithFallback(yytUrl, headers, scraperApiTokens, isProd)
     if (!firstPageRes.ok) {
       return createErrorResponse(c, 502, '无法从 Yuyu-tei 获取数据')
     }
@@ -160,7 +98,8 @@ export const handleGetSeriesPrices = async (c) => {
       const pagePromises = Array.from({ length: maxPage - 1 }, async (_, i) => {
         const page = i + 2
         const pageUrl = `${yytUrl}&page=${page}`
-        const res = await fetchPage(pageUrl, headers, scraperApiTokens)
+        const isProdInLoop = import.meta.env.PROD
+        const res = await fetchPageWithFallback(pageUrl, headers, scraperApiTokens, isProdInLoop)
         return {
           index: i + 1,
           html: res.ok ? await res.text() : null,
