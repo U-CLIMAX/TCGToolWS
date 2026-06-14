@@ -76,7 +76,7 @@ export const handleGetSeriesPrices = async (c) => {
 
     // 2. Fetch the first page to get pagination info
     const isProd = import.meta.env.PROD
-    const firstPageRes = await fetchPageWithFallback(yytUrl, headers, scraperApiTokens, isProd)
+    const firstPageRes = await fetchPageWithFallback(yytUrl, { headers }, scraperApiTokens, isProd)
     if (!firstPageRes.ok) {
       return createErrorResponse(c, 502, '无法从 Yuyu-tei 获取数据')
     }
@@ -99,7 +99,12 @@ export const handleGetSeriesPrices = async (c) => {
         const page = i + 2
         const pageUrl = `${yytUrl}&page=${page}`
         const isProdInLoop = import.meta.env.PROD
-        const res = await fetchPageWithFallback(pageUrl, headers, scraperApiTokens, isProdInLoop)
+        const res = await fetchPageWithFallback(
+          pageUrl,
+          { headers },
+          scraperApiTokens,
+          isProdInLoop
+        )
         return {
           index: i + 1,
           html: res.ok ? await res.text() : null,
