@@ -63,6 +63,16 @@
             <v-fade-transition>
               <v-btn
                 v-if="isHovering || isTouch"
+                icon="i-mdi:content-copy"
+                variant="tonal"
+                size="small"
+                class="copy-card-button"
+                @click="isCopyCardDialogOpen = true"
+              ></v-btn>
+            </v-fade-transition>
+            <v-fade-transition>
+              <v-btn
+                v-if="isHovering || isTouch"
                 icon="i-mdi:download"
                 variant="tonal"
                 size="small"
@@ -271,6 +281,26 @@
 
     <DownloadTextDialog v-model="isDownloadTextDialogOpen" @confirm="executeDownloadText" />
 
+    <!-- Copy Card Option Dialog -->
+    <v-dialog v-model="isCopyCardDialogOpen" max-width="300">
+      <v-card class="rounded-2lg pa-2">
+        <v-card-title class="text-subtitle-1">选择复制版本</v-card-title>
+        <v-list nav density="compact">
+          <v-list-item
+            v-if="card.type !== '高潮卡'"
+            prepend-icon="i-mdi:card-text-outline"
+            title="包含效果文字"
+            @click="handleCopyCard(true)"
+          ></v-list-item>
+          <v-list-item
+            prepend-icon="i-mdi:image-outline"
+            title="原图"
+            @click="handleCopyCard(false)"
+          ></v-list-item>
+        </v-list>
+      </v-card>
+    </v-dialog>
+
     <!-- Download Card Option Dialog -->
     <v-dialog v-model="isDownloadCardDialogOpen" max-width="300">
       <v-card class="rounded-2lg pa-2">
@@ -304,6 +334,7 @@ import { useAuthStore } from '@/stores/auth'
 import { useDeckStore } from '@/stores/deck'
 import { useDownloadStore } from '@/stores/download'
 import { convertElementToPng } from '@/utils/domToImage.js'
+import * as clipboard from 'clipboard-polyfill'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useRoute } from 'vue-router'
 import { useUIStore } from '@/stores/ui'
@@ -349,6 +380,7 @@ const activeFilterStore = computed(() =>
 
 const isDownloadTextDialogOpen = ref(false)
 const isDownloadCardDialogOpen = ref(false)
+const isCopyCardDialogOpen = ref(false)
 
 const showOnTap = ref(false)
 let hideTimeout = null
@@ -664,6 +696,64 @@ const handleDownloadCard = async (withText = true) => {
   }
 }
 
+const copyOriginalImage = async () => {
+  const blob = await new Promise((resolve, reject) => {
+    const img = new Image()
+    img.crossOrigin = 'anonymous'
+    img.onload = () => {
+      const canvas = document.createElement('canvas')
+      canvas.width = img.width
+      canvas.height = img.height
+      canvas.getContext('2d').drawImage(img, 0, 0)
+      canvas.toBlob(
+        (b) => (b ? resolve(b) : reject(new Error('Canvas 转换 Blob 失败'))),
+        'image/png'
+      )
+    }
+    img.onerror = () => reject(new Error('图片加载失败'))
+    img.src = props.imgUrl
+  })
+  await clipboard.write([new clipboard.ClipboardItem({ 'image/png': blob })])
+}
+
+const copyCardWithText = async () => {
+  const exportContainer = buildExportContainer()
+  document.body.appendChild(exportContainer)
+  try {
+    await waitForImages(exportContainer)
+    await waitForRender()
+    const generatedImageResult = await convertElementToPng(
+      'temp-export-container',
+      props.card.id || 'card',
+      2,
+      true,
+      false
+    )
+    const blob = await fetch(generatedImageResult.src).then((r) => r.blob())
+    await clipboard.write([new clipboard.ClipboardItem({ 'image/png': blob })])
+  } finally {
+    document.body.removeChild(exportContainer)
+  }
+}
+
+const handleCopyCard = async (withText = true) => {
+  isCopyCardDialogOpen.value = false
+  uiStore.setLoading(true)
+  try {
+    if (withText) {
+      await copyCardWithText()
+    } else {
+      await copyOriginalImage()
+    }
+    triggerSnackbar('图片已复制', 'success')
+  } catch (error) {
+    console.error('复制卡片失败:', error)
+    triggerSnackbar(`复制失败: ${error.message || '未知错误'}`, 'error')
+  } finally {
+    uiStore.setLoading(false)
+  }
+}
+
 const handleShowNewCard = (payload) => {
   emit('show-new-card', payload)
 }
@@ -737,6 +827,15 @@ const handleSwipeRight = () => {
 }
 
 .download-text-button {
+  position: absolute;
+  bottom: 102px;
+  right: 8px;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.6) !important;
+  color: white !important;
+}
+
+.copy-card-button {
   position: absolute;
   bottom: 55px;
   right: 8px;
