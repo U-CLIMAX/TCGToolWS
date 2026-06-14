@@ -422,7 +422,7 @@ export const handleUpdateGalleryDeckMetadata = async (c) => {
   try {
     const user = c.get('user')
     const { key } = c.req.param()
-    const { tournamentType, participantCount, placement, articleLink } = await c.req.json()
+    const { name, tournamentType, participantCount, placement, articleLink } = await c.req.json()
 
     if (!key) return createErrorResponse(c, 400, '缺少 key')
 
@@ -430,14 +430,16 @@ export const handleUpdateGalleryDeckMetadata = async (c) => {
 
     const info = await c.env.DB.prepare(
       `UPDATE decks_gallery SET
-       tournament_type = ?1,
-       participant_count = ?2,
-       placement = ?3,
-       article_link = ?4,
-       updated_at = ?5
-       WHERE key = ?6 AND user_id = ?7`
+       deck_name = COALESCE(?1, deck_name),
+       tournament_type = ?2,
+       participant_count = ?3,
+       placement = ?4,
+       article_link = ?5,
+       updated_at = ?6
+       WHERE key = ?7 AND user_id = ?8`
     )
       .bind(
+        name || null,
         tournamentType || null,
         participantCount || null,
         placement || null,

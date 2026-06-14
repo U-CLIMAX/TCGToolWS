@@ -410,6 +410,7 @@ const editingDeckKey = ref(null)
 
 const openEditDialog = (deck) => {
   editingDeckKey.value = deck.key
+  shareForm.value.deckName = deck.deck_name || ''
   shareForm.value.includeTournamentInfo = !!deck.tournament_type
   shareForm.value.tournamentType = deck.tournament_type || 'shop'
   shareForm.value.participantCount = deck.participant_count || 'under10'
@@ -424,6 +425,7 @@ const handleConfirmEdit = async (formData) => {
   }
 
   const success = await updateGalleryDeckMetadata(editingDeckKey.value, {
+    name: shareForm.value.deckName,
     tournamentType: shareForm.value.includeTournamentInfo ? shareForm.value.tournamentType : null,
     participantCount: shareForm.value.includeTournamentInfo
       ? shareForm.value.participantCount

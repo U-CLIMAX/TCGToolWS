@@ -3,9 +3,7 @@ import { ref, computed } from 'vue'
 import { useAuthStore } from './auth'
 import { findDeckSeriesId } from '@/utils/findDeckSeriesId'
 import { deckRestrictions } from '@/maps/deck-restrictions'
-import SensitiveWordTool from 'sensitive-word-tool'
-
-const sensitiveWordTool = new SensitiveWordTool({ useDefaultWords: true })
+import { hasSensitiveWords } from '@/utils/sensitiveWords'
 
 export const useDeckStore = defineStore(
   'deck',
@@ -216,8 +214,7 @@ export const useDeckStore = defineStore(
     ) => {
       if (!authStore.token) throw new Error('请先登录')
 
-      const hasSensitiveWord = sensitiveWordTool.verify(name)
-      if (hasSensitiveWord) throw new Error('检测到敏感词！')
+      if (hasSensitiveWords(name)) throw new Error('检测到敏感词！')
 
       const response = await fetch('/api/decks', {
         method: 'POST',
@@ -270,8 +267,7 @@ export const useDeckStore = defineStore(
     ) => {
       if (!authStore.token) throw new Error('请先登录')
 
-      const hasSensitiveWord = sensitiveWordTool.verify(name)
-      if (hasSensitiveWord) throw new Error('检测到敏感词！')
+      if (hasSensitiveWords(name)) throw new Error('检测到敏感词！')
 
       const response = await fetch(`/api/decks/${key}`, {
         method: 'PUT',

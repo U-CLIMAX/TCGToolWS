@@ -29,6 +29,7 @@ export function useDeckExport() {
   // Gallery Sharing State
   const isShareToGalleryDialogVisible = ref(false)
   const shareForm = ref({
+    deckName: '',
     includeTournamentInfo: false,
     tournamentType: 'shop',
     participantCount: 'under10',
@@ -97,7 +98,10 @@ export function useDeckExport() {
     isShareToGalleryDialogVisible.value = true
   }
 
-  const confirmShareToDeckGallery = async (deck, originalCards) => {
+  const confirmShareToDeckGallery = async (deck, originalCards, formData = null) => {
+    if (formData) {
+      Object.assign(shareForm.value, formData)
+    }
     isShareToGalleryDialogVisible.value = false
     uiStore.setLoading(true)
     try {
@@ -131,10 +135,9 @@ export function useDeckExport() {
       const climaxCardsId = Array.from(climaxCardsMap.values()).slice(0, 3)
       const key = generateDeckKey()
       const data = await encodeData(cardsToEncode)
-      console.log(shareForm.value.articleLink)
 
       await deckStore.saveEncodedDeck(key, data, {
-        name: deck.name,
+        name: shareForm.value.deckName || deck.name,
         seriesId: deck.seriesId,
         game_type: deck.game_type,
         coverCardId: deck.coverCardId,

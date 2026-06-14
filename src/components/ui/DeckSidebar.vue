@@ -208,7 +208,7 @@
         <v-text-field
           v-model="deckName"
           label="卡组名称"
-          :counter="10"
+          counter="20"
           maxlength="20"
           variant="outlined"
           density="compact"
@@ -286,7 +286,7 @@
           <v-text-field
             v-model="historyText"
             label="本次更新摘要"
-            :counter="20"
+            counter="20"
             :rules="[
               (v) => !!v || '必须填写摘要',
               (v) => (v && v.length <= 20) || '摘要不能超过20个字',

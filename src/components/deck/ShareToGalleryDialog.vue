@@ -12,6 +12,16 @@
 
       <v-card-text class="pb-2">
         <v-text-field
+          v-model="localForm.deckName"
+          label="卡组名称"
+          variant="outlined"
+          density="compact"
+          class="mb-4"
+          :rules="[deckNameRule]"
+          hide-details="auto"
+        ></v-text-field>
+
+        <v-text-field
           v-model="localForm.articleLink"
           label="Bilibili文章/视频 (可选)"
           placeholder="https://www.bilibili.com/..."
@@ -75,7 +85,7 @@
           variant="tonal"
           :text="isEdit ? '确认修改' : '确认分享'"
           @click="handleConfirm"
-          :disabled="!isFormValid"
+          :disabled="!localForm.deckName.trim() || !isFormValid || !isFormChanged"
         ></v-btn>
       </v-card-actions>
     </v-card>
@@ -83,7 +93,10 @@
 </template>
 
 <script setup>
-import { computed, reactive, onMounted } from 'vue'
+import { computed, reactive, onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
+import { useSnackbar } from '@/composables/useSnackbar'
+import { hasSensitiveWords } from '@/utils/sensitiveWords'
 
 const props = defineProps({
   modelValue: Boolean,
@@ -99,7 +112,11 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue', 'confirm'])
 
+const { triggerSnackbar } = useSnackbar()
+const route = useRoute()
+
 const localForm = reactive({
+  deckName: '',
   articleLink: '',
   includeTournamentInfo: false,
   tournamentType: 'shop',
@@ -107,8 +124,16 @@ const localForm = reactive({
   placement: 'champion',
 })
 
+const initialFormSnapshot = ref('')
+
 onMounted(() => {
   Object.assign(localForm, props.form)
+  initialFormSnapshot.value = JSON.stringify(localForm)
+})
+
+const isFormChanged = computed(() => {
+  if (route.name == 'DeckDetail') return true
+  return JSON.stringify(localForm) !== initialFormSnapshot.value
 })
 
 const tournamentTypeOptions = [
@@ -137,19 +162,27 @@ const placementOptions = computed(() => {
   return base
 })
 
+const deckNameRule = (v) => {
+  if (v.length > 20) return '卡组名称不能超过20个字'
+  return true
+}
+
 const articleLinkRule = (v) => {
   if (!v) return true
   return v.startsWith('https://www.bilibili.com/') || '必须包含 https://www.bilibili.com/'
 }
 
 const isFormValid = computed(() => {
-  if (localForm.articleLink && !localForm.articleLink.startsWith('https://www.bilibili.com/')) {
-    return false
-  }
-  return true
+  return (
+    deckNameRule(localForm.deckName) === true && articleLinkRule(localForm.articleLink) === true
+  )
 })
 
 const handleConfirm = () => {
+  if (hasSensitiveWords(localForm.deckName)) {
+    triggerSnackbar('检测到敏感词！', 'error')
+    return
+  }
   emit('confirm', { ...localForm })
 }
 </script>

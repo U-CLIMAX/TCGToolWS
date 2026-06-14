@@ -203,6 +203,7 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
     if (index !== -1) {
       decks.value[index] = {
         ...decks.value[index],
+        deck_name: metadata.name || decks.value[index].deck_name,
         tournament_type: metadata.tournamentType,
         participant_count: metadata.participantCount,
         placement: metadata.placement,

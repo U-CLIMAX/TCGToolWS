@@ -599,12 +599,12 @@ const initializePrices = async (cardsToUse = null) => {
 const isDataReady = ref(false)
 
 const handleShareCard = () => baseHandleShareCard(deckKey, isLocalDeck.value)
-const handleShareToDeckGallery = () => baseHandleShareToDeckGallery(deck.value, originalCards.value)
-const confirmShareToDeckGallery = (formData) => {
-  if (formData) {
-    Object.assign(shareForm.value, formData)
-  }
-  baseConfirmShareToDeckGallery(deck.value, originalCards.value)
+const handleShareToDeckGallery = () => {
+  shareForm.value.deckName = deck.value?.name || ''
+  baseHandleShareToDeckGallery(deck.value, originalCards.value)
+}
+const confirmShareToDeckGallery = async (formData) => {
+  await baseConfirmShareToDeckGallery(deck.value, originalCards.value, formData)
 }
 const handleCopyDeckKey = () => baseHandleCopyDeckKey(deckKey, isLocalDeck.value)
 
