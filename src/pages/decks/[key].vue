@@ -476,6 +476,29 @@
       :form="shareForm"
       @confirm="confirmShareToDeckGallery"
     />
+
+    <!-- 分享成功跳转确认 -->
+    <v-dialog v-model="isGoToGalleryDialogVisible" max-width="400">
+      <v-card class="rounded-2lg pa-2">
+        <template #prepend>
+          <v-icon color="success" icon="i-mdi:check-circle-outline" />
+          <v-card-title class="text-success pl-2"> 分享成功 </v-card-title>
+        </template>
+        <v-card-text class="text-body-2 text-medium-emphasis">
+          卡组已成功分享！是否现在前往卡组广场查看？
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn text="留在本页" @click="isGoToGalleryDialogVisible = false"></v-btn>
+          <v-btn
+            color="primary"
+            variant="tonal"
+            text="前往查看"
+            @click="router.push({ name: 'DecksGallery' })"
+          ></v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -550,6 +573,7 @@ const deck = ref(null)
 const cards = ref({})
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 const isConfirmEditDialogVisible = ref(false)
+const isGoToGalleryDialogVisible = ref(false)
 const isTextModalVisible = ref(false)
 const modalTextContent = ref('')
 
@@ -604,7 +628,10 @@ const handleShareToDeckGallery = () => {
   baseHandleShareToDeckGallery(deck.value, originalCards.value)
 }
 const confirmShareToDeckGallery = async (formData) => {
-  await baseConfirmShareToDeckGallery(deck.value, originalCards.value, formData)
+  const success = await baseConfirmShareToDeckGallery(deck.value, originalCards.value, formData)
+  if (success) {
+    isGoToGalleryDialogVisible.value = true
+  }
 }
 const handleCopyDeckKey = () => baseHandleCopyDeckKey(deckKey, isLocalDeck.value)
 

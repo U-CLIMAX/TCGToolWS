@@ -153,9 +153,11 @@ export function useDeckExport() {
         articleLink: shareForm.value.articleLink || null,
       })
       triggerSnackbar('已成功分享到卡组广场！', 'success')
+      return true
     } catch (error) {
       console.error('❌ 分享失败:', error)
       triggerSnackbar(error.message || '分享失败', 'error')
+      return false
     } finally {
       uiStore.setLoading(false)
     }
