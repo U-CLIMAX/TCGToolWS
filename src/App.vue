@@ -254,7 +254,9 @@
             :active-color="isHomeRoute ? 'cyan-accent-2' : undefined"
             :color="isHomeRoute ? 'white' : undefined"
           >
-            <v-icon :icon="navIcons['toolbox.svg']" size="32" />
+            <v-badge :model-value="noticeStore.hasNew" color="error" dot offset-x="2" offset-y="2">
+              <v-icon :icon="navIcons['toolbox.svg']" size="32" />
+            </v-badge>
           </v-btn>
         </template>
         <v-list
