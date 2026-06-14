@@ -347,7 +347,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="grey" variant="text" @click="addKeywordDialog = false">取消</v-btn>
-          <v-btn color="primary" variant="text" @click="saveNewKeyword">保存</v-btn>
+          <v-btn color="primary" variant="tonal" @click="saveNewKeyword">保存</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
