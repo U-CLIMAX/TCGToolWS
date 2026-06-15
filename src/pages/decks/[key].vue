@@ -724,7 +724,6 @@ onMounted(async () => {
         history: await decodeData(toRaw(deckStore.savedDecks[deckKey].history)),
       }
       initialCards = deck.value.deckData
-      console.log(deck.value)
     }
 
     cards.value = Object.values(initialCards).reduce((acc, card) => {
@@ -752,6 +751,20 @@ onMounted(async () => {
       )
       // 過濾掉 null 值
       originalCards.value = originalCards.value.filter(Boolean)
+
+      // 根據 baseId 把 name/type/rarity 補入 cards
+      const originalCardByBaseId = new Map(
+        originalCards.value.map((c) => [c.id.replace(/[A-Za-z]+$/, ''), c])
+      )
+      Object.values(cards.value).forEach((card) => {
+        const original = originalCardByBaseId.get(card.baseId)
+        if (original) {
+          card.name = original.name
+          card.type = original.type
+          card.rarity = original.rarity
+        }
+      })
+      console.log('Loaded deck with cards:', cards.value)
     } else {
       originalCards.value = []
     }

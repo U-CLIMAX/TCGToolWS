@@ -102,6 +102,7 @@ export default defineConfig({
           groups: [
             { name: 'lottie', test: /\/lottie-web\//, priority: 30 },
             { name: 'ui', test: /\/vuetify\//, priority: 20 },
+            { name: 'excelts', test: /\/@cj-tech-master\/excelts\//, priority: 15 },
             { name: 'vendor', test: /\/vue(?:-router)?\//, priority: 10 },
           ],
         },
