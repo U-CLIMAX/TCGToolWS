@@ -416,6 +416,7 @@
               <v-list-item-subtitle class="text-caption">
                 {{
                   new Date(item.time).toLocaleString(undefined, {
+                    year: 'numeric',
                     month: 'short',
                     day: 'numeric',
                     hour: '2-digit',
