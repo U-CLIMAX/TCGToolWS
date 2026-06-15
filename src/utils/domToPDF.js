@@ -1,4 +1,4 @@
-import { jsPDF } from 'jspdf'
+import { PdfDocumentBuilder } from '@cj-tech-master/excelts/pdf'
 import { snapdom } from '@zumer/snapdom'
 import { formatEffectToHtml } from './cardEffectFormatter'
 import { sortCards } from './cardsSort.js'
@@ -66,7 +66,7 @@ export const convertDeckToPDF = async (cards, name, language) => {
   document.body.appendChild(container)
 
   try {
-    const pdf = new jsPDF('p', 'pt', 'a4')
+    const doc = new PdfDocumentBuilder()
     const cardsPerPage = PAGE_OPTS.cols * PAGE_OPTS.rows
     const totalPages = Math.ceil(flatCards.length / cardsPerPage)
 
@@ -95,19 +95,37 @@ export const convertDeckToPDF = async (cards, name, language) => {
       await new Promise((r) => setTimeout(r, 100))
       await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)))
 
-      const imgData = await snapdom.toJpg(container, {
+      const blob = await snapdom.toBlob(container, {
+        type: 'jpeg',
         width: PAGE_OPTS.w,
         height: PAGE_OPTS.h,
         dpr: 1,
         quality: 0.6,
         scale: 2,
       })
-      if (i > 0) pdf.addPage()
-      pdf.addImage(imgData, 'JPG', 0, 0, PAGE_OPTS.w, PAGE_OPTS.h)
+      const arrayBuffer = await blob.arrayBuffer()
+      const bytes = new Uint8Array(arrayBuffer)
+
+      const page = doc.addPage({ width: PAGE_OPTS.w, height: PAGE_OPTS.h })
+      page.drawImage({
+        data: bytes,
+        format: 'jpeg',
+        x: 0,
+        y: 0,
+        width: PAGE_OPTS.w,
+        height: PAGE_OPTS.h,
+      })
     }
 
+    const pdfBytes = await doc.build()
     const deckName = normalizeFileName(name)
-    pdf.save(`${deckName || 'deck'}_${language}.pdf`)
+    const blob = new Blob([pdfBytes], { type: 'application/pdf' })
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = `${deckName || 'deck'}_${language}.pdf`
+    link.click()
+    URL.revokeObjectURL(url)
   } catch (e) {
     console.error('PDF conversion failed:', e)
   } finally {
