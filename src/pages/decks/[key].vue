@@ -104,24 +104,12 @@
                 v-if="isViewingHistory && viewingHistoryIndex !== null"
                 class="d-flex align-center justify-center gap-2"
               >
-                <h1
-                  class="text-h6 text-sm-h5 text-center px-2 text-warning"
-                  :class="{ 'text-truncate flex-grow-1': smAndUp, 'flex-shrink-0': !smAndUp }"
-                  v-tooltip:bottom="{
-                    text: history[viewingHistoryIndex - 1].text,
-                    openOnClick: true,
-                  }"
-                >
-                  <span>
-                    {{ /#(\d+)/.exec(history[viewingHistoryIndex - 1].text)?.[0] || '#?' }}
-                  </span>
-                </h1>
                 <v-btn
                   size="small"
                   color="warning"
                   variant="tonal"
                   @click="exitHistoryView"
-                  class="rounded-pill flex-shrink-0"
+                  class="rounded-pill flex-shrink-0 ml-2"
                 >
                   退出
                 </v-btn>
