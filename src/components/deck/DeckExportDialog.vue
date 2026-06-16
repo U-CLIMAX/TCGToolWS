@@ -17,14 +17,11 @@
       </v-card-title>
 
       <v-card-text class="pt-0 flex-grow-1 d-flex flex-column themed-scrollbar">
-        <div class="d-flex mb-5 flex-shrink-0">
-          <v-btn
-            color="primary"
-            class="mw-200"
-            prepend-icon="i-mdi:image-outline"
-            @click="onGenerateImage"
-            elevation="0"
-          >
+        <div class="d-flex mb-3 flex-shrink-0 align-center">
+          <v-btn variant="tonal" class="mw-200 rounded-pill" @click="onGenerateImage" elevation="0">
+            <template #prepend>
+              <v-icon icon="i-mdi:image-outline" color="blue"></v-icon>
+            </template>
             生成图片
           </v-btn>
 
@@ -34,25 +31,28 @@
             mandatory
             color="primary"
             variant="outlined"
-            class="ml-2 flex-grow-1"
+            class="ml-2 flex-grow-1 rounded-pill"
           >
-            <v-btn value="u_climax" class="flex-grow-1">U CLIMAX</v-btn>
-            <v-btn value="tts" class="flex-grow-1">TTS</v-btn>
+            <v-btn value="u_climax" class="w-50">
+              {{ smAndUp ? 'U CLIMAX' : 'UCX' }}
+            </v-btn>
+            <v-btn value="tts" class="w-50">TTS</v-btn>
           </v-btn-toggle>
-        </div>
 
-        <div v-if="selectedImageMode === 'u_climax' && !isLocalDeck" class="mb-4 mt-n4">
-          <v-checkbox
+          <v-checkbox-btn
+            v-if="selectedImageMode === 'u_climax' && !isLocalDeck"
             v-model="includeQrCode"
-            label="添加二维码"
-            hide-details
             density="compact"
             color="primary"
-          ></v-checkbox>
-          <v-divider></v-divider>
+            class="ml-2 flex-shrink-0"
+          >
+            <template #label>
+              <v-icon icon="i-mdi:qrcode" />
+            </template>
+          </v-checkbox-btn>
         </div>
 
-        <div v-if="generatedImageResult" class="mb-5 flex-shrink-0">
+        <div v-if="generatedImageResult" class="mb-3 flex-shrink-0">
           <v-img
             :src="generatedImageResult.src"
             class="mb-2 border rounded"
@@ -64,7 +64,7 @@
               color="secondary"
               prepend-icon="i-mdi:download"
               variant="tonal"
-              class="flex-grow-1 mr-2"
+              class="flex-grow-1 mr-2 rounded-lg"
               @click="handleDownloadResult"
             >
               下载
@@ -73,22 +73,20 @@
               color="secondary"
               prepend-icon="i-mdi:content-copy"
               variant="tonal"
-              class="flex-grow-1"
+              class="flex-grow-1 rounded-lg"
               @click="handleCopyResult"
             >
               复制
             </v-btn>
           </div>
+          <v-divider class="mt-3"></v-divider>
         </div>
 
-        <div class="d-flex mb-5 flex-shrink-0">
-          <v-btn
-            color="primary"
-            class="mw-200"
-            prepend-icon="i-mdi:file-pdf-box"
-            @click="onDownloadPDF"
-            elevation="0"
-          >
+        <div class="d-flex mb-3 flex-shrink-0">
+          <v-btn variant="tonal" class="mw-200 rounded-pill" @click="onDownloadPDF" elevation="0">
+            <template #prepend>
+              <v-icon icon="i-mdi:file-pdf-box" color="red" />
+            </template>
             下载PDF
           </v-btn>
 
@@ -98,25 +96,27 @@
             mandatory
             color="primary"
             variant="outlined"
-            class="ml-2 flex-grow-1"
+            class="ml-2 flex-grow-1 rounded-pill"
           >
-            <v-btn value="jp" class="flex-grow-1">日</v-btn>
-            <v-btn value="zh" class="flex-grow-1">中</v-btn>
+            <v-btn value="jp" class="w-50">日</v-btn>
+            <v-btn value="zh" class="w-50">中</v-btn>
           </v-btn-toggle>
         </div>
 
-        <div class="d-flex mb-5 flex-shrink-0">
+        <div class="d-flex mb-3 flex-shrink-0">
           <v-tooltip :text="excelTooltip" :disabled="canExportExcel" location="bottom">
             <template #activator="{ props: tooltipProps }">
               <div v-bind="tooltipProps" class="flex-grow-1 d-flex">
                 <v-btn
-                  color="primary"
-                  class="mw-200"
-                  prepend-icon="i-mdi:table"
+                  variant="tonal"
+                  class="mw-200 rounded-pill"
                   @click="onDownloadCardList"
                   :disabled="!canExportExcel"
                   elevation="0"
                 >
+                  <template #prepend>
+                    <v-icon icon="i-mdi:table" color="green" />
+                  </template>
                   下载卡表
                 </v-btn>
 
@@ -126,11 +126,11 @@
                   mandatory
                   color="primary"
                   variant="outlined"
-                  class="ml-2 flex-grow-1"
+                  class="ml-2 flex-grow-1 rounded-pill"
                   :disabled="!canExportExcel"
                 >
-                  <v-btn value="excel" class="flex-grow-1">EXCEL</v-btn>
-                  <v-btn value="pdf" class="flex-grow-1">PDF</v-btn>
+                  <v-btn value="excel" class="w-50">EXCEL</v-btn>
+                  <v-btn value="pdf" class="w-50">PDF</v-btn>
                 </v-btn-toggle>
               </div>
             </template>
