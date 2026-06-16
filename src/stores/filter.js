@@ -160,7 +160,7 @@ export const useFilterStore = defineStore('filter', () => {
           fetchQueue.push(path)
         })
 
-        processFetchQueue()
+        await processFetchQueue()
       }
 
       const fetchTasks = dataFilePaths.map((path) => {
