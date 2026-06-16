@@ -103,7 +103,7 @@
                 @click="handleUploadClick"
                 prepend-icon="i-mdi:image"
                 variant="tonal"
-                class="flex-grow-1"
+                class="flex-grow-1 rounded-lg"
               >
                 {{ uiStore.backgroundImage ? '更换图片' : '上传图片' }}
               </v-btn>
@@ -112,7 +112,7 @@
                 @click="clearBackground"
                 color="error"
                 variant="tonal"
-                class="flex-grow-0"
+                class="flex-grow-0 rounded-lg"
               >
                 <v-icon icon="i-mdi:trash-can" />
               </v-btn>
@@ -171,7 +171,7 @@
             </div>
           </template>
 
-          <v-divider />
+          <v-divider class="mt-2" />
 
           <v-list-item>
             <v-list-item-title class="mt-4 pb-1">数据管理</v-list-item-title>
@@ -210,6 +210,7 @@
                 @click="handleClearPriceCache"
                 :loading="isClearingCache"
                 :disabled="!clearSeriesId"
+                class="rounded-lg"
               >
                 清空该系列缓存
               </v-btn>
