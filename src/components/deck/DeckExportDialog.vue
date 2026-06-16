@@ -342,16 +342,18 @@ const generateWorkbook = async () => {
     let prevId = null
     let prevName = null
     for (const row of rows) {
-      let displayId = row.id
+      const cleanId =
+        typeof row.id === 'string' && row.id.endsWith('_') ? row.id.slice(0, -1) : row.id
+      let displayId = cleanId
       let displayName = row.name
-      if (row.id === prevId) {
+      if (cleanId === prevId) {
         displayId = '〃'
         displayName = '〃'
       } else if (row.name === prevName) {
         displayName = '〃'
       }
       result.push({ id: displayId, rarity: row.rarity, name: displayName })
-      prevId = row.id
+      prevId = cleanId
       prevName = row.name
     }
     return result
