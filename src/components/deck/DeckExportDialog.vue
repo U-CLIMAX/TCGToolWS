@@ -103,40 +103,6 @@
           </v-btn-toggle>
         </div>
 
-        <div class="d-flex mb-4 flex-shrink-0">
-          <v-tooltip :text="excelTooltip" :disabled="canExportExcel" location="bottom">
-            <template #activator="{ props: tooltipProps }">
-              <div v-bind="tooltipProps" class="flex-grow-1 d-flex">
-                <v-btn
-                  variant="tonal"
-                  class="mw-200 rounded-pill"
-                  @click="onDownloadCardForm"
-                  :disabled="!canExportExcel"
-                  elevation="0"
-                >
-                  <template #prepend>
-                    <v-icon icon="i-mdi:table" color="green" />
-                  </template>
-                  下载卡表
-                </v-btn>
-
-                <v-btn-toggle
-                  density="compact"
-                  v-model="selectedExportFormat"
-                  mandatory
-                  color="primary"
-                  variant="outlined"
-                  class="ml-2 flex-grow-1 rounded-pill"
-                  :disabled="!canExportExcel"
-                >
-                  <v-btn value="excel" class="w-50">EXCEL</v-btn>
-                  <v-btn value="pdf" class="w-50">PDF</v-btn>
-                </v-btn-toggle>
-              </div>
-            </template>
-          </v-tooltip>
-        </div>
-
         <div class="position-relative flex-grow-1 d-flex flex-column">
           <v-textarea
             label="卡组 txt"
@@ -164,19 +130,13 @@
 
 <script setup>
 import { computed, ref } from 'vue'
-import { Workbook, excelToPdf } from '@cj-tech-master/excelts'
 import { useRoute } from 'vue-router'
 import { useDisplay } from 'vuetify'
-import localforage from 'localforage'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { sortCards } from '@/utils/cardsSort.js'
 import { normalizeFileName } from '@/utils/sanitizeFilename'
-import collator from '@/utils/collator'
 import { useUIStore } from '@/stores/ui'
 import * as clipboard from 'clipboard-polyfill'
-
-import templateUrl from '@/assets/form/ws_cn.xlsx?url'
-import fontUrl from '@/assets/styles/fonts/NotoSansSC-Light.ttf?url'
 
 const props = defineProps({
   modelValue: {
@@ -224,24 +184,6 @@ const deckBaseIds = computed(() => {
     }
   })
   return allBaseIds.join('\n')
-})
-
-const totalCardCount = computed(() =>
-  Object.values(props.cards).reduce((sum, c) => sum + (c.quantity || 0), 0)
-)
-
-const climaxCardCount = computed(() =>
-  Object.values(props.cards)
-    .filter((c) => c.type === '高潮卡')
-    .reduce((sum, c) => sum + (c.quantity || 0), 0)
-)
-
-const canExportExcel = computed(() => totalCardCount.value === 50 && climaxCardCount.value === 8)
-
-const excelTooltip = computed(() => {
-  if (totalCardCount.value !== 50) return `卡组须恰好50张（当前${totalCardCount.value}张）`
-  if (climaxCardCount.value !== 8) return `高潮卡须恰好8张（当前${climaxCardCount.value}张）`
-  return ''
 })
 
 const handleDeckTxtList = async () => {
@@ -306,211 +248,5 @@ const handleCopyResult = async () => {
 
 const onDownloadPDF = () => {
   emit('download-pdf', selectedLanguage.value)
-}
-
-const generateWorkbook = async () => {
-  const response = await fetch(templateUrl)
-  const arrayBuffer = await response.arrayBuffer()
-
-  const wb = new Workbook()
-  await wb.xlsx.load(arrayBuffer)
-  const ws = wb.worksheets[0]
-
-  // 分离普通卡和高潮卡，各自按卡名排序
-  const sortByName = (a, b) => collator.compare(a.name || '', b.name || '')
-  const normalCards = Object.values(props.cards)
-    .filter((c) => c.type !== '高潮卡')
-    .sort(sortByName)
-  const climaxCards = Object.values(props.cards)
-    .filter((c) => c.type === '高潮卡')
-    .sort(sortByName)
-
-  // 按 quantity 展开成行
-  const expandCards = (cardList) => {
-    const rows = []
-    for (const card of cardList) {
-      let cleanedId = card.id
-      if (typeof cleanedId === 'string' && cleanedId.endsWith('_')) {
-        cleanedId = cleanedId.slice(0, -1)
-      }
-
-      let cleanedRarity = card.rarity || ''
-      if (typeof cleanedRarity === 'string') {
-        cleanedRarity = cleanedRarity.replace(/[⁂⁑＊]/g, '')
-      }
-
-      for (let i = 0; i < card.quantity; i++) {
-        rows.push({ id: cleanedId, rarity: cleanedRarity, name: card.name || '' })
-      }
-    }
-    return rows
-  }
-
-  // 应用「〃」省略规则（与前一行比较）
-  const applyDitto = (rows) => {
-    const result = []
-    let prevId = null
-    let prevName = null
-    for (const row of rows) {
-      let displayId = row.id
-      let displayName = row.name
-      if (row.id === prevId) {
-        displayId = '〃'
-        displayName = '〃'
-      } else if (row.name === prevName) {
-        displayName = '〃'
-      }
-      result.push({ id: displayId, rarity: row.rarity, name: displayName })
-      prevId = row.id
-      prevName = row.name
-    }
-    return result
-  }
-
-  const processedNormal = applyDitto(expandCards(normalCards))
-  const processedClimax = applyDitto(expandCards(climaxCards))
-
-  // 写入单元格辅助函数（使用 1-indexed 行列）
-  const setCell = (row, col, value) => {
-    const cell = ws.getCell(row, col)
-    cell.value = value
-    cell.font = { ...cell.font, size: 9 }
-    cell.alignment = { ...cell.alignment, wrapText: true, vertical: 'middle' }
-  }
-
-  // 普通卡写入：
-  //   槽 0-24  → B(2)C(3)D(4)，row 14-38
-  //   槽 25-41 → F(6)G(7)H(8)，row 14-30
-  processedNormal.forEach((row, idx) => {
-    let r, cId, cRarity, cName
-    if (idx < 25) {
-      r = 14 + idx
-      cId = 2
-      cRarity = 3
-      cName = 4
-    } else {
-      r = 14 + (idx - 25)
-      cId = 6
-      cRarity = 7
-      cName = 8
-    }
-    setCell(r, cId, row.id)
-    setCell(r, cRarity, row.rarity)
-    setCell(r, cName, row.name)
-  })
-
-  // 高潮卡写入：F31:H38（row 31-38，col 6,7,9）
-  processedClimax.forEach((row, idx) => {
-    const r = 31 + idx
-    setCell(r, 6, row.id)
-    setCell(r, 7, row.rarity)
-    setCell(r, 9, row.name)
-  })
-
-  // 僅對 A42 包含同意書條款的格子進行換列折行處理
-  const cellA42 = ws.getCell(42, 1)
-  if (cellA42 && typeof cellA42.value === 'string') {
-    cellA42.value = cellA42.value.replace('在BUSHIROAD', '在\nBUSHIROAD')
-    cellA42.alignment = { ...cellA42.alignment, wrapText: true }
-  }
-
-  return wb
-}
-
-const exportExcel = async () => {
-  try {
-    const wb = await generateWorkbook()
-    const filename = normalizeFileName(props.deckName) || 'deck'
-    const buffer = await wb.xlsx.writeBuffer()
-    const blob = new Blob([buffer], {
-      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-    })
-    const url = URL.createObjectURL(blob)
-    const link = document.createElement('a')
-    link.href = url
-    link.download = `${filename}_卡组登记表.xlsx`
-    link.click()
-    URL.revokeObjectURL(url)
-    triggerSnackbar('Excel 卡表已匯出', 'success')
-  } catch (error) {
-    console.error('Export Excel failed', error)
-    triggerSnackbar('Excel 匯出失敗', 'error')
-  }
-}
-
-const FONT_KEY = 'pdf_font'
-
-const getPdfFont = async () => {
-  try {
-    const cached = await localforage.getItem(FONT_KEY)
-    if (cached instanceof Uint8Array) {
-      return cached
-    }
-  } catch (e) {
-    console.warn('Failed to read font cache:', e)
-  }
-
-  const response = await fetch(fontUrl)
-  if (!response.ok) throw new Error('Failed to load PDF font')
-  const buffer = await response.arrayBuffer()
-  const bytes = new Uint8Array(buffer)
-
-  try {
-    await localforage.setItem(FONT_KEY, bytes)
-  } catch (e) {
-    console.warn('Failed to write font cache:', e)
-  }
-  return bytes
-}
-
-const exportPDF = async () => {
-  try {
-    const wb = await generateWorkbook()
-
-    let fontBytes = null
-    try {
-      // Check cache first or download from local assets
-      const cached = await localforage.getItem(FONT_KEY)
-      if (cached instanceof Uint8Array) {
-        fontBytes = cached
-      } else {
-        triggerSnackbar('正在載入字型，首次匯出約需 5~10 秒，請稍候...', 'info')
-        fontBytes = await getPdfFont()
-      }
-    } catch (fontErr) {
-      console.error('Failed to get CJK font from local assets:', fontErr)
-      triggerSnackbar('載入字型失敗，部分字元可能無法正常顯示', 'warning')
-    }
-
-    const pdfBytes = await excelToPdf(wb, {
-      font: fontBytes || undefined,
-      fitToPage: true,
-      pageSize: 'A4',
-      orientation: 'portrait',
-    })
-
-    const filename = normalizeFileName(props.deckName) || 'deck'
-    const blob = new Blob([pdfBytes], { type: 'application/pdf' })
-    const url = URL.createObjectURL(blob)
-    const link = document.createElement('a')
-    link.href = url
-    link.download = `${filename}_卡组登记表.pdf`
-    link.click()
-    URL.revokeObjectURL(url)
-    triggerSnackbar('PDF 卡表已匯出', 'success')
-  } catch (error) {
-    console.error('Export PDF failed', error)
-    triggerSnackbar('PDF 匯出失敗', 'error')
-  }
-}
-
-const onDownloadCardForm = async () => {
-  uiStore.setLoading(true)
-  if (selectedExportFormat.value === 'pdf') {
-    await exportPDF()
-  } else {
-    await exportExcel()
-  }
-  uiStore.setLoading(false)
 }
 </script>
