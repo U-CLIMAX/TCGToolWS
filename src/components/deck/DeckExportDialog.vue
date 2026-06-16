@@ -428,7 +428,7 @@ const exportExcel = async () => {
   }
 }
 
-const FONT_KEY = 'tcgtool_pdf_font'
+const FONT_KEY = 'pdf_font'
 
 const getPdfFont = async () => {
   try {
