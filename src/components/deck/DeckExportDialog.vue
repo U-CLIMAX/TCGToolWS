@@ -110,7 +110,7 @@
                 <v-btn
                   variant="tonal"
                   class="mw-200 rounded-pill"
-                  @click="onDownloadCardList"
+                  @click="onDownloadCardForm"
                   :disabled="!canExportExcel"
                   elevation="0"
                 >
@@ -168,15 +168,15 @@ import { Workbook, excelToPdf } from '@cj-tech-master/excelts'
 import { useRoute } from 'vue-router'
 import { useDisplay } from 'vuetify'
 import localforage from 'localforage'
-
-import templateUrl from '@/assets/form/ws_cn.xlsx?url'
-import fontUrl from '@/assets/styles/fonts/NotoSansSC-Light.ttf?url'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { sortCards } from '@/utils/cardsSort.js'
 import { normalizeFileName } from '@/utils/sanitizeFilename'
 import collator from '@/utils/collator'
 import { useUIStore } from '@/stores/ui'
 import * as clipboard from 'clipboard-polyfill'
+
+import templateUrl from '@/assets/form/ws_cn.xlsx?url'
+import fontUrl from '@/assets/styles/fonts/NotoSansSC-Light.ttf?url'
 
 const props = defineProps({
   modelValue: {
@@ -329,8 +329,18 @@ const generateWorkbook = async () => {
   const expandCards = (cardList) => {
     const rows = []
     for (const card of cardList) {
+      let cleanedId = card.id
+      if (typeof cleanedId === 'string' && cleanedId.endsWith('_')) {
+        cleanedId = cleanedId.slice(0, -1)
+      }
+
+      let cleanedRarity = card.rarity || ''
+      if (typeof cleanedRarity === 'string') {
+        cleanedRarity = cleanedRarity.replace(/[⁂⁑＊]/g, '')
+      }
+
       for (let i = 0; i < card.quantity; i++) {
-        rows.push({ id: card.id, rarity: card.rarity || '', name: card.name || '' })
+        rows.push({ id: cleanedId, rarity: cleanedRarity, name: card.name || '' })
       }
     }
     return rows
@@ -342,18 +352,16 @@ const generateWorkbook = async () => {
     let prevId = null
     let prevName = null
     for (const row of rows) {
-      const cleanId =
-        typeof row.id === 'string' && row.id.endsWith('_') ? row.id.slice(0, -1) : row.id
-      let displayId = cleanId
+      let displayId = row.id
       let displayName = row.name
-      if (cleanId === prevId) {
+      if (row.id === prevId) {
         displayId = '〃'
         displayName = '〃'
       } else if (row.name === prevName) {
         displayName = '〃'
       }
       result.push({ id: displayId, rarity: row.rarity, name: displayName })
-      prevId = cleanId
+      prevId = row.id
       prevName = row.name
     }
     return result
@@ -496,7 +504,7 @@ const exportPDF = async () => {
   }
 }
 
-const onDownloadCardList = async () => {
+const onDownloadCardForm = async () => {
   uiStore.setLoading(true)
   if (selectedExportFormat.value === 'pdf') {
     await exportPDF()
