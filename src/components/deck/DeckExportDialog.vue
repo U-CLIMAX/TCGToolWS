@@ -103,7 +103,7 @@
           </v-btn-toggle>
         </div>
 
-        <div class="d-flex mb-3 flex-shrink-0">
+        <div class="d-flex mb-4 flex-shrink-0">
           <v-tooltip :text="excelTooltip" :disabled="canExportExcel" location="bottom">
             <template #activator="{ props: tooltipProps }">
               <div v-bind="tooltipProps" class="flex-grow-1 d-flex">
