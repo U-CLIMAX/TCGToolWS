@@ -1,43 +1,35 @@
 import { useUIStore } from '@/stores/ui'
 
-const CACHE_TTL = 60 * 60 * 1000
-
 export async function runIPGeolocation() {
   const uiStore = useUIStore()
 
-  const isStale =
-    !uiStore.geo.country || !uiStore.geo.fetchedAt || Date.now() - uiStore.geo.fetchedAt > CACHE_TTL
-
-  if (!isStale) {
-    console.log('Country cache is fresh, skipping.')
-    return
-  }
-
-  const controller = new AbortController()
-  const timeoutId = setTimeout(() => controller.abort(), 800)
-
   try {
-    const response = await fetch(
-      `https://api.ipinfo.io/lite/me?token=${import.meta.env.VITE_IPINFO_TOKEN}`,
-      { signal: controller.signal }
-    )
+    const locales = navigator.languages || [navigator.language]
+    let detectedRegion = null
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`)
+    for (const localeStr of locales) {
+      try {
+        const locale = new Intl.Locale(localeStr)
+        if (locale.region) {
+          detectedRegion = locale.region.toUpperCase()
+          break
+        }
+        // oxlint-disable-next-line no-unused-vars
+      } catch (e) {
+        // Ignore invalid locale formats
+      }
     }
 
-    const data = await response.json()
-    uiStore.geo.country = data.country_code || 'CN'
+    const country = detectedRegion || 'CN'
+    if (uiStore.geo.country !== country) {
+      uiStore.geo.country = country
+    }
     uiStore.geo.fetchedAt = Date.now()
   } catch (error) {
-    if (error.name === 'AbortError') {
-      console.error('IP Geolocation API request timeout.')
-    } else {
-      console.error('IP Geolocation API request error:', error.message)
+    console.error('Failed to detect region from locale:', error)
+    if (!uiStore.geo.country) {
+      uiStore.geo.country = 'CN'
     }
-    uiStore.geo.country = 'CN'
     uiStore.geo.fetchedAt = Date.now()
-  } finally {
-    clearTimeout(timeoutId)
   }
 }
