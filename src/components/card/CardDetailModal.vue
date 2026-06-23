@@ -198,6 +198,17 @@
               <div class="text-body-2 mb-2 text-grey d-flex align-center">
                 <v-icon size="18" class="mr-1" icon="i-mdi:information-outline" />
                 效果
+                <v-btn
+                  prepend-icon="i-mdi:flag-outline"
+                  variant="tonal"
+                  color="warning"
+                  size="small"
+                  density="compact"
+                  class="ml-1 rounded-pill"
+                  text="回报错误"
+                  @click="openReportDialog"
+                >
+                </v-btn>
               </div>
               <div class="font-wenkai text-body-1" v-html="formattedEffect"></div>
             </div>
@@ -320,6 +331,46 @@
         </v-list>
       </v-card>
     </v-dialog>
+
+    <!-- Translation Report Dialog -->
+    <v-dialog v-model="isReportDialogOpen" max-width="500">
+      <v-card class="rounded-2lg pa-4">
+        <v-card-title class="px-0 pt-0 text-subtitle-1 font-weight-bold d-flex align-center">
+          <v-icon icon="i-mdi:flag-outline" class="mr-2" color="warning" size="20" />
+          回报错误
+        </v-card-title>
+        <v-card-text class="px-0 py-2">
+          <div class="text-body-2 text-grey mb-3">
+            如果您发现此卡片的效果、特征等信息有误，请在下方填写错误说明。
+          </div>
+          <v-textarea
+            v-model="reportReason"
+            label="回报原因 (限 100 字)"
+            placeholder="例如：原效果是'送入休息室'，翻译成了'送入回忆区'..."
+            variant="outlined"
+            rows="3"
+            hide-details="auto"
+            :counter="100"
+            maxlength="100"
+            class="themed-scrollbar"
+            :rules="[(v) => (v || '').length <= 100 || '字数不能超过 100 字']"
+          ></v-textarea>
+        </v-card-text>
+        <v-card-actions class="px-0 pb-0 pt-3">
+          <v-spacer></v-spacer>
+          <v-btn variant="text" @click="isReportDialogOpen = false">取消</v-btn>
+          <v-btn
+            color="primary"
+            variant="tonal"
+            :loading="isSubmittingReport"
+            :disabled="!reportReason.trim()"
+            @click="submitReport"
+          >
+            提交
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-card>
 </template>
 
@@ -381,6 +432,9 @@ const activeFilterStore = computed(() =>
 const isDownloadTextDialogOpen = ref(false)
 const isDownloadCardDialogOpen = ref(false)
 const isCopyCardDialogOpen = ref(false)
+const isReportDialogOpen = ref(false)
+const reportReason = ref('')
+const isSubmittingReport = ref(false)
 
 const showOnTap = ref(false)
 let hideTimeout = null
@@ -804,6 +858,39 @@ const handleSwipeRight = () => {
 
   if (isTouch.value && props.cardIndex !== 0) {
     emit('prev-card')
+  }
+}
+
+const openReportDialog = () => {
+  reportReason.value = ''
+  isReportDialogOpen.value = true
+}
+
+const submitReport = async () => {
+  if (!reportReason.value.trim()) return
+
+  isSubmittingReport.value = true
+  try {
+    const response = await fetch('/api/reports/translation', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        cardId: props.card.baseId,
+        reason: reportReason.value.trim(),
+      }),
+    })
+    const data = await response.json()
+    if (!response.ok) {
+      throw new Error(data.error || '提交失败')
+    }
+    triggerSnackbar('回报提交成功，感谢您的帮助！', 'success')
+    isReportDialogOpen.value = false
+  } catch (error) {
+    triggerSnackbar(`提交失败: ${error.message || '未知错误'}`, 'error')
+  } finally {
+    isSubmittingReport.value = false
   }
 }
 </script>

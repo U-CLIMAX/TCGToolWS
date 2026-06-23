@@ -120,3 +120,9 @@ CREATE TABLE IF NOT EXISTS notices (
     updated_at INTEGER NOT NULL
 );
 CREATE INDEX IF NOT EXISTS idx_notices_updated_at ON notices(updated_at DESC);
+
+CREATE TABLE IF NOT EXISTS translation_reports (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    card_id TEXT NOT NULL,
+    reason TEXT NOT NULL
+);

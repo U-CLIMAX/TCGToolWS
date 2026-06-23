@@ -44,6 +44,7 @@ import {
 } from './lib/ratelimit.js'
 import { handleInitiatePayment } from './lib/payments.js'
 import { handleGetSeriesPrices } from './lib/prices.js'
+import { handleCreateTranslationReport } from './lib/reports.js'
 import { updateMarketStats } from './services/market-stats.js'
 
 const app = new Hono().basePath('/api')
@@ -148,6 +149,10 @@ const paymentRoutes = new Hono()
 paymentRoutes.use('/*', authMiddleware, apiUserLimiter) // 必須登入才能創建訂單
 paymentRoutes.post('/initiate', handleInitiatePayment)
 
+// === Report 路由 ===
+const reportRoutes = new Hono()
+reportRoutes.post('/translation', publicReadLimiter, handleCreateTranslationReport)
+
 // === Webhook 路由 (公開, 但受簽名保護) ===
 const webhookRoutes = new Hono()
 webhookRoutes.post('/afdian', handleAfdianWebhook)
@@ -163,6 +168,7 @@ app.route('/notices', noticeRoutes)
 app.route('/prices', priceRoutes)
 app.route('/webhooks', webhookRoutes)
 app.route('/payments', paymentRoutes)
+app.route('/reports', reportRoutes)
 
 export default {
   fetch: app.fetch,
