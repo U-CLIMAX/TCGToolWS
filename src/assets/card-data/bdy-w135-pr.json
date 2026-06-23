@@ -74,5 +74,24 @@
         "rarity": "PR"
       }
     ]
+  },
+  "BDY/W135-P05": {
+    "name": "47都道府県制覇の旅 スーパーポジション",
+    "product_name": "PRカード【Wサイド】",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 1,
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "你从自己的卡组找至多1张高潮卡展示给对手后加入手牌，卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BDY/W135-P05",
+        "rarity": "PR"
+      }
+    ]
   }
 }

@@ -1,4 +1,9 @@
 const wsSeriesMap = {
+  '碧蓝幻想': {
+    id: 'gbf',
+    prefixes: ['GBF'],
+    latestReleaseDate: '2026-06-26',
+  },
   'GA文库': {
     id: 'ga',
     prefixes: [

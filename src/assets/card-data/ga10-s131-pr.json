@@ -101,5 +101,32 @@
         "rarity": "PR"
       }
     ]
+  },
+  "GA10/S131-P01": {
+    "name": "主神として ヘスティア",
+    "product_name": "PRカード【Sサイド】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["GA文庫", "ファミリア", "神"],
+    "color": "蓝色",
+    "effect": "【永】你的回合中，此卡的战斗力＋3000。<br>【自】[(1) 此卡放置到休息室] 你其他的角色被正面攻击时，你可以支付费用。如果这么做的话，那个角色返回手牌。",
+    "all_cards": [
+      {
+        "id": "GA10/S131-P01EX",
+        "rarity": "PR+"
+      },
+      {
+        "id": "GA10/S131-P01",
+        "rarity": "PR"
+      },
+      {
+        "id": "GA10/S131-P01S",
+        "rarity": "PR"
+      }
+    ]
   }
 }
