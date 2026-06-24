@@ -25,10 +25,7 @@ export const deckRestrictions = {
     ],
   },
   'bd': {
-    banned: [
-      { 'キラキラを求めて 香澄': ['BD/W47-P28', 'BD/W47-P28S'] },
-      { ミッシェルシール: ['BD/W54-021'] },
-    ],
+    banned: [{ ミッシェルシール: ['BD/W54-021'] }],
     limited: [
       { cardName: 'キラキラを求めて 香澄', cardId: ['BD/W47-P28', 'BD/W47-P28S'], limit: 1 },
     ],
