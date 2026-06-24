@@ -48,7 +48,7 @@
               />
             </v-col>
             <v-col cols="12" sm="5">
-              <v-select
+              <v-autocomplete
                 v-model="selectedSeries"
                 :items="availableSeriesOptions"
                 item-title="title"
@@ -67,7 +67,7 @@
 
           <v-row dense class="mb-2">
             <v-col cols="12">
-              <v-select
+              <v-autocomplete
                 v-model="selectedTags"
                 :items="allAvailableTags"
                 label="筛选标签"
