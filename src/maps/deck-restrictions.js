@@ -1,4 +1,4 @@
-export const deckRestrictionsLastUpdated = '2026/3/10'
+export const deckRestrictionsLastUpdated = '2026/6/24'
 
 export const deckRestrictions = {
   'dc': {
@@ -25,7 +25,13 @@ export const deckRestrictions = {
     ],
   },
   'bd': {
-    banned: [{ 'キラキラを求めて 香澄': ['BD/W47-P28', 'BD/W47-P28S'] }],
+    banned: [
+      { 'キラキラを求めて 香澄': ['BD/W47-P28', 'BD/W47-P28S'] },
+      { ミッシェルシール: ['BD/W54-021'] },
+    ],
+    limited: [
+      { cardName: 'キラキラを求めて 香澄', cardId: ['BD/W47-P28', 'BD/W47-P28S'], limit: 1 },
+    ],
     choice: [
       [
         { 市ヶ谷有咲: ['BD/W47-082', 'BD/W47-082SP'] },
@@ -82,8 +88,6 @@ export const deckRestrictions = {
     ],
     choice: [
       [
-        { 大切なお守り: ['5HY/W83-100'] },
-        { '回る日常 中野 二乃': ['5HY/W90-053', '5HY/W90-053S'] },
         { '微睡の中 中野 一花': ['5HY/W90-061', '5HY/W90-061S'] },
         { 'ありがとうの花 中野 二乃': ['5HY/W101-081', '5HY/W101-081HYR'] },
         { 'めいっぱいのアプローチ 中野 二乃': ['5HY/WE43-23', '5HY/WE43-23IGP'] },
@@ -103,7 +107,6 @@ export const deckRestrictions = {
       [
         { 姫森ルーナ: ['HOL/W91-057', 'HOL/W91-057S'] },
         { 'はあちゃまビーム 赤井はあと': ['HOL/W91-105', 'HOL/W91-105S'] },
-        { 'この世のものは脆すぎる 天音かなた': ['HOL/WE44-P04', 'HOL/W104-035', 'HOL/W104-035S'] },
         { 'プールでまったり 大神ミオ': ['HOL/W104-040', 'HOL/W104-040S', 'HOL/W104-040SSP'] },
         { '二人きりのアンコール 尾丸ポルカ': ['HOL/W104-069', 'HOL/W104-069S', 'HOL/W104-069SSP'] },
       ],
@@ -125,8 +128,10 @@ export const deckRestrictions = {
     banned: [{ '豊穣の母神からの返礼 アインズ': ['OVL/S99-032', 'OVL/S99-032S'] }],
     choice: [
       [
-        { '魔導王 アインズ': ['OVL/S99-028', 'OVL/S99-028SP'] },
-        { '吸血鬼の真祖 シャルティア': ['OVL/S62-062', 'OVL/SE54-53', 'OVL/SE54-53OLR'] },
+        { '精神操作の吐息 アウラ': ['OVL/S62-106', 'OVL/SE54-31OLR'] },
+        { '自信満々 アウラ': ['OVL/S99-104'] },
+        { '骸骨の魔法使い アインズ': ['OVL/SE54-57', 'OVL/SE54-57OLR', 'OVL/SE54-57EX'] },
+        { '慈悲深き純白の悪魔 アルベド': ['OVL/SE54-61', 'OVL/SE54-61OLR', 'OVL/SE54-61SP'] },
       ],
     ],
   },
@@ -182,7 +187,6 @@ export const deckRestrictions = {
     ],
     choice: [
       [
-        { '283プロダクション': ['ISC/S81-T075'] },
         { 'たそかれスワッグ 八宮めぐる': ['ISC/S110-004', 'ISC/S110-004OFR', 'ISC/S110-004SSP'] },
         { 'アンシーン・ダブルキャスト 黛 冬優子': ['ISC/S110-038', 'ISC/S110-038SP'] },
         { 'interStellar-Stella 櫻木真乃': ['ISC/S110-061', 'ISC/S110-061OFR', 'ISC/S110-061SSP'] },
@@ -239,6 +243,34 @@ export const deckRestrictions = {
         { 'みんなで叶える物語 藤島 慈': ['LHS/W122-009', 'LHS/W122-009S', 'LHS/W122-009SP'] },
         { 'PASSION!!!!!! 藤島 慈': ['LHS/W122-012', 'LHS/W122-012S'] },
         { 'ハクチューアラモード 大沢 瑠璃乃': ['LHS/W122-050', 'LHS/W122-050S'] },
+      ],
+    ],
+  },
+  'gim': {
+    limited: [
+      {
+        cardName: 'アイヴイ 月村手毬',
+        cardId: [
+          'GIM/W124-071a',
+          'GIM/W124-071b',
+          'GIM/W124-071EX',
+          'GIM/W124-071S',
+          'GIM/W124-071SP',
+        ],
+        limit: 2,
+      },
+    ],
+    choice: [
+      [
+        { '君と出会い、夢に翔ける 花海咲季': ['GIM/W124-045', 'GIM/W124-045S'] },
+        {
+          '世界一可愛い私 藤田ことね': [
+            'GIM/W124-007',
+            'GIM/W124-007S',
+            'GIM/W124-007SP',
+            'GIM/W124-P09',
+          ],
+        },
       ],
     ],
   },
