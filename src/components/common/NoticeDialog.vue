@@ -34,7 +34,7 @@
 
       <v-divider class="opacity-10"></v-divider>
 
-      <v-list class="notice-list py-2 themed-scrollbar" max-height="480">
+      <v-list class="notice-list py-2 themed-scrollbar" :max-height="smAndUp ? 480 : undefined">
         <template v-if="noticeStore.notices.length > 0">
           <v-list-item
             v-for="notice in noticeStore.notices"
@@ -103,7 +103,7 @@
           <div class="text-body-2 text-disabled">目前暂无公告</div>
         </div>
       </v-list>
-      <v-card-actions class="pa-4 pt-0" :class="{ 'mt-3': smAndUp, 'mt-auto': !smAndUp }">
+      <v-card-actions class="mt-3">
         <v-spacer></v-spacer>
         <v-btn variant="text" @click="menuOpen = false"> 关闭 </v-btn>
       </v-card-actions>

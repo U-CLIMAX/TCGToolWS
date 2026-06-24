@@ -312,7 +312,7 @@
 
   <!-- Restriction Dialog -->
   <v-dialog v-model="isRestrictionDialogOpen" max-width="500" scrollable :fullscreen="!smAndUp">
-    <v-card class="rounded-2lg">
+    <v-card :rounded="smAndUp ? '3md' : false">
       <v-card-title class="text-error">
         <v-icon start icon="i-mdi:alert-circle" />
         卡组限制提醒
@@ -336,6 +336,7 @@
                 <div class="mt-2" style="width: 80px">
                   <v-img
                     :src="getCardUrls(v.card.cardIdPrefix, v.card.id).base"
+                    :lazy-src="getCardUrls(v.card.cardIdPrefix, v.card.id).blur"
                     cover
                     :aspect-ratio="400 / 559"
                     class="rounded"
@@ -353,6 +354,7 @@
                 <div class="mt-2" style="width: 80px">
                   <v-img
                     :src="getCardUrls(v.card.cardIdPrefix, v.card.id).base"
+                    :lazy-src="getCardUrls(v.card.cardIdPrefix, v.card.id).blur"
                     cover
                     :aspect-ratio="400 / 559"
                     class="rounded"
@@ -371,6 +373,7 @@
                   <div v-for="c in v.found" :key="c.id" style="width: 80px" class="mr-2 mb-2">
                     <v-img
                       :src="getCardUrls(c.cardIdPrefix, c.id).base"
+                      :lazy-src="getCardUrls(c.cardIdPrefix, c.id).blur"
                       cover
                       :aspect-ratio="400 / 559"
                       class="rounded"
