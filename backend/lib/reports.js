@@ -15,9 +15,7 @@ export async function handleCreateTranslationReport(c) {
     }
 
     await db
-      .prepare(
-        'INSERT INTO translation_reports (card_id, reason) VALUES (?1, ?2)'
-      )
+      .prepare('INSERT INTO translation_reports (card_id, reason) VALUES (?1, ?2)')
       .bind(cardId, reason)
       .run()
 
