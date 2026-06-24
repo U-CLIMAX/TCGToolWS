@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS decks (
     cover_cards_id TEXT NOT NULL,
     deck_data BLOB NOT NULL,
     history BLOB NOT NULL,
+    tags TEXT NOT NULL DEFAULT '[]',                      -- Tags (存成 JSON 字串，例如 '["我的最愛", "賽場向"]')
     updated_at INTEGER,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
@@ -54,7 +55,7 @@ CREATE TABLE IF NOT EXISTS market_listings (
     game_type TEXT NOT NULL DEFAULT 'ws', -- 遊戲種類 (ws, wsr)
     cards_id TEXT NOT NULL,         -- 聯動人卡號 (存成 JSON 字串)
     climax_types TEXT NOT NULL,     -- 潮種類 (存成 JSON 字串，例如 '["門", "枝"]')
-    tags TEXT,                      -- Tags (存成 JSON 字串，例如 '["賽場向", "娛樂"]')
+    tags TEXT NOT NULL DEFAULT '[]',-- Tags (存成 JSON 字串，例如 '["賽場向", "娛樂"]')
     price INTEGER NOT NULL,         -- 價格
     shop_url TEXT NOT NULL,         -- 賣場連結
     deck_code TEXT,                 -- 卡組代碼

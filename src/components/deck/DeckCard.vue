@@ -21,29 +21,52 @@
             <v-img src="/placehold.webp" aspect-ratio="1" cover />
           </template>
 
+          <div
+            v-if="imageUrl"
+            class="action-background"
+            :class="{ 'action-background-visible': isHovering || isTouch }"
+          ></div>
           <div :class="{ 'title-background': !isEditing, 'full-mask': isEditing }"></div>
           <div v-if="isEditing" class="editing-text">编辑中</div>
           <v-card-text class="deck-title" style="z-index: 1">
+            <div v-if="deck.tags && deck.tags.length > 0" class="d-flex flex-wrap ga-1 mb-1">
+              <v-chip
+                v-for="tag in deck.tags"
+                :key="tag"
+                :size="smAndDown ? 'x-small' : 'small'"
+                color="primary"
+                variant="elevated"
+                density="compact"
+              >
+                {{ tag }}
+              </v-chip>
+            </div>
             {{ deck.name }}
           </v-card-text>
         </v-img>
       </v-card>
 
       <v-scale-transition>
-        <div v-show="(isHovering || isTouch) && imageUrl" class="delete-btn-container">
+        <div v-show="(isHovering || isTouch) && imageUrl" class="action-btn-container">
+          <v-btn
+            v-if="!isLocalDeck"
+            :variant="isTouch ? 'text' : 'tonal'"
+            icon
+            density="compact"
+            :size="smAndDown ? 'x-small' : 'large'"
+            class="mr-2"
+            @click.prevent="handleEditTags"
+          >
+            <v-icon color="teal-accent-3" icon="i-mdi:tag-edit" />
+          </v-btn>
           <v-btn
             icon
             :variant="isTouch ? 'text' : 'tonal'"
-            :size="smAndDown ? 'x-small' : 'small'"
-            class="delete-btn"
-            color="black"
+            density="compact"
+            :size="smAndDown ? 'x-small' : 'large'"
             @click.prevent="handleDeleteDeck"
           >
-            <v-icon
-              color="red-accent-4"
-              style="font-size: clamp(16px, 2vw, 24px)"
-              icon="i-mdi:trash-can-outline"
-            />
+            <v-icon color="red-accent-3" icon="i-mdi:trash-can-outline" />
           </v-btn>
         </div>
       </v-scale-transition>
@@ -63,6 +86,52 @@
               text="删除"
               @click="confirmDeleteDeck"
             ></v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+
+      <v-dialog v-model="isTagsDialogOpen" max-width="450">
+        <v-card class="rounded-2lg pa-3">
+          <v-card-title class="d-flex align-center">
+            <v-icon icon="i-mdi:tag-multiple" class="mr-2" color="primary" />
+            编辑卡组标签
+          </v-card-title>
+          <v-card-text class="pt-2">
+            <div class="text-caption text-medium-emphasis mb-3">
+              输入标签名称按回车添加，或从已有标签中选择。
+            </div>
+            <v-combobox
+              v-model="editTags"
+              :items="allExistingTags"
+              label="卡组标签"
+              multiple
+              chips
+              closable-chips
+              variant="outlined"
+              density="comfortable"
+              placeholder="添加标签"
+              :rules="[
+                (v) => !v || v.length <= 2 || '最多只能选择 2 个标签',
+                (v) => !v || v.every((tag) => tag.length <= 5) || '每个标签最多 5 个字',
+              ]"
+              hide-details="auto"
+              :menu-props="uiStore.menuPropsNoGlass"
+            />
+          </v-card-text>
+          <v-card-actions class="px-6 pb-2">
+            <v-spacer />
+            <v-btn variant="text" @click="isTagsDialogOpen = false">取消</v-btn>
+            <v-btn
+              color="primary"
+              variant="tonal"
+              :loading="isSavingTags"
+              :disabled="
+                editTags && (editTags.length > 2 || editTags.some((tag) => tag.length > 5))
+              "
+              @click="saveTags"
+            >
+              保存
+            </v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -129,6 +198,38 @@ const confirmDeleteDeck = async () => {
     uiStore.setLoading(false)
   }
 }
+
+const isTagsDialogOpen = ref(false)
+const editTags = ref([])
+const isSavingTags = ref(false)
+
+const allExistingTags = computed(() => {
+  const tagsSet = new Set()
+  Object.values(deckStore.savedDecks).forEach((d) => {
+    if (d.tags && Array.isArray(d.tags)) {
+      d.tags.forEach((tag) => tagsSet.add(tag))
+    }
+  })
+  return Array.from(tagsSet).sort()
+})
+
+const handleEditTags = () => {
+  editTags.value = [...(props.deck.tags || [])]
+  isTagsDialogOpen.value = true
+}
+
+const saveTags = async () => {
+  isSavingTags.value = true
+  try {
+    await deckStore.updateDeckTags(props.deckKey, editTags.value)
+    isTagsDialogOpen.value = false
+    triggerSnackbar('标签更新成功！', 'success')
+  } catch (error) {
+    triggerSnackbar(error.message, 'error')
+  } finally {
+    isSavingTags.value = false
+  }
+}
 </script>
 
 <style scoped>
@@ -141,11 +242,28 @@ const confirmDeleteDeck = async () => {
   transform: translateY(-6px);
 }
 
-.delete-btn-container {
+.action-btn-container {
   position: absolute;
   top: -2px;
   right: 4px;
   z-index: 2;
+}
+
+.action-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 0%, transparent 100%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 1;
+}
+
+.action-background-visible {
+  opacity: 1;
 }
 
 .deck-title {

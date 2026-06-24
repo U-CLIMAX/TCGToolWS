@@ -36,7 +36,7 @@ const deckKey = route.params.key
 const deck = ref(null)
 const cards = ref({})
 
-const handleSaveDeck = async ({ name, coverCardId, closeDialog }) => {
+const handleSaveDeck = async ({ name, coverCardId, closeDialog, tags }) => {
   uiStore.setLoading(true)
 
   try {
@@ -65,6 +65,7 @@ const handleSaveDeck = async ({ name, coverCardId, closeDialog }) => {
       seriesId: deckSeriesId,
       game_type: gameType,
       coverCardId: coverCardId,
+      tags: tags || [],
     })
 
     triggerSnackbar('卡组保存成功！', 'success')

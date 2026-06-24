@@ -178,8 +178,27 @@
             variant="outlined"
             density="compact"
             hide-details="auto"
-            class="mb-4 flex-grow-0"
+            class="mb-2 flex-grow-0"
           ></v-text-field>
+
+          <v-combobox
+            v-model="deckTags"
+            :items="allExistingTags"
+            label="卡组标签"
+            multiple
+            chips
+            closable-chips
+            variant="outlined"
+            density="compact"
+            :rules="[
+              (v) => !v || v.length <= 2 || '最多只能选择 2 个标签',
+              (v) => !v || v.every((tag) => tag.length <= 5) || '每个标签最多 5 个字',
+            ]"
+            hide-details="auto"
+            class="mb-4 flex-grow-0"
+            placeholder="添加标签 (按回车新建)"
+            :menu-props="uiStore.menuPropsNoGlass"
+          ></v-combobox>
 
           <p class="text-subtitle-1 mb-2 flex-grow-0">选择封面</p>
 
@@ -227,7 +246,11 @@
             variant="tonal"
             text="确定"
             @click="emitSaveDeck"
-            :disabled="!deckName.trim() || !selectedCoverCardId"
+            :disabled="
+              !deckName.trim() ||
+              !selectedCoverCardId ||
+              (deckTags && (deckTags.length > 2 || deckTags.some((tag) => tag.length > 5)))
+            "
           >
           </v-btn>
         </v-card-actions>
@@ -266,6 +289,7 @@ import { useDevice } from '@/composables/useDevice'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import { sortCards } from '@/utils/cardsSort'
+import { useDeckStore } from '@/stores/deck'
 
 const props = defineProps({
   deck: {
@@ -307,16 +331,32 @@ const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 const isAuthAlertOpen = ref(false)
 
 // Save Deck Dialog State
+const deckStore = useDeckStore()
 const isSaveDialogOpen = ref(false)
 const deckName = ref('')
+const deckTags = ref([])
 const selectedCoverCardId = ref(null)
+
+const allExistingTags = computed(() => {
+  const tagsSet = new Set()
+  Object.values(deckStore.savedDecks).forEach((d) => {
+    if (d.tags && Array.isArray(d.tags)) {
+      d.tags.forEach((tag) => tagsSet.add(tag))
+    }
+  })
+  return Array.from(tagsSet).sort()
+})
 
 const openSaveDialog = () => {
   if (!authStore.isAuthenticated) {
     isAuthAlertOpen.value = true
   } else if (props.deck) {
+    if (Object.keys(deckStore.savedDecks).length === 0 && authStore.isAuthenticated) {
+      deckStore.fetchDecks().catch((e) => console.error('背景加载卡组失败:', e))
+    }
     // 預設名稱與封面
     deckName.value = props.deckTitle.slice(0, 20) || ''
+    deckTags.value = props.deck.tags ? [...props.deck.tags] : []
     const coverCard = Object.values(props.cards)[0]
     selectedCoverCardId.value = props.deck.cover_cards_id || {
       id: coverCard?.id,
@@ -334,6 +374,7 @@ const emitSaveDeck = () => {
   emit('save', {
     name: deckName.value,
     coverCardId: selectedCoverCardId.value,
+    tags: [...deckTags.value],
     closeDialog: () => {
       isSaveDialogOpen.value = false
     },

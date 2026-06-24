@@ -23,12 +23,17 @@ export const handleCreateDeck = async (c) => {
       participantCount,
       placement,
       articleLink,
+      tags,
     } = await c.req.json()
 
     if (isDeckGallery && !climaxCardsId) {
       return createErrorResponse(c, 400, '分享至广场需要 climaxCardsId')
     } else if (!key || !deckData || !name || !seriesId || !coverCardId) {
       return createErrorResponse(c, 400, '缺少必要参数')
+    }
+
+    if (tags && Array.isArray(tags) && (tags.length > 2 || tags.some((tag) => tag.length > 5))) {
+      return createErrorResponse(c, 400, '最多只能设置 2 个标签，且每个标签长度最多 5 个字')
     }
 
     const user = c.get('user')
@@ -87,10 +92,11 @@ export const handleCreateDeck = async (c) => {
         )
         .run()
     } else {
+      const tagsStr = tags ? JSON.stringify(tags) : null
       const historyArray = new Uint8Array(Object.values(history || []))
       info = await c.env.DB.prepare(
-        `INSERT INTO decks (key, user_id, deck_name, series_id, game_type, cover_cards_id, deck_data, history, updated_at)
-        VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)
+        `INSERT INTO decks (key, user_id, deck_name, series_id, game_type, cover_cards_id, deck_data, history, tags, updated_at)
+        VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10)
         ON CONFLICT(key) DO UPDATE SET
         deck_name = excluded.deck_name,
         series_id = excluded.series_id,
@@ -98,6 +104,7 @@ export const handleCreateDeck = async (c) => {
         cover_cards_id = excluded.cover_cards_id,
         deck_data = excluded.deck_data,
         history = excluded.history,
+        tags = excluded.tags,
         updated_at = excluded.updated_at`
       )
         .bind(
@@ -109,6 +116,7 @@ export const handleCreateDeck = async (c) => {
           coverCardIdStr,
           deckDataArray,
           historyArray,
+          tagsStr,
           now
         )
         .run()
@@ -134,13 +142,14 @@ export const handleGetDecks = async (c) => {
     const user = c.get('user')
 
     const { results } = await c.env.DB.prepare(
-      'SELECT key, deck_name, series_id, game_type, cover_cards_id, deck_data, history, updated_at FROM decks WHERE user_id = ?1'
+      'SELECT key, deck_name, series_id, game_type, cover_cards_id, deck_data, history, tags, updated_at FROM decks WHERE user_id = ?1'
     )
       .bind(user.id)
       .all()
 
     const parsedResults = results.map((result) => {
       result.cover_cards_id = JSON.parse(result.cover_cards_id)
+      result.tags = result.tags ? JSON.parse(result.tags) : []
       return result
     })
 
@@ -168,7 +177,7 @@ export const handleGetDeckByKey = async (c) => {
 
     if (!result) {
       result = await c.env.DB.prepare(
-        'SELECT key, deck_name, series_id, game_type, cover_cards_id, deck_data, history FROM decks WHERE key = ?1'
+        'SELECT key, deck_name, series_id, game_type, cover_cards_id, deck_data, history, tags FROM decks WHERE key = ?1'
       )
         .bind(key)
         .first()
@@ -179,6 +188,11 @@ export const handleGetDeckByKey = async (c) => {
     }
 
     result.cover_cards_id = JSON.parse(result.cover_cards_id)
+    if (result.tags) {
+      result.tags = JSON.parse(result.tags)
+    } else if (result.tags === null) {
+      result.tags = []
+    }
     if (result.rating_breakdown) {
       try {
         result.rating_breakdown = JSON.parse(result.rating_breakdown)
@@ -229,21 +243,26 @@ export const handleDeleteDeck = async (c) => {
 export const handleUpdateDeck = async (c) => {
   try {
     const { key } = c.req.param()
-    const { deckData, name, seriesId, game_type, coverCardId, history } = await c.req.json()
+    const { deckData, name, seriesId, game_type, coverCardId, history, tags } = await c.req.json()
 
     if (!key || !deckData || !name || !seriesId || !coverCardId) {
       return createErrorResponse(c, 400, '缺少重要参数')
+    }
+
+    if (tags && Array.isArray(tags) && (tags.length > 2 || tags.some((tag) => tag.length > 5))) {
+      return createErrorResponse(c, 400, '最多只能设置 2 个标签，且每个标签长度最多 5 个字')
     }
 
     const user = c.get('user')
     const coverCardIdStr = JSON.stringify(coverCardId)
     const deckDataArray = new Uint8Array(Object.values(deckData))
     const historyArray = new Uint8Array(Object.values(history || []))
+    const tagsStr = tags ? JSON.stringify(tags) : null
     const now = Math.floor(Date.now() / 1000)
 
     const info = await c.env.DB.prepare(
-      `UPDATE decks SET deck_name = ?1, series_id = ?2, game_type = ?3, cover_cards_id = ?4, deck_data = ?5, history = ?6, updated_at = ?7
-       WHERE key = ?8 AND user_id = ?9`
+      `UPDATE decks SET deck_name = ?1, series_id = ?2, game_type = ?3, cover_cards_id = ?4, deck_data = ?5, history = ?6, tags = ?7, updated_at = ?8
+       WHERE key = ?9 AND user_id = ?10`
     )
       .bind(
         name,
@@ -252,6 +271,7 @@ export const handleUpdateDeck = async (c) => {
         coverCardIdStr,
         deckDataArray,
         historyArray,
+        tagsStr,
         now,
         key,
         user.id
@@ -264,6 +284,44 @@ export const handleUpdateDeck = async (c) => {
     return c.json({ success: true }, 200)
   } catch (error) {
     console.error('Error updating deck:', error)
+    return createErrorResponse(c, 500, '服务器内部错误')
+  }
+}
+
+/**
+ * Updates only the tags of an existing personal deck.
+ * @param {object} c - Hono context object.
+ * @returns {Response}
+ */
+export const handleUpdateDeckTags = async (c) => {
+  try {
+    const { key } = c.req.param()
+    const { tags } = await c.req.json()
+    const user = c.get('user')
+
+    if (!key || !Array.isArray(tags)) {
+      return createErrorResponse(c, 400, '缺少必要参数 key 或 tags 格式不正确')
+    }
+
+    if (tags.length > 2 || tags.some((tag) => tag.length > 5)) {
+      return createErrorResponse(c, 400, '最多只能设置 2 个标签，且每个标签长度最多 5 个字')
+    }
+
+    const tagsStr = JSON.stringify(tags)
+    const now = Math.floor(Date.now() / 1000)
+
+    const info = await c.env.DB.prepare(
+      `UPDATE decks SET tags = ?1, updated_at = ?2 WHERE key = ?3 AND user_id = ?4`
+    )
+      .bind(tagsStr, now, key, user.id)
+      .run()
+
+    if (!info.success) return createErrorResponse(c, 500, '数据库操作失败')
+    if (info.changes === 0) return createErrorResponse(c, 404, '卡组未找到或无权限更新标签')
+
+    return c.json({ success: true, tags }, 200)
+  } catch (error) {
+    console.error('Error updating deck tags:', error)
     return createErrorResponse(c, 500, '服务器内部错误')
   }
 }

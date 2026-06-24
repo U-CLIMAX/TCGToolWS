@@ -213,8 +213,27 @@
           variant="outlined"
           density="compact"
           hide-details="auto"
-          class="mb-4 flex-grow-0"
+          class="mb-2 flex-grow-0"
         ></v-text-field>
+
+        <v-combobox
+          v-model="deckTags"
+          :items="allExistingTags"
+          label="卡组标签"
+          multiple
+          chips
+          closable-chips
+          variant="outlined"
+          density="compact"
+          :rules="[
+            (v) => !v || v.length <= 2 || '最多只能选择 2 个标签',
+            (v) => !v || v.every((tag) => tag.length <= 5) || '每个标签最多 5 个字',
+          ]"
+          hide-details="auto"
+          class="mb-4 flex-grow-0"
+          placeholder="添加标签 (按回车新建)"
+          :menu-props="uiStore.menuPropsNoGlass"
+        ></v-combobox>
 
         <p class="text-subtitle-1 mb-2 flex-grow-0">选择封面</p>
 
@@ -262,7 +281,11 @@
           text="建立新卡组"
           variant="tonal"
           @click="handleCreateDeck"
-          :disabled="!deckName.trim() || !selectedCoverCardId"
+          :disabled="
+            !deckName.trim() ||
+            !selectedCoverCardId ||
+            (deckTags && (deckTags.length > 2 || deckTags.some((tag) => tag.length > 5)))
+          "
         >
         </v-btn>
         <v-btn
@@ -271,7 +294,11 @@
           text="更新卡组"
           variant="tonal"
           @click="promptForHistoryAndUpdate"
-          :disabled="!deckName.trim() || !selectedCoverCardId"
+          :disabled="
+            !deckName.trim() ||
+            !selectedCoverCardId ||
+            (deckTags && (deckTags.length > 2 || deckTags.some((tag) => tag.length > 5)))
+          "
         >
         </v-btn>
       </v-card-actions>
@@ -482,7 +509,18 @@ const isRestrictionDialogOpen = ref(false)
 // Save Deck Dialog State
 const isSaveDialogOpen = ref(false)
 const deckName = ref('')
+const deckTags = ref([])
 const selectedCoverCardId = ref(null)
+
+const allExistingTags = computed(() => {
+  const tagsSet = new Set()
+  Object.values(deckStore.savedDecks).forEach((d) => {
+    if (d.tags && Array.isArray(d.tags)) {
+      d.tags.forEach((tag) => tagsSet.add(tag))
+    }
+  })
+  return Array.from(tagsSet).sort()
+})
 
 // History Dialog State
 const isHistoryDialogOpen = ref(false)
@@ -506,8 +544,14 @@ const openSaveDialog = () => {
   if (!authStore.isAuthenticated) {
     isAuthAlertOpen.value = true
   } else if (deckCards.value.length > 0) {
+    if (Object.keys(deckStore.savedDecks).length === 0 && authStore.isAuthenticated) {
+      deckStore.fetchDecks().catch((e) => console.error('背景加载卡组失败:', e))
+    }
     if (deckStore.editingDeckKey) {
       deckName.value = deckStore.deckName
+      deckTags.value = [...(deckStore.savedDecks[deckStore.editingDeckKey]?.tags || [])]
+    } else {
+      deckTags.value = []
     }
     if (deckStore.coverCardId !== '') {
       selectedCoverCardId.value = deckStore.coverCardId
@@ -563,6 +607,7 @@ const handleCreateDeck = async () => {
       seriesId: deckStore.seriesId,
       game_type: gameType,
       coverCardId: selectedCoverCardId.value,
+      tags: toRaw(deckTags.value),
     })
 
     isSaveDialogOpen.value = false
@@ -667,6 +712,7 @@ const handleUpdateDeck = async (historyText = '', diff = []) => {
       game_type: gameType,
       coverCardId: selectedCoverCardId.value,
       history: compressedHistoryData,
+      tags: toRaw(deckTags.value),
     })
     const key = deckStore.editingDeckKey
 

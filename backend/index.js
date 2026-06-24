@@ -16,6 +16,7 @@ import {
   handleDeleteDeck,
   handleUpdateDeck,
   handleGetDecklogData,
+  handleUpdateDeckTags,
 } from './lib/decks.js'
 import {
   handleGetDecksGallery,
@@ -95,6 +96,7 @@ const deckRoutes = new Hono()
 deckRoutes.use('/*', authMiddleware, apiUserLimiter)
 deckRoutes.post('/', handleCreateDeck)
 deckRoutes.put('/:key', handleUpdateDeck)
+deckRoutes.put('/:key/tags', handleUpdateDeckTags)
 deckRoutes.get('/', handleGetDecks)
 deckRoutes.delete('/:key', handleDeleteDeck)
 

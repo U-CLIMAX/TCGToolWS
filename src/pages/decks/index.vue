@@ -34,7 +34,7 @@
             </v-col>
           </v-row>
 
-          <v-row dense class="mb-2">
+          <v-row dense>
             <v-col cols="12" sm="7">
               <v-text-field
                 v-model="deckNameSearchTerm"
@@ -54,6 +54,26 @@
                 item-title="title"
                 item-value="value"
                 label="筛选系列"
+                variant="solo-filled"
+                flat
+                rounded="pill"
+                density="comfortable"
+                hide-details
+                clearable
+                :menu-props="uiStore.menuProps"
+              />
+            </v-col>
+          </v-row>
+
+          <v-row dense class="mb-2">
+            <v-col cols="12">
+              <v-select
+                v-model="selectedTags"
+                :items="allAvailableTags"
+                label="筛选标签"
+                multiple
+                chips
+                closable-chips
                 variant="solo-filled"
                 flat
                 rounded="pill"
@@ -209,13 +229,26 @@ const deckCode = ref('')
 const deckNameSearchTerm = debounceRef('', 300)
 const selectedGameType = ref('ws')
 const selectedSeries = ref(null)
+const selectedTags = ref([])
 const initialLoadingComplete = ref(false)
 const showDeckCodeDialog = ref(false)
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 const onGameTypeChange = () => {
+  deckNameSearchTerm.value = ''
   selectedSeries.value = null
+  selectedTags.value = []
 }
+
+const allAvailableTags = computed(() => {
+  const tagsSet = new Set()
+  Object.values(deckStore.savedDecks).forEach((deck) => {
+    if (deck.tags && Array.isArray(deck.tags)) {
+      deck.tags.forEach((tag) => tagsSet.add(tag))
+    }
+  })
+  return Array.from(tagsSet).sort()
+})
 
 // 卡組代碼來源
 const deckCodeSource = ref('uclimax') // 默認選擇 U CLIMAX
@@ -260,6 +293,7 @@ const filteredDecks = computed(() => {
   const searchTerm = deckNameSearchTerm.value.toLowerCase()
   const seriesFilter = selectedSeries.value // 這裡拿到的仍然是純系列名稱 (value)
   const gameTypeFilter = selectedGameType.value
+  const tagsFilter = selectedTags.value
 
   return Object.fromEntries(
     Object.entries(deckStore.savedDecks).filter(([, deck]) => {
@@ -277,7 +311,13 @@ const filteredDecks = computed(() => {
         matchesSeries = deck.seriesId === targetSeriesId
       }
 
-      return matchesGameType && matchesName && matchesSeries
+      // 標籤篩選邏輯
+      let matchesTags = true
+      if (tagsFilter && tagsFilter.length > 0) {
+        matchesTags = tagsFilter.some((tag) => deck.tags && deck.tags.includes(tag))
+      }
+
+      return matchesGameType && matchesName && matchesSeries && matchesTags
     })
   )
 })

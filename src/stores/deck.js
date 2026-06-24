@@ -210,6 +210,7 @@ export const useDeckStore = defineStore(
         participantCount = null,
         placement = null,
         articleLink = null,
+        tags = [],
       }
     ) => {
       if (!authStore.token) throw new Error('请先登录')
@@ -236,6 +237,7 @@ export const useDeckStore = defineStore(
           participantCount,
           placement,
           articleLink,
+          tags,
         }),
       })
 
@@ -252,6 +254,7 @@ export const useDeckStore = defineStore(
           game_type,
           coverCardId,
           history,
+          tags,
           updated_at: Math.floor(Date.now() / 1000),
         }
       }
@@ -263,7 +266,7 @@ export const useDeckStore = defineStore(
     const updateEncodedDeck = async (
       key,
       deckData,
-      { name, seriesId, game_type, coverCardId, history = [] }
+      { name, seriesId, game_type, coverCardId, history = [], tags = [] }
     ) => {
       if (!authStore.token) throw new Error('请先登录')
 
@@ -282,6 +285,7 @@ export const useDeckStore = defineStore(
           game_type,
           coverCardId,
           history,
+          tags,
         }),
       })
 
@@ -297,6 +301,7 @@ export const useDeckStore = defineStore(
         game_type,
         coverCardId,
         history,
+        tags,
         updated_at: Math.floor(Date.now() / 1000),
       }
     }
@@ -329,10 +334,36 @@ export const useDeckStore = defineStore(
           game_type: deck.game_type,
           coverCardId: deck.cover_cards_id,
           history: deck.history,
+          tags: deck.tags || [],
           updated_at: deck.updated_at,
         }
         return acc
       }, {})
+    }
+
+    /**
+     * Updates only the tags of a deck.
+     */
+    const updateDeckTags = async (key, tags) => {
+      if (!authStore.token) throw new Error('请先登录')
+
+      const response = await fetch(`/api/decks/${key}/tags`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authStore.token}`,
+        },
+        body: JSON.stringify({ tags }),
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}))
+        throw new Error(errorData.error || '更新标签失败')
+      }
+
+      if (savedDecks.value[key]) {
+        savedDecks.value[key].tags = tags
+      }
     }
 
     /**
@@ -419,6 +450,7 @@ export const useDeckStore = defineStore(
       fetchDecks,
       fetchDeckByKey,
       deleteDeck,
+      updateDeckTags,
       reset,
       fetchDecklog,
       restrictionViolations,
