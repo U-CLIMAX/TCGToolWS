@@ -53,7 +53,8 @@
                 <div
                   v-for="series in filteredBanlistData"
                   :key="series.id"
-                  class="masonry-item mb-6"
+                  class="masonry-item"
+                  :class="{ 'mb-10': !smAndUp }"
                 >
                   <div class="px-2">
                     <h2 :class="smAndUp ? 'text-h4' : 'text-h5'" class="font-weight-medium mb-3">

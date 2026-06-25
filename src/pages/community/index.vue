@@ -139,7 +139,7 @@
       </v-container>
 
       <!-- Content Area -->
-      <v-container class="pt-4 px-3">
+      <v-container class="pt-4 px-3" :class="{ 'mb-12': !smAndUp }">
         <v-row>
           <!-- Community Cards (survey card always first) -->
           <v-col
