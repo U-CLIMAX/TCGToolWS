@@ -46,14 +46,14 @@ export const useDeckStore = defineStore(
       }
 
       const checkBanned = (banned) => {
-        banned.forEach((obj) => {
-          const [cardName, restrictedIds] = Object.entries(obj)[0]
-          const card = cards.find((c) => restrictedIds.includes(c.id))
+        banned.forEach(({ cardName, cardId, desc }) => {
+          const card = cards.find((c) => cardId.includes(c.id))
 
           if (card) {
             addViolation(`banned:${cardName}`, {
               type: 'banned',
               cardName,
+              desc,
               card: {
                 id: card.id,
                 cardIdPrefix: card.cardIdPrefix,
@@ -64,7 +64,7 @@ export const useDeckStore = defineStore(
       }
 
       const checkLimited = (limited) => {
-        limited.forEach(({ cardName, cardId, limit }) => {
+        limited.forEach(({ cardName, cardId, limit, desc }) => {
           const matches = cards.filter((c) => cardId.includes(c.id))
           const quantity = matches.reduce((sum, c) => sum + c.quantity, 0)
 
@@ -73,6 +73,7 @@ export const useDeckStore = defineStore(
               type: 'limited',
               cardName,
               limit,
+              desc,
               card: {
                 id: matches[0].id,
                 cardIdPrefix: matches[0].cardIdPrefix,
@@ -86,10 +87,9 @@ export const useDeckStore = defineStore(
       const checkChoice = (choice) => {
         choice.forEach((list) => {
           const foundCardsList = list
-            .map((obj) => {
-              const [cardName, restrictedIds] = Object.entries(obj)[0]
-              const match = cards.find((c) => restrictedIds.includes(c.id))
-              return match ? { ...match, name: cardName } : null
+            .map(({ cardName, cardId, desc }) => {
+              const match = cards.find((c) => cardId.includes(c.id))
+              return match ? { ...match, name: cardName, desc } : null
             })
             .filter(Boolean)
 
@@ -97,6 +97,8 @@ export const useDeckStore = defineStore(
             foundCardsList.sort((a, b) => a.name.localeCompare(b.name))
 
             const choices = foundCardsList.map((c) => c.name)
+            // Retrieve desc from the first matched rule that has one (or combine them)
+            const desc = foundCardsList.find((c) => c.desc)?.desc
             const found = foundCardsList.map((c) => ({
               id: c.id,
               name: c.name,
@@ -106,6 +108,7 @@ export const useDeckStore = defineStore(
             addViolation(`choice:${choices.join('|')}`, {
               type: 'choice',
               choices,
+              desc,
               found,
             })
           }

@@ -82,24 +82,33 @@
                             class="d-flex flex-column justify-center ga-1"
                             style="min-height: 24px"
                           >
-                            <div
-                              v-for="card in group"
-                              :key="card.name"
-                              class="d-flex flex-wrap align-center"
-                            >
-                              <span
-                                class="text-body-2 font-weight-bold mr-2"
-                                style="line-height: 1.4"
-                              >
-                                {{ card.name }}
-                              </span>
-                              <span
-                                class="font-DINCond font-weight-light text-caption text-medium-emphasis"
-                                style="line-height: 1.4"
-                              >
-                                {{ card.ids.join(' / ') }}
-                              </span>
-                            </div>
+                            <template v-for="card in group" :key="card.name">
+                              <div class="d-flex flex-wrap align-center mb-1">
+                                <span
+                                  class="text-body-2 font-weight-bold mr-2"
+                                  style="line-height: 1.4"
+                                >
+                                  {{ card.name }}
+                                </span>
+                                <span
+                                  class="font-DINCond font-weight-light text-caption text-medium-emphasis"
+                                  style="line-height: 1.4"
+                                >
+                                  {{ card.ids.join(' / ') }}
+                                </span>
+                              </div>
+                              <div
+                                v-if="card.desc"
+                                class="mt-1 mb-2 pa-3 rounded-lg border"
+                                :class="
+                                  theme.global.current.value.dark
+                                    ? 'bg-grey-darken-3'
+                                    : 'bg-grey-lighten-4'
+                                "
+                                style="line-height: 1.5; font-size: 13px"
+                                v-html="DOMPurify.sanitize(card.desc)"
+                              ></div>
+                            </template>
                           </div>
                         </div>
                       </div>
@@ -120,7 +129,8 @@
 <script setup>
 import { computed, ref, onMounted, nextTick } from 'vue'
 import banListIcon from '@/assets/ui/banlist.svg'
-import { useDisplay } from 'vuetify'
+import { useDisplay, useTheme } from 'vuetify'
+import DOMPurify from 'dompurify'
 import { deckRestrictionsLastUpdated, deckRestrictions } from '@/maps/deck-restrictions'
 import { ALL_SERIES_OPTIONS } from '@/maps/series-map'
 import { getCardUrls } from '@/utils/getCardImage'
@@ -131,6 +141,7 @@ definePage({
 })
 
 const { smAndUp } = useDisplay()
+const theme = useTheme()
 
 const scrollStyle = computed(() => {
   const marginTop = smAndUp.value ? '50px' : '0'
@@ -151,27 +162,15 @@ onMounted(() => {
 })
 
 const normalizeCard = (cardObj) => {
-  if (cardObj.cardName) {
-    const urls = getCardUrls(cardObj.prefix, cardObj.cardId[0])
-    return {
-      name: cardObj.cardName,
-      ids: cardObj.cardId,
-      prefix: cardObj.prefix,
-      limit: cardObj.limit,
-      image: urls.base,
-      lazyImage: urls.blur,
-    }
-  } else {
-    const keys = Object.keys(cardObj).filter((k) => k !== 'prefix')
-    const name = keys[0]
-    const urls = getCardUrls(cardObj.prefix, cardObj[name][0])
-    return {
-      name: name,
-      ids: cardObj[name],
-      prefix: cardObj.prefix,
-      image: urls.base,
-      lazyImage: urls.blur,
-    }
+  const urls = getCardUrls(cardObj.prefix, cardObj.cardId[0])
+  return {
+    name: cardObj.cardName,
+    ids: cardObj.cardId,
+    prefix: cardObj.prefix,
+    limit: cardObj.limit,
+    image: urls.base,
+    lazyImage: urls.blur,
+    desc: cardObj.desc,
   }
 }
 

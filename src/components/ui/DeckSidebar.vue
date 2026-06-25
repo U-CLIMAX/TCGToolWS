@@ -369,6 +369,15 @@
                     class="rounded preload-img"
                   ></v-img>
                 </div>
+                <div
+                  v-if="v.desc"
+                  class="mt-2 pa-3 rounded-lg border"
+                  :class="
+                    theme.global.current.value.dark ? 'bg-grey-darken-3' : 'bg-grey-lighten-4'
+                  "
+                  style="line-height: 1.5; font-size: 13px"
+                  v-html="DOMPurify.sanitize(v.desc)"
+                ></div>
               </template>
 
               <template v-else-if="v.type === 'limited'">
@@ -387,6 +396,15 @@
                     class="rounded preload-img"
                   ></v-img>
                 </div>
+                <div
+                  v-if="v.desc"
+                  class="mt-2 pa-3 rounded-lg border"
+                  :class="
+                    theme.global.current.value.dark ? 'bg-grey-darken-3' : 'bg-grey-lighten-4'
+                  "
+                  style="line-height: 1.5; font-size: 13px"
+                  v-html="DOMPurify.sanitize(v.desc)"
+                ></div>
               </template>
 
               <template v-else-if="v.type === 'choice'">
@@ -407,6 +425,15 @@
                     ></v-img>
                   </div>
                 </div>
+                <div
+                  v-if="v.desc"
+                  class="mt-2 pa-3 rounded-lg border"
+                  :class="
+                    theme.global.current.value.dark ? 'bg-grey-darken-3' : 'bg-grey-lighten-4'
+                  "
+                  style="line-height: 1.5; font-size: 13px"
+                  v-html="DOMPurify.sanitize(v.desc)"
+                ></div>
               </template>
             </v-list-item>
           </template>
@@ -441,7 +468,8 @@ import { ref, computed, toRaw } from 'vue'
 import { useDeckStore } from '@/stores/deck'
 import { getCardUrls } from '@/utils/getCardImage'
 import { fetchCardByIdAndPrefix, fetchCardsByBaseIdAndPrefix, getCardSeriesId } from '@/utils/card'
-import { useDisplay } from 'vuetify'
+import { useDisplay, useTheme } from 'vuetify'
+import DOMPurify from 'dompurify'
 import { storeToRefs } from 'pinia'
 import { useDeckGrouping } from '@/composables/useDeckGrouping'
 import { useDeckEncoder } from '@/composables/useDeckEncoder'
@@ -474,6 +502,7 @@ defineProps({
 
 const router = useRouter()
 const { smAndUp, smAndDown } = useDisplay()
+const theme = useTheme()
 const deckStore = useDeckStore()
 const { encodeData } = useDeckEncoder()
 const { triggerSnackbar } = useSnackbar()
