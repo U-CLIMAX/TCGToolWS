@@ -8,7 +8,7 @@
       :empty-text="''"
     >
       <!-- Header Area -->
-      <v-container class="pa-0 flex-grow-0" :class="{ 'mt-3': smAndUp }">
+      <v-container class="pa-0 flex-grow-0" :class="{ 'mt-4': smAndUp }">
         <div class="d-flex justify-center px-3">
           <v-row class="w-100">
             <v-col cols="12">
