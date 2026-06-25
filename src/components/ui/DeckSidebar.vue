@@ -366,7 +366,7 @@
                     :lazy-src="getCardUrls(v.card.cardIdPrefix, v.card.id).blur"
                     cover
                     :aspect-ratio="400 / 559"
-                    class="rounded"
+                    class="rounded preload-img"
                   ></v-img>
                 </div>
               </template>
@@ -384,13 +384,13 @@
                     :lazy-src="getCardUrls(v.card.cardIdPrefix, v.card.id).blur"
                     cover
                     :aspect-ratio="400 / 559"
-                    class="rounded"
+                    class="rounded preload-img"
                   ></v-img>
                 </div>
               </template>
 
               <template v-else-if="v.type === 'choice'">
-                <v-list-item-title class="text-warning font-weight-bold">
+                <v-list-item-title class="text-primary font-weight-bold">
                   以下卡片只能选择一种
                 </v-list-item-title>
                 <v-list-item-subtitle>
@@ -403,7 +403,7 @@
                       :lazy-src="getCardUrls(c.cardIdPrefix, c.id).blur"
                       cover
                       :aspect-ratio="400 / 559"
-                      class="rounded"
+                      class="rounded preload-img"
                     ></v-img>
                   </div>
                 </div>
