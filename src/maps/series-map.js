@@ -1299,6 +1299,11 @@ const wsrSeriesMap = {
 }
 
 const wscSeriesMap = {
+  '[cn]女神异闻录：夜幕魅影': {
+    id: '[cn]p5x',
+    prefixes: ['[cn]P5X'],
+    latestReleaseDate: '2026-06-26',
+  },
   '[cn]Fate/stay night [Unlimited Blade Works]': {
     id: '[cn]fate',
     prefixes: ['[cn]FS'],

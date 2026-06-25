@@ -1,0 +1,482 @@
+{
+  "P5X/SZ10-T01": {
+    "name": "富山佳代",
+    "product_name": "【女神异闻录：夜幕魅影】 - 预购筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["怪盗"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】［① 将1张手牌的高潮卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的高潮卡，返回手牌。<br>【起】 集中 ［① 【横置】此卡］ 你翻出自己卡组顶的5张卡，放置入休息室。那些卡片中每存在1张高潮卡，你抽至多1张卡。",
+    "all_cards": [
+      {
+        "id": "P5X/SZ10-T01",
+        "rarity": "TD"
+      },
+      {
+        "id": "P5X/SZ10-T01TDP",
+        "rarity": "TDP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "P5X/SZ10-T02": {
+    "name": "路菲尔",
+    "product_name": "【女神异闻录：夜幕魅影】 - 预购筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["怪盗"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你可以将自己卡组顶的3张卡，放置入休息室。<br>【自】 羁绊／「主人公（P5X）」「主人公／WONDER」 ［将1张手牌放置入休息室］ （此卡，被从手牌放置入舞台或因被使用而放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的「主人公／（P5X）」或「主人公 WONDER」，返回手牌）",
+    "all_cards": [
+      {
+        "id": "P5X/SZ10-T02",
+        "rarity": "TD"
+      },
+      {
+        "id": "P5X/SZ10-T02TDP",
+        "rarity": "TDP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "P5X/SZ10-T03": {
+    "name": "不祥的预兆 JOKER",
+    "product_name": "【女神异闻录：夜幕魅影】 - 预购筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["怪盗"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你公开自己卡组顶的1张卡，选择1张自己休息室的等级小于等于Ｘ的持有《怪盗》特征的角色卡，返回手牌。X为被公开的卡片的等级。（高潮卡视作等级为0的卡片。公开的卡片放回原处）<br>【自】［①］ 此卡攻击时，若你的手牌大于等于5张，则你可以支付费用。若如此做，则该攻击中，你在触发步骤进行2次触发判定。",
+    "all_cards": [
+      {
+        "id": "P5X/SZ10-T03",
+        "rarity": "TD"
+      },
+      {
+        "id": "P5X/SZ10-T03TDP",
+        "rarity": "TDP"
+      },
+      {
+        "id": "P5X/SZ10-T03TDSP",
+        "rarity": "TDSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "P5X/SZ10-T04": {
+    "name": "主人公（P5X）",
+    "product_name": "【女神异闻录：夜幕魅影】 - 预购筑卡组",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5500,
+    "cost": 0,
+    "trait": ["怪盗"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "",
+    "all_cards": [
+      {
+        "id": "P5X/SZ10-T04",
+        "rarity": "TD"
+      },
+      {
+        "id": "P5X/SZ10-T04TDP",
+        "rarity": "TDP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "P5X/SZ10-T05": {
+    "name": "汝即是吾 吾即是汝 SKULL",
+    "product_name": "【女神异闻录：夜幕魅影】 - 预购筑卡组",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["怪盗"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，此卡的力量＋10000。<br>【自】 再演 ［将1张手牌的角色卡放置入休息室］ （此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则将此卡以【横置】状态放置入此卡曾经存在的格子）",
+    "all_cards": [
+      {
+        "id": "P5X/SZ10-T05",
+        "rarity": "TD"
+      },
+      {
+        "id": "P5X/SZ10-T05TDP",
+        "rarity": "TDP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "P5X/SZ10-T06": {
+    "name": "路菲尔／CATTLE",
+    "product_name": "【女神异闻录：夜幕魅影】 - 预购筑卡组",
+    "type": "角色卡",
+    "level": 2,
+    "power": 3500,
+    "cost": 1,
+    "trait": ["怪盗"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。<br>【自】 你的高潮卡被放置入高潮区时，你选择至多2张自己的角色卡，该回合中，力量＋2000。",
+    "all_cards": [
+      {
+        "id": "P5X/SZ10-T06",
+        "rarity": "TD"
+      },
+      {
+        "id": "P5X/SZ10-T06TDP",
+        "rarity": "TDP"
+      },
+      {
+        "id": "P5X/SZ10-T06TDSP",
+        "rarity": "TDSP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "P5X/SZ10-T07": {
+    "name": "汝即是吾 吾即是汝 JOKER",
+    "product_name": "【女神异闻录：夜幕魅影】 - 预购筑卡组",
+    "type": "角色卡",
+    "level": 2,
+    "power": 5500,
+    "cost": 1,
+    "trait": ["怪盗"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 每存在1张其他的你的后列的持有《怪盗》特征的角色卡，此卡的力量＋2500。<br>【自】 此卡的战斗对手【倒置】时，你选择1张自己休息室的持有《怪盗》特征的角色卡，返回手牌，选择1张自己的手牌，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "P5X/SZ10-T07",
+        "rarity": "TD"
+      },
+      {
+        "id": "P5X/SZ10-T07TDP",
+        "rarity": "TDP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "P5X/SZ10-T08": {
+    "name": "主人公／WONDER",
+    "product_name": "【女神异闻录：夜幕魅影】 - 预购筑卡组",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["怪盗"],
+    "color": "黄色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你检视自己卡组顶至多Ｘ张卡，选择至多1张卡，加入手牌，其余的卡片放置入休息室。Ｘ为对方的角色卡的张数。<br>【自】【CX联动】［③ 将2张手牌放置入休息室，将此卡放置入休息室］ 此卡的攻击结束之际，若高潮区存在「潜入开始」，则你可以支付费用。若如此做，则你检视自己卡组顶的1张卡，放置入卡组顶或卡组底或休息室，选择至多1张自己休息室的「主人公／WONDER」以外的持有《怪盗》特征的角色卡，放置入此卡曾经存在的格子。",
+    "all_cards": [
+      {
+        "id": "P5X/SZ10-T08",
+        "rarity": "TD"
+      },
+      {
+        "id": "P5X/SZ10-T08TDP",
+        "rarity": "TDP"
+      },
+      {
+        "id": "P5X/SZ10-T08TDSP",
+        "rarity": "TDSP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "P5X/SZ10-T09": {
+    "name": "WONDER VS JOKER",
+    "product_name": "【女神异闻录：夜幕魅影】 - 预购筑卡组",
+    "type": "事件卡",
+    "level": 3,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "若不存在你的卡名含有「WONDER」的角色卡， 则此卡无法从手牌被使用。<br>你检视自己的卡组，选择至多1张卡名含有「WONDER」的角色卡展示给对手，加入手牌，选择至多1张自己手牌的「主人公／WONDER」，放置入舞台的任意格子，将卡组洗切，该回合中，该角色卡的力量＋5000。",
+    "all_cards": [
+      {
+        "id": "P5X/SZ10-T09",
+        "rarity": "TD"
+      },
+      {
+        "id": "P5X/SZ10-T09TDP",
+        "rarity": "TDP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "P5X/SZ10-T10": {
+    "name": "潜入开始",
+    "product_name": "【女神异闻录：夜幕魅影】 - 预购筑卡组",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你可以选择1张自己休息室的触发标记中有<img src=\"/effect-icons/soul.webp\">的角色卡，返回手牌或放置入库存区）",
+    "all_cards": [
+      {
+        "id": "P5X/SZ10-T10",
+        "rarity": "TD"
+      },
+      {
+        "id": "P5X/SZ10-T10TDP",
+        "rarity": "TDP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "P5X/SZ10-T11": {
+    "name": "怪盗团（P5X）",
+    "product_name": "【女神异闻录：夜幕魅影】 - 预购筑卡组",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，魂＋2。",
+    "all_cards": [
+      {
+        "id": "P5X/SZ10-T11",
+        "rarity": "TD"
+      },
+      {
+        "id": "P5X/SZ10-T11TDP",
+        "rarity": "TDP"
+      }
+    ],
+    "trigger_soul_count": 2
+  },
+  "P5X/SZ10-T12": {
+    "name": "汝即是吾 吾即是汝 PANTHER",
+    "product_name": "【女神异闻录：夜幕魅影】 - 预购筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["怪盗"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋500。<br>【起】［① 【横置】此卡］ 你选择1张自己的持有《怪盗》特征的角色卡，该回合中，赋予其以下能力。『【自】 此卡的战斗对手【倒置】时，你可以选择1张自己休息室的角色卡，返回手牌。』",
+    "all_cards": [
+      {
+        "id": "P5X/SZ10-T12",
+        "rarity": "TD"
+      },
+      {
+        "id": "P5X/SZ10-T12TDP",
+        "rarity": "TDP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "P5X/SZ10-T13": {
+    "name": "路过的打工人 MOKO",
+    "product_name": "【女神异闻录：夜幕魅影】 - 预购筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["怪盗"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】  此卡被从手牌放置入舞台时或攻击时，你选择1张自己的持有《怪盗》特征的角色卡，该回合中，力量＋1500。<br>【自】 此卡的战斗对手【倒置】时，若你库存区中存在的卡片小于等于3张，则你选择1张其他的自己的角色卡，【横置】，移动至后列的不存在角色卡的格子。",
+    "all_cards": [
+      {
+        "id": "P5X/SZ10-T13",
+        "rarity": "TD"
+      },
+      {
+        "id": "P5X/SZ10-T13TDP",
+        "rarity": "TDP"
+      },
+      {
+        "id": "P5X/SZ10-T13TDSP",
+        "rarity": "TDSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "P5X/SZ10-T14": {
+    "name": "前天才棒球少女　CLOSER",
+    "product_name": "【女神异闻录：夜幕魅影】 - 预购筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["怪盗"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［① 将你卡组顶的1张卡放置入计时区］ 此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则你检视自己卡组顶的至多4张卡，选择至多1张等级大于等于1的卡片展示给对手，加入手牌，其余的卡片放置入休息室。（高潮卡视作等级为0的卡片）",
+    "all_cards": [
+      {
+        "id": "P5X/SZ10-T14",
+        "rarity": "TD"
+      },
+      {
+        "id": "P5X/SZ10-T14TDP",
+        "rarity": "TDP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "P5X/SZ10-T15": {
+    "name": "汝即是吾 吾即是汝 MONA",
+    "product_name": "【女神异闻录：夜幕魅影】 - 预购筑卡组",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["怪盗"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，此卡的力量＋4000。<br>【自】 此卡攻击时，你选择1张其他的自己的持有《怪盗》特征的角色卡，该回合中，力量＋Ｘ。Ｘ为该角色卡的魂×1000。",
+    "all_cards": [
+      {
+        "id": "P5X/SZ10-T15",
+        "rarity": "TD"
+      },
+      {
+        "id": "P5X/SZ10-T15TDP",
+        "rarity": "TDP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "P5X/SZ10-T16": {
+    "name": "新井素羽／CLOSER",
+    "product_name": "【女神异闻录：夜幕魅影】 - 预购筑卡组",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["怪盗"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 若存在大于等于2张其他的你的持有《怪盗》特征的角色卡，则此卡的力量＋2000。<br>【自】【CX联动】 此卡攻击时，若高潮区存在「觉醒，面具之下的你！」，且存在其他的你的持有《怪盗》特征的角色卡，则你将自己卡组顶的2张卡，放置入休息室，选择至多1张自己休息室的等级小于等于X的持有《怪盗》特征的角色卡，返回手牌。Ｘ为因此效果被放置入休息室的卡片的合计等级。（高潮卡视作等级为0的卡片）",
+    "all_cards": [
+      {
+        "id": "P5X/SZ10-T16",
+        "rarity": "TD"
+      },
+      {
+        "id": "P5X/SZ10-T16TDP",
+        "rarity": "TDP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "P5X/SZ10-T17": {
+    "name": "加纳骏／SOY",
+    "product_name": "【女神异闻录：夜幕魅影】 - 预购筑卡组",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["怪盗"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若存在大于等于2张其他的你的持有《怪盗》特征的角色卡，则此卡的力量＋2000，此卡获得以下能力。『【自】 此卡攻击时，若此卡正面的角色卡的等级为2，则该回合中，此卡的力量＋6000。』<br>【自】 此卡的战斗对手【倒置】时，若你的高潮区存在高潮卡，则你公开自己卡组顶的1张卡。若该卡为等级大于等于1的卡片则加入手牌。（高潮卡视作等级为0的卡片。若非如此则放回原处）",
+    "all_cards": [
+      {
+        "id": "P5X/SZ10-T17",
+        "rarity": "TD"
+      },
+      {
+        "id": "P5X/SZ10-T17TDP",
+        "rarity": "TDP"
+      },
+      {
+        "id": "P5X/SZ10-T17TDSP",
+        "rarity": "TDSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "P5X/SZ10-T18": {
+    "name": "加纳骏",
+    "product_name": "【女神异闻录：夜幕魅影】 - 预购筑卡组",
+    "type": "角色卡",
+    "level": 1,
+    "power": 500,
+    "cost": 1,
+    "trait": ["怪盗"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 你使用此卡的『助太刀』时，你公开自己卡组顶的1张卡。若该卡为持有《怪盗》特征的角色卡则加入手牌，你选择1张自己的手牌，放置入休息室。（若非如此则放回原处）<br>【起】【反击】 助太刀2000 等级1 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2000）",
+    "all_cards": [
+      {
+        "id": "P5X/SZ10-T18",
+        "rarity": "TD"
+      },
+      {
+        "id": "P5X/SZ10-T18TDP",
+        "rarity": "TDP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "P5X/SZ10-T19": {
+    "name": "新井素羽",
+    "product_name": "【女神异闻录：夜幕魅影】 - 预购筑卡组",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["怪盗"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时或因「主人公／WONDER」的【CX联动】效果被放置入舞台时，你可以选择自己的计时区上方的1张卡片，放置入休息室。<br>【自】［将2张手牌放置入休息室，将1张其他的你的舞台的角色卡放置入休息室］ 此卡的攻击结束之际，若此卡正面的角色卡处于【倒置】状态，则你可以支付费用。若如此做，则给予对方2点伤害。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "P5X/SZ10-T19",
+        "rarity": "TD"
+      },
+      {
+        "id": "P5X/SZ10-T19TDP",
+        "rarity": "TDP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "P5X/SZ10-T20": {
+    "name": "觉醒，面具之下的你！",
+    "product_name": "【女神异闻录：夜幕魅影】 - 预购筑卡组",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "P5X/SZ10-T20",
+        "rarity": "TD"
+      },
+      {
+        "id": "P5X/SZ10-T20TDP",
+        "rarity": "TDP"
+      }
+    ],
+    "trigger_soul_count": 0
+  }
+}
