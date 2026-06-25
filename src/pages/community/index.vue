@@ -302,7 +302,7 @@ import crowdIcon from '@/assets/ui/crowd.svg'
 
 definePage({
   name: 'Community',
-  meta: { group: 'community' },
+  meta: { group: 'toolbox' },
 })
 
 const uiStore = useUIStore()
