@@ -28,14 +28,33 @@
               </div>
               <v-divider
                 :class="smAndUp ? 'mb-8' : 'mb-0'"
-                :length="smAndUp ? '60%' : '90%'"
+                :length="smAndUp ? '60%' : '100%'"
                 thickness="3"
               ></v-divider>
+
+              <div class="mt-8 d-flex justify-center" style="max-width: 300px">
+                <v-autocomplete
+                  v-model="selectedSeries"
+                  :items="filterOptions"
+                  label="系列"
+                  variant="outlined"
+                  density="compact"
+                  hide-details
+                  rounded="pill"
+                  class="w-100"
+                  clearable
+                  :menu-props="uiStore.menuProps"
+                ></v-autocomplete>
+              </div>
             </v-col>
 
             <v-col cols="12" class="px-0">
               <div class="banlist-masonry w-100">
-                <div v-for="series in banlistData" :key="series.id" class="masonry-item mb-6">
+                <div
+                  v-for="series in filteredBanlistData"
+                  :key="series.id"
+                  class="masonry-item mb-6"
+                >
                   <div class="px-2">
                     <h2 :class="smAndUp ? 'text-h4' : 'text-h5'" class="font-weight-medium mb-3">
                       {{ series.title }}
@@ -134,6 +153,7 @@ import DOMPurify from 'dompurify'
 import { deckRestrictionsLastUpdated, deckRestrictions } from '@/maps/deck-restrictions'
 import { ALL_SERIES_OPTIONS } from '@/maps/series-map'
 import { getCardUrls } from '@/utils/getCardImage'
+import { useUIStore } from '@/stores/ui'
 
 definePage({
   name: 'BanList',
@@ -142,6 +162,7 @@ definePage({
 
 const { smAndUp } = useDisplay()
 const theme = useTheme()
+const uiStore = useUIStore()
 
 const scrollStyle = computed(() => {
   const marginTop = smAndUp.value ? '50px' : '0'
@@ -224,6 +245,18 @@ const banlistData = (() => {
   }
   return result
 })()
+
+const filterOptions = [
+  { title: '全部系列', value: null },
+  ...banlistData.map((series) => ({ title: series.title, value: series.id })),
+]
+
+const selectedSeries = ref(null)
+
+const filteredBanlistData = computed(() => {
+  if (!selectedSeries.value) return banlistData
+  return banlistData.filter((series) => series.id === selectedSeries.value)
+})
 </script>
 
 <style scoped>
