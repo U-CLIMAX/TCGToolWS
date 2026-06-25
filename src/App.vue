@@ -436,13 +436,14 @@ import { runIPGeolocation } from '@/utils/ipGeolocation'
 import titleDefaultImg from '@/assets/ui/title-default.webp'
 import titleMonochrome from '@/assets/ui/title-monochrome.webp'
 import HomeIcon from '@/assets/ui/home.svg'
-import SeriesCardTableIcon from '@/assets/ui/series-card-table.svg'
-import DeckIcon from '@/assets/ui/deck.svg'
-import SearchIcon from '@/assets/ui/search.svg'
-import MarketIcon from '@/assets/ui/market.svg'
-import ToolboxIcon from '@/assets/ui/toolbox.svg'
-import DeckGalleryIcon from '@/assets/ui/deck-gallery.svg'
-import CommunityIcon from '@/assets/ui/community.svg'
+import seriesCardTableIcon from '@/assets/ui/series-card-table.svg'
+import deckIcon from '@/assets/ui/deck.svg'
+import searchIcon from '@/assets/ui/search.svg'
+import marketIcon from '@/assets/ui/market.svg'
+import toolboxIcon from '@/assets/ui/toolbox.svg'
+import deckGalleryIcon from '@/assets/ui/deck-gallery.svg'
+import communityIcon from '@/assets/ui/community.svg'
+import banListIcon from '@/assets/ui/banlist.svg'
 
 usePerformanceManager()
 
@@ -494,7 +495,9 @@ const route = useRoute()
 const isSettingsModalOpen = ref(false)
 const isUserProfileModalOpen = ref(false)
 const isHomeRoute = computed(() => route.name === 'Home')
-const noPaddingsRoute = computed(() => route.name === 'DecksGallery' || route.name === 'Community')
+const noPaddingsRoute = computed(
+  () => route.name === 'DecksGallery' || route.name === 'Community' || route.name === 'BanList'
+)
 
 const routeGameColor = computed(() => {
   const game = route.params.game
@@ -547,13 +550,14 @@ const confirmLogout = () => {
 
 const navIcons = {
   'home.svg': HomeIcon,
-  'market.svg': MarketIcon,
-  'series-card-table.svg': SeriesCardTableIcon,
-  'deck.svg': DeckIcon,
-  'search.svg': SearchIcon,
-  'toolbox.svg': ToolboxIcon,
-  'deck-gallery.svg': DeckGalleryIcon,
-  'community.svg': CommunityIcon,
+  'market.svg': marketIcon,
+  'series-card-table.svg': seriesCardTableIcon,
+  'deck.svg': deckIcon,
+  'search.svg': searchIcon,
+  'toolbox.svg': toolboxIcon,
+  'deck-gallery.svg': deckGalleryIcon,
+  'community.svg': communityIcon,
+  'banlist.svg': banListIcon,
 }
 
 const navItems = [
@@ -580,6 +584,13 @@ const toolboxItems = [
     text: '卡组广场',
     name: 'DecksGallery',
     icon: 'deck-gallery.svg',
+    requiresAuth: false,
+    group: 'toolbox',
+  },
+  {
+    text: '限制卡表',
+    name: 'BanList',
+    icon: 'banlist.svg',
     requiresAuth: false,
     group: 'toolbox',
   },

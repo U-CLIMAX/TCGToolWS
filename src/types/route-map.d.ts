@@ -38,6 +38,13 @@ declare module 'vue-router/auto-routes' {
       Record<never, never>,
       | never
     >,
+    'BanList': RouteRecordInfo<
+      'BanList',
+      '/banlist',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
     'Community': RouteRecordInfo<
       'Community',
       '/community',
@@ -138,6 +145,12 @@ declare module 'vue-router/auto-routes' {
     'src/pages/index.vue': {
       routes:
         | 'Home'
+      views:
+        | never
+    }
+    'src/pages/banlist/index.vue': {
+      routes:
+        | 'BanList'
       views:
         | never
     }
