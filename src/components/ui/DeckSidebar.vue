@@ -366,7 +366,7 @@
                     :lazy-src="getCardUrls(v.card.cardIdPrefix, v.card.id).blur"
                     cover
                     :aspect-ratio="400 / 559"
-                    class="rounded preload-img"
+                    class="rounded-lg preload-img"
                   ></v-img>
                 </div>
                 <div
@@ -393,7 +393,7 @@
                     :lazy-src="getCardUrls(v.card.cardIdPrefix, v.card.id).blur"
                     cover
                     :aspect-ratio="400 / 559"
-                    class="rounded preload-img"
+                    class="rounded-lg preload-img"
                   ></v-img>
                 </div>
                 <div
@@ -421,7 +421,7 @@
                       :lazy-src="getCardUrls(c.cardIdPrefix, c.id).blur"
                       cover
                       :aspect-ratio="400 / 559"
-                      class="rounded preload-img"
+                      class="rounded-lg preload-img"
                     ></v-img>
                   </div>
                 </div>

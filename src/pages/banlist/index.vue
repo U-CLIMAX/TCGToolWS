@@ -84,7 +84,7 @@
                             width="100"
                             max-width="100"
                             :aspect-ratio="400 / 559"
-                            class="rounded preload-img"
+                            class="rounded-lg preload-img"
                           >
                           </v-img>
                         </div>
