@@ -433,6 +433,7 @@ onMounted(() => {
 onUnmounted(() => {
   observer.disconnect()
   filterStore.reset()
+  uiStore.cardClickMode = 'none'
 })
 
 const storageKey = computed(() => `seriesDetailViewState_${props.seriesId}`)

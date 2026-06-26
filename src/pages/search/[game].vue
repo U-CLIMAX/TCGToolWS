@@ -277,6 +277,7 @@ const chipContent = computed(() => {
 })
 
 onMounted(() => {
+  uiStore.cardClickMode = 'none'
   globalSearchStore.initialize(game.value)
 })
 
