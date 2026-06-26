@@ -169,6 +169,7 @@ const handleTap = () => {
   position: absolute;
   z-index: 1000;
   cursor: grab;
+  touch-action: none;
 }
 
 .search-wrapper {
