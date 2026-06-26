@@ -3,6 +3,7 @@ const wsSeriesMap = {
     id: 'gbf',
     prefixes: ['GBF'],
     latestReleaseDate: '2026-06-26',
+    yytUrl: 'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=gbf&rare=&type=&kizu=0',
   },
   'GA文库': {
     id: 'ga',
