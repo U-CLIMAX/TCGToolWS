@@ -168,119 +168,274 @@
 
         <v-divider></v-divider>
 
-        <v-select
-          label="种类"
-          :items="[
-            { title: '角色', value: '角色卡' },
-            { title: '事件', value: '事件卡' },
-            { title: '高潮卡', value: '高潮卡' },
-          ]"
-          hide-details
-          multiple
-          chips
-          clearable
-          v-model="filterStore.selectedCardTypes"
-          variant="outlined"
-          rounded="pill"
-          :menu-props="uiStore.menuProps"
-          :disabled="props.disabled"
-        ></v-select>
+        <template v-if="smAndUp">
+          <v-select
+            label="种类"
+            :items="[
+              { title: '角色', value: '角色卡' },
+              { title: '事件', value: '事件卡' },
+              { title: '高潮卡', value: '高潮卡' },
+            ]"
+            hide-details
+            multiple
+            chips
+            clearable
+            v-model="filterStore.selectedCardTypes"
+            variant="outlined"
+            rounded="pill"
+            :menu-props="uiStore.menuProps"
+            :disabled="props.disabled"
+          ></v-select>
 
-        <v-select
-          label="等级"
-          :items="filterStore.levels"
-          hide-details
-          multiple
-          chips
-          clearable
-          v-model="filterStore.selectedLevels"
-          variant="outlined"
-          rounded="pill"
-          :menu-props="uiStore.menuProps"
-          :disabled="props.disabled"
-        ></v-select>
+          <v-select
+            label="等级"
+            :items="filterStore.levels"
+            hide-details
+            multiple
+            chips
+            clearable
+            v-model="filterStore.selectedLevels"
+            variant="outlined"
+            rounded="pill"
+            :menu-props="uiStore.menuProps"
+            :disabled="props.disabled"
+          ></v-select>
 
-        <v-select
-          label="颜色"
-          :items="[
-            { title: '黄', value: '黄色' },
-            { title: '绿', value: '绿色' },
-            { title: '红', value: '红色' },
-            { title: '蓝', value: '蓝色' },
-            { title: '紫', value: '紫色' },
-          ]"
-          hide-details
-          multiple
-          chips
-          clearable
-          v-model="filterStore.selectedColors"
-          variant="outlined"
-          rounded="pill"
-          :menu-props="uiStore.menuProps"
-          :disabled="props.disabled"
-        ></v-select>
+          <v-select
+            label="颜色"
+            :items="[
+              { title: '黄', value: '黄色' },
+              { title: '绿', value: '绿色' },
+              { title: '红', value: '红色' },
+              { title: '蓝', value: '蓝色' },
+              { title: '紫', value: '紫色' },
+            ]"
+            hide-details
+            multiple
+            chips
+            clearable
+            v-model="filterStore.selectedColors"
+            variant="outlined"
+            rounded="pill"
+            :menu-props="uiStore.menuProps"
+            :disabled="props.disabled"
+          ></v-select>
 
-        <v-select
-          label="产品"
-          :items="filterStore.productNames"
-          hide-details
-          clearable
-          v-model="filterStore.selectedProductName"
-          variant="outlined"
-          rounded="pill"
-          :menu-props="uiStore.menuProps"
-          :disabled="props.disabled"
-        >
-          <template v-slot:item="{ props, item }">
-            <v-list-item v-bind="props" :title="null">
-              <v-list-item-title style="white-space: normal">
-                {{ item.title }}
-              </v-list-item-title>
-            </v-list-item>
-          </template>
-        </v-select>
+          <v-select
+            label="产品"
+            :items="filterStore.productNames"
+            hide-details
+            clearable
+            v-model="filterStore.selectedProductName"
+            variant="outlined"
+            rounded="pill"
+            :menu-props="uiStore.menuProps"
+            :disabled="props.disabled"
+          >
+            <template v-slot:item="{ props, item }">
+              <v-list-item v-bind="props" :title="null">
+                <v-list-item-title style="white-space: normal">
+                  {{ item.title }}
+                </v-list-item-title>
+              </v-list-item>
+            </template>
+          </v-select>
 
-        <v-select
-          label="稀有度"
-          :items="filterStore.rarities"
-          hide-details
-          multiple
-          chips
-          clearable
-          v-model="filterStore.selectedRarities"
-          variant="outlined"
-          rounded="pill"
-          :menu-props="uiStore.menuProps"
-          :disabled="props.disabled"
-        ></v-select>
+          <v-select
+            label="稀有度"
+            :items="filterStore.rarities"
+            hide-details
+            multiple
+            chips
+            clearable
+            v-model="filterStore.selectedRarities"
+            variant="outlined"
+            rounded="pill"
+            :menu-props="uiStore.menuProps"
+            :disabled="props.disabled"
+          ></v-select>
 
-        <v-select
-          label="特征"
-          :items="filterStore.traits"
-          hide-details
-          multiple
-          chips
-          clearable
-          v-model="filterStore.selectedTraits"
-          variant="outlined"
-          rounded="pill"
-          :menu-props="uiStore.menuProps"
-          :disabled="props.disabled"
-        ></v-select>
+          <v-select
+            label="特征"
+            :items="filterStore.traits"
+            hide-details
+            multiple
+            chips
+            clearable
+            v-model="filterStore.selectedTraits"
+            variant="outlined"
+            rounded="pill"
+            :menu-props="uiStore.menuProps"
+            :disabled="props.disabled"
+          ></v-select>
 
-        <v-select
-          label="魂伤"
-          :items="filterStore.souls"
-          hide-details
-          multiple
-          chips
-          clearable
-          v-model="filterStore.selectedSoul"
-          variant="outlined"
-          rounded="pill"
-          :menu-props="uiStore.menuProps"
-          :disabled="props.disabled"
-        ></v-select>
+          <v-select
+            label="魂伤"
+            :items="filterStore.souls"
+            hide-details
+            multiple
+            chips
+            clearable
+            v-model="filterStore.selectedSoul"
+            variant="outlined"
+            rounded="pill"
+            :menu-props="uiStore.menuProps"
+            :disabled="props.disabled"
+          ></v-select>
+        </template>
+
+        <template v-else>
+          <!-- 种类 -->
+          <div>
+            <div class="text-caption text-disabled mb-1">种类</div>
+            <v-chip-group v-model="filterStore.selectedCardTypes" multiple column color="primary">
+              <v-chip value="角色卡" density="comfortable" :disabled="props.disabled">角色</v-chip>
+              <v-chip value="事件卡" density="comfortable" :disabled="props.disabled">事件</v-chip>
+              <v-chip value="高潮卡" density="comfortable" :disabled="props.disabled">
+                高潮卡
+              </v-chip>
+            </v-chip-group>
+          </div>
+
+          <!-- 等级 -->
+          <div>
+            <div class="text-caption text-disabled mb-1">等级</div>
+            <v-chip-group v-model="filterStore.selectedLevels" multiple column color="primary">
+              <v-chip
+                v-for="lvl in filterStore.levels"
+                :key="lvl"
+                :value="lvl"
+                density="comfortable"
+                :disabled="props.disabled"
+              >
+                {{ lvl }}
+              </v-chip>
+            </v-chip-group>
+          </div>
+
+          <!-- 颜色 -->
+          <div>
+            <div class="text-caption text-disabled mb-1">颜色</div>
+            <v-chip-group v-model="filterStore.selectedColors" multiple column>
+              <v-chip
+                value="黄色"
+                density="comfortable"
+                color="amber-darken-3"
+                :disabled="props.disabled"
+              >
+                黄
+              </v-chip>
+              <v-chip
+                value="绿色"
+                density="comfortable"
+                color="green-darken-1"
+                :disabled="props.disabled"
+              >
+                绿
+              </v-chip>
+              <v-chip
+                value="红色"
+                density="comfortable"
+                color="red-darken-1"
+                :disabled="props.disabled"
+              >
+                红
+              </v-chip>
+              <v-chip
+                value="蓝色"
+                density="comfortable"
+                color="blue-darken-1"
+                :disabled="props.disabled"
+              >
+                蓝
+              </v-chip>
+              <v-chip
+                value="紫色"
+                density="comfortable"
+                color="purple-darken-1"
+                :disabled="props.disabled"
+              >
+                紫
+              </v-chip>
+            </v-chip-group>
+          </div>
+
+          <!-- 产品 -->
+          <div>
+            <div class="text-caption text-disabled mb-1">产品</div>
+            <v-select
+              label="产品"
+              :items="filterStore.productNames"
+              hide-details
+              clearable
+              v-model="filterStore.selectedProductName"
+              variant="outlined"
+              rounded="pill"
+              :menu-props="uiStore.menuProps"
+              :disabled="props.disabled"
+            >
+              <template v-slot:item="{ props, item }">
+                <v-list-item v-bind="props" :title="null">
+                  <v-list-item-title style="white-space: normal">
+                    {{ item.title }}
+                  </v-list-item-title>
+                </v-list-item>
+              </template>
+            </v-select>
+          </div>
+
+          <!-- 稀有度 -->
+          <div>
+            <div class="text-caption text-disabled mb-1">稀有度</div>
+            <v-select
+              label="稀有度"
+              :items="filterStore.rarities"
+              hide-details
+              multiple
+              chips
+              clearable
+              v-model="filterStore.selectedRarities"
+              variant="outlined"
+              rounded="pill"
+              :menu-props="uiStore.menuProps"
+              :disabled="props.disabled"
+            ></v-select>
+          </div>
+
+          <!-- 特征 -->
+          <div>
+            <div class="text-caption text-disabled mb-1">特征</div>
+            <v-select
+              label="特征"
+              :items="filterStore.traits"
+              hide-details
+              multiple
+              chips
+              clearable
+              v-model="filterStore.selectedTraits"
+              variant="outlined"
+              rounded="pill"
+              :menu-props="uiStore.menuProps"
+              :disabled="props.disabled"
+            ></v-select>
+          </div>
+
+          <!-- 魂伤 -->
+          <div v-if="filterStore.souls?.length">
+            <div class="text-caption text-disabled mb-1">魂伤</div>
+            <v-chip-group v-model="filterStore.selectedSoul" multiple column color="primary">
+              <v-chip
+                v-for="s in filterStore.souls"
+                :key="s"
+                :value="s"
+                density="comfortable"
+                :disabled="props.disabled"
+              >
+                {{ s }}
+              </v-chip>
+            </v-chip-group>
+          </div>
+        </template>
 
         <div>
           <div class="d-flex justify-space-between align-center mb-1">
