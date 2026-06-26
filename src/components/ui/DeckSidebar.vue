@@ -62,7 +62,7 @@
       <v-row dense>
         <v-col cols="7" sm="8" class="pa-0">
           <v-btn-toggle
-            v-model="activeMode"
+            v-model="uiStore.cardClickMode"
             density="compact"
             color="primary"
             variant="tonal"
@@ -789,7 +789,6 @@ const getGroupName = (groupName) => {
 }
 
 // UI State
-const activeMode = ref('none')
 const isModalVisible = ref(false)
 
 // Card Data for Modal
@@ -921,12 +920,12 @@ const handleShowNewCard = async (cardPayload) => {
  * @param {object} item - The card item that was clicked.
  */
 const handleCardClick = async (item) => {
-  switch (activeMode.value) {
+  switch (uiStore.cardClickMode) {
     case 'add':
       deckStore.addCard(item)
 
       if (deckStore.totalCardCount >= 50 && userRole.value === 0) {
-        activeMode.value = 'none'
+        uiStore.cardClickMode = 'none'
       }
       break
     case 'remove':

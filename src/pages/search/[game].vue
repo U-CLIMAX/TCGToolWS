@@ -1,5 +1,6 @@
 <template>
-  <v-container fluid class="h-100 pa-0">
+  <v-container fluid class="h-100 pa-0" style="position: relative;">
+    <FloatingCardClickModeToggle v-if="!smAndUp" />
     <div class="d-flex flex-column h-100">
       <div ref="headerRef" class="overlay-header pl-4 pr-4 pa-1" :class="smAndUp ? 'mt-4' : 'mt-0'">
         <div class="overlay-header-content">

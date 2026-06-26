@@ -30,6 +30,7 @@ declare module 'vue' {
     DownloadTextDialog: typeof import('./../components/card/DownloadTextDialog.vue')['default']
     DraggableBottomSheet: typeof import('./../components/ui/DraggableBottomSheet.vue')['default']
     FilterSidebar: typeof import('./../components/ui/FilterSidebar.vue')['default']
+    FloatingCardClickModeToggle: typeof import('./../components/ui/FloatingCardClickModeToggle.vue')['default']
     FloatingSearchBar: typeof import('./../components/ui/FloatingSearchBar.vue')['default']
     HomeBackground: typeof import('./../components/common/HomeBackground.vue')['default']
     ImageCropperModal: typeof import('./../components/ui/ImageCropperModal.vue')['default']

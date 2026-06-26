@@ -154,12 +154,23 @@ const buttonSize = computed(() =>
 
 const handleCardClick = () => {
   if (!props.card) return
-  emit('show-details', {
-    card: props.card,
-    imageUrl: imageUrl,
-    blurUrl: blurUrl,
-    price: cardPrice.value,
-  })
+
+  if (uiStore.cardClickMode === 'add') {
+    if (deckStore.totalCardCount >= 50 && userRole.value === 0) {
+      uiStore.cardClickMode = 'none'
+    } else {
+      deckStore.addCard(props.card)
+    }
+  } else if (uiStore.cardClickMode === 'remove') {
+    deckStore.removeCard(props.card.id)
+  } else {
+    emit('show-details', {
+      card: props.card,
+      imageUrl: imageUrl,
+      blurUrl: blurUrl,
+      price: cardPrice.value,
+    })
+  }
 }
 </script>
 

@@ -22,6 +22,7 @@ export const useUIStore = defineStore(
     const isFilterOpen = ref(false)
     const isCardDeckOpen = ref(false)
     const isCardDetailModalOpen = ref(false)
+    const cardClickMode = ref('none')
     const isLoading = ref(false)
     const isTableModeActive = ref(false)
     const performanceThreshold = ref(600)
@@ -198,6 +199,7 @@ export const useUIStore = defineStore(
       isFilterOpen,
       isCardDeckOpen,
       isCardDetailModalOpen,
+      cardClickMode,
       isLoading,
       setLoading,
       isTableModeActive,

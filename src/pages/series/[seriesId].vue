@@ -1,5 +1,7 @@
 <template>
-  <v-container fluid class="h-100 pa-0">
+  <v-container fluid class="h-100 pa-0" style="position: relative">
+    <FloatingCardClickModeToggle v-if="!smAndUp" />
+
     <div v-if="filterStore.isLoading" class="d-flex flex-column justify-center align-center h-100">
       <v-progress-circular
         indeterminate
@@ -220,6 +222,7 @@ import { seriesMap } from '@/maps/series-map.js'
 import { useDeckStore } from '@/stores/deck'
 import { useFilterStore } from '@/stores/filter'
 import { useUIStore } from '@/stores/ui'
+import { useAuthStore } from '@/stores/auth'
 import { useRecentStore } from '@/stores/recent'
 import { usePriceStore } from '@/stores/price'
 import { useInfiniteScrollState } from '@/composables/useInfiniteScrollState.js'
@@ -251,6 +254,8 @@ const route = useRoute()
 const router = useRouter()
 const { smAndUp, smAndDown, lgAndUp } = useDisplay()
 
+const authStore = useAuthStore()
+const { userRole } = storeToRefs(authStore)
 const deckStore = useDeckStore()
 const filterStore = useFilterStore()
 const uiStore = useUIStore()
