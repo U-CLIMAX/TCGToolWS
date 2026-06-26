@@ -36,6 +36,7 @@ export const useUIStore = defineStore(
     const showCardPrices = ref(true)
     const customKeywords = ref([])
     const backgroundImage = ref(null)
+    const floatingTogglePosition = ref(null)
 
     // State for SeriesCardTableView
     const seriesSearchTerm = debounceRef('', 300)
@@ -218,6 +219,7 @@ export const useUIStore = defineStore(
       seriesSortBy,
       seriesSortAscending,
       selectedGameType,
+      floatingTogglePosition,
       backgroundImage,
       setBackgroundImage,
       updateBackgroundImage,

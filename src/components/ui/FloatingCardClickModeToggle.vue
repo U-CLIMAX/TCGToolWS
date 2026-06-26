@@ -63,11 +63,15 @@ const containerStyle = computed(() => ({
 onMounted(() => {
   if (draggableContainer.value) {
     requestAnimationFrame(() => {
-      const rect = draggableContainer.value?.getBoundingClientRect()
-      if (!rect) return
-      position.value = {
-        x: window.innerWidth - rect.right - 5,
-        y: (window.innerHeight - rect.height) * 0.4 - rect.top,
+      if (uiStore.floatingTogglePosition) {
+        position.value = { ...uiStore.floatingTogglePosition }
+      } else {
+        const rect = draggableContainer.value?.getBoundingClientRect()
+        if (!rect) return
+        position.value = {
+          x: window.innerWidth - rect.right - 5,
+          y: (window.innerHeight - rect.height) * 0.4 - rect.top,
+        }
       }
     })
   }
@@ -126,6 +130,7 @@ const stopDrag = () => {
   window.removeEventListener('mouseup', stopDrag)
   window.removeEventListener('touchmove', drag)
   window.removeEventListener('touchend', stopDrag)
+  uiStore.floatingTogglePosition = { ...position.value }
 }
 </script>
 
