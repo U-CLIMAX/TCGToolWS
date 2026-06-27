@@ -30,8 +30,8 @@
             >
               <v-btn
                 icon
-                variant="text"
-                density="compact"
+                :variant="smAndUp || embedded ? 'text' : 'elevated'"
+                :density="smAndUp ? 'compact' : 'default'"
                 @click="openSaveDialog"
                 :disabled="!deck"
               >
@@ -39,7 +39,7 @@
               </v-btn>
 
               <v-btn
-                v-if="deck?.article_link"
+                v-if="deck?.article_link && embedded"
                 icon
                 variant="text"
                 density="compact"
@@ -113,7 +113,12 @@
                 </div>
               </template>
               <template v-else>
-                <v-btn icon variant="text" density="compact" @click="showBottomSheet = true">
+                <v-btn
+                  icon
+                  :variant="smAndUp ? 'text' : 'elevated'"
+                  :density="smAndUp ? 'compact' : 'default'"
+                  @click="showBottomSheet = true"
+                >
                   <v-icon size="24" icon="i-mdi:format-list-bulleted-type" />
                 </v-btn>
               </template>
