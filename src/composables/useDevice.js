@@ -6,16 +6,20 @@ export const useDevice = () => {
   const checkTouch = () => {
     if (typeof window === 'undefined') return false
 
-    // Check 1: Browser reports at least one touch point
-    const hasTouchPoints = navigator.maxTouchPoints > 0
+    // Primary input is a coarse pointer (e.g. finger)
+    const coarse = window.matchMedia('(pointer: coarse)').matches
 
-    // Check 2: Browser supports touch events
-    const hasTouchEvents = 'ontouchstart' in window
+    // Any fine pointer exists (e.g. mouse, trackpad, stylus)
+    const fine = window.matchMedia('(any-pointer: fine)').matches
 
-    // Check 3: Media query for at least one "coarse" pointer (e.g., finger)
-    const hasCoarsePointer = window.matchMedia('(any-pointer: coarse)').matches
+    // Any input device supports hover
+    const hover = window.matchMedia('(any-hover: hover)').matches
 
-    return hasTouchPoints || hasTouchEvents || hasCoarsePointer
+    // Treat as touch-only device:
+    // - Primary pointer is touch
+    // - No fine pointer is available
+    // - No device supports hover
+    return coarse && !fine && !hover
   }
 
   isTouch.value = checkTouch()
