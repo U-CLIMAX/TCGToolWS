@@ -74,7 +74,7 @@ export default defineConfig({
     },
   },
   build: {
-    cssMinify: false,
+    cssMinify: 'esbuild',
     minify: 'terser',
     terserOptions: {
       compress: {
