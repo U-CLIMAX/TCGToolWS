@@ -219,5 +219,28 @@
         "rarity": "PR+"
       }
     ]
+  },
+  "OS08/R08-P09": {
+    "name": "お出かけ日和 エルルゥ",
+    "product_name": "PRカード",
+    "type": "角色卡",
+    "level": 2,
+    "power": 1500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["AQUAPLUS", "薬師"],
+    "color": "绿色",
+    "effect": "【起】【反击】助太刀3500 等级2 [(1) 手牌中此卡放置到休息室]",
+    "all_cards": [
+      {
+        "id": "OS08/R08-P09",
+        "rarity": "PR"
+      },
+      {
+        "id": "OS08/R08-P09S",
+        "rarity": "PR"
+      }
+    ]
   }
 }

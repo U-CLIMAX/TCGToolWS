@@ -1231,6 +1231,11 @@ const wsSeriesMap = {
 }
 
 const wsrSeriesMap = {
+  'Purple software': {
+    id: 'os11',
+    prefixes: ['OS11'],
+    latestReleaseDate: '2026-07-03',
+  },
   'Navel': {
     id: 'os10',
     prefixes: ['OS10'],

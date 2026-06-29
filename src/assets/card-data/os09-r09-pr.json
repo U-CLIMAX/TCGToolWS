@@ -116,5 +116,47 @@
         "rarity": "PR+"
       }
     ]
+  },
+  "OS09/R09-P07": {
+    "name": "夏の装い 真夏のハルカ",
+    "product_name": "PRカード",
+    "type": "角色卡",
+    "level": 2,
+    "power": 5500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["アリスソフト", "忍"],
+    "color": "黄色",
+    "effect": "【永】你其他全部《忍》的角色，灵魂值＋1。<br>【起】[此卡【横置】] 你从自己的等级区和休息室各选择1张卡，互换。",
+    "all_cards": [
+      {
+        "id": "OS09/R09-P07",
+        "rarity": "PR"
+      },
+      {
+        "id": "OS09/R09-P07S",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "OS09/R09-P08": {
+    "name": "軍神 謙信",
+    "product_name": "PRカード",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["アリスソフト", "武器"],
+    "color": "绿色",
+    "effect": "【自】你使用此卡的『助太刀』时，你有〈同OS〉的角色的话，你选择自己战斗中的1个角色，那个回合中，战斗力＋1000。<br>【起】【反击】助太刀1000 等级1 [手牌中此卡放置到休息室]",
+    "all_cards": [
+      {
+        "id": "OS09/R09-P08EX",
+        "rarity": "PR+"
+      }
+    ]
   }
 }
