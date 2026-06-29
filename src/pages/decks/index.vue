@@ -171,14 +171,7 @@
       </div>
 
       <template v-if="initialLoadingComplete">
-        <transition-group
-          v-if="displayedDecks.length > 0"
-          tag="div"
-          class="v-row ma-1 mt-0"
-          :class="{ 'pb-8': smAndUp }"
-          name="deck-fade"
-          appear
-        >
+        <div v-if="displayedDecks.length > 0" class="v-row ma-1 mt-0" :class="{ 'pb-8': smAndUp }">
           <v-col
             v-for="item in displayedDecks"
             :key="item.key"
@@ -193,7 +186,7 @@
               <DeckCard :deck="item.deck" :deckKey="item.key" :is-editing="item.isEditing" />
             </LazyCardWrapper>
           </v-col>
-        </transition-group>
+        </div>
         <div v-else class="text-center text-medium-emphasis mt-10">暂无卡组</div>
       </template>
     </v-container>
@@ -409,14 +402,6 @@ onMounted(async () => {
   padding: 16px;
 }
 
-.deck-fade-enter-active {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.deck-fade-enter-from {
-  opacity: 0;
-  transform: scale(0.9);
-}
 .series-select {
   width: 100%; /* 手機版預設佔滿整行 */
 }
