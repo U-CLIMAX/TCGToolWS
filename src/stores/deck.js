@@ -41,7 +41,7 @@ export const useDeckStore = defineStore(
 
       const addViolation = (key, data) => {
         if (!violations.has(key)) {
-          violations.set(key, data)
+          violations.set(key, { id: key, ...data })
         }
       }
 

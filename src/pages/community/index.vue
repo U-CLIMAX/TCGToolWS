@@ -143,8 +143,8 @@
         <v-row>
           <!-- Community Cards (survey card always first) -->
           <v-col
-            v-for="(item, index) in displayItemsWithSurvey"
-            :key="item._isSurvey ? 'survey' : `item-${index}`"
+            v-for="item in displayItemsWithSurvey"
+            :key="item._isSurvey ? 'survey' : item.id"
             cols="12"
             sm="6"
             md="4"
@@ -344,6 +344,7 @@ const parseCSV = () => {
     const values = line.split(',')
     if (values.length < 6) continue
     items.push({
+      id: `${values[3]}-${values[5]}-${i}`,
       province: values[0],
       city: values[1],
       district: values[2],

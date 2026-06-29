@@ -350,7 +350,7 @@
       <v-divider />
       <v-card-text class="themed-scrollbar">
         <v-list :lines="false">
-          <template v-for="(v, i) in deckStore.restrictionViolations" :key="i">
+          <template v-for="(v, i) in deckStore.restrictionViolations" :key="v.id">
             <v-divider v-if="i !== 0" class="my-4"></v-divider>
             <v-list-item class="px-0">
               <template v-if="v.type === 'banned'">
