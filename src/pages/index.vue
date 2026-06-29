@@ -116,7 +116,7 @@
       </div>
 
       <!-- PC and Phone Support Section -->
-      <div ref="pcPhoneSection" class="pc-phone-section animated-section">
+      <div v-once ref="pcPhoneSection" class="pc-phone-section animated-section">
         <div class="pc-phone-content">
           <v-img
             :src="pcPhoneImg.src"
@@ -234,7 +234,7 @@
       </div>
 
       <!-- Copyright Section -->
-      <div ref="copyrightSection" class="copyright-section animated-section">
+      <div v-once ref="copyrightSection" class="copyright-section animated-section">
         <p>版权声明</p>
         <br />
         <p>
@@ -273,7 +273,7 @@
       <v-sheet color="transparent" class="pa-4 mt-8">
         <v-divider class="mb-4" color="white"></v-divider>
 
-        <v-col cols="12" class="text-caption text-grey-darken-1 text-center">
+        <v-col v-once cols="12" class="text-caption text-grey-darken-1 text-center">
           <div>
             U-CLIMAX 是一个非官方粉丝工具，所有卡牌资料版权归 Bushiroad (武士道) 所有，本网站与
             Bushiroad 并无任何官方合作或授权关系。
