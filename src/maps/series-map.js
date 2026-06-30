@@ -191,7 +191,7 @@ const wsSeriesMap = {
   '偶像大师 灰姑娘女孩': {
     id: 'imc',
     prefixes: ['IMC'],
-    latestReleaseDate: '2026-01-30',
+    latestReleaseDate: '2026-07-18',
     yytUrl:
       'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=imc&vers[]=imc2nd&vers[]=imc3.0&vers[]=imcpb&rare=&type=&kizu=0',
   },
