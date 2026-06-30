@@ -1,4 +1,9 @@
 const wsSeriesMap = {
+  '棕色尘埃2': {
+    id: 'brd',
+    prefixes: ['BRD'],
+    latestReleaseDate: '2026-07-03',
+  },
   '碧蓝幻想': {
     id: 'gbf',
     prefixes: ['GBF'],
