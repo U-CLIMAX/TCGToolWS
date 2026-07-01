@@ -19,12 +19,12 @@
     "db:init": "npx wrangler d1 execute ws-account-db --local --file=./schema.sql"
   },
   "dependencies": {
-    "@cj-tech-master/excelts": "^10.2.0",
     "@zumer/snapdom": "^2.12.0",
     "brotli-wasm": "^3.0.1",
     "clipboard-polyfill": "^4.1.1",
     "comlink": "^4.4.2",
     "detect-gpu": "^5.0.70",
+    "documonster": "^0.0.3",
     "dompurify": "^3.4.11",
     "epic-spinners": "^2.0.0",
     "flexsearch": "^0.8.212",

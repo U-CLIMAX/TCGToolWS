@@ -1,4 +1,4 @@
-import { PdfDocumentBuilder } from '@cj-tech-master/excelts/pdf'
+import { Pdf } from 'documonster/pdf'
 import { snapdom } from '@zumer/snapdom'
 import { formatEffectToHtml } from './cardEffectFormatter'
 import { sortCards } from './cardsSort.js'
@@ -66,7 +66,7 @@ export const convertDeckToPDF = async (cards, name, language) => {
   document.body.appendChild(container)
 
   try {
-    const doc = new PdfDocumentBuilder()
+    const doc = new Pdf.Builder()
     const cardsPerPage = PAGE_OPTS.cols * PAGE_OPTS.rows
     const totalPages = Math.ceil(flatCards.length / cardsPerPage)
 
