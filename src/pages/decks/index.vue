@@ -183,7 +183,17 @@
             xl="1"
           >
             <LazyCardWrapper>
-              <DeckCard :deck="item.deck" :deckKey="item.key" :is-editing="item.isEditing" />
+              <DeckCard
+                :deck="item.deck"
+                :deckKey="item.key"
+                :is-editing="item.isEditing"
+                :is-touch="isTouch"
+                :sm-and-down="smAndDown"
+                :all-existing-tags="allAvailableTags"
+                :menu-props="uiStore.menuPropsNoGlass"
+                :on-delete="handleDeleteDeck"
+                :on-save-tags="handleSaveTags"
+              />
             </LazyCardWrapper>
           </v-col>
         </div>
@@ -201,6 +211,7 @@ import { useDeckStore } from '@/stores/deck'
 import { useAuthStore } from '@/stores/auth'
 import { useUIStore } from '@/stores/ui'
 import { useSnackbar } from '@/composables/useSnackbar'
+import { useDevice } from '@/composables/useDevice'
 import { debounceRef } from '@/composables/useDebounceRef'
 import { seriesMap, GAME_TYPE_OPTIONS } from '@/maps/series-map'
 
@@ -216,7 +227,35 @@ const deckStore = useDeckStore()
 const authStore = useAuthStore()
 const uiStore = useUIStore()
 const { triggerSnackbar } = useSnackbar()
-const { smAndUp } = useDisplay()
+const { smAndUp, smAndDown } = useDisplay()
+const { isTouch } = useDevice()
+
+const handleDeleteDeck = async (key) => {
+  uiStore.setLoading(true)
+  try {
+    if (key === 'local') {
+      deckStore.clearDeck()
+    } else {
+      await deckStore.deleteDeck(key)
+    }
+    triggerSnackbar('卡组已删除', 'success')
+  } catch (error) {
+    triggerSnackbar(error.message || '删除失败', 'error')
+    throw error
+  } finally {
+    uiStore.setLoading(false)
+  }
+}
+
+const handleSaveTags = async (key, tags) => {
+  try {
+    await deckStore.updateDeckTags(key, tags)
+    triggerSnackbar('标签更新成功！', 'success')
+  } catch (error) {
+    triggerSnackbar(error.message || '保存失败', 'error')
+    throw error
+  }
+}
 
 const deckCode = ref('')
 const deckNameSearchTerm = debounceRef('', 300)

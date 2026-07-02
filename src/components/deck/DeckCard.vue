@@ -115,7 +115,7 @@
                 (v) => !v || v.every((tag) => tag.length <= 5) || '每个标签最多 5 个字',
               ]"
               hide-details="auto"
-              :menu-props="uiStore.menuPropsNoGlass"
+              :menu-props="menuProps"
             />
           </v-card-text>
           <v-card-actions class="px-6 pb-2">
@@ -141,12 +141,7 @@
 
 <script setup>
 import { computed, ref } from 'vue'
-import { useDisplay } from 'vuetify'
 import { getCardUrls } from '@/utils/getCardImage'
-import { useDeckStore } from '@/stores/deck'
-import { useDevice } from '@/composables/useDevice'
-import { useUIStore } from '@/stores/ui'
-import { useSnackbar } from '@/composables/useSnackbar'
 
 const props = defineProps({
   deck: {
@@ -161,15 +156,36 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  isTouch: {
+    type: Boolean,
+    default: false,
+  },
+  smAndDown: {
+    type: Boolean,
+    default: false,
+  },
+  allExistingTags: {
+    type: Array,
+    default: () => [],
+  },
+  menuProps: {
+    type: Object,
+    default: () => ({ contentClass: 'themed-scrollbar scrollbar-gutter-auto' }),
+  },
+  onDelete: {
+    type: Function,
+    required: true,
+  },
+  onSaveTags: {
+    type: Function,
+    required: true,
+  },
 })
 
-const deckStore = useDeckStore()
-const { isTouch } = useDevice()
-const { smAndDown } = useDisplay()
-const uiStore = useUIStore()
-const { triggerSnackbar } = useSnackbar()
-
 const isDeleteDialogOpen = ref(false)
+const isTagsDialogOpen = ref(false)
+const editTags = ref([])
+const isSavingTags = ref(false)
 
 const { base: imageUrl, blur: blurUrl } = getCardUrls(
   props.deck.coverCardId.cardIdPrefix,
@@ -183,35 +199,13 @@ const handleDeleteDeck = () => {
 }
 
 const confirmDeleteDeck = async () => {
-  uiStore.setLoading(true)
-
   try {
-    if (isLocalDeck.value) {
-      deckStore.clearDeck()
-    } else {
-      await deckStore.deleteDeck(props.deckKey)
-    }
+    await props.onDelete(props.deckKey)
     isDeleteDialogOpen.value = false
   } catch (error) {
-    triggerSnackbar(error.message, 'error')
-  } finally {
-    uiStore.setLoading(false)
+    console.error(error)
   }
 }
-
-const isTagsDialogOpen = ref(false)
-const editTags = ref([])
-const isSavingTags = ref(false)
-
-const allExistingTags = computed(() => {
-  const tagsSet = new Set()
-  Object.values(deckStore.savedDecks).forEach((d) => {
-    if (d.tags && Array.isArray(d.tags)) {
-      d.tags.forEach((tag) => tagsSet.add(tag))
-    }
-  })
-  return Array.from(tagsSet).sort()
-})
 
 const handleEditTags = () => {
   editTags.value = [...(props.deck.tags || [])]
@@ -221,11 +215,10 @@ const handleEditTags = () => {
 const saveTags = async () => {
   isSavingTags.value = true
   try {
-    await deckStore.updateDeckTags(props.deckKey, editTags.value)
+    await props.onSaveTags(props.deckKey, editTags.value)
     isTagsDialogOpen.value = false
-    triggerSnackbar('标签更新成功！', 'success')
   } catch (error) {
-    triggerSnackbar(error.message, 'error')
+    console.error(error)
   } finally {
     isSavingTags.value = false
   }

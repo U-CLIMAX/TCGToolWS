@@ -43,7 +43,7 @@
             class="text-white"
             style="border: 1px solid rgba(255, 255, 255, 0.3)"
           >
-            {{ marketStore.tagLabels[tagIndex] || '未知标签' }}
+            {{ tagLabels[tagIndex] || '未知标签' }}
           </v-chip>
         </div>
       </div>
@@ -87,11 +87,11 @@
           cols="6"
           class="d-flex flex-column ga-1 justify-center"
           :class="{
-            'h-100': listing.deck_code || marketStore.filters.source == 'mine',
+            'h-100': listing.deck_code || isMine,
           }"
         >
           <v-btn
-            v-if="marketStore.filters.source !== 'mine'"
+            v-if="!isMine"
             color="blue-darken-1"
             variant="flat"
             size="small"
@@ -116,9 +116,9 @@
           >
             编辑
           </v-btn>
-
+ 
           <v-btn
-            v-if="listing.deck_code && marketStore.filters.source !== 'mine'"
+            v-if="listing.deck_code && !isMine"
             color="grey-darken-3"
             variant="flat"
             size="small"
@@ -130,7 +130,7 @@
             查看卡组
           </v-btn>
           <v-btn
-            v-if="marketStore.filters.source === 'mine'"
+            v-if="isMine"
             color="error"
             variant="tonal"
             size="small"
@@ -167,10 +167,6 @@ import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { seriesMap } from '@/maps/series-map'
 import { getCardUrls } from '@/utils/getCardImage'
-import { useMarketStore } from '@/stores/market'
-import { useUIStore } from '@/stores/ui'
-import { useDevice } from '@/composables/useDevice'
-import { useSnackbar } from '@/composables/useSnackbar'
 import * as clipboard from 'clipboard-polyfill'
 
 const props = defineProps({
@@ -178,16 +174,31 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+  isTouch: {
+    type: Boolean,
+    default: false,
+  },
+  hasBackgroundImage: {
+    type: Boolean,
+    default: false,
+  },
+  isMine: {
+    type: Boolean,
+    default: false,
+  },
+  tagLabels: {
+    type: Object,
+    default: () => ({}),
+  },
+  climaxTypeOptions: {
+    type: Array,
+    default: () => [],
+  },
 })
 
-const emit = defineEmits(['edit'])
+const emit = defineEmits(['edit', 'delete'])
 
-const marketStore = useMarketStore()
-const uiStore = useUIStore()
-const { triggerSnackbar } = useSnackbar()
-const { isTouch } = useDevice()
 const router = useRouter()
-
 const showDeleteDialog = ref(false)
 
 const seriesInfo = computed(() => {
@@ -199,10 +210,9 @@ const seriesIcon = computed(() => {
   if (!seriesInfo.value) return ''
   return `/series-icons/original/${seriesInfo.value.id}.webp`
 })
-const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 const getClimaxIcon = (value) => {
-  const option = marketStore.climaxTypeOptions.find((opt) => opt.value === value)
+  const option = props.climaxTypeOptions.find((opt) => opt.value === value)
   return option ? option.icon : ''
 }
 
@@ -237,7 +247,7 @@ const confirmDelete = () => {
 
 const copyLink = async (url) => {
   let textToCopy = url
-  if (!isTouch.value && url) {
+  if (!props.isTouch && url) {
     const match = url.match(/https:\/\/[^\s]+/)
     if (match) {
       textToCopy = match[0]
@@ -246,25 +256,15 @@ const copyLink = async (url) => {
 
   try {
     await clipboard.writeText(textToCopy)
-    triggerSnackbar('购买链接已复制', 'success')
+    emit('copied')
   } catch (err) {
     console.error('Failed to copy: ', err)
-    triggerSnackbar('复制失败', 'error')
   }
 }
 
-const handleDelete = async () => {
-  uiStore.setLoading(true)
-  try {
-    await marketStore.deleteListing(props.listing.id)
-    triggerSnackbar('商品已删除', 'success')
-    showDeleteDialog.value = false
-    // eslint-disable-next-line no-unused-vars
-  } catch (err) {
-    triggerSnackbar('删除失败', 'error')
-  } finally {
-    uiStore.setLoading(false)
-  }
+const handleDelete = () => {
+  emit('delete', props.listing.id)
+  showDeleteDialog.value = false
 }
 </script>
 

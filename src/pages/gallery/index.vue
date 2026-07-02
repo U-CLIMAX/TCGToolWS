@@ -258,6 +258,9 @@
           <LazyCardWrapper v-for="item in galleryStore.decks" :key="item.key">
             <DecksGalleryItem
               :deck="item"
+              :is-touch="isTouch"
+              :has-background-image="hasBackgroundImage"
+              :is-mine="galleryStore.filters.source === 'mine'"
               @delete="handleDelete"
               @select="handleSelectDeck"
               @edit="openEditDialog"

@@ -302,7 +302,17 @@
 
         <div v-else class="listing-grid-container">
           <LazyCardWrapper v-for="item in marketStore.listings" :key="item.id">
-            <MarketListingItem :listing="item" @edit="handleEdit" />
+            <MarketListingItem
+              :listing="item"
+              :is-touch="isTouch"
+              :has-background-image="hasBackgroundImage"
+              :is-mine="marketStore.filters.source === 'mine'"
+              :tag-labels="marketStore.tagLabels"
+              :climax-type-options="marketStore.climaxTypeOptions"
+              @edit="handleEdit"
+              @delete="handleDelete"
+              @copied="triggerSnackbar('购买链接已复制', 'success')"
+            />
           </LazyCardWrapper>
         </div>
       </v-container>
@@ -331,6 +341,7 @@ import { useMarketStore } from '@/stores/market'
 import { useUIStore } from '@/stores/ui'
 import { useAuthStore } from '@/stores/auth'
 import { useSnackbar } from '@/composables/useSnackbar'
+import { useDevice } from '@/composables/useDevice'
 import { GAME_TYPE_OPTIONS } from '@/maps/series-map'
 
 import MarketIcon from '@/assets/ui/market.svg'
@@ -345,9 +356,22 @@ const marketStore = useMarketStore()
 const uiStore = useUIStore()
 const authStore = useAuthStore()
 const { smAndUp } = useDisplay()
+const { isTouch } = useDevice()
 
 const infiniteScrollRef = ref(null)
 const scrollContainer = ref(null)
+
+const handleDelete = async (listingId) => {
+  uiStore.setLoading(true)
+  try {
+    await marketStore.deleteListing(listingId)
+    triggerSnackbar('商品已删除', 'success')
+  } catch (err) {
+    triggerSnackbar(err.message || '删除失败', 'error')
+  } finally {
+    uiStore.setLoading(false)
+  }
+}
 
 const sourceOptions = computed(() => {
   const options = [{ title: '全部商品', value: 'all' }]

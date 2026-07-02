@@ -35,7 +35,7 @@
                 {{ deck.deck_name || '未命名卡组' }}
               </h3>
 
-              <div v-if="galleryStore.filters.source === 'mine'" class="flex-shrink-0">
+              <div v-if="isMine" class="flex-shrink-0">
                 <v-btn
                   color="primary"
                   variant="text"
@@ -144,25 +144,29 @@
 
 <script setup>
 import { computed, ref } from 'vue'
-import { useDecksGalleryStore } from '@/stores/decksGallery'
 import { seriesMap } from '@/maps/series-map'
 import { getCardUrls } from '@/utils/getCardImage'
-import { useDevice } from '@/composables/useDevice'
-import { useUIStore } from '@/stores/ui'
 
 const props = defineProps({
   deck: {
     type: Object,
     required: true,
   },
+  isTouch: {
+    type: Boolean,
+    default: false,
+  },
+  hasBackgroundImage: {
+    type: Boolean,
+    default: false,
+  },
+  isMine: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 const emit = defineEmits(['delete', 'select', 'edit'])
-
-const { isTouch } = useDevice()
-const galleryStore = useDecksGalleryStore()
-const uiStore = useUIStore()
-const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 const showDeleteDialog = ref(false)
 
