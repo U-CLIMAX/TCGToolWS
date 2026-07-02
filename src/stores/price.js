@@ -3,7 +3,6 @@ import { ref } from 'vue'
 import localforage from 'localforage'
 import { wrap } from 'comlink'
 import PriceWorker from '@/workers/price.worker.js?worker'
-import pako from 'pako'
 import { useAuthStore } from './auth'
 import { compressToEncodedURIComponent } from 'lz-string'
 
@@ -58,6 +57,8 @@ export const usePriceStore = defineStore('price', () => {
           }
 
           const compressedBuffer = await res.arrayBuffer()
+          const pakoModule = await import('pako')
+          const pako = pakoModule.default
           const decompressed = pako.ungzip(new Uint8Array(compressedBuffer), { to: 'string' })
           const htmls = JSON.parse(decompressed)
 

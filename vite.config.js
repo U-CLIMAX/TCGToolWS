@@ -100,9 +100,7 @@ export default defineConfig({
         assetFileNames: 'assets/[name].[hash].[ext]',
         codeSplitting: {
           groups: [
-            { name: 'lottie', test: /\/lottie-web\//, priority: 30 },
             { name: 'ui', test: /\/vuetify\//, priority: 20 },
-            { name: 'documonster', test: /\/documonster\//, priority: 15 },
             { name: 'vendor', test: /\/vue(?:-router)?\//, priority: 10 },
           ],
         },

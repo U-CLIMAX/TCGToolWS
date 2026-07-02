@@ -1,5 +1,3 @@
-import { Pdf } from 'documonster/pdf'
-import { snapdom } from '@zumer/snapdom'
 import { formatEffectToHtml } from './cardEffectFormatter'
 import { sortCards } from './cardsSort.js'
 import { normalizeFileName } from './sanitizeFilename'
@@ -27,6 +25,13 @@ const getCardHtml = (card, x, y, lang, imgCache) => {
 
 export const convertDeckToPDF = async (cards, name, language) => {
   console.time('PDF conversion')
+  const [documonsterPdf, snapdomModule] = await Promise.all([
+    import('documonster/pdf'),
+    import('@zumer/snapdom'),
+  ])
+  const Pdf = documonsterPdf.Pdf
+  const snapdom = snapdomModule.snapdom
+
   const flatCards = sortCards(cards)
     .flatMap((c) => Array(c.quantity || 1).fill(c))
     .filter((c) => c.imgUrl)

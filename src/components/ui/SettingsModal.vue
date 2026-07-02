@@ -222,7 +222,7 @@
   </v-dialog>
 
   <ImageCropperModal
-    v-show="isCropperOpen"
+    v-if="isCropperOpen"
     v-model="isCropperOpen"
     :src="imageToCrop"
     @confirm="onCropConfirm"
@@ -230,13 +230,14 @@
 </template>
 
 <script setup>
-import { ref, watch, computed } from 'vue'
+import { ref, watch, computed, defineAsyncComponent } from 'vue'
 import { useUIStore } from '@/stores/ui'
 import { usePriceStore } from '@/stores/price'
 import { useDisplay } from 'vuetify'
 import { useSnackbar } from '@/composables/useSnackbar'
-import ImageCropperModal from './ImageCropperModal.vue'
 import { GAME_TYPE_OPTIONS, ALL_SERIES_OPTIONS } from '@/maps/series-map'
+
+const ImageCropperModal = defineAsyncComponent(() => import('./ImageCropperModal.vue'))
 
 const { smAndUp, xs } = useDisplay()
 const { triggerSnackbar } = useSnackbar()

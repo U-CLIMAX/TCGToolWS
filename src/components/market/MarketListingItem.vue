@@ -167,7 +167,6 @@ import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { seriesMap } from '@/maps/series-map'
 import { getCardUrls } from '@/utils/getCardImage'
-import * as clipboard from 'clipboard-polyfill'
 
 const props = defineProps({
   listing: {
@@ -255,6 +254,7 @@ const copyLink = async (url) => {
   }
 
   try {
+    const clipboard = await import('clipboard-polyfill')
     await clipboard.writeText(textToCopy)
     emit('copied')
   } catch (err) {

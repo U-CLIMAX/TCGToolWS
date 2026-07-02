@@ -1,4 +1,3 @@
-import { snapdom } from '@zumer/snapdom'
 import { normalizeFileName } from './sanitizeFilename'
 
 export const convertElementToPng = async (
@@ -10,6 +9,9 @@ export const convertElementToPng = async (
   useImageCache = false
 ) => {
   console.time('PNG conversion')
+  const snapdomModule = await import('@zumer/snapdom')
+  const snapdom = snapdomModule.snapdom
+
   const element = document.getElementById(elementId)
   if (!element) return
 

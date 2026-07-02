@@ -385,7 +385,6 @@ import { useAuthStore } from '@/stores/auth'
 import { useDeckStore } from '@/stores/deck'
 import { useDownloadStore } from '@/stores/download'
 import { convertElementToPng } from '@/utils/domToImage.js'
-import * as clipboard from 'clipboard-polyfill'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useRoute } from 'vue-router'
 import { useUIStore } from '@/stores/ui'
@@ -767,6 +766,7 @@ const copyOriginalImage = async () => {
     img.onerror = () => reject(new Error('图片加载失败'))
     img.src = props.imgUrl
   })
+  const clipboard = await import('clipboard-polyfill')
   await clipboard.write([new clipboard.ClipboardItem({ 'image/png': blob })])
 }
 
@@ -784,6 +784,7 @@ const copyCardWithText = async () => {
       false
     )
     const blob = await fetch(generatedImageResult.src).then((r) => r.blob())
+    const clipboard = await import('clipboard-polyfill')
     await clipboard.write([new clipboard.ClipboardItem({ 'image/png': blob })])
   } finally {
     document.body.removeChild(exportContainer)

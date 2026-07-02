@@ -3,20 +3,32 @@ import { onScopeDispose } from 'vue'
 import DeckWorker from '@/workers/deck.worker.js?worker'
 
 export const useDeckEncoder = () => {
-  const workerInstance = new DeckWorker()
-  const deckWorker = wrap(workerInstance)
+  let workerInstance = null
+  let deckWorker = null
+
+  const getWorker = () => {
+    if (!workerInstance) {
+      workerInstance = new DeckWorker()
+      deckWorker = wrap(workerInstance)
+    }
+    return deckWorker
+  }
 
   onScopeDispose(() => {
-    workerInstance.terminate()
+    if (workerInstance) {
+      workerInstance.terminate()
+    }
   })
 
   const encodeData = async (data) => {
-    return await deckWorker.compress(data)
+    const worker = getWorker()
+    return await worker.compress(data)
   }
 
   const decodeData = async (data) => {
     try {
-      return await deckWorker.decompress(data)
+      const worker = getWorker()
+      return await worker.decompress(data)
     } catch {
       return data
     }

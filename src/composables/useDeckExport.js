@@ -1,5 +1,4 @@
 import { ref, computed, watch, nextTick } from 'vue'
-import * as clipboard from 'clipboard-polyfill'
 import { useUIStore } from '@/stores/ui'
 import { useDeckStore } from '@/stores/deck'
 import { useDecksGalleryStore } from '@/stores/decksGallery'
@@ -68,6 +67,7 @@ export function useDeckExport() {
     }
     const shareUrl = `${window.location.origin}/share-decks/${deckKey}`
     try {
+      const clipboard = await import('clipboard-polyfill')
       await clipboard.writeText(shareUrl)
       triggerSnackbar('分享链接已复制', 'success')
     } catch (err) {
@@ -82,6 +82,7 @@ export function useDeckExport() {
       return
     }
     try {
+      const clipboard = await import('clipboard-polyfill')
       await clipboard.writeText(deckKey)
       triggerSnackbar('卡组代码已复制', 'success')
     } catch (err) {
@@ -227,6 +228,7 @@ export function useDeckExport() {
       return
     }
     try {
+      const clipboard = await import('clipboard-polyfill')
       await clipboard.writeText(link)
       triggerSnackbar('复制成功!', 'success')
     } catch (err) {

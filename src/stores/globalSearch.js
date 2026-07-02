@@ -2,7 +2,6 @@ import { defineStore } from 'pinia'
 import { ref, watch, nextTick, shallowRef } from 'vue'
 import { useCardFiltering } from '@/composables/useCardFiltering.js'
 import { openDB, saveData, loadData } from '@/utils/db.js'
-import brotliPromise from 'brotli-wasm'
 
 const dbName = 'CardDataDB'
 const storeName = 'cardStore'
@@ -163,7 +162,8 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
    * @param {Object} manifest
    */
   const fetchAndStoreData = async (manifest) => {
-    const brotli = await brotliPromise
+    const brotliModule = await import('brotli-wasm')
+    const brotli = await brotliModule.default
 
     isLoading.value = true
     error.value = null
