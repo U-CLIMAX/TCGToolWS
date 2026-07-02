@@ -427,7 +427,7 @@
     "trait": ["音楽", "熱血"],
     "color": "黄色",
     "soul": 2,
-    "effect": "【永】你其他全部区域的触发标记是<img src=\"/effect-icons/choice.webp\">的高潮卡的触发标记获得<img src=\"/effect-icons/soul.webp\">。<br>【自】你的高潮阶段开始时，你选择自己1个《音楽》的角色，那个回合中，给予以下能力。『【永】此卡的战斗力+X。X是此卡的灵魂值×1500。』",
+    "effect": "【永】你其他全部区域的触发标记是<img src=\"/effect-icons/choice.webp\">的高潮卡的触发标记给予<img src=\"/effect-icons/soul.webp\">。<br>【自】你的高潮阶段开始时，你选择自己1个《音楽》的角色，那个回合中，给予以下能力。『【永】此卡的战斗力+X。X是此卡的灵魂值×1500。』",
     "all_cards": [
       {
         "id": "IMC/W115-019",
