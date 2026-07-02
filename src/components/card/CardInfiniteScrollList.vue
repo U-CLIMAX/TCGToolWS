@@ -41,7 +41,22 @@
           :data-card-id="card.id"
         >
           <LazyCardWrapper>
-            <CardTemplate :card="card" :is-table-mode="isTableMode" @show-details="onShowDetails" />
+            <CardTemplate
+              :card="card"
+              :is-table-mode="isTableMode"
+              :card-count="cardCounts[card.id] || 0"
+              :card-price="cardPrices[card.id] || null"
+              :is-deck-full="isDeckFull"
+              :is-compact="isCompact"
+              :card-click-mode="uiStore.cardClickMode"
+              :has-background-image="hasBackgroundImage"
+              :is-touch="isTouch"
+              :sm-and-down="smAndDown"
+              @show-details="onShowDetails"
+              @add-card="deckStore.addCard"
+              @remove-card="deckStore.removeCard"
+              @deck-full="uiStore.cardClickMode = 'none'"
+            />
           </LazyCardWrapper>
         </div>
       </TransitionGroup>
@@ -87,6 +102,9 @@ import { getCardUrls } from '@/utils/getCardImage'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import { useUIStore } from '@/stores/ui'
 import { usePriceStore } from '@/stores/price'
+import { useDeckStore } from '@/stores/deck'
+import { useAuthStore } from '@/stores/auth'
+import { useDevice } from '@/composables/useDevice'
 import { storeToRefs } from 'pinia'
 import { sortCards } from '@/utils/cardsSort'
 
@@ -120,8 +138,36 @@ const props = defineProps({
 const { smAndUp, smAndDown, xs } = useDisplay()
 const uiStore = useUIStore()
 const priceStore = usePriceStore()
+const deckStore = useDeckStore()
+const authStore = useAuthStore()
+const { userRole } = storeToRefs(authStore)
+const { isTouch } = useDevice()
 const { isPerformanceMode } = storeToRefs(uiStore)
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
+
+const cardCounts = computed(() => {
+  const counts = {}
+  for (const id in deckStore.cardsInDeck) {
+    counts[id] = deckStore.cardsInDeck[id].quantity
+  }
+  return counts
+})
+
+const cardPrices = computed(() => {
+  const prices = {}
+  for (const card of props.cards) {
+    prices[card.id] = getPrice(card)
+  }
+  return prices
+})
+
+const isDeckFull = computed(() => {
+  return deckStore.totalCardCount >= 50 && userRole.value === 0
+})
+
+const isCompact = computed(() => {
+  return (uiStore.isFilterOpen && uiStore.isCardDeckOpen) || smAndDown.value
+})
 
 // Handle edge case: In xs layout, when the infinite scroll content is less than or equal to one row,
 // the load function won't be triggered automatically. Therefore, v-progress-circular must be manually hidden.

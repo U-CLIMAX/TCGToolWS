@@ -36,8 +36,8 @@
                 variant="flat"
                 color="grey-darken-3"
                 class="disabled-button"
-                :disabled="deckStore.totalCardCount >= 50 && userRole === 0"
-                @click.stop="deckStore.addCard(card)"
+                :disabled="isDeckFull"
+                @click.stop="emit('add-card', card)"
               ></v-btn>
               <v-btn
                 icon="i-mdi:minus"
@@ -46,7 +46,7 @@
                 color="grey-lighten-2"
                 class="disabled-button"
                 :style="{ visibility: cardCount > 0 ? 'visible' : 'hidden' }"
-                @click.stop="deckStore.removeCard(card.id)"
+                @click.stop="emit('remove-card', card.id)"
               ></v-btn>
             </div>
           </v-fade-transition>
@@ -64,7 +64,7 @@
       </div>
 
       <div
-        v-show="!isTableMode || mdAndUp"
+        v-show="!isTableMode || !smAndDown"
         :class="isTableMode ? 'pa-2' : 'pa-3'"
         class="card-content pt-0"
       >
@@ -107,68 +107,44 @@
 
 <script setup>
 import { computed } from 'vue'
-import { useDisplay } from 'vuetify'
-import { storeToRefs } from 'pinia'
 import { getCardUrls } from '@/utils/getCardImage'
-import { useAuthStore } from '@/stores/auth'
-import { useDeckStore } from '@/stores/deck'
-import { useUIStore } from '@/stores/ui'
-import { usePriceStore } from '@/stores/price'
-import { useDevice } from '@/composables/useDevice'
-import { getCardSeriesId } from '@/utils/card'
 
 const props = defineProps({
   card: { type: Object, required: true },
   isTableMode: { type: Boolean, default: false },
+  cardCount: { type: Number, default: 0 },
+  cardPrice: { type: String, default: null },
+  isDeckFull: { type: Boolean, default: false },
+  isCompact: { type: Boolean, default: false },
+  cardClickMode: { type: String, default: 'none' },
+  hasBackgroundImage: { type: Boolean, default: false },
+  isTouch: { type: Boolean, default: false },
+  smAndDown: { type: Boolean, default: false },
 })
 
-const emit = defineEmits(['show-details'])
-
-const authStore = useAuthStore()
-const { userRole } = storeToRefs(authStore)
-const deckStore = useDeckStore()
-const uiStore = useUIStore()
-const priceStore = usePriceStore()
-const { smAndDown, mdAndUp } = useDisplay()
-const { isTouch } = useDevice()
-const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
-
-const cardPrice = computed(() => {
-  const infos = getCardSeriesId(props.card.id)
-  if (!infos || infos.length === 0) return null
-
-  for (const info of infos) {
-    const price = priceStore.getPrice(info.id, props.card.id)
-    if (price) {
-      return price.toLocaleString()
-    }
-  }
-  return null
-})
+const emit = defineEmits(['show-details', 'add-card', 'remove-card', 'deck-full'])
 
 const { base: imageUrl, blur: blurUrl } = getCardUrls(props.card.cardIdPrefix, props.card.id)
-const cardCount = computed(() => deckStore.getCardCount(props.card.id))
-const buttonSize = computed(() =>
-  (uiStore.isFilterOpen && uiStore.isCardDeckOpen) || smAndDown.value ? 'x-small' : 'small'
-)
+
+const buttonSize = computed(() => (props.isCompact ? 'x-small' : 'small'))
 
 const handleCardClick = () => {
   if (!props.card) return
 
-  if (uiStore.cardClickMode === 'add') {
-    if (deckStore.totalCardCount >= 50 && userRole.value === 0) {
-      uiStore.cardClickMode = 'none'
+  if (props.cardClickMode === 'add') {
+    if (props.isDeckFull) {
+      emit('deck-full')
     } else {
-      deckStore.addCard(props.card)
+      emit('add-card', props.card)
     }
-  } else if (uiStore.cardClickMode === 'remove') {
-    deckStore.removeCard(props.card.id)
+  } else if (props.cardClickMode === 'remove') {
+    emit('remove-card', props.card.id)
   } else {
     emit('show-details', {
       card: props.card,
       imageUrl: imageUrl,
       blurUrl: blurUrl,
-      price: cardPrice.value,
+      price: props.cardPrice,
     })
   }
 }
