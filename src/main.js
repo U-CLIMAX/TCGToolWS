@@ -77,7 +77,7 @@ const bootstrap = async () => {
   const uiStore = useUIStore()
 
   uiStore.setLoading(false)
-  await uiStore.restoreBackgroundImage()
+  uiStore.restoreBackgroundImage()
 
   app.use(router)
   app.use(vuetify)

@@ -235,7 +235,13 @@ export const useUIStore = defineStore(
   {
     persist: {
       storage: localStorage,
-      omit: ['showForceUpdate', 'pollingWorker', 'seriesSearchTerm', 'isCardDetailModalOpen'],
+      omit: [
+        'showForceUpdate',
+        'pollingWorker',
+        'seriesSearchTerm',
+        'isCardDetailModalOpen',
+        'backgroundImage',
+      ],
     },
   }
 )
