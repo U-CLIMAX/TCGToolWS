@@ -1,6 +1,6 @@
 <template>
   <div ref="rootEl" class="lazy-card-wrapper" :style="{ height: wrapperHeight }">
-    <div v-if="hasMounted" v-show="shouldRender" class="content-container">
+    <div v-if="shouldRender" class="content-container">
       <slot></slot>
     </div>
   </div>
@@ -22,7 +22,6 @@ const props = defineProps({
 
 const rootEl = ref(null)
 const shouldRender = ref(false)
-const hasMounted = ref(false)
 const wrapperHeight = ref(
   typeof props.minHeight === 'number' ? `${props.minHeight}px` : props.minHeight
 )
@@ -44,7 +43,6 @@ onMounted(() => {
     (entries) => {
       const entry = entries[0]
       if (entry.isIntersecting) {
-        hasMounted.value = true
         shouldRender.value = true
         // Allow the content to determine the height naturally when visible
         wrapperHeight.value = 'auto'
