@@ -541,6 +541,7 @@ const mainTitleText = ref('U CLIMAX')
 const subTitleText = ref('ws卡查工具')
 const titleClickCount = ref(0)
 let titleClickTimer = null
+let cialloRevertTimer = null
 const isCialloActive = ref(false)
 
 const handleTitleClick = () => {
@@ -557,7 +558,7 @@ const handleTitleClick = () => {
     titleClickCount.value = 0 // Reset count immediately after trigger
 
     // Revert back after a while
-    setTimeout(() => {
+    cialloRevertTimer = setTimeout(() => {
       mainTitleText.value = 'U-CLIMAX'
       subTitleText.value = 'ws卡查工具'
       isCialloActive.value = false
@@ -593,6 +594,8 @@ onMounted(() => {
 onUnmounted(() => {
   stopAutoScroll()
   window.removeEventListener('resize', updateScrollPadding)
+  if (titleClickTimer) clearTimeout(titleClickTimer)
+  if (cialloRevertTimer) clearTimeout(cialloRevertTimer)
 })
 </script>
 

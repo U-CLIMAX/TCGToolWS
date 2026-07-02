@@ -61,6 +61,8 @@ onUnmounted(() => {
   window.removeEventListener('mouseup', stopDrag)
   window.removeEventListener('touchmove', drag)
   window.removeEventListener('touchend', stopDrag)
+  document.body.style.cursor = 'auto'
+  document.body.style.pointerEvents = 'auto'
 })
 
 const startDrag = (event) => {
