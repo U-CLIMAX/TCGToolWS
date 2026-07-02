@@ -1,6 +1,6 @@
 <template>
   <v-app id="app" class="grid-background" :style="appStyle">
-    <HomeBackground v-show="isHomeRoute" />
+    <HomeBackground v-if="isHomeRoute" />
 
     <v-app-bar
       v-if="smAndUp"
@@ -420,7 +420,7 @@
 </template>
 
 <script setup>
-import { ref, watch, computed, onMounted, onBeforeMount } from 'vue'
+import { ref, watch, computed, onMounted, onBeforeMount, defineAsyncComponent } from 'vue'
 import { useTheme, useDisplay } from 'vuetify'
 import { useRoute, useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
@@ -432,7 +432,6 @@ import { usePerformanceManager } from '@/composables/usePerformanceManager'
 import { HalfCircleSpinner } from 'epic-spinners'
 import { GAME_TYPE_OPTIONS } from '@/maps/series-map'
 import { runIPGeolocation } from '@/utils/ipGeolocation'
-
 import titleDefaultImg from '@/assets/ui/title-default.webp'
 import titleMonochrome from '@/assets/ui/title-monochrome.webp'
 import HomeIcon from '@/assets/ui/home.svg'
@@ -444,6 +443,7 @@ import toolboxIcon from '@/assets/ui/toolbox.svg'
 import deckGalleryIcon from '@/assets/ui/deck-gallery.svg'
 import communityIcon from '@/assets/ui/community.svg'
 import banListIcon from '@/assets/ui/banlist.svg'
+const HomeBackground = defineAsyncComponent(() => import('@/components/common/HomeBackground.vue'))
 
 usePerformanceManager()
 

@@ -22,16 +22,25 @@ router.beforeEach(async (to, from) => {
 
   const authStore = useAuthStore()
 
+  const requiresAuth = to.matched.some((record) => record.meta.requiresAuth)
+  const requiresGuest = to.matched.some((record) => record.meta.requiresGuest)
+
   // 透過 fetchUserStatus 實現自動刷新
   // 1. Token 結構過期 -> 自動刷新
   // 2. Premium 過期 -> 自動刷新
   // 3. Token 無效或解碼失敗 -> 自動登出
   // 4. 更新 Store 中的 userRole 和 userStatus
-  await authStore.fetchUserStatus()
+  if (!authStore.isAuthReady) {
+    if (requiresAuth || requiresGuest) {
+      await authStore.fetchUserStatus()
+    } else {
+      authStore.fetchUserStatus()
+    }
+  } else {
+    authStore.fetchUserStatus()
+  }
 
   const isAuthenticated = authStore.isAuthenticated
-  const requiresAuth = to.matched.some((record) => record.meta.requiresAuth)
-  const requiresGuest = to.matched.some((record) => record.meta.requiresGuest)
 
   if (requiresAuth && !isAuthenticated) {
     return { name: 'Home' }
