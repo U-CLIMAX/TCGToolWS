@@ -116,7 +116,7 @@
           >
             编辑
           </v-btn>
- 
+
           <v-btn
             v-if="listing.deck_code && !isMine"
             color="grey-darken-3"
@@ -167,6 +167,7 @@ import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { seriesMap } from '@/maps/series-map'
 import { getCardUrls } from '@/utils/getCardImage'
+import { writeText } from '@/utils/clipboard'
 
 const props = defineProps({
   listing: {
@@ -254,8 +255,7 @@ const copyLink = async (url) => {
   }
 
   try {
-    const clipboard = await import('clipboard-polyfill')
-    await clipboard.writeText(textToCopy)
+    await writeText(textToCopy)
     emit('copied')
   } catch (err) {
     console.error('Failed to copy: ', err)

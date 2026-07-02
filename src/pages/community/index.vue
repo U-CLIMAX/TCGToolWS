@@ -295,6 +295,7 @@ import { ref, computed, onMounted, nextTick } from 'vue'
 import { useDisplay, useTheme } from 'vuetify'
 import { useUIStore } from '@/stores/ui'
 import { useSnackbar } from '@/composables/useSnackbar'
+import { writeText } from '@/utils/clipboard'
 import rawCSV from '@/assets/community/ws.csv?raw'
 
 import crowdIcon from '@/assets/ui/crowd.svg'
@@ -466,8 +467,7 @@ const getContactLabel = (type) => {
 
 const copyContact = async (info) => {
   try {
-    const clipboard = await import('clipboard-polyfill')
-    await clipboard.writeText(info)
+    await writeText(info)
     triggerSnackbar('已复制联系方式', 'success')
   } catch (err) {
     console.error('Failed to copy: ', err)

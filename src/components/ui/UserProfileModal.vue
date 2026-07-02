@@ -113,6 +113,7 @@ import { storeToRefs } from 'pinia'
 import { useAuthStore } from '@/stores/auth'
 import { useUIStore } from '@/stores/ui'
 import { useSnackbar } from '@/composables/useSnackbar'
+import { writeText } from '@/utils/clipboard'
 
 const props = defineProps({
   modelValue: {
@@ -203,8 +204,7 @@ const handleRefreshToken = async () => {
 
 const copyUserId = async (id) => {
   try {
-    const clipboard = await import('clipboard-polyfill')
-    await clipboard.writeText(id)
+    await writeText(id)
     triggerSnackbar('使用者 ID 已复制！')
   } catch (err) {
     console.error('无法复制 ID:', err)

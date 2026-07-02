@@ -136,6 +136,7 @@ import { useSnackbar } from '@/composables/useSnackbar'
 import { sortCards } from '@/utils/cardsSort.js'
 import { normalizeFileName } from '@/utils/sanitizeFilename'
 import { useUIStore } from '@/stores/ui'
+import { writeText, writeImage } from '@/utils/clipboard'
 
 const props = defineProps({
   modelValue: {
@@ -187,8 +188,7 @@ const deckBaseIds = computed(() => {
 
 const handleDeckTxtList = async () => {
   try {
-    const clipboard = await import('clipboard-polyfill')
-    await clipboard.writeText(deckBaseIds.value)
+    await writeText(deckBaseIds.value)
     triggerSnackbar('卡组txt已复制', 'success')
   } catch (err) {
     console.error('Failed to copy: ', err)
@@ -230,14 +230,12 @@ const handleCopyResult = async () => {
   if (!props.generatedImageResult) return
   uiStore.setLoading(true)
   try {
-    const imgPromise = fetch(props.generatedImageResult.src).then((response) => {
+    const blob = await fetch(props.generatedImageResult.src).then((response) => {
       if (!response.ok) throw new Error('Network response was not ok')
       return response.blob()
     })
 
-    const clipboard = await import('clipboard-polyfill')
-    const item = new clipboard.ClipboardItem({ 'image/png': imgPromise })
-    await clipboard.write([item])
+    await writeImage(blob)
     triggerSnackbar('图片已复制', 'success')
   } catch (error) {
     console.error('Copy failed', error)

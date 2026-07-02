@@ -179,14 +179,17 @@ const selectedLinkedCards = ref([])
 const isLoadingLinks = ref(false)
 const isTransitionDisabled = ref(false)
 
-watch(() => props.isTableModeActive, () => {
-  isTransitionDisabled.value = true
-  nextTick(() => {
-    setTimeout(() => {
-      isTransitionDisabled.value = false
-    }, 150)
-  })
-})
+watch(
+  () => props.isTableModeActive,
+  () => {
+    isTransitionDisabled.value = true
+    nextTick(() => {
+      setTimeout(() => {
+        isTransitionDisabled.value = false
+      }, 150)
+    })
+  }
+)
 
 const isListVisible = ref(true)
 
