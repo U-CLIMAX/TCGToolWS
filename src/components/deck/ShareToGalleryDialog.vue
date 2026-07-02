@@ -178,8 +178,8 @@ const isFormValid = computed(() => {
   )
 })
 
-const handleConfirm = () => {
-  if (hasSensitiveWords(localForm.deckName)) {
+const handleConfirm = async () => {
+  if (await hasSensitiveWords(localForm.deckName)) {
     triggerSnackbar('检测到敏感词！', 'error')
     return
   }

@@ -218,7 +218,7 @@ export const useDeckStore = defineStore(
     ) => {
       if (!authStore.token) throw new Error('请先登录')
 
-      if (hasSensitiveWords(name)) throw new Error('检测到敏感词！')
+      if (await hasSensitiveWords(name)) throw new Error('检测到敏感词！')
 
       const response = await fetch('/api/decks', {
         method: 'POST',
@@ -273,7 +273,7 @@ export const useDeckStore = defineStore(
     ) => {
       if (!authStore.token) throw new Error('请先登录')
 
-      if (hasSensitiveWords(name)) throw new Error('检测到敏感词！')
+      if (await hasSensitiveWords(name)) throw new Error('检测到敏感词！')
 
       const response = await fetch(`/api/decks/${key}`, {
         method: 'PUT',
