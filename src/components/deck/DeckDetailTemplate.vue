@@ -455,15 +455,14 @@ onMounted(() => {
   }
 })
 
-// 監聽卡片數據變化，確保異步加載後能初始化價格
+// 監聽卡片數量變化，確保異步加載後能初始化價格
 watch(
-  () => props.cards,
-  (newCards) => {
-    if (Object.keys(newCards).length > 0) {
+  () => Object.keys(props.cards).length,
+  (newLength) => {
+    if (newLength > 0) {
       initializePrices()
     }
-  },
-  { deep: true }
+  }
 )
 
 onUnmounted(() => {
