@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref, reactive, computed } from 'vue'
+import { ref, reactive, computed, shallowRef } from 'vue'
 import { useAuthStore } from './auth'
 import { ALL_SERIES_OPTIONS } from '@/maps/series-map'
 
@@ -7,7 +7,7 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
   const authStore = useAuthStore()
 
   // --- State ---
-  const decks = ref([])
+  const decks = shallowRef([])
   const userDeckCount = ref(0)
   const isLoading = ref(false)
   const filters = reactive({
@@ -201,14 +201,16 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
     // Update local state if the deck is in the current list
     const index = decks.value.findIndex((d) => d.key === key)
     if (index !== -1) {
-      decks.value[index] = {
-        ...decks.value[index],
-        deck_name: metadata.name || decks.value[index].deck_name,
+      const newDecks = [...decks.value]
+      newDecks[index] = {
+        ...newDecks[index],
+        deck_name: metadata.name || newDecks[index].deck_name,
         tournament_type: metadata.tournamentType,
         participant_count: metadata.participantCount,
         placement: metadata.placement,
         article_link: metadata.articleLink,
       }
+      decks.value = newDecks
     }
 
     return await response.json()
