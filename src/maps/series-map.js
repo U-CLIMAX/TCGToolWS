@@ -3,6 +3,7 @@ const wsSeriesMap = {
     id: 'brd',
     prefixes: ['BRD'],
     latestReleaseDate: '2026-07-03',
+    yytUrl: 'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=brd&rare=&type=&kizu=0',
   },
   '碧蓝幻想': {
     id: 'gbf',
@@ -1240,6 +1241,7 @@ const wsrSeriesMap = {
     id: 'os11',
     prefixes: ['OS11'],
     latestReleaseDate: '2026-07-03',
+    yytUrl: 'https://yuyu-tei.jp/sell/wsr/s/search?search_word=&vers[]=os11&rare=&type=&kizu=0',
   },
   'Navel': {
     id: 'os10',
