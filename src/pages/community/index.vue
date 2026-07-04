@@ -140,11 +140,9 @@
 
       <!-- Content Area -->
       <v-container class="pt-4 px-3" :class="{ 'mb-12': !smAndUp }">
-        <v-row>
-          <!-- Community Cards (survey card always first) -->
+        <v-row class="position-relative">
+          <!-- ===== 问卷调查卡片 (始终在最前，不参与任何过滤与过渡动画，避免高度跳动) ===== -->
           <v-col
-            v-for="item in displayItemsWithSurvey"
-            :key="item._isSurvey ? 'survey' : item.id"
             cols="12"
             sm="6"
             md="4"
@@ -153,125 +151,137 @@
             :class="smAndDown ? 'py-1' : 'py-3'"
             class="d-flex"
           >
-            <LazyCardWrapper>
-              <!-- ===== 问卷调查卡片 ===== -->
-              <template v-if="item._isSurvey">
+            <v-card
+              height="160"
+              class="position-relative overflow-hidden survey-card w-100"
+              rounded="xl"
+              elevation="0"
+            >
+              <v-card-text class="pa-5 d-flex flex-column h-100 position-relative z-1">
+                <!-- Top row -->
+                <div class="d-flex justify-space-between align-start mb-1">
+                  <div>
+                    <div class="text-h6 font-weight-bold text-white mb-1">填写问卷</div>
+                    <div class="text-white">用于上传群组信息</div>
+                  </div>
+                  <v-icon color="white" size="13" class="pt-3" icon="i-mdi:arrow-collapse-up" />
+                </div>
+
+                <!-- Bottom row -->
+                <div class="mt-auto d-flex justify-space-between align-end">
+                  <div class="text-caption text-white pr-3 my-auto">
+                    各地区TCG社群团体联系方式收集表
+                  </div>
+                  <v-btn
+                    elevation="2"
+                    rounded="pill"
+                    color="white"
+                    slim
+                    @click.prevent="openSurvey"
+                  >
+                    <v-icon color="primary" size="32" icon="i-mdi:arrow-right-thin" />
+                  </v-btn>
+                </div>
+              </v-card-text>
+            </v-card>
+          </v-col>
+
+          <!-- ===== 其它社区卡片 (使用平滑淡入淡出切換) ===== -->
+          <div :class="{ 'filtering-fade': isFiltering }" class="cards-grid-container">
+            <v-col
+              v-for="item in displayItems"
+              :key="item.id"
+              cols="12"
+              sm="6"
+              md="4"
+              lg="3"
+              xl="2"
+              :class="smAndDown ? 'py-1' : 'py-3'"
+              class="d-flex"
+            >
+              <LazyCardWrapper min-height="160">
                 <v-card
-                  class="h-100 position-relative overflow-hidden survey-card"
+                  height="160"
+                  class="position-relative overflow-hidden w-100"
+                  :class="{ 'glass-card': hasBackgroundImage }"
                   rounded="xl"
                   elevation="0"
                 >
-                  <v-card-text class="pa-5 d-flex flex-column h-100 position-relative z-1">
-                    <!-- Top row -->
-                    <div class="d-flex justify-space-between align-start mb-1">
-                      <div>
-                        <div class="text-h6 font-weight-bold text-white mb-1">填写问卷</div>
-                        <div class="text-white">用于上传群组信息</div>
-                      </div>
-                      <v-icon color="white" size="13" class="pt-3" icon="i-mdi:arrow-collapse-up" />
+                  <v-icon
+                    :icon="getContactIcon(item.contactType)"
+                    class="bg-watermark-icon"
+                    :color="theme.global.current.value.dark ? 'grey-darken-1' : 'grey-lighten-1'"
+                  />
+
+                  <v-card-text class="pa-4 d-flex flex-column h-100 position-relative z-1">
+                    <div class="d-flex ga-2 mb-2">
+                      <v-chip
+                        size="x-small"
+                        color="blue-lighten-5"
+                        class="text-primary font-weight-bold pa-2 bg-blue-grey-lighten-5"
+                        variant="flat"
+                        density="compact"
+                        rounded="pill"
+                      >
+                        {{ item.province }}
+                      </v-chip>
+                      <v-chip
+                        v-if="item.district"
+                        size="x-small"
+                        color="blue-lighten-5"
+                        class="text-primary font-weight-bold pa-2 bg-blue-grey-lighten-5"
+                        variant="flat"
+                        density="compact"
+                        rounded="pill"
+                      >
+                        {{ item.district }}
+                      </v-chip>
                     </div>
 
-                    <!-- Bottom row -->
-                    <div class="mt-auto d-flex justify-space-between align-end">
-                      <div class="text-caption text-white pr-3 my-auto">
-                        各地区TCG社群团体联系方式收集表
+                    <div class="mb-6">
+                      <div
+                        class="text-subtitle-1 font-weight-bold text-medium-emphasis pr-4"
+                        style="line-height: 1.2"
+                      >
+                        {{ item.name }}
+                      </div>
+                    </div>
+
+                    <v-sheet
+                      rounded="2lg"
+                      class="pa-2 mt-auto d-flex align-center position-relative"
+                      style="
+                        background-color: rgba(var(--v-theme-surface), 0.3);
+                        backdrop-filter: blur(6px);
+                      "
+                    >
+                      <div class="flex-grow-1 overflow-hidden px-1">
+                        <div
+                          class="text-caption text-medium-emphasis"
+                          style="font-size: 10px !important"
+                        >
+                          {{ getContactLabel(item.contactType) }}
+                        </div>
+                        <div class="text-h6 text-truncate text-medium-emphasis font-DINCond">
+                          {{ item.contactInfo }}
+                        </div>
                       </div>
                       <v-btn
-                        elevation="2"
-                        rounded="pill"
-                        color="white"
-                        slim
-                        @click.prevent="openSurvey"
+                        icon
+                        color="primary"
+                        size="x-small"
+                        elevation="0"
+                        class="rounded-circle"
+                        @click="copyContact(item.contactInfo)"
                       >
-                        <v-icon color="primary" size="32" icon="i-mdi:arrow-right-thin" />
+                        <v-icon size="16" icon="i-mdi:content-copy" />
                       </v-btn>
-                    </div>
+                    </v-sheet>
                   </v-card-text>
                 </v-card>
-              </template>
-
-              <!-- ===== 普通社区卡片 ===== -->
-              <v-card
-                v-else
-                class="h-100 position-relative overflow-hidden"
-                :class="{ 'glass-card': hasBackgroundImage }"
-                rounded="xl"
-                elevation="0"
-              >
-                <v-icon
-                  :icon="getContactIcon(item.contactType)"
-                  class="bg-watermark-icon"
-                  :color="theme.global.current.value.dark ? 'grey-darken-1' : 'grey-lighten-1'"
-                />
-
-                <v-card-text class="pa-4 d-flex flex-column h-100 position-relative z-1">
-                  <div class="d-flex ga-2 mb-2">
-                    <v-chip
-                      size="x-small"
-                      color="blue-lighten-5"
-                      class="text-primary font-weight-bold pa-2 bg-blue-grey-lighten-5"
-                      variant="flat"
-                      density="compact"
-                      rounded="pill"
-                    >
-                      {{ item.province }}
-                    </v-chip>
-                    <v-chip
-                      v-if="item.district"
-                      size="x-small"
-                      color="blue-lighten-5"
-                      class="text-primary font-weight-bold pa-2 bg-blue-grey-lighten-5"
-                      variant="flat"
-                      density="compact"
-                      rounded="pill"
-                    >
-                      {{ item.district }}
-                    </v-chip>
-                  </div>
-
-                  <div class="mb-6">
-                    <div
-                      class="text-subtitle-1 font-weight-bold text-medium-emphasis pr-4"
-                      style="line-height: 1.2"
-                    >
-                      {{ item.name }}
-                    </div>
-                  </div>
-
-                  <v-sheet
-                    rounded="2lg"
-                    class="pa-2 mt-auto d-flex align-center position-relative"
-                    style="
-                      background-color: rgba(var(--v-theme-surface), 0.3);
-                      backdrop-filter: blur(6px);
-                    "
-                  >
-                    <div class="flex-grow-1 overflow-hidden px-1">
-                      <div
-                        class="text-caption text-medium-emphasis"
-                        style="font-size: 10px !important"
-                      >
-                        {{ getContactLabel(item.contactType) }}
-                      </div>
-                      <div class="text-h6 text-truncate text-medium-emphasis font-DINCond">
-                        {{ item.contactInfo }}
-                      </div>
-                    </div>
-                    <v-btn
-                      icon
-                      color="primary"
-                      size="x-small"
-                      elevation="0"
-                      class="rounded-circle"
-                      @click="copyContact(item.contactInfo)"
-                    >
-                      <v-icon size="16" icon="i-mdi:content-copy" />
-                    </v-btn>
-                  </v-sheet>
-                </v-card-text>
-              </v-card>
-            </LazyCardWrapper>
-          </v-col>
+              </LazyCardWrapper>
+            </v-col>
+          </div>
         </v-row>
 
         <div v-if="displayItems.length === 0" class="text-center text-medium-emphasis mt-10">
@@ -417,13 +427,19 @@ const scrollStyle = computed(() => {
   }
 })
 
+const isFiltering = ref(false)
+
 const handleSearch = () => {
-  page.value = 1
-  displayItems.value = filteredAllItems.value.slice(0, pageSize)
-  nextTick(() => {
-    infiniteScrollRef.value?.reset()
-    infiniteScrollRef.value?.$el.scrollTo({ top: 0, behavior: 'instant' })
-  })
+  isFiltering.value = true
+  setTimeout(() => {
+    page.value = 1
+    displayItems.value = filteredAllItems.value.slice(0, pageSize)
+    nextTick(() => {
+      infiniteScrollRef.value?.reset()
+      infiniteScrollRef.value?.$el.scrollTo({ top: 0, behavior: 'instant' })
+      isFiltering.value = false
+    })
+  }, 120)
 }
 
 const handleProvinceChange = () => {
@@ -520,5 +536,27 @@ onMounted(() => {
     0 0 0 1px rgba(255, 255, 255, 0.08),
     0 4px 24px rgba(45, 52, 128, 0.45),
     0 1px 4px rgba(0, 0, 0, 0.2) !important;
+}
+
+.d-contents {
+  display: contents;
+}
+
+.cards-grid-container {
+  display: contents;
+}
+
+.cards-grid-container > * {
+  transition:
+    opacity 0.2s cubic-bezier(0.25, 0.8, 0.25, 1),
+    transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.filtering-fade > * {
+  opacity: 0 !important;
+  transform: translateY(8px) !important;
+  pointer-events: none;
 }
 </style>
