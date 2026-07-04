@@ -57,9 +57,8 @@ export const usePriceStore = defineStore('price', () => {
           }
 
           const compressedBuffer = await res.arrayBuffer()
-          const pakoModule = await import('pako')
-          const pako = pakoModule.default
-          const decompressed = pako.ungzip(new Uint8Array(compressedBuffer), { to: 'string' })
+          const { ungzip } = await import('pako')
+          const decompressed = ungzip(new Uint8Array(compressedBuffer), { toText: true })
           const htmls = JSON.parse(decompressed)
 
           const workerInstance = new PriceWorker()

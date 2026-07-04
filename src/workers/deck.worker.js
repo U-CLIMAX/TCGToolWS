@@ -1,6 +1,6 @@
 import { expose } from 'comlink'
 import JSONCrush from 'jsoncrush'
-import pako from 'pako'
+import { gzip, ungzip } from 'pako'
 
 const deckProcessor = {
   /**
@@ -12,7 +12,7 @@ const deckProcessor = {
     const jsonString = JSON.stringify(deckData)
     const crushed = JSONCrush.crush(jsonString)
     // pako.gzip returns a Uint8Array by default, which is transferable.
-    return pako.gzip(crushed)
+    return gzip(crushed)
   },
 
   /**
@@ -21,7 +21,7 @@ const deckProcessor = {
    * @returns {object} The decompressed deck data object.
    */
   decompress(compressed) {
-    const crushed = pako.ungzip(compressed, { to: 'string' })
+    const crushed = ungzip(compressed, { toText: true })
     const jsonString = JSONCrush.uncrush(crushed)
     return JSON.parse(jsonString)
   },
