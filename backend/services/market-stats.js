@@ -1,6 +1,6 @@
 /**
  * Updates market statistics and stores them in KV storage.
- * @param {object} env - Cloudflare environment object.
+ * @param {Env} env - Cloudflare environment object.
  */
 export const updateMarketStats = async (env) => {
   try {
@@ -27,7 +27,7 @@ export const updateMarketStats = async (env) => {
 
 /**
  * Retrieves market statistics from KV storage.
- * @param {object} env - Cloudflare environment object.
+ * @param {Env} env - Cloudflare environment object.
  * @returns {Promise<object|null>}
  */
 export const getMarketStats = async (env) => {

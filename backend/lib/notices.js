@@ -2,7 +2,7 @@ import { createErrorResponse } from './utils.js'
 
 /**
  * Retrieves all notices from the database.
- * @param {object} c - Hono context object.
+ * @param {AppContext} c - Hono context object.
  * @returns {Response}
  */
 export async function handleGetNotices(c) {
@@ -18,7 +18,7 @@ export async function handleGetNotices(c) {
 
 /**
  * Creates a new notice. Requires admin role (role === 2).
- * @param {object} c - Hono context object.
+ * @param {AppContext} c - Hono context object.
  * @returns {Response}
  */
 export async function handleCreateNotice(c) {
@@ -56,7 +56,7 @@ export async function handleCreateNotice(c) {
 
 /**
  * Deletes a notice by ID. Requires admin role (role === 2).
- * @param {object} c - Hono context object.
+ * @param {AppContext} c - Hono context object.
  * @returns {Response}
  */
 export async function handleDeleteNotice(c) {

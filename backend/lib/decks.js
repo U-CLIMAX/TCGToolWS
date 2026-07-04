@@ -4,7 +4,7 @@ import { parseTokens } from '../services/scraper.js'
 
 /**
  * Creates a new deck entry in the database.
- * @param {object} c - Hono context object.
+ * @param {AppContext} c - Hono context object.
  * @returns {Response}
  */
 export const handleCreateDeck = async (c) => {
@@ -134,7 +134,7 @@ export const handleCreateDeck = async (c) => {
 
 /**
  * Retrieves all decks for the authenticated user.
- * @param {object} c - Hono context object.
+ * @param {AppContext} c - Hono context object.
  * @returns {Response}
  */
 export const handleGetDecks = async (c) => {
@@ -162,7 +162,7 @@ export const handleGetDecks = async (c) => {
 
 /**
  * Retrieves a specific deck by its key (checks gallery first, then personal decks).
- * @param {object} c - Hono context object.
+ * @param {AppContext} c - Hono context object.
  * @returns {Response}
  */
 export const handleGetDeckByKey = async (c) => {
@@ -211,7 +211,7 @@ export const handleGetDeckByKey = async (c) => {
 
 /**
  * Deletes a deck entry from the personal collection.
- * @param {object} c - Hono context object.
+ * @param {AppContext} c - Hono context object.
  * @returns {Response}
  */
 export const handleDeleteDeck = async (c) => {
@@ -237,7 +237,7 @@ export const handleDeleteDeck = async (c) => {
 
 /**
  * Updates an existing personal deck entry.
- * @param {object} c - Hono context object.
+ * @param {AppContext} c - Hono context object.
  * @returns {Response}
  */
 export const handleUpdateDeck = async (c) => {
@@ -290,7 +290,7 @@ export const handleUpdateDeck = async (c) => {
 
 /**
  * Updates only the tags of an existing personal deck.
- * @param {object} c - Hono context object.
+ * @param {AppContext} c - Hono context object.
  * @returns {Response}
  */
 export const handleUpdateDeckTags = async (c) => {
@@ -328,7 +328,7 @@ export const handleUpdateDeckTags = async (c) => {
 
 /**
  * Retrieves deck data from Decklog service by key.
- * @param {object} c - Hono context object.
+ * @param {AppContext} c - Hono context object.
  * @returns {Response}
  */
 export const handleGetDecklogData = async (c) => {

@@ -2,8 +2,8 @@ import { createErrorResponse } from './utils.js'
 
 /**
  * Submits a card translation error report.
- * @param {object} c - Hono context object.
- * @returns {Response}
+ * @param {AppContext} c - Hono context object.
+ * @returns {Promise<Response>}
  */
 export async function handleCreateTranslationReport(c) {
   const db = c.env.DB

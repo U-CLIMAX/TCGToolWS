@@ -52,6 +52,7 @@
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.40.2",
+    "@cloudflare/workers-types": "^4.20260702.1",
     "@iconify-json/mdi": "^1.2.3",
     "@vitejs/plugin-vue": "^6.0.6",
     "esbuild": "^0.28.1",

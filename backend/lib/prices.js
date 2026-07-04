@@ -6,7 +6,7 @@ import { parseTokens, fetchPageWithFallback } from '../services/scraper.js'
 /**
  * Handles fetching series prices from Yuyu-tei.
  * Fetches all pages with max 3 concurrent requests, compresses, and caches in KV.
- * @param {object} c - Hono context object.
+ * @param {AppContext} c - Hono context object.
  * @returns {Response}
  */
 export const handleGetSeriesPrices = async (c) => {

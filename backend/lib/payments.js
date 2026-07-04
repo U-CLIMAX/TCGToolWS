@@ -3,8 +3,8 @@ import { createErrorResponse } from './utils.js'
 /**
  * Processes a successful order notification from Afdian.
  * This is called internally by handleAfdianWebhook in auth.js.
- * @param {object} c - Hono context object.
- * @param {object} db - D1 database instance.
+ * @param {AppContext} c - Hono context object.
+ * @param {D1Database} db - D1 database instance.
  * @param {object} payload - Afdian webhook payload.
  * @returns {Response}
  */
@@ -93,7 +93,7 @@ export const processAfdianOrder = async (c, db, payload) => {
 
 /**
  * Initiates a payment request by generating an Afdian payment URL.
- * @param {object} c - Hono context object.
+ * @param {AppContext} c - Hono context object.
  * @returns {Response}
  */
 export const handleInitiatePayment = async (c) => {

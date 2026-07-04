@@ -50,6 +50,7 @@ const generateVerificationCode = () => {
 
 /**
  * Handler: Send registration verification code
+ * @type {AppHandler}
  */
 export const handleSendVerificationCode = async (c) => {
   const db = c.env.DB
@@ -94,6 +95,7 @@ export const handleSendVerificationCode = async (c) => {
 
 /**
  * Handler: Verify code and complete registration
+ * @type {AppHandler}
  */
 export const handleVerifyAndRegister = async (c) => {
   const db = c.env.DB
@@ -133,6 +135,7 @@ export const handleVerifyAndRegister = async (c) => {
 
 /**
  * Handler: User login
+ * @type {AppHandler}
  */
 export const handleLogin = async (c) => {
   const db = c.env.DB
@@ -204,6 +207,7 @@ export const handleLogin = async (c) => {
 
 /**
  * Handler: Refresh session and issue new JWT
+ * @type {AppHandler}
  */
 export const handleRefreshSession = async (c) => {
   const db = c.env.DB
@@ -234,6 +238,7 @@ export const handleRefreshSession = async (c) => {
 
 /**
  * Handler: Request password reset email
+ * @type {AppHandler}
  */
 export const handleForgotPasswordRequest = async (c) => {
   const db = c.env.DB
@@ -273,6 +278,7 @@ export const handleForgotPasswordRequest = async (c) => {
 
 /**
  * Handler: Reset password using token
+ * @type {AppHandler}
  */
 export const handleResetPassword = async (c) => {
   const db = c.env.DB
@@ -313,6 +319,7 @@ export const handleResetPassword = async (c) => {
 
 /**
  * Handler: Afdian Webhook (Donation/Payment)
+ * @type {AppHandler}
  */
 export const handleAfdianWebhook = async (c) => {
   const db = c.env.DB
@@ -358,6 +365,7 @@ export const handleAfdianWebhook = async (c) => {
 
 /**
  * Middleware: Verify JWT and inject user context
+ * @type {AppMiddleware}
  */
 export const authMiddleware = async (c, next) => {
   const authHeader = c.req.header('Authorization')

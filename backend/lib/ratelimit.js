@@ -4,8 +4,8 @@ import { HTTPException } from 'hono/http-exception'
  * Creates a Hono middleware for rate limiting using Cloudflare Workers RateLimiter.
  *
  * @param {object} options - The options for the rate limiter.
- * @param {import('@cloudflare/workers-types').RateLimiter} options.limiter - The rate limiter binding instance.
- * @param {(c: import('hono').Context) => Promise<string|null>|string|null} options.keyExtractor - Function to extract the unique key.
+ * @param {RateLimit} options.limiter - The rate limiter binding instance.
+ * @param {(c: AppContext) => Promise<string|null>|string|null} options.keyExtractor - Function to extract the unique key.
  * @returns {import('hono').MiddlewareHandler}
  */
 export const createRateLimiter = ({ limiter, keyExtractor }) => {
@@ -46,7 +46,7 @@ export const createRateLimiter = ({ limiter, keyExtractor }) => {
 
 /**
  * Extracts the IP address from request headers.
- * @param {import('hono').Context} c
+ * @param {AppContext} c
  * @returns {string}
  */
 export const ipKeyExtractor = (c) => {
@@ -55,7 +55,7 @@ export const ipKeyExtractor = (c) => {
 
 /**
  * Extracts the email address from JSON body for per-user rate limiting.
- * @param {import('hono').Context} c
+ * @param {AppContext} c
  * @returns {Promise<string|null>}
  */
 export const emailBodyKeyExtractor = async (c) => {
@@ -70,7 +70,7 @@ export const emailBodyKeyExtractor = async (c) => {
 
 /**
  * Extracts user ID from JWT payload.
- * @param {import('hono').Context} c
+ * @param {AppContext} c
  * @returns {string|null}
  */
 export const userIdFromJwtKeyExtractor = (c) => {

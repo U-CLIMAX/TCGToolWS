@@ -2,7 +2,7 @@ import { createErrorResponse } from './utils.js'
 
 /**
  * Retrieves decks from the gallery with cursor-based pagination and filtering.
- * @param {object} c - Hono context object.
+ * @param {AppContext} c - Hono context object.
  * @returns {Response}
  */
 export const handleGetDecksGallery = async (c) => {
@@ -133,7 +133,7 @@ export const handleGetDecksGallery = async (c) => {
 
 /**
  * Retrieves decks from the gallery created by the authenticated user.
- * @param {object} c - Hono context object.
+ * @param {AppContext} c - Hono context object.
  * @returns {Response}
  */
 export const handleGetUserDecksGallery = async (c) => {
@@ -264,7 +264,7 @@ export const handleGetUserDecksGallery = async (c) => {
 
 /**
  * Deletes a deck from the gallery.
- * @param {object} c - Hono context object.
+ * @param {AppContext} c - Hono context object.
  * @returns {Response}
  */
 export const handleDeleteGalleryDeck = async (c) => {
@@ -290,7 +290,7 @@ export const handleDeleteGalleryDeck = async (c) => {
 
 /**
  * Gets the total count of gallery decks for the authenticated user.
- * @param {object} c - Hono context object.
+ * @param {AppContext} c - Hono context object.
  * @returns {Response}
  */
 export const handleGetMyGalleryCount = async (c) => {
@@ -311,7 +311,7 @@ export const handleGetMyGalleryCount = async (c) => {
 
 /**
  * Rates a deck in the gallery.
- * @param {object} c - Hono context object.
+ * @param {AppContext} c - Hono context object.
  * @returns {Response}
  */
 export const handleRateDeck = async (c) => {
@@ -392,7 +392,7 @@ export const handleRateDeck = async (c) => {
 
 /**
  * Gets the authenticated user's rating for a specific deck.
- * @param {object} c - Hono context object.
+ * @param {AppContext} c - Hono context object.
  * @returns {Response}
  */
 export const handleGetMyDeckRating = async (c) => {
@@ -415,7 +415,7 @@ export const handleGetMyDeckRating = async (c) => {
 
 /**
  * Updates metadata for a gallery deck.
- * @param {object} c - Hono context object.
+ * @param {AppContext} c - Hono context object.
  * @returns {Response}
  */
 export const handleUpdateGalleryDeckMetadata = async (c) => {

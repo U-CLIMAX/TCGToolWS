@@ -4,7 +4,7 @@ import { getMarketStats } from '../services/market-stats.js'
 
 /**
  * Creates a new market listing.
- * @param {object} c - Hono context object.
+ * @param {AppContext} c - Hono context object.
  * @returns {Response}
  */
 export const handleCreateListing = async (c) => {
@@ -74,7 +74,7 @@ export const handleCreateListing = async (c) => {
 
 /**
  * Updates an existing market listing.
- * @param {object} c - Hono context object.
+ * @param {AppContext} c - Hono context object.
  * @returns {Response}
  */
 export const handleUpdateListing = async (c) => {
@@ -129,7 +129,7 @@ export const handleUpdateListing = async (c) => {
 
 /**
  * Retrieves market listings with cursor-based pagination and advanced filtering.
- * @param {object} c - Hono context object.
+ * @param {AppContext} c - Hono context object.
  * @returns {Response}
  */
 export const handleGetListings = async (c) => {
@@ -245,7 +245,7 @@ export const handleGetListings = async (c) => {
 
 /**
  * Retrieves listings created by the authenticated user with cursor-based pagination.
- * @param {object} c - Hono context object.
+ * @param {AppContext} c - Hono context object.
  * @returns {Response}
  */
 export const handleGetUserListings = async (c) => {
@@ -362,7 +362,7 @@ export const handleGetUserListings = async (c) => {
 
 /**
  * Retrieves the count of listings created by the authenticated user.
- * @param {object} c - Hono context object.
+ * @param {AppContext} c - Hono context object.
  * @returns {Response}
  */
 export const handleGetMyListingCount = async (c) => {
@@ -383,7 +383,7 @@ export const handleGetMyListingCount = async (c) => {
 
 /**
  * Deletes a market listing.
- * @param {object} c - Hono context object.
+ * @param {AppContext} c - Hono context object.
  * @returns {Response}
  */
 export const handleDeleteListing = async (c) => {
@@ -411,7 +411,7 @@ export const handleDeleteListing = async (c) => {
 
 /**
  * Retrieves market statistics.
- * @param {object} c - Hono context object.
+ * @param {AppContext} c - Hono context object.
  * @returns {Response}
  */
 export const handleGetMarketStats = async (c) => {
