@@ -226,25 +226,25 @@ const getPrice = (card) => {
   return null
 }
 
-const getPriceUpdateTimes = async (card) => {
+const getPriceUpdateTimes = (card) => {
   const infos = getCardSeriesId(card.cardIdPrefix)
   if (!infos || infos.length === 0) return null
 
   for (const info of infos) {
     const price = priceStore.getPrice(info.id, card.id)
     if (price) {
-      const times = await priceStore.getPriceUpdateTime(info.id)
+      const times = priceStore.getPriceUpdateTime(info.id)
       return times
     }
   }
   return null
 }
 
-const onPrevCard = async () => {
+const onPrevCard = () => {
   const prevCard = getPrevCard()
   if (prevCard) {
     const { base, blur } = getCardUrls(prevCard.cardIdPrefix, prevCard.id)
-    const updateTimes = await getPriceUpdateTimes(prevCard)
+    const updateTimes = getPriceUpdateTimes(prevCard)
     onShowDetails({
       card: prevCard,
       imageUrl: base,
@@ -255,11 +255,11 @@ const onPrevCard = async () => {
   }
 }
 
-const onNextCard = async () => {
+const onNextCard = () => {
   const nextCard = getNextCard()
   if (nextCard) {
     const { base, blur } = getCardUrls(nextCard.cardIdPrefix, nextCard.id)
-    const updateTimes = await getPriceUpdateTimes(nextCard)
+    const updateTimes = getPriceUpdateTimes(nextCard)
     onShowDetails({
       card: nextCard,
       imageUrl: base,
@@ -300,7 +300,7 @@ const fetchLinkedCards = async (card) => {
 const onShowDetails = async (payload) => {
   isLoadingLinks.value = true
   selectedLinkedCards.value = []
-  const updateTimes = await getPriceUpdateTimes(payload.card)
+  const updateTimes = getPriceUpdateTimes(payload.card)
   selectedCardData.value = {
     ...payload,
     priceUpdateTimes: updateTimes,
@@ -312,7 +312,7 @@ const onShowDetails = async (payload) => {
 const onShowNewCard = async (payload) => {
   isLoadingLinks.value = true
   selectedLinkedCards.value = []
-  const updateTimes = await getPriceUpdateTimes(payload.card)
+  const updateTimes = getPriceUpdateTimes(payload.card)
   selectedCardData.value = {
     ...payload,
     priceUpdateTimes: updateTimes,

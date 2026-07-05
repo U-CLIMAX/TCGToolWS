@@ -817,14 +817,14 @@ const onNextCard = () => {
   }
 }
 
-const getPriceUpdateTimes = async (card) => {
+const getPriceUpdateTimes = (card) => {
   const infos = getCardSeriesId(card.cardIdPrefix)
   if (!infos || infos.length === 0) return null
 
   for (const info of infos) {
     const price = priceStore.getPrice(info.id, card.id)
     if (price) {
-      const times = await priceStore.getPriceUpdateTime(info.id)
+      const times = priceStore.getPriceUpdateTime(info.id)
       return times
     }
   }
@@ -871,7 +871,7 @@ const handleShowNewCard = async (cardPayload) => {
       selectedCardPrice.value = p ? p.toLocaleString() : null
     }
 
-    selectedCardPriceUpdateTimes.value = await getPriceUpdateTimes(cardToDisplay)
+    selectedCardPriceUpdateTimes.value = getPriceUpdateTimes(cardToDisplay)
 
     const card = await fetchCardByIdAndPrefix(cardToDisplay.id, cardToDisplay.cardIdPrefix)
     if (!card) {

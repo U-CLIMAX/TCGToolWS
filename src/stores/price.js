@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { ref, shallowRef } from 'vue'
 import localforage from 'localforage'
 import { wrap } from 'comlink'
 import PriceWorker from '@/workers/price.worker.js?worker'
@@ -11,7 +11,8 @@ const priceCache = localforage.createInstance({
 })
 
 export const usePriceStore = defineStore('price', () => {
-  const prices = ref({}) // { seriesId: { [cardId]: price } }
+  const prices = shallowRef({}) // { seriesId: { [cardId]: price } }
+  const priceMetadata = shallowRef({}) // { seriesId: { lastUpdate, nextUpdate } }
   const isLoading = ref(false)
   const authStore = useAuthStore()
 
@@ -32,9 +33,20 @@ export const usePriceStore = defineStore('price', () => {
           // Check localforage cache first
           const seriesMeta = await priceCache.getItem(cacheKey)
           const now = Date.now()
+          const refreshInterval = isPremium ? 3 * 60 * 60 * 1000 : 7 * 24 * 60 * 60 * 1000
 
           if (seriesMeta && now < seriesMeta.ttl) {
-            prices.value[seriesId] = seriesMeta.data
+            prices.value = {
+              ...prices.value,
+              [seriesId]: seriesMeta.data,
+            }
+            priceMetadata.value = {
+              ...priceMetadata.value,
+              [seriesId]: {
+                lastUpdate: seriesMeta.ttl - refreshInterval,
+                nextUpdate: seriesMeta.ttl,
+              },
+            }
             return
           }
 
@@ -66,10 +78,19 @@ export const usePriceStore = defineStore('price', () => {
           const parsedPrices = await priceWorker.parsePrices(htmls)
           workerInstance.terminate()
 
-          const refreshInterval = isPremium ? 3 * 60 * 60 * 1000 : 7 * 24 * 60 * 60 * 1000
           const ttl = Date.now() + refreshInterval
 
-          prices.value[seriesId] = parsedPrices
+          prices.value = {
+            ...prices.value,
+            [seriesId]: parsedPrices,
+          }
+          priceMetadata.value = {
+            ...priceMetadata.value,
+            [seriesId]: {
+              lastUpdate: Date.now(),
+              nextUpdate: ttl,
+            },
+          }
           await priceCache.setItem(cacheKey, {
             data: parsedPrices,
             ttl,
@@ -89,23 +110,9 @@ export const usePriceStore = defineStore('price', () => {
     return prices.value[seriesId]?.[cardId]
   }
 
-  const getPriceUpdateTime = async (seriesId) => {
-    if (!priceCache || !seriesId) return null
-    const isPremium = authStore.userRole !== 0
-    const cachePrefix = isPremium ? 'meta_premium_' : 'meta_'
-    const cacheKey = `${cachePrefix}${seriesId}`
-
-    const seriesMeta = await priceCache.getItem(cacheKey)
-    if (!seriesMeta || !seriesMeta.ttl) return null
-
-    const ttl = seriesMeta.ttl
-    const refreshInterval = isPremium ? 3 * 60 * 60 * 1000 : 7 * 24 * 60 * 60 * 1000
-    const lastUpdateTime = ttl - refreshInterval
-
-    return {
-      lastUpdate: lastUpdateTime,
-      nextUpdate: ttl,
-    }
+  const getPriceUpdateTime = (seriesId) => {
+    if (!seriesId) return null
+    return priceMetadata.value[seriesId] || null
   }
 
   const getCachedSeriesIds = async () => {
@@ -120,15 +127,24 @@ export const usePriceStore = defineStore('price', () => {
     if (!priceCache || !seriesId) return
     await priceCache.removeItem(`meta_${seriesId}`)
     await priceCache.removeItem(`meta_premium_${seriesId}`)
-    delete prices.value[seriesId]
+
+    const newPrices = { ...prices.value }
+    delete newPrices[seriesId]
+    prices.value = newPrices
+
+    const newMeta = { ...priceMetadata.value }
+    delete newMeta[seriesId]
+    priceMetadata.value = newMeta
   }
 
   const reset = () => {
     prices.value = {}
+    priceMetadata.value = {}
   }
 
   return {
     prices,
+    priceMetadata,
     isLoading,
     fetchPrices,
     getPrice,
