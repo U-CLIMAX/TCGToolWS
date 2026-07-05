@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
+import { ref, shallowRef, computed } from 'vue'
 import { useAuthStore } from './auth'
 import { findDeckSeriesId } from '@/utils/findDeckSeriesId'
 import { deckRestrictions } from '@/maps/deck-restrictions'
@@ -15,10 +15,10 @@ export const useDeckStore = defineStore(
     const deckName = ref('')
     const coverCardId = ref('')
     const editingDeckKey = ref('')
-    const deckHistory = ref([])
-    const originalCardsInDeck = ref({})
+    const deckHistory = shallowRef([])
+    const originalCardsInDeck = shallowRef({})
     const savedDecks = ref({})
-    const restrictionViolations = ref([])
+    const restrictionViolations = shallowRef([])
 
     const authStore = useAuthStore()
 

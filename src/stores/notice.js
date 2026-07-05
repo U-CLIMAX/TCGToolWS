@@ -1,12 +1,12 @@
 import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
+import { ref, shallowRef, computed } from 'vue'
 import { useAuthStore } from './auth'
 
 export const useNoticeStore = defineStore('notice', () => {
   const authStore = useAuthStore()
 
   // --- State ---
-  const notices = ref([])
+  const notices = shallowRef([])
   const lastViewedTime = ref(Number(localStorage.getItem('notice_last_viewed')) || 0)
 
   // --- Computed ---

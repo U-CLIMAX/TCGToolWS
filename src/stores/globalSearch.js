@@ -21,13 +21,13 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
   })
 
   // --- Filter Options ---
-  const productNames = ref([])
-  const traits = ref([])
-  const rarities = ref([])
-  const souls = ref([])
-  const levels = ref([])
-  const costRange = ref({ min: 0, max: 0 })
-  const powerRange = ref({ min: 0, max: 0 })
+  const productNames = shallowRef([])
+  const traits = shallowRef([])
+  const rarities = shallowRef([])
+  const souls = shallowRef([])
+  const levels = shallowRef([])
+  const costRange = shallowRef({ min: 0, max: 0 })
+  const powerRange = shallowRef({ min: 0, max: 0 })
 
   // Use the composable for filtering logic
   const {

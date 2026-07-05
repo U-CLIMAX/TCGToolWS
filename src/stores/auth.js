@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
+import { ref, shallowRef, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useDeckStore } from './deck'
 import { useMarketStore } from './market'
@@ -36,7 +36,7 @@ export const useAuthStore = defineStore('auth', () => {
   const token = ref(initToken)
   const rememberMe = ref(initRemember)
   const userRole = ref(0)
-  const userStatus = ref(null)
+  const userStatus = shallowRef(null)
   const isAuthReady = ref(false)
   const isAuthenticated = computed(() => !!token.value)
 

@@ -26,7 +26,7 @@ export const useUIStore = defineStore(
     const isLoading = ref(false)
     const isTableModeActive = ref(false)
     const performanceThreshold = ref(600)
-    const isPerformanceMode = ref({
+    const isPerformanceMode = shallowRef({
       sideBarAnimSimp: false,
       infScrollResetOpti: false,
     })
@@ -35,8 +35,8 @@ export const useUIStore = defineStore(
     const showStatsDashboard = ref(true)
     const showCardPrices = ref(true)
     const customKeywords = ref([])
-    const backgroundImage = ref(null)
-    const floatingTogglePosition = ref(null)
+    const backgroundImage = shallowRef(null)
+    const floatingTogglePosition = shallowRef(null)
 
     // State for SeriesCardTableView
     const seriesSearchTerm = debounceRef('', 300)
