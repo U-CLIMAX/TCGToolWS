@@ -254,8 +254,6 @@ const route = useRoute()
 const router = useRouter()
 const { smAndUp, smAndDown, lgAndUp } = useDisplay()
 
-const authStore = useAuthStore()
-const { userRole } = storeToRefs(authStore)
 const deckStore = useDeckStore()
 const filterStore = useFilterStore()
 const uiStore = useUIStore()
