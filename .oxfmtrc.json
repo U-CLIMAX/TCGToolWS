@@ -8,6 +8,7 @@
   "sortPackageJson": false,
   "ignorePatterns": [
     "src/types/*.d.ts",
+    "*.d.ts",
     "dist/",
     "build/",
     "node_modules/",

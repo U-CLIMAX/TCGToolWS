@@ -6,13 +6,7 @@
     "allowJs": true,
     "checkJs": false,
     "maxNodeModuleJsDepth": 1,
-    "types": [
-      "@cloudflare/workers-types"
-    ]
+    "types": ["@cloudflare/workers-types"]
   },
-  "include": [
-    "**/*.js",
-    "**/*.d.ts",
-    "../worker-configuration.d.ts"
-  ]
+  "include": ["**/*.js", "**/*.d.ts", "../worker-configuration.d.ts"]
 }

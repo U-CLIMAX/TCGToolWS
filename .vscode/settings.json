@@ -3,7 +3,8 @@
   "explorer.fileNesting.patterns": {
     "tsconfig.json": "tsconfig.*.json, env.d.ts",
     "vite.config.*": "jsconfig*, vitest.config.*, cypress.config.*, playwright.config.*",
-    "package.json": "package-lock.json, pnpm*, .yarnrc*, yarn*, .eslint*, eslint*, .oxlint*, .oxfmtrc*, .prettier*, prettier*, .editorconfig"
+    "package.json": "package-lock.json, pnpm*, .yarnrc*, yarn*, .eslint*, eslint*, .oxlint*, .oxfmtrc*, .prettier*, prettier*, .editorconfig",
+    "wrangler.jsonc": "schema.sql, worker-configuration.d.ts"
   },
   "editor.codeActionsOnSave": {
     "source.fixAll.oxc": "always"
@@ -17,7 +18,8 @@
   },
   "files.readonlyInclude": {
     "src/types/route-map.d.ts": true,
-    "src/types/components.d.ts": true
+    "src/types/components.d.ts": true,
+    "worker-configuration.d.ts": true
   },
   "files.watcherExclude": {
     "**/node_modules/**": true,
