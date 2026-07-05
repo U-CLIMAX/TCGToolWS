@@ -421,7 +421,7 @@ const initializePrices = async () => {
   if (cardsToProcess.length > 0) {
     const seriesConfigMap = new Map()
     cardsToProcess.forEach((c) => {
-      const infos = getCardSeriesId(c.id)
+      const infos = getCardSeriesId(c.cardIdPrefix)
       infos.forEach((info) => {
         if (info.id && info.yytUrl && !seriesConfigMap.has(info.id)) {
           seriesConfigMap.set(info.id, { seriesId: info.id, yytUrl: info.yytUrl })
@@ -502,7 +502,7 @@ const onNextCard = () => {
 }
 
 const getPriceUpdateTimes = async (card) => {
-  const infos = getCardSeriesId(card.id)
+  const infos = getCardSeriesId(card.cardIdPrefix)
   if (!infos || infos.length === 0) return null
 
   for (const info of infos) {
@@ -524,7 +524,7 @@ const handleShowNewCard = async (cardPayload) => {
     if (cardPayload.price !== undefined) {
       selectedCardPrice.value = cardPayload.price
     } else {
-      const infos = getCardSeriesId(card.id)
+      const infos = getCardSeriesId(card.cardIdPrefix)
       let p = null
       for (const info of infos) {
         const foundPrice = priceStore.getPrice(info.id, card.id)
@@ -550,7 +550,7 @@ const handleShowNewCard = async (cardPayload) => {
       if (selectedCardData.value && selectedCardData.value.id === card.id) {
         const flatCards = linkedCardsData.flat().filter(Boolean)
         const cardsWithPrice = flatCards.map((c) => {
-          const infos = getCardSeriesId(c.id)
+          const infos = getCardSeriesId(c.cardIdPrefix)
           let p = null
           for (const info of infos) {
             const foundPrice = priceStore.getPrice(info.id, c.id)

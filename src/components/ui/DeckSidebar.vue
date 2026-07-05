@@ -513,7 +513,7 @@ const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 const totalPrice = computed(() => {
   return Object.values(deckStore.cardsInDeck).reduce((sum, item) => {
-    const infos = getCardSeriesId(item.id)
+    const infos = getCardSeriesId(item.cardIdPrefix)
     let price = null
     for (const info of infos) {
       const p = priceStore.getPrice(info.id, item.id)
@@ -818,7 +818,7 @@ const onNextCard = () => {
 }
 
 const getPriceUpdateTimes = async (card) => {
-  const infos = getCardSeriesId(card.id)
+  const infos = getCardSeriesId(card.cardIdPrefix)
   if (!infos || infos.length === 0) return null
 
   for (const info of infos) {
@@ -859,7 +859,7 @@ const handleShowNewCard = async (cardPayload) => {
     if (cardPayload.price !== undefined) {
       selectedCardPrice.value = cardPayload.price
     } else {
-      const infos = getCardSeriesId(cardToDisplay.id)
+      const infos = getCardSeriesId(cardToDisplay.cardIdPrefix)
       let p = null
       for (const info of infos) {
         const foundPrice = priceStore.getPrice(info.id, cardToDisplay.id)
@@ -890,7 +890,7 @@ const handleShowNewCard = async (cardPayload) => {
       if (selectedCardData.value && selectedCardData.value.id === card.id) {
         const flatCards = linkedCardsData.flat().filter(Boolean)
         const cardsWithPrice = flatCards.map((c) => {
-          const infos = getCardSeriesId(c.id)
+          const infos = getCardSeriesId(c.cardIdPrefix)
           let p = null
           for (const info of infos) {
             const foundPrice = priceStore.getPrice(info.id, c.id)

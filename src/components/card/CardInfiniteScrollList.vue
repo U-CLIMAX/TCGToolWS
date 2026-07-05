@@ -213,7 +213,8 @@ const { selectedCardIndex, getPrevCard, getNextCard } = useCardNavigation(
 const isTableMode = computed(() => props.isTableModeActive || !smAndUp.value)
 
 const getPrice = (card) => {
-  const infos = getCardSeriesId(card.id)
+  const infos = getCardSeriesId(card.cardIdPrefix)
+
   if (!infos || infos.length === 0) return null
 
   for (const info of infos) {
@@ -226,7 +227,7 @@ const getPrice = (card) => {
 }
 
 const getPriceUpdateTimes = async (card) => {
-  const infos = getCardSeriesId(card.id)
+  const infos = getCardSeriesId(card.cardIdPrefix)
   if (!infos || infos.length === 0) return null
 
   for (const info of infos) {

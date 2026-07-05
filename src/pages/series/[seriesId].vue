@@ -398,7 +398,7 @@ const initializePrices = async () => {
     // Collect unique series configs from deck cards
     const seriesConfigMap = new Map()
     cards.forEach((c) => {
-      const infos = getCardSeriesId(c.id)
+      const infos = getCardSeriesId(c.cardIdPrefix)
       infos.forEach((info) => {
         if (info.id && info.yytUrl && !seriesConfigMap.has(info.id)) {
           seriesConfigMap.set(info.id, { seriesId: info.id, yytUrl: info.yytUrl })

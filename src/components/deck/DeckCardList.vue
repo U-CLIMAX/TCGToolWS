@@ -300,7 +300,7 @@ const getGroupName = (groupName) => {
   }
 }
 const getItemPrice = (item) => {
-  const infos = getCardSeriesId(item.id)
+  const infos = getCardSeriesId(item.cardIdPrefix)
   if (!infos || infos.length === 0) return null
 
   for (const info of infos) {

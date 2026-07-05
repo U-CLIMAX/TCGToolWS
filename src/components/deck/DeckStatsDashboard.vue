@@ -199,7 +199,7 @@ const totalSoulCount = computed(() =>
 )
 const totalPrice = computed(() =>
   allCards.value.reduce((sum, c) => {
-    const infos = getCardSeriesId(c.id)
+    const infos = getCardSeriesId(c.cardIdPrefix)
     let p = null
     for (const info of infos) {
       const foundPrice = priceStore.getPrice(info.id, c.id)
