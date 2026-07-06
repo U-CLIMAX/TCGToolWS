@@ -201,7 +201,7 @@ const wsSeriesMap = {
     prefixes: ['AB', 'KW', 'Kab', 'Hab', 'Kkw'],
     latestReleaseDate: '2014-06-27',
     yytUrl:
-      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=ab&vers[]=abre&vers[]=abext&vers[]=abext2.0&vers[]=key20th&vers[]=key2.0&vers[]=keypb&rare=&type=&kizu=0',
+      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=ab&vers[]=abre&vers[]=abext&vers[]=abext2.0&rare=&type=&kizu=0',
   },
   'CANAAN': {
     id: 'cn',
@@ -214,7 +214,7 @@ const wsSeriesMap = {
     prefixes: ['CL', 'Kcl', 'Kta'],
     latestReleaseDate: '2016-04-08',
     yytUrl:
-      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=clext1.0&vers[]=clext2.0&vers[]=clext3.0&vers[]=clpset&vers[]=key20th&vers[]=key2.0&vers[]=keypb&rare=&type=&kizu=0',
+      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=clext1.0&vers[]=clext2.0&vers[]=clext3.0&vers[]=clpset&rare=&type=&kizu=0',
   },
   'PIXAR': {
     id: 'pxr',
@@ -228,7 +228,7 @@ const wsSeriesMap = {
     prefixes: ['CHA', 'Kch'],
     latestReleaseDate: '2015-10-30',
     yytUrl:
-      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=charlotte1.0&vers[]=key20th&vers[]=key2.0&vers[]=keypb&rare=&type=&kizu=0',
+      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=charlotte1.0&rare=&type=&kizu=0',
   },
   '初音岛': {
     id: 'dc',
@@ -254,7 +254,7 @@ const wsSeriesMap = {
     prefixes: ['DAL', 'Fdl'],
     latestReleaseDate: '2025-10-03',
     yytUrl:
-      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=fujimif&vers[]=fujimif2.0&vers[]=dal&vers[]=dalext1.0&vers[]=dal2.0&vers[]=dal3.0&rare=&type=&kizu=0',
+      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=dal&vers[]=dalext1.0&vers[]=dal2.0&vers[]=dal3.0&rare=&type=&kizu=0',
   },
   'DOG DAYS': {
     id: 'dd',
@@ -342,7 +342,7 @@ const wsSeriesMap = {
     prefixes: ['LB', 'KW', 'Klb'],
     latestReleaseDate: '2021-10-15',
     yytUrl:
-      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=lb&vers[]=lbext1.0&vers[]=lbchronicle&vers[]=lbe&vers[]=animelb&vers[]=animelbrext&vers[]=lbcmext&vers[]=dcvslblb&vers[]=ab&vers[]=key20th&vers[]=key2.0&vers[]=keypb&rare=&type=&kizu=0',
+      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=lb&vers[]=lbext1.0&vers[]=lbchronicle&vers[]=lbe&vers[]=animelb&vers[]=animelbrext&vers[]=lbcmext&vers[]=dcvslblb&vers[]=ab&rare=&type=&kizu=0',
   },
   '超时空要塞': {
     id: 'mde',
@@ -423,7 +423,7 @@ const wsSeriesMap = {
     prefixes: ['RW', 'Krw'],
     latestReleaseDate: '2017-01-27',
     yytUrl:
-      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=rw&vers[]=rwhf&vers[]=rwanime&vers[]=key20th&vers[]=key2.0&vers[]=keypb&rare=&type=&kizu=0',
+      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=rw&vers[]=rwhf&vers[]=rwanime&rare=&type=&kizu=0',
   },
   'SPY×FAMILY': {
     id: 'spy',
@@ -463,21 +463,21 @@ const wsSeriesMap = {
     prefixes: ['SY', 'Ssy'],
     latestReleaseDate: '2016-12-23',
     yytUrl:
-      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=sh&vers[]=shext&vers[]=shpset&vers[]=kadokawas&vers[]=kadokawas2.0&rare=&type=&kizu=0',
+      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=sh&vers[]=shext&vers[]=shpset&rare=&type=&kizu=0',
   },
   '魔法禁书目录／某科学的超电磁炮': {
     id: 'gid',
     prefixes: ['ID', 'RG', 'Gid'],
     latestReleaseDate: '2016-12-23',
     yytUrl:
-      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=ir&vers[]=ir2.0&vers[]=irs&vers[]=irspset&vers[]=dengeki&rare=&type=&kizu=0',
+      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=ir&vers[]=ir2.0&vers[]=irs&vers[]=irspset&rare=&type=&kizu=0',
   },
   '灼眼的夏娜': {
     id: 'ss',
     prefixes: ['SS', 'Gss'],
     latestReleaseDate: '2023-10-20',
     yytUrl:
-      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=ss&vers[]=ssext&vers[]=sspb&vers[]=dengeki&rare=&type=&kizu=0',
+      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=ss&vers[]=ssext&vers[]=sspb&rare=&type=&kizu=0',
   },
   '机器人笔记': {
     id: 'rn',
@@ -557,7 +557,7 @@ const wsSeriesMap = {
     prefixes: ['KS', 'Sks'],
     latestReleaseDate: '2020-04-24',
     yytUrl:
-      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=konosuba&vers[]=konosuba2.0&vers[]=konosubare&vers[]=konosuba3.0&vers[]=kadokawas&vers[]=kadokawas2.0&vers[]=siyoko&vers[]=promo&rare=&type=&kizu=0',
+      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=konosuba&vers[]=konosuba2.0&vers[]=konosubare&vers[]=konosuba3.0&rare=&type=&kizu=0',
   },
   'ViVid Strike!': {
     id: 'vs',
@@ -584,14 +584,14 @@ const wsSeriesMap = {
     prefixes: ['SHS', 'Fsh'],
     latestReleaseDate: '2022-06-10',
     yytUrl:
-      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=saekano&vers[]=saekano2.0&vers[]=saekano3.0&vers[]=fujimif&vers[]=fujimif2.0&rare=&type=&kizu=0',
+      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=saekano&vers[]=saekano2.0&vers[]=saekano3.0&rare=&type=&kizu=0',
   },
   'Summer Pockets': {
     id: 'smp',
     prefixes: ['SMP', 'Ksm'],
     latestReleaseDate: '2026-04-10',
     yytUrl:
-      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=smp&vers[]=smp2.0&vers[]=smpre&vers[]=smp3.0&vers[]=key2.0&vers[]=keypb&rare=&type=&kizu=0',
+      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=smp&vers[]=smp2.0&vers[]=smpre&vers[]=smp3.0&rare=&type=&kizu=0',
   },
   '摇曳庄的幽奈小姐': {
     id: 'yys',
@@ -645,7 +645,7 @@ const wsSeriesMap = {
     prefixes: ['SBY', 'Gby'],
     latestReleaseDate: '2026-03-27',
     yytUrl:
-      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=sby&vers[]=sby2.0&vers[]=sby3.0&vers[]=sby4.0&vers[]=dengeki&rare=&type=&kizu=0',
+      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=sby&vers[]=sby2.0&vers[]=sby3.0&vers[]=sby4.0&rare=&type=&kizu=0',
   },
   '魔卡少女樱': {
     id: 'ccs',
@@ -679,8 +679,7 @@ const wsSeriesMap = {
     id: 'dbg',
     prefixes: ['DBG', 'Kdb'],
     latestReleaseDate: '2021-05-28',
-    yytUrl:
-      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=key2.0&vers[]=keypb&vers[]=dbg&rare=&type=&kizu=0',
+    yytUrl: 'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=dbg&rare=&type=&kizu=0',
   },
   '佐贺偶像是传奇 卷土重来': {
     id: 'zls',
@@ -699,7 +698,7 @@ const wsSeriesMap = {
     prefixes: ['HBR', 'Khb', 'Hab'],
     latestReleaseDate: '2024-08-09',
     yytUrl:
-      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=keypb&vers[]=hbr&vers[]=hbr2.0&rare=&type=&kizu=0',
+      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=hbr&vers[]=hbr2.0&rare=&type=&kizu=0',
   },
   '赛马娘 Pretty Derby': {
     id: 'uma',
@@ -899,14 +898,14 @@ const wsSeriesMap = {
     prefixes: ['AW', 'Gaw'],
     latestReleaseDate: '2016-09-02',
     yytUrl:
-      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=aw&vers[]=awib&vers[]=dengeki&rare=&type=&kizu=0',
+      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=aw&vers[]=awib&rare=&type=&kizu=0',
   },
   '刀剑神域': {
     id: 'sao',
     prefixes: ['SAO', 'Gso'],
     latestReleaseDate: '2022-11-18',
     yytUrl:
-      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=sao&vers[]=sao2.0&vers[]=saore&vers[]=saoos&vers[]=saoaz&vers[]=saoaz2.0&vers[]=sao10th&vers[]=sao10th2.0&vers[]=sao2ext&vers[]=sao2ext2.0&vers[]=dengeki&rare=&type=&kizu=0',
+      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=sao&vers[]=sao2.0&vers[]=saore&vers[]=saoos&vers[]=saoaz&vers[]=saoaz2.0&vers[]=sao10th&vers[]=sao10th2.0&vers[]=sao2ext&vers[]=sao2ext2.0&rare=&type=&kizu=0',
   },
   '初音未来 -Project DIVA-': {
     id: 'pd',
