@@ -444,7 +444,7 @@ const navButtonsVisible = computed(() => {
 })
 
 const handleModalClick = () => {
-  if (isTouch.value) {
+  if (isTouch.value || !smAndUp.value) {
     showOnTap.value = true
     if (hideTimeout) {
       clearTimeout(hideTimeout)
@@ -847,7 +847,7 @@ const handleSwipeLeft = () => {
   const selection = window.getSelection()
   if (selection && selection.toString().length > 0) return
 
-  if (isTouch.value && props.cardIndex !== props.totalCards - 1) {
+  if (props.cardIndex !== props.totalCards - 1) {
     handleNextCard()
   }
 }
@@ -856,7 +856,7 @@ const handleSwipeRight = () => {
   const selection = window.getSelection()
   if (selection && selection.toString().length > 0) return
 
-  if (isTouch.value && props.cardIndex !== 0) {
+  if (props.cardIndex !== 0) {
     emit('prev-card')
   }
 }
