@@ -72,7 +72,7 @@ import { useSnackbar } from '@/composables/useSnackbar'
 definePage({
   name: 'ResetPassword',
   props: (route) => ({ token: route.query.token }),
-  meta: { requiresGuest: true, isSpecialFlow: true },
+  meta: { requiresGuest: true },
 })
 
 const props = defineProps({

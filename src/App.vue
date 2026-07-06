@@ -25,115 +25,113 @@
       </v-app-bar-title>
 
       <template #append>
-        <template v-if="!isInSpecialFlow">
-          <div class="d-none d-sm-block">
-            <template v-for="item in navItems" :key="item.name">
+        <div class="d-none d-sm-block">
+          <template v-for="item in navItems" :key="item.name">
+            <v-btn
+              variant="text"
+              :to="{ name: item.name }"
+              :text="item.text"
+              class="rounded-3md mr-1"
+              :class="{ 'home-route-btn': isHomeRoute }"
+              :active="item.group && $route.meta.group === item.group"
+              :active-color="isHomeRoute ? 'cyan-accent-2' : undefined"
+              :color="isHomeRoute ? 'white' : undefined"
+              :disabled="item.requiresAuth && !authStore.isAuthenticated"
+            >
+              <template #prepend>
+                <v-icon :icon="navIcons[item.icon]" size="24" />
+              </template>
+            </v-btn>
+          </template>
+
+          <!-- Toolbox Dropdown -->
+          <v-menu
+            :close-on-content-click="false"
+            location="bottom center"
+            offset="10"
+            open-on-hover
+          >
+            <template v-slot:activator="{ props }">
               <v-btn
                 variant="text"
-                :to="{ name: item.name }"
-                :text="item.text"
                 class="rounded-3md mr-1"
-                :class="{ 'home-route-btn': isHomeRoute }"
-                :active="item.group && $route.meta.group === item.group"
+                v-bind="props"
+                :active="$route.meta.group === 'toolbox'"
                 :active-color="isHomeRoute ? 'cyan-accent-2' : undefined"
                 :color="isHomeRoute ? 'white' : undefined"
-                :disabled="item.requiresAuth && !authStore.isAuthenticated"
               >
                 <template #prepend>
-                  <v-icon :icon="navIcons[item.icon]" size="24" />
+                  <v-icon :icon="navIcons['toolbox.svg']" size="24" />
                 </template>
+                工具箱
               </v-btn>
             </template>
-
-            <!-- Toolbox Dropdown -->
-            <v-menu
-              :close-on-content-click="false"
-              location="bottom center"
-              offset="10"
-              open-on-hover
+            <v-list
+              v-model:opened="desktopOpenedGroups"
+              density="compact"
+              :class="{ 'glass-menu': hasBackgroundImage }"
+              class="rounded-3md"
+              nav
+              indent="20"
             >
-              <template v-slot:activator="{ props }">
-                <v-btn
-                  variant="text"
-                  class="rounded-3md mr-1"
-                  v-bind="props"
-                  :active="$route.meta.group === 'toolbox'"
-                  :active-color="isHomeRoute ? 'cyan-accent-2' : undefined"
-                  :color="isHomeRoute ? 'white' : undefined"
-                >
-                  <template #prepend>
-                    <v-icon :icon="navIcons['toolbox.svg']" size="24" />
-                  </template>
-                  工具箱
-                </v-btn>
-              </template>
-              <v-list
-                v-model:opened="desktopOpenedGroups"
-                density="compact"
-                :class="{ 'glass-menu': hasBackgroundImage }"
-                class="rounded-3md"
-                nav
-                indent="20"
+              <!-- Nested Search Menu -->
+              <v-list-group
+                value="search"
+                expand-icon="i-mdi:menu-right"
+                collapse-icon="i-mdi:menu-down"
               >
-                <!-- Nested Search Menu -->
-                <v-list-group
-                  value="search"
-                  expand-icon="i-mdi:menu-right"
-                  collapse-icon="i-mdi:menu-down"
-                >
-                  <template v-slot:activator="{ props }">
-                    <v-list-item
-                      v-bind="props"
-                      title="卡片搜索"
-                      :prepend-icon="navIcons['search.svg']"
-                      :active="$route.name === 'GlobalSearch'"
-                      :color="routeGameColor"
-                      slim
-                      class="rounded-3md"
-                    >
-                    </v-list-item>
-                  </template>
+                <template v-slot:activator="{ props }">
                   <v-list-item
-                    v-for="gameOpt in GAME_TYPE_OPTIONS"
-                    :key="gameOpt.value"
-                    :to="{ name: 'GlobalSearch', params: { game: gameOpt.value } }"
-                    :title="`Weiβ Schwarz ${gameOpt.title === 'WS' ? '' : gameOpt.title === 'WSR' ? 'Rose' : '简中'}`"
-                    :color="gameOpt.color"
+                    v-bind="props"
+                    title="卡片搜索"
+                    :prepend-icon="navIcons['search.svg']"
+                    :active="$route.name === 'GlobalSearch'"
+                    :color="routeGameColor"
                     slim
                     class="rounded-3md"
-                  >
-                  </v-list-item>
-                </v-list-group>
-                <template
-                  v-for="subItem in toolboxItems.filter((i) => i.name !== 'GlobalSearch')"
-                  :key="subItem.name"
-                >
-                  <v-list-item
-                    :to="{ name: subItem.name }"
-                    :title="subItem.text"
-                    :prepend-icon="navIcons[subItem.icon]"
-                    slim
-                    class="rounded-3md"
-                    :disabled="subItem.requiresAuth && !authStore.isAuthenticated"
                   >
                   </v-list-item>
                 </template>
-              </v-list>
-            </v-menu>
-          </div>
-          <v-divider
-            class="mx-3 align-self-center d-none d-md-block"
-            length="24"
-            thickness="2"
-            vertical
-            :color="isHomeRoute ? 'transparent' : undefined"
-          ></v-divider>
-          <v-btn icon @click="NoticeDialogRef?.open()" style="min-width: 0" size="x-small">
-            <v-badge :model-value="noticeStore.hasNew" color="error" dot offset-x="2" offset-y="2">
-              <v-icon :color="isHomeRoute ? 'white' : undefined" icon="i-mdi:bell" size="24" />
-            </v-badge>
-          </v-btn>
-        </template>
+                <v-list-item
+                  v-for="gameOpt in GAME_TYPE_OPTIONS"
+                  :key="gameOpt.value"
+                  :to="{ name: 'GlobalSearch', params: { game: gameOpt.value } }"
+                  :title="`Weiβ Schwarz ${gameOpt.title === 'WS' ? '' : gameOpt.title === 'WSR' ? 'Rose' : '简中'}`"
+                  :color="gameOpt.color"
+                  slim
+                  class="rounded-3md"
+                >
+                </v-list-item>
+              </v-list-group>
+              <template
+                v-for="subItem in toolboxItems.filter((i) => i.name !== 'GlobalSearch')"
+                :key="subItem.name"
+              >
+                <v-list-item
+                  :to="{ name: subItem.name }"
+                  :title="subItem.text"
+                  :prepend-icon="navIcons[subItem.icon]"
+                  slim
+                  class="rounded-3md"
+                  :disabled="subItem.requiresAuth && !authStore.isAuthenticated"
+                >
+                </v-list-item>
+              </template>
+            </v-list>
+          </v-menu>
+        </div>
+        <v-divider
+          class="mx-3 align-self-center d-none d-md-block"
+          length="24"
+          thickness="2"
+          vertical
+          :color="isHomeRoute ? 'transparent' : undefined"
+        ></v-divider>
+        <v-btn icon @click="NoticeDialogRef?.open()" style="min-width: 0" size="x-small">
+          <v-badge :model-value="noticeStore.hasNew" color="error" dot offset-x="2" offset-y="2">
+            <v-icon :color="isHomeRoute ? 'white' : undefined" icon="i-mdi:bell" size="24" />
+          </v-badge>
+        </v-btn>
       </template>
     </v-app-bar>
 
@@ -163,18 +161,16 @@
             <v-icon icon="i-mdi:account-circle" size="24" />
           </v-btn>
 
-          <template v-if="!isInSpecialFlow">
-            <v-btn
-              v-if="!authStore.isAuthenticated"
-              @click="handleLogin"
-              :ripple="false"
-              color="green-lighten-2"
-              size="x-small"
-              icon
-            >
-              <v-icon icon="i-mdi:account-circle" size="24" />
-            </v-btn>
-          </template>
+          <v-btn
+            v-if="!authStore.isAuthenticated"
+            @click="handleLogin"
+            :ripple="false"
+            color="green-lighten-2"
+            size="x-small"
+            icon
+          >
+            <v-icon icon="i-mdi:account-circle" size="24" />
+          </v-btn>
         </template>
       </div>
     </v-app-bar>
@@ -511,10 +507,6 @@ const titleImg = computed(() => {
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 const spinnerColor = computed(() => {
   return vuetifyTheme.current.value.colors.primary
-})
-
-const isInSpecialFlow = computed(() => {
-  return !!route.meta.isSpecialFlow
 })
 
 const isSponsorNoticeOpen = ref(false)

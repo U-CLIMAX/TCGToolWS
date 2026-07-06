@@ -54,7 +54,7 @@ import { useCooldown } from '@/composables/useCooldown'
 
 definePage({
   name: 'ForgotPassword',
-  meta: { requiresGuest: true, isSpecialFlow: true },
+  meta: { requiresGuest: true },
 })
 
 const { isCoolingDown, cooldownText, startCooldown } = useCooldown()
