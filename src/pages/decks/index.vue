@@ -304,33 +304,35 @@ const availableSeriesOptions = computed(() => {
   // 遍歷所有已解碼的牌組來統計數量
   Object.values(deckStore.savedDecks).forEach((deck) => {
     if (deck.seriesId) {
-      const foundEntry = Object.entries(seriesMap).find(([, info]) => info.id === deck.seriesId)
+      const info = seriesMap[deck.seriesId]
 
-      if (foundEntry && foundEntry[1].game === selectedGameType.value) {
-        const seriesName = foundEntry[0].replace('[cn]', '')
-        counts[seriesName] = (counts[seriesName] || 0) + 1
+      if (info && info.game === selectedGameType.value) {
+        if (!counts[deck.seriesId]) {
+          counts[deck.seriesId] = { name: info.name.replace('[cn]', ''), count: 0 }
+        }
+        counts[deck.seriesId].count++
       }
     }
   })
 
-  return Object.keys(counts)
-    .sort()
-    .map((name) => ({
-      title: `${name} (${counts[name]})`,
-      value: name,
+  return Object.entries(counts)
+    .map(([id, item]) => ({
+      title: `${item.name} (${item.count})`,
+      value: id,
     }))
+    .sort((a, b) => a.title.localeCompare(b.title))
 })
 
 const filteredDecks = computed(() => {
   const searchTerm = deckNameSearchTerm.value.toLowerCase()
-  const seriesFilter = selectedSeries.value // 這裡拿到的仍然是純系列名稱 (value)
+  const seriesFilter = selectedSeries.value // 這裡拿到的直接是系列 ID 了
   const gameTypeFilter = selectedGameType.value
   const tagsFilter = selectedTags.value
 
   return Object.fromEntries(
     Object.entries(deckStore.savedDecks).filter(([, deck]) => {
       // 遊戲種類篩選邏輯
-      const seriesInfo = Object.values(seriesMap).find((s) => s.id === deck.seriesId)
+      const seriesInfo = seriesMap[deck.seriesId]
       const matchesGameType = (seriesInfo?.game || 'ws') === gameTypeFilter
 
       // 名稱篩選邏輯
@@ -339,8 +341,7 @@ const filteredDecks = computed(() => {
       // 系列篩選邏輯
       let matchesSeries = true
       if (seriesFilter) {
-        const targetSeriesId = seriesMap[seriesFilter]?.id
-        matchesSeries = deck.seriesId === targetSeriesId
+        matchesSeries = deck.seriesId === seriesFilter
       }
 
       // 標籤篩選邏輯
@@ -359,7 +360,7 @@ const deckCount = computed(() => Object.keys(deckStore.savedDecks).length)
 const gameTypeCounts = computed(() => {
   const counts = {}
   Object.values(deckStore.savedDecks).forEach((deck) => {
-    const seriesInfo = Object.values(seriesMap).find((s) => s.id === deck.seriesId)
+    const seriesInfo = seriesMap[deck.seriesId]
     const gameType = seriesInfo?.game || 'ws'
     counts[gameType] = (counts[gameType] || 0) + 1
   })

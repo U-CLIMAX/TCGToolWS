@@ -629,7 +629,7 @@ const handleCreateDeck = async () => {
     const key = generateDeckKey()
     const compressedDeckData = await encodeData(toRaw(deckStore.cardsInDeck))
 
-    const gameType = Object.values(seriesMap).find((s) => s.id === deckStore.seriesId)?.game || 'ws'
+    const gameType = seriesMap[deckStore.seriesId]?.game || 'ws'
 
     await deckStore.saveEncodedDeck(key, compressedDeckData, {
       name: deckName.value,
@@ -733,7 +733,7 @@ const handleUpdateDeck = async (historyText = '', diff = []) => {
     const compressedDeckData = await encodeData(toRaw(deckStore.cardsInDeck))
     const compressedHistoryData = await encodeData(updatedHistory)
 
-    const gameType = Object.values(seriesMap).find((s) => s.id === deckStore.seriesId)?.game || 'ws'
+    const gameType = seriesMap[deckStore.seriesId]?.game || 'ws'
 
     await deckStore.updateEncodedDeck(deckStore.editingDeckKey, compressedDeckData, {
       name: deckName.value,

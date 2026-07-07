@@ -421,8 +421,8 @@ const handleSplashFinished = () => {
   startAutoScroll()
 }
 
-const images = ref([seriesCardImg, featuresImg, singleCardImg, deckFeaturesImg])
-const features = ref([
+const images = [seriesCardImg, featuresImg, singleCardImg, deckFeaturesImg]
+const features = [
   {
     id: 1,
     image: featurePdfImg,
@@ -438,7 +438,7 @@ const features = ref([
     image: featureSearchImg,
     text: '支持全局搜索',
   },
-])
+]
 
 const dialogImage = ref(false)
 
@@ -450,7 +450,7 @@ const currentIndex = ref(0)
 let intervalId = null
 
 const nextImage = () => {
-  currentIndex.value = (currentIndex.value + 1) % images.value.length
+  currentIndex.value = (currentIndex.value + 1) % images.length
 }
 
 const startAutoScroll = () => {

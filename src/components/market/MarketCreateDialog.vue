@@ -285,10 +285,10 @@ const fetchSeriesCards = async (seriesId) => {
 
   isLoadingCards.value = true
   try {
-    const seriesEntry = Object.entries(seriesMap).find(([, val]) => val.id === seriesId)
-    if (!seriesEntry) throw new Error('系列未找到')
+    const seriesInfo = seriesMap[seriesId]
+    if (!seriesInfo) throw new Error('系列未找到')
 
-    const prefixes = seriesEntry[1].prefixes
+    const prefixes = seriesInfo.prefixes
     const { allCards } = await filterStore.fetchAndProcessCards(prefixes)
     const climaxCards = allCards.filter((c) => c.type === '高潮卡')
     const validComboIds = new Set()

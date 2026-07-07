@@ -201,14 +201,10 @@ const emit = defineEmits(['edit', 'delete'])
 const router = useRouter()
 const showDeleteDialog = ref(false)
 
-const seriesInfo = computed(() => {
-  const entry = Object.entries(seriesMap).find(([, val]) => val.id === props.listing.series_id)
-  return entry ? { title: entry[0], ...entry[1] } : null
-})
-
 const seriesIcon = computed(() => {
-  if (!seriesInfo.value) return ''
-  return `/series-icons/original/${seriesInfo.value.id}.webp`
+  return seriesMap[props.listing.series_id]
+    ? `/series-icons/original/${props.listing.series_id}.webp`
+    : ''
 })
 
 const getClimaxIcon = (value) => {

@@ -301,10 +301,9 @@ watch(lgAndUp, (isDesktop) => {
 })
 
 const seriesName = computed(() => {
-  const foundEntry = Object.entries(seriesMap).find(([, value]) => value.id === props.seriesId)
-  return foundEntry ? foundEntry[0] : '未知系列'
+  return seriesMap[props.seriesId]?.name || '未知系列'
 })
-const prefixes = computed(() => seriesMap[seriesName.value]?.prefixes ?? [])
+const prefixes = computed(() => seriesMap[props.seriesId]?.prefixes ?? [])
 
 // 使用雜湊函式，將長名稱轉換為短序號 (Base36)
 const getShortHash = (str) => {

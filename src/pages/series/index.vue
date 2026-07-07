@@ -55,13 +55,9 @@
               :class="{ 'py-0 pl-0': smAndDown }"
               :show-arrows="smAndDown ? false : true"
             >
-              <v-slide-group-item v-for="item in recentlyViewed" :key="item.data.id">
+              <v-slide-group-item v-for="item in recentlyViewed" :key="item.id">
                 <div class="ma-2" :style="{ width: smAndDown ? '100px' : '150px' }">
-                  <SeriesCard
-                    :series-name="item.name"
-                    :series-data="item.data"
-                    :is-compact="true"
-                  />
+                  <SeriesCard :series-name="item.name" :series-data="item" :is-compact="true" />
                 </div>
               </v-slide-group-item>
             </v-slide-group>
@@ -107,9 +103,9 @@
         </div>
 
         <div class="series-grid-container">
-          <div v-for="item in displayedSeries" :key="item.data.id" class="d-flex justify-center">
+          <div v-for="item in displayedSeries" :key="item.id" class="d-flex justify-center">
             <LazyCardWrapper>
-              <SeriesCard :series-name="item.name.replace('[cn]', '')" :series-data="item.data" />
+              <SeriesCard :series-name="item.name.replace('[cn]', '')" :series-data="item" />
             </LazyCardWrapper>
           </div>
         </div>
@@ -144,12 +140,7 @@ definePage({
 })
 
 const itemsPerLoad = 24
-const allSeries = ref(
-  Object.entries(seriesMap).map(([name, data]) => ({
-    name,
-    data,
-  }))
-)
+const allSeries = Object.values(seriesMap)
 const displayedSeries = ref([])
 const infiniteScrollRef = ref(null)
 
@@ -169,12 +160,7 @@ const recentStore = useRecentStore()
 const { seriesIds } = storeToRefs(recentStore)
 
 const recentlyViewed = computed(() => {
-  return seriesIds.value
-    .map((id) => {
-      const seriesEntry = Object.entries(seriesMap).find(([, data]) => data.id === id)
-      return seriesEntry ? { name: seriesEntry[0], data: seriesEntry[1] } : null
-    })
-    .filter(Boolean)
+  return seriesIds.value.map((id) => seriesMap[id]).filter(Boolean)
 })
 
 const { smAndDown, smAndUp } = useDisplay()
@@ -184,23 +170,21 @@ const filteredSeries = computed(() => {
   const term = seriesSearchTerm.value.trim().toLowerCase()
   const game = selectedGameType.value
 
-  let list = allSeries.value.filter((item) => item.data.game === game)
+  let list = allSeries.filter((item) => item.game === game)
 
   if (term) {
     list = list.filter(
       (item) =>
         item.name.toLowerCase().includes(term) ||
-        item.data.prefixes.some((prefix) => prefix.toLowerCase().includes(term))
+        item.prefixes.some((prefix) => prefix.toLowerCase().includes(term))
     )
   }
 
   return list.sort((a, b) => {
     let comparison = 0
     if (seriesSortBy.value === 'date') {
-      const dateA =
-        a.data.latestReleaseDate === '-' ? new Date(0) : new Date(a.data.latestReleaseDate)
-      const dateB =
-        b.data.latestReleaseDate === '-' ? new Date(0) : new Date(b.data.latestReleaseDate)
+      const dateA = a.latestReleaseDate === '-' ? new Date(0) : new Date(a.latestReleaseDate)
+      const dateB = b.latestReleaseDate === '-' ? new Date(0) : new Date(b.latestReleaseDate)
       comparison = dateA.getTime() - dateB.getTime()
     } else {
       comparison = collator.compare(a.name, b.name)

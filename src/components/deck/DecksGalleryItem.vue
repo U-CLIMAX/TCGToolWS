@@ -174,8 +174,8 @@ const isTopTier = computed(() => !!props.deck.tournament_type)
 
 const seriesInfo = computed(() => {
   if (!props.deck.series_id) return null
-  const entry = Object.entries(seriesMap).find(([, val]) => val.id === props.deck.series_id)
-  return entry ? { title: entry[0], ...entry[1] } : null
+  const val = seriesMap[props.deck.series_id]
+  return val ? { title: val.name, ...val } : null
 })
 
 const seriesName = computed(() => seriesInfo.value?.title || props.deck.series_id || '未知系列')
