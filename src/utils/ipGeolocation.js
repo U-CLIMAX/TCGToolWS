@@ -21,15 +21,13 @@ export async function runIPGeolocation() {
     }
 
     const country = detectedRegion || 'CN'
-    if (uiStore.geo.country !== country) {
-      uiStore.geo.country = country
+    if (uiStore.country !== country) {
+      uiStore.country = country
     }
-    uiStore.geo.fetchedAt = Date.now()
   } catch (error) {
     console.error('Failed to detect region from locale:', error)
-    if (!uiStore.geo.country) {
-      uiStore.geo.country = 'CN'
+    if (!uiStore.country) {
+      uiStore.country = 'CN'
     }
-    uiStore.geo.fetchedAt = Date.now()
   }
 }
