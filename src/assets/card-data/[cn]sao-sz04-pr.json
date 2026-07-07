@@ -1,0 +1,82 @@
+{
+  "SAO/SZ04-P01": {
+    "name": "“扩张现实”桐人＆亚丝娜",
+    "product_name": "「动画 刀剑神域 10th Anniversary」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象", "武器"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，此卡的力量＋1000。<br>【自】 对方的抽卡阶段开始之际，你公开自己卡组顶的1张卡。若该卡的等级大于等于1，则你可以将此卡返回手牌。（高潮卡视作等级为0的卡片。公开的卡片放回原处）",
+    "all_cards": [
+      {
+        "id": "SAO/SZ04-P01S",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ04-P02": {
+    "name": "光彩陆离 爱丽丝",
+    "product_name": "「动画 刀剑神域 10th Anniversary」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 1,
+    "trait": ["Anniversary", "摇光", "整合骑士"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 若此卡正面的角色卡的费用小于等于0，则此卡不会【倒置】。<br>【永】 经验 若你的等级区的卡片的合计等级大于等于2，则此卡的力量＋2000。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ04-P02S",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ04-P03": {
+    "name": "虚拟与现实的夹缝",
+    "product_name": "「动画 刀剑神域 10th Anniversary」",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 3,
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【反击】 你选择1张战斗中的角色卡，该回合中，赋予其以下能力。『【永】 此卡无法赋予玩家伤害。』",
+    "all_cards": [
+      {
+        "id": "SAO/SZ04-P03S",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ04-P04": {
+    "name": "《圣母圣咏》",
+    "product_name": "「动画 刀剑神域 10th Anniversary」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
+    "all_cards": [
+      {
+        "id": "SAO/SZ04-P04",
+        "rarity": "PR"
+      },
+      {
+        "id": "SAO/SZ04-P04S",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  }
+}

@@ -1,0 +1,2900 @@
+{
+  "BD/WZ01-126": {
+    "name": "大家一起演奏",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-126R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-126",
+        "rarity": "CC"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-125": {
+    "name": "做到了！这是实力的证明",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-125R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-125",
+        "rarity": "CC"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-124": {
+    "name": "沐浴着憧憬的光芒",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-124R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-124",
+        "rarity": "CC"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-123": {
+    "name": "深渊的死灵法师",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】所有你的角色卡，魂＋2。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-123R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-123",
+        "rarity": "CC"
+      }
+    ],
+    "trigger_soul_count": 2
+  },
+  "BD/WZ01-122": {
+    "name": "叼面包赛跑！",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-122R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-122",
+        "rarity": "CC"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-121": {
+    "name": "终将到达的地方",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-121R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-121",
+        "rarity": "CR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-120": {
+    "name": "外语的翻译方法",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "若存在的你的持有《Anniversary》特征或《Morfonica》特征的角色卡小于等于3张，则此卡无法从手牌被使用。<br>你可以选择1张自己的「「模范队长的修养」二叶筑紫」，放置入休息室。若如此做，则你选择1张自己休息室的卡名包含「筑紫」的角色卡，放置入舞台的任意格子。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-120S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-120",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-119": {
+    "name": "连接心意的桥梁",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 0,
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【反击】若不存在你的持有《Anniversary》特征或《Roselia》特征的角色卡，则此卡无法从手牌被使用。<br>你将自己卡组顶的2张卡，放置入休息室，选择至多1张自己休息室的等级小于等于Ｘ的持有《Anniversary》特征或《Roselia》特征的角色卡，返回手牌。Ｘ为因此效果被放置入休息室的卡片的合计等级。（高潮卡视作等级为0的卡片）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-119S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-119",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-118": {
+    "name": "“白费功夫的关怀”宇田川亚子",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 1,
+    "trait": ["Anniversary", "音乐", "Roselia"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】此卡攻击时，若此卡正面的角色卡的等级大于等于3，则该回合中，此卡的力量＋6000。<br>【自】［将此卡放置入休息室］其他的你的持有《Anniversary》特征或《Roselia》特征的角色卡被正面攻击时，你可以支付费用。若如此做，则你选择1张自己的战斗中的角色卡，该回合中，力量＋3000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-118S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-118",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-117": {
+    "name": "“早安电话”二叶筑紫",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6000,
+    "cost": 1,
+    "trait": ["Anniversary", "音乐", "Morfonica"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【自】此卡攻击时，若存在大于等于4张其他的你的持有《Anniversary》特征或《Morfonica》特征的角色卡，则你选择1张自己的角色卡，该回合中，魂＋2。<br>【自】［将此卡放置入休息室］其他的你的持有《Anniversary》特征或《Morfonica》特征的角色卡被正面攻击时，你可以支付费用。若如此做，则你选择1张自己的战斗中的角色卡，该回合中，力量＋3000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-117S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-117",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-116": {
+    "name": "“必须要说出来……！”仓田真白",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6000,
+    "cost": 1,
+    "trait": ["Anniversary", "音乐", "Morfonica"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】所有其他的你的持有《Anniversary》特征或《Morfonica》特征特征的角色卡，力量＋1000。<br>【自】［将2张手牌放置入休息室］你的角色卡的触发判定中判出高潮卡时，你可以支付费用。若如此做，则你将1张自己的计时区上方的卡片，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-116S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-116",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-115": {
+    "name": "“挑战书”今井莉莎",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["Anniversary", "音乐", "Roselia"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】你使用此卡的『助太刀』时，若对方的高潮区存在高潮卡，则你选择1张自己的战斗中的持有《Anniversary》特征或《Roselia》特征的角色卡，该回合中，力量＋2000。<br>【起】【反击】助太刀2500 等级2［（1）将手牌的此卡放置入休息室］（你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2500）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-115S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-115",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-114": {
+    "name": "“赠予友人的花束”凑友希那",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["Anniversary", "音乐", "Roselia"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】你的高潮卡被放置入高潮区时，你选择1张自己的角色卡，直到下一个对方回合的结束之际为止，力量＋2000。<br>【起】［（1）【横置】此卡］你选择1张对方的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-114S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-114",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-113": {
+    "name": "“充满回忆的诗笺”市谷有咲",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Poppin'Party"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】你的回合中，此卡的力量＋1000。<br>【自】此卡攻击时，你选择1张其他的自己的持有《Anniversary》特征或《Poppin'Party》特征的角色卡，该回合中，力量＋Ｘ。Ｘ为其他的你的持有《Anniversary》特征或《Poppin'Party》特征的角色卡的张数×500。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-113S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-113",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-112": {
+    "name": "“杰作的预感”花园多惠",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Poppin'Party"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】若前列存在其他的你的「“开始闪耀的星星”LAYER」，则此卡的力量＋2000。<br>【自】若你的攻击阶段开始之际，此卡处于【竖置】状态，且不存在其他的你的前列的角色卡，则你选择至多2张对方前列的等级小于等于1的角色卡，放置入休息室，选择至多1张自己休息室的费用小于等于0的持有《Anniversary》特征的角色卡，放置入舞台的不存在角色卡的格子。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-112S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-112",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-111": {
+    "name": "“World is ours！”CHU²",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "RAISE A SUILEN"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】加速［将1张你的休息室的持有《Anniversary》特征或《RAISE A SUILEN》特征的角色卡放置入计时区的下方］你的高潮阶段开始之际，若前列存在此卡，则你可以支付费用。若如此做，则你检视你的卡组选择至多1张持有《Anniversary》特征或《RAISE A SUILEN》特征的角色卡，展示给对手，加入手牌，你选择1张自己的手牌，放置入休息室，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-111S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-111",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-110": {
+    "name": "“向着出色的学生会长”白金燐子",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Roselia"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】此卡攻击时，你选择1张自己的角色卡，该回合中，力量＋Ｘ。Ｘ为其他的你的持有《Anniversary》特征或《Roselia》特征的角色卡的张数×500。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-110S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-110",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-109": {
+    "name": "“与雨相伴”冰川纱夜",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Roselia"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［（2）］此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张对方的角色卡，返回手牌。<br>【自】［（1）将1张手牌放置入休息室］此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的持有《Anniversary》特征或《Roselia》特征的角色卡，返回手牌，选择1张其他的自己的持有《Anniversary》特征或《Roselia》特征的角色卡，该回合中，力量＋1000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-109S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-109",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-108": {
+    "name": "“反复练习的乐谱”八潮瑠唯",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Morfonica"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】你的高潮卡被放置入高潮区时，你选择1张自己的角色卡，直到下一个对方回合的结束之际为止，力量＋1500。<br>【自】［将1张手牌中的高潮卡放置入休息室］你的角色卡的触发判定中判出高潮卡时，你可以支付费用。若如此做，则你抽1张卡。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-108S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-108",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-107": {
+    "name": "“慈爱的目光”PAREO",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "RAISE A SUILEN"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［将1张等级大于等于1的手牌放置入休息室］在你的主要阶段中，此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的等级小于等于自己等级的持有《Pastel＊Palettes》特征或《RAISE A SUILEN》特征的角色卡，该主要阶段中，你可以从休息室使用该卡并无需满足颜色条件。（高潮卡视作等级为0的卡片。若使用该卡需要费用，则必须支付相应费用）<br>【自】战斗中的此卡【倒置】时，若此卡的战斗对手的等级小于等于0，则你可以将该角色卡放置入卡组底。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-107S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-107",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-106": {
+    "name": "“重要的回忆录”花园多惠",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 8500,
+    "cost": 2,
+    "trait": ["Anniversary", "音乐", "Poppin'Party"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【永】若你的休息室中存在大于等于6张高潮卡，则你手牌的此卡的等级－1。<br>【永】若存在大于等于2张其他的你的持有《Anniversary》特征或《Poppin'Party》特征特征的角色卡，则此卡的力量＋2500，此卡获得以下能力。『【自】［（3）将2张手牌放置入休息室］ 此卡攻击时，你可以支付费用。若如此做，则给予对方3点伤害。』（会发生伤害取消）<br>【自】［将1张手牌放置入休息室］此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你将自己的计时区上方的1张卡片，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-106SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-106",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-105": {
+    "name": "“向着可靠的书记”市谷有咲",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 5500,
+    "cost": 1,
+    "trait": ["Anniversary", "音乐", "Poppin'Party"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌中的事件卡放置入休息室］此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你将所有自己休息室的卡片，返回卡组，将卡组洗切。<br>【自】此卡攻击时，若此卡正面的角色卡的等级大于等于3，则该回合中，此卡的力量＋6000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-105SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-105",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-104": {
+    "name": "“改变世界的力量”CHU²",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 1,
+    "trait": ["Anniversary", "音乐", "RAISE A SUILEN"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】应援 所有此卡前面的你的持有《Anniversary》特征或《RAISE A SUILEN》特征的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。<br>【自】你使用『加速』时，若此卡底的标识物小于等于1张，则你可以选择1张自己休息室的卡片，将其作为标识物表侧表示放置于此卡下方。<br>【自】［将此卡下方的2张标识物放置入休息室］你的回合结束之际，你可以支付费用。若如此做，则你将所有自己休息室的卡片，返回卡组，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-104SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-104",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-103": {
+    "name": "“两人一起看过的星空”冰川纱夜",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 1,
+    "trait": ["Anniversary", "音乐", "Roselia"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】你可以因<img src=\"/effect-icons/gate.webp\">的效果选择自己休息室的「“蓝玫瑰的道路”凑友希那」或「连接心意的桥梁」。<br>【永】应援 所有此卡前面的你的持有《Anniversary》特征或《Roselia》特征的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。<br>【自】你的高潮卡被放置入高潮区时，你检视自己卡组顶的1张卡，放置于卡组顶或休息室，若存在其他的你的「“蓝玫瑰的道路”凑友希那」与「“反抗精神”美竹兰」，则你将对方卡组底的至多1张卡放置入休息室。若因此效果被放置入对方休息室的卡为高潮卡，则给予对方1点伤害。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-103SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-103",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-102": {
+    "name": "“孤高的巫师”白金燐子",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Roselia"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【起】［（1）将此卡放置入休息室］你选择1张自己休息室的「“一起见证的未来”凑友希那」，放置于此卡曾经存在的格子，该回合中，该角色卡的力量＋Ｘ。Ｘ为你的持有《Anniversary》特征或《Roselia》特征的角色卡的张数×1000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-102SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-102",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-101": {
+    "name": "“招募吉他手！”PAREO",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "RAISE A SUILEN"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】此卡被从手牌放置入舞台时，你选择至多1张对方的角色卡，放置入回忆区，对方将自己回忆区的该角色卡放置于舞台的任意格子。【自】此卡攻击时，你选择1张其他的你的持有《Anniversary》特征或《RAISE A SUILEN》特征的角色卡，该回合中，力量＋Ｘ。Ｘ为其他的你的持有《Anniversary》特征或《RAISE A SUILEN》特征的角色卡的张数×500。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-101SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-101",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-100": {
+    "name": "“与未知不期而遇”八潮瑠唯",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Morfonica"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】此卡被从手牌放置入舞台时，该回合中，此卡的力量＋1500。<br>【自】［将1张手牌放置入休息室］此卡攻击时，你可以支付费用。若如此做，则该攻击中，此卡的力量＋1000，你在触发步骤进行2次触发判定。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-100SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-100",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-099": {
+    "name": "“欢迎来到派对！”仓田真白",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Morfonica"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】你的回合中，此卡的力量＋1000。<br>【自】此卡的战斗对手【倒置】时，你选择1张其他的自己的持有《Anniversary》特征或《Morfonica》特征的角色卡，【横置】，移动至后列的不存在角色卡的格子。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-099SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-099",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-098": {
+    "name": "“想要追赶”宇田川亚子",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Roselia"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［【横置】1张其他的你的持有《Anniversary》特征或《Roselia》特征的角色卡］此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你分别选择1张自己等级区的卡片和1张休息室的卡片，互换位置。<br>【自】［（1）将1张手牌中的高潮卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的高潮卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-098SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-098",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-097": {
+    "name": "“舞台导演”大和麻弥",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Pastel＊Palettes"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】此卡被从手牌放置入舞台时，你将自己卡组顶的2张卡，放置入休息室。若那些卡片中存在高潮卡，则你选择1张自己的角色卡，该回合中，力量＋1500。<br>【自】［将此卡返回手牌］你的高潮卡被放置入高潮区时，你可以支付费用。若如此做，则你选择1张自己的角色卡，该回合中，力量＋2000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-097SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-097",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-096": {
+    "name": "“模范队长的修养”二叶筑紫",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Morfonica"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】此卡被从手牌放置入舞台时，若存在大于等于2张其他的你的持有《Anniversary》特征或《Morfonica》特征的角色卡，则你可以抽1张卡。若如此做，则你选择1张自己的手牌，放置入休息室。<br>【自】［将1张手牌的持有《Anniversary》特征或《Morfonica》特征的角色卡放置入休息室］此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多1张「外语的翻译方法」展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-096SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-096",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-095": {
+    "name": "“衣橱之泪”CHU²",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Anniversary", "音乐", "RAISE A SUILEN"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【自】此卡被从手牌放置入舞台时，或因「“因为有你在”PAREO」的【自】的效果被放置入舞台时，你可以选择自己的计时区上方的1张卡片，放置入休息室。<br>【自】【CX联动】［（1）将1张手牌放置入休息室］「大家一起演奏」被放置入你的高潮区时，若前列存在此卡，则你可以支付费用。若如此做，则该回合中，赋予所有其他的你的角色卡，以下能力。『【自】此卡攻击时，则你将对方卡组底的2张卡，放置入休息室。若那些卡片中存在高潮卡，则给予对方2点伤害。』（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-095SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-095",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-094": {
+    "name": "“因为有你在”PAREO",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Anniversary", "音乐", "RAISE A SUILEN"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【自】对方的回合中，你受到的伤害未被取消时，若前列存在此卡，则你检视自己卡组顶的1张卡，放置于卡组顶或休息室。<br>【自】加速［从你的卡组顶将1张卡放置入计时区］你的高潮阶段开始之际，若你的等级大于等于3，且存在大于等于2张其他的你的持有《Anniversary》特征或《RAISE A SUILEN》特征的角色卡，你可以支付费用。若如此做，则你选择1张自己休息室的「“衣橱之泪”CHU²」，放置入舞台的任意格子。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-094SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-094",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-093": {
+    "name": "“前往知识的海洋”八潮瑠唯",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["Anniversary", "音乐", "Morfonica"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【永】若你的休息室中存在的高潮卡小于等于2张，则你手牌的此卡的等级－1。<br>【永】每存在1张其他的你的后列的持有《Anniversary》特征或《Morfonica》特征的角色卡，此卡的力量＋500。<br>【自】［将1张手牌放置入休息室］此卡被从手牌放置入舞台时，或因「“因为是姐姐”二叶筑紫」的【自】的效果被放置入舞台时，你可以支付费用。若如此做，则你选择1张自己的计时区的持有《Anniversary》特征或《Morfonica》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-093SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-093",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-092": {
+    "name": "“因为是姐姐”二叶筑紫",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 8500,
+    "cost": 2,
+    "trait": ["Anniversary", "音乐", "Morfonica"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【永】若存在其他的你的持有《Anniversary》特征或《Morfonica》特征的角色卡，则此卡的力量＋1500，此卡获得『【自】再演［将1张手牌的角色卡放置入休息室］』。<br>【自】【CX联动】「做到了！这是实力的证明」被放置入你的高潮区时，若前列存在此卡，且存在其他的你的持有《Anniversary》特征或《Morfonica》特征的角色卡，则你选择至多1张自己休息室的持有《Anniversary》特征或《Morfonica》特征的角色卡，返回手牌或放置入舞台的任意格子。若返回手牌，则给予对方1点伤害。若放置入舞台，则直到下一个对方回合的结束之际为止，该角色卡的力量＋1000。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-092SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-092",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-091": {
+    "name": "“置身于新世界”白金燐子",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 8500,
+    "cost": 2,
+    "trait": ["Anniversary", "音乐", "Roselia"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【永】若存在大于等于4张你的持有《Anniversary》特征或《Roselia》特征的角色卡，则你的手牌的此卡的等级－1。<br>【永】经验 若你的等级区的卡片的合计等级大于等于4，则此卡的力量＋1500，此卡获得以下能力。『【永】此卡不会被对方的效果选择。』<br>【自】此卡被从手牌放置入舞台时，你检视自己的卡组，选择至多1张持有《Anniversary》特征或《Roselia》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-091SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-091",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-090": {
+    "name": "“哔哔地请多关照！”冰川日菜",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 7000,
+    "cost": 2,
+    "trait": ["Anniversary", "音乐", "Pastel＊Palettes"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【永】所有其他的你的持有《Anniversary》特征或《Pastel＊Palettes》特征的角色卡，力量＋Ｘ。Ｘ为你舞台的角色卡持有颜色种类的合计×500。<br>【自】［（1）］此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的高潮卡，返回手牌。<br>【起】［【横置】此卡］你检视自己卡组顶的1张卡，放置入卡组顶或卡组底。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-090SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-090",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-089": {
+    "name": "“致所有人”大和麻弥",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Pastel＊Palettes"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】此卡被从手牌放置入舞台时，你检视自己卡组顶的至多Ｘ张卡，选择至多1张等级大于等于1的卡片展示给对手，加入手牌，其余的卡片放置入休息室。若加入了手牌，则你选择1张自己的手牌，放置入休息室。Ｘ为你舞台的角色卡持有颜色种类的合计。（高潮卡视作等级为0的卡片）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-089SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-089",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-088": {
+    "name": "“震撼心灵的声音”花园多惠",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Poppin'Party"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】你的回合中，若存在其他的你的持有《Anniversary》特征或《Poppin'Party》特征的角色卡，则此卡的力量＋1500。<br>【自】【CX联动】此卡的战斗对手【倒置】时，若你的高潮区存在「叼面包赛跑！」，则你检视自己卡组顶的至多4张卡，选择至多2张等级大于等于1的卡片展示给对手，选择1张，加入手牌，选择1张，放置入库存区，其余的卡片放置入休息室。（高潮卡视作等级为0的卡片）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-088SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-088",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-087": {
+    "name": "“宽广的舞台”宇田川亚子",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Roselia"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】此卡被从手牌或回忆区放置入舞台时，该回合中，此卡的力量＋3000。<br>【自】【CX联动】你的再演步骤开始之际，若高潮区存在「深渊的死灵法师」，则你可以将此卡放置入回忆区。若如此做，则在你的下一个抽卡阶段开始之际，你选择1张你的回忆区的「“宽广的舞台”宇田川亚子」，放置入舞台的任意格子，该回合中，该角色卡的力量＋3500。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-087SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-087",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-086": {
+    "name": "“勉强赶上的赏花”今井莉莎",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Roselia"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】经验 你的回合中，若你的等级区的卡片的合计等级大于等于2，则此卡的力量＋Ｘ。Ｘ为此卡的魂×1000。<br>【自】此卡的战斗对手【倒置】时，你选择1张其他的自己的角色卡，【横置】，移动至后列的不存在角色卡的格子。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-086SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-086",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-085": {
+    "name": "“前往理想之地”冰川纱夜",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Roselia"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［（1）将1张你的休息室的持有《Anniversary》特征或《Roselia》特征的角色卡放置入计时区的下方］此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则你选择1张自己休息室的持有《Anniversary》特征或《Roselia》特征的角色卡或「连接心意的桥梁」，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-085SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-085",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-084": {
+    "name": "“VERSUS”凑友希那",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Roselia"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】【CX联动】记忆［将表侧表示的此卡变更为里侧表示］若回忆区存在此卡，则在你的「“蓝玫瑰的道路”凑友希那」或「“反抗精神”美竹兰」的攻击结束之际，你可以支付费用。若如此做，则你宣言卡组或休息室。你检视你宣言的区域，选择至多1张「终将到达的地方」或「保持自我」，选择1张你的高潮区的「终将到达的地方」或「保持自我」，若宣言区域的卡片与高潮区的卡名不同，则互换位置。若你宣言了卡组，则将卡组洗切。 <br>【起】［（1）将此卡放置入回忆区］你检视自己卡组顶的至多3张卡，选择至多1张持有《Anniversary》特征或《Roselia》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-084SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-084",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-083": {
+    "name": "“如今在这里的我们”市谷有咲",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Poppin'Party"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】若手牌中存在此卡，则此卡获得《盆栽》特征。<br>【永】若你的手牌大于等于5张，则此卡的力量＋2000，此卡获得以下能力。『【永】此卡正面的角色卡与此卡无法进行侧面攻击。』<br>【自】对方的攻击阶段开始之际，你可以将此卡移动至前列的不存在角色卡的，且正面存在对方的角色卡的格子。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-083SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-083",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-082": {
+    "name": "“蓝玫瑰的道路”凑友希那",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Anniversary", "音乐", "Roselia"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【自】此卡被从手牌放置入舞台时，你可以将自己的计时区上方的1张卡片，放置入休息室。<br>【自】【CX联动】此卡攻击时，若高潮区存在「终将到达的地方」，且你的手牌小于等于5张，则你从以下2个效果中选择1个执行。『你公开自己卡组顶的1张卡。若该卡为持有《Anniversary》特征或《Roselia》特征的角色卡或「连接心意的桥梁」，则给予对方4点伤害。』『此卡的攻击结束之际，若此卡正面的角色卡处于【倒置】状态，则你可以将自己的库存区上方的1张卡，放置入休息室。若如此做，则给予对方2点伤害。』（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-082SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-082",
+        "rarity": "RR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-081": {
+    "name": "“心跳加速的大小姐学校”仓田真白",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Morfonica"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】若存在大于等于2张其他的你的持有《Anniversary》特征或《Morfonica》特征的角色卡，则此卡的力量＋1000。<br>【自】【CX联动】［将1张手牌放置入休息室］ 此卡攻击时，若高潮区存在「沐浴着憧憬的光芒」，且存在其他的你的持有《Anniversary》特征或《Morfonica》特征的角色卡，则你可以支付费用。若如此做，则你选择1张自己休息室的持有《Anniversary》特征或《Morfonica》特征的角色卡，返回手牌，直到下一个对方回合的结束之际为止，此卡获得以下能力。『【自】此卡被正面攻击时，你可以将此卡返回手牌。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-081SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-081",
+        "rarity": "RR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-080": {
+    "name": "“我可以相信吗？”今井莉莎",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Roselia"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】若你的手牌大于等于5张，则此卡的力量＋1000。<br>【自】对方的攻击阶段开始之际，你可以将自己卡组顶的1张卡放置入休息室。若该卡为持有《Anniversary》特征或《Roselia》特征的角色卡或「连接心意的桥梁」，则你可以将此卡移动至前列的不存在角色的格子。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-080SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-080",
+        "rarity": "RR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-079": {
+    "name": "最周全的招待",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【自】此卡被从手牌放置入高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br>（<img src=\"/effect-icons/standby.webp\">：此卡触发时，你可以选择1张自己休息室的自己的等级小于等于＋1的角色卡，以【横置】状态放置入舞台的任意格子）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-079R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-079",
+        "rarity": "CC"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-078": {
+    "name": "活动前的兴奋",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【自】此卡被从手牌放置入高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br>（<img src=\"/effect-icons/standby.webp\">：此卡触发时，你可以选择1张自己休息室的等级小于等于自己的等级＋1的角色卡，以【横置】状态放置入舞台的任意格子）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-078R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-078",
+        "rarity": "CR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-077": {
+    "name": "终于来了呢！",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【永】所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-077R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-077",
+        "rarity": "CR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-076": {
+    "name": "Living Dead",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "事件卡",
+    "level": 3,
+    "power": "-",
+    "cost": 0,
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【反击】你选择1张自己的「“STAR☆”户山香澄」，该回合中，赋予其以下能力。『【永】此卡正面的角色卡的魂－3。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-076S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-076",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-075": {
+    "name": "“一刀两断！”若宫伊芙",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5500,
+    "cost": 1,
+    "trait": ["Anniversary", "音乐", "Pastel＊Palettes"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】若存在大于等于2张其他的你的持有《Anniversary》特征或《Pastel＊Palettes》特征的角色卡，则此卡的力量＋2000。<br>【自】再演［将1张手牌的角色卡放置入休息室］（此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则将此卡以【横置】状态放置入此卡曾经存在的格子）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-075S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-075",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-074": {
+    "name": "“将安宁赠予友人”山吹沙绫",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 1,
+    "trait": ["Anniversary", "音乐", "Poppin'Party"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】此卡被从手牌放置入舞台时，你选择1张对方的角色卡，直到下一个对方回合的结束之际为止，赋予其以下能力。『【永】此卡无法移动至其他的格子。』<br>【自】此卡【倒置】时，若此卡的战斗对手的等级高于对方的等级，则你可以将该卡放置入回忆区。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-074S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-074",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-073": {
+    "name": "“为了守护某人”牛込里美",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Poppin'Party"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】你的回合中，每存在1张其他的你的持有《Anniversary》特征或《Poppin'Party》特征的角色卡、此卡的力量＋500。<br>【自】［（1）］此卡攻击时，若此回合中你有使用过事件卡，则你可以支付费用。若如此做，则该攻击中，你在触发步骤进行2次触发判定。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-073S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-073",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-072": {
+    "name": "“希望的旋律”户山香澄",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7500,
+    "cost": 1,
+    "trait": ["Anniversary", "音乐", "Poppin'Party"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【起】［（2）【横置】1张你的「“这样就完美了！”丸山彩」及此卡］你选择1张处于【竖置】状态的你的持有《Anniversary》特征的角色卡，放置入休息室。若如此做，则你检视自己卡组顶的至多7张卡，选择至多1张持有《Anniversary》特征的角色卡，将该卡放置于因此效果被放置入休息室的角色卡曾经存在的格子，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-072S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-072",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-071": {
+    "name": "“即使分开也心意相通”牛込里美",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["Anniversary", "音乐", "Poppin'Party"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［（1）将1张你的舞台的持有《Anniversary》特征或《Poppin'Party》特征的角色卡放置入休息室］你使用此卡的 『助太刀』时，你可以支付费用。若如此做，则你选择1张对方的角色卡，该回合中，魂－1。<br>【起】【反击】助太刀2500 等级2［（1）将手牌的此卡放置入休息室］（你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2500）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-071SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-071",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-070": {
+    "name": "“大概分量就好”冰川日菜",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Pastel＊Palettes"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】此卡被从手牌放置入舞台时，你检视自己卡组顶的1张卡，放置入卡组顶或休息室。<br>【自】此卡被从手牌放置入舞台时，你公开自己卡组顶的1张卡。若该卡为持有《Anniversary》特征或《Pastel＊Palettes》特征的角色卡或「引人注目的照片？」则将其加入手牌，你选择1张自己的手牌，放置入休息室。（若非如此则放回原处）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-070SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-070",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-069": {
+    "name": "“夕阳下的更衣准备”山吹沙绫",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6000,
+    "cost": 1,
+    "trait": ["Anniversary", "音乐", "Poppin'Party"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】应援 所有此卡前面的你的等级大于等于3的角色卡，力量＋2000。<br>【自】此能力1回合至多发动1次。你使用事件卡时，你选择1张自己的角色卡，该回合中，力量＋2000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-069SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-069",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-068": {
+    "name": "“TRY！”牛込里美",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Poppin'Party"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［（1）从你的卡组顶将1张卡放置入计时区］此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则你检视自己卡组顶的至多4张卡，选择至多1张等级大于等于1的卡片展示给对手，加入手牌，其余的卡片放置入休息室。（高潮卡视作等级为0的卡片）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-068SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-068",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-067": {
+    "name": "“美好的同款”白鹭千圣",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Pastel＊Palettes"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［（1）将1张你的休息室的持有《Anniversary》特征或《Pastel＊Palettes》特征的角色卡放置入计时区的下方］此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则你检视自己卡组顶的至多2张卡，选择其中至多2张持有《Anniversary》特征或《Pastel＊Palettes》特征的角色卡或「引人注目的照片？」展示给对手，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-067SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-067",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-066": {
+    "name": "“商店街的欢呼声”户山香澄",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Poppin'Party"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［（1）将1张手牌中的事件卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的事件卡，返回手牌。<br>【自】此卡【倒置】时，若此卡的战斗对手的等级小于等于0，则你可以将该角色卡【倒置】。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-066SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-066",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-065": {
+    "name": "“被朝霞笼罩”丸山彩",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10500,
+    "cost": 2,
+    "trait": ["Anniversary", "音乐", "Pastel＊Palettes"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【自】【CX联动】［（1）将1张你的高潮区的「活动前的兴奋」放置入休息室］在你的高潮阶段中，此卡因「活动前的兴奋」的效果被放置入舞台时，你可以支付费用。若如此做，则【竖置】此卡，你选择至多2张对方休息室的卡片，返回卡组，对方将卡组洗切。<br>【自】此卡攻击时，你公开自己卡组顶的1张卡。若该卡为持有《Anniversary》特征或《Pastel＊Palettes》特征的角色卡或「引人注目的照片？」，则你可以给予对方1点伤害。（会发生伤害取消。公开的卡片放回原处）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-065SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-065",
+        "rarity": "RR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-064": {
+    "name": "“STAR☆”户山香澄",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Anniversary", "音乐", "Poppin'Party"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【永】你的回合中，若存在大于等于2张其他的你的持有《Anniversary》特征或《Poppin'Party》特征的角色卡，此卡的力量＋2000。<br>【自】此卡被从手牌或卡组放置入舞台时，你抽至多2张卡，选择2张自己的手牌，放置入休息室，你将自己卡组顶的至多1张卡，放置入休息室。<br>【自】【CX联动】［（2）］此卡的攻击结束之际，若高潮区存在「终于来了呢！」，且存在其他的你的持有《Anniversary》特征或《Poppin'Party》特征的角色卡，你可以支付费用。若如此做，则给予对方2点伤害，直到下一个对方回合的结束之际为止，此卡的战斗中，你不会因对方的角色卡的【自】的效果受到伤害。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-064SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-064",
+        "rarity": "RR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-063": {
+    "name": "“无法抑制的感情”白鹭千圣",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9000,
+    "cost": 2,
+    "trait": ["Anniversary", "音乐", "Pastel＊Palettes"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【永】若存在大于等于4张你的持有《Anniversary》特征或《Pastel＊Palettes》特征的角色卡，则从手牌使用此卡时可以不满足颜色条件，你手牌的此卡的等级－1。<br>【永】你的回合中，每存在1张你的持有《Anniversary》特征或《Pastel＊Palettes》特征的角色卡，此卡的力量＋500。<br>【自】此卡被从手牌放置入舞台时，你可以选择1张自己计时区的持有《Anniversary》特征或《Pastel＊Palettes》特征的角色卡，放置入卡组底。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-063SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-063",
+        "rarity": "RR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-062": {
+    "name": "“Popipa的优点”山吹沙绫",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Poppin'Party"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】你的事件卡，从手牌使用时可以不满足颜色条件。<br>【自】你的高潮卡被放置入高潮区时，你选择1张自己的角色卡，该回合中，力量＋1000。<br>【起】集中［（1）【横置】此卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你选择至多1张自己休息室的持有《Anniversary》特征或《Poppin'Party》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-062SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-062",
+        "rarity": "RR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-061": {
+    "name": "美味的时间",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【永】所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-061R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-061",
+        "rarity": "CC"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-060": {
+    "name": "无以言表之物",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【自】此卡被从手牌放置入高潮区时，你选择至多1张自己休息室的等级小于等于1的角色卡，放置入库存区，所有你的角色卡，该回合中，魂＋1。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-060R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-060",
+        "rarity": "CC"
+      }
+    ],
+    "trigger_soul_count": 2
+  },
+  "BD/WZ01-059": {
+    "name": "保持自我",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【永】所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-059R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-059",
+        "rarity": "CR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-058": {
+    "name": "大家一起找吧",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "你选择至多2张自己休息室的持有《Anniversary》特征或《Afterglow》特征的角色卡，返回手牌，你选择1张自己的手牌，放置入休息室。<br>你可以选择1张自己计时区顶的卡片和1张休息室的持有《Anniversary》特征或《Afterglow》特征的角色卡，互换位置。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-058S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-058",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-057": {
+    "name": "初次纪念",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【反击】你选择至多1张对方后列的角色卡，返回手牌，检视自己卡组顶的至多2张卡，选择至多1张卡，加入手牌，其余的卡片放置入休息室，你选择1张自己的手牌，放置入休息室。此卡放置入卡组底。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-057S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-057",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-056": {
+    "name": "“发现宝藏！”大和麻弥",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7500,
+    "cost": 2,
+    "trait": ["Anniversary", "音乐", "Pastel＊Palettes"],
+    "color": "绿色",
+    "soul": 2,
+    "effect": "【永】此卡无法进行侧面攻击。<br>【永】此卡的力量＋Ｘ。Ｘ为你舞台的角色卡持有颜色种类的合计×1000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-056S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-056",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-055": {
+    "name": "“Lock on！”LOCK",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 1,
+    "trait": ["Anniversary", "音乐", "RAISE A SUILEN"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】若前列中央的格子中存在此卡，则每存在1张其他的你的持有《Anniversary》特征或《RAISE A SUILEN》特征的角色卡，此卡的力量＋1000。<br>【自】加速［从你的卡组顶将1张卡放置入计时区］对方的攻击阶段开始之际，若你的等级为大于等于2，则你可以支付费用。若如此做，则该回合中，此卡获得以下2个能力。『【永】大活跃』『【自】［（1）将2张手牌放置入休息室］战斗中的此卡【倒置】时，你可以支付费用。若如此做，则【横置】此卡，将此卡的战斗对手【倒置】。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-055S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-055",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-054": {
+    "name": "“欢迎来到天文社！”冰川日菜",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 1500,
+    "cost": 1,
+    "trait": ["Anniversary", "音乐", "Pastel＊Palettes"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】［（1）］你使用此卡的 『助太刀』时，你可以支付费用。若如此做，则你选择1张自己休息室的「“欢迎来到天文社！”冰川日菜」返回手牌。<br>【起】【反击】助太刀2500 等级2［（1）将手牌的此卡放置入休息室］（你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2500）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-054S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-054",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-053": {
+    "name": "“在彼此相连的时间里”MASKING",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "RAISE A SUILEN"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】你的回合中，每存在1张其他的你的持有《Anniversary》特征或《RAISE A SUILEN》特征的角色卡，此卡的力量＋500。<br>【自】加速［从你的卡组顶将1张卡放置入计时区］ 你的高潮阶段开始之际，你可以支付费用。若如此做，则你选择1张自己休息室的「“开始闪耀的星星”LAYER」或「“在彼此相连的时间里”MASKING」，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-053S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-053",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-052": {
+    "name": "“姐姐的自尊心”宇田川巴",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Afterglow"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】你的回合中，若你的计时区最上方存在持有『闹铃』的卡片，则每存在1张其他的你的持有《Anniversary》特征或《Afterglow》特征的角色卡，此卡的力量＋1000。<br>【自】【时计区】闹铃［（1）将1张手牌中的高潮卡放置入休息室］ 若此卡存在于计时区的最上方，则你的主要阶段开始之际，你可以支付费用。若如此做，则你选择1张自己休息室的高潮卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-052S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-052",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-051": {
+    "name": "“心跳加速的发展！？”羽泽鸫",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Afterglow"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】此卡攻击时，你公开自己卡组顶的1张卡。若该卡为持有《Anniversary》特征或《Afterglow》特征的角色卡或「大家一起找吧」，则你选择1张自己的角色卡，该回合中，力量＋2000。（公开的卡片放回原处）<br>【自】【时计区】闹铃 若此卡存在于计时区的最上方，且你的等级为大于等于1，则你的高潮阶段开始之际，你可以选择1张自己的角色卡与此卡，互换位置。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-051S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-051",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-050": {
+    "name": "“模范偶像”白鹭千圣",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Pastel＊Palettes"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】若存在大于等于2张其他的你的持有《Anniversary》特征或《Pastel＊Palettes》特征的角色卡，则此卡的力量＋2000。<br>【自】［（2）］此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多1张与存在于自己休息室的高潮卡同卡名的高潮卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-050S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-050",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-049": {
+    "name": "“神秘美少女”青叶摩卡",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Afterglow"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】你使用此卡的 『助太刀』时，若存在你的持有《Anniversary》特征或《Afterglow》特征的角色卡，则你选择1张自己的战斗中的角色卡，该回合中，力量＋1000。<br>【起】【反击】助太刀1000 等级1［将手牌的此卡放置入休息室］（你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋1000）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-049S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-049",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-048": {
+    "name": "“两人和睦相处”上原绯玛丽",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Afterglow"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】若此卡下方存在标识物，则此卡的力量＋1500，此卡获得以下能力。『【自】此卡的战斗对手【倒置】时，你选择1张自己休息室的持有《Anniversary》特征或《Afterglow》特征的角色卡，返回手牌，你选择1张自己的手牌，放置入休息室。』<br>【自】此卡被从手牌放置入舞台时，你公开自己卡组顶的1张卡。若该卡为持有《Anniversary》特征或《Afterglow》特征的角色卡或「大家一起找吧」则可将其以里侧表示作为标识物放置入此卡下方。（若不放置则放回原处）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-048S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-048",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-047": {
+    "name": "“呼啸在录音室的暴风雨”LAYER",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "RAISE A SUILEN"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】此卡被从手牌放置入舞台时，你公开自己卡组顶的1张卡。若该卡为持有《Anniversary》特征或《RAISE A SUILEN》特征的角色卡或「初次纪念」，则你选择1张自己的角色卡，该回合中，力量＋2000。（公开的卡片放回原处）<br>【自】［（2）］此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则你选择1张自己休息室的持有《Anniversary》特征或《RAISE A SUILEN》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-047S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-047",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-046": {
+    "name": "“优哉游哉地赏花”美竹兰",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Afterglow"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时或被从舞台放置入休息室时，你可以支付费用。若如此做，则你选择1张自己计时区的持有《Anniversary》特征或《Afterglow》特征的角色卡，返回手牌，将自己卡组顶的1张卡，放置入计时区。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-046S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-046",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-045": {
+    "name": "“六花的全力以赴”LOCK",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10500,
+    "cost": 2,
+    "trait": ["Anniversary", "音乐", "RAISE A SUILEN"],
+    "color": "绿色",
+    "soul": 2,
+    "effect": "【自】［将1张其他的你的舞台的持有《Anniversary》特征或《RAISE A SUILEN》特征的角色卡放置入休息室］此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己卡组顶的至多3张卡，选择至多1张卡，加入手牌，选择至多1张卡，放置入库存区，其余的卡片放置入休息室。<br>【自】［（3）］此卡攻击时，你可以支付费用。若如此做，则对方将自己库存区的所有卡，放置入休息室，对方从自己卡组顶将相同张数的卡放置入库存区。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-045SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-045",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-044": {
+    "name": "“和太鼓的魅力”宇田川巴",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Anniversary", "音乐", "Afterglow"],
+    "color": "绿色",
+    "soul": 2,
+    "effect": "【自】此卡被从手牌放置入舞台时，你可以选择1张自己休息室的持有《Anniversary》特征或《Afterglow》特征的角色卡，返回手牌。<br>【自】［（2）将2张手牌放置入休息室］ 此卡攻击时，你可以支付费用。若如此做，则给予对方2点伤害。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-044SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-044",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-043": {
+    "name": "“情绪高涨！”上原绯玛丽",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 1,
+    "trait": ["Anniversary", "音乐", "Afterglow"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】此卡攻击时，若此卡正面的角色卡的等级大于等于3，则该回合中，此卡的力量＋6000。<br>【自】【时计区】闹铃 若此卡存在于计时区的最上方，且存在大于等于4张你的持有《Anniversary》特征或《Afterglow》特征的角色卡，则你的高潮阶段开始之际，你选择1张自己的角色卡，该回合中，赋予其以下能力。『【自】此卡【倒置】时，若此卡的战斗对手的等级高于对方的等级，则你可以将对方计时区顶的1张卡，放置入休息室。若如此做，则你将该角色卡放置入计时区。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-043SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-043",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-042": {
+    "name": "“果然还是要黑咖啡”LAYER",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6500,
+    "cost": 1,
+    "trait": ["Anniversary", "音乐", "RAISE A SUILEN"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】你的回合中，每存在1张其他的你的持有《Anniversary》特征或《RAISE A SUILEN》特征的角色卡，此卡的力量＋1500。<br>【自】此卡的战斗对手【倒置】时，你可以将对方计时区上方的1张卡，放置入休息室。若如此做，则你把该角色卡放置入计时区。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-042SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-042",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-041": {
+    "name": "“大小姐的膳食”MASKING",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "RAISE A SUILEN"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】此卡被从手牌放置入舞台时，你可以选择1张对方前列的等级小于等于0的角色卡，返回手牌。<br>【自】［（1）将1张手牌中的高潮卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的高潮卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-041SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-041",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-040": {
+    "name": "“12月的天文观测”羽泽鸫",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Afterglow"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】【时计区】闹铃 若此卡存在于计时区的最上方，则你的主要阶段开始之际，你检视自己卡组顶的至多3张卡，选择至多1张事件卡展示给对手，加入手牌，其余的卡片放置入休息室。若加入了手牌，则你选择1张自己的手牌，放置入休息室。<br>【起】［（1）将此卡放置入休息室］你检视自己卡组顶的至多4张卡，选择其中至多1张持有《Anniversary》特征或《Afterglow》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-040SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-040",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-039": {
+    "name": "“不想放弃”羽泽鸫",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9000,
+    "cost": 2,
+    "trait": ["Anniversary", "音乐", "Afterglow"],
+    "color": "绿色",
+    "soul": 2,
+    "effect": "【永】若存在大于等于4张你的持有《Anniversary》特征或《Afterglow》特征的角色卡，则你手牌的此卡的等级－1。<br>【永】若存在大于等于2张其他的你的持有《Anniversary》特征或《Afterglow》特征的角色卡，则此卡的力量＋1000。<br>【自】［将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你将自己的计时区下方的1张卡，放置入库存区。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-039SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-039",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-038": {
+    "name": "“冥界的引导者”青叶摩卡",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 1,
+    "trait": ["Anniversary", "音乐", "Afterglow"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】［（1）将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你将所有自己休息室的卡片，返回卡组，将卡组洗切。<br>【自】你的高潮阶段开始之际，若你的计时区最上方存在持有『闹铃』的卡片，则该回合中，此卡的力量＋6000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-038SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-038",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-037": {
+    "name": "“等身大的夜空”美竹兰",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 3500,
+    "cost": 1,
+    "trait": ["Anniversary", "音乐", "Afterglow"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】你的高潮阶段开始之际，若你的计时区最上方存在持有『闹铃』的卡片，则直到下一个对方回合的结束之际为止，此卡获得『【永】应援 所有此卡前面的你的角色卡，力量＋2500。』。<br>【自】【时计区】闹铃 若此卡存在于计时区的最上方，则你的高潮阶段开始之际，执行2次以下行动。『你选择1张自己的持有《Anniversary》特征或《Afterglow》特征的角色卡，该回合中，力量＋1500。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-037SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-037",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-036": {
+    "name": "“一如既往的「那个」”上原绯玛丽",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Afterglow"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】你的高潮阶段开始之际，若你的计时区最上方存在持有『闹铃』的卡片，则直到下一个对方回合的结束之际为止，此卡的力量＋1500。此卡获得以下能力。『【自】此卡攻击时，你公开自己卡组顶的1张卡。若该卡为等级大于等于1的卡片则将其放置入库存区。』（高潮卡视作等级为0的卡片。若非如此则放回原处）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-036SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-036",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-035": {
+    "name": "“伙伴由我来守护”宇田川巴",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Afterglow"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】［（1）］你的高潮卡被放置入高潮区时，你可以支付费用。若如此做，则你检视自己卡组顶的至多4张卡，选择至多1张持有《Anniversary》特征或《Afterglow》特征的角色卡或至多1张「大家一起找吧」展示给对手，加入手牌，其余的卡片放置入休息室。<br>【自】【CX联动】［将1张你的高潮区的「无以言表之物」放置入休息室］ 你的再演步骤开始之际，你可以支付费用。若如此做，则你选择1张自己休息室的持有《Anniversary》特征或《Afterglow》特征的角色卡或1张「大家一起找吧」，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-035SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-035",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-034": {
+    "name": "“撕裂黑夜的风”MASKING",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "RAISE A SUILEN"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】此卡被从手牌放置入舞台时，若存在大于等于2张其他的你的持有《Anniversary》特征或《RAISE A SUILEN》特征的角色卡，则你可以抽1张卡。若如此做，则你选择1张自己的手牌，放置入休息室。<br>【起】集中［（1）【横置】此卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你检视自己的卡组并选择至多1张持有《Anniversary》特征或《RAISE A SUILEN》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-034SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-034",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-033": {
+    "name": "“这样就完美了！”丸山彩",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Pastel＊Palettes"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】其他的你的前列中央的格子的角色卡，力量＋500。<br>【起】集中［（1）【横置】此卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你选择至多1张自己休息室的持有《Anniversary》特征或《Pastel＊Palettes》特征的角色卡，返回手牌。若因此效果被放置入休息室的卡片持有的颜色种类合计大于等于4，则你可以将自己卡组顶的1张卡，放置入库存区。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-033SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-033",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-032": {
+    "name": "“反抗精神”美竹兰",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Anniversary", "音乐", "Afterglow"],
+    "color": "绿色",
+    "soul": 2,
+    "effect": "【自】【CX联动】此卡攻击时，若高潮区存在「保持自我」，且若所有你的角色卡均持有《Anniversary》特征或《Afterglow》特征，则给予对方1点伤害，你检视自己卡组顶的至多2张卡，选择至多2张卡，将其按任意顺序放置于卡组顶，其余的卡片放置入休息室。（会发生伤害取消）<br>【自】此卡被从手牌放置入舞台的回合中，再演步骤开始之际，你可以选择自己的计时区上方的1张卡片，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-032SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-032",
+        "rarity": "RR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-031": {
+    "name": "“开始闪耀的星星”LAYER",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "RAISE A SUILEN"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】你的回合中，此卡的力量＋1000。<br>【自】【CX联动】此卡的攻击结束之际，若高潮区存在「美味的时间」，且存在大于等于2张其他的你的持有《Anniversary》特征或《RAISE A SUILEN》特征的角色卡，且若此卡正面不存在角色卡或此卡正面的角色卡处于【倒置】状态，则你检视自己卡组顶的至多4张卡，选择至多1张持有《Anniversary》特征或《RAISE A SUILEN》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室，选择1张自己的角色卡，该回合中，力量＋2000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-031SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-031",
+        "rarity": "RR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-030": {
+    "name": "“果然乐队最棒了”LOCK",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "RAISE A SUILEN"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌的等级小于等于0的卡片放置入休息室］ 此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则你检视自己卡组顶的至多4张卡，选择至多1张持有《Anniversary》特征或《RAISE A SUILEN》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室。（高潮卡视作等级为0的卡片）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-030SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-030",
+        "rarity": "RR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-029": {
+    "name": "“寻找答案”青叶摩卡",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Afterglow"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】［将你库存区顶的1张卡放置入计时区］ 此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多1张等级小于等于1的角色卡展示给对手，加入手牌，将卡组洗切。<br>【自】【时计区】闹铃 若此卡存在于计时区的最上方，则你的高潮阶段开始之际，你选择1张自己的角色卡，该回合中，赋予其以下能力。『【自】此卡的战斗对手【倒置】时，你可以将对方计时区上方的1张卡，放置入休息室。若如此做，则你把该角色卡放置入计时区。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-029SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-029",
+        "rarity": "RR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-028": {
+    "name": "变身之术？",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你可以选择1张自己休息室的持有<img src=\"/effect-icons/soul.webp\">的角色卡，返回手牌或放置入库存区）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-028R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-028",
+        "rarity": "CC"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-027": {
+    "name": "前往笑容集结的地方！",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你可以选择1张自己休息室的持有<img src=\"/effect-icons/soul.webp\">的角色卡，返回手牌或放置入库存区）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-027R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-027",
+        "rarity": "CR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-026": {
+    "name": "引人注目的照片？",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "集中 你翻出自己卡组顶的3张卡，放置入休息室。你选择1张自己休息室的等级小于等于Ｘ的持有《Anniversary》特征或《Pastel＊Palettes》特征的角色卡，返回手牌。Ｘ为那些卡片中的持有《Anniversary》特征或《Pastel＊Palettes》特征的角色卡的张数。将此卡放置入回忆区。<br>【永】记忆 若回忆区存在此卡，则赋予所有你手牌的持有《Anniversary》特征或《Pastel＊Palettes》特征的角色卡以下能力。『【永】从手牌使用此卡时可以不满足颜色条件。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-026S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-026",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-025": {
+    "name": "各位，要开始了哦！",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 0,
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "你选择1张自己的处于【竖置】状态的角色卡【横置】。若如此做，则你检视自己卡组顶的至多3张卡，选择至多1张持有《Anniversary》特征或《Hello, Happy World!》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室，选择1张自己的角色卡，该回合中，赋予其以下能力。『【自】［（1）］此卡攻击时，你可以支付费用。若如此做，则该攻击中，你在触发步骤进行2次触发判定。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-025S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-025",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-024": {
+    "name": "“舞台副导演”丸山彩",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6500,
+    "cost": 1,
+    "trait": ["Anniversary", "音乐", "Pastel＊Palettes"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】你的回合中，此卡的力量＋Ｘ。Ｘ为你舞台的角色卡持有颜色种类的合计×1000。<br>【自】［将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，若存在大于等于4张其他的你的持有《Pastel＊Palettes》特征的角色卡，则你可以支付费用。若如此做，则对方选择1张自己休息室的高潮卡，将该卡以外的所有休息室的卡片返回卡组，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-024S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-024",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-023": {
+    "name": "“心花怒放”松原花音",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6000,
+    "cost": 1,
+    "trait": ["Anniversary", "音乐", "Hello, Happy World!"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】你的回合中，每存在1张其他的你的持有《Anniversary》特征或《Hello, Happy World!》特征的角色卡，此卡的力量＋1500。<br>【自】此卡被从手牌放置入舞台时，你检视自己卡组顶的至多4张卡，选择至多1张高潮卡展示给对手，加入手牌，其余的卡片放置入休息室。若加入了手牌，则你选择1张自己的手牌，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-023S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-023",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-022": {
+    "name": "“无法隐藏的秘密”广町七深",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["Anniversary", "音乐", "Morfonica"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】你使用此卡的 『助太刀』时，你选择1张自己的战斗中的角色卡，该回合中，赋予其以下能力。『【自】此卡的战斗对手【倒置】时，你将该角色卡放置入回忆区。』<br>【起】【反击】助太刀3000 等级2［（1）将手牌的此卡放置入休息室］（你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋3000）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-022S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-022",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-021": {
+    "name": "“雨天亦可心情爽朗”弦卷心",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 500,
+    "cost": 1,
+    "trait": ["Anniversary", "音乐", "Hello, Happy World!"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】你使用此卡的『助太刀』时，你公开自己卡组顶的1张卡。若该卡为持有《Anniversary》特征或《Hello, Happy World!》特征的角色卡则将其加入手牌，你选择1张自己的手牌，放置入休息室。（若非如此则放回原处）<br>【起】【反击】助太刀2000 等级1 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2000）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-021S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-021",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-020": {
+    "name": "“绯玛丽穿搭风格”北泽育美",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Hello, Happy World!"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】此卡攻击时，若存在其他的你的持有《Anniversary》特征或《Hello, Happy World!》特征的角色卡，则该回合中，此卡的力量＋3000。<br>【自】［将2张你的休息室的持有《Anniversary》特征或《Hello, Happy World!》特征的角色卡返回卡组，将卡组洗切］ 此卡攻击时，你可以支付费用。若如此做，则你选择1张你的持有《Anniversary》特征或《Hello, Happy World!》特征的角色卡，该回合中，力量＋2000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-020S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-020",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-019": {
+    "name": "“主演”濑田薰",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Hello, Happy World!"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】［将你库存区顶的1张卡放置入计时区］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视你的卡组选择至多1张等级小于等于自己等级且费用小于等于0的持有《Anniversary》特征或《Hello, Happy World!》特征的角色卡，放置入舞台的任意格子，将卡组洗切。<br>【自】其他的你的持有《Anniversary》特征或《Hello, Happy World!》特征的角色卡攻击时，该回合中，此卡的力量＋1000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-019S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-019",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-018": {
+    "name": "“悔恨之后”桐谷透子",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Morfonica"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】其他的你的持有《Anniversary》特征或《Morfonica》特征角色卡攻击时，该回合中，此卡的力量＋1000。<br>【自】［将1张你的休息室的持有《Anniversary》特征或《Morfonica》特征的角色卡放置入计时区的下方］ 对方的攻击阶段开始之际，你可以支付费用。若如此做，则你将此卡移动至后列的不存在角色卡的格子。<br>【自】变换［将此卡放置入休息室］ 你的高潮阶段开始之际，你可以支付费用。若如此做，则你选择1张自己休息室的「“空前流行浪潮的到来”桐谷透子」，放置入此卡曾经存在的格子。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-018S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-018",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-017": {
+    "name": "“深夜谈心”奥泽美咲",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Hello, Happy World!"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】所有其他的你的持有《Anniversary》特征或《Hello, Happy World!》特征的角色卡，力量＋500。<br>【起】［【横置】此卡］若此卡下方不存在标识物，则你选择1张自己休息室的「“千年一遇的夜晚”奥泽美咲」，将其作为标识物表侧表示放置于此卡下方。<br>【起】［【横置】此卡］ 你选择1张此卡的标识物的「“千年一遇的夜晚”奥泽美咲」及此卡，互换位置。若如此做，则回合结束之际，将那些角色卡互换位置。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-017S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-017",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-016": {
+    "name": "“大家一起摆姿势☆”桐谷透子",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["Anniversary", "音乐", "Morfonica"],
+    "color": "黄色",
+    "soul": 2,
+    "effect": "【永】每存在1张对方的后列的角色卡，此卡的力量＋1000。<br>【自】此卡被从手牌或休息室放置入舞台时，该回合中，此卡获得以下能力。『【自】此能力1回合至多发动1次。此卡给予的伤害被取消时，你可以给予对方1点伤害。』（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-016SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-016",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-015": {
+    "name": "“梦幻般的名演技”濑田薰",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 1,
+    "trait": ["Anniversary", "音乐", "Hello, Happy World!"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】此卡【倒置】时，若此卡的战斗对手的等级高于对方的等级，则你可以将该角色卡放置入库存区。若如此做，则你将对方的库存区下方的1张卡，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-015SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-015",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-014": {
+    "name": "“第一次来粗点心店！”广町七深",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Morfonica"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】此卡被从手牌放置入舞台时，该回合中，此卡的力量＋Ｘ。Ｘ为你的持有《Anniversary》特征或《Morfonica》特征的角色卡的张数×500。<br>【自】［将1张手牌放置入休息室］此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的等级小于等于0的角色卡，放置入舞台的任意格子。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-014SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-014",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-013": {
+    "name": "“坚定的选手”奥泽美咲",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Hello, Happy World!"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】此卡被从手牌放置入舞台时，若存在其他的你的持有《Anniversary》特征或《Hello, Happy World!》特征的角色卡，则该回合中，此卡的力量＋2000。<br>【自】此卡攻击时，若此卡正面的角色卡的等级为2，则该回合中，此卡的力量＋6000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-013SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-013",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-012": {
+    "name": "“偶然发现的珍品”若宫伊芙",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Pastel＊Palettes"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】此卡被从手牌放置入舞台时，你将自己卡组顶的2张卡，放置入休息室。若那些卡片中存在等级小于等于0的角色卡，则该回合中，此卡即便进行侧面攻击魂也不会减少。<br>【自】［将1张手牌放置入休息室］此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的「引人注目的照片？」，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-012SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-012",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-011": {
+    "name": "“来了——！！”北泽育美",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Hello, Happy World!"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】［将2张手牌的持有《Anniversary》特征或《Hello, Happy World!》特征的角色卡放置入休息室］此卡被从手牌放置入舞台时或被从舞台放置入休息室时，你可以支付费用。若如此做，则你检视自己卡组顶的至多2张卡，选择至多1张卡，加入手牌，其余的卡片按任意顺序放置入库存区。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-011SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-011",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-010": {
+    "name": "“新的朋友”北泽育美",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10500,
+    "cost": 2,
+    "trait": ["Anniversary", "音乐", "Hello, Happy World!"],
+    "color": "黄色",
+    "soul": 2,
+    "effect": "【永】若你的休息室中存在的高潮卡小于等于2张，则你手牌的此卡的等级－1。<br>【自】此卡被从手牌放置入舞台时，你选择至多1张自己休息室的黄色的角色卡，放置入库存区，执行以下行动。『你可以选择1张对方的等级大于等于1的角色卡。若如此做，则对方选择1张自己休息室的等级小于等于Ｘ的角色卡，与其互换位置。Ｘ为你选择的角色卡的等级－1。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-010SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-010",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-009": {
+    "name": "“通过这双手”若宫伊芙",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6500,
+    "cost": 2,
+    "trait": ["Anniversary", "音乐", "Pastel＊Palettes"],
+    "color": "黄色",
+    "soul": 2,
+    "effect": "【永】每存在1张其他的你的后列的持有《Anniversary》特征或《Pastel＊Palettes》特征的角色卡，此卡的力量＋1500。<br>【自】【CX联动】「最周全的招待」被放置入你的高潮区时，若前列存在此卡，则你可以选择1张其他的自己的持有《Anniversary》特征或《Pastel＊Palettes》特征的角色卡，【竖置】。<br>【自】［（1）］再演步骤开始之际，若不存在其他的你的前列的处于【横置】状态的角色卡，则你可以支付费用。若如此做，则【横置】此卡。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-009SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-009",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-008": {
+    "name": "“随心所欲”濑田薰",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7500,
+    "cost": 1,
+    "trait": ["Anniversary", "音乐", "Hello, Happy World!"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】［（2）］此卡被从手牌放置入舞台时，若存在大于等于4张其他的你的持有《Anniversary》特征或《Hello, Happy World!》特征的角色卡，则你可以支付费用。若如此做，则对方将所有自己的库存区返回卡组，将卡组洗切，并从自己的卡组顶将相同张数的卡牌放置入库存区。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-008SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-008",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-007": {
+    "name": "“千年一遇的夜晚”奥泽美咲",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 5000,
+    "cost": 1,
+    "trait": ["Anniversary", "音乐", "Hello, Happy World!"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】若你的等级大于等于2或此卡下方存在标识物，则你的回合中，所有其他的你的持有《Anniversary》特征或《Hello, Happy World!》特征的角色卡，力量＋Ｘ。Ｘ为你的等级×1000。<br>【自】你的角色卡的触发判定中判出触发标记为『选择』的高潮卡时，你选择至多1张对方休息室的卡片，放置入卡组底，选择1张自己的角色卡，该回合中，力量＋1000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-007SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-007",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-006": {
+    "name": "“赠品收藏”广町七深",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Morfonica"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】此卡被从手牌放置入舞台时，你选择1张对方的角色卡及1个该角色卡持有的特征，该回合中，该角色卡失去所有该特征。<br>【自】［（1）将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多1张持有《Anniversary》特征或《Morfonica》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-006SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-006",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-005": {
+    "name": "“决意的一步”松原花音",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Hello, Happy World!"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】【CX联动】若你的高潮区存在「变身之术？」，则存在于所有区域的此卡的触发标记获得『选择』。<br>【永】你可以因『选择』的效果选择自己休息室的「各位，要开始了哦！」。<br>【起】集中［（1）【横置】此卡］你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你选择至多1张自己休息室的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-005SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-005",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-004": {
+    "name": "“立体图画书”弦卷心",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Hello, Happy World!"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】此卡攻击时，你检视自己卡组顶的至多2张卡，选择其中1张卡，放置于卡组顶，其余的卡片放置入休息室。<br>【自】此卡攻击时，若不存在其他的你的后列的角色卡，则你可以将自己卡组顶的1张卡放置入休息室。若该卡为等级小于等于0的角色卡，则你将该角色卡放置入后列的任意格子。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-004SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-004",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-003": {
+    "name": "“连接世界的笑容”弦卷心",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Anniversary", "音乐", "Hello, Happy World!"],
+    "color": "黄色",
+    "soul": 2,
+    "effect": "【自】此卡被从手牌放置入舞台时，你可以将自己的计时区上方的1张卡片，放置入休息室。<br>【自】【CX联动】此卡攻击时，若高潮区存在「前往笑容集结的地方！」，且存在大于等于4张其他的你的，持有《Anniversary》特征或《Hello, Happy World!》特征的角色卡，则你将对方卡组底的4张卡，放置入休息室，给予对方Ｘ点伤害。Ｘ为那些卡片中的持有<img src=\"/effect-icons/soul.webp\">的卡的张数。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-003SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-003",
+        "rarity": "RR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-002": {
+    "name": "“我的勇气”松原花音",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Hello, Happy World!"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】此卡攻击时，若存在其他的你的黄色的角色卡，则该回合中，此卡的力量＋3000。<br>【自】【CX联动】「变身之术？」被放置入你的高潮区时，若存在大于等于2张其他的你的黄色的角色卡，则直到下一个对方回合的结束之际为止，此卡获得以下2个能力。『【永】对方的回合中，此卡不会【倒置】。』『【自】［（1）］此卡攻击时，你可以支付费用。若如此做，则该攻击中，你在触发步骤进行2次触发判定。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-002SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-002",
+        "rarity": "RR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-001": {
+    "name": "“空前流行浪潮的到来”桐谷透子",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Morfonica"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【起】［【横置】此卡］若存在其他的你的持有《Anniversary》特征或《Morfonica》特征的角色卡，则将此卡放置入库存区。<br>【起】集中［（1）【横置】此卡］你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你检视自己的卡组并选择至多1张持有《Anniversary》特征或《Morfonica》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-001SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ01-001",
+        "rarity": "RR"
+      }
+    ],
+    "trigger_soul_count": 0
+  }
+}

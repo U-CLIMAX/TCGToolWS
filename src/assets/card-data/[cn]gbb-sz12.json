@@ -1,0 +1,25 @@
+{
+  "Gbb/SZ12-118": {
+    "name": " 天童民间警备公司",
+    "product_name": "【电击文库】 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["电击文库", "民间警备公司", "武器"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 你无法从手牌使用事件卡及『助太刀』。",
+    "all_cards": [
+      {
+        "id": "Gbb/SZ12-118",
+        "rarity": "U"
+      },
+      {
+        "id": "Gbb/SZ12-118S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  }
+}

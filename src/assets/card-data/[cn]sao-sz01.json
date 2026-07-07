@@ -1,0 +1,2321 @@
+{
+  "SAO/SZ01-100": {
+    "name": "苏打色的全景",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/draw.webp\">：此卡触发时，你可以抽1张卡）",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-100R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "SAO/SZ01-100",
+        "rarity": "CC"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-099": {
+    "name": "面对过去的两人",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-099R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "SAO/SZ01-099",
+        "rarity": "CC"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-098": {
+    "name": "曙暮时分的公会",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-098R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "SAO/SZ01-098",
+        "rarity": "CR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-097": {
+    "name": "目标是《Excalibur》",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "你检视自己的卡组并选择至多2张持有《Anniversary》特征的角色卡展示给对手，加入手牌，将卡组洗切。你选择1张自己的手牌，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-097S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-097",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-096": {
+    "name": "注意后方",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 0,
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "你选择1张自己的角色卡，直到下一个对方回合的结束之际为止，赋予其以下3个能力。『【永】此卡的正面的角色卡无法移动至其他的格子。』『【永】此卡的战斗中，对方无法从手牌使用『助太刀』。』『【自】此卡被正面攻击时，你可以将此卡返回手牌。』",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-096S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-096",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-095": {
+    "name": "迷失在街头的猫咪们",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 2,
+    "trait": ["Anniversary", "虚拟形象", "网络"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【永】经验 你的回合中，若你的等级区的卡片的合计等级大于等于5，则此卡的力量＋6000。<br>【自】再演［将1张手牌的角色卡放置入休息室］（此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则将此卡以【横置】状态放置入此卡曾经存在的格子）",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-095S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-095",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SAO/SZ01-094": {
+    "name": "钓者与蓝猫",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 1,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】此卡被从手牌放置入舞台时，该回合中，此卡的力量＋Ｘ。Ｘ为你的持有《Anniversary》特征的角色卡的张数×1000。<br>【自】【CX联动】此卡的战斗对手【倒置】时，若你的高潮区存在「苏打色的全景」，则你选择至多1张自己休息室的持有《Anniversary》特征的角色卡，放置入库存区，检视自己的卡组并选择至多1张持有《Anniversary》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-094S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-094",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SAO/SZ01-093": {
+    "name": "Alicization Running 桐人&索尔狄丽娜",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 1000,
+    "cost": 1,
+    "trait": ["Anniversary", "摇光"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】你使用此卡的『助太刀』时，若所有你的角色卡均持有《Anniversary》特征，则你将自己卡组顶的1张卡，放置入库存区。<br>【起】【反击】助太刀2000 等级1［（1）将手牌的此卡放置入休息室］（你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2000）",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-093S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-093",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SAO/SZ01-092": {
+    "name": "当主大人一行",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 0,
+    "trait": ["Anniversary", "网络"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】所有其他的你的持有《Anniversary》特征的角色卡，力量＋500。<br>【自】你的角色卡的触发判定中判出高潮卡时，你选择1张自己的角色卡，该回合中，力量＋2000。<br>【起】［【横置】2张你的持有《Anniversary》特征的角色卡］你分别选择1张自己等级区的卡片和1张休息室的卡片，互换位置。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-092S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-092",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-091": {
+    "name": "灼热的沙漠商团",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象", "摇光"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】若你库存区中存在的卡片小于等于2张，则此卡的力量＋1500。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-091S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-091",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-090": {
+    "name": "幽灵子弹 桐人",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】此卡被从手牌放置入舞台时，若存在于对方前列的角色卡小于等于1张，则你选择1张对方前列的费用小于等于0的角色卡，放置入卡组底。<br>【自】此卡攻击时，你选择1张其他的自己的持有《Anniversary》特征的角色卡，该回合中，力量＋Ｘ。Ｘ为其他的你的持有《Anniversary》特征的角色卡的张数×500。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-090S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-090",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-089": {
+    "name": "夕阳下的空中散步 桐人&结衣",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象", "网络"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】应援 所有此卡前面的你的角色卡，力量＋500。<br>【起】［（2）【横置】此卡］ 你检视自己的卡组并选择至多1张持有《Anniversary》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-089S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-089",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-088": {
+    "name": "最强的《独行玩家》 桐人",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【永】经验 若你的等级区的卡片的合计等级大于等于6，则此卡的力量＋1500，此卡获得以下2个能力。『【自】［（1）］此卡攻击时，你可以支付费用。若如此做，则该攻击中，你在触发步骤进行2次触发判定。』『【自】此卡的战斗对手【倒置】时，你可以将该角色卡放置入回忆区。』<br>【自】此卡被从手牌放置入舞台时，你可以选择1张自己的计时区上方的卡片，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-088S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-088",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SAO/SZ01-087": {
+    "name": "强大的诗乃与脆弱的诗乃",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 1,
+    "trait": ["Anniversary", "虚拟形象", "网络"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】经验 若你的等级区的卡片的合计等级大于等于5，则此卡的力量＋500，此卡获得『【自】再演［将1张手牌的角色卡放置入休息室］』。<br>【自】此卡攻击时，若此卡正面的角色卡的等级大于等于3，则该回合中，此卡的力量＋6000。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-087S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-087",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SAO/SZ01-086": {
+    "name": "花都4人众",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 4500,
+    "cost": 1,
+    "trait": ["Anniversary", "虚拟形象", "网络"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】应援 所有此卡前面的你的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。<br>【自】你的角色卡的触发判定中判出高潮卡时，若该卡持有的触发标记为<img src=\"/effect-icons/gate.webp\">，则你可以抽1张卡。若如此做，则你选择1张自己的手牌，放置入休息室。<br>【起】［（1）将1张手牌中的高潮卡放置入休息室］ 你选择1张自己休息室的持有《Anniversary》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-086S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-086",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SAO/SZ01-085": {
+    "name": "Early and Late 桐人&希兹克利夫",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5500,
+    "cost": 1,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】经验 若你的等级区的卡片的合计等级大于等于2，则此卡的力量＋1500，此卡获得『【自】再演［将1张手牌的角色卡放置入休息室］』。<br>【自】此卡攻击时，若存在其他的你的持有《Anniversary》特征的角色卡，则该回合中，此卡的力量＋1500。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-085S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-085",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-084": {
+    "name": "幽灵子弹桐人&诗乃",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】此卡攻击时，若存在其他的你的持有《Anniversary》特征的角色卡，则该回合中，此卡的力量＋3000。<br>【起】［将1张手牌中的高潮卡放置入休息室］ 该回合中，此卡的力量＋1000，此卡获得以下能力。『【自】此卡的战斗对手【倒置】时，你可以抽1张卡。』",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-084S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-084",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-083": {
+    "name": "没有记忆的少女 结衣",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "trait": ["Anniversary", "网络"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】经验 你的回合中，若你的等级区的卡片的合计等级大于等于2，则此卡的力量＋4000。<br>【自】［【横置】1张其他的你的处于【竖置】状态的持有《Anniversary》特征的角色卡］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你分别选择1张自己等级区的卡片和1张休息室的卡片，互换位置，你选择至多1张自己的角色卡，该回合中，等级＋1。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-083SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "SAO/SZ01-083",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-082": {
+    "name": "对《剑》的执着 桐人",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［（1）将你卡组顶的1张卡放置入计时区］ 此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则你检视自己卡组顶至多2张卡，选择至多2张持有《Anniversary》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-082S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-082",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-081": {
+    "name": "胆怯的女孩 幸",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】此卡被从手牌放置入舞台时，你公开自己卡组顶的1张卡。若该卡为持有《Anniversary》特征的角色卡，则该回合中，此卡即便进行侧面攻击魂也不会减少。（公开的卡片放回原处）<br>【自】此卡攻击时，你选择1张自己的持有《Anniversary》特征的角色卡，该回合中，力量＋1500。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-081S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-081",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-080": {
+    "name": "一起冒险 桐人",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【自】［（1）］此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你将对方库存区的所有卡，放置入休息室，对方从自己卡组顶将相同张数的卡放置入库存区。<br>【自】此卡攻击时，该回合中，此卡的力量＋Ｘ。Ｘ为其他的你的持有《Anniversary》特征的角色卡的张数×1000。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-080S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-080",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SAO/SZ01-079": {
+    "name": "孩童时代 尤吉欧",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Anniversary", "摇光"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】经验 此卡攻击时，若你的等级区的卡片的合计等级大于等于2，则你选择1张自己的角色卡，该回合中，力量＋2000。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-079S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-079",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-078": {
+    "name": "Alicization Beginning 桐人&尤吉欧",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["Anniversary", "摇光"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】对方的抽卡阶段开始之际，你公开自己卡组顶的1张卡。若该卡的等级大于等于1，则你可以将此卡返回手牌。（高潮卡视作等级为0的卡片。公开的卡片放回原处）<br>【自】战斗中的此卡【倒置】时，该回合中，你无法使用『【自】再演』。（规则赋予的『【自】再演［（3）］』也无法使用）",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-078S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-078",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-077": {
+    "name": "孩童时代 桐人",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Anniversary", "摇光"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】此卡被从手牌放置入舞台时，若存在大于等于2张其他的你的持有《Anniversary》特征的角色卡，则你可以抽1张卡。若如此做，则你选择1张自己的手牌，放置入休息室。<br>【自】［（1）将1张手牌中的高潮卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的高潮卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-077S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-077",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-076": {
+    "name": "《序列之争》 桐人",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】若所有你的角色卡均持有《Anniversary》特征的，则此卡的力量＋1000。<br>【自】［将1张手牌中的高潮卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的持有《Anniversary》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-076S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-076",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-075": {
+    "name": "《影精灵》的剑士 桐人",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】所有其他的你的持有《Anniversary》特征的角色卡，力量＋500。<br>【自】［将1张手牌放置入休息室］你的角色卡的触发判定中判出高潮卡时，若该卡持有的触发标记为<img src=\"/effect-icons/gate.webp\">，则你可以支付费用。若如此做，则你选择1张自己休息室的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-075S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-075",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-074": {
+    "name": "静谧的斗志 诗乃",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【自】此卡被从手牌放置入舞台时，你检视自己卡组顶的至多3张卡，选择至多1张卡，加入手牌，其余的卡片放置入休息室。<br>【自】【CX联动】经验「面对过去的两人」被放置入你的高潮区时，若你的等级区的卡片的合计等级大于等于6，则该回合中，此卡的力量＋3000，此卡获得以下能力。『【自】［（2）将2张手牌放置入休息室］ 此能力1回合至多发动1次。此卡的攻击结束之际，你可以支付费用。若如此做，则【竖置】此卡。』",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-074SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "SAO/SZ01-074",
+        "rarity": "RR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SAO/SZ01-073": {
+    "name": "Alicization Uniting 桐人&尤吉欧",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9000,
+    "cost": 2,
+    "trait": ["Anniversary", "摇光"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【永】若存在大于等于4张你的持有《Anniversary》特征的角色卡，则你手牌中的此卡的等级－1。<br>【永】经验 若你的等级区的卡片的合计等级大于等于6，则此卡的力量＋500，此卡获得以下能力。『【自】此卡攻击时，你选择1张自己的持有《Anniversary》特征的角色卡，该回合中，力量＋1500。』<br>【自】［将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你将自己计时区上方的1张卡，放置入库存区。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-073SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "SAO/SZ01-073",
+        "rarity": "RR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SAO/SZ01-072": {
+    "name": "黄昏时分的纯真",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象", "摇光"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】若存在大于等于2张其他的你的持有《Anniversary》特征的角色卡，则此卡的力量＋1000。<br>【自】【CX联动】经验 此卡攻击时，若高潮区存在「曙暮时分的公会」，且你的等级区的卡片的合计等级大于等于2，则你将自己卡组顶的至多3张卡，放置入休息室，选择至多1张自己休息室的等级Ｘ以下的持有《Anniversary》特征的角色卡，返回手牌，该回合中，此卡的力量＋500。Ｘ为因此效果被放置入休息室的持有《Anniversary》特征的角色卡的张数。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-072S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-072",
+        "rarity": "RR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-071": {
+    "name": "再会之时 桐人",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Anniversary", "摇光"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】此卡被从手牌放置入舞台时，该回合中，此卡的力量＋1500。<br>【自】［将1张手牌放置入休息室］ 此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则你检视自己卡组顶的至多4张卡，选择至多1张持有《Anniversary》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-071SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "SAO/SZ01-071",
+        "rarity": "RR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-070": {
+    "name": "东方尽头的桃源乡",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【永】所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-070R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "SAO/SZ01-070",
+        "rarity": "CC"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-069": {
+    "name": "MORE DEBAN！",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【永】所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-069R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "SAO/SZ01-069",
+        "rarity": "CR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-068": {
+    "name": "《火精灵》的袭击",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "你选择1张自己的持有《Anniversary》特征的角色卡，该回合中，力量＋2000，赋予其以下能力。『【自】此卡的战斗对手【倒置】时，你可以选择1张自己休息室的角色卡，返回手牌。』<br>将此卡放置入库存区。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-068S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-068",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-067": {
+    "name": "为四季增色的少女们",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 1,
+    "trait": ["Anniversary", "虚拟形象", "网络"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】每存在1张其他的你的持有《Anniversary》特征的角色卡，此卡的力量＋500。<br>【自】【CX联动】此卡攻击时，若高潮区存在「东方尽头的桃源乡」，则你检视自己卡组顶至多2张卡，选择至多2张持有《Anniversary》特征的角色卡展示给对手，将其加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-067S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-067",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SAO/SZ01-066": {
+    "name": "真正的杀人者《死枪》",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 3500,
+    "cost": 1,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的持有《Anniversary》特征的角色卡，返回手牌。<br>【自】此卡【倒置】时，若此卡的战斗对手的等级小于等于2，则你可以将该角色卡【倒置】。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-066S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-066",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SAO/SZ01-065": {
+    "name": "大家一起观战 结衣&亚斯娜&克莱因&莉兹贝特",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象", "网络"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】赋予所有其他的你的角色卡以下能力。『【永】此卡无法进行侧面攻击。』<br>【自】此卡被从手牌放置入舞台时，若对方的休息室中存在大于等于5张高潮卡，则【横置】此卡。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-065S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-065",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-064": {
+    "name": "一起冒险 亚斯娜&莉兹贝特&西莉卡",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】此能力1回合至多发动1次。你使用【起】时，你选择1张自己的持有《Anniversary》特征的角色卡，该回合中，力量＋1500。<br>【自】此卡【倒置】时，若此卡的战斗对手的等级小于等于1，则你可以将该角色卡【倒置】。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-064S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-064",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-063": {
+    "name": "谜之虚拟形象 《死枪》",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】此卡被从手牌放置入舞台时，你将自己卡组顶的2张卡，放置入休息室。若那些卡片中存在高潮卡，则你选择1张对方的前列的角色卡，该回合中，力量－1000。<br>【自】此卡【倒置】时，若此卡的战斗对手等级小于等于0，则你可以将该角色卡【倒置】。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-063S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-063",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-062": {
+    "name": "大家一起观战 莉法&西莉卡",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】所有其他的你的持有《Anniversary》特征的角色卡，力量＋500。<br>【自】此能力1回合至多发动1次。你使用【起】时，你选择1张自己的角色卡，该回合中，力量＋500。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-062S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-062",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-061": {
+    "name": "Urban young generations",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["Anniversary", "网络", "摇光"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】应援 所有此卡前面的你的角色卡，力量＋500。<br>【起】集中［（1）］你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，执行以下行动。『你选择1张自己休息室的角色卡，返回手牌，选择1张自己的手牌，放置入休息室。』",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-061S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-061",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-060": {
+    "name": "盛夏的妖精",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Anniversary", "虚拟形象", "网络"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【自】此卡被从手牌放置入舞台时，你公开自己卡组顶的1张卡。若该卡为持有《Anniversary》特征的角色卡，则你可以给予对方1点伤害。（会发生伤害取消。公开的卡片放回原处）<br>【自】此能力1回合至多发动1次。你使用【起】时，该回合中，此卡的力量＋Ｘ。Ｘ为其他的你的持有《Anniversary》特征的角色卡的张数×500。<br>【起】［将1张手牌放置入休息室］你选择1张自己的持有《Anniversary》特征的角色卡，该回合中，力量＋2500。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-060S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-060",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SAO/SZ01-059": {
+    "name": "冬之圣域 直叶&珪子&里香",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9000,
+    "cost": 2,
+    "trait": ["Anniversary", "网络"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【永】若你的休息室中存在小于等于2张高潮卡，则你手牌中的此卡的等级－1。<br>【自】此卡被从手牌放置入舞台时，你可以选择1张自己的计时区上方的卡片，放置入休息室。<br>【自】此能力1回合至多发动1次。你使用【起】时，该回合中，此卡的力量＋2000。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-059S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-059",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SAO/SZ01-058": {
+    "name": "让人犯困的东西 莉兹贝特&西莉卡",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】此能力1回合至多发动1次。你使用【起】时，该回合中，此卡的力量＋Ｘ。Ｘ为你的持有《Anniversary》特征的角色卡的张数×500。<br>【起】［【横置】1张你的持有《Anniversary》特征的角色卡］ 该回合中，此卡的力量＋1000。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-058S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-058",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-057": {
+    "name": "目标是圣剑 莉兹贝特&西莉卡",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】此卡攻击时，你选择1张其他的自己的持有《Anniversary》特征的角色卡，该回合中，力量＋2000。<br>【自】［（1）］再演步骤开始之际，若不存在其他的你的前列的处于【横置】状态的角色卡，则你可以支付费用。若如此做，则【横置】此卡。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-057SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "SAO/SZ01-057",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-056": {
+    "name": "艾恩葛朗特 西莉卡&桐人",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】若所有你的角色卡均持有《Anniversary》特征，则此卡的力量＋2000。<br>【自】【CX联动】此卡的战斗对手【倒置】时，若你的高潮区存在「MORE DEBAN！」，则你选择至多1张自己休息室的等级小于等于0的卡片，放置入库存区，你公开自己卡组顶的1张卡。若该卡为等级大于等于1的卡片则加入手牌。（高潮卡视作等级为0的卡片。若非如此则放回原处）",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-056SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "SAO/SZ01-056",
+        "rarity": "RR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-055": {
+    "name": "避雨",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【永】所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-055R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "SAO/SZ01-055",
+        "rarity": "CC"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-054": {
+    "name": "Hearty party",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【永】所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/stock.webp\">：此卡触发时，你可以将自己卡组顶的1张卡，放置入库存区）",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-054R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "SAO/SZ01-054",
+        "rarity": "CC"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-053": {
+    "name": "向世界树前进",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【永】所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-053R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "SAO/SZ01-053",
+        "rarity": "CR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-052": {
+    "name": "两人的真实身份",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 0,
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "若不存在你的持有《Anniversary》特征的角色卡，则此卡无法从手牌中使用。<br>你检视自己的卡组并选择至多1张持有《Anniversary》特征的角色卡展示给对手，加入手牌，将卡组洗切。<br>双方玩家公开自己的手牌。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-052S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-052",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-051": {
+    "name": "让人犯困的东西 亚斯娜&莉法",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 1,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】此能力1回合至多发动1次。你使用【起】时，该回合中，此卡的力量＋Ｘ。Ｘ为其他的你的持有《Anniversary》特征的角色卡的张数×1000。<br>【自】［（1）］此卡的战斗对手为等级大于等于2的角色卡且【倒置】时，你可以支付费用。若如此做，则你选择1张自己休息室的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-051S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-051",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SAO/SZ01-050": {
+    "name": "夕阳下的空中散步 莉法",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2000,
+    "cost": 1,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】你使用此卡的『助太刀』时，若存在你的持有《Anniversary》特征的角色卡，则你选择1张自己的战斗中的角色卡，该回合中，力量＋1000。<br>【起】【反击】助太刀2500 等级2［（1）将手牌的此卡放置入休息室］（你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2500）",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-050S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-050",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SAO/SZ01-049": {
+    "name": "不可思议的公会《沉睡骑士》",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5500,
+    "cost": 1,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】若存在大于等于2张其他的你的持有《Anniversary》特征的角色卡，则此卡的力量＋2000。<br>【自】再演［将1张手牌的角色卡放置入休息室］（此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则将此卡以【横置】状态放置入此卡曾经存在的格子）",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-049S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-049",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-048": {
+    "name": "《序列之争》 锐二",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 6000,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】若此卡正面的角色卡的等级高于此卡的等级，则此卡无法进行正面攻击。<br>【自】此卡攻击时，若存在大于等于2张其他的你的持有《Anniversary》特征的角色卡，则该回合中，此卡的力量＋2000。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-048S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-048",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-047": {
+    "name": "Alicization Rising　桐人&菲洁尔&丽涅尔",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5000,
+    "cost": 0,
+    "trait": ["Anniversary", "摇光"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】此能力1回合至多发动1次。你使用【起】时，该回合中，此卡获得以下能力。『【自】此卡的战斗对手【倒置】时，你可以将自己卡组顶的1张卡，放置入库存区。』",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-047S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-047",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-046": {
+    "name": "在《世界树》等待之人 奥伯龙",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 3000,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】若不存在其他的你的持有《Anniversary》特征的角色卡，则此卡在你的竖置阶段不会【竖置】。<br>【自】此卡被从手牌放置入舞台时，你将自己卡组顶的2张卡，放置入休息室，该回合中，此卡的力量＋Ｘ。Ｘ为那些卡片中的持有《Anniversary》特征的角色卡的张数×1000。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-046S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-046",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-045": {
+    "name": "熬夜的代价 直叶",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Anniversary", "网络"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】此能力1回合至多发动1次。你使用【起】时，该回合中，此卡的力量＋2000。<br>【起】［【横置】1张你的持有《Anniversary》特征的角色卡］ 该回合中，此卡的力量＋1000。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-045S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-045",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-044": {
+    "name": "Infinite Weavers",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 4000,
+    "cost": 1,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】应援 所有此卡前面的你的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。<br>【自】此能力1回合至多发动1次。你使用【起】时，你选择1张自己的持有《Anniversary》特征的角色卡，该回合中，力量＋1000。<br>【起】［【横置】此卡］ 你选择1张自己的角色卡，该回合中，赋予其以下能力。『【自】此卡的战斗对手【倒置】时，你可以将对方计时区上方的1张卡，放置入休息室。若如此做，则你把该角色卡放置入计时区。』",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-044S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-044",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SAO/SZ01-043": {
+    "name": "Eternal Weavers",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 1,
+    "trait": ["Anniversary", "虚拟形象", "摇光"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】此卡【倒置】时，若此卡的战斗对手的等级高于对方的等级，则你可以将对方计时区上方的1张卡，放置入休息室。若如此做，则你把该角色卡放置入计时区。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-043S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-043",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SAO/SZ01-042": {
+    "name": "Alicization Turning 桐人&蒂洁&罗妮耶",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Anniversary", "摇光"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】［（1）将你卡组顶的1张卡放置入计时区］此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己卡组顶的至多3张卡，选择至多1张角色卡展示给对手，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-042S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-042",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-041": {
+    "name": "大地的过客",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象", "摇光"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【起】［将1张手牌放置入休息室，此卡放置入休息室］ 你选择1张自己休息室的持有《Anniversary》特征的角色卡，返回手牌。<br>【起】【反击】助太刀1000 等级0［将手牌的此卡放置入休息室］（你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋1000）",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-041S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-041",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-040": {
+    "name": "《序列之争》 尤娜",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["Anniversary", "网络"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】此能力1回合至多发动1次。你使用【起】时，你公开自己卡组顶的1张卡。若该卡为持有《Anniversary》特征的角色卡则将其加入手牌，你选择1张自己的手牌，放置入休息室。（若非如此则放回原处）<br>【起】［【横置】此卡］ 你选择1张自己的角色卡，该回合中，力量＋500。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-040SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "SAO/SZ01-040",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-039": {
+    "name": "目标是圣剑 结衣&克莱因&莉法&亚丝娜",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象", "网络"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】此卡被从手牌放置入舞台时，你检视自己卡组顶至多2张卡，按任意顺序放置于卡组顶。<br>【自】此卡【倒置】时，若此卡的战斗对手等级小于等于0，则你可以将对方计时区上方的1张卡，放置入休息室。若如此做，则你把该角色卡放置入计时区。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-039S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-039",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-038": {
+    "name": "天真烂漫 有纪",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "绿色",
+    "soul": 2,
+    "effect": "【自】此卡被从手牌放置入舞台时，你可以选择自己的计时区上方的1张卡片，放置入休息室。<br>【自】【CX联动】［（1）将2张手牌放置入休息室］此卡攻击时，若高潮区存在「避雨」，且存在其他的你的持有《Anniversary》特征的角色卡，则你可以支付费用。若如此做，则你将自己卡组顶的11张卡，放置入休息室。若那些卡片中存在大于等于4张持有《Anniversary》特征的角色卡，则你给予对方1点伤害。若存在大于等于8张，则你将自己计时区上方的至多2张卡片，放置入休息室。若存在大于等于11张，则给予对方2点伤害，给予对方2点伤害，给予对方4点伤害。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-038S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-038",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SAO/SZ01-037": {
+    "name": "圣母圣咏 桐人&亚丝娜&有纪",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "绿色",
+    "soul": 2,
+    "effect": "【自】［将1张手牌放置入休息室］此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你将自己计时区上方的1张卡，放置入库存区。<br>【自】此能力1回合至多发动1次。你使用【起】时，该回合中，此卡的力量＋Ｘ。Ｘ为其他的你的持有《Anniversary》特征的角色卡的张数×500。<br>【起】［（1）］你选择1张自己的持有《Anniversary》特征的角色卡，该回合中，力量＋1500。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-037S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-037",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SAO/SZ01-036": {
+    "name": "出色的宅邸女仆们",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象", "网络"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】此卡被从手牌放置入舞台时，该回合中，此卡的力量＋1500。<br>【自】【CX联动】此卡的战斗对手【倒置】，若你的高潮区存在「Hearty party」，则你选择至多1张自己休息室的持有《Anniversary》特征的角色卡，返回手牌，选择1张自己的角色卡，该回合中，力量＋1000。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-036S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-036",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-035": {
+    "name": "灿烂的笑容 直叶&和人",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象", "网络"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】此卡被从手牌放置入舞台时，该回合中，此卡的力量＋Ｘ。Ｘ为你的持有《Anniversary》特征的角色卡的张数×500。<br>【自】［将你的休息室的2张角色卡返回卡组，洗切卡组］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则该回合中，此卡的魂＋1。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-035S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-035",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-034": {
+    "name": "冬之圣域 罗妮耶&蒂洁&爱丽丝",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Anniversary", "摇光"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】［（1）将1张手牌放置入休息室］此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己卡组顶的至多3张卡，选择至多1张卡，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-034S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-034",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-033": {
+    "name": "Alicization Awakening 诗乃&莉法",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["Anniversary", "摇光"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】此能力1回合至多发动1次。你使用【起】时，你选择1张自己的角色卡，该回合中，力量＋1000。<br>【起】［【横置】此卡］你选择1张自己的角色卡，该回合中，赋予其以下能力。『【自】此卡的战斗对手【倒置】时，你可以将对方计时区上方的1张卡，放置入休息室。若如此做，则你把该角色卡放置入计时区。』",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-033S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-033",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-032": {
+    "name": "妖精之舞 桐人&莉法",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "绿色",
+    "soul": 2,
+    "effect": "【自】此卡被从手牌放置入舞台时，你抽至多2张卡，选择1张自己的手牌，放置入休息室。<br>【自】此能力1回合至多发动1次。你使用【起】时，该回合中，此卡的力量＋Ｘ。Ｘ为对方后列的角色卡的张数×1000。<br>【自】【CX联动】［（2）将1张手牌放置入休息室］此卡的战斗对手【倒置】时，若你的高潮区存在「向世界树前进」，则你可以支付费用。若如此做，则你将该角色放置入计时区，给予对方1点伤害，选择1张自己的角色卡，该回合中，力量＋1000。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-032SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "SAO/SZ01-032",
+        "rarity": "RR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SAO/SZ01-031": {
+    "name": "向着下一个世界 有纪",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】你的高潮阶段开始之际，你选择1张自己的持有《Anniversary》特征的角色卡，该回合中，力量＋500。<br>【起】集中［（1）【横置】此卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你选择至多1张自己休息室的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-031SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "SAO/SZ01-031",
+        "rarity": "RR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-030": {
+    "name": "沙漠宴会",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】所有你的角色卡，力量＋1000，魂＋1。<br>（返回：此卡触发时，你可以选择1张对方的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-030R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "SAO/SZ01-030",
+        "rarity": "CC"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-029": {
+    "name": "Childhood",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你可以选择1张自己休息室的持有<img src=\"/effect-icons/soul.webp\">的角色卡，返回手牌或放置入库存区）",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-029R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "SAO/SZ01-029",
+        "rarity": "CC"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-028": {
+    "name": "今晚一起",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你可以选择1张自己休息室的持有<img src=\"/effect-icons/soul.webp\">的角色卡，返回手牌或放置入库存区）",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-028SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "SAO/SZ01-028",
+        "rarity": "CR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-027": {
+    "name": "拉面……？",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 0,
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【反击】你选择1张自己的持有《Anniversary》特征的角色卡，该回合中，力量＋Ｘ。Ｘ为你的库存区的张数×500。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-027S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-027",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-026": {
+    "name": "调查《圏内事件》 桐人&亚丝娜",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6500,
+    "cost": 1,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】［（1）将1张手牌中的持有《Anniversary》特征的角色卡放置入休息室］此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你将所有自己休息室的卡片，返回卡组，将卡组洗切，选择1张自己的角色卡，该回合中，力量＋1000。<br>【自】此卡【倒置】时，若此卡的战斗对手的等级高于对方的等级，则你可以将该角色卡放置入库存区。若如此做，则你将对方的库存区下方的1张卡，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-026S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-026",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SAO/SZ01-025": {
+    "name": "被困之身 明日奈",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 1,
+    "trait": ["Anniversary", "网络"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】经验 若你的等级区的卡片的合计等级大于等于2，则此卡的力量＋1500，此卡获得『【自】再演［将1张手牌的角色卡放置入休息室］』。<br>【自】此卡被从手牌放置入舞台时，若存在大于等于4张其他的你的持有《Anniversary》特征的角色卡，则你可以选择1张自己休息室的持有《Anniversary》特征的角色卡，放置入库存区。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-025S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-025",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SAO/SZ01-024": {
+    "name": "幕屋的公主",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象", "网络"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】此能力1回合至多发动2次。其他的你的持有《Anniversary》特征的角色卡被从手牌放置入舞台时，该回合中，此卡的力量＋1000。<br>【自】【CX联动】此卡的战斗对手【倒置】时，若你的高潮区存在「沙漠宴会」，且存在其他的你的持有《Anniversary》特征的角色卡，则你检视你的卡组选择至多1张持有《Anniversary》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-024S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-024",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-023": {
+    "name": "被困之身 亚丝娜",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】此卡被从手牌放置入舞台时，你将自己卡组顶的2张卡，放置入休息室。若那些卡片中存在高潮卡，则该回合中，此卡的力量＋3000。<br>【自】此卡被从手牌放置入舞台时，你选择1张自己的持有《Anniversary》特征的角色卡，该回合中，力量＋1500。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-023S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-023",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-022": {
+    "name": "成为搭档 亚丝娜&桐人",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】应援 所有此卡前面的你的角色卡，力量＋500。<br>【永】经验 若你的等级区的卡片的合计等级大于等于3，则此卡获得以下能力。『【自】你的高潮阶段开始之际，你选择1张自己的持有《Anniversary》特征的角色卡，该回合中，力量＋1000。』",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-022S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-022",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-021": {
+    "name": "短暂的休息 亚丝娜&桐人",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】所有其他的你的持有《Anniversary》特征的角色卡，力量＋500。<br>【自】［（2）］你升级时，你可以支付费用。若如此做，则你检视你的卡组并选择至多1张持有《Anniversary》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-021S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-021",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-020": {
+    "name": "妖精之舞 亚丝娜&桐人",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 1,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】经验 若你的等级区的卡片的合计等级大于等于5，则此卡的力量＋500，此卡获得以下能力。『【自】［（1）］此卡攻击时，你可以支付费用。若如此做，则该攻击中，你在触发步骤进行2次触发判定。』<br>【自】此卡攻击时，该回合中，此卡的力量＋Ｘ。Ｘ为其他的你的持有《Anniversary》特征的角色卡的张数×1000。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-020S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-020",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SAO/SZ01-019": {
+    "name": "《序列之争》 亚丝娜",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6500,
+    "cost": 1,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】应援 所有此卡前面的你的等级大于等于3的角色卡，力量＋2000。<br>【永】经验 若你的等级区的卡片的合计等级大于等于3，则此卡获得以下能力。『【起】［【横置】此卡］你选择1张自己的持有《Anniversary》特征的角色卡，该回合中，力量＋1000，赋予其以下能力。『【永】此卡的战斗中，对方无法从手牌使用事件。』』",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-019S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-019",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SAO/SZ01-018": {
+    "name": "Alicization Lasting 桐人&亚丝娜",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5000,
+    "cost": 0,
+    "trait": ["Anniversary", "摇光"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】［（1）将1张手牌中的持有《Anniversary》特征的角色卡放置入休息室］此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择至多1张对方的角色卡，返回手牌，该回合中，此卡的力量＋1000。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-018S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-018",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-017": {
+    "name": "冬之圣域 诗乃&明日奈&有纪",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 500,
+    "cost": 1,
+    "trait": ["Anniversary", "虚拟形象", "网络"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】你使用此卡的『助太刀』时，你公开自己卡组顶的1张卡。若该卡为持有《Anniversary》特征的角色卡则将其加入手牌，你选择1张自己的手牌，放置入休息室。（若非如此则放回原处）<br>【起】【反击】助太刀2000 等级1［（1）将手牌的此卡放置入休息室］（你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2000）",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-017S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-017",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SAO/SZ01-016": {
+    "name": "流离的一座",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象", "摇光"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】经验 若你的等级区的卡片的合计等级大于等于2，则此卡的力量＋2000。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-016S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-016",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-015": {
+    "name": "必要的存在 亚丝娜",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】你的回合中，所有其他的你的持有《Anniversary》特征的角色卡，力量＋1000。<br>【自】你的高潮卡被放置入高潮区时，你选择1张自己的角色卡，该回合中，力量＋1000。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-015S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-015",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-014": {
+    "name": "孩童时代 爱丽丝",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["Anniversary", "摇光"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】你无法从手牌使用事件及『助太刀』。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-014S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-014",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-013": {
+    "name": "远道而来的客人",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Anniversary", "网络", "摇光"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】此卡的正面的角色卡无法移动至其他的格子。<br>【自】此卡被从手牌放置入舞台时，你公开自己卡组顶的1张卡。若该卡为持有《Anniversary》特征的角色卡，则该回合中，此卡的等级＋1，力量＋1500。（公开的卡片放回原处）",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-013S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-013",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-012": {
+    "name": "《血盟骑士团》公会长 希兹克利夫",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】记忆 若回忆区存在此卡，则所有玩家无法使用『【自】再演』。（规则赋予的『【自】再演［（3）］』也无法使用）<br>【起】［（1）将此卡放置入回忆区］你检视自己卡组顶的至多4张卡，选择其中至多1张持有《Anniversary》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-012S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-012",
+        "rarity": "U"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-011": {
+    "name": "Alicization Invading 爱丽丝&桐人",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Anniversary", "摇光"],
+    "color": "黄色",
+    "soul": 2,
+    "effect": "【自】此卡被从手牌放置入舞台时，你检视自己的卡组并选择至多1张持有《Anniversary》特征的角色卡展示给对手，加入手牌，将卡组洗切。<br>【自】［（3）］此卡攻击时，你可以支付费用。若如此做，则你将对方卡组底的4张卡，放置入休息室，给予对方Ｘ点伤害。Ｘ为那些卡片中的高潮卡的张数。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-011S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-011",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SAO/SZ01-010": {
+    "name": "细剑名手 亚丝娜",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "黄色",
+    "soul": 2,
+    "effect": "【永】若你的休息室中存在的高潮卡小于等于2张，则你手牌的此卡的等级－1。<br>【永】经验 若你的等级区的卡片的合计等级大于等于6，则此卡的力量＋1500。<br>【自】此卡被从手牌放置入舞台时，你检视自己卡组顶的至多Ｘ张卡，从中选择1张卡片，加入手牌，其余的卡片放置入休息室。Ｘ为你的持有《Anniversary》特征的角色卡的张数。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-010S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-010",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SAO/SZ01-009": {
+    "name": "天然色的二人",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】［将2张手牌放置入休息室］你使用此卡的『助太刀』时，你可以支付费用。若如此做，你选择1张对方的，等级比对方的等级高的角色卡，放置入休息室。<br>【起】【反击】助太刀2500 等级2［（1）将手牌的此卡放置入休息室］（你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2500）",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-009S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-009",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SAO/SZ01-008": {
+    "name": "生存确认 亚丝娜",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】每存在1张其他的你的持有《Anniversary》特征的角色卡，此卡的力量＋500。<br>【自】此卡攻击时，若存在大于等于2张其他的你的持有《Anniversary》特征的角色卡，则你检视自己卡组顶的至多2张卡，选择其中1张卡，放置于卡组顶，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-008S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-008",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-007": {
+    "name": "水精灵族的魔法使 亚丝娜",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】此卡【倒置】时，若此卡的战斗对手的费用小于等于0，则你可以将该角色卡放置入库存区。若如此做，则你将对方库存区最下方的1张卡片，放置入休息室。<br>【自】［（2）］此卡从舞台被放置入休息室时，你可以支付费用。若如此做，则你选择1张自己休息室的持有《Anniversary》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-007S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-007",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-006": {
+    "name": "Alicization Exploding 桐人&亚丝娜",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 3000,
+    "cost": 0,
+    "trait": ["Anniversary", "摇光"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】此卡无法进行侧面攻击。<br>【自】此卡的战斗对手【倒置】时，你选择1张其他的你的持有《Anniversary》特征的角色卡，【横置】，移动至后列的不存在角色卡的格子。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-006S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-006",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-005": {
+    "name": "《光剑》使 亚丝娜",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】若存在大于等于2张其他的你的持有《Anniversary》特征的角色卡，则此卡的力量＋1000。<br>【自】［（1）将1张手牌放置入休息室］此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多1张持有《Anniversary》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-005S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-005",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-004": {
+    "name": "理解的微笑 亚丝娜",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】此卡【倒置】时，若此卡的战斗对手的等级为小于等于0，则你可以将该角色卡放置入库存区。若如此做，则你将对方库存区最下方的1张卡片，放置入休息室。<br>【自】经验 此卡被从手牌放置入舞台时，若你的等级区的卡片的合计等级大于等于2，则你选择1张自己的角色卡，该回合中，力量＋2000。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-004S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SAO/SZ01-004",
+        "rarity": "R"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-003": {
+    "name": "艾恩葛朗特 桐人&亚丝娜",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["Anniversary", "虚拟形象"],
+    "color": "黄色",
+    "soul": 2,
+    "effect": "【永】经验 若你的等级区的卡片的合计等级大于等于6，则此卡的力量＋1500。<br>【自】此卡被从手牌放置入舞台时，你可以将自己计时区顶的1张卡，放置入休息室。<br>【自】【CX联动】经验［（2）将1张手牌放置入休息室］此卡攻击时，若高潮区存在「今晚一起」，且你的等级区的卡片的合计等级大于等于6，则你可以支付费用。若如此做，则你将自己卡组顶的5张卡，放置入休息室，执行Ｘ次以下行动。『给予对方2点伤害，该回合中，此卡的力量＋2500。』Ｘ为因此效果被放置入休息室中的高潮卡的张数。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-003SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "SAO/SZ01-003",
+        "rarity": "RR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SAO/SZ01-002": {
+    "name": "Alicization Dividing 桐人&爱丽丝",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["Anniversary", "摇光"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】经验 若你的等级区的卡片的合计等级大于等于2，则此卡的力量＋2000。<br>【自】【CX联动】［①］ 此卡攻击时，若高潮区存在「Childhood」，且存在其他的你的持有《Anniversary》特征的角色卡，则你检视自己卡组顶的1张卡，从中选择至多1张持有《Anniversary》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室，你可以支付费用。若如此做，则该攻击中，你在触发步骤进行2次触发判定。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-002SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "SAO/SZ01-002",
+        "rarity": "RR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-001": {
+    "name": "再会之时 亚丝娜",
+    "product_name": "刀剑神域 10th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Anniversary", "摇光"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】若此卡下方存在标识物，则此卡的力量＋2000。<br>【自】此卡被从手牌放置入舞台时，你公开自己卡组顶的1张卡。若该卡为持有《Anniversary》特征的角色卡则可将其作为标识物里侧表示放置于此卡下方。（若不放置则放回原处）<br>【自】对方的攻击阶段开始之际，你可以将此卡移动至前列中央的不存在角色的格子。",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-001SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "SAO/SZ01-001",
+        "rarity": "RR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SAO/SZ01-P01": {
+    "name": "杂烩兔与亚丝娜",
+    "product_name": "刀剑神域 10th Anniversary 积分兑换PR",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【自】 你使用此卡的「助太刀」时，你选择1张自己的战斗中的角色卡，该回合中，赋予其以下能力。「【自】 此卡的战斗对手倒置时，你将该角色卡放置入回忆区。」<br>【起】【助太刀】3000 等级2[① 将手牌的此卡放置入休息室](你选择1张自己的正被正面攻击的角色卡，该回合中，力量+3000)",
+    "all_cards": [
+      {
+        "id": "SAO/SZ01-P01S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  }
+}

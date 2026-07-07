@@ -1,0 +1,597 @@
+{
+  "BD/WZ01-P18": {
+    "name": "“全新的开幕”户山香澄",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["Anniversary", "音乐", "Poppin'Party"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】你使用此卡的『助太刀』时，你选择1张自己的战斗中的角色卡，该回合中，赋予其以下能力。『【自】此卡的战斗对手【倒置】时，你将该角色卡放置入回忆区。』<br>【起】【反击】 助太刀3000 等级2 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋3000）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-P18S",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-P19": {
+    "name": "“Vo.”高松灯",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["音楽", "MyGo!!!!!"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你抽至多2张卡，选择2张自己的手牌，放置入休息室，将自己卡组顶的至多1张卡，放置入库存区。<br>【自】 你的高潮卡被放置入高潮区时，该回合中，此卡的力量＋3000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-P19",
+        "rarity": "PR"
+      },
+      {
+        "id": "BD/WZ01-P19S",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-P20": {
+    "name": "“音一会”高松灯",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音楽", "MyGo!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 若前列的中央格子中存在此卡，则此卡的力量＋2000。<br>【自】［将1张手牌中的高潮卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的持有《音乐》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-P20",
+        "rarity": "PR"
+      },
+      {
+        "id": "BD/WZ01-P20S",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-P21": {
+    "name": "“音一会”千早爱音",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["音楽", "MyGo!!!!!"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【永】 若你的休息室中存在小于等于2张高潮卡，则你手牌的此卡的等级－1。<br>【自】 此卡被从手牌放置入舞台时，你检视自己卡组顶的至多3张卡，选择至多1张卡片，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-P21",
+        "rarity": "PR"
+      },
+      {
+        "id": "BD/WZ01-P21S",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-P22": {
+    "name": "“音一会”要乐奈",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2000,
+    "cost": 1,
+    "trait": ["音楽", "MyGo!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 你使用此卡的『助太刀』时，若存在你的持有《音乐》特征的角色卡，则你选择1张自己的战斗中的角色卡，该回合中，力量＋1000。<br>【起】【反击】 助太刀2500 等级2 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2500）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-P22",
+        "rarity": "PR"
+      },
+      {
+        "id": "BD/WZ01-P22S",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-P23": {
+    "name": "“音一会”长崎爽世",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["音楽", "MyGo!!!!!"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［① 将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多1张持有《音乐》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-P23",
+        "rarity": "PR"
+      },
+      {
+        "id": "BD/WZ01-P23S",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-P24": {
+    "name": "“音一会”椎名立希",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["音楽", "MyGo!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你检视自己卡组顶的1张卡，放置入卡组顶或休息室。<br>【自】 其他的你的持有《音乐》特征的角色卡攻击时，该回合中，此卡的力量＋1000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-P24",
+        "rarity": "PR"
+      },
+      {
+        "id": "BD/WZ01-P24S",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-P25": {
+    "name": "“Gt. & Vo.”Doloris",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["音楽", "Ave Mujica"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，该回合中，此卡的力量＋Ｘ。Ｘ为你的持有《音乐》特征的角色卡的张数×1000。<br>【自】［①］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的高潮卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-P25",
+        "rarity": "PR"
+      },
+      {
+        "id": "BD/WZ01-P25S",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-P26": {
+    "name": "“Mas?uerade Rhapsody Re?uest”Doloris",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音楽", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 若前列的中央格子中存在此卡，则此卡的力量＋3000，魂＋1。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-P26",
+        "rarity": "PR"
+      },
+      {
+        "id": "BD/WZ01-P26S",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-P27": {
+    "name": "“Mas?uerade Rhapsody Re?uest”Mortis",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音楽", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 若所有你的角色卡均持有《音乐》特征，则此卡的力量＋1000。<br>【自】［①］ 此卡攻击时，你可以支付费用。若如此做，则该攻击中，你在触发步骤进行2次触发判定。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-P27",
+        "rarity": "PR"
+      },
+      {
+        "id": "BD/WZ01-P27S",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-P28": {
+    "name": "“Mas?uerade Rhapsody Re?uest”Timoris",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["音楽", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 每存在1张其他的你的后列的持有《音乐》特征的角色卡，此卡的力量＋1000。<br>【自】 此卡攻击时，若存在大于等于2张其他的你的持有《音乐》特征的角色卡，则你检视自己卡组顶的至多2张卡，选择其中1张卡，放置于卡组顶，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-P28",
+        "rarity": "PR"
+      },
+      {
+        "id": "BD/WZ01-P28S",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-P29": {
+    "name": "“Mas?uerade Rhapsody Re?uest”Amoris",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 5500,
+    "cost": 1,
+    "trait": ["音楽", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 每存在1张其他的你的后列的持有《音乐》特征的角色卡，此卡的力量＋2500。<br>【自】 此卡被从手牌放置入舞台时，若存在大于等于4张其他的你的持有《音乐》特征的角色卡，则你可以选择1张自己休息室的持有《音乐》特征的角色卡，放置入库存区。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-P29",
+        "rarity": "PR"
+      },
+      {
+        "id": "BD/WZ01-P29S",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-P30": {
+    "name": "“Mas?uerade Rhapsody Re?uest”Oblivionis",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["音楽", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋500。<br>【自】你的高潮卡被放置入高潮区时，你选择至多2张自己的角色卡，该回合中，力量＋1000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-P30",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-P15": {
+    "name": "与你共度的这1秒",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "将对方库存区的所有卡，放置入休息室，对方从自己卡组顶将相同张数的卡放置入库存区。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-P15S",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-P17": {
+    "name": "梦的结唱 ROSE",
+    "product_name": "PR卡",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 0,
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "若不存在你的持有《音乐》特征的角色卡，则此卡无法从手牌被使用。<br>执行以下效果中你选择的1个。<br>『你检视自己的卡组，选择至多1张持有《音乐》特征的角色卡展示给对手，加入手牌，将卡组洗切。』<br>『你选择1张自己的角色卡，该回合中，力量+3000，将此卡放置入库存区。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-P17",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-P16": {
+    "name": "梦的结唱 POPY",
+    "product_name": "PR卡",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 0,
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "集中 你翻出自己卡组顶的3张卡，放置入休息室。你选择1张自己休息室的等级小于等于X的持有《音乐》特征的角色卡，返回手牌。X为那些卡片中的持有《音乐》特征的角色卡的张数。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-P16",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-P08": {
+    "name": "沐浴着憧憬的光芒",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 积分兑换PR",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量+1000，魂+1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-P08",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-P07": {
+    "name": "终将到达的地方",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 积分兑换PR",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量+1000，魂+1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-P07",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-P06": {
+    "name": "活动前的兴奋",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 积分兑换PR",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【自】 此卡被从手牌放置入高潮区时，执行待机效果。<br>（<img src=\"/effect-icons/standby.webp\">：此卡触发时，你可以选择1张自己休息室的等级小于等于自己的等级+1的角色卡，以横置状态放置入舞台的任意格子)",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-P06",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-P05": {
+    "name": "终于来了呢!",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 积分兑换PR",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量+1000，魂+1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌)",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-P05",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-P04": {
+    "name": "美味的时间",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 积分兑换PR",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，为量+1000，魂+1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区)",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-P04",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-P03": {
+    "name": "保持自我",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 积分兑换PR",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量+1000，魂+1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-P03",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-P02": {
+    "name": "前往笑容集结的地方!",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 积分兑换PR",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量+1000，魂+1。<br>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你可以选择1张自己休息室的持有魂标记的角色卡，返回手牌或放置入库存区）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-P02",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-P01": {
+    "name": "“5th Anniversary”户山香澄",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 积分兑换PR",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Popin'Party"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 此卡攻击时，你选择1张自己的角色卡，该回合中，为量+2500。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-P01",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-P13": {
+    "name": "“MyGO!!!!!”椎名立希",
+    "product_name": "BanG Dream! MyGO!!!!! - 积分兑换PR",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 此卡无法进行侧面攻击。<br>【自】 此卡被从手牌放置入舞台时，若存在大于等于2张其他的你的持有《音乐》特征的角色卡，则你可以抽1张卡。若如此做，则你选择1张自己的手牌，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-P13",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-P12": {
+    "name": "“MyGO!!!!!”长崎爽世",
+    "product_name": "BanG Dream! MyGO!!!!! - 积分兑换PR",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［② 将1张你舞台的角色卡放置入休息室］ 你使用此卡的 『助太刀』时，你可以支付费用。若如此做，则你选择1张对方的等级高于对方的等级的角色卡，放置入休息室。<br>【起】【反击】 助太刀2500 等级2 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2500）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-P12",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-P11": {
+    "name": "“MyGO!!!!!”要乐奈",
+    "product_name": "BanG Dream! MyGO!!!!! - 积分兑换PR",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【永】 你的回合中，此卡的力量＋2000。<br>【自】［①］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的高潮卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-P11",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-P10": {
+    "name": "“MyGO!!!!!”千早爱音",
+    "product_name": "BanG Dream! MyGO!!!!! - 积分兑换PR",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你选择1张你的持有《音乐》特征的角色卡，该回合中，力量＋Ｘ。Ｘ为你的持有《音乐》特征的角色卡的张数×500。<br>【自】 此卡攻击时，若存在其他的你的持有《音乐》特征的角色卡，则该回合中，此卡的力量＋1500。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-P10",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-P09": {
+    "name": "“MyGO!!!!!”高松灯",
+    "product_name": "BanG Dream! MyGO!!!!! - 积分兑换PR",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你可以选择1张对方前列的等级小于等于0的角色卡，返回手牌。<br>【自】［① 将1张手牌中的高潮卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的高潮卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-P09",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  }
+}

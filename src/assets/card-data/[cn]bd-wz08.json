@@ -1,0 +1,2659 @@
+{
+  "BD/WZ08-001": {
+    "name": "Masquerade Oblivionis",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若存在其他的你的持有《音乐》特征的角色卡，则此卡的力量＋1500。<br>【自】【CX联动】 此卡攻击时，若高潮区存在「托付人生的邀约」，且存在大于等于2张其他的你的持有《音乐》特征的角色卡，则你检视自己卡组顶的至多4张卡，选择至多1张持有《音乐》特征的角色卡展示给对手，加入手牌或放置入库存区，其余的卡片放置入休息室。若放置入库存区，则该回合中，此卡的力量＋1000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-001",
+        "rarity": "RR"
+      },
+      {
+        "id": "BD/WZ08-001S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ08-001SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-002": {
+    "name": "Masquerade Mortis",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "绿色",
+    "soul": 2,
+    "effect": "【永】 从手牌使用此卡时可以不满足颜色条件。<br>【永】 若存在大于等于4张你的持有《音乐》特征的角色卡，则你手牌的此卡的等级－1。<br>【自】 此卡被从手牌放置入舞台时，你选择自己的计时区上方的至多1张卡片，放置入休息室。若存在大于等于4张其他的你的持有《音乐》特征的角色卡，则可以由放置入休息室变更为放置入库存区。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-002",
+        "rarity": "RR"
+      },
+      {
+        "id": "BD/WZ08-002S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ08-002SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-003": {
+    "name": "新的决意 丰川祥子",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】 你的高潮阶段开始之际，你可以将自己卡组顶的2张卡，放置入休息室。若那些卡片中存在高潮卡，则所有你的持有《音乐》特征的角色卡，该回合中，力量＋500。<br>【起】 集中 ［① 【横置】此卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你选择至多1张自己休息室的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-003",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ08-003S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-004": {
+    "name": "Symphony Oblivionis",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 此卡、与此卡同名的卡片、「新的决意 丰川祥子」，在卡组中可合计投入至多4张。<br>【自】 你的高潮阶段开始之际，你可以将自己卡组顶的2张卡，放置入休息室。若那些卡片中存在高潮卡，则所有你的持有《音乐》特征的角色卡，该回合中，力量＋500。<br>【起】 集中 ［① 【横置】此卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你选择至多1张自己休息室的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-004ZHS",
+        "rarity": "ZHS"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-005": {
+    "name": "初次的邂逅 丰川祥子",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音乐", "CRYCHIC"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】【CX联动】［将1张你的高潮区的「想要成为人类之歌」放置入休息室］ 你的再演步骤开始之际，你可以支付费用。若如此做，则你选择1张自己休息室的持有《音乐》特征的角色卡，返回手牌。<br>【起】【CX联动】 集中 ［① 【横置】2张你的角色卡］ 你翻出自己卡组顶的5张卡，放置入休息室。那些卡片中每存在1张「想要成为人类之歌」或「春日影」，你选择至多1张自己休息室的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-005",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ08-005S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-006": {
+    "name": "亲切的举动 Oblivionis",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 若所有你的角色卡均持有《音乐》特征，则此卡获得以下2个能力。『【自】 此卡的战斗对手【倒置】时，你可以将对方计时区上方的1张卡，放置入休息室。若如此做，则你将该角色卡放置入计时区。』『【自】 此卡的战斗对手【倒置】时，你选择1张其他的自己的持有《音乐》特征的角色卡，【横置】，移动至后列的不存在角色卡的格子。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-006",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ08-006S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ08-006SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-007": {
+    "name": "艺人的女儿 若叶睦",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你可以抽1张卡。若如此做，则你选择1张自己的手牌，放置入休息室。<br>【自】 此卡被从手牌放置入舞台时，你可以选择1张自己休息室的「隐藏的真面目 Mortis」，将其作为标识物表侧表示放置于此卡下方。<br>【自】 你的高潮阶段开始之际，你可以选择1张此卡的标识物的「隐藏的真面目 Mortis」，放置入此卡存在的格子。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-007",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ08-007S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-008": {
+    "name": "隐藏的真面目 Mortis",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 1,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若所有你的角色卡均持有《音乐》特征，则此卡的力量＋4000。<br>【自】【CX联动】 你的攻击阶段开始之际，若高潮区存在「心之雨」，且前列存在此卡，且存在其他的你的持有《音乐》特征的角色卡，则你将自己卡组顶的至多1张卡，放置入库存区，你从以下2个效果中选择1个执行。『你选择1张自己休息室的「艺人的女儿 若叶睦」，返回手牌。』『你检视自己的卡组并选择至多1张「艺人的女儿 若叶睦」展示给对手，加入手牌，将卡组洗切。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-008",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ08-008S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ08-008SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-009": {
+    "name": "可怜的人偶 Oblivionis",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你选择至多1张对方的角色卡，放置入回忆区，对方将自己回忆区的该角色卡放置入舞台的任意格子。<br>【起】［将1张手牌放置入休息室，将此卡放置入休息室］ 你选择1张自己休息室的持有《音乐》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-009",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ08-009S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-010": {
+    "name": "对身心的负担 若叶睦",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 500,
+    "cost": 0,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若此卡下方存在绿色的标识物，则此卡的力量＋10000。<br>【永】 若此卡下方存在红色的标识物，则此卡获得以下2个能力。『【自】 此卡【倒置】时，你可以将此卡放置入库存区。』『【自】  此卡【倒置】时，若此卡的战斗对手的等级小于等于1，则你可以将该角色卡【倒置】。』<br>【自】 此卡被从手牌放置入舞台时，你可以将自己卡组顶的1张卡，将其作为标识物表侧表示放置于此卡下方。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-010",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ08-010S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-011": {
+    "name": "拒绝的话语 丰川祥子",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你可以将自己卡组顶的3张卡，放置入休息室。<br>【自】［【横置】此卡］ 你的高潮阶段开始之际，你可以支付费用。若如此做，则你选择1张自己休息室的「Masquerade Oblivionis」及此卡，互换位置，该回合中，该角色卡的力量＋1000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-011",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ08-011S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-012": {
+    "name": "可怜的人偶 Mortis",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 1,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】 此卡【倒置】时，若此卡的战斗对手的等级高于对方的等级，则你可以将对方计时区上方的1张卡，放置入休息室。若如此做，则你将该角色卡放置入计时区。<br>【自】 此卡被从舞台放置入休息室时，若存在大于等于4张其他的你的持有《音乐》特征的角色卡，则你可以选择1张自己休息室的持有《音乐》特征的角色卡，放置入库存区。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-012",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ08-012S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-013": {
+    "name": "属于我们的歌 长崎爽世",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6000,
+    "cost": 1,
+    "trait": ["音乐", "CRYCHIC"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，该回合中，此卡的力量＋6000。<br>【自】［将1张手牌放置入休息室］ 此卡的战斗对手【倒置】时，若存在大于等于2张其他的你的持有《CRYCHIC》特征的角色卡，则你可以支付费用。若如此做，则给予对方1点伤害。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-013",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ08-013S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-014": {
+    "name": "属于我们的歌 若叶睦",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["音乐", "CRYCHIC"],
+    "color": "绿色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你检视自己卡组顶的至多3张卡，将其按任意顺序放置于卡组顶，选择至多1张对方的角色卡，返回手牌。<br>【自】【时计区】 闹铃 ［将1张手牌放置入休息室］ 若此卡存在于计时区的最上方，则你的高潮阶段开始之际，你可以支付费用。若如此做，则你选择1张对方的等级大于等于1的角色卡，对方选择1张自己休息室的等级小于等于Ｘ的角色卡，互换位置。Ｘ为你选择的角色卡的等级－1。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-014",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ08-014S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-015": {
+    "name": "属于我们的歌 丰川祥子",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音乐", "CRYCHIC"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 若存在其他的你的「跟大家不一样 高松灯」，则此卡的力量＋1500，此卡获得以下能力。『【自】 此卡攻击时，该攻击中，你在触发步骤进行2次触发判定。若进行了2次，则你将1张自己的库存区上方的卡片，放置入休息室。』<br>【自】［将1张手牌中的持有《音乐》特征的角色卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组，选择至多1张「跟大家不一樣 高松灯」，放置入舞台的任意格子，将卡组洗切，该回合中，该角色卡的力量＋1000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-015",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ08-015S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-016": {
+    "name": "温暖的时间 长崎爽世",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音乐", "CRYCHIC"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，所有其他的你的持有《CRYCHIC》特征的角色卡，力量＋500。<br>【自】［将此卡放置入休息室］ 其他的你的持有《CRYCHIC》特征的角色卡被从舞台放置入休息室时，若后列存在此卡，则你可以支付费用。若如此做，则将该角色卡以【横置】状态放置入该角色卡曾经存在的格子。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-016",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ08-016S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-017": {
+    "name": "复杂的心 若叶睦",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌放置入计时区］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多1张持有《Ave Mujica》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-017",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ08-017S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-018": {
+    "name": "Symphony Mortis",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 此卡、与此卡同名的卡片、「复杂的心 若叶睦」，在卡组中可合计投入至多4张。<br>【自】［将1张手牌放置入计时区］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组选择至多1张持有《Ave Mujica》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-018ZHS",
+        "rarity": "ZHS"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-019": {
+    "name": "照顾父亲 丰川祥子",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】［将2张手牌放置入休息室］ 你使用此卡的 『助太刀』时，你可以支付费用。若如此做，则你可以将对方计时区上方的1张卡，放置入休息室。若如此做，则你选择1张对方的等级高于对方的等级的角色卡，放置入计时区。<br>【起】【反击】 助太刀1000 等级1 ［将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋1000）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-019",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ08-019S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-020": {
+    "name": "观看现场演出 若叶睦",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】 此卡攻击时，你选择1张其他的自己的持有《音乐》特征的角色卡，该回合中，力量＋1000，赋予其《黄瓜》特征。<br>【自】 记忆 此卡的战斗对手【倒置】时，若你的回忆区存在「CRYCHIC」，则你可以将自己卡组顶的1张卡，放置入库存区。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-020",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ08-020S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-021": {
+    "name": "决定性的一句话 若叶睦",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5500,
+    "cost": 1,
+    "trait": ["音乐", "CRYCHIC"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若存在大于等于2张其他的你的持有《CRYCHIC》特征的角色卡，则此卡的力量＋3500，此卡获得以下能力。『【自】 此卡的战斗对手【倒置】时，你可以将对方计时区上方的1张卡，放置入休息室。若如此做，则你将该角色卡放置入计时区。』<br>【自】 再演 ［将1张手牌的角色卡放置入休息室］ （此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则将此卡以【横置】状态放置入此卡曾经存在的格子）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-021",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ08-021S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-022": {
+    "name": "孤身一人 丰川祥子",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7500,
+    "cost": 1,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你选择至多2张自己的角色卡，该回合中，赋予其以下能力。『【自】 此卡攻击时，若存在其他的你的持有《音乐》特征的角色卡，且此卡正面的角色卡的等级大于等于3，则该回合中，此卡的力量＋4500。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-022",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ08-022S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-023": {
+    "name": "CRYCHIC",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "若存在的你的持有《音乐》特征的角色卡小于等于1张，则此卡无法从手牌被使用。从手牌使用此卡时可以不满足颜色条件。<br>你选择1张自己休息室的持有《音乐》特征的角色卡，返回手牌。<br>你从以下2个效果中选择1个执行。<br>『你可以选择1张自己的等级区的卡片，放置入休息室。若如此做，则将此卡放置入等级区。』<br>『将此卡放置入回忆区。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-023",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ08-023S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-024": {
+    "name": "Mortis电视真人秀",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "事件卡",
+    "level": 3,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【反击】 你从以下2个效果中选择1个执行。<br>『你选择自己的计时区上方的至多1张卡片，放置入休息室，选择1张自己的角色卡，该回合中，力量＋1500。』<br>『若存在你的持有《音乐》特征的角色卡，则你选择至多2张自己休息室的持有《音乐》特征的角色卡，返回手牌。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-024",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ08-024S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-025": {
+    "name": "托付人生的邀约",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-025",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ08-025R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-026": {
+    "name": "想要成为人类之歌",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-026",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ08-026R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-027": {
+    "name": "心之雨",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-027",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ08-027R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-028": {
+    "name": "Masquerade Amoris",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，该回合中，此卡的力量＋3000，你选择1张对方的角色卡，直到下一个对方回合的结束之际为止，赋予其以下能力。『【永】 此卡无法移动至其他的格子。』<br>【自】［将1张其他的你的舞台的持有《音乐》特征的角色卡放置入休息室］ 此卡攻击时，你可以支付费用。若如此做，则你公开自己卡组顶的1张卡。若该卡为持有《音乐》特征的角色卡则加入手牌。（若非如此则放回原处）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-028",
+        "rarity": "RR"
+      },
+      {
+        "id": "BD/WZ08-028S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ08-028SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-029": {
+    "name": "Masquerade Timoris",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌放置入休息室］ 此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则你检视自己卡组顶的至多4张卡，选择至多1张持有《音乐》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室。若存在因此效果被放置入休息室的「Masquerade Timoris」，则你选择至多1张自己休息室的「Masquerade Timoris」，放置入库存区的下方。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-029",
+        "rarity": "RR"
+      },
+      {
+        "id": "BD/WZ08-029S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ08-029SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-030": {
+    "name": "迷路的乐队 长崎爽世",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 你的高潮卡被放置入高潮区时，你选择1张自己的角色卡，该回合中，赋予其以下能力。『【自】 此卡攻击时，你检视自己卡组顶的至多2张卡，选择其中1张卡，放置于卡组顶，其余的卡片放置入休息室。』<br>【起】 集中 ［① 【横置】此卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你选择至多1张自己休息室的持有《音乐》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-030",
+        "rarity": "RR"
+      },
+      {
+        "id": "BD/WZ08-030S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ08-030SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-031": {
+    "name": "迷路的乐队  千早爱音",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你从以下2个效果中选择1个执行。『你可以选择1张自己休息室的持有《音乐》特征的角色卡，返回手牌。』『［①］ 你可以支付费用。若如此做，则你选择1张自己休息室的高潮卡，返回手牌。』<br>【自】［② 将1张手牌放置入休息室］此卡攻击时，若所有你的角色卡均持有《音乐》特征，则你可以支付费用。若如此做，则你公开自己卡组顶的1张卡，给予对方Ｘ点伤害。Ｘ为该卡的等级＋1。（高潮卡视作等级为0的卡片。会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-031",
+        "rarity": "RR"
+      },
+      {
+        "id": "BD/WZ08-031S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ08-031SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-032": {
+    "name": "Journey to Shanghai 千早爱音",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【永】 此卡、与此卡同名的卡片、「迷路的乐队  千早爱音」，在卡组中可合计投入至多4张。<br>【自】 此卡被从手牌放置入舞台时，你从以下2个效果中选择1个执行。『你可以选择1张自己休息室的持有《音乐》特征的角色卡，返回手牌。』『［①］ 你可以支付费用。若如此做，则你选择1张自己休息室的高潮卡，返回手牌。』<br>【自】［② 将1张手牌放置入休息室］此卡攻击时，若所有你的角色卡均持有《音乐》特征的角色卡，则你可以支付费用。若如此做，则你公开自己卡组顶的1张卡，给予对方Ｘ点伤害。Ｘ为该卡的等级＋1。（高潮卡视作等级为0的卡片。会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-032ZHS",
+        "rarity": "ZHS"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-033": {
+    "name": "Masquerade Doloris",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时或因「再会 三角初华」的【自】的效果被放置入舞台时，你可以选择自己的计时区上方的1张卡片，放置入休息室。<br>【自】【CX联动】［① 将1张手牌放置入休息室］ 此卡攻击时，若高潮区存在「Ave Mujica」，且存在大于等于2张其他的你的持有《音乐》特征的角色卡，则你可以支付费用。若如此做，则该回合中，此卡获得以下能力。『【自】 此能力1回合至多发动1次。此卡给予的伤害被取消时，给予对方相同点伤害，你选择1张其他的自己的角色卡，该回合中，赋予其此能力。』（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-033",
+        "rarity": "RR"
+      },
+      {
+        "id": "BD/WZ08-033S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ08-033SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ08-033EX",
+        "rarity": "SEC+"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-034": {
+    "name": "在迷失之中前进 千早爱音",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌中的持有《音乐》特征的角色卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多1张「迷路的乐队 高松灯」展示给对手，加入手牌，将卡组洗切。<br>【自】 共鸣 ［公开1张手牌的「迷路的乐队 高松灯」］ 你的高潮阶段开始之际，你可以支付费用。若如此做，则直到下一个对方回合的结束之际为止，此卡的力量＋2000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-034",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ08-034S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-035": {
+    "name": "专业水准的贝斯手 八幡海铃",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［① 将你卡组顶的1张卡放置入计时区］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你抽1张卡。<br>【起】［① 将此卡放置入休息室］ 你检视自己卡组顶的至多4张卡，选择至多1张持有《音乐》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-035",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ08-035S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-036": {
+    "name": "一起 长崎爽世",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［① 将你卡组顶的1张卡放置入计时区］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多1张等级小于等于1的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-036",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ08-036S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ08-036SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-037": {
+    "name": "编织谎言 Doloris",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你公开自己卡组顶的1张卡，选择1张自己休息室的等级小于等于Ｘ的持有《Ave Mujica》特征的角色卡，返回手牌。X为被公开的卡片的等级。（高潮卡视作等级为0的卡片。公开的卡片放回原处）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-037",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ08-037S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ08-037SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-038": {
+    "name": "互相试探 祐天寺若麦",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［① 将你卡组顶的1张卡放置入计时区］此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则你检视自己卡组顶的至多2张卡，选择至多2张持有《音乐》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-038",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ08-038S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-039": {
+    "name": "面具下的真相 Amoris",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 此卡攻击时，该回合中，此卡的力量＋Ｘ。Ｘ为对方的角色卡的张数×1000。<br>【自】【CX联动】［将1张其他的你的舞台的持有《音乐》特征的角色卡放置入休息室］你的再演步骤开始之际，若高潮区存在「开始转动的齿轮」，且前列存在此卡，则你可以支付费用。若如此做，则你检视自己卡组顶的至多2张卡，选择至多2张持有《音乐》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室，选择至多1张对方的角色卡，放置入回忆区，对方将自己回忆区的该角色卡，放置入该角色卡曾经存在的格子。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-039",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ08-039S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ08-039SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-040": {
+    "name": "“壹雫空”长崎爽世",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 其他的你的持有《音乐》特征的角色卡攻击时，该回合中，此卡的力量＋1000。<br>【自】 共鸣 ［① 公开1张手牌的「迷路的乐队 高松灯」］ 此卡攻击时，若所有你的角色卡均持有《音乐》特征，则你可以支付费用。若如此做，则你选择1张自己休息室的持有《音乐》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-040",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ08-040Sa",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ08-040Sb",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-041": {
+    "name": "大舞台的落幕 三角初华",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 此卡被从舞台放置入休息室时，你检视自己卡组顶的至多3张卡，选择至多1张高潮卡展示给对手，加入手牌，其余的卡片放置入休息室。若加入了手牌，则你选择1张自己的手牌，放置入休息室。<br>【起】［将此卡放置入休息室］你选择1张自己的角色卡，该回合中，力量＋2000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-041",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ08-041S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-042": {
+    "name": "Symphony Doloris",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 此卡、与此卡同名的卡片、「大舞台的落幕 三角初华」，在卡组中可合计投入至多4张。<br>【自】 此卡被从舞台放置入休息室时，你检视自己卡组顶的至多3张卡，选择至多1张高潮卡展示给对手，加入手牌，其余的卡片放置入休息室。若加入了手牌，则你选择1张自己的手牌，放置入休息室。<br>【起】［将此卡放置入休息室］你选择1张自己的角色卡，该回合中，力量＋2000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-042ZHS",
+        "rarity": "ZHS"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-043": {
+    "name": "前进之后的景色 千早爱音",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你抽至多2张卡，选择2张自己的手牌，放置入休息室，将自己卡组顶的至多1张卡，放置入库存区。<br>【自】【CX联动】 此卡的战斗对手【倒置】时，若你的高潮区存在「碧天伴走」，则你可以将该角色卡放置入计时区。<br>【自】 此卡的战斗对手【倒置】时，若存在其他的你的前列的「受到鼓励 高松灯」，则你可以选择1张自己的前列的角色卡及此卡，互换位置。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-043",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ08-043S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ08-043SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-044": {
+    "name": "装模作样的态度 Timoris",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 11000,
+    "cost": 2,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，直到下一个对方回合的结束之际为止，此卡的力量＋4500，此卡获得以下能力。『【永】 此卡的战斗中，所有玩家无法从手牌使用『助太刀』。』<br>【自】［将1张手牌中的持有《音乐》特征的角色卡放置入休息室］ 此卡被从手牌放置入舞台的回合中，此卡的战斗对手【倒置】时，若存在大于等于2张其他的你的持有《音乐》特征的角色卡，则你可以支付费用。若如此做，则你选择至多2张自己休息室的持有《音乐》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-044",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ08-044S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ08-044SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-045": {
+    "name": "夜晚的交谈 三角初华",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你选择1张自己的持有《音乐》特征的角色卡，该回合中，力量＋1500。<br>【自】［① 将1张手牌放置入休息室］ 此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多1张持有《音乐》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-045",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ08-045S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-046": {
+    "name": "可怜的人偶 Doloris",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 0,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 若存在大于等于2张其他的你的持有《Ave Mujica》特征的角色卡，则此卡获得以下2个能力。『【永】 你的回合中，所有其他的你的持有《Ave Mujica》特征的角色卡，力量＋1000。』『【自】 此卡【倒置】时，若此卡的战斗对手的等级小于等于1，则你可以将该角色卡【倒置】。』<br>【自】［①］ 此卡被从手牌放置入舞台时，若存在大于等于4张其他的你的持有《音乐》特征的角色卡，则你可以支付费用。若如此做，则你选择至多2张对方的等级高于对方的等级的角色卡。那些角色卡在下一个对方的竖置阶段不会【竖置】。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-046",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ08-046S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-047": {
+    "name": "可怜的人偶 Timoris",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若存在大于等于2张其他的你的持有《音乐》特征的角色卡，则此卡的力量＋2000，此卡获得以下能力。『【自】 此卡攻击时，若此卡正面的角色卡的等级为2，则该回合中，此卡的力量＋6000。』<br>【自】 此卡攻击时，你检视自己卡组顶的至多2张卡，选择其中1张卡，放置于卡组顶，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-047",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ08-047S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-048": {
+    "name": "Symphony Timoris",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 此卡、与此卡同名的卡片、「可怜的人偶 Timoris」，在卡组中可合计投入至多4张。<br>【永】 你的回合中，若存在大于等于2张其他的你的持有《音乐》特征的角色卡，则此卡的力量＋2000，此卡获得以下能力。『【自】 此卡攻击时，若此卡正面的角色卡的等级为2，则该回合中，此卡的力量＋6000。』<br>【自】 此卡攻击时，你检视自己卡组顶的至多2张卡，选择其中1张卡，放置于卡组顶，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-048ZHS",
+        "rarity": "ZHS"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-049": {
+    "name": "算计的话语 祐天寺若麦",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5500,
+    "cost": 1,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 若存在大于等于2张其他的你的持有《音乐》特征的角色卡，则此卡的力量＋1500，此卡获得『【自】 再演 ［将1张手牌的角色卡放置入休息室］』。<br>【自】［将1张其他的你的舞台的持有《音乐》特征的角色卡放置入休息室］ 此卡攻击时，你可以支付费用。若如此做，则你公开自己卡组顶的1张卡。若该卡为持有《音乐》特征的角色卡则加入手牌。（若非如此则放回原处）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-049",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ08-049S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-050": {
+    "name": "坦白的真心话 长崎爽世",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 3000,
+    "cost": 1,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 共鸣 ［① 将1张手牌中的持有《MyGO!!!!!》特征的角色卡放置入休息室，公开1张手牌的「迷路的乐队 高松灯」］ 你使用此卡的『助太刀』时，若存在你的持有《MyGO!!!!!》特征的角色卡，则你可以支付费用。若如此做，则你选择1张对方的角色卡，该回合中，魂－2。<br>【起】【反击】 助太刀2500 等级2 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2500）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-050",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ08-050S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-051": {
+    "name": "Journey to Shanghai 长崎爽世",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 3000,
+    "cost": 1,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 此卡、与此卡同名的卡片、「坦白的真心话 长崎爽世」，在卡组中可合计投入至多4张。<br>【自】 共鸣 ［① 将1张手牌中的持有《MyGO!!!!!》特征的角色卡放置入休息室，公开1张手牌的「迷路的乐队  高松灯」］ 你使用此卡的 『助太刀』时，若存在你的持有《MyGO!!!!!》特征的角色卡，则你可以支付费用。若如此做，则你选择1张对方的角色卡，该回合中，魂－2。<br>【起】【反击】 助太刀2500 等级2 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2500）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-051ZHS",
+        "rarity": "ZHS"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-052": {
+    "name": "可怜的人偶 Amoris",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 3500,
+    "cost": 1,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，所有其他的你的持有《音乐》特征的角色卡，力量＋2000。<br>【起】［将1张其他的你的舞台的持有《音乐》特征的角色卡放置入休息室，【横置】此卡］你抽1张卡。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-052",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ08-052S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-053": {
+    "name": "Symphony Amoris",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 3500,
+    "cost": 1,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 此卡、与此卡同名的卡片、「可怜的人偶 Amoris」，在卡组中可合计投入至多4张。<br>【永】 你的回合中，所有其他的你的持有《音乐》特征的角色卡，力量＋2000。<br>【起】［将1张其他的你的舞台的持有《音乐》特征的角色卡放置入休息室，【横置】此卡］你抽1张卡。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-053ZHS",
+        "rarity": "ZHS"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-054": {
+    "name": "关心 八幡海铃",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6000,
+    "cost": 1,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的等级大于等于3的角色卡，力量＋2000。<br>【起】［【横置】此卡］ 你检视自己卡组顶的至多2张卡，将其以任意顺序放置于卡组顶。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-054",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ08-054S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-055": {
+    "name": "“壹雫空”千早爱音",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 1,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 此卡【倒置】时，若此卡的战斗对手的等级高于对方的等级，则你可以将该角色卡【倒置】。<br>【起】［将此卡放置入卡组底］ 你选择至多1张自己手牌的等级小于等于自己等级的角色卡，放置入舞台的任意格子，该回合中，该角色卡的力量＋1000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-055",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ08-055Sa",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ08-055Sb",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-056": {
+    "name": "再会 三角初华",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 8500,
+    "cost": 1,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌放置入休息室，【横置】此卡］ 你的高潮阶段开始之际，若你的等级大于等于3，则你可以支付费用。若如此做，则你选择1张自己休息室的「Masquerade Doloris」与此卡，互换位置，该回合中，该角色卡的魂＋1。<br>【自】 此卡的战斗对手【倒置】时，你可以将此卡放置入回忆区。若如此做，则在你的下一个抽卡阶段开始之际，你选择1张自己回忆区的「再会 三角初华」，放置入舞台的任意格子。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-056",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ08-056S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-057": {
+    "name": "让我们成为我们的诗 千早爱音",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时或因「让我们成为我们的诗 高松灯」的【自】的效果被放置入舞台时，你抽至多2张卡，选择1张自己的手牌，放置入休息室。<br>【自】【CX联动】 此卡攻击时，若高潮区存在「诗超绊」，且前列右边的格子存在此卡，则你选择1张自己的角色卡，该回合中，力量＋1000，赋予其以下能力。『【自】 此能力1回合至多发动1次。此卡给予的伤害被取消时，你可以给予对方2点伤害。』（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-057",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ08-057S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-058": {
+    "name": "让我们成为我们的诗 长崎爽世",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时或因「让我们成为我们的诗 高松灯」的【自】的效果被放置入舞台时，你可以选择自己的计时区上方的1张卡片，放置入休息室。<br>【自】【CX联动】［将1张手牌放置入休息室，【横置】此卡］ 你的攻击阶段开始之际，若高潮区存在「诗超绊」，且后列右边的格子存在此卡，且所有你的角色卡均持有《MyGO!!!!!》特征，则你可以支付费用。若如此做，则给予对方1点伤害，所有你的角色卡，该回合中，力量＋1500。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-058",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ08-058S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-059": {
+    "name": "人气视频创作者 祐天寺若麦",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 你的攻击阶段开始之际，你选择至多2张自己的持有《音乐》特征的角色卡，该回合中，力量＋1000。<br>【起】［① 【横置】此卡］ 若你的等级为大于等于2，则你选择1张自己休息室的「可怜的人偶 Amoris」或「Symphony Amoris」及此卡，互换位置。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-059",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ08-059S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-060": {
+    "name": "领悟到的真相 千早爱音",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 此卡【倒置】时，你将自己卡组顶的2张卡，放置入休息室。若那些卡片中存在高潮卡，则你可以将此卡返回手牌。<br>【自】 此卡【倒置】时，若此卡的战斗对手的等级小于等于0，则你可以将该角色卡【倒置】。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-060",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ08-060S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-061": {
+    "name": "为什么要演奏春日影!? 长崎爽世",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若存在其他的你的持有《音乐》特征的角色卡，则此卡的力量＋3000。<br>【自】【CX联动】 「春日影」被放置入你的高潮区时，若存在大于等于2张其他的你的持有《音乐》特征的角色卡，则该回合中，此卡的力量＋3500，魂＋1，此卡获得以下能力。『【自】 回合结束之际，将此卡放置入休息室。』<br>【自】 经验 此卡被从手牌放置入舞台时，若你的等级区存在「CRYCHIC」，则该回合中，此卡的力量＋4500。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-061",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ08-061S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-062": {
+    "name": "表达情感的方式 三角初华",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你将自己卡组顶的2张卡，放置入休息室，该回合中，此卡的力量＋Ｘ。Ｘ为那些卡片中持有《音乐》特征的角色卡的张数×2000。若那些卡片中存在高潮卡，则你可以支付费用。若支付了费用，则你选择1张自己休息室的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-062",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ08-062S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-063": {
+    "name": "像姐姐一样的存在 长崎爽世",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 此卡攻击时，该攻击中，你在触发步骤进行2次触发判定。若进行了2次，则你将1张自己的库存区上方的卡片，放置入休息室。<br>【自】［① 将1张手牌放置入休息室］ 此卡的攻击结束之际，你可以支付费用。若如此做，则你检视自己的卡组并选择至多1张持有《音乐》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-063",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ08-063S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-064": {
+    "name": "如果有烦恼 八幡海铃",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5000,
+    "cost": 1,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 此卡攻击时，若存在大于等于2张其他的你的持有《音乐》特征的角色卡，则你从以下2个效果中选择1个执行。『所有你的持有《音乐》特征的角色卡，该回合中，力量＋1000。』『你将自己的卡组顶的1张卡放置入休息室。若该卡为等级大于等于1的卡片，则你可以将该卡放置入库存区。』（高潮卡视作等级为0的卡片）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-064",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ08-064S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-065": {
+    "name": "气氛带动者 千早爱音",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 6000,
+    "cost": 1,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 再演 ［将1张手牌的角色卡放置入休息室］ （此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则将此卡以【横置】状态放置入此卡曾经存在的格子）<br>【自】 共鸣 ［公开1张手牌的「迷路的乐队 高松灯」，将1张其他的你的舞台的角色卡放置入休息室］ 此卡攻击时，你可以支付费用。若如此做，则该回合中，此卡的力量＋2000，此卡获得以下能力。『【自】 此卡的战斗对手【倒置】时，你可以选择1张对方的等级大于等于1的角色卡。若如此做，则对方选择1张自己休息室的等级小于等于Ｘ的角色卡，与其互换位置。Ｘ为你选择的角色卡的等级－1。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-065",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ08-065S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-066": {
+    "name": "舞台后的一幕 祐天寺若麦",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 1500,
+    "cost": 1,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 你使用此卡的『助太刀』时，你将对方卡组底的Ｘ张卡，放置入休息室。Ｘ为你的持有《音乐》特征的角色卡的张数。<br>【起】【反击】 助太刀3000 等级2 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋3000）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-066",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ08-066S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-067": {
+    "name": "sumimi 初华",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6000,
+    "cost": 1,
+    "trait": ["音乐", "sumimi"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，此卡的力量＋4000。<br>【自】 此卡的战斗对手【倒置】时，你选择1张其他的自己的持有《音乐》特征的角色卡，【横置】，移动至后列的不存在角色卡的格子。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-067",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ08-067S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-068": {
+    "name": "sumimi 真奈",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 1,
+    "trait": ["音乐", "sumimi"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 对方的回合中，若存在其他的你的「sumimi 初华」，则此卡的力量＋4000。<br>【自】［将1张手牌中的持有《音乐》特征的角色卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的「sumimi 初华」，放置入舞台的任意格子。<br>【自】 对方的攻击阶段开始之际，你可以选择1张自己的「sumimi 初华」及此卡，分别【竖置】并互换位置。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-068",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ08-068S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-069": {
+    "name": "乐队的支援者 八幡海铃",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 8000,
+    "cost": 1,
+    "trait": ["音乐", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】【CX联动】［【横置】此卡］ 你的高潮阶段中，「支援贝斯手」被放置入你的高潮区时，若你的等级为大于等于2，则你可以支付费用。若如此做，则你从以下2个效果中选择1个执行。『［将1张手牌放置入休息室］ 你可以支付费用。若如此做，则你可以选择1张自己的手牌的「装模作样的态度 Timoris」及此卡，互换位置。』『你选择1张自己的休息室的「关心 八幡海铃」及此卡，互换位置，将自己卡组顶的至多1张卡，放置入库存区。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-069",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ08-069S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-070": {
+    "name": "加油面包",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【永】 此卡、与此卡同名的卡片、「与你共度的这1秒」，在卡组中可合计投入至多4张。<br>对方将自己库存区的所有卡，放置入休息室，对方从自己卡组顶将相同张数的卡放置入库存区。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-070",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ08-070S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-071": {
+    "name": "Ave Mujica",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-071",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ08-071R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ08-071EX",
+        "rarity": "RRR+"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-072": {
+    "name": "开始转动的齿轮",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-072",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ08-072R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-073": {
+    "name": "碧天伴走",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-073",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ08-073R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-074": {
+    "name": "诗超绊",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-074a",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ08-074b",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ08-074c",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ08-074d",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ08-074e",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ08-074R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-075": {
+    "name": "支援贝斯手",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，魂＋2。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-075",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ08-075R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 2
+  },
+  "BD/WZ08-076": {
+    "name": "迷路的乐队 要乐奈",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 所有玩家的攻击阶段开始之际，你公开自己卡组顶的1张卡。若该卡为持有《音乐》特征的角色卡，则该回合中，此卡的力量＋3000。（公开的卡片放回原处）<br>【自】 对方的攻击阶段开始之际，若此卡正面存在对方的角色卡，则你可以将此卡移动至前列的不存在角色卡的格子。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-076",
+        "rarity": "RR"
+      },
+      {
+        "id": "BD/WZ08-076S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ08-076SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-077": {
+    "name": "迷路的乐队 椎名立希",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若所有你的角色卡均持有《音乐》特征，则此卡的力量＋2000。<br>【自】【CX联动】 共鸣 ［① 公开1张手牌的「迷路的乐队 高松灯」］ 此卡的攻击结束之际，若高潮区存在「询问真正的想法」，则你可以支付费用。若如此做，则你选择至多2张自己休息室的持有《音乐》特征的角色卡，选择1张加入手牌，其余的卡片放置入库存区的下方。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-077",
+        "rarity": "RR"
+      },
+      {
+        "id": "BD/WZ08-077S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ08-077SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-078": {
+    "name": "迷路的乐队 高松灯",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【自】【CX联动】 「迷星叫」被放置入你的高潮区时，若前列存在此卡，则你检视自己的卡组并选择至多2张持有《音乐》特征的角色卡展示给对手，加入手牌，将卡组洗切。<br>【自】 经验 共鸣 ［将2张手牌放置入休息室，公开1张手牌的与存在于你的等级区的角色卡同卡名的角色卡］ 此卡被从手牌放置入舞台的回合中，此卡攻击时，你可以支付费用。若如此做，则你从以下2个效果中选择1个执行。『你将自己计时区上方的至多2张卡片，放置入休息室。』『你将自己卡组顶的4张卡，放置入休息室，给予对方X次2点伤害。Ｘ为那些卡片中的高潮卡的张数。』（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-078",
+        "rarity": "RR"
+      },
+      {
+        "id": "BD/WZ08-078S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ08-078SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "BD/WZ08-078EX",
+        "rarity": "SEC+"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-079": {
+    "name": "在迷失之中前进 高松灯",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，该回合中，此卡的力量＋1500。<br>【自】［将1张手牌中的持有《音乐》特征的角色卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多1张「内心的呐喊」展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-079",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ08-079S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-080": {
+    "name": "自由随性的后辈 要乐奈",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】  你的回合中，若所有你的角色卡均持有《音乐》特征，则此卡的力量＋2000。<br>【自】【CX联动】 此卡攻击时，若高潮区存在「不弹吗?」，且存在其他的你的持有《音乐》特征的角色卡，则你检视自己卡组顶的至多3张卡，选择至多1张持有《音乐》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-080",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ08-080S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-081": {
+    "name": "新的歌 高松灯",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若存在大于等于2张其他的你的持有《音乐》特征的角色卡，则此卡的力量＋4000。<br>【自】 经验 共鸣 ［将1张手牌放置入休息室，公开1张手牌的与存在于你的等级区的角色卡同卡名的角色卡］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己卡组顶的至多4张卡，选择至多1张持有《音乐》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-081",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ08-081S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ08-081SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-082": {
+    "name": "一生的誓言 椎名立希",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 1,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的持有《音乐》特征的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。<br>【自】 共鸣 ［将1张手牌放置入休息室，公开1张手牌的「迷路的乐队 高松灯」］ 你的高潮卡被放置入高潮区时，你可以支付费用。若如此做，则你选择1张自己休息室的角色卡，返回手牌。<br>【起】［【横置】此卡］ 你分别选择1张自己的等级区的卡片和1张休息室持有《音乐》特征的角色卡，互换位置。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-082",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ08-082S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ08-082SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-083": {
+    "name": "“壹雫空”椎名立希",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［②］ 你使用此卡的『助太刀』时，你可以支付费用。若如此做，则你将所有自己休息室的卡片，返回卡组，将卡组洗切。<br>【起】【反击】 助太刀2500 等级2 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2500）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-083",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ08-083Sa",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ08-083Sb",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-084": {
+    "name": "Journey to Shanghai 椎名立希",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 此卡、与此卡同名的卡片、「「壹雫空」椎名立希」，在卡组中可合计投入至多4张。<br>【自】［②］ 你使用此卡的『助太刀』时，你可以支付费用。若如此做，则你将所有自己休息室的卡片，返回卡组，将卡组洗切。<br>【起】【反击】 助太刀2500 等级2 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2500）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-084ZHS",
+        "rarity": "ZHS"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-085": {
+    "name": "有趣的女人 要乐奈",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 8000,
+    "cost": 2,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【永】 若你或对方的休息室中存在小于等于2张高潮卡，则你手牌的此卡的等级－1。<br>【自】［将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你将自己的计时区上方的1张卡片，放置入库存区。<br>【自】 共鸣 ［公开1张手牌的「迷路的乐队 高松灯」］ 你的高潮阶段开始之际，你可以支付费用。若如此做，则直到下一个对方回合的结束之际为止，此卡的力量＋3000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-085",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ08-085S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ08-085SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-086": {
+    "name": "属于我们的歌 高松灯",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["音乐", "CRYCHIC"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你可以选择自己的计时区上方的1张卡片，放置入休息室。<br>【自】【CX联动】 此卡的战斗对手【倒置】时，若你的高潮区存在「春日影」，且你的手牌小于等于5张，且所有你的角色卡均持有《CRYCHIC》特征，则你可以给予对方2点伤害。（会发生伤害取消）<br>【自】【CX联动】［③ 将1张你的高潮区的「春日影」放置入回忆区］ 你的再演步骤开始之际，你可以支付费用。若如此做，则直到下一个对方回合的结束之际为止，此卡获得以下能力。『【自】 对方的攻击阶段开始之际，你选择1张对方的角色卡，该回合中，魂－3。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-086",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ08-086S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-087": {
+    "name": "给诗配上旋律 椎名立希",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌中的高潮卡放置入休息室，将1张其他的你的舞台的角色卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的高潮卡，返回手牌。<br>【自】 此卡攻击时，你选择1张其他的自己的持有《音乐》特征的角色卡，直到下一个对方回合的结束之际为止，力量＋1000，赋予其《抹茶》特征。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-087",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ08-087S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-088": {
+    "name": "SPACE 要乐奈",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你检视自己卡组顶的至多3张卡，选择至多1张持有『经验』或『共鸣』关键词的角色卡展示给对手，加入手牌，其余的卡片放置入休息室。若加入了手牌，则你选择1张自己的手牌，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-088",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ08-088S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-089": {
+    "name": "Journey to Shanghai 要乐奈",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 此卡、与此卡同名的卡片、「SPACE 要乐奈」，在卡组中可合计投入至多4张。<br>【自】 此卡被从手牌放置入舞台时，你检视自己卡组顶的至多3张卡，选择至多1张持有『经验』或『共鸣』关键词的角色卡展示给对手，加入手牌，其余的卡片放置入休息室。若加入了手牌，则你选择1张自己的手牌，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-089ZHS",
+        "rarity": "ZHS"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-090": {
+    "name": "碰面 椎名立希",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["音乐", "CRYCHIC"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若存在大于等于2张其他的你的持有《音乐》特征的角色卡，则此卡的力量＋2000。<br>【自】［①］ 此卡攻击时，你可以支付费用。若如此做，则该攻击中，你在触发步骤进行2次触发判定。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-090",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ08-090S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-091": {
+    "name": "受到鼓励 高松灯",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【自】［①］ 此卡被从手牌放置入舞台时，若存在其他的你的持有《音乐》特征的角色卡，则你选择至多1张自己休息室的角色卡，返回手牌，你可以支付费用。若支付了费用，则你选择至多1张自己手牌中的「前进之后的景色 千早爱音」，放置入舞台的任意格子。<br>【自】【CX联动】［③ 将1张手牌的「前进之后的景色 千早爱音］放置入休息室］此卡的攻击结束之际，若高潮区存在「碧天伴走」，则你可以支付费用。若如此做，则你选择1张其他的自己的「前进之后的景色 千早爱音」，使其【竖置】，该回合中，该角色卡的力量＋2000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-091",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ08-091S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-092": {
+    "name": "让我们成为我们的诗 高松灯",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你检视自己的卡组并选择至多4张持有《MyGO!!!!!》特征的角色卡，放置入休息室，将卡组洗切。<br>【自】【CX联动】［将5张手牌的持有《MyGO!!!!!》特征的角色卡放置入休息室］ 你的高潮阶段中，「诗超绊」被放置入高潮区时，若前列中央的格子中存在此卡，则你可以支付费用。若如此做，则你选择至多1张自己休息室的「让我们成为我们的诗 千早爱音」与至多1张「让我们成为我们的诗 长崎爽世」与至多1张「让我们成为我们的诗 要乐奈」与至多1张「让我们成为我们的诗 椎名立希」，放置入舞台上的不同格子。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-092",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ08-092S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-093": {
+    "name": "让我们成为我们的诗 要乐奈",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时或因「让我们成为我们的诗 高松灯」的【自】的效果被放置入舞台时，你检视自己卡组顶的至多3张卡，选择至多1张卡片，加入手牌，其余的卡片放置入休息室。<br>【自】【CX联动】［① 将1张手牌放置入休息室］ 此卡攻击时，若高潮区存在「诗超绊」，且前列左边的格子存在此卡，则你可以支付费用。若如此做，则给予对方3点伤害。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-093",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ08-093S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-094": {
+    "name": "让我们成为我们的诗 椎名立希",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【自】【CX联动】［② 将1张手牌放置入休息室］ 你的攻击阶段开始之际，若高潮区存在「诗超绊」，且后列左边的格子存在此卡，且所有你的角色卡均持有《MyGO!!!!!》特征，则你可以支付费用。若如此做，则该回合中，此卡获得以下能力。『【永】 若后列存在处于【竖置】状态的此卡，则可以选择此卡作为进行攻击的角色卡。若如此做，则此卡进行直接攻击。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-094",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ08-094S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-095": {
+    "name": "守护孙女 都筑诗船",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["音乐"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡攻击时，你选择1张其他的自己的卡名含有「乐奈」的角色卡，直到下一个对方回合的结束之际为止，力量＋2000。<br>【自】【时计区】 切换 等级0 （你的主要阶段开始之际，你选择1张自己手牌的蓝色的卡片与计时区的此卡，互换位置。）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-095",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ08-095S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-096": {
+    "name": "孤狼 椎名立希",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［① 将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组，选择至多1张持有《音乐》特征的角色卡展示给对手，加入手牌，将卡组洗切。<br>【自】［将1张手牌中的高潮卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的持有《音乐》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-096",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ08-096S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-097": {
+    "name": "跟大家不一样 高松灯",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音乐", "CRYCHIC"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 若存在其他的你的「属于我们的歌 丰川祥子」，则此卡的力量＋1500，此卡获得以下能力。『【自】 此卡攻击时，你选择1张其他的自己的持有《音乐》特征的角色卡，该回合中，力量＋1000。』<br>【自】［将1张手牌中的持有《音乐》特征的角色卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组选择至多1张「属于我们的歌 丰川祥子」，放置入舞台的任意格子，将卡组洗切，该回合中，该角色卡的力量＋1000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-097",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ08-097S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-098": {
+    "name": "RiNG的流浪猫 要乐奈",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，此卡的力量＋3000。<br>【自】［①］ 你的回合中，此卡的战斗对手【倒置】时，你可以支付费用。若如此做，则你选择1张对方的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-098",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ08-098S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-099": {
+    "name": "主唱 高松灯",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["音乐", "CRYCHIC"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡攻击时，若存在大于等于2张其他的你的持有《CRYCHIC》特征的角色卡，则该回合中，此卡的力量＋2000。<br>【自】［将1张手牌放置入休息室］ 此卡从舞台被放置入休息室时，你可以支付费用。若如此做，则你检视自己卡组顶的至多4张卡，选择至多1张等级大于等于1的卡片展示给对手，加入手牌，其余的卡片放置入休息室。（高潮卡视作等级为0的卡片）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-099",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ08-099S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-100": {
+    "name": "依靠姐姐 椎名立希",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌中的持有《音乐》特征的角色卡放置入休息室］此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的「如果有烦恼 八幡海铃」放置入舞台的任意格子，该回合中，该角色卡的力量+2500，回合结束之际，将该角色卡放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-100",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ08-100S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-101": {
+    "name": "“壹雫空”高松灯",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 500,
+    "cost": 1,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】[将1张手牌中的持有《音乐》特征的角色卡放置入休息室]你使用此卡的「助太刀」时，若存在你的持有《音乐》特征的角色卡，你可以支付费用。若如此做，则你选择1张自己休息室的等级大于等于2的角色卡，返回手牌。<br>【起】【反击】 助太刀2000 等级1[① 将手牌的此卡放置入休息室](你选择1张自己的正被正面攻击的角色卡，该回合中，力量+2000)",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-101",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ08-101Sa",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ08-101Sb",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-102": {
+    "name": "属于我们的歌 椎名立希",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 1,
+    "trait": ["音乐", "CRYCHIC"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】你的回合中，所有其他的你的「属于我们的歌 高松灯」,力量+2000。<br>【永】应援 所有此卡前面的你的持有《音乐》特征的角色卡，力量+X。X为该角色卡的等级×500。<br>【自】[将1张手牌中的高潮卡放置入休息室]你的高潮卡触发时，你可以支付费用。若如此做，则你检视自己卡组顶的至多2张卡，选择至多1张卡片，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-102",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ08-102S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-103": {
+    "name": "“壹雫空”要乐奈",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 6000,
+    "cost": 1,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 共鸣 [将1张手牌放置入休息室，公开1张手牌的「迷路的乐队 高松灯」] 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你将所有自己休息的卡片，返回卡组，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-103",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ08-103Sa",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ08-103Sb",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-104": {
+    "name": "羽丘的不可思议女孩 高松灯",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 1,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】此卡的战斗对手为等级大于等于2的角色卡且【倒置】时，你可以将自己卡组顶的1张卡，放置入库存区。<br>【自】 经验 共鸣[公开1张手牌与存在于你的等级区的角色卡同卡名的角色卡]你的高潮阶段开始之际，你可以支付费用。若如此做，则该回合中，此卡的力量+4000，此卡获得以下能力。「【自】 此卡的战斗对手【倒置】时,你可以将该角色卡放置入卡组底。」",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-104a",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ08-104b",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ08-104c",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ08-104S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-105": {
+    "name": "Journey to Shanghai 高松灯",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 1,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】此卡、与此卡同名的卡片、「羽丘的不可思议女孩 高松灯」,在卡组中可合计投入至多4张。<br>【自】此卡的战斗对手为等级大于等于2的角色卡且【倒置】时，你可以将自己卡组顶的1张卡，放置入库存区。<br>【自】 经验 共鸣[公开1张手牌与存在于你的等级区的角色卡同卡名的角色卡]你的高潮阶段开始之际，你可以支付费用。若如此做，则该回合中，此卡的力量+4000，此卡获得以下能力。「【自】 此卡的战斗对手【倒置】时,你可以将该角色卡放置入卡组底。」",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-105ZHS",
+        "rarity": "ZHS"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-106": {
+    "name": "让人火大的那家伙",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 0,
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "若你的持有《音乐》特征的角色卡小于等于2张，则此卡无法从手牌被使用。<br>你选择至多1张自己休息室的持有《音乐》特征的角色卡，放置入库存区。<br>你选择1张自己的角色卡，该回合中，赋予其以下能力。「【自】此卡攻击时，你公开自己卡组顶的1张卡。若该卡为持有《音乐》特征的角色卡则加入手牌。」(若非如此则放回原处)",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-106",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ08-106S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-107": {
+    "name": "内心的呐喊",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 0,
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "若不存在你的持有《音乐》特征的角色卡，则此卡无法从手牌被使用。<br>你选择1张自己的角色卡，该回合中，力量+2000，赋予其以下2个能力。<br>「【自】 此卡攻击时，你检视自己卡组顶的至多2张卡，选择其中1张卡，放置于卡组顶，其余的卡片放置入休息室。」「【自】 此卡的战斗对手【倒置】时,你检视自己的卡组，选择至多1张持有《音乐》特征的角色卡展示给对手，加入手牌，将卡组洗切。」",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-107",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ08-107S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-108": {
+    "name": "询问真正的想法",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-108",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ08-108R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-109": {
+    "name": "迷星叫",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-109",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ08-109R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ08-109EX",
+        "rarity": "RRR+"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-110": {
+    "name": "不弹吗?",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/draw.webp\">：此卡触发时，你可以抽1张卡）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-110",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ08-110R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-111": {
+    "name": "春日影",
+    "product_name": "【MyGO!!!!! x Ave Mujica】补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-111",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ08-111R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ08-111EX",
+        "rarity": "RRR+"
+      }
+    ],
+    "trigger_soul_count": 1
+  }
+}

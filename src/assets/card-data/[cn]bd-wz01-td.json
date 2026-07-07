@@ -1,0 +1,836 @@
+{
+  "BD/WZ01-T38": {
+    "name": "无重力 浮游dance 高松灯",
+    "product_name": "BanG Dream! MyGO!!!!!- 预构筑卡组",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6000,
+    "cost": 1,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永 】此卡、与此卡同名的卡片、「」在前行的声音中」高松灯」,在卡组中可合计投入至多4张。<br>【永】若你的等级为大于等于2，则此卡获得以下能力。『【起】［将1张手牌放置入休息室，将此卡放置入休息室］你选择1张你的手牌中的「“不畏迷茫”高松灯」，放置入此卡曾经存在的格子。』<br>【永】 你的回合中，每存在1张其他的你的持有《音乐》特征的角色卡，此卡的力量＋1500。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T38SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-T34": {
+    "name": "无重力 浮游dance 长崎爽世",
+    "product_name": "BanG Dream! MyGO!!!!!- 预构筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 此卡、与此卡同名的卡片、「「在前行的声音中」长崎爽世」,在卡组中可合计投入至多4张。<br>【永】 应援 所有此卡前面的你的角色卡，力量＋500。<br>【自】［将1张手牌中的持有《音乐》特征的角色卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多1张「“不畏迷茫”要乐奈」展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T34SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-T36": {
+    "name": "无重力 浮游dance 要乐奈",
+    "product_name": "BanG Dream! MyGO!!!!!- 预构筑卡组",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】此卡、与此卡同名的卡片,「「在前行的声音中」要乐奈」,在卡组中可合计投入至多4张。<br>【自】 此卡被从手牌放置入舞台时，若存在其他的你的持有《音乐》特征的角色卡，则该回合中，此卡的力量＋2000。<br>【自】［① 【横置】1张其他的你的处于【竖置】状态的持有《音乐》特征的角色卡］ 此卡被从手牌放置入舞台的回合中，此卡的战斗对手【倒置】时，你可以支付费用。若如此做，则你检视自己的卡组，选择至多1张持有《音乐》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T36SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-T37": {
+    "name": "无重力 浮游dance 椎名立希",
+    "product_name": "BanG Dream! MyGO!!!!!- 预构筑卡组",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 此卡、与此卡同名的卡片、「「在前行的声音中」椎名立希」,在卡组中可合计投入至多4张。<br>【自】 你使用此卡的『助太刀』时，你选择1张自己的战斗中的角色卡，该回合中，赋予其以下能力。『【自】此卡的战斗对手【倒置】时，你将该角色卡放置入回忆区。』<br>【起】【反击】助太刀3000 等级2 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋3000）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T37SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-T35": {
+    "name": "无重力 浮游dance 千早爱音",
+    "product_name": "BanG Dream! MyGO!!!!!- 预构筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永 】此卡、与此卡同名的卡片、「「在前行的声音中」千早爱音」,在卡组中可合计投入至多4张。<br>【自】 此卡被从手牌放置入舞台时，该回合中，此卡的力量＋1500。<br>【自】 对方的抽卡阶段开始之际，你将自己卡组顶的2张卡，放置入休息室。若那些卡片中存在等级大于等于2的角色卡，则你可以将此卡返回手牌。（高潮卡视作等级为0的卡片）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T35SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-T33": {
+    "name": "潜在表明",
+    "product_name": "BanG Dream! MyGO!!!!!- 预构筑卡组",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，魂＋2。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T33R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-T33",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 2
+  },
+  "BD/WZ01-T32": {
+    "name": "我们在这里呐喊",
+    "product_name": "BanG Dream! MyGO!!!!!- 预构筑卡组",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌））",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T32R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-T32",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-T31": {
+    "name": "影色舞",
+    "product_name": "BanG Dream! MyGO!!!!!- 预构筑卡组",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 0,
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【反击】 若不存在你的持有《音乐》特征的角色卡，则此卡无法从手牌被使用。你检视自己卡组顶的至多4张卡，选择至多1张持有《音乐》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T31R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-T31",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-T30": {
+    "name": "“不畏迷茫”高松灯",
+    "product_name": "BanG Dream! MyGO!!!!!- 预构筑卡组",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你可以将自己计时区顶的1张卡，放置入休息室。<br>【自】【CX联动】 此卡攻击时，若高潮区存在「我们在这里呐喊」，且存在其他的你的持有《音乐》特征的角色卡，则你从以下2个效果中选择1个执行。『你选择至多1张自己休息室的角色卡，返回手牌，选择至多1张自己休息室的持有《音乐》特征的角色卡，放置入库存区』『给予对方1点伤害』（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T30SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-T30",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-T29": {
+    "name": "“怀抱声音而活”要乐奈",
+    "product_name": "BanG Dream! MyGO!!!!!- 预构筑卡组",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6500,
+    "cost": 1,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡攻击时，若此卡正面的角色卡的等级大于等于3，则该回合中，此卡的力量＋6000。<br>【自】此卡的战斗对手【倒置】时，若你的高潮区存在高潮卡，你检视自己的卡组，选择至多1张持有《音乐》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T29R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-T29",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-T28": {
+    "name": "“在前行的声音中”高松灯",
+    "product_name": "BanG Dream! MyGO!!!!!- 预构筑卡组",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6000,
+    "cost": 1,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】若你的等级为大于等于2，则此卡获得以下能力。『【起】［将1张手牌放置入休息室，将此卡放置入休息室］你选择1张你的手牌中的「“不畏迷茫”高松灯」，放置入此卡曾经存在的格子。』<br>【永】 你的回合中，每存在1张其他的你的持有《音乐》特征的角色卡，此卡的力量＋1500。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T28S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-T28",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-T27": {
+    "name": "“在前行的声音中”椎名立希",
+    "product_name": "BanG Dream! MyGO!!!!!- 预构筑卡组",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 你使用此卡的『助太刀』时，你选择1张自己的战斗中的角色卡，该回合中，赋予其以下能力。『【自】此卡的战斗对手【倒置】时，你将该角色卡放置入回忆区。』<br>【起】【反击】助太刀3000 等级2 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋3000）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T27R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-T27",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-T26": {
+    "name": "“怀抱声音而活”椎名立希",
+    "product_name": "BanG Dream! MyGO!!!!!- 预构筑卡组",
+    "type": "角色卡",
+    "level": 1,
+    "power": 7000,
+    "cost": 1,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T26R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-T26",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-T25": {
+    "name": "“在前行的声音中”要乐奈",
+    "product_name": "BanG Dream! MyGO!!!!!- 预构筑卡组",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，若存在其他的你的持有《音乐》特征的角色卡，则该回合中，此卡的力量＋2000。<br>【自】［① 【横置】1张其他的你的处于【竖置】状态的持有《音乐》特征的角色卡］ 此卡被从手牌放置入舞台的回合中，此卡的战斗对手【倒置】时，你可以支付费用。若如此做，则你检视自己的卡组，选择至多1张持有《音乐》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T25R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-T25",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-T22": {
+    "name": "“不畏迷茫”椎名立希",
+    "product_name": "BanG Dream! MyGO!!!!!- 预构筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 你的高潮阶段开始之际，你选择1张其他的自己的持有《MyGO!!!!!》特征的角色卡，该回合中，赋予其以下能力。『【永】此卡的战斗中，对方无法从手牌使用『助太刀』。』<br>【起】集中 ［① 【横置】此卡］ 你翻出自己卡组顶的5张卡，放置入休息室。那些卡片中每存在1张高潮卡，你抽至多1张卡。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T22SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-T22",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-T24": {
+    "name": "“不畏迷茫”要乐奈",
+    "product_name": "BanG Dream! MyGO!!!!!- 预构筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，此卡的力量＋1000。<br>【自】［① 将1张你的休息室的持有《音乐》特征的角色卡放置入计时区的下方］ 此卡被从舞台放置入休息室时，你可以支付费用。若如此做，你选择1张自己休息室的持有《音乐》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T24SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-T24",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-T23": {
+    "name": "“怀抱声音而活”高松灯",
+    "product_name": "BanG Dream! MyGO!!!!!- 预构筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 所有其他的你的「“怀抱声音而活”椎名立希」，力量＋1500，并赋予其『【自】 再演 ［将1张手牌的角色卡放置入休息室］』。<br>【自】 羁绊／「“怀抱声音而活”椎名立希」 ［将1张手牌放置入休息室］ （此卡被使用而放置入舞台时，你可以支付费用。若如此做，则你选择1张自己的休息室的「“怀抱声音而活”椎名立希」，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T23R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-T23",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-T21": {
+    "name": "就这样紧紧拥抱",
+    "product_name": "BanG Dream! MyGO!!!!!- 预构筑卡组",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【永】所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T21R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-T21",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-T20": {
+    "name": "“不畏迷茫”长崎爽世",
+    "product_name": "BanG Dream! MyGO!!!!!- 预构筑卡组",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【自】［将1张其他的你的舞台的持有《音乐》特征的角色卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你将自己的计时区上方的1张卡片，放置入库存区。<br>【自】［③ 将2张手牌放置入休息室］ 此卡攻击时，你可以支付费用。若如此做，给予对方4点伤害。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T20SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-T20",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-T19": {
+    "name": "“怀抱声音而活“千早爱音",
+    "product_name": "BanG Dream! MyGO!!!!!- 预构筑卡组",
+    "type": "角色卡",
+    "level": 2,
+    "power": 5000,
+    "cost": 1,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】应援 所有此卡前面的你的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。<br>【自】 此卡被从手牌放置入舞台时，若存在大于等于4张其他的你的持有《音乐》特征的角色卡，则你可以将自己卡组顶的1张卡，放置入库存区。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T19R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-T19",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-T18": {
+    "name": "“不畏迷茫”千早爱音",
+    "product_name": "BanG Dream! MyGO!!!!!- 预构筑卡组",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 若存在大于等于2张其他的你的持有《音乐》特征的角色卡，则此卡的力量＋2000。<br>【自】【CX联动】「就这样紧紧拥抱」被放置入你的高潮区时，若前列存在此卡，且存在大于等于2张其他的你的持有《音乐》特征的角色卡，则你从以下2个效果中选择1个执行。『你选择1张自己休息室的「“不畏迷茫”高松灯」或「“在前行的声音中”高松灯」或「无重力 浮游dance 高松灯」，返回手牌。』『你检视自己的卡组并选择至多1张「“不畏迷茫”高松灯」或「“在前行的声音中”高松灯」或「无重力 浮游dance 高松灯」展示给对手，加入手牌，将卡组洗切。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T18SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-T18",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-T17": {
+    "name": "“怀抱声音而活”长崎爽世",
+    "product_name": "BanG Dream! MyGO!!!!!- 预构筑卡组",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 此卡攻击时，你选择至多2张你的持有《音乐》特征的角色卡，该回合中，力量＋1500。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T17R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-T17",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-T16": {
+    "name": "“在前行的声音中”千早爱音",
+    "product_name": "BanG Dream! MyGO!!!!!- 预构筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，该回合中，此卡的力量＋1500。<br>【自】 对方的抽卡阶段开始之际，你将自己卡组顶的2张卡，放置入休息室。若那些卡片中存在等级大于等于2的角色卡，则你可以将此卡返回手牌。（高潮卡视作等级为0的卡片）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T16R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-T16",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-T15": {
+    "name": "“在前行的声音中”长崎爽世",
+    "product_name": "BanG Dream! MyGO!!!!!- 预构筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音乐", "MyGO!!!!!"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋500。<br>【自】［将1张手牌中的持有《音乐》特征的角色卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多1张「“不畏迷茫”要乐奈」展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T15R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-T15",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-T14": {
+    "name": "今后也陪在你身旁",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 预构筑卡组",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【永】所有你的角色卡，力量＋1000,魂＋1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T14SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-T14",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-T13": {
+    "name": "那个时候的回忆",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 预构筑卡组",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【永】所有你的角色卡，魂＋2。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T13SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ01-T13",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 2
+  },
+  "BD/WZ01-T11": {
+    "name": "“再次来临、樱花飘舞的季节”戸山香澄",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 预构筑卡组",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Anniversary", "音乐", "Poppin'Party"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【自】此卡被从手牌放置入舞台时，你检视自己的卡组并选择至多1张持有《Anniversary》特征或持有《Poppin'Party》特征的角色卡展示给对手，加入手牌，将卡组洗切。<br>【自】【CX联动】此卡的攻击结束时，若高潮区存在「那个时候的回忆」，则你将对方卡组底的与此卡的魂相同张数的卡片，放置入休息室，给予对方X点伤害。X为那些卡片中的高潮卡的张数。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T11S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ01-T11",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-T12": {
+    "name": "“目标中的理想偶像”丸山彩",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 预构筑卡组",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Anniversary", "音乐", "Pastel＊Palettes"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【自】此卡被从手牌放置入舞台时，你可以将自己计时区顶的1张卡，放置入休息室。<br>【自】［（2）将2张手牌放置入休息室］此卡攻击时，你可以支付费用。若如此做，则给予对方2点伤害。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T12",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-T10": {
+    "name": "“赏樱延长战，要开始了！”弦卷心",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 预构筑卡组",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6000,
+    "cost": 1,
+    "trait": ["Anniversary", "音乐", "Hello, Happy World!"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】每存在1张其他的你的后列的，持有《Anniversary》特征或《Hello, Happy World!》特征的角色卡，此卡的力量＋2500。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T10",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-T09": {
+    "name": "“热情与传达的心意”仓田真白",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 预构筑卡组",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["Anniversary", "音乐", "Morfonica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】应援 所有此卡前面的你的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。<br>【起】［【横置】此卡］ 你抽1张卡，选择1张自己的手牌，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T09",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ01-T07": {
+    "name": "“一起见证的未来”凑友希那",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 预构筑卡组",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Roselia"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】你的回合中，若存在大于等于2张其他的你的持有《Anniversary》特征或持有《Roselia》特征的角色卡，则此卡的力量＋2000。<br>【自】【CX联动】［将1张手牌放置入休息室］ 此卡的战斗对手【倒置】时，若你的高潮区存在「今后也陪在你身旁」，且存在大于等于2张其他的你的持有《Anniversary》特征或持有《Roselia》特征的角色卡，则你可以支付费用。若如此做，则你检视自己的卡组并选择至多2张持有《Anniversary》特征或持有《Roselia》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T07R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-T07",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-T08": {
+    "name": "“磅——！地登场”弦卷心",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 预构筑卡组",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Hello, Happy World!"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T08",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-T06": {
+    "name": "“强硬派不良少女？”美竹兰",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 预构筑卡组",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Afterglow"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】你使用此卡的『助太刀』时，若存在你的持有《Anniversary》特征或持有《Afterglow》特征的角色卡，则你选择1张自己的战斗中的角色卡，该回合中，力量＋1000。<br>【起】【反击】助太刀1000 等级1［将手牌的此卡放置入休息室］（你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋1000）",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T06R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-T06",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-T05": {
+    "name": "“狂野的流行乐”LAYER",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 预构筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "RAISE A SUILEN"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】赋予所有对方的角色卡，『【自】再演［（2）］』。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T05R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-T05",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-T04": {
+    "name": "“舞台衣装”凑友希那",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 预构筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Roselia"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】此能力1回合至多发动2次。其他的你的持有《Anniversary》特征或持有《Roselia》特征的角色卡被从手牌放置入舞台时，该回合中，此卡的力量＋1000。<br>【自】［（1）将此卡放置入休息室］其他的你的持有《Anniversary》特征或持有《Roselia》特征的角色卡被正面攻击时，你可以支付费用。若如此做，则将该角色卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T04R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-T04",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-T03": {
+    "name": "“将你的心声告诉我吧”美竹兰",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 预构筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Afterglow"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】此卡被从手牌放置入舞台时，若存在大于等于2张其他的你的持有《Anniversary》特征或持有《Afterglow》特征的角色卡，则你可以抽1张卡。若如此做，则你选择1张自己的手牌，放置入休息室。<br>【自】此卡攻击时，你选择1张自己的持有《Anniversary》特征或持有《Afterglow》特征的角色卡，该回合中，力量＋1500。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T03R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-T03",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-T02": {
+    "name": "“应援之歌”丸山彩",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 预构筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Pastel＊Palettes"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】你的高潮阶段开始之际，若存在大于等于2张其他的你的持有《Anniversary》特征或持有《Pastel＊Palettes》特征的角色卡，则你选择1张自己的「“再次来临、樱花飘舞的季节”戸山香澄」或「“一起见证的未来”凑友希那」，该回合中，力量＋1000，魂＋1。<br>【起】集中［（1）【横置】此卡］ 你翻出自己卡组顶的5张卡，放置入休息室。那些卡片中每存在1张高潮卡，你抽至多1张卡。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T02R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ01-T02",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ01-T01": {
+    "name": "“收集偶然”戸山香澄",
+    "product_name": "梦想协奏曲! 少女乐团派对! 5th Anniversary 预构筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["Anniversary", "音乐", "Poppin'Party"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】羁绊／「“磅——！地登场”弦卷心」 ［将1张手牌放置入休息室］（此卡被使用而放置入舞台时，你可以支付费用。若如此做，则你选择1张自己的休息室的「“磅——！地登场”弦卷心」，返回手牌）<br>【起】［【横置】此卡］ 你选择1张自己的持有《Anniversary》特征或持有《Poppin'Party》特征的角色卡，该回合中，力量＋2000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ01-T01",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  }
+}

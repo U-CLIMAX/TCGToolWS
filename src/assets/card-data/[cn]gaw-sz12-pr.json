@@ -1,0 +1,21 @@
+{
+  "Gaw/SZ12-P15": {
+    "name": "《黑之王》",
+    "product_name": "【电击文库】 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/bounce.webp\">：此卡触发时，你可以选择1张对方的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "Gaw/SZ12-P15",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "WS/WSZPR-P01": {
+    "name": "Happy 0.5th Anniversary !!",
+    "product_name": "PR卡",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】所有你的角色卡，魂+2。",
+    "all_cards": [
+      {
+        "id": "WS/WSZPR-P01S",
+        "rarity": "PR"
+      },
+      {
+        "id": "WS/WSZPR-P01",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 2
+  }
+}

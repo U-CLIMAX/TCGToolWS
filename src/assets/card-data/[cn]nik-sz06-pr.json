@@ -1,0 +1,230 @@
+{
+  "NIK/SZ06-P01": {
+    "name": "对火力的追求 尼恩",
+    "product_name": "「GODDESS OF VICTORY: NIKKE」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["NIKKE", "反击部队"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 若你的高潮区存在触发标记为<img src=\"/effect-icons/shot.webp\">的高潮卡，则存在于所有区域的此卡的触发标记获得<img src=\"/effect-icons/shot.webp\">。<br>【起】［将1张手牌放置入休息室，此卡放置入卡组底］ 你检视自己的卡组并选择至多1张持有《NIKKE》特征的角色卡展示给对手，加入手牌，将卡组洗切。<br>",
+    "all_cards": [
+      {
+        "id": "NIK/SZ06-P01",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ06-P02": {
+    "name": "“蛇伤”毒蛇",
+    "product_name": "「GODDESS OF VICTORY: NIKKE」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["NIKKE", "外来者部队"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你可以选择1张自己休息室的持有《NIKKE》特征的角色卡，将其作为标识物表侧表示放置于此卡下方。<br>【自】【CX联动】 「D-OUTSIDERS」被放置入你的高潮区时，若存在大于等于2张其他的你的角色卡，则你公开自己卡组顶的1张卡。若该卡为持有《NIKKE》特征的角色卡则加入手牌。（若非如此则放回原处）<br>【自】 你的回合中，下方存在标识物的此卡被从舞台放置入休息室时，若存在其他的你的持有《NIKKE》特征的角色卡，则你可以将此卡以【横置】放置入此卡曾经存在的格子。<br>",
+    "all_cards": [
+      {
+        "id": "NIK/SZ06-P02",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ06-P03": {
+    "name": "作战执行 拉毗",
+    "product_name": "「GODDESS OF VICTORY: NIKKE」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["NIKKE", "反击部队"],
+    "color": "黄色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你可以选择自己的计时区上方的1张卡片，放置入休息室。<br>【自】【CX联动】［① 将1张手牌放置入休息室］ 「为人类带来胜利」被放置入你的高潮区时，若前列存在此卡，且存在其他的你的前列的「气氛制造者 阿妮斯」与「“火力至上！”尼恩」，则你可以支付费用。若如此做，则此卡以外的所有你的前列的角色卡，该回合中，赋予其以下能力。『【自】 此能力1回合至多发动1次。此卡给予的伤害被取消时，【竖置】此卡。』<br>",
+    "all_cards": [
+      {
+        "id": "NIK/SZ06-P03",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ06-P04": {
+    "name": "气氛制造者 阿妮斯",
+    "product_name": "「GODDESS OF VICTORY: NIKKE」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 1,
+    "trait": ["NIKKE", "反击部队"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，该回合中，此卡的力量＋Ｘ。Ｘ为你的持有《NIKKE》特征的角色卡的张数×1000。<br>【自】［② 将2张手牌放置入休息室］ 此卡的战斗对手【倒置】时，你可以支付费用。若如此做，则给予对方5点伤害。（会发生伤害取消）<br>",
+    "all_cards": [
+      {
+        "id": "NIK/SZ06-P04",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ06-P05": {
+    "name": "布兰儿 - 白兔",
+    "product_name": "「GODDESS OF VICTORY: NIKKE」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["NIKKE", "777部队"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若存在大于等于2张其他的你的持有《NIKKE》特征的角色卡，则此卡的力量＋2000。<br>【自】【CX联动】 此卡攻击时，若高潮区存在「BUNNY X 777」，且存在其他的你的持有《NIKKE》特征的角色卡，则你将自己卡组顶的2张卡，放置入休息室，选择至多1张自己休息室的等级小于等于Ｘ的持有《NIKKE》特征的角色卡，返回手牌。Ｘ为因此效果被放置入休息室的卡片的合计等级。（高潮卡视作等级为0的卡片）<br>",
+    "all_cards": [
+      {
+        "id": "NIK/SZ06-P05",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ06-P06": {
+    "name": "诺亚尔 - 黑兔",
+    "product_name": "「GODDESS OF VICTORY: NIKKE」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 5000,
+    "cost": 1,
+    "trait": ["NIKKE", "777部队"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 若你的高潮区存在触发标记为<img src=\"/effect-icons/treasure.webp\">的高潮卡，则赋予所有你的区域的高潮卡的触发标记<img src=\"/effect-icons/shot.webp\">。<br>【永】 应援 所有此卡前面的你的持有《NIKKE》特征的角色卡，力量＋1500。<br>",
+    "all_cards": [
+      {
+        "id": "NIK/SZ06-P06",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ06-P07": {
+    "name": "诺伊斯 - 经典天后",
+    "product_name": "「GODDESS OF VICTORY: NIKKE」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6500,
+    "cost": 1,
+    "trait": ["NIKKE", "首席女歌手"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［①］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则该回合中，此卡的力量＋1000，直到下一个对方回合的结束之际为止，对方无法从手牌使用事件卡。<br>【自】 此卡攻击时，若存在大于等于4张其他的你的持有《NIKKE》特征的角色卡，则直到下一个对方回合的结束之际为止，此卡的力量＋4000，此卡获得以下能力。『【永】 此卡的正面的角色卡无法进行侧面攻击。』<br><br>",
+    "all_cards": [
+      {
+        "id": "NIK/SZ06-P07",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ06-P08": {
+    "name": "“大扫除女仆”索达",
+    "product_name": "「GODDESS OF VICTORY: NIKKE」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["NIKKE", "专属女仆部队"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌中的触发标记为<img src=\"/effect-icons/gate.webp\">的高潮卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己卡组顶的至多6张卡，选择至多1张持有《NIKKE》特征的角色卡展示给对手，加入手牌，将卡组洗切。<br>",
+    "all_cards": [
+      {
+        "id": "NIK/SZ06-P08",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ06-P09": {
+    "name": "“AZX”布丽德",
+    "product_name": "「GODDESS OF VICTORY: NIKKE」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["NIKKE", "无限轨道部队"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，若存在其他的你的持有《NIKKE》特征的角色卡，则该回合中，此卡的力量＋2000。<br>【自】 此卡攻击时，若你的高潮区存在触发标记为<img src=\"/effect-icons/gate.webp\">的高潮卡，你选择至多1张自己休息室的角色卡，返回手牌，选择1张自己的手牌，放置入休息室。<br>",
+    "all_cards": [
+      {
+        "id": "NIK/SZ06-P09",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ06-P10": {
+    "name": "桃乐丝 - 怀旧",
+    "product_name": "「GODDESS OF VICTORY: NIKKE」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["NIKKE", "继承者部队"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 你使用此卡的 『助太刀』时，你选择1张自己的战斗中的角色卡，该回合中，赋予其以下能力。『【自】 此卡的战斗对手【倒置】时，你将该角色卡放置入回忆区。』<br>【起】【反击】 助太刀3000 等级2 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋3000）<br>",
+    "all_cards": [
+      {
+        "id": "NIK/SZ06-P10",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ06-P11": {
+    "name": "贯穿一切的赤红獠牙",
+    "product_name": "「GODDESS OF VICTORY: NIKKE」",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "你检视自己的卡组并选择至多1张高潮卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ06-P11S",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ06-P12": {
+    "name": "“最后的王国”皇冠",
+    "product_name": "「GODDESS OF VICTORY: NIKKE」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["NIKKE"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 你的高潮阶段开始之际，你可以检视自己卡组顶的1张卡。（检视的卡放回原处）<br>【起】 集中 ［① 【横置】此卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，执行以下行动。『你检视自己卡组顶的至多3张卡，选择至多1张卡片，加入手牌，其余的卡片放置入休息室。』<br>",
+    "all_cards": [
+      {
+        "id": "NIK/SZ06-P12S",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 0
+  }
+}

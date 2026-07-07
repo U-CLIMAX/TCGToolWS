@@ -1,0 +1,3754 @@
+{
+  "BD/WZ09-001": {
+    "name": "“装点世界的演员”濑田薰",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音楽", "ハロー、ハッピーワールド！"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己卡组顶的至多4张卡，选择至多1张黄色的角色卡展示给对手，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-001",
+        "rarity": "RR"
+      },
+      {
+        "id": "BD/WZ09-001SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-002": {
+    "name": "激动的作战会议 弦卷心",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["音楽", "ハロー、ハッピーワールド！"],
+    "color": "黄色",
+    "soul": 2,
+    "effect": "【自】 此卡攻击时，你可以选择1张自己休息室的黄色的卡片，放置于卡组顶。<br>【自】【CX联动】［将2张手牌放置入休息室，将此卡放置入休息室］ 此卡的攻击结束之际，若高潮区存在「向着光的1，2，3」，则你可以支付费用。若如此做，则你检视自己库存区的卡片，选择至多1张「激动的作战会议 弦卷心」以外的持有《Hello, Happy World!》特征的角色卡，放置入此卡曾经存在的格子，将该库存区洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-002",
+        "rarity": "RR"
+      },
+      {
+        "id": "BD/WZ09-002SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-003": {
+    "name": "笑容灿烂的国际交流 北泽育美",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音楽", "ハロー、ハッピーワールド！"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】 你的角色卡的触发判定中判出等级大于等于2的卡片时，你选择1张自己的角色卡，该回合中，力量＋1000。（高潮卡视作等级为0的卡片）<br>【起】 集中 ［① 【横置】此卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你检视自己的卡组并选择至多1张持有《Hello, Happy World!》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-003",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ09-003SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-004": {
+    "name": "好奇心的结果 弦卷心",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "trait": ["音楽", "ハロー、ハッピーワールド！"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若存在其他的你的持有《音乐》特征的角色卡，则此卡的力量＋3000。<br>【自】［①］ 此卡攻击时，你可以支付费用。若如此做，则该攻击中，你在触发步骤进行2次触发判定。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-004",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ09-004SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ09-004SEC+",
+        "rarity": "SEC+"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-005": {
+    "name": "只属于我们的秘密 广町七深",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["音楽", "Morfonica"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 若存在大于等于2张其他的你的持有《音乐》特征的角色卡，则此卡的力量＋1000。<br>【自】【CX联动】［将1张手牌中的持有《音乐》特征的角色卡放置入休息室］ 此卡攻击时，若高潮区存在「PARE町小队」，且存在其他的你的持有《音乐》特征的角色卡，则你可以支付费用。若如此做，则你检视自己卡组顶的至多5张卡，选择至多2张持有《音乐》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-005",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ09-005SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-006": {
+    "name": "“大家齐心协力”松原花音",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["音楽", "ハロー、ハッピーワールド！"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 若存在大于等于2张其他的你的持有《音乐》特征的角色卡，则此卡的力量＋1000。<br>【自】【CX联动】［①］ 你的再演步骤开始之际，若高潮区存在「被卷入舞会」，且前列存在此卡，且不存在对方前列的角色卡或对方前列的角色卡全部处于【倒置】状态，则你可以支付费用。若如此做，则FEVER。<br>【replay】 FEVER 你选择至多2张自己休息室的持有《音乐》特征的角色卡，返回手牌，直到下一个对方回合的结束之际为止，此卡的力量＋1000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-006",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ09-006SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-007": {
+    "name": "Sulky Girl 桐谷透子",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7500,
+    "cost": 1,
+    "trait": ["音楽", "Morfonica"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，若存在大于等于4张其他的你的持有《Morfonica》特征的角色卡，则你可以支付费用。若如此做，则对方选择1张自己休息室的高潮卡，将该卡以外的所有休息室的卡片返回卡组，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-007",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ09-007SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-008": {
+    "name": "服装进度是布料。 奥泽美咲",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 4500,
+    "cost": 2,
+    "trait": ["音楽", "ハロー、ハッピーワールド！"],
+    "color": "黄色",
+    "soul": 2,
+    "effect": "【永】 若此卡下方存在标识物，则此卡的力量＋7000，此卡获得以下能力。『【自】［①］ 对方的攻击阶段开始之际，你可以支付费用。若如此做，则你选择1张自己的持有《Hello, Happy World!》特征的角色卡与此卡，分别【竖置】并互换位置。』<br>【自】 此卡被从手牌放置入舞台时，或因「激动的作战会议 弦卷心」的【自】的效果被放置入舞台时，你选择自己的计时区上方的至多1张卡片，放置入休息室，选择至多1张自己休息室的卡名含有「弦卷心」的角色卡，将其作为标识物表侧表示放置于此卡下方。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-008",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ09-008SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-009": {
+    "name": "修学旅行的乐趣 丸山彩",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["音楽", "Pastel＊Palettes"],
+    "color": "黄色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你可以选择自己的计时区上方的1张卡片，放置入休息室。<br>【自】［将4张手牌中的持有《Pastel＊Palettes》特征的角色卡放置入休息室］ 此卡攻击时，你可以支付费用。若如此做，则该回合中，此卡的力量＋4000，给予对方Ｘ点伤害。Ｘ为因此能力的费用被放置入休息室的卡片的持有的颜色种类的合计。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-009",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ09-009SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-010": {
+    "name": "“大家一起来！”北泽育美",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音楽", "ハロー、ハッピーワールド！"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】 对方的高潮卡被放置入高潮区时，你可以将此卡放置入库存区。<br>【自】 此卡【倒置】时，若此卡的战斗对手的等级小于等于0，则你可以将该角色卡放置入库存区。若如此做，则你将对方库存区最下方的1张卡片，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-010",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-010SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-011": {
+    "name": "向往许久的分享 广町七深",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音楽", "Morfonica"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 若其他的你的角色卡小于等于1张，则此卡的力量＋1500。<br>【自】 对方的攻击阶段开始之际，你可以将此卡移动至前列左边的不存在角色卡的格子。（仅可移动至最左的格子）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-011",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-011SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-012": {
+    "name": "“永不结束的乐队活动！”弦卷心",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音楽", "ハロー、ハッピーワールド！"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】［将你卡组顶的1张卡放置入计时区，将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多1张黄色的高潮卡展示给对手，加入手牌，将卡组洗切，选择1张自己的角色卡，该回合中，力量＋1000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-012",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-012S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-013": {
+    "name": "我的假期 桐谷透子",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["音楽", "Morfonica"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 所有其他的你的持有《音乐》特征的角色卡，力量＋500。<br>【自】 变换 ［将此卡放置入休息室］你的高潮阶段开始之际，你可以支付费用。若如此做，则你选择1张自己休息室的「不拘小节的旋律 桐谷透子」，放置入此卡曾经存在的格子。（高潮阶段开始之际若不存在此卡则不会发动）<br>【起】［① 【横置】2张你的角色卡］ 你将自己卡组顶的2张卡，放置入休息室，选择1张自己休息室的等级小于等于Ｘ的持有《音乐》特征的角色卡，返回手牌。Ｘ为那些卡片的合计等级。（高潮卡视作等级为0的卡片）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-013",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-013SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-014": {
+    "name": "满月下跃动的身影 奥泽美咲",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 500,
+    "cost": 1,
+    "trait": ["音楽", "ハロー、ハッピーワールド！"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，所有其他的你的持有《Hello, Happy World!》特征的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。<br>【起】［① 将1张手牌放置入休息室］ 你选择1张对方的角色卡，返回手牌。<br>【起】［【横置】 此卡］ 此能力1回合至多使用1次。你选择1张自己的角色卡，【竖置】。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-014",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-014SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-015": {
+    "name": "大学生们的对话 松原花音",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 3000,
+    "cost": 1,
+    "trait": ["音楽", "ハロー、ハッピーワールド！"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。<br>【自】 你的高潮卡被放置入高潮区时，你选择1张自己的角色卡，该回合中，力量＋1000。<br>【起】［【横置】 此卡］ 你检视自己卡组顶的1张卡，放置入卡组顶或卡组底。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-015",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-015SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-016": {
+    "name": "『戏剧性』的日常主角 濑田薰",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9000,
+    "cost": 2,
+    "trait": ["音楽", "ハロー、ハッピーワールド！"],
+    "color": "黄色",
+    "soul": 2,
+    "effect": "【永】 若你的休息室中存在小于等于2张高潮卡，则你手牌的此卡的等级－1。<br>【永】 若所有你的角色卡均持有《Hello, Happy World!》特征，则此卡的力量＋1500，此卡获得以下能力。『【自】［将1张手牌放置入休息室］ 此卡【倒置】时，你可以支付费用。若如此做，则将此卡返回手牌。』<br>【自】 此卡被从手牌放置入舞台时，你可以选择自己的计时区上方的1张卡片，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-016",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-016SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-017": {
+    "name": "“延展开的景色”广町七深",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音楽", "Morfonica"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋500。<br>【起】［① 将此卡放置入休息室］ 你检视自己卡组顶的至多4张卡，选择至多1张持有《音乐》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-017",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-017S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-018": {
+    "name": "最强的气氛制造者 桐谷透子",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音楽", "Morfonica"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你检视自己卡组顶的至多2张卡，将其以任意顺序放置于卡组顶。<br>【自】 对方的抽卡阶段开始之际，你公开自己卡组顶的1张卡。若该卡的等级大于等于1，则你可以将此卡放置入库存区。（高潮卡视作等级为0的卡片。公开的卡片放回原处）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-018",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-019": {
+    "name": "“爱的告白”奥泽美咲",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音楽", "ハロー、ハッピーワールド！"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你选择1张自己的等级大于等于1的角色卡，该回合中，魂＋1。<br>【自】 此卡攻击时，你选择1张其他的自己的持有《音乐》特征的角色卡，该回合中，力量＋Ｘ。Ｘ为其他的你的持有《音乐》特征的角色卡的张数×500。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-019",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-020": {
+    "name": "“为了笑容！”北泽育美",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音楽", "ハロー、ハッピーワールド！"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的等级小于等于0的角色卡，力量＋1000。<br>【起】 集中 ［①］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，执行以下行动。『你选择1张自己休息室的角色卡，返回手牌，选择1张自己的手牌，放置入休息室。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-020",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-020S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-021": {
+    "name": "“笑容的魔法”松原花音",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音楽", "ハロー、ハッピーワールド！"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 所有其他的你的黄色的角色卡，力量＋500。<br>【自】 其他的你的黄色的角色卡或此卡被从手牌放置入舞台时，你可以检视自己卡组顶的1张卡。（检视的卡放回原处）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-021",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-022": {
+    "name": "“无敌的主人公”弦卷心",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音楽", "ハロー、ハッピーワールド！"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 若前列中央的格子中存在此卡，则此卡的魂＋1。<br>【自】［① 将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组，选择至多1张持有《音乐》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-022",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-023": {
+    "name": "“嘿呦？嘿呦！”丸山彩",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["音楽", "Pastel＊Palettes"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌放置入计时区］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组，选择至多1张持有《Pastel＊Palettes》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-023",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-024": {
+    "name": "就像是米歇尔！ 北泽育美",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "trait": ["音楽", "ハロー、ハッピーワールド！"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 若存在大于等于2张其他的你的持有《Hello, Happy World!》特征的角色卡，则此卡获得以下能力。『【自】 此卡【倒置】时，若此卡的战斗对手的费用小于等于0，则你可以将该角色卡放置入库存区。若如此做，则你将对方库存区最下方的1张卡片，放置入休息室。』<br>【自】 战斗中的此卡【倒置】时，你公开自己卡组顶的1张卡。若该卡的等级大于等于2，则你可以将此卡返回手牌。（高潮卡视作等级为0的卡片。公开的卡片放回原处）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-024",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-025": {
+    "name": "“为了得到更多的憧憬”若宫伊芙",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 1,
+    "power": null,
+    "cost": 0,
+    "trait": ["音楽", "Pastel＊Palettes"],
+    "color": "黄色",
+    "soul": 0,
+    "effect": "【自】 其他的你的持有《音乐》特征角色卡攻击时，该回合中，此卡的力量＋1500。<br>【自】再演 ［将1张手牌的角色卡放置入休息室］ （此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则将此卡以【横置】状态放置入此卡曾经存在的格子）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-025",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-026": {
+    "name": "不拘小节的旋律 桐谷透子",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["音楽", "Morfonica"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】 此卡攻击时，你选择1张其他的自己的持有《音乐》特征的角色卡，该回合中，力量＋Ｘ。Ｘ为其他的你的持有《音乐》特征的角色卡的张数×500。<br>【自】 变换 ［将此卡放置入休息室］ 你的高潮阶段开始之际，你可以支付费用。若如此做，则你选择1张自己休息室的「我的假期 桐谷透子」，放置入此卡曾经存在的格子。（高潮阶段开始之际若不存在此卡则不会发动）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-026",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-026S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-027": {
+    "name": "为你献上梦幻的午后 濑田薰",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["音楽", "ハロー、ハッピーワールド！"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若所有你的角色卡均持有《Hello, Happy World!》特征，则此卡的力量＋2000。<br>【自】【CX联动】 此卡的战斗对手【倒置】时，若你的高潮区存在「出色的表演时间」，则你将自己卡组顶的至多1张卡，放置入库存区，选择至多1张自己休息室的「透过玻璃弹珠看世界」，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-027",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-027S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-028": {
+    "name": "“踏出第一步”松原花音",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5000,
+    "cost": 0,
+    "trait": ["音楽", "ハロー、ハッピーワールド！"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】 此卡攻击时，若存在大于等于2张其他的你的持有《音乐》特征的角色卡，则该回合中，此卡的力量＋2000。<br>【自】 此卡或此卡的战斗对手【倒置】时，该回合中，该角色卡无法使用『【自】 再演』。（规则赋予的『【自】 再演 ［③］』也无法使用）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-028",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-028S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-029": {
+    "name": "“舞台”奥泽美咲",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2000,
+    "cost": 1,
+    "trait": ["音楽", "ハロー、ハッピーワールド！"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】 你使用此卡的 『助太刀』时，你选择1张自己的战斗中的角色卡，该回合中，赋予其以下能力。『【自】 此卡的战斗对手【倒置】时，你将该角色卡放置入回忆区。』<br>【起】【反击】助太刀2000 等级1 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2000）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-029",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-029S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-030": {
+    "name": "“我就是我”濑田薰",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["音楽", "ハロー、ハッピーワールド！"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】［将2张手牌放置入休息室］ 你使用此卡的 『助太刀』时，你可以支付费用。若如此做，则你选择1张对方的等级高于对方的等级的角色卡，放置入休息室。<br>【起】【反击】 助太刀2500 等级2［① 将手牌的此卡放置入休息室］（你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2500）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-030",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-031": {
+    "name": "“延续梦想之路”白鹭千圣",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["音楽", "Pastel＊Palettes"],
+    "color": "黄色",
+    "soul": 2,
+    "effect": "【永】 若你舞台的角色卡持有颜色种类的合计大于等于4，则此卡的力量＋1500。<br>【自】 此卡被从手牌放置入舞台时，你可以选择自己的计时区上方的1张卡片，放置入休息室。<br>【自】【CX联动】［②］ 你的再演步骤开始之际，若高潮区存在「给予梦想的偶像」，且前列存在此卡，且不存在对方前列的角色卡或对方前列的角色卡全部处于【倒置】状态，则你可以支付费用。若如此做，则FEVER。<br>【replay】 FEVER 你选择至多1张自己的角色卡，【横置】，给予对方3点伤害。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-031",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-032": {
+    "name": "♡For you 广町七深",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["音楽", "Morfonica"],
+    "color": "黄色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你选择至多1张自己手牌的等级小于等于自己等级的角色卡，放置入舞台的任意格子，该回合中，该角色卡的魂＋1。<br>【自】［④］ 此卡攻击时，你可以支付费用。若如此做，则你选择1张自己的角色卡，该回合中，赋予其以下能力。『【自】 此能力1回合至多发动1次。此卡给予的伤害被取消时，你可以给予对方相同点伤害。』（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-032",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-033": {
+    "name": "透过玻璃弹珠看世界",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "你从以下效果中选择1个执行。<br>『你选择1张对方的角色卡，将其移动至对方舞台的不存在角色卡的其他格子。』<br>『你检视自己的卡组并选择至多1张持有《Hello, Happy World!》特征的角色卡展示给对手，加入手牌，将卡组洗切。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-033",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-033S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-034": {
+    "name": "PARE町小队",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你可以选择1张自己休息室的持有<img src=\"/effect-icons/soul.webp\">的角色卡，返回手牌或放置入库存区）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-034",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ09-034R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-035": {
+    "name": "出色的表演时间",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/bounce.webp\">：此卡触发时，你可以选择1张对方的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-035",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ09-035R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-036": {
+    "name": "向着光的1，2，3",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你可以选择1张自己休息室的持有<img src=\"/effect-icons/soul.webp\">的角色卡，返回手牌或放置入库存区）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-036",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ09-036R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-037": {
+    "name": "被卷入舞会",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/shot.webp\">：此回合中，触发此卡的攻击角色下次给予的伤害被取消时，给予对方1点伤害）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-037",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ09-037R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-038": {
+    "name": "给予梦想的偶像",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/bounce.webp\">：此卡触发时，你可以选择1张对方的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-038",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ09-038R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-039": {
+    "name": "受邀参加盛宴之人 美竹兰",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音楽", "Afterglow"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】 你的角色卡的触发判定中判出高潮卡时，若该卡持有的触发标记为<img src=\"/effect-icons/treasure.webp\">，则你可以抽1张卡。若如此做，则你选择1张自己的手牌，放置入休息室。<br>【起】 集中 ［① 【横置】此卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你检视自己的卡组并选择至多1张持有《Afterglow》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-039",
+        "rarity": "RR"
+      },
+      {
+        "id": "BD/WZ09-039SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-040": {
+    "name": "忍不住炫耀青梅竹马 羽泽鸫",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 5500,
+    "cost": 2,
+    "trait": ["音楽", "Afterglow"],
+    "color": "绿色",
+    "soul": 2,
+    "effect": "【永】 所有其他的你的持有《Afterglow》特征的角色卡，力量＋1500。<br>【自】 此卡被从手牌放置入舞台时，你可以选择自己的计时区上方的1张卡片，放置入休息室。<br>【自】【时计区】闹铃 ［①］ 若此卡存在于计时区的最上方，则你的主要阶段开始之际，你可以支付费用。若如此做，则你选择1张自己休息室的「永远的夕阳」，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-040",
+        "rarity": "RR"
+      },
+      {
+        "id": "BD/WZ09-040SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-041": {
+    "name": "一夏的闪耀 LAYER",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["音楽", "RAISE A SUILEN"],
+    "color": "绿色",
+    "soul": 2,
+    "effect": "【永】 此卡的战斗中，对方无法从手牌使用事件卡。<br>【自】 此卡被从手牌放置入舞台时，你检视自己的卡组并选择至多1张持有《音乐》特征的角色卡展示给对手，加入手牌，将卡组洗切。<br>【自】【CX联动】［将2张手牌放置入休息室］ 此卡攻击时，若高潮区存在「温暖的声音」，则你可以支付费用。若如此做，则你给予对方2点伤害、你检视对方卡组顶的1张卡，放置入卡组顶或卡组底。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-041",
+        "rarity": "RR"
+      },
+      {
+        "id": "BD/WZ09-041SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-042": {
+    "name": "\"本色真我\"大和麻弥",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音楽", "Pastel＊Palettes"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 应援 若你舞台的角色卡持有颜色种类的合计大于等于4，则所有此卡前面的你的角色卡，力量＋1000。<br>【自】 你的主要阶段开始之际，你可以选择1张自己计时区下方的卡片与1张休息室的持有《Pastel＊Palettes》特征的角色卡，互换位置。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-042",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ09-042SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-043": {
+    "name": "常伴身旁 青叶摩卡",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音楽", "Afterglow"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 若你的手牌大于等于5张，则此卡的力量＋2000。<br>【自】【时计区】 闹铃［将1张手牌中的高潮卡放置入休息室］ 若此卡存在于计时区的最上方，且存在大于等于2张你的持有《Afterglow》特征的角色卡，则你的主要阶段开始之际，你可以支付费用。若如此做，则你选择1张自己休息室的持有《Afterglow》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-043",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ09-043SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-044": {
+    "name": "发现了现行犯！？ LOCK",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音楽", "RAISE A SUILEN"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌放置入休息室］ 此卡攻击时，你可以支付费用。若如此做，则该攻击中，你在触发步骤进行2次触发判定。<br>【自】 此卡给予的伤害被取消时，你可以将此卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-044",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ09-044SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-045": {
+    "name": "托盘达人 若宫伊芙",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音楽", "Pastel＊Palettes"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若你舞台的角色卡持有颜色种类的合计大于等于4，则所有其他的你的角色卡，力量＋500。<br>【起】 集中 ［① 【横置】此卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你选择至多1张自己休息室的持有《Pastel＊Palettes》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-045",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ09-045SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-046": {
+    "name": "“属于我们的夕阳”宇田川巴",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音楽", "Afterglow"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】 其他的你的「真挚的心意 美竹兰」被从手牌放置入舞台时，该回合中，该角色卡的力量＋1500，将此卡放置入库存区。<br>【自】 羁绊／「真挚的心意 美竹兰」 ［将1张手牌放置入休息室］ （此卡被使用而放置入舞台时，你可以支付费用。若如此做，则你选择1张自己的休息室的「真挚的心意 美竹兰」，返回手牌）<br>【自】【时计区】 闹铃 若此卡存在于计时区的最上方，且存在大于等于4张你的持有《音乐》特征的角色卡，则你的高潮阶段开始之际，你抽至多2张卡，选择2张自己的手牌，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-046",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ09-046SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-047": {
+    "name": "就是那一点 MASKING",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["音楽", "RAISE A SUILEN"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，该回合中，此卡的力量＋1500。<br>【自】【CX联动】 此卡攻击时，若高潮区存在「180度，12分」，则你选择1张自己的持有《音乐》特征的角色卡，该回合中，赋予其以下能力。『【自】 此卡的战斗对手【倒置】时，你可以选择1张自己休息室的持有《音乐》特征的角色卡，返回手牌。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-047",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ09-047SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-048": {
+    "name": "前往集结新声音的地方 LAYER",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7500,
+    "cost": 1,
+    "trait": ["音楽", "RAISE A SUILEN"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】［②］ 此卡被从手牌放置入舞台时，若存在大于等于4张其他的你的持有《RAISE A SUILEN》特征的角色卡，则你可以支付费用。若如此做，则对方将自己库存区的所有卡，放置入休息室，对方从自己卡组顶将相同张数的卡放置入库存区。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-048",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ09-048SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-049": {
+    "name": "真挚的心意 美竹兰",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["音楽", "Afterglow"],
+    "color": "绿色",
+    "soul": 2,
+    "effect": "【永】 若你的休息室中存在小于等于2张高潮卡，则你手牌的此卡的等级－1。<br>【自】 此卡被从手牌放置入舞台时，若存在大于等于2张其他的你的持有《音乐》特征的角色卡，则你可以选择1张自己的计时区的角色卡，将该卡放置入回忆区。。<br>【自】 再演 ［将1张手牌中的持有《Afterglow》特征的角色卡放置入休息室］ （此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则将此卡以【横置】状态放置入此卡曾经存在的格子）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-049",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ09-049SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ09-049SEC+",
+        "rarity": "SEC+"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-050": {
+    "name": "学生食堂的甜点！ 上原绯玛丽",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["音楽", "Afterglow"],
+    "color": "绿色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你抽至多2张卡，选择1张自己的手牌，放置入休息室。<br>【自】【CX联动】 此卡攻击时，若高潮区存在「目标是大成功」，则该回合中，此卡的力量＋1000，你将自己卡组顶的2张卡，放置入休息室，那些卡片中每存在1张持有『闹铃』的卡片或事件卡，执行以下行动。『给予对方1点伤害。』（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-050",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ09-050SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-051": {
+    "name": "“暮色的回忆”美竹兰",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["音楽", "Afterglow"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】 战斗中的此卡【倒置】时，若此卡的战斗对手的等级小于等于0，则你可以将对方计时区上方的1张卡，放置入休息室。若如此做，则你将该角色卡放置入计时区。<br>【自】【时计区】 闹铃 若此卡存在于计时区的最上方，则你的高潮阶段开始之际，你选择1张自己的角色卡，该回合中，赋予其以下能力。『【自】［①］ 此卡攻击时，你可以支付费用。若如此做，则该攻击中，你在触发步骤进行2次触发判定。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-051",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-051S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-052": {
+    "name": "一勺入魂 宇田川巴",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音楽", "Afterglow"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】【时计区】 闹铃 若此卡存在于计时区的最上方，且存在你的持有《Afterglow》特征的角色卡，则你的高潮阶段开始之际，你检视自己卡组顶的至多2张卡，将其以任意顺序放置于卡组顶。<br>【起】［【横置】此卡］ 你选择1张自己的持有《Afterglow》特征的角色卡，该回合中，力量＋1500。若该角色卡持有『闹铃』，则变更为该回合中，力量＋2500。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-052",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-052SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-053": {
+    "name": "领会到的心意 LAYER",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音楽", "RAISE A SUILEN"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你将自己卡组顶的2张卡，放置入休息室，该回合中，此卡的力量＋Ｘ。Ｘ为那些卡片中持有《音乐》特征的角色卡的张数×1000。<br>【自】［① 将你卡组顶的1张卡放置入计时区］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的等级小于等于1的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-053",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-053S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ09-053SEC+",
+        "rarity": "SEC+"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-054": {
+    "name": "无论何时都要拼尽全力！ MASKING",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 3000,
+    "cost": 0,
+    "trait": ["音楽", "RAISE A SUILEN"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 此卡无法进行侧面攻击。<br>【自】 此卡被从手牌放置入舞台时，你可以选择1张自己的手牌，放置入库存区。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-054",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-054SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-055": {
+    "name": "代号摩卡 青叶摩卡",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5000,
+    "cost": 0,
+    "trait": ["音楽", "Afterglow"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】【CX联动】 「羽泽咖啡店的常客」被放置入你的高潮区时，若前列存在此卡，且存在其他的你的持有《Afterglow》特征的角色卡，则该回合中，此卡获得以下2个能力中你选择的1个能力。『【自】 此卡攻击时，你可以将自己卡组顶的1张卡，放置入库存区。』『【自】 此卡的战斗对手【倒置】时，你可以选择1张自己休息室的角色卡，返回手牌。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-055",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-055SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-056": {
+    "name": "传达的心意，跃动的心 LOCK",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 1,
+    "trait": ["音楽", "RAISE A SUILEN"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的持有《音乐》特征的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。<br>【自】［【横置】此卡］ 你使用『加速』时，若此卡处于【竖置】状态，则你可以支付费用。若如此做，则你可以选择1张自己休息室的持有《音乐》特征的角色卡，放置入库存区。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-056",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-056SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-057": {
+    "name": "少女的憧憬 上原绯玛丽",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 4500,
+    "cost": 1,
+    "trait": ["音楽", "Afterglow"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】 此卡【倒置】时，若此卡的战斗对手的等级高于对方的等级，则你可以将对方计时区上方的1张卡，放置入休息室。若如此做，则你将该角色卡放置入计时区。<br>【自】【时计区】 闹铃 若此卡存在于计时区的最上方，且存在大于等于4张你的持有《音乐》特征的角色卡，则你的高潮阶段开始之际，你可以将自己卡组顶的1张卡，放置入库存区。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-057",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-057SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-058": {
+    "name": "微小的『能做到的』事情 羽泽鸫",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["音楽", "Afterglow"],
+    "color": "绿色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你检视自己卡组顶的至多3张卡，选择至多1张卡片，加入手牌，其余的卡片放置入休息室。<br>【自】【CX联动】［① 将1张手牌放置入休息室］ 你的再演步骤开始之际，若高潮区存在「逐渐改变的天空」，且前列存在此卡，且不存在对方前列的角色卡或对方前列的角色卡全部处于【倒置】状态，则你可以支付费用。若如此做，则FEVER。<br>【replay】 FEVER 给予对方1点伤害，你选择1张对方前列的角色卡，放置入计时区。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-058",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-058SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-059": {
+    "name": "“最重要的是适度！”羽泽鸫",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["音楽", "Afterglow"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋500。<br>【自】【时计区】 闹铃 ［②］ 若此卡存在于计时区的最上方，且你的等级为大于等于2，且所有你的角色卡均持有《Afterglow》特征，则你的高潮阶段开始之际，你可以支付费用。若如此做，则给予对方1点伤害。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-059",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-059S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-060": {
+    "name": "“谦虚系偶像”大和麻弥",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音楽", "Pastel＊Palettes"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋500。<br>【起】［② 【横置】此卡］ 你检视自己的卡组并选择至多1张持有《音乐》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-060",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-060S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-061": {
+    "name": "“那天看到的夕阳”青叶摩卡",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音楽", "Afterglow"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】此卡被从手牌放置入舞台时，你公开自己卡组顶的1张卡。若该卡为持有《音乐》特征的角色卡则加入手牌，你选择1张自己的手牌，放置入休息室。（若非如此则放回原处）<br>【自】【时计区】 闹铃 若此卡存在于计时区的最上方，且存在大于等于3张你的持有《音乐》特征的角色卡，则你的高潮阶段开始之际，你选择1张自己的角色卡，该回合中，力量＋2000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-061",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-061S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-062": {
+    "name": "“一生的愿望！！”上原绯玛丽",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音楽", "Afterglow"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】 对方的攻击阶段开始之际，你可以将此卡移动至前列的不存在角色的格子。<br>【自】【时计区】 闹铃 若此卡存在于计时区的最上方，则高潮阶段开始之际，你选择1张自己的角色卡，该回合中，赋予其以下能力。『【自】 此卡的战斗对手【倒置】时，你可以将对方计时区上方的1张卡，放置入休息室。若如此做，则你将该角色卡放置入计时区。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-062",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-062S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-063": {
+    "name": "兴致勃勃之王 MASKING",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音楽", "RAISE A SUILEN"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌中的高潮卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的持有《音乐》特征的角色卡，返回手牌。<br>【自】 此卡攻击时，所有你的角色卡，该回合中，赋予其以下能力。『【自】 此卡的触发判定中判出触发标记为<img src=\"/effect-icons/treasure.webp\">的高潮卡时，你可以抽1张卡。若如此做，则你选择1张自己的手牌，放置入休息室。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-063",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-063S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-064": {
+    "name": "“诗笺的去向”冰川日菜",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音楽", "Pastel＊Palettes"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】 此卡攻击时，你选择1张自己的角色卡，该回合中，力量＋500。<br>【自】 此卡从舞台被放置入休息室时，你可以公开自己卡组顶的至多3张卡。若公开了大于等于1张卡，则你选择至多1张那些卡片中的持有《Pastel＊Palettes》特征的角色卡，加入手牌，其余的卡片放置入休息室，选择1张自己的手牌，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-064",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-064S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-065": {
+    "name": "即使分离 LOCK",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["音楽", "RAISE A SUILEN"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 若所有你的角色卡均持有《音乐》特征，则此卡的力量＋2000。<br>【自】【CX联动】 此卡攻击时，若高潮区存在「我面对事物的方法」，则你公开自己卡组顶的1张卡。若该卡为持有《音乐》特征的角色卡则加入手牌。（若非如此则放回原处）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-065",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-065S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-066": {
+    "name": "“前往辉煌的舞台”大和麻弥",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["音楽", "Pastel＊Palettes"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，该回合中，此卡的力量＋Ｘ。Ｘ为你的持有《音乐》特征的角色卡的张数×500。<br>【自】 此卡被从手牌放置入舞台时，你可以选择1张自己的计时区下方的卡片与1张休息室的持有《Pastel＊Palettes》特征的角色卡，互换位置。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-066",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-067": {
+    "name": "白色圣诞 宇田川巴",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["音楽", "Afterglow"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若存在其他的你的持有《Afterglow》特征的角色卡，则此卡的力量＋1500。<br>【自】［①］ 此卡攻击时，若你的计时区最上方存在持有『闹铃』的卡片，则你可以支付费用。若如此做，则该攻击中，你在触发步骤进行2次触发判定。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-067",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-067S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-068": {
+    "name": "狂犬鼓手 MASKING",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 1,
+    "trait": ["音楽", "RAISE A SUILEN"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】［①］ 你使用『加速』时，若你的计时区存在大于等于4张卡片，则你可以支付费用。若如此做，则你将自己的计时区上方的1张卡片，放置入休息室。<br>【起】［【横置】此卡］ 你选择1张自己的持有《RAISE A SUILEN》特征的角色卡，该回合中，力量＋3000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-068",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-069": {
+    "name": "“Hard Stroke”宇田川巴",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 500,
+    "cost": 1,
+    "trait": ["音楽", "Afterglow"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】【时计区】 闹铃 若此卡存在于计时区的最上方，且存在大于等于4张你的持有《音乐》特征的角色卡，则你的高潮阶段开始之际，你选择1张自己的角色卡，该回合中，力量＋2000，魂＋1。<br>【起】【反击】 助太刀3000 等级2 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋3000）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-069",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-070": {
+    "name": "“行动重于想法！”羽泽鸫",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 3000,
+    "cost": 1,
+    "trait": ["音楽", "Afterglow"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。<br>【自】【时计区】 闹铃 若此卡存在于计时区的最上方，且存在大于等于3张你的持有《音乐》特征的角色卡，则你的高潮阶段开始之际，你选择1张自己的角色卡，该回合中，力量＋2000。<br>【起】［【横置】此卡］ 你检视自己卡组顶的1张卡，放置入卡组顶或卡组底。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-070",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-071": {
+    "name": "陪伴在身旁 青叶摩卡",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 3500,
+    "cost": 1,
+    "trait": ["音楽", "Afterglow"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 若存在其他的你的「真挚的心意 美竹兰」，则所有其他的你的角色卡，力量＋500。<br>【永】 应援 所有此卡前面的你的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。<br>【起】 集中 ［① 【横置】2张你的角色卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你选择至多1张自己休息室的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-071",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-072": {
+    "name": "“我们来了！”上原绯玛丽",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6000,
+    "cost": 1,
+    "trait": ["音楽", "Afterglow"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若存在其他的你的「真挚的心意 美竹兰」，则此卡的力量＋6000。<br>【自】［①］ 此卡攻击时，你可以支付费用。若如此做，则该攻击中，你在触发步骤进行2次触发判定。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-072",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-073": {
+    "name": "被鼓动的心跳 LOCK",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9000,
+    "cost": 2,
+    "trait": ["音楽", "RAISE A SUILEN"],
+    "color": "绿色",
+    "soul": 2,
+    "effect": "【永】 若存在大于等于4张你的持有《RAISE A SUILEN》特征的角色卡，则你的手牌的此卡的等级－1。<br>【永】 若存在大于等于2张其他的你的持有《RAISE A SUILEN》特征的角色卡，则此卡的力量＋1000。<br>【自】 加速 ［将1张你的休息室的持有《音乐》特征的角色卡放置入计时区的下方］ 此卡被从手牌放置入舞台的回合中，你的高潮阶段开始之际，你可以支付费用。若如此做，则该回合中，此卡的力量＋1500，此卡获得以下能力。『【自】 此卡攻击时，你检视自己的卡组并选择至多2张持有《RAISE A SUILEN》特征的角色卡或「What's happen！？」展示给对手，加入手牌，将卡组洗切。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-073",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-074": {
+    "name": "擅长默默守候 LAYER",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["音楽", "RAISE A SUILEN"],
+    "color": "绿色",
+    "soul": 2,
+    "effect": "【永】 你的回合中，若存在大于等于2张其他的你的持有《音乐》特征的角色卡，则此卡的力量＋2000。<br>【自】［③ 将1张手牌放置入休息室］ 此能力1回合至多发动1次。此卡被从手牌放置入舞台的回合中，此卡的战斗对手【倒置】时，你可以支付费用。若如此做，则【竖置】此卡。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-074",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-075": {
+    "name": "“存在于此的证明”美竹兰",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["音楽", "Afterglow"],
+    "color": "绿色",
+    "soul": 2,
+    "effect": "【自】［①］ 此卡攻击时，你可以支付费用。若如此做，则你将自己卡组顶的3张卡，放置入休息室，给予对方Ｘ点伤害。Ｘ为那些卡片中的持有『闹铃』的卡片的张数。（会发生伤害取消）<br>【自】【时计区】 闹铃 ［① 将你卡组顶的1张卡放置入计时区的下方］ 若此卡存在于计时区的最上方，则你的主要阶段开始之际，你可以支付费用。若如此做，则你检视自己的卡组并选择至多1张持有《Afterglow》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-075",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-076": {
+    "name": "重要的诗笺",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 0,
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "将此卡放置入回忆区。<br>【自】 记忆 你的主要阶段开始之际，若回忆区存在此卡，则你检视自己的卡组并选择至多1张持有《Pastel＊Palettes》特征的角色卡展示给对手，加入手牌，将卡组洗切，将此卡放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-076",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-076S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-077": {
+    "name": "永远的夕阳",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 3,
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【反击】 若存在大于等于5张你的持有《Afterglow》特征的角色卡，则你选择1张对方的角色卡，【横置】。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-077",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-077S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-078": {
+    "name": "180度，12分",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000,魂＋1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-078",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ09-078R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-079": {
+    "name": "我面对事物的方法",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000,魂＋1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-079",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ09-079R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-080": {
+    "name": "温暖的声音",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000,魂＋1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-080",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ09-080R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-081": {
+    "name": "逐渐改变的天空",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000,魂＋1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-081",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ09-081R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-082": {
+    "name": "羽泽咖啡店的常客",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000,魂＋1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-082",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ09-082R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-083": {
+    "name": "目标是大成功",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000,魂＋1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-083",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ09-083R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-084": {
+    "name": "“憧憬的姐姐”牛込里美",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音楽", "Poppin'Party"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 你的高潮阶段开始之际，你选择1张自己的角色卡，该回合中，力量＋500。<br>【起】 集中 ［① 【横置】此卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你选择至多1张自己休息室的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-084",
+        "rarity": "RR"
+      },
+      {
+        "id": "BD/WZ09-084SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-085": {
+    "name": "心情愉悦的学生会会长 冰川日菜",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5000,
+    "cost": 0,
+    "trait": ["音楽", "Pastel＊Palettes"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】【CX联动】 此卡攻击时，若高潮区存在「日菜抽中的大奖」，则你检视自己卡组顶的至多Ｘ张卡，选择至多1张持有《Pastel＊Palettes》的角色卡展示给对手，加入手牌，其余的卡片放置入休息室。Ｘ为你舞台的角色卡持有颜色种类的合计＋1。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-085",
+        "rarity": "RR"
+      },
+      {
+        "id": "BD/WZ09-085SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-086": {
+    "name": "为新声音干杯 户山香澄",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5000,
+    "cost": 0,
+    "trait": ["音楽", "Poppin'Party"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】【CX联动】 你的再演步骤开始之际，若高潮区存在「来・唱歌♪」，且前列存在此卡，且存在其他的你的持有《音乐》特征的角色卡，则按任意顺序分别执行以下效果各1次。『若不存在对方前列的角色卡或对方前列的角色卡全部处于【倒置】状态，则FEVER。』『你将自己卡组顶的至多1张卡，放置入休息室，公开自己卡组顶的1张卡。若该卡为等级大于等于1的角色卡则将其加入手牌。』（若非如此则放回原处）<br>【replay】 FEVER 你可以选择1张自己休息室的持有《音乐》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-086",
+        "rarity": "RR"
+      },
+      {
+        "id": "BD/WZ09-086SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-087": {
+    "name": "用花色来打扮 市谷有咲",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音楽", "Poppin'Party"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你检视自己卡组顶的至多2张卡，将其以任意顺序放置于卡组顶。<br>【自】［① 将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组，选择至多1张持有《音乐》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-087",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ09-087SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-088": {
+    "name": "愉快的聊天 山吹沙绫",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["音楽", "Poppin'Party"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 战斗中的此卡【倒置】时，你检视自己卡组顶的至多3张卡，选择至多1张高潮卡展示给对手，加入手牌，其余的卡片放置入休息室。若加入了手牌，则你选择1张自己的手牌，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-088",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ09-088SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-089": {
+    "name": "绽放在水面的花朵 白鹭千圣",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["音楽", "Pastel＊Palettes"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【永】 若前列存在此卡，则所有的你的持有《音乐》特征的角色卡，力量＋1500。<br>【自】［① 将1张手牌放置入休息室］ 此卡的战斗对手【倒置】时，你可以支付费用。若如此做，则给予对方1点伤害。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-089",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ09-089SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-090": {
+    "name": "手工制的许愿星 户山香澄",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["音楽", "Poppin'Party"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【永】 若前列存在此卡，则所有的你的持有《Poppin'Party》特征的角色卡，力量＋1500。<br>【自】［② 将1张手牌中的「用花色来打扮 市谷有咲」放置入休息室］ 此卡攻击时，你可以支付费用。若如此做，则你将自己卡组顶的1张卡，放置入休息室，给予对方Ｘ点伤害。Ｘ为该卡的等级＋1。（高潮卡视作等级为0的卡片。会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-090",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ09-090SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-091": {
+    "name": "“宝贵的时间”山吹沙绫",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["音楽", "Poppin'Party"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 你的高潮阶段开始之际，你选择1张自己的角色卡，该回合中，力量＋1000。<br>【起】 集中 ［① 【横置】2张你的角色卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你检视自己的卡组并选择至多1张持有《音乐》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-091",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-091SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-092": {
+    "name": "全力采访 户山香澄",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音楽", "Poppin'Party"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［① 将你卡组顶的1张卡放置入计时区］ 此卡的战斗对手【倒置】时，你可以支付费用。若如此做，则你抽1张卡。<br>【自】 此卡的战斗对手【倒置】时，你选择1张其他的自己的持有《Poppin'Party》特征的角色卡，【横置】，移动至后列的不存在角色卡的格子。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-092",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-092S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-093": {
+    "name": "倒映于水面上的心 牛込里美",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 1,
+    "trait": ["音楽", "Poppin'Party"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的持有《Poppin'Party》特征的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。<br>【自】 此卡被从手牌放置入舞台时，你可以将自己卡组顶的3张卡，放置入休息室。<br>【起】［【横置】此卡］若你的休息室中，分别存在不同的1张卡名含有「多惠」的角色卡与1张含有「里美」的角色卡与1张含有「沙绫」的角色卡与1张含有「有咲」的角色卡，则你选择1张自己的「为新声音干杯 户山香澄」，该回合中，力量＋4500。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-093",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-093SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-094": {
+    "name": "为了新的尝试 大和麻弥",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 6000,
+    "cost": 2,
+    "trait": ["音楽", "Pastel＊Palettes"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【永】 所有其他的你的持有《Pastel＊Palettes》特征的角色卡，力量＋Ｘ。Ｘ为你舞台的角色卡持有颜色种类的合计×500。<br>【自】 此卡被从手牌放置入舞台时，你可以选择1张自己休息室的持有《Pastel＊Palettes》特征的角色卡，返回手牌。<br>【起】［【横置】2张你的持有《Pastel＊Palettes》特征的角色卡］ 你分别选择1张自己的手牌和1张等级区的卡片，互换位置。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-094",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-094SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-095": {
+    "name": "我能做好吗？ 花园多惠",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["音楽", "Poppin'Party"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【永】 若你的休息室中存在的高潮卡小于等于2张，则你手牌的此卡的等级－1。<br>【自】 此卡被从手牌放置入舞台时，你可以选择自己的计时区上方的1张卡片，放置入休息室。<br>【自】 再演 ［① 将1张你的舞台的角色卡放置入休息室］ （此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则将此卡以【横置】状态放置入此卡曾经存在的格子）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-095",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-095SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-096": {
+    "name": "“必杀偶像姿势☆”丸山彩",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["音楽", "Pastel＊Palettes"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你检视自己卡组顶的至多3张卡，选择至多1张卡片，加入手牌，其余的卡片放置入休息室。<br>【自】【CX联动】［② 将2张手牌放置入休息室］ 此能力1回合至多发动1次。此卡攻击时，若高潮区存在「憧憬的前方」，且存在其他的你的黄色的角色卡与绿色的角色卡，则你可以支付费用。若如此做，则你选择1张其他的自己的蓝色的角色卡，【竖置】。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-096",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-096S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ09-096SEC+",
+        "rarity": "SEC+"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-097": {
+    "name": "玩具朋友 牛込里美",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["音楽", "Poppin'Party"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［①］ 你的高潮卡被放置入高潮区时，你可以支付费用。若如此做，则你将自己卡组顶的2张卡，放置入休息室，选择至多1张自己休息室的等级Ｘ以下的持有《Poppin'Party》特征的角色卡，返回手牌。X为那些卡片的合计等级。（高潮卡视作等级为0的卡片）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-097",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-097S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-098": {
+    "name": "开始打工了！ 户山香澄",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["音楽", "Poppin'Party"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你公开自己卡组顶的1张卡。若该卡为持有《音乐》特征的角色卡，则你选择1张自己的角色卡，该回合中，力量＋2000。（公开的卡片放回原处）<br>【自】 此卡【倒置】时，若此卡的战斗对手的等级小于等于1，则你可以将该角色卡【倒置】。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-098",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-098SEC+",
+        "rarity": "SEC+"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-099": {
+    "name": "点缀 山吹沙绫",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["音楽", "Poppin'Party"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 若存在大于等于2张其他的你的持有《Poppin'Party》特征的角色卡，则此卡的力量＋1000。<br>【自】 此卡被从手牌放置入舞台时，你检视自己卡组顶的1张卡，放置入卡组顶或休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-099",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-100": {
+    "name": "“舞台”白鹭千圣",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["音楽", "Pastel＊Palettes"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［①］ 你使用此卡的 『助太刀』时，若你舞台的角色卡持有颜色种类合计大于等于4，则你可以支付费用。若如此做，则你将所有自己休息室的卡片，返回卡组，将卡组洗切。<br>【起】【反击】 助太刀2500 等级2 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2500）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-100",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-100S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-101": {
+    "name": "“一日限定的新娘”山吹沙绫",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 4500,
+    "cost": 1,
+    "trait": ["音楽", "Poppin'Party"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。<br>【起】［【横置】1张其他的你的角色卡与此卡］ 若你的休息室存在事件卡，则你选择1张自己的角色卡，该回合中，力量＋500，赋予其以下能力。『【永】 此卡的战斗中，对方无法从手牌中使用事件卡及『助太刀』。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-101",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-101S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-102": {
+    "name": "没有注意看路？ 牛込里美",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6000,
+    "cost": 1,
+    "trait": ["音楽", "Poppin'Party"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的等级大于等于3的角色卡，力量＋2000。<br>【起】［② 【横置】此卡］ 你将自己计时区上方的1张卡片，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-102",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-103": {
+    "name": "向着全新的一片天",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "事件卡",
+    "level": 3,
+    "power": "-",
+    "cost": 0,
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "集中 你选择至多1张自己休息室的持有《Poppin'Party》特征的角色卡，返回手牌。你翻出自己卡组顶的5张卡，放置入休息室。若所有那些卡片均为持有《Poppin'Party》特征的角色卡，则给予对方3点伤害。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-103",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-103S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-104": {
+    "name": "憧憬的前方",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-104",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ09-104R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-105": {
+    "name": "日菜抽中的大奖",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-105",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ09-105R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-106": {
+    "name": "来・唱歌♪",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-106",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ09-106R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-107": {
+    "name": "早早盛开的唇彩 二叶筑紫",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["音楽", "Morfonica"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【起】［将2张手牌放置入休息室，将此卡放置入休息室］ 你选择1张自己休息室的等级小于等于自己等级的持有《音乐》特征的角色卡，放置入此卡曾经存在的格子。<br>【起】 集中 ［① 【横置】此卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你检视自己的卡组并选择至多1张持有《音乐》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-107",
+        "rarity": "RR"
+      },
+      {
+        "id": "BD/WZ09-107SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-108": {
+    "name": "为食评苦恼中 丸山彩",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音楽", "Pastel＊Palettes"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡攻击时，你选择1张自己的持有《Pastel＊Palettes》特征的角色卡，该回合中，力量＋1500。<br>【自】［① 将1张你的休息室的持有《Pastel＊Palettes》特征的角色卡放置入计时区的下方］ 战斗中的此卡【倒置】时，你可以支付费用。若如此做，则你选择1张自己休息室的持有《Pastel＊Palettes》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-108",
+        "rarity": "RR"
+      },
+      {
+        "id": "BD/WZ09-108SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-109": {
+    "name": "花的名字 凑友希那",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音楽", "Roselia"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［① 将你卡组顶的1张卡放置入计时区］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多1张等级小于等于1的角色卡展示给对手，加入手牌，将卡组洗切。<br>【自】 此卡的战斗中，你受到的伤害被取消时，你可以将此卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-109",
+        "rarity": "RR"
+      },
+      {
+        "id": "BD/WZ09-109SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-110": {
+    "name": "让人心情激动的事 仓田真白",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 8500,
+    "cost": 2,
+    "trait": ["音楽", "Morfonica"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【永】 每存在1张其他的你的持有《音乐》特征的角色卡，此卡的力量＋500。<br>【自】此卡被从手牌放置入舞台时，你可以选择自己的计时区上方的1张卡片，放置入休息室。<br>【自】【CX联动】［② 将此卡放置入回忆区］ 此卡给予的伤害被取消时，若你的高潮区存在「夕阳的泪滴」，且存在大于等于4张其他的你的持有《音乐》特征的角色卡，则你可以支付费用。若如此做，则你选择1张自己休息室的角色卡，放置入此卡曾经存在的格子。（不发生战斗）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-110",
+        "rarity": "RR"
+      },
+      {
+        "id": "BD/WZ09-110SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-111": {
+    "name": "因为是RAS，这是当然的 CHU²",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9000,
+    "cost": 2,
+    "trait": ["音楽", "RAISE A SUILEN"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【永】若你的休息室中存在小于等于2张高潮卡，则你手牌的此卡的等级－1。<br>【永】 每存在1张其他的你的后列的持有《音乐》特征的角色卡，此卡的力量＋1000。<br>【自】 此卡被从手牌放置入舞台的回合中，再演步骤开始之际，你可以选择自己的计时区上方的1张卡片，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-111",
+        "rarity": "RR"
+      },
+      {
+        "id": "BD/WZ09-111SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-112": {
+    "name": "必然的联系 今井莉莎",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["音楽", "Roselia"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【自】［①］ 此卡被从手牌或卡组放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多1张「必然的联系 今井莉莎」，放置入舞台的任意格子，将卡组洗切。<br>【自】【CX联动】［① 将1张手牌放置入休息室］ 此卡攻击时，若高潮区存在「STOP！」，则你可以支付费用。若如此做，则你检视自己卡组顶的至多2张卡，将其按任意顺序放置于卡组顶，给予对方Ｘ点伤害。Ｘ为你的「必然的联系 今井莉莎」的张数。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-112",
+        "rarity": "RR"
+      },
+      {
+        "id": "BD/WZ09-112SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-113": {
+    "name": "觉醒吧大魔姬 宇田川亚子",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["音楽", "Roselia"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌放置入休息室］ 你的高潮卡被放置入高潮区时，你可以支付费用。若如此做，则你抽1张卡。<br>【起】 集中 ［① 【横置】2张你的角色卡］ 你翻出自己卡组顶的5张卡，放置入休息室。那些卡片中每存在1张触发标记为<img src=\"/effect-icons/gate.webp\">的高潮卡，你选择至多1张自己休息室的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-113",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ09-113SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-114": {
+    "name": "慌张少女 白金燐子",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音楽", "Roselia"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 若存在其他的你的「觉醒吧大魔姬 宇田川亚子」，则所有其他的你的持有《Roselia》特征的角色卡，力量＋500。<br>【永】 应援 所有此卡前面的你的角色卡，力量＋500。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-114",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ09-114SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-115": {
+    "name": "窗边的微笑 凑友希那",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音楽", "Roselia"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你选择1张其他的自己的持有《Roselia》特征的角色卡，该回合中，力量＋1000。<br>【起】 集中 ［① 【横置】此卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你检视自己的卡组并选择至多1张持有《Roselia》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-115",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ09-115SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-116": {
+    "name": "沉醉于那音色 八潮瑠唯",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音楽", "Morfonica"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你将自己卡组顶的2张卡，放置入休息室。若那些卡片中存在等级小于等于0的角色卡，则该回合中，此卡即便进行侧面攻击魂也不会减少。<br>【自】［① 将1张手牌中的高潮卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的高潮卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-116",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ09-116SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-117": {
+    "name": "∞Surprise！ PAREO",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音楽", "RAISE A SUILEN"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你公开自己卡组顶的1张卡。若该卡为持有《音乐》特征的角色卡，则该回合中，此卡的等级＋1，力量＋1500。（公开的卡片放回原处）<br>【自】 此卡的战斗对手【倒置】时，你选择1张其他的自己的持有《音乐》特征的角色卡，【横置】，移动至后列的不存在角色卡的格子。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-117",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ09-117SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-118": {
+    "name": "寻找更好的声音 花园多惠",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["音楽", "Poppin'Party"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 若存在大于等于2张其他的你的持有《Poppin'Party》特征的角色卡，则此卡的力量＋2000。<br>【自】【CX联动】 此卡攻击时，若高潮区存在「马口铁兔子」，且存在大于等于2张其他的你的持有《Poppin'Party》特征的角色卡，则你公开自己卡组顶的3张卡，对方从那些卡片中选择1张角色卡或事件卡，加入你的手牌，你选择至多1张其余的卡片，放置于卡组顶，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-118",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ09-118SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-119": {
+    "name": "颤栗的演奏者 冰川纱夜",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["音楽", "Roselia"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 若存在大于等于2张其他的你的持有《Roselia》特征的角色卡，则此卡的力量＋1000。<br>【自】【CX联动】 「新作的挑战」被放置入你的高潮区时，若前列存在此卡，且存在其他的你的持有《Roselia》特征的角色卡，则直到下一个对方回合的结束之际为止，此卡获得以下2个能力中你选择的1个能力。『【自】 此卡攻击时，你可以将自己卡组顶的1张卡，放置入库存区。』『【自】 此卡被正面攻击时，你可以将此卡返回手牌。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-119",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ09-119SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-120": {
+    "name": "通过语言来表现 仓田真白",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10500,
+    "cost": 2,
+    "trait": ["音楽", "Morfonica"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【自】［① 将1张手牌放置入休息室］ 此卡攻击时，你可以支付费用。若如此做，则你将对方卡组底的3张卡，放置入休息室，给予对方Ｘ点伤害。Ｘ为那些卡片中的高潮卡的张数。（会发生伤害取消）<br>【自】 对方的回合中，你受到的伤害未被取消时，若前列存在此卡，则你检视自己卡组顶的1张卡，放置入卡组顶或休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-120",
+        "rarity": "R"
+      },
+      {
+        "id": "BD/WZ09-120SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "BD/WZ09-120SEC+",
+        "rarity": "SEC+"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-121": {
+    "name": "发现才能的视线 八潮瑠唯",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["音楽", "Morfonica"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，若存在大于等于2张其他的你的持有《音乐》特征的角色卡，则你可以抽1张卡。若如此做，则你选择1张自己的手牌，放置入休息室。<br>【起】［① 将此卡放置入休息室］ 你选择至多1张自己手牌的等级小于等于自己等级的持有《音乐》特征的角色卡，放置入此卡曾经存在的格子。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-121",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-121SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-122": {
+    "name": "烦人的电话 CHU²",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音楽", "RAISE A SUILEN"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 你使用『加速』时，你选择1张自己的角色卡，该回合中，力量＋1000。<br>【起】 集中 ［① 【横置】此卡］你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你检视自己的卡组并选择至多1张持有《RAISE A SUILEN》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-122",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-122SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-123": {
+    "name": "笑容绽放 今井莉莎",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音楽", "Roselia"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，若存在大于等于2张其他的你的持有《Roselia》特征的角色卡，则你可以抽1张卡。若如此做，则你选择1张自己的手牌，放置入休息室。<br>【自】［① 将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组选择至多1张持有《Roselia》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-123",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-123SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-124": {
+    "name": "名作词家・二叶筑紫",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音楽", "Morfonica"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌放置入休息室］ 此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则你检视自己卡组顶的至多4张卡，选择至多1张等级大于等于1的卡片展示给对手，加入手牌，其余的卡片放置入休息室。（高潮卡视作等级为0的卡片）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-124",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-124SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-125": {
+    "name": "耀眼夺目的历史 白鹭千圣",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音楽", "Pastel＊Palettes"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你检视自己卡组顶的1张卡，放置入卡组顶或卡组底。<br>【起】 集中 ［① 【横置】2张你的角色卡］ 你翻出自己卡组顶的Ｘ张卡，放置入休息室。那些卡片中每存在1张高潮卡，你选择至多1张自己休息室的角色卡，返回手牌。Ｘ为你舞台的角色卡持有颜色种类的合计＋1。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-125",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-125SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-126": {
+    "name": "握住对方的手 宇田川亚子",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音楽", "Roselia"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 若你库存区中存在的卡片小于等于2张，则此卡的力量＋1500。<br>【自】［将2张你的休息室的持有《Roselia》特征的角色卡返回卡组，将卡组洗切］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己的持有《Roselia》特征的角色卡，该回合中，力量＋2000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-126",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-126SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-127": {
+    "name": "开始失控的指南针 PAREO",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["音楽", "RAISE A SUILEN"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 加速 ［将你卡组顶的1张卡放置入计时区］ 你的高潮阶段开始之际，你可以支付费用。若如此做，则该回合中，此卡获得以下能力。『【自】 此卡攻击时，你检视自己的卡组并选择至多1张持有《RAISE A SUILEN》特征的角色卡展示给对手，加入手牌，你选择1张自己的手牌，放置入休息室，将卡组洗切。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-127",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-127SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-128": {
+    "name": "偶像大追踪 若宫伊芙",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["音楽", "Pastel＊Palettes"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌放置入计时区］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多1张持有《Pastel＊Palettes》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-128",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-128SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-129": {
+    "name": "让人腼腆的慰劳☆ 市谷有咲",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["音楽", "Poppin'Party"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 对方的回合中，若所有你的角色卡均持有《Poppin'Party》特征，则此卡的等级＋1，力量＋1500。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-129",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-129SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-130": {
+    "name": "未曾体会的欢喜 白金燐子",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["音楽", "Roselia"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌中的触发标记为<img src=\"/effect-icons/gate.webp\">的高潮卡放置入休息室］ 此卡攻击时，你可以支付费用。若如此做，则该回合中，此卡的力量＋1500，此卡获得以下能力。『【自】 此卡的战斗对手【倒置】时，你可以抽1张卡。』<br>【自】 经验 其他的你的持有《Roselia》特征的角色卡攻击时，若你的等级区的卡片的合计等级大于等于2，则该回合中，此卡的力量＋1500。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-130",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-130SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-131": {
+    "name": "“内向的女孩”仓田真白",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5000,
+    "cost": 0,
+    "trait": ["音楽", "Morfonica"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】【CX联动】 此卡攻击时，若高潮区存在「再次闪耀」，且存在其他的你的持有《音乐》特征的角色卡，则你将自己卡组顶的2张卡，放置入休息室，选择至多1张自己休息室的等级小于等于Ｘ的持有《音乐》特征的角色卡，返回手牌。Ｘ为因此效果被放置入休息室的卡片的合计等级。（高潮卡视作等级为0的卡片）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-131",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-131S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-132": {
+    "name": "积累每一个音符 冰川纱夜",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["音楽", "Roselia"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［② 将1张你的舞台的角色卡放置入休息室］ 你使用此卡的『助太刀』时，你可以支付费用。若如此做，则你选择1张对方的等级高于对方的等级的角色卡，放置入休息室。<br>【起】【反击】 助太刀2500 等级2 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2500）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-132",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-132SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-133": {
+    "name": "“潸然泪下”凑友希那",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 8000,
+    "cost": 2,
+    "trait": ["音楽", "Roselia"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【永】 经验 若你的等级区存在「“潸然泪下”凑友希那」，则你手牌的此卡的等级－1。<br>【永】 若所有你的角色卡均持有《Roselia》特征，则此卡的力量＋2000。<br>【自】 此卡被从手牌放置入舞台时，你可以选择自己的计时区上方的1张卡片，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-133",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-133S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-134": {
+    "name": "“未知数的存在”冰川日菜",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["音楽", "Pastel＊Palettes"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【永】 若你的舞台的角色卡持有的颜色种类合计大于等于4，则此卡的力量＋1500。<br>【自】 此卡被从手牌放置入舞台时，你可以选择自己的计时区上方的1张卡片，放置入休息室。<br>【自】 此卡被从手牌放置入舞台时，若你的舞台的角色卡持有的颜色种类合计大于等于4，则你可以选择1张自己休息室的持有《音乐》特征的角色卡，放置入库存区。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-134",
+        "rarity": "U"
+      },
+      {
+        "id": "BD/WZ09-134SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-135": {
+    "name": "在那片天空下休憩 仓田真白",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["音楽", "Morfonica"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡攻击时，你选择1张自己的持有《Morfonica》特征的角色卡，该回合中，力量＋1500。<br>【自】［将你卡组顶的1张卡放置入计时区］ 对方的攻击阶段开始之际，你可以支付费用。若如此做，则你将此卡移动至后列的不存在角色卡的格子。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-135",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-136": {
+    "name": "“情牵两人”今井莉莎",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["音楽", "Roselia"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你可以将自己卡组顶的3张卡，放置入休息室。<br>【自】 羁绊／「“笼中的歌姬”凑友希那」 ［①］ （此卡被使用而放置入舞台时，你可以支付费用。若如此做，则你选择1张自己的休息室的「“笼中的歌姬”凑友希那」，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-136",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-137": {
+    "name": "“不可动摇的觉悟”冰川纱夜",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["音楽", "Roselia"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［①］ 再演步骤开始之际，若不存在其他的你的前列的处于【横置】状态的角色卡，则你可以支付费用。若如此做，则【横置】此卡。<br>【自】 战斗中的此卡【倒置】时，若此卡的战斗对手的等级小于等于0，则你可以将该角色卡放置入卡组底。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-137",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-137S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-138": {
+    "name": "“大家挑选的泳衣”白金燐子",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["音楽", "Roselia"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 所有其他的你的持有《音乐》特征的角色卡，力量＋500。<br>【起】［①］ 你选择1张对方的前列的等级小于等于0的角色卡，放置入卡组底。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-138",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-139": {
+    "name": "送上声援 花园多惠",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["音楽", "Poppin'Party"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 战斗中的此卡【倒置】时，若此卡的战斗对手的等级小于等于0，则你可以将该角色卡放置入卡组底。<br>【起】［① 将此卡放置入休息室］ 你检视自己卡组顶的至多4张卡，选择至多1张持有《Poppin'Party》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-139",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-139S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-140": {
+    "name": "闪亮的舞步 CHU²",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音楽", "RAISE A SUILEN"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你公开自己卡组顶的1张卡，选择1张自己休息室的等级小于等于Ｘ的角色卡，返回手牌。X为被公开的卡片的等级。（高潮卡视作等级为0的卡片。公开的卡片放回原处）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-140",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-140S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-141": {
+    "name": "看不见，但是没关系 今井莉莎",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音楽", "Roselia"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 所有其他的你的持有《Roselia》特征的角色卡，力量＋500。<br>【自】［① 【横置】处于【竖置】状态的此卡］ 你升级时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多1张「“潸然泪下”凑友希那」展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-141",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-141S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-142": {
+    "name": "“大家一起喝下午茶”宇田川亚子",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音楽", "Roselia"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 若存在大于等于2张其他的你的持有《Roselia》特征的角色卡，则此卡的力量＋1000。<br>【自】［将1张手牌中的高潮卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的持有《音乐》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-142",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-142S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-143": {
+    "name": "“……喂、喂……”白金燐子",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音楽", "Roselia"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 若存在大于等于2张其他的你的持有《音乐》特征的角色卡，则此卡的力量＋1000。<br>【自】 对方的抽卡阶段开始之际，你公开自己卡组顶的1张卡。若该卡的等级大于等于1，则你可以将此卡返回手牌。（高潮卡视作等级为0的卡片。公开的卡片放回原处）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-143",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-143S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-144": {
+    "name": "“想要一起分担！”若宫伊芙",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["音楽", "Pastel＊Palettes"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 若你库存区中存在的卡片小于等于2张，则此卡的力量＋1500。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-144",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-144S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-145": {
+    "name": "“这次由我来”冰川纱夜",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["音楽", "Roselia"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡的战斗对手【倒置】时，你选择1张其他的自己的持有《Roselia》特征的角色卡，【横置】，移动至后列的不存在角色卡的格子。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-145",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-146": {
+    "name": "“世界第一帅气！”宇田川亚子",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 0,
+    "trait": ["音楽", "Roselia"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 若存在大于等于2张其他的你的持有《Roselia》特征的角色卡，则此卡的力量＋3000。<br>【自】 此卡被从手牌放置入舞台时，你公开自己卡组顶的1张卡。若该卡为等级大于等于2的卡片则将其放置入库存区。（高潮卡视作等级为0的卡片。若非如此则放回原处）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-146",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-147": {
+    "name": "“哎～……原来是真的吗……”市谷有咲",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 0,
+    "trait": ["音楽", "Poppin'Party"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你检视自己卡组顶的至多2张卡，选择至多2张持有《音乐》特征的角色卡展示给对手，将其作为此卡下方的标识物按任意顺序表侧表示放置，其余的卡片放置入休息室。<br>【起】［将此卡下方的2张标识物放置入休息室］ 你选择1张对方的等级小于等于0的角色卡，返回手牌，该回合中，此卡的力量＋4500。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-147",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-148": {
+    "name": "贴心的照料 PAREO",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 1,
+    "trait": ["音楽", "RAISE A SUILEN"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡【倒置】时，若此卡的战斗对手的等级高于对方的等级，则你可以将该角色卡放置入卡组底。<br>【自】 加速 ［将1张你的休息室的持有《音乐》特征的角色卡放置入计时区的下方］ 你的高潮阶段开始之际，你可以支付费用。若如此做，则你检视自己卡组顶的1张卡，放置入卡组顶或休息室，选择至多1张自己休息室的持有《RAISE A SUILEN》特征的角色卡，放置入库存区。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-148",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-148S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-149": {
+    "name": "泳圈达人 二叶筑紫",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 1500,
+    "cost": 1,
+    "trait": ["音楽", "Morfonica"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［将2张手牌中的持有《音乐》特征的角色卡放置入休息室］ 你使用此卡的『助太刀』时，你可以支付费用。若如此做，则你选择1张对方的等级高于对方的等级的角色卡，放置入卡组底。<br>【起】【反击】 助太刀2500 等级2 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2500）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-149",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-149S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-150": {
+    "name": "长胡子的圣诞老人 花园多惠",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["音楽", "Poppin'Party"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 你使用此卡的『助太刀』时，你选择1张自己的战斗中的角色卡，该回合中，赋予其以下能力。『【自】 此卡的战斗对手【倒置】时，你将该角色卡放置入回忆区。』<br>【起】【反击】 助太刀3000 等级2 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋3000）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-150",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-151": {
+    "name": "最强女学生 CHU²",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 4500,
+    "cost": 1,
+    "trait": ["音楽", "RAISE A SUILEN"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。<br>【起】［【横置】此卡］ 你选择1张其他的自己的角色卡，放置入库存区。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-151",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-152": {
+    "name": "梦幻可爱♪女仆 PAREO",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 5000,
+    "cost": 1,
+    "trait": ["音楽", "RAISE A SUILEN"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 若前列存在其他的你的「因为是RAS，这是当然的 CHU²」，则此卡的力量＋5500，此卡获得『【自】 再演 ［将1张手牌中的持有《音乐》特征的角色卡放置入休息室］』。<br>【永】 所有其他的你的「因为是RAS，这是当然的 CHU²」，力量＋2000，赋予其以下3个能力。『【永】 此卡不会被对方的效果选择。』『【永】 此卡不会因对方的角色卡的【自】的效果被【倒置】。』『【自】［①］ 此卡攻击时，你可以支付费用。若如此做，则该攻击中，你在触发步骤进行2次触发判定。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-152",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-153": {
+    "name": "白色蝴蝶的旋律 八潮瑠唯",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6500,
+    "cost": 1,
+    "trait": ["音楽", "Morfonica"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的持有《Morfonica》特征的角色卡，力量＋1500。<br>【自】 变换 ［将此卡放置入休息室］ 你的高潮阶段开始之际，你可以支付费用。若如此做，则你选择1张自己的休息室的「时尚领结 八潮瑠唯」，放置入此卡曾经存在的格子。（高潮阶段开始之际若不存在此卡则不会发动）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-153",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-153S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-154": {
+    "name": "时尚领结 八潮瑠唯",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 1,
+    "trait": ["音楽", "Morfonica"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡攻击时，若此卡正面的角色卡的等级大于等于3，则该回合中，此卡的力量＋6000。<br>【自】 变换 ［将此卡放置入休息室］ 你的高潮阶段开始之际，你可以支付费用。若如此做，则你选择1张自己的休息室的「白色蝴蝶的旋律 八潮瑠唯」，放置入此卡曾经存在的格子。（高潮阶段开始之际若不存在此卡则不会发动）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-154",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-155": {
+    "name": "“舞台”冰川日菜",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 1,
+    "trait": ["音楽", "Pastel＊Palettes"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡攻击时，若此卡正面的角色卡的等级大于等于3，则该回合中，此卡的力量＋6000。<br>【自】 再演 ［将1张手牌中的持有《Pastel＊Palettes》特征的角色卡放置入休息室］ （此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则将此卡以【横置】状态放置入此卡曾经存在的格子）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-155",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-156": {
+    "name": "“笼中的歌姬”凑友希那",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["音楽", "Roselia"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【永】 你的回合中，每存在1张其他的你的持有《音乐》特征的角色卡，此卡的力量＋500。<br>【自】 此卡被从手牌放置入舞台时，你可以选择自己的计时区上方的1张卡片，放置入休息室。<br>【自】【CX联动】［③ 将2张手牌放置入休息室］ 此卡的战斗对手【倒置】时，若你的高潮区存在「激昂的高歌」，则你可以支付费用。若如此做，则执行2次以下行动。『给予对方2点伤害。』（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-156",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-156SEC+",
+        "rarity": "SEC+"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-157": {
+    "name": "“可爱的朋友”市谷有咲",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["音楽", "Poppin'Party"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【永】 若你的休息室中存在的高潮卡小于等于2张，则你手牌的此卡的等级－1。<br>【永】 若前列存在此卡，则所有你的持有《音乐》特征的角色卡，力量＋1500。<br>【自】【CX联动】此卡攻击时，若高潮区存在「盛开的樱花树下」，且存在大于等于4张其他的你的持有《音乐》特征的角色卡，则直到下一个对方回合的结束之际为止，此卡的力量＋1000，此卡获得以下能力。『【自】 对方的攻击阶段开始之际，你选择至多2张对方的角色卡，该回合中，魂－1。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-157",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-157S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-158": {
+    "name": "交给班长吧 二叶筑紫",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["音楽", "Morfonica"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【永】 若你的休息室中存在小于等于2张高潮卡，则你手牌的此卡的等级－1。<br>【自】 此卡被从手牌放置入舞台时，该回合中，此卡的力量＋1500。<br>【自】 此卡被从舞台放置入休息室时，你可以将此卡返回手牌。若如此做，则你选择至多1张自己休息室的持有《音乐》特征的角色卡，放置入库存区。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-158",
+        "rarity": "C"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ09-159": {
+    "name": "普通的伪装",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 0,
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "你选择1张自己休息室的等级小于等于Ｘ的持有《音乐》特征的角色卡，返回手牌。Ｘ为你休息室中的「“内向的女孩”仓田真白」的张数。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-159",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-159S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-160": {
+    "name": "不习惯的电话",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【反击】 若存在的你的持有《音乐》特征的角色卡小于等于1张，则此卡无法从手牌被使用。<br>你从以下效果中选择1个执行。若分别存在不同的你的1张卡名含有「友希那」的角色卡与1张含有「莉莎」的角色卡与1张含有「纱夜」的角色卡与1张含有「亚子」的角色卡与1张含有「燐子」的角色卡，则变为选择1个效果执行2次。<br>『你选择1张对方的角色卡，该回合中，魂－1。』<br>『你选择1张自己的战斗中的角色卡，该回合中，力量＋3000。』<br>『你检视自己的卡组并选择至多1张持有《音乐》特征的角色卡展示给对手，加入手牌，将卡组洗切。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-160",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-160S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-161": {
+    "name": "What's happen！？",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 2,
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【反击】 若所有你的角色卡均持有《RAISE A SUILEN》特征，则你选择1张对方的战斗中的角色卡，该回合中，魂－2，抽至多1张卡。若抽了1张卡，则你选择1张自己的手牌，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-161",
+        "rarity": "C"
+      },
+      {
+        "id": "BD/WZ09-161S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-162": {
+    "name": "夕阳的泪滴",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-162",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ09-162R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-163": {
+    "name": "再次闪耀",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-163",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ09-163R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-164": {
+    "name": "激昂的高歌",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-164",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ09-164R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-165": {
+    "name": "STOP！",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-165",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ09-165R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-166": {
+    "name": "新作的挑战",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-166",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ09-166R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-167": {
+    "name": "盛开的樱花树下",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-167",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ09-167R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ09-168": {
+    "name": "马口铁兔子",
+    "product_name": "「BanG Dream! 少女乐团派对! Remix」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ09-168",
+        "rarity": "CR"
+      },
+      {
+        "id": "BD/WZ09-168R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  }
+}

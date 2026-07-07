@@ -1,0 +1,483 @@
+{
+  "BD/WZ08-T01": {
+    "name": "“Quaerere Lumina”Mortis",
+    "product_name": "【BanG Dream! [Ave Mujica]】预构筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音楽", "Ave Mujica"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，此卡的力量＋3000。<br>【自】［①］ 再演步骤开始之际，若不存在其他的你的前列的处于【横置】状态的角色卡，则你可以支付费用。若如此做，则【横置】此卡。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-T01",
+        "rarity": "TD"
+      },
+      {
+        "id": "BD/WZ08-T01R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-T02": {
+    "name": "“Perdere Omnia”Oblivionis",
+    "product_name": "【BanG Dream! [Ave Mujica]】预构筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音楽", "Ave Mujica"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】［① 将1张手牌中的高潮卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的高潮卡，返回手牌。<br>【自】 此卡【倒置】时，若此卡的战斗对手的等级小于等于0，则你可以将对方计时区上方的1张卡，放置入休息室。若如此做，则你将该角色卡放置入计时区。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-T02",
+        "rarity": "TD"
+      },
+      {
+        "id": "BD/WZ08-T02R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ08-T02SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-T03": {
+    "name": "“Perdere Omnia”Mortis",
+    "product_name": "【BanG Dream! [Ave Mujica]】预构筑卡组",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["音楽", "Ave Mujica"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，该回合中，此卡的力量＋3000。<br>【自】【CX联动】 此卡的战斗对手【倒置】时，若你的高潮区存在「Choir ‘S’ Choir」，且存在大于等于2张其他的你的持有《音乐》特征的角色卡，则你检视自己的卡组，选择至多1张持有《音乐》特征的角色卡展示给对手，加入手牌，将卡组洗切，选择1张自己的角色卡，该回合中，力量＋2000。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-T03",
+        "rarity": "TD"
+      },
+      {
+        "id": "BD/WZ08-T03R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ08-T03SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-T04": {
+    "name": "“Quaerere Lumina”Oblivionis",
+    "product_name": "【BanG Dream! [Ave Mujica]】预构筑卡组",
+    "type": "角色卡",
+    "level": 1,
+    "power": 6000,
+    "cost": 1,
+    "trait": ["音楽", "Ave Mujica"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-T04",
+        "rarity": "TD"
+      },
+      {
+        "id": "BD/WZ08-T04R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-T05": {
+    "name": "“Veritas”Mortis",
+    "product_name": "【BanG Dream! [Ave Mujica]】预构筑卡组",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6000,
+    "cost": 1,
+    "trait": ["音楽", "Ave Mujica"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 每存在1张其他的你的持有《音乐》特征的角色卡，此卡的力量＋1000。<br>【自】 此卡的战斗对手【倒置】时，你选择1张自己休息室的持有《音乐》特征的角色卡，返回手牌，选择1张自己的手牌，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-T05",
+        "rarity": "TD"
+      },
+      {
+        "id": "BD/WZ08-T05R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ08-T05SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-T06": {
+    "name": "“Veritas”Oblivionis",
+    "product_name": "【BanG Dream! [Ave Mujica]】预构筑卡组",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["音楽", "Ave Mujica"],
+    "color": "绿色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你选择1张自己的持有《音乐》特征的角色卡，该回合中，力量＋1500。<br>【自】［②］ 此卡被从手牌放置入舞台的回合中，你的再演步骤开始之际，若存在其他的你的持有《音乐》特征的角色卡，则你可以支付费用。若如此做，则给予对方2点伤害。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-T06",
+        "rarity": "TD"
+      },
+      {
+        "id": "BD/WZ08-T06R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ08-T06SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-T07": {
+    "name": "Choir ‘S’ Choir",
+    "product_name": "【BanG Dream! [Ave Mujica]】预构筑卡组",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-T07",
+        "rarity": "TD"
+      },
+      {
+        "id": "BD/WZ08-T07R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-T08": {
+    "name": "“Quaerere Lumina”Amoris",
+    "product_name": "【BanG Dream! [Ave Mujica]】预构筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["音楽", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【起】［将此卡放置入休息室］ 你选择1张自己的持有《音乐》特征的角色卡，该回合中，力量＋2000。<br>【起】 集中 ［① 【横置】此卡］ 你翻出自己卡组顶的5张卡，放置入休息室。那些卡片中每存在1张高潮卡，你抽至多1张卡。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-T08",
+        "rarity": "TD"
+      },
+      {
+        "id": "BD/WZ08-T08R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-T09": {
+    "name": "“Quaerere Lumina”Doloris",
+    "product_name": "【BanG Dream! [Ave Mujica]】预构筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音楽", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 所有其他的你的「“Quaerere Lumina”Oblivionis」，力量＋1500，并赋予其『【自】 再演 ［将1张手牌的角色卡放置入休息室］』。<br>【自】 羁绊／「“Quaerere Lumina”Oblivionis」 ［将1张手牌放置入休息室］ （此卡被使用而放置入舞台时，你可以支付费用。若如此做，则你选择1张自己的休息室「“Quaerere Lumina”Oblivionis」，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-T09",
+        "rarity": "TD"
+      },
+      {
+        "id": "BD/WZ08-T09R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-T10": {
+    "name": "“Veritas”Doloris",
+    "product_name": "【BanG Dream! [Ave Mujica]】预构筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音楽", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 若你库存区中存在的卡片小于等于3张，则此卡的力量＋1000。<br>【自】 对方的攻击阶段开始之际，你可以将此卡移动至前列的不存在角色的格子。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-T10",
+        "rarity": "TD"
+      },
+      {
+        "id": "BD/WZ08-T10S",
+        "rarity": "SR"
+      },
+      {
+        "id": "BD/WZ08-T10R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ08-T10SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-T11": {
+    "name": "“Perdere Omnia”Timoris",
+    "product_name": "【BanG Dream! [Ave Mujica]】预构筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音楽", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 所有其他的你的持有《音乐》特征的角色卡，力量＋500。<br>【起】［① 将1张手牌放置入休息室，【横置】此卡］ 你检视自己的卡组，选择至多1张持有《音乐》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-T11",
+        "rarity": "TD"
+      },
+      {
+        "id": "BD/WZ08-T11R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ08-T11SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-T12": {
+    "name": "“Veritas”Amoris",
+    "product_name": "【BanG Dream! [Ave Mujica]】预构筑卡组",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "trait": ["音楽", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，此卡的力量＋1000。<br>【自】此卡的战斗中，你受到的伤害未被取消时，你可以将此卡放置入库存区。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-T12",
+        "rarity": "TD"
+      },
+      {
+        "id": "BD/WZ08-T12R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ08-T12SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-T13": {
+    "name": "“Perdere Omnia”Amoris",
+    "product_name": "【BanG Dream! [Ave Mujica]】预构筑卡组",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["音楽", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。<br>【自】 你的高潮阶段开始之际，你选择至多2张自己的持有《音乐》特征的角色卡，该回合中，力量＋1500。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-T13",
+        "rarity": "TD"
+      },
+      {
+        "id": "BD/WZ08-T13R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ08-T13SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-T14": {
+    "name": "“Veritas”Timoris",
+    "product_name": "【BanG Dream! [Ave Mujica]】预构筑卡组",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["音楽", "Ave Mujica"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 你使用此卡的 『助太刀』时，你选择1张自己的战斗中的角色卡，该回合中，赋予其以下能力。『【自】 此卡的战斗对手【倒置】时，你将该角色卡放置入回忆区。』<br>【起】【反击】 助太刀3000 等级2 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋3000）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-T14",
+        "rarity": "TD"
+      },
+      {
+        "id": "BD/WZ08-T14R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ08-T14SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-T15": {
+    "name": "“Quaerere Lumina”Timoris",
+    "product_name": "【BanG Dream! [Ave Mujica]】预构筑卡组",
+    "type": "角色卡",
+    "level": 2,
+    "power": 5000,
+    "cost": 1,
+    "trait": ["音楽", "Ave Mujica"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，该回合中，此卡的力量＋6000。<br>【自】［【横置】1张其他的你的处于【竖置】状态的持有《音乐》特征的角色卡］ 此卡被从手牌放置入舞台的回合中，此卡的战斗对手【倒置】时，你可以支付费用。若如此做，则你可以将自己卡组顶的1张卡，放置入库存区。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-T15",
+        "rarity": "TD"
+      },
+      {
+        "id": "BD/WZ08-T15R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-T16": {
+    "name": "“Perdere Omnia”Doloris",
+    "product_name": "【BanG Dream! [Ave Mujica]】预构筑卡组",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["音楽", "Ave Mujica"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【自】 ［①］ 此卡被从手牌放置入舞台时，你选择自己的计时区上方的至多1张卡片，放置入休息室，你可以支付费用。若支付了费用，则你选择1张对方休息室的角色卡，放置入舞台的不存在角色卡的格子。<br>【自】【CX联动】［① 将1张手牌放置入休息室］ 此卡的战斗对手【倒置】时，若你的高潮区存在「黑色生日」，且存在大于等于2张其他的你的持有《音乐》特征的角色卡，则你可以支付费用。若如此做，则你可以给予对方1点伤害，你将该战斗对手放置入计时区。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-T16",
+        "rarity": "TD"
+      },
+      {
+        "id": "BD/WZ08-T16R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BD/WZ08-T16SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BD/WZ08-T17": {
+    "name": "双月~Deep Into The Forest~",
+    "product_name": "【BanG Dream! [Ave Mujica]】预构筑卡组",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 0,
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "从手牌使用此卡时可以不满足颜色条件。<br>你选择1张自己的角色卡，该回合中，赋予其以下能力。『【自】 此卡的战斗对手【倒置】时，你检视自己卡组顶的至多2张卡，选择至多2张持有《音乐》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室。』",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-T17",
+        "rarity": "TD"
+      },
+      {
+        "id": "BD/WZ08-T17R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-T18": {
+    "name": "黑色生日",
+    "product_name": "【BanG Dream! [Ave Mujica]】预构筑卡组",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-T18",
+        "rarity": "TD"
+      },
+      {
+        "id": "BD/WZ08-T18R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BD/WZ08-T19": {
+    "name": "愚神",
+    "product_name": "【BanG Dream! [Ave Mujica]】预构筑卡组",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【永】　所有你的角色卡，魂＋2。",
+    "all_cards": [
+      {
+        "id": "BD/WZ08-T19",
+        "rarity": "TD"
+      },
+      {
+        "id": "BD/WZ08-T19R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 2
+  }
+}
