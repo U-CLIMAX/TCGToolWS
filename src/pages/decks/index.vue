@@ -204,7 +204,9 @@
               </LazyCardWrapper>
             </v-col>
           </div>
-          <div v-else-if="!deckStore.isLoading" class="text-center text-medium-emphasis mt-10">暂无卡组</div>
+          <div v-else-if="!deckStore.isLoading" class="text-center text-medium-emphasis mt-10">
+            暂无卡组
+          </div>
         </div>
       </v-container>
 
