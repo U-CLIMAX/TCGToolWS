@@ -140,22 +140,156 @@ export const handleCreateDeck = async (c) => {
 export const handleGetDecks = async (c) => {
   try {
     const user = c.get('user')
+    const { limit, game_type, cursor, search, series, tags } = c.req.query()
 
-    const { results } = await c.env.DB.prepare(
-      'SELECT key, deck_name, series_id, game_type, cover_cards_id, deck_data, history, tags, updated_at FROM decks WHERE user_id = ?1'
-    )
-      .bind(user.id)
+    const limitNum = Math.max(1, Math.min(100, parseInt(limit) || 24))
+
+    let cursorObj = null
+    if (cursor) {
+      try {
+        cursorObj = JSON.parse(atob(cursor))
+      } catch (e) {
+        console.error('Error parsing cursor:', e)
+      }
+    }
+
+    const conditions = ['user_id = ?1']
+    const params = [user.id]
+
+    if (game_type) {
+      conditions.push(`game_type = ?${params.length + 1}`)
+      params.push(game_type)
+    }
+
+    if (search) {
+      conditions.push(`deck_name LIKE ?${params.length + 1}`)
+      params.push(`%${search}%`)
+    }
+
+    if (series) {
+      conditions.push(`series_id = ?${params.length + 1}`)
+      params.push(series)
+    }
+
+    if (tags) {
+      try {
+        const parsedTags = JSON.parse(tags)
+        if (Array.isArray(parsedTags) && parsedTags.length > 0) {
+          const tagPlaceholders = parsedTags
+            .map((_, idx) => `?${params.length + 1 + idx}`)
+            .join(', ')
+          conditions.push(
+            `EXISTS (SELECT 1 FROM json_each(decks.tags) WHERE value IN (${tagPlaceholders}))`
+          )
+          params.push(...parsedTags)
+        }
+      } catch (e) {
+        console.error('Error parsing tags filter:', e)
+      }
+    }
+
+    if (cursorObj) {
+      conditions.push(`(updated_at, key) < (?${params.length + 1}, ?${params.length + 2})`)
+      params.push(cursorObj.t || 0, cursorObj.k)
+    }
+
+    const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : ''
+
+    const query = `
+      SELECT key, deck_name, series_id, game_type, cover_cards_id, tags, updated_at
+      FROM decks
+      ${whereClause}
+      ORDER BY updated_at DESC, key DESC
+      LIMIT ?${params.length + 1}
+    `
+
+    const { results } = await c.env.DB.prepare(query)
+      .bind(...params, limitNum + 1)
       .all()
 
-    const parsedResults = results.map((result) => {
+    const hasNextPage = results.length > limitNum
+    const decks = hasNextPage ? results.slice(0, limitNum) : results
+
+    let nextCursor = null
+    if (hasNextPage && decks.length > 0) {
+      const lastItem = decks[decks.length - 1]
+      const cursorData = { t: lastItem.updated_at || 0, k: lastItem.key }
+      nextCursor = btoa(JSON.stringify(cursorData))
+    }
+
+    const parsedResults = decks.map((result) => {
       result.cover_cards_id = JSON.parse(result.cover_cards_id)
       result.tags = result.tags ? JSON.parse(result.tags) : []
       return result
     })
 
-    return c.json(parsedResults)
+    return c.json({
+      decks: parsedResults,
+      nextCursor,
+      limit: limitNum,
+    })
   } catch (error) {
     console.error('Error fetching decks:', error)
+    return createErrorResponse(c, 500, '服务器内部错误')
+  }
+}
+
+/**
+ * Retrieves decks metadata summary (unique tags, series counts, totals) for the authenticated user.
+ * @param {AppContext} c - Hono context object.
+ * @returns {Response}
+ */
+export const handleGetDecksMeta = async (c) => {
+  try {
+    const user = c.get('user')
+
+    // 1. Get total counts by game_type
+    const gameTypeResults = await c.env.DB.prepare(
+      'SELECT game_type, COUNT(*) as count FROM decks WHERE user_id = ?1 GROUP BY game_type'
+    )
+      .bind(user.id)
+      .all()
+
+    const gameTypeCounts = { ws: 0, wsr: 0 }
+    let totalCount = 0
+    gameTypeResults.results.forEach((r) => {
+      gameTypeCounts[r.game_type] = r.count
+      totalCount += r.count
+    })
+
+    // 2. Get series counts
+    const seriesResults = await c.env.DB.prepare(
+      'SELECT series_id, COUNT(*) as count FROM decks WHERE user_id = ?1 GROUP BY series_id'
+    )
+      .bind(user.id)
+      .all()
+
+    const seriesCounts = {}
+    seriesResults.results.forEach((r) => {
+      seriesCounts[r.series_id] = r.count
+    })
+
+    // 3. Get all unique tags
+    const tagsResults = await c.env.DB.prepare(
+      'SELECT DISTINCT json_each.value AS tag FROM decks, json_each(decks.tags) WHERE user_id = ?1'
+    )
+      .bind(user.id)
+      .all()
+
+    const allTags = tagsResults.results
+      .map((r) => r.tag)
+      .filter(Boolean)
+      .sort()
+
+    return c.json({
+      success: true,
+      totalCount,
+      gameTypeCounts,
+      seriesCounts,
+      allTags,
+    })
+  } catch (error) {
+    console.error('Error fetching decks meta:', error)
     return createErrorResponse(c, 500, '服务器内部错误')
   }
 }

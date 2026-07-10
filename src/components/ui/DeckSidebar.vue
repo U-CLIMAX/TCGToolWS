@@ -541,15 +541,7 @@ const deckName = ref('')
 const deckTags = ref([])
 const selectedCoverCardId = ref(null)
 
-const allExistingTags = computed(() => {
-  const tagsSet = new Set()
-  Object.values(deckStore.savedDecks).forEach((d) => {
-    if (d.tags && Array.isArray(d.tags)) {
-      d.tags.forEach((tag) => tagsSet.add(tag))
-    }
-  })
-  return Array.from(tagsSet).sort()
-})
+const allExistingTags = computed(() => deckStore.meta.allTags || [])
 
 // History Dialog State
 const isHistoryDialogOpen = ref(false)
@@ -573,8 +565,11 @@ const openSaveDialog = () => {
   if (!authStore.isAuthenticated) {
     isAuthAlertOpen.value = true
   } else if (deckCards.value.length > 0) {
-    if (Object.keys(deckStore.savedDecks).length === 0 && authStore.isAuthenticated) {
-      deckStore.fetchDecks().catch((e) => console.error('背景加载卡组失败:', e))
+    if (
+      (!deckStore.meta.allTags || deckStore.meta.allTags.length === 0) &&
+      authStore.isAuthenticated
+    ) {
+      deckStore.fetchDecksMeta().catch((e) => console.error('背景加载卡组元数据失败:', e))
     }
     if (deckStore.editingDeckKey) {
       deckName.value = deckStore.deckName
@@ -687,7 +682,14 @@ const promptForHistoryAndUpdate = async () => {
 
   // Only prompt for history if there are actual card changes and user has the right role
   if (diff.length > 0 && userStatus.value && userStatus.value.role !== 0) {
-    const editCount = (deckStore.deckHistory || []).length + 1
+    const getHistoryLength = () => {
+      const h = deckStore.deckHistory
+      if (Array.isArray(h)) {
+        return h.filter((item) => item && typeof item === 'object' && 'time' in item).length
+      }
+      return 0
+    }
+    const editCount = getHistoryLength() + 1
     historyText.value = `${deckName.value} #${editCount}`
     isHistoryDialogOpen.value = true
   } else {
@@ -743,6 +745,8 @@ const handleUpdateDeck = async (historyText = '', diff = []) => {
       history: compressedHistoryData,
       tags: toRaw(deckTags.value),
     })
+    // Sync local decoded history state
+    deckStore.deckHistory = updatedHistory
     const key = deckStore.editingDeckKey
 
     isSaveDialogOpen.value = false

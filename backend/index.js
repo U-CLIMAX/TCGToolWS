@@ -12,6 +12,7 @@ import {
 import {
   handleCreateDeck,
   handleGetDecks,
+  handleGetDecksMeta,
   handleGetDeckByKey,
   handleDeleteDeck,
   handleUpdateDeck,
@@ -105,6 +106,7 @@ deckRoutes.post('/', handleCreateDeck)
 deckRoutes.put('/:key', handleUpdateDeck)
 deckRoutes.put('/:key/tags', handleUpdateDeckTags)
 deckRoutes.get('/', handleGetDecks)
+deckRoutes.get('/meta', handleGetDecksMeta)
 deckRoutes.delete('/:key', handleDeleteDeck)
 
 // === 公開的 Deck 路由 ===

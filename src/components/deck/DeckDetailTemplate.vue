@@ -342,22 +342,17 @@ const deckName = ref('')
 const deckTags = ref([])
 const selectedCoverCardId = ref(null)
 
-const allExistingTags = computed(() => {
-  const tagsSet = new Set()
-  Object.values(deckStore.savedDecks).forEach((d) => {
-    if (d.tags && Array.isArray(d.tags)) {
-      d.tags.forEach((tag) => tagsSet.add(tag))
-    }
-  })
-  return Array.from(tagsSet).sort()
-})
+const allExistingTags = computed(() => deckStore.meta.allTags || [])
 
 const openSaveDialog = () => {
   if (!authStore.isAuthenticated) {
     isAuthAlertOpen.value = true
   } else if (props.deck) {
-    if (Object.keys(deckStore.savedDecks).length === 0 && authStore.isAuthenticated) {
-      deckStore.fetchDecks().catch((e) => console.error('背景加载卡组失败:', e))
+    if (
+      (!deckStore.meta.allTags || deckStore.meta.allTags.length === 0) &&
+      authStore.isAuthenticated
+    ) {
+      deckStore.fetchDecksMeta().catch((e) => console.error('背景加载卡组元数据失败:', e))
     }
     // 預設名稱與封面
     deckName.value = props.deckTitle.slice(0, 20) || ''

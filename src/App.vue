@@ -492,7 +492,11 @@ const isSettingsModalOpen = ref(false)
 const isUserProfileModalOpen = ref(false)
 const isHomeRoute = computed(() => route.name === 'Home')
 const noPaddingsRoute = computed(
-  () => route.name === 'DecksGallery' || route.name === 'Community' || route.name === 'BanList'
+  () =>
+    route.name === 'DecksGallery' ||
+    route.name === 'Community' ||
+    route.name === 'BanList' ||
+    route.name === 'Decks'
 )
 
 const routeGameColor = computed(() => {

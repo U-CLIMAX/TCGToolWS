@@ -566,7 +566,13 @@ const isGoToGalleryDialogVisible = ref(false)
 const isTextModalVisible = ref(false)
 const modalTextContent = ref('')
 
-const history = computed(() => deck.value?.history || [])
+const history = computed(() => {
+  const h = deck.value?.history
+  if (Array.isArray(h)) {
+    return h.filter((item) => item && typeof item === 'object' && 'time' in item)
+  }
+  return []
+})
 
 // Use shallowRef for performance optimization when handling large lists
 const originalCards = shallowRef([])
@@ -706,10 +712,31 @@ onMounted(async () => {
         return
       }
     } else {
+      let targetDeck = deckStore.savedDecks[deckKey]
+      if (!targetDeck || !targetDeck.deckData) {
+        try {
+          const fetched = await deckStore.fetchDeckByKey(deckKey)
+          deckStore.savedDecks[deckKey] = {
+            deckData: fetched.deck_data,
+            name: fetched.deck_name,
+            seriesId: fetched.series_id,
+            game_type: fetched.game_type,
+            coverCardId: fetched.cover_cards_id,
+            history: fetched.history,
+            tags: fetched.tags || [],
+            updated_at: fetched.updated_at,
+          }
+          targetDeck = deckStore.savedDecks[deckKey]
+        } catch (err) {
+          triggerSnackbar('获取卡组详情失败', 'error')
+          throw err
+        }
+      }
+
       deck.value = {
-        ...deckStore.savedDecks[deckKey],
-        deckData: await decodeData(toRaw(deckStore.savedDecks[deckKey].deckData)),
-        history: await decodeData(toRaw(deckStore.savedDecks[deckKey].history)),
+        ...targetDeck,
+        deckData: await decodeData(toRaw(targetDeck.deckData)),
+        history: await decodeData(toRaw(targetDeck.history)),
       }
       initialCards = deck.value.deckData
     }

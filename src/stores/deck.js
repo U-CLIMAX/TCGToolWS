@@ -20,6 +20,26 @@ export const useDeckStore = defineStore(
     const savedDecks = ref({})
     const restrictionViolations = shallowRef([])
 
+    const decks = ref([])
+    const pagination = ref({
+      cursor: null,
+      hasMore: true,
+      limit: 24,
+    })
+    const filters = ref({
+      gameType: 'ws',
+      search: '',
+      series: null,
+      tags: [],
+    })
+    const meta = ref({
+      seriesCounts: {},
+      allTags: [],
+      gameTypeCounts: {},
+      totalCount: 0,
+    })
+    const isLoading = ref(false)
+
     const authStore = useAuthStore()
 
     // --- Computed ---
@@ -250,6 +270,7 @@ export const useDeckStore = defineStore(
       }
 
       if (!isDeckGallery) {
+        const now = Math.floor(Date.now() / 1000)
         savedDecks.value[key] = {
           deckData,
           name,
@@ -258,8 +279,32 @@ export const useDeckStore = defineStore(
           coverCardId,
           history,
           tags,
-          updated_at: Math.floor(Date.now() / 1000),
+          updated_at: now,
         }
+        // Prepend to listing array
+        decks.value = [
+          {
+            key,
+            deck_name: name,
+            series_id: seriesId,
+            game_type,
+            cover_cards_id: coverCardId,
+            tags,
+            updated_at: now,
+          },
+          ...decks.value,
+        ]
+        // Increment metadata counts
+        meta.value.totalCount++
+        meta.value.gameTypeCounts[game_type] = (meta.value.gameTypeCounts[game_type] || 0) + 1
+        meta.value.seriesCounts[seriesId] = (meta.value.seriesCounts[seriesId] || 0) + 1
+        // Add new tags to meta.allTags
+        tags.forEach((tag) => {
+          if (!meta.value.allTags.includes(tag)) {
+            meta.value.allTags.push(tag)
+          }
+        })
+        meta.value.allTags.sort()
       }
     }
 
@@ -297,6 +342,7 @@ export const useDeckStore = defineStore(
         throw new Error(errorData.error || '更新卡组失败')
       }
 
+      const now = Math.floor(Date.now() / 1000)
       savedDecks.value[key] = {
         deckData,
         name,
@@ -305,17 +351,145 @@ export const useDeckStore = defineStore(
         coverCardId,
         history,
         tags,
-        updated_at: Math.floor(Date.now() / 1000),
+        updated_at: now,
+      }
+
+      // Update in decks list array
+      const index = decks.value.findIndex((d) => d.key === key)
+      if (index !== -1) {
+        const oldDeck = decks.value[index]
+        if (oldDeck.seriesId !== seriesId) {
+          if (meta.value.seriesCounts[oldDeck.seriesId]) meta.value.seriesCounts[oldDeck.seriesId]--
+          meta.value.seriesCounts[seriesId] = (meta.value.seriesCounts[seriesId] || 0) + 1
+        }
+        if (oldDeck.game_type !== game_type) {
+          if (meta.value.gameTypeCounts[oldDeck.game_type])
+            meta.value.gameTypeCounts[oldDeck.game_type]--
+          meta.value.gameTypeCounts[game_type] = (meta.value.gameTypeCounts[game_type] || 0) + 1
+        }
+
+        decks.value[index] = {
+          key,
+          name: name,
+          seriesId: seriesId,
+          game_type,
+          coverCardId: coverCardId,
+          tags,
+          updated_at: now,
+        }
+      }
+
+      // Add new tags to meta.allTags
+      tags.forEach((tag) => {
+        if (!meta.value.allTags.includes(tag)) {
+          meta.value.allTags.push(tag)
+        }
+      })
+      meta.value.allTags.sort()
+    }
+
+    /**
+     * Fetches paginated decks for the current user based on active filters.
+     * @param {boolean} isLoadMore - Whether to append results to the existing list
+     */
+    const fetchDecks = async (isLoadMore = false) => {
+      if (!authStore.token) throw new Error('请先登录')
+
+      if (!isLoadMore) {
+        pagination.value.cursor = null
+        pagination.value.hasMore = true
+        decks.value = []
+      }
+
+      if (isLoading.value) return
+      if (isLoadMore && !pagination.value.hasMore) return
+
+      isLoading.value = true
+
+      try {
+        const params = new URLSearchParams({
+          limit: pagination.value.limit.toString(),
+          game_type: filters.value.gameType,
+        })
+
+        if (filters.value.search) params.append('search', filters.value.search)
+        if (filters.value.series) params.append('series', filters.value.series)
+        if (filters.value.tags && filters.value.tags.length > 0) {
+          params.append('tags', JSON.stringify(filters.value.tags))
+        }
+        if (pagination.value.cursor) {
+          params.append('cursor', pagination.value.cursor)
+        }
+
+        const response = await fetch(`/api/decks?${params.toString()}`, {
+          headers: {
+            Authorization: `Bearer ${authStore.token}`,
+          },
+        })
+
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({}))
+          throw new Error(errorData.error || '获取卡组列表失败')
+        }
+
+        const data = await response.json()
+
+        const mappedDecks = data.decks.map((deck) => ({
+          key: deck.key,
+          name: deck.deck_name,
+          seriesId: deck.series_id,
+          game_type: deck.game_type,
+          coverCardId: deck.cover_cards_id,
+          tags: deck.tags || [],
+          updated_at: deck.updated_at,
+        }))
+
+        if (isLoadMore) {
+          decks.value = [...decks.value, ...mappedDecks]
+        } else {
+          decks.value = mappedDecks
+        }
+
+        pagination.value.cursor = data.nextCursor
+        pagination.value.hasMore = !!data.nextCursor
+
+        // Sync metadata cache for single decks
+        data.decks.forEach((deck) => {
+          if (!savedDecks.value[deck.key]) {
+            savedDecks.value[deck.key] = {
+              deckData: null,
+              name: deck.deck_name,
+              seriesId: deck.series_id,
+              game_type: deck.game_type,
+              coverCardId: deck.cover_cards_id,
+              history: null,
+              tags: deck.tags || [],
+              updated_at: deck.updated_at,
+            }
+          } else {
+            savedDecks.value[deck.key] = {
+              ...savedDecks.value[deck.key],
+              name: deck.deck_name,
+              seriesId: deck.series_id,
+              game_type: deck.game_type,
+              coverCardId: deck.cover_cards_id,
+              tags: deck.tags || [],
+              updated_at: deck.updated_at,
+            }
+          }
+        })
+      } finally {
+        isLoading.value = false
       }
     }
 
     /**
-     * Fetches all decks for the current user.
+     * Fetches metadata summary for filters.
      */
-    const fetchDecks = async () => {
+    const fetchDecksMeta = async () => {
       if (!authStore.token) throw new Error('请先登录')
 
-      const response = await fetch('/api/decks', {
+      const response = await fetch('/api/decks/meta', {
         headers: {
           Authorization: `Bearer ${authStore.token}`,
         },
@@ -323,25 +497,16 @@ export const useDeckStore = defineStore(
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}))
-        throw new Error(errorData.error || '获取卡组列表失败')
+        throw new Error(errorData.error || '获取卡组汇总失败')
       }
 
-      const decks = await response.json()
-      decks.sort((a, b) => b.updated_at - a.updated_at)
-
-      savedDecks.value = decks.reduce((acc, deck) => {
-        acc[deck.key] = {
-          deckData: deck.deck_data,
-          name: deck.deck_name,
-          seriesId: deck.series_id,
-          game_type: deck.game_type,
-          coverCardId: deck.cover_cards_id,
-          history: deck.history,
-          tags: deck.tags || [],
-          updated_at: deck.updated_at,
-        }
-        return acc
-      }, {})
+      const data = await response.json()
+      meta.value = {
+        seriesCounts: data.seriesCounts || {},
+        allTags: data.allTags || [],
+        gameTypeCounts: data.gameTypeCounts || {},
+        totalCount: data.totalCount || 0,
+      }
     }
 
     /**
@@ -367,6 +532,20 @@ export const useDeckStore = defineStore(
       if (savedDecks.value[key]) {
         savedDecks.value[key].tags = tags
       }
+
+      // Update in decks list array
+      const deckInList = decks.value.find((d) => d.key === key)
+      if (deckInList) {
+        deckInList.tags = tags
+      }
+
+      // Add new tags to meta.allTags
+      tags.forEach((tag) => {
+        if (!meta.value.allTags.includes(tag)) {
+          meta.value.allTags.push(tag)
+        }
+      })
+      meta.value.allTags.sort()
     }
 
     /**
@@ -414,8 +593,29 @@ export const useDeckStore = defineStore(
         throw new Error(errorData.error || '删除卡组失败')
       }
 
+      // Adjust meta counts
+      const oldDeck = savedDecks.value[key]
+      if (oldDeck) {
+        meta.value.totalCount = Math.max(0, meta.value.totalCount - 1)
+        if (oldDeck.game_type && meta.value.gameTypeCounts[oldDeck.game_type]) {
+          meta.value.gameTypeCounts[oldDeck.game_type] = Math.max(
+            0,
+            meta.value.gameTypeCounts[oldDeck.game_type] - 1
+          )
+        }
+        if (oldDeck.seriesId && meta.value.seriesCounts[oldDeck.seriesId]) {
+          meta.value.seriesCounts[oldDeck.seriesId] = Math.max(
+            0,
+            meta.value.seriesCounts[oldDeck.seriesId] - 1
+          )
+        }
+      }
+
       savedDecks.value = { ...savedDecks.value }
       delete savedDecks.value[key]
+
+      // Remove from decks list array
+      decks.value = decks.value.filter((d) => d.key !== key)
 
       if (editingDeckKey.value === key) {
         clearDeck()
@@ -429,6 +629,10 @@ export const useDeckStore = defineStore(
       coverCardId.value = ''
       editingDeckKey.value = ''
       savedDecks.value = {}
+      decks.value = []
+      pagination.value = { cursor: null, hasMore: true, limit: 24 }
+      filters.value = { gameType: 'ws', search: '', series: null, tags: [] }
+      meta.value = { seriesCounts: {}, allTags: [], gameTypeCounts: {}, totalCount: 0 }
     }
 
     return {
@@ -451,6 +655,7 @@ export const useDeckStore = defineStore(
       saveEncodedDeck,
       updateEncodedDeck,
       fetchDecks,
+      fetchDecksMeta,
       fetchDeckByKey,
       deleteDeck,
       updateDeckTags,
@@ -458,11 +663,27 @@ export const useDeckStore = defineStore(
       fetchDecklog,
       restrictionViolations,
       checkRestrictions,
+      decks,
+      pagination,
+      filters,
+      meta,
+      isLoading,
     }
   },
   {
     persist: {
       storage: localStorage,
+      pick: [
+        'version',
+        'cardsInDeck',
+        'seriesId',
+        'deckName',
+        'coverCardId',
+        'editingDeckKey',
+        'deckHistory',
+        'originalCardsInDeck',
+        'restrictionViolations',
+      ],
     },
   }
 )
