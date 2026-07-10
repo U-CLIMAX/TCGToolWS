@@ -1,0 +1,116 @@
+{
+  "HBR/WZ06-127": {
+    "name": "晨光微亮。一日伊始",
+    "product_name": "炽焰天穹",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【自】 此卡被从手牌放置入高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br>（<img src=\"/effect-icons/standby.webp\">：此卡触发时，你可以选择1张自己休息室的自己的等级小于等于＋1的角色卡，以【横置】状态放置入舞台的任意格子）",
+    "all_cards": [
+      {
+        "id": "HBR/WZ06-127",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "HBR/WZ06-128": {
+    "name": "晨光微亮。一日伊始",
+    "product_name": "炽焰天穹",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【自】 此卡被从手牌放置入高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br>（<img src=\"/effect-icons/standby.webp\">：此卡触发时，你可以选择1张自己休息室的自己的等级小于等于＋1的角色卡，以【横置】状态放置入舞台的任意格子）",
+    "all_cards": [
+      {
+        "id": "HBR/WZ06-128",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "HBR/WZ06-129": {
+    "name": "晨光微亮。一日伊始",
+    "product_name": "炽焰天穹",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【自】 此卡被从手牌放置入高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br>（<img src=\"/effect-icons/standby.webp\">：此卡触发时，你可以选择1张自己休息室的自己的等级小于等于＋1的角色卡，以【横置】状态放置入舞台的任意格子）",
+    "all_cards": [
+      {
+        "id": "HBR/WZ06-129",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "HBR/WZ06-130": {
+    "name": "晨光微亮。一日伊始",
+    "product_name": "炽焰天穹",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【自】 此卡被从手牌放置入高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br>（<img src=\"/effect-icons/standby.webp\">：此卡触发时，你可以选择1张自己休息室的自己的等级小于等于＋1的角色卡，以【横置】状态放置入舞台的任意格子）",
+    "all_cards": [
+      {
+        "id": "HBR/WZ06-130",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "HBR/WZ06-131": {
+    "name": "晨光微亮。一日伊始",
+    "product_name": "炽焰天穹",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【自】 此卡被从手牌放置入高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br>（<img src=\"/effect-icons/standby.webp\">：此卡触发时，你可以选择1张自己休息室的自己的等级小于等于＋1的角色卡，以【横置】状态放置入舞台的任意格子）",
+    "all_cards": [
+      {
+        "id": "HBR/WZ06-131",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "HBR/WZ06-132": {
+    "name": "晨光微亮。一日伊始",
+    "product_name": "炽焰天穹",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【自】 此卡被从手牌放置入高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br>（<img src=\"/effect-icons/standby.webp\">：此卡触发时，你可以选择1张自己休息室的自己的等级小于等于＋1的角色卡，以【横置】状态放置入舞台的任意格子）",
+    "all_cards": [
+      {
+        "id": "HBR/WZ06-132",
+        "rarity": "PR"
+      }
+    ],
+    "trigger_soul_count": 1
+  }
+}

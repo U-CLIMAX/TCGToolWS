@@ -1,0 +1,2826 @@
+{
+  "SMP/WZ11-001": {
+    "name": "“夏日洋装”白羽",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Summer Pockets", "时间"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，若你的回忆区存在的卡片小于等于2张，则你可以选择1张自己休息室的「“夏日洋装”白羽」，将其放置入回忆区。<br>【自】 战斗中的此卡【倒置】时，你可以公开自己卡组顶的至多3张卡。若公开了大于等于1张卡，则你选择至多1张那些卡片中的持有《Summer Pockets》特征的角色卡，加入手牌，其余的卡片放置入休息室，选择1张自己的手牌，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-001",
+        "rarity": "RR"
+      },
+      {
+        "id": "SMP/WZ11-001S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SMP/WZ11-001SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-002": {
+    "name": "“夏日回忆”白羽",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["Summer Pockets", "时间"],
+    "color": "黄色",
+    "soul": 2,
+    "effect": "【自】 此卡攻击时，你选择1张自己的持有《Summer Pockets》特征的角色卡，该回合中，力量＋1500。<br>【自】 此能力1回合至多发动1次。此卡被从手牌放置入舞台的回合中，此卡给予的伤害被取消时，你将自己卡组顶的1张卡，放置入休息室，给予对方Ｘ点伤害。Ｘ为该卡的等级＋1。（高潮卡视作等级为0的卡片。会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-002",
+        "rarity": "RR"
+      },
+      {
+        "id": "SMP/WZ11-002S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SMP/WZ11-002SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-003": {
+    "name": "“夏日回忆”羽未",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Summer Pockets", "时间"],
+    "color": "黄色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你可以选择自己的计时区上方的1张卡片，放置入休息室。<br>【自】【CX联动】［① 将1张手牌放置入休息室］ 此卡攻击时，若高潮区存在「像理所当然般的怀念感」，则你可以支付费用。若如此做，则你选择1张自己的角色卡，该回合中，赋予其以下能力。『【自】 此卡的攻击结束之际，你可以给予对方2点伤害。』（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-003",
+        "rarity": "RR"
+      },
+      {
+        "id": "SMP/WZ11-003S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SMP/WZ11-003SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-004": {
+    "name": "“夏日回忆”识",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 11000,
+    "cost": 2,
+    "trait": ["Summer Pockets", "鬼"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你检视自己卡组顶的至多Ｘ张卡，选择至多1张卡片，加入手牌，其余的卡片放置入休息室。Ｘ为你的持有《Summer Pockets》特征的角色卡的张数。<br>【自】【CX联动】［①］ 此卡攻击时，若高潮区存在「最后……好想再见你一面……」，且此卡的魂小于等于3，则你可以支付费用。若如此做，则该攻击中，此卡给予对方攻击的伤害时，变更为给予对方X次1点伤害。Ｘ为此卡的魂。（此伤害并非由【自】造成的伤害。会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-004",
+        "rarity": "RR"
+      },
+      {
+        "id": "SMP/WZ11-004S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SMP/WZ11-004SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-005": {
+    "name": "“朋友的距离”白羽",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Summer Pockets", "时间"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】  此卡被从手牌放置入舞台时，你检视自己卡组顶的至多2张卡，将其按原先顺序放置于卡组顶。<br>【自】 此卡【倒置】时，若此卡的战斗对手的等级小于等于0，则你可以将该角色卡放置入库存区。若如此做，则你将对方的库存区最下方的1张卡片，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-005",
+        "rarity": "R"
+      },
+      {
+        "id": "SMP/WZ11-005S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SMP/WZ11-005SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-006": {
+    "name": "加藤 羽未",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Summer Pockets", "时间"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，该回合中，此卡的力量＋1500。<br>【自】 对方的抽卡阶段开始之际，你公开自己卡组顶的1张卡。若该卡的等级大于等于1，则你可以将此卡返回手牌。（高潮卡视作等级为0的卡片。公开的卡片放回原处）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-006",
+        "rarity": "R"
+      },
+      {
+        "id": "SMP/WZ11-006S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SMP/WZ11-006SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-007": {
+    "name": "“未来的羽翼之音”白羽",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Summer Pockets", "时间"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌中的持有《时间》特征的角色卡放置入休息室，将此卡放置入回忆区］ 战斗中的此卡【倒置】时，若存在其他的你的持有《时间》特征的角色卡，且你的回忆区存在的卡片小于等于2张，则你可以支付费用。若如此做，则你选择1张自己休息室的持有《时间》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-007",
+        "rarity": "R"
+      },
+      {
+        "id": "SMP/WZ11-007S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-008": {
+    "name": "“互相的场所”白羽",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["Summer Pockets", "时间"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】 此卡攻击时，若存在大于等于2张其他的你的持有《Summer Pockets》特征的角色卡，则你检视自己卡组顶的至多2张卡，选择其中1张卡，放置于卡组顶，其余的卡片放置入休息室。<br>【自】［①］ 此卡攻击时，你可以支付费用。若如此做，则该攻击中，你在触发步骤进行2次触发判定。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-008",
+        "rarity": "R"
+      },
+      {
+        "id": "SMP/WZ11-008S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-009": {
+    "name": "“我所能做的事”白羽",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7500,
+    "cost": 1,
+    "trait": ["Summer Pockets", "时间"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 每存在1张其他的你的持有《Summer Pockets》特征的角色卡，此卡的力量＋500。<br>【自】【CX联动】 此卡的战斗对手【倒置】时，若你的高潮区存在「一缕光芒」，则你将自己卡组顶的至多1张卡，放置入库存区，你选择至多1张自己休息室的角色卡，返回手牌。<br>【自】 战斗中的此卡【倒置】时，若存在小于等于1张其他的你的持有《Summer Pockets》特征的角色卡，则将此卡放置入计时区。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-009",
+        "rarity": "R"
+      },
+      {
+        "id": "SMP/WZ11-009S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-010": {
+    "name": "“西瓜棒争夺作战”白羽",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Summer Pockets", "时间"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你将自己卡组顶的3张卡，放置入休息室。若那些卡片中存在高潮卡，则该回合中，此卡获得《西瓜棒》特征，对方无法使用『【自】 再演』。若非如此，则该回合中，此卡获得《蜜瓜棒》特征。（规则赋予的『【自】 再演 ［③］』也无法使用）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-010",
+        "rarity": "U"
+      },
+      {
+        "id": "SMP/WZ11-010S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-011": {
+    "name": "“独自玩耍的达人”羽未",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 0,
+    "trait": ["Summer Pockets", "时间"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】 此能力1回合至多发动1次。你使用【起】时，你选择1张自己的角色卡，该回合中，力量＋1000。<br>【起】［【横置】此卡］ 你检视自己卡组顶的1张卡。（检视的卡放回原处）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-011",
+        "rarity": "U"
+      },
+      {
+        "id": "SMP/WZ11-011S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-012": {
+    "name": "“夏日迷子”羽未",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Summer Pockets", "时间"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】 此卡攻击时，你选择1张其他的自己的角色卡，该回合中，力量＋Ｘ。Ｘ为该角色卡的魂×1000。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-012",
+        "rarity": "U"
+      },
+      {
+        "id": "SMP/WZ11-012S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-013": {
+    "name": "小不点羽未",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5500,
+    "cost": 1,
+    "trait": ["Summer Pockets", "时间"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 若此卡正面的角色卡的费用小于等于0，则此卡不会【倒置】。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-013",
+        "rarity": "U"
+      },
+      {
+        "id": "SMP/WZ11-013S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-014": {
+    "name": "“试胆大会上的兽语奇谈”白羽",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["Summer Pockets", "时间"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】［② 将1张你的舞台的角色卡放置入休息室］ 你使用此卡的『助太刀』时，你可以支付费用。若如此做，则你选择1张对方的等级高于对方的等级的角色卡，放置入库存区。<br>【起】【反击】 助太刀2500 等级2 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2500）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-014",
+        "rarity": "U"
+      },
+      {
+        "id": "SMP/WZ11-014S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-015": {
+    "name": "小不点白羽",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6000,
+    "cost": 1,
+    "trait": ["Summer Pockets", "时间"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 此卡不会被对方的效果选择。<br>【永】 所有其他的你的持有《Summer Pockets》特征的角色卡，力量＋1000。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-015",
+        "rarity": "U"
+      },
+      {
+        "id": "SMP/WZ11-015S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-016": {
+    "name": "“躲好啦”羽未",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Summer Pockets", "时间"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 对方的回合中，若后列的左边的格子存在此卡，且存在其他的你的「“躲好了吗？”白羽」，则所有其他的你的角色卡，力量＋1000。<br>【起】［【横置】此卡］ 你选择1张自己的角色卡，该回合中，力量＋500。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-016",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-016S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-017": {
+    "name": "“躲好了吗？”白羽",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Summer Pockets", "时间"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若后列的右边的格子存在此卡，且存在其他的你的「“躲好啦”羽未」，则所有其他的你的角色卡，力量＋1000。<br>【起】［①］ 你将对方卡组顶的1张卡放置入休息室，选择1张对方休息室的卡片，放置于卡组顶。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-017",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-017S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-018": {
+    "name": "“回头望见的那个夏天”羽未",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Summer Pockets", "时间"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌中的持有《Summer Pockets》特征的角色卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你公开自己卡组顶的2张卡，对方从那些卡片中选择1张角色卡或事件卡，加入你的手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-018",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-018S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-019": {
+    "name": "“合叶之仪”白羽",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 0,
+    "trait": ["Summer Pockets", "时间"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你抽1张卡，选择1张自己的手牌，放置入休息室。<br>【自】【CX联动】［将此卡放置入休息室］ 「一缕光芒」被放置入你的高潮区时，你可以支付费用。若如此做，则你选择至多1张自己手牌的「“我所能做的事”白羽」，放置入此卡曾经存在的格子。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-019",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-019S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-020": {
+    "name": "“共鸣的记忆”羽依里",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["Summer Pockets", "时间"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 记忆 若你的回忆区存在「“未来的羽翼之音”白羽」，则此卡的力量＋2500，此卡获得以下能力。『【自】 共鸣 ［公开1张手牌的「“未来的羽翼之音”白羽」］ 此卡攻击时，你可以支付费用。若如此做，则该回合中，此卡的魂＋1。』",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-020",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-020S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-021": {
+    "name": "“向着耀眼尽头的彼端”白羽",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["Summer Pockets", "时间"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，若存在其他的你的持有《Summer Pockets》特征的角色卡，则该回合中，此卡的力量＋2000。<br>【自】［将1张手牌中的高潮卡放置入休息室］此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的持有《Summer Pockets》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-021",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-021S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-022": {
+    "name": "“鬼成为伙伴”识",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 1,
+    "trait": ["Summer Pockets", "鬼"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的持有《Summer Pockets》特征的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。<br>【自】 你的高潮阶段开始之际，你选择至多2张自己的「“夏日回忆”识」，该回合中，魂＋1。<br>【起】［【横置】此卡］ 你选择1张自己的角色卡，该回合中，力量＋500。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-022",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-022S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-023": {
+    "name": "“两人料理”白羽＆羽未",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["Summer Pockets", "时间"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】  所有其他的你的持有《Summer Pockets》特征的角色卡，力量＋1000。<br>【起】［① 【横置】此卡］ 你选择1张自己的角色卡，该回合中，赋予其《炒饭》特征，并赋予其以下能力。『【自】 此能力1回合至多发动1次。此卡给予的伤害被取消时，你可以给予对方1点伤害。』（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-023",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-023S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-024": {
+    "name": "“夏日阳光”白羽",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 2,
+    "trait": ["Summer Pockets", "时间"],
+    "color": "黄色",
+    "soul": 2,
+    "effect": "【永】 每存在1张其他的你的持有《Summer Pockets》特征的角色卡，此卡的力量＋1000。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-024",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-024S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-025": {
+    "name": "“向日葵花田”白羽",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 8500,
+    "cost": 2,
+    "trait": ["Summer Pockets", "时间"],
+    "color": "黄色",
+    "soul": 2,
+    "effect": "【永】 若存在大于等于4张你的持有《Summer Pockets》特征的角色卡，则你手牌的此卡的等级－1。<br>【自】 此卡被从手牌放置入舞台时，你可以选择自己的计时区上方的1张卡片，放置入休息室。<br>【自】［②］ 此卡被从手牌放置入舞台时，若存在其他的你的卡名含有「“夏日回忆”」的角色卡，则你可以支付费用。若如此做，则对方选择1张自己休息室的高潮卡，将该卡以外的所有休息室的卡片返回卡组，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-025",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-025S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-026": {
+    "name": "Summer Pockets",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "集中 你翻出自己卡组顶的3张卡，放置入休息室。你选择1张自己休息室的等级小于等于Ｘ的持有《Summer Pockets》特征的角色卡，返回手牌。Ｘ为那些卡片中的持有《Summer Pockets》特征的角色卡的张数。<br>你选择1张自己的角色卡，该回合中，力量＋2000。将此卡放置入回忆区。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-026",
+        "rarity": "U"
+      },
+      {
+        "id": "SMP/WZ11-026S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-027": {
+    "name": "一缕光芒",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000,魂＋1。<br>（<img src=\"/effect-icons/bounce.webp\">：此卡触发时，你可以选择1张对方的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-027",
+        "rarity": "CR"
+      },
+      {
+        "id": "SMP/WZ11-027R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-028": {
+    "name": "最后……好想再见你一面……",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你可以选择1张自己休息室的持有<img src=\"/effect-icons/soul.webp\">的角色卡，返回手牌或放置入库存区）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-028",
+        "rarity": "CR"
+      },
+      {
+        "id": "SMP/WZ11-028R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-029": {
+    "name": "像理所当然般的怀念感",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你可以选择1张自己休息室的持有<img src=\"/effect-icons/soul.webp\">的角色卡，返回手牌或放置入库存区）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-029",
+        "rarity": "CR"
+      },
+      {
+        "id": "SMP/WZ11-029R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-030": {
+    "name": "“夏日洋装”鸥",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["Summer Pockets", "海贼"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，该回合中，此卡的力量＋Ｘ。Ｘ为你的持有《Summer Pockets》特征的角色卡的张数×500。<br>【自】【CX联动】 你的再演步骤开始之际，若高潮区存在「为了明天准备」，且前列存在此卡，且存在其他的你的持有《Summer Pockets》特征的角色卡，且此卡正面不存在角色卡或此卡正面的角色卡处于【倒置】状态，则你抽至多2张卡。若抽了2张卡，则你选择1张自己的手牌，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-030",
+        "rarity": "RR"
+      },
+      {
+        "id": "SMP/WZ11-030S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SMP/WZ11-030SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-031": {
+    "name": "“夏日回忆”䌷",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Summer Pockets", "玩偶"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，此卡的力量＋1000。<br>【自】【CX联动】 此卡的战斗对手【倒置】时，若你的高潮区存在「像恋人的事情」，则你检视自己卡组顶的至多4张卡，选择至多1张持有《Summer Pockets》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室，你选择1张自己的角色卡，直到下一个对方回合的结束之际为止，力量＋1000。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-031",
+        "rarity": "RR"
+      },
+      {
+        "id": "SMP/WZ11-031S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SMP/WZ11-031SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-032": {
+    "name": "“夏日洋装”䌷",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 8500,
+    "cost": 2,
+    "trait": ["Summer Pockets", "玩偶"],
+    "color": "绿色",
+    "soul": 2,
+    "effect": "【永】 若存在大于等于4张你的持有《Summer Pockets》特征的角色卡，则你手牌的此卡的等级－1。<br>【永】 记忆 你的回合中，若你的回忆区存在「仓库里找到的照片」，则此卡的力量＋3000。<br>【自】［将1张手牌放置入休息室］此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你将自己的计时区上方的1张卡片，放置入库存区。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-032",
+        "rarity": "RR"
+      },
+      {
+        "id": "SMP/WZ11-032S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SMP/WZ11-032SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-033": {
+    "name": "“夏日回忆”鸥",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Summer Pockets", "海贼"],
+    "color": "绿色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你可以选择自己的计时区上方的1张卡片，放置入休息室。<br>【自】【CX联动】［①］ 「出发起点」被放置入你的高潮区时，若前列存在此卡，则你可以支付费用。若如此做，则该回合中，此卡的力量＋1000，你从以下效果中选择1个执行。『你将对方库存区的所有卡，放置入休息室，对方从自己卡组顶将相同张数的卡放置入库存区。』『该回合中，此卡获得以下能力。『【自】 此卡的战斗对手【倒置】时，你可以将该角色卡放置入计时区。』』",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-033",
+        "rarity": "RR"
+      },
+      {
+        "id": "SMP/WZ11-033S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SMP/WZ11-033SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-034": {
+    "name": "“勤劳的女仆小姐”鸥",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["Summer Pockets", "海贼"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】［① 将你卡组顶的1张卡放置入计时区，将此卡放置入回忆区］ 战斗中的此卡【倒置】时，你可以支付费用。若如此做，则你检视自己的卡组，选择至多1张持有《海贼》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-034",
+        "rarity": "R"
+      },
+      {
+        "id": "SMP/WZ11-034S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-035": {
+    "name": "“向着耀眼尽头的彼端”䌷",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Summer Pockets", "玩偶"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】［①］ 你的高潮卡被放置入高潮区时，你可以支付费用。若如此做，则你检视自己卡组顶的至多4张卡，选择至多1张卡名含有「䌷」或「静久」的角色卡或「仓库里找到的照片」展示给对手，加入手牌，其余的卡片放置入休息室。<br>【起】［【横置】此卡］你选择1张自己的角色卡，该回合中，力量＋1000。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-035",
+        "rarity": "R"
+      },
+      {
+        "id": "SMP/WZ11-035S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-036": {
+    "name": "“祝福的纸吹雪”静久",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 7000,
+    "cost": 2,
+    "trait": ["Summer Pockets", "OPPAI"],
+    "color": "绿色",
+    "soul": 2,
+    "effect": "【永】 应援 所有此卡前面的你的持有《Summer Pockets》特征的角色卡，力量＋2000。<br>【自】 此卡被从手牌放置入舞台时，你可以选择1张自己休息室的「“感情要好的朋友”静久」，将其放置入回忆区。<br>【自】［①］ 对方的攻击阶段开始之际，你可以支付费用。若如此做，则你选择任意张数自己回忆区的「“感情要好的朋友”静久」，返回手牌，执行Ｘ次以下行动。『你选择1张自己的手牌，放置入休息室，你选择1张对方的角色卡，该回合中，魂－1。』Ｘ为因此效果从回忆区返回手牌的卡牌的张数。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-036",
+        "rarity": "R"
+      },
+      {
+        "id": "SMP/WZ11-036S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-037": {
+    "name": "“毫无疑问的最喜欢了”䌷",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["Summer Pockets", "玩偶"],
+    "color": "绿色",
+    "soul": 2,
+    "effect": "【永】 若存在其他的你的卡名含有「静久」或「羽依里」的角色卡，则此卡的力量＋1500。<br>【自】［将1张手牌中的持有《Summer Pockets》特征的角色卡放置入休息室］此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己计时区的持有《Summer Pockets》特征的角色卡，放置入舞台的任意格子。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-037",
+        "rarity": "R"
+      },
+      {
+        "id": "SMP/WZ11-037S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-038": {
+    "name": "“夏日祭典”美希",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Summer Pockets", "武器"],
+    "color": "绿色",
+    "soul": 2,
+    "effect": "【永】 你支付自己的「“早就重新迷上了”美希＆羽依里」的【自】的费用时，可以将1张此卡下方的标识物作为1张库存区卡片的替代放置入休息室。<br>【自】  此卡被从手牌放置入舞台时，你抽至多2张卡，选择2张自己的手牌，将其作为此卡下方的标识物按任意顺序里侧表示放置，将自己卡组顶的至多1张卡，放置入库存区。<br>【自】［将1张手牌的角色卡放置入休息室］ 此卡攻击时，你可以支付费用。若如此做，则该回合中，此卡的力量＋2000，魂＋1。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-038",
+        "rarity": "R"
+      },
+      {
+        "id": "SMP/WZ11-038S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-039": {
+    "name": "小不点鸥",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Summer Pockets", "海贼"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】 此卡【倒置】时，若此卡的战斗对手的等级小于等于0，则你可以将对方计时区上方的1张卡，放置入休息室。若如此做，则你将该角色卡放置入计时区。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-039",
+        "rarity": "U"
+      },
+      {
+        "id": "SMP/WZ11-039S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-040": {
+    "name": "“两人一起写的歌词”䌷",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5000,
+    "cost": 0,
+    "trait": ["Summer Pockets", "玩偶"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 记忆 若你的回忆区存在「仓库里找到的照片」，则此卡获得以下能力。『【自】 此卡的战斗对手【倒置】时，你可以将自己卡组顶的1张卡，放置入库存区。』",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-040",
+        "rarity": "U"
+      },
+      {
+        "id": "SMP/WZ11-040S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-041": {
+    "name": "小不点䌷",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5000,
+    "cost": 0,
+    "trait": ["Summer Pockets", "玩偶"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】 此卡攻击时，若存在大于等于2张其他的你的持有《Summer Pockets》特征的角色卡，则该回合中，此卡的力量＋2000。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-041",
+        "rarity": "U"
+      },
+      {
+        "id": "SMP/WZ11-041S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-042": {
+    "name": "“观光协会的会长”美希",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 2,
+    "power": 4500,
+    "cost": 1,
+    "trait": ["Summer Pockets", "武器"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋1000。<br>【起】［【横置】此卡］ 你选择1张自己的角色卡，该回合中，力量＋2500，回合结束之际，将该角色卡放置入休息室。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-042",
+        "rarity": "U"
+      },
+      {
+        "id": "SMP/WZ11-042S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-043": {
+    "name": "“胸部即正义”静久",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Summer Pockets", "OPPAI"],
+    "color": "绿色",
+    "soul": 2,
+    "effect": "【永】 若存在大于等于2张其他的你的持有《Summer Pockets》特征的角色卡，则此卡的力量＋1000。<br>【自】 此卡被从手牌放置入舞台时，你可以选择自己的计时区上方的1张卡片，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-043",
+        "rarity": "U"
+      },
+      {
+        "id": "SMP/WZ11-043S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-044": {
+    "name": "“前卫的穿搭”静久",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Summer Pockets", "OPPAI"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你选择1张自己的持有《Summer Pockets》特征的角色卡，该回合中，力量＋1500，赋予其《咖喱》特征。<br>【自】  此卡攻击时，你选择1张自己的持有《Summer Pockets》特征的角色卡，该回合中，力量＋1500，赋予其《咖喱》特征。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-044",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-044S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-045": {
+    "name": "“我无法做到的事情”䌷",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Summer Pockets", "玩偶"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你可以选择1张自己的计时区下方的卡片与1张休息室的持有《Summer Pockets》特征的角色卡，互换位置。<br>【自】［将1张手牌放置入休息室］此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己的休息室的「仓库里找到的照片」，返回手牌。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-045",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-045S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-046": {
+    "name": "“夏日片刻”鸥",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Summer Pockets", "海贼"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】［①］ 你的高潮卡被放置入高潮区时，你可以支付费用。若如此做，则你公开自己卡组顶的1张卡。若该卡为持有《Summer Pockets》特征的角色卡或事件卡则将其加入手牌。（若非如此则放回原处）<br>【起】 集中 ［① 【横置】2张你的角色卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你选择至多1张自己休息室的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-046",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-046S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-047": {
+    "name": "“被唤醒的记忆”鸥",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "trait": ["Summer Pockets", "海贼"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋500。<br>【自】［将1张手牌放置入休息室］你的角色卡的触发判定中判出高潮卡时，若该卡持有的触发标记为<img src=\"/effect-icons/treasure.webp\">，则你可以支付费用。若如此做，则你选择1张自己计时区的卡片，返回手牌，将自己卡组顶的1张卡，放置入计时区。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-047",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-047S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-048": {
+    "name": "“一直以来梦见的梦”鸥",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["Summer Pockets", "海贼"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】【CX联动】 此卡攻击时，若高潮区存在「离别的问候」，且存在大于等于2张其他的你的持有《Summer Pockets》特征的角色卡，则你公开自己卡组顶的2张卡，对方从那些卡片中选择1张角色卡或事件卡，加入你的手牌，其余的卡片放置入休息室。<br>【自】 此卡攻击时，若存在大于等于2张其他的你的持有《Summer Pockets》特征的角色卡，则该回合中，此卡的力量＋2000。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-048",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-048S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-049": {
+    "name": "“夏日阳光”美希",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5000,
+    "cost": 0,
+    "trait": ["Summer Pockets", "武器"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】【CX联动】 「要一直亲很多次」被放置入你的高潮区时，若存在大于等于2张其他的你的持有《Summer Pockets》特征的角色卡，则你检视自己卡组顶的至多4张卡，选择至多1张持有《Summer Pockets》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-049",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-049S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-050": {
+    "name": "“向着耀眼尽头的彼端”鸥",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 2,
+    "power": 4000,
+    "cost": 1,
+    "trait": ["Summer Pockets", "海贼"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。<br>【自】［②］ 你的再演步骤开始之际，你可以支付费用。若如此做，则你选择至多1张自己的手牌的触发标记为<img src=\"/effect-icons/treasure.webp\">的高潮卡公开，返回卡组，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-050",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-050S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-051": {
+    "name": "终于送达的信",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 0,
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "集中 你将自己卡组顶的1张卡，放置入库存区。你翻出自己卡组顶的3张卡，放置入休息室。若那些卡片中存在高潮卡，则将此卡放置入库存区。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-051",
+        "rarity": "U"
+      },
+      {
+        "id": "SMP/WZ11-051S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-052": {
+    "name": "仓库里找到的照片",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "若不存在你的持有《Summer Pockets》特征的角色卡，则此卡无法从手牌被使用。<br>你选择1张自己的计时区的角色卡，返回手牌，将自己卡组顶的1张卡，放置入计时区。<br>将此卡放置入回忆区。<br>【永】 记忆 你的回合中，若回忆区存在此卡，则所有你的持有《Summer Pockets》特征的角色卡，力量＋500。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-052",
+        "rarity": "U"
+      },
+      {
+        "id": "SMP/WZ11-052S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-053": {
+    "name": "无论何时都在一起",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 3,
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【反击】 若存在大于等于5张的你的持有《Summer Pockets》特征的角色卡，则你选择1张战斗中的角色卡，该回合中，赋予其以下能力。『【永】 此卡无法赋予玩家伤害。』<br>你选择1张自己的角色卡，该回合中，力量＋1500。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-053",
+        "rarity": "U"
+      },
+      {
+        "id": "SMP/WZ11-053S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-054": {
+    "name": "出发起点",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000,魂＋1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-054",
+        "rarity": "CR"
+      },
+      {
+        "id": "SMP/WZ11-054R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-055": {
+    "name": "像恋人的事情",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000,魂＋1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-055",
+        "rarity": "CR"
+      },
+      {
+        "id": "SMP/WZ11-055R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-056": {
+    "name": "离别的问候",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000,魂＋1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-056",
+        "rarity": "CR"
+      },
+      {
+        "id": "SMP/WZ11-056R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-057": {
+    "name": "要一直亲很多次",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/stock.webp\">：此卡触发时，你可以将自己卡组顶的1张卡，放置入库存区）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-057",
+        "rarity": "CR"
+      },
+      {
+        "id": "SMP/WZ11-057R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-058": {
+    "name": "为了明天准备",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000,魂＋1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-058",
+        "rarity": "CR"
+      },
+      {
+        "id": "SMP/WZ11-058R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-059": {
+    "name": "“牵手的方式”识",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Summer Pockets", "鬼"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你公开自己卡组顶的1张卡。若该卡为持有《Summer Pockets》特征的角色卡，则该回合中，此卡的等级＋1，力量＋1500。（公开的卡片放回原处）<br>【自】 此卡的战斗对手【倒置】时，你选择1张其他的自己的持有《Summer Pockets》特征的角色卡，【横置】，移动至后列的不存在角色卡的格子。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-059",
+        "rarity": "RR"
+      },
+      {
+        "id": "SMP/WZ11-059S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-060": {
+    "name": "“夏日回忆”美希",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9000,
+    "cost": 2,
+    "trait": ["Summer Pockets", "武器"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【永】 记忆 若你的回忆区存在「“早就重新迷上了”美希＆羽依里」，则此卡的力量＋1000，此卡获得以下能力。『【永】 此卡的战斗中，对方无法从手牌使用『助太刀』。』<br>【自】 此卡被从手牌放置入舞台时，你可以选择自己的计时区上方的1张卡片，放置入休息室。<br>【自】【CX联动】 此卡的战斗对手【倒置】时，若你的高潮区存在「这大概是我的梦吧」，则给予对方1点伤害，你将该角色卡放置于卡组顶。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-060",
+        "rarity": "RR"
+      },
+      {
+        "id": "SMP/WZ11-060S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SMP/WZ11-060SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-061": {
+    "name": "“夏日回忆”苍",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["Summer Pockets", "双胞胎"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你可以选择自己的计时区上方的1张卡片，放置入休息室。<br>【自】【CX联动】 记忆 ［② 将1张你的回忆区的「“关心妹妹”蓝」作为此卡下方的标识物表侧表示放置］ 此能力1回合至多发动1次。此卡的攻击结束之际，若高潮区存在「漫漫长梦的终结」，则你可以支付费用。若如此做，则你选择1张自己的「空门 蓝」，将此卡下方的1张标识物作为标识物表侧表示放置于该角色卡下方，【竖置】该角色卡，此卡在你的下一个竖置阶段不会【竖置】。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-061",
+        "rarity": "RR"
+      },
+      {
+        "id": "SMP/WZ11-061S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SMP/WZ11-061SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-062": {
+    "name": "“夏日回忆”七海",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Summer Pockets", "时间"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你检视自己卡组顶的至多3张卡，选择至多1张卡片，加入手牌，其余的卡片放置入休息室。<br>【自】【CX联动】 记忆 ［② 将2张手牌放置入休息室］ 此卡攻击时，若高潮区存在「早已缝定的未来」，则你可以支付费用。若如此做，则你选择任意张数自己的回忆区的卡片，放置入休息室，给予对方Ｘ点伤害，该回合中，此卡的力量＋5000。Ｘ为因此效果从回忆区被放置入休息室的卡片的张数×2。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-062",
+        "rarity": "RR"
+      },
+      {
+        "id": "SMP/WZ11-062S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SMP/WZ11-062SEC",
+        "rarity": "SEC"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-063": {
+    "name": "“白羽的传承”白羽",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Summer Pockets", "时间"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你检视自己卡组顶的1张卡，放置入卡组顶或休息室。<br>【起】 集中 ［① 【横置】此卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你选择至多1张自己休息室的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-063",
+        "rarity": "R"
+      },
+      {
+        "id": "SMP/WZ11-063S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-064": {
+    "name": "“向日葵花田”羽未",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["Summer Pockets", "时间"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若存在其他的你的持有《Summer Pockets》特征的角色卡，则此卡的力量＋3000。<br>【自】【CX联动】［将1张手牌中的持有《Summer Pockets》特征的角色卡放置入休息室］ 此卡的战斗对手【倒置】时，若你的高潮区存在「一如既往的早餐」, 则你选择至多1张自己休息室的持有《Summer Pockets》特征的角色卡，返回手牌，你可以支付费用。若如此做，则你选择1张自己休息室的持有《Summer Pockets》特征的角色卡或「Summer Pockets」，返回手牌。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-064",
+        "rarity": "R"
+      },
+      {
+        "id": "SMP/WZ11-064S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-065": {
+    "name": "“再一次回到那个夏天”苍",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5000,
+    "cost": 0,
+    "trait": ["Summer Pockets", "双胞胎"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，所有玩家执行以下行动。『若你的回忆区存在大于等于5张卡片，则你选择4张自己回忆区的卡片，将那些卡片以外的自己的回忆区的所有卡片，放置入休息室。』<br>【自】 此卡攻击时，你选择1张其他的自己的持有《Summer Pockets》特征的角色卡，该回合中，力量＋Ｘ。Ｘ为其他的你的持有《Summer Pockets》特征的角色卡的张数×500。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-065",
+        "rarity": "R"
+      },
+      {
+        "id": "SMP/WZ11-065S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-066": {
+    "name": "“用你的手”识",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["Summer Pockets", "鬼"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【永】 若你的休息室中存在小于等于2张高潮卡，则你手牌的此卡的等级－1。<br>【永】 若存在大于等于2张其他的你的持有《Summer Pockets》特征的角色卡，则此卡的力量＋1000。<br>【自】 此卡被从手牌放置入舞台时，你可以选择自己的计时区上方的1张卡片，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-066",
+        "rarity": "R"
+      },
+      {
+        "id": "SMP/WZ11-066S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-067": {
+    "name": "“某天将会看到的未来”羽未",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Summer Pockets", "时间"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【永】 若你的休息室中存在小于等于2张高潮卡，则你手牌的此卡的等级－1。<br>【自】 此卡被从手牌放置入舞台时，若存在大于等于2张其他的你的持有《时间》特征的角色卡，则你可以选择1张自己的计时区的角色卡，放置入回忆区。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-067",
+        "rarity": "R"
+      },
+      {
+        "id": "SMP/WZ11-067S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-068": {
+    "name": "“对大人的抵抗”羽未",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Summer Pockets", "时间"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【永】 若前列存在此卡，则赋予所有你手牌中的持有《Summer Pockets》特征的角色卡，『【起】【反击】 助太刀2000 等级0 ［将手牌的此卡放置入休息室］』，所有你的持有《Summer Pockets》特征的角色卡，力量＋1000。<br>【自】［②］ 此卡的战斗对手【倒置】时，你可以支付费用。若如此做，则给予对方1点伤害。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-068",
+        "rarity": "R"
+      },
+      {
+        "id": "SMP/WZ11-068S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-069": {
+    "name": "“追逐鬼怪的少女”识",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["Summer Pockets", "鬼"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［① 将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多1张持有《Summer Pockets》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-069",
+        "rarity": "U"
+      },
+      {
+        "id": "SMP/WZ11-069S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-070": {
+    "name": "“悸动的少女”识",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["Summer Pockets", "鬼"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 此能力1回合至多发动1次。战斗中的此卡【倒置】时，你公开自己卡组顶的1张卡。若该卡的等级大于等于2，则你可以【横置】此卡。（高潮卡视作等级为0的卡片。公开的卡片放回原处）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-070",
+        "rarity": "U"
+      },
+      {
+        "id": "SMP/WZ11-070S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-071": {
+    "name": "“被重新涂改的记忆”美希",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["Summer Pockets", "武器"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［④ 将1张手牌中的持有《Summer Pockets》特征的角色卡放置入休息室］ 你使用此卡的 『助太刀』时，你可以支付费用。若如此做，则你选择1张对方的角色卡，【横置】。<br>【起】【反击】 助太刀2500 等级2 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2500）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-071",
+        "rarity": "U"
+      },
+      {
+        "id": "SMP/WZ11-071S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-072": {
+    "name": "小不点苍",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 2,
+    "power": 5000,
+    "cost": 1,
+    "trait": ["Summer Pockets", "双胞胎"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。<br>【起】［【横置】此卡］ 你选择1张自己的角色卡，该回合中，赋予其以下能力。『【自】 此卡的战斗对手【倒置】时，你检视自己卡组顶的1张卡，放置入卡组顶或休息室。』",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-072",
+        "rarity": "U"
+      },
+      {
+        "id": "SMP/WZ11-072S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-073": {
+    "name": "“鸟白岛的狙击手”美希",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7500,
+    "cost": 1,
+    "trait": ["Summer Pockets", "武器"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 此卡【倒置】时，若此卡的战斗对手的等级高于对方的等级，则你可以将该角色卡【倒置】。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-073",
+        "rarity": "U"
+      },
+      {
+        "id": "SMP/WZ11-073S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-074": {
+    "name": "“Hydro Gladiator改”美希",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Summer Pockets", "武器"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的等级小于等于0的角色卡，力量＋1000。<br>【起】 集中 ［①］ 翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，执行以下行动。『你选择1张自己休息室的角色卡，返回手牌，选择1张自己的手牌，放置入休息室。』",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-074",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-074S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-075": {
+    "name": "“Seven's sea”美希＆羽未",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Summer Pockets", "武器"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 你的主要阶段开始之际，你检视自己卡组顶的1张卡，放置入卡组顶或休息室。<br>【起】 集中 ［① 【横置】2张你的角色卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你选择至多1张自己休息室的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-075",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-075S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-076": {
+    "name": "“早就重新迷上了”美希＆羽依里",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Summer Pockets"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 记忆 ［③ 将1张手牌放置入休息室］ 你的再演步骤开始之际，若存在大于等于2张其他的你的卡名含有「美希」的角色卡，且回忆区存在此卡，则你可以支付费用。若如此做，则给予对方1点伤害，你选择至多1张自己休息室的角色卡，返回手牌。（会发生伤害取消）<br>【起】［①］ 若你的回忆区存在的卡片小于等于2张，则你检视自己卡组顶的至多3张卡，选择至多1张持有《Summer Pockets》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室，将此卡放置入回忆区。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-076",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-076S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-077": {
+    "name": "“依偎在膝上”羽未＆白羽",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Summer Pockets", "时间"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋500。<br>【起】［【横置】此卡］ 你检视对方卡组顶的至多2张卡，将其以任意顺序放置于卡组顶。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-077",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-077S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-078": {
+    "name": "“开玩笑”苍",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2000,
+    "cost": 1,
+    "trait": ["Summer Pockets", "双胞胎"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 你使用此卡的 『助太刀』时，若存在大于等于2张你的持有《Summer Pockets》特征的角色卡，则你可以选择1张自己休息室的「“关心妹妹”蓝」，放置入回忆区。<br>【起】【反击】 助太刀2000 等级1  ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2000）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-078",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-078S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-079": {
+    "name": "“与姐姐的时间”苍",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5500,
+    "cost": 1,
+    "trait": ["Summer Pockets", "双胞胎"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 若存在大于等于2张其他的你的持有《Summer Pockets》特征的角色卡，则此卡的力量＋2000。<br>【自】 再演 ［将1张手牌的角色卡放置入休息室］ （此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则将此卡以【横置】状态放置入此卡曾经存在的格子）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-079",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-079S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-080": {
+    "name": "“剩下的时间”苍",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6000,
+    "cost": 1,
+    "trait": ["Summer Pockets", "双胞胎"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 所有其他的你的持有《Summer Pockets》特征的角色卡，力量＋500。<br>【自】【CX联动】［①］ 「漫漫长梦的终结」被放置入你的高潮区时，你可以支付费用。若如此做，则你选择1张其他的自己的持有《双胞胎》特征的角色卡，使其【竖置】。<br>【起】 集中 ［① 【横置】此卡］你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你选择至多1张自己休息室的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-080",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-080S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-081": {
+    "name": "“线香花火”识",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7500,
+    "cost": 1,
+    "trait": ["Summer Pockets", "鬼"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 若对方的休息室中存在大于等于5张高潮卡，则你手牌的此卡的等级－1。<br>【自】【CX联动】［将1张你的高潮区的「独特的打鼾声」放置入休息室］ 此卡的战斗对手【倒置】时，你可以支付费用。若如此做，则你检视自己卡组顶的至多4张卡，选择至多4张持有《Summer Pockets》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-081",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-081S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-082": {
+    "name": "“向着耀眼尽头的彼端”苍",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 2,
+    "power": 1500,
+    "cost": 2,
+    "trait": ["Summer Pockets", "双胞胎"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【永】 你的回合中，所有其他的你的卡名含有「“夏日回忆”」的角色卡，力量＋1000。<br>【永】 应援 所有此卡前面的你的角色卡，力量＋1500。<br>【起】［③ 将2张手牌放置入休息室］ 给予对方5点伤害。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-082",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-082S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-083": {
+    "name": "就稍微……说声再见……",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 0,
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "所有玩家将所有自己休息室的卡片，返回卡组，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-083",
+        "rarity": "U"
+      },
+      {
+        "id": "SMP/WZ11-083S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-084": {
+    "name": "Summer Pockets",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 0,
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "你检视自己卡组顶的至多4张卡，选择至多1张持有《Summer Pockets》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-084",
+        "rarity": "U"
+      },
+      {
+        "id": "SMP/WZ11-084S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-085": {
+    "name": "前往摇篮的另一端",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "若不存在你的卡名含有「羽未」或「七海」的角色卡， 则此卡无法从手牌被使用。<br>将此卡放置入回忆区。<br>【自】 记忆 你的再演步骤开始之际，若回忆区存在此卡，则将此卡放置入休息室，你从以下效果中选择1个执行。<br>『你抽至多1张卡，选择1张自己的角色卡，直到下一个对方回合的结束之际为止，力量＋3000。』<br>『给予对方1点伤害。』（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-085",
+        "rarity": "U"
+      },
+      {
+        "id": "SMP/WZ11-085S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-086": {
+    "name": "早已缝定的未来",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000,魂＋1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-086",
+        "rarity": "CR"
+      },
+      {
+        "id": "SMP/WZ11-086R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-087": {
+    "name": "漫漫长梦的终结",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【自】 此卡被从手牌放置入高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br>（<img src=\"/effect-icons/standby.webp\">：此卡触发时，你可以选择1张自己休息室的自己的等级小于等于＋1的角色卡，以【横置】状态放置入舞台的任意格子）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-087",
+        "rarity": "CR"
+      },
+      {
+        "id": "SMP/WZ11-087R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-088": {
+    "name": "一如既往的早餐",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000,魂＋1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-088",
+        "rarity": "CR"
+      },
+      {
+        "id": "SMP/WZ11-088R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-089": {
+    "name": "独特的打鼾声",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【自】 此卡被从手牌放置入高潮区时，你选择至多1张自己休息室的等级小于等于1的角色卡，放置入库存区，所有你的角色卡，该回合中，魂＋1。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-089",
+        "rarity": "CR"
+      },
+      {
+        "id": "SMP/WZ11-089R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 2
+  },
+  "SMP/WZ11-090": {
+    "name": "这大概是我的梦吧",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-090",
+        "rarity": "CR"
+      },
+      {
+        "id": "SMP/WZ11-090R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-091": {
+    "name": "“夏日洋装”苍",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Summer Pockets", "双胞胎"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 你的高潮阶段开始之际，你选择1张自己的持有《Summer Pockets》的角色卡，该回合中，力量＋500。<br>【起】 集中 ［① 【横置】此卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你检视自己的卡组并选择至多1张持有《Summer Pockets》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-091",
+        "rarity": "RR"
+      },
+      {
+        "id": "SMP/WZ11-091S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SMP/WZ11-091SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-092": {
+    "name": "“夏日回忆”静久",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Summer Pockets", "OPPAI"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【永】 你的回合中，此卡的力量＋1000。<br>【自】 此卡被从手牌放置入舞台时，你抽至多2张卡，选择2张自己的手牌，放置入休息室，将自己卡组顶的至多1张卡，放置入库存区。<br>【自】【CX联动】［② 将1张手牌放置入休息室］ 此卡攻击时，若高潮区存在「只有三个人的婚礼」，则你可以支付费用。若如此做，则你检视对方卡组底的至多5张卡，选择至多1张高潮卡，放置入计时区，其余的卡片放置入休息室，该回合中，此卡的力量＋1000。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-092",
+        "rarity": "RR"
+      },
+      {
+        "id": "SMP/WZ11-092S",
+        "rarity": "SR"
+      },
+      {
+        "id": "SMP/WZ11-092SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-093": {
+    "name": "“我的作战”䌷",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["Summer Pockets", "玩偶"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋500。<br>【起】 集中 ［① 【横置】2张你的角色卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你检视自己的卡组并选择至多1张持有《Summer Pockets》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-093",
+        "rarity": "R"
+      },
+      {
+        "id": "SMP/WZ11-093S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-094": {
+    "name": "“关心妹妹”蓝",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Summer Pockets", "双胞胎"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［① 将1张手牌放置入休息室，将此卡放置入回忆区］ 战斗中的此卡【倒置】时，你可以支付费用。若如此做，则你选择1张自己休息室的「“与姐姐的时间”苍」，以【横置】状态放置入此卡曾经存在的格子<br>【起】［① 将处于【竖置】状态的此卡放置入回忆区］ 你选择1张自己休息室的「“夏日回忆”苍」，返回手牌。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-094",
+        "rarity": "R"
+      },
+      {
+        "id": "SMP/WZ11-094S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-095": {
+    "name": "“感情要好的朋友”静久",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Summer Pockets", "OPPAI"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［① 将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的角色卡，返回手牌。<br>【自】 战斗中的此卡【倒置】时，若你的回忆区存在的卡片小于等于2张，则你可以将此卡放置入回忆区。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-095",
+        "rarity": "R"
+      },
+      {
+        "id": "SMP/WZ11-095S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-096": {
+    "name": "“毫无防备的睡颜”苍",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5000,
+    "cost": 0,
+    "trait": ["Summer Pockets", "双胞胎"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】【CX联动】 此卡的战斗对手【倒置】时，若你的高潮区存在「幸运的意外」，则你检视自己的卡组并选择至多1张持有《Summer Pockets》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-096",
+        "rarity": "R"
+      },
+      {
+        "id": "SMP/WZ11-096S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-097": {
+    "name": "“神秘的光景”苍",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5000,
+    "cost": 0,
+    "trait": ["Summer Pockets", "双胞胎"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 记忆 若你的回忆区存在「“关心妹妹”蓝」，则此卡获得以下能力。『【自】［将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己卡组顶的至多4张卡，选择至多1张持有《Summer Pockets》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室。』",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-097",
+        "rarity": "R"
+      },
+      {
+        "id": "SMP/WZ11-097S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-098": {
+    "name": "空门 蓝",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9000,
+    "cost": 2,
+    "trait": ["Summer Pockets", "双胞胎"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【永】 若此卡下方存在标识物，则此卡的力量＋2500。<br>【永】 所有其他的你的持有《Summer Pockets》特征的角色卡，力量＋1500。<br>【永】 此卡的战斗中，对方无法从手牌中使用事件卡及『助太刀』。<br>【自】  此卡攻击时，若存在大于等于2张其他的你的持有《Summer Pockets》特征的角色卡，则你选择1张自己的角色卡，该回合中，魂＋1。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-098",
+        "rarity": "R"
+      },
+      {
+        "id": "SMP/WZ11-098S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-099": {
+    "name": "“盛夏的海边”苍",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9000,
+    "cost": 2,
+    "trait": ["Summer Pockets", "双胞胎"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【永】 若你的休息室中存在小于等于2张高潮卡，则你手牌的此卡的等级－1。<br>【自】 此卡被从手牌放置入舞台时，你抽1张卡，选择1张自己的手牌，放置入休息室，选择至多1张对方的角色卡，返回手牌。<br>【自】 此卡被从手牌放置入舞台时，若你的回忆区存在的卡片小于等于2张，则你可以选择1张自己休息室的「“关心妹妹”蓝」，将其放置入回忆区。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-099",
+        "rarity": "R"
+      },
+      {
+        "id": "SMP/WZ11-099S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-100": {
+    "name": "“想说的话”䌷",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["Summer Pockets", "玩偶"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【永】 记忆 若你的回忆区存在「仓库里找到的照片」，则此卡的力量＋1500。<br>【自】 此卡被从手牌放置入舞台时，你抽至多2张卡，选择2张自己的手牌，放置入休息室，将自己卡组顶的至多1张卡，放置入库存区。<br>【自】【CX联动】 记忆 ［① 将1张手牌放置入休息室］ 此卡攻击时，若高潮区存在「满满的回忆」，且存在其他的你的持有《Summer Pockets》特征的角色卡，则你可以支付费用。若如此做，则直到下一个对方回合的结束之际为止，此卡的力量＋2000，此卡获得以下能力。『【自】 对方的攻击阶段开始之际，你选择至多X张对方的角色卡，该回合中，魂－1。Ｘ为你的回忆区的「仓库里找到的照片」的张数＋1。』",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-100",
+        "rarity": "R"
+      },
+      {
+        "id": "SMP/WZ11-100S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-101": {
+    "name": "“律之风”鸥",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Summer Pockets", "海贼"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你可以选择自己的计时区上方的1张卡片，放置入休息室。<br>【自】［① 将1张手牌放置入休息室］ 此卡攻击时，若你的前列中央的格子中存在卡名含有「“夏日回忆”」的角色卡，则你可以支付费用。若如此做，则给予对方1点伤害，该回合中，此卡的力量＋1000。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-101",
+        "rarity": "R"
+      },
+      {
+        "id": "SMP/WZ11-101S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-102": {
+    "name": "“黄昏时的灯塔”䌷",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Summer Pockets", "玩偶"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 对方的攻击阶段开始之际，你可以将此卡移动至前列的不存在角色的格子。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-102",
+        "rarity": "U"
+      },
+      {
+        "id": "SMP/WZ11-102S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-103": {
+    "name": "“牛的报恩”静久",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Summer Pockets", "OPPAI"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你检视对方卡组顶的至多2张卡，将其按原先顺序放置于卡组顶。<br>【起】［将1张手牌放置入休息室，将此卡放置入休息室］ 你选择1张自己休息室的持有《Summer Pockets》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-103",
+        "rarity": "U"
+      },
+      {
+        "id": "SMP/WZ11-103S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-104": {
+    "name": "“巨大的行李箱”鸥",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["Summer Pockets", "海贼"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［① 将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多1张持有《Summer Pockets》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-104",
+        "rarity": "U"
+      },
+      {
+        "id": "SMP/WZ11-104S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-105": {
+    "name": "“圣诞快乐”䌷",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["Summer Pockets", "玩偶"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［将2张手牌放置入休息室］ 你使用此卡的『助太刀』时，你可以支付费用。若如此做，则你选择1张对方的等级高于对方的等级的角色卡，放置入休息室。<br>【起】【反击】 助太刀2500 等级2 ［①  将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2500）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-105",
+        "rarity": "U"
+      },
+      {
+        "id": "SMP/WZ11-105S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-106": {
+    "name": "“那是夏天的错”苍",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Summer Pockets", "双胞胎"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你抽至多2张卡，选择1张自己的手牌，放置入休息室。<br>【自】［将2张手牌放置入休息室］ 此卡攻击时，你可以支付费用。若如此做，则你将对方卡组底的4张卡，放置入休息室，给予对方Ｘ点伤害。Ｘ为那些卡片中的高潮卡的张数。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-106",
+        "rarity": "U"
+      },
+      {
+        "id": "SMP/WZ11-106S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-107": {
+    "name": "稻荷",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["Summer Pockets", "動物"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 战斗中的此卡【倒置】时，若此卡的战斗对手的等级小于等于0，则你可以将该角色卡放置入卡组底。<br>【自】［① 将1张手牌放置入休息室］此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则你检视自己的卡组，选择至多1张持有『记忆』关键词的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-107",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-107S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-108": {
+    "name": "“果然轻而易举”苍",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["Summer Pockets", "双胞胎"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 所有其他的你的「“毫无防备的睡颜”苍」，力量＋1000。<br>【永】 应援 所有此卡前面的你的角色卡，力量＋500。<br>【自】［将1张手牌的红色或蓝色的卡片放置入休息室］ 此卡被从手牌放置入舞台时，若你的手牌小于等于6张，则你可以支付费用。若如此做，则你检视自己的卡组，选择至多1张「“毫无防备的睡颜”苍」展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-108",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-108S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-109": {
+    "name": "“打倒炒饭”静久",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["Summer Pockets", "OPPAI"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［将你的休息室的2张角色卡返回卡组，将卡组洗切］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则该回合中，此卡的魂＋1。<br>【自】［①］ 此卡给予的伤害被取消时，你可以支付费用。若如此做，则你抽1张卡。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-109",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-109S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-110": {
+    "name": "“夏日阳光”鸥",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["Summer Pockets", "海贼"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你检视自己卡组顶的1张卡，放置入卡组顶或休息室。<br>【自】［将此卡返回手牌］ 你的高潮卡被放置入高潮区时，你可以支付费用。若如此做，则你选择1张自己的角色卡，直到下一个对方回合的结束之际为止，力量＋1000。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-110",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-110S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-111": {
+    "name": "“再一次回到那个夏天”䌷",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["Summer Pockets", "玩偶"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 记忆 若你的回忆区存在「仓库里找到的照片」，则此卡的力量＋2500，此卡获得以下能力。『【自】［将此卡放置入休息室］ 其他的你的角色卡被正面攻击时，你可以支付费用。若如此做，则你选择1张自己的战斗中的角色卡，该回合中，力量＋1000。』",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-111",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-111S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-112": {
+    "name": "“学到的咒语”静久",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["Summer Pockets", "OPPAI"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡攻击时，若存在大于等于2张其他的你的持有《Summer Pockets》特征的角色卡，则你检视自己卡组顶的至多2张卡，选择其中1张卡，放置于卡组顶，其余的卡片放置入休息室。<br>【自】［将1张你的回忆区的「“感情要好的朋友”静久」返回手牌，将1张手牌放置入休息室］ 此卡攻击时，你可以支付费用。若如此做，则该回合中，此卡的力量＋3000。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-112",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-112S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-113": {
+    "name": "“清晨的沐浴”鸥",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 2,
+    "power": 4000,
+    "cost": 1,
+    "trait": ["Summer Pockets", "海贼"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋1000。<br>【永】 记忆 若你的回忆区存在大于等于2张持有《海贼》特征的角色卡，则此卡获得『【永】 应援 所有此卡前面的你的角色卡，力量＋1000。』。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-113",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-113S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-114": {
+    "name": "“实现的现实”鸥",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["Summer Pockets", "海贼"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【永】 记忆 你的回合中，若你的回忆区存在「“勤劳的女仆小姐”鸥」，则此卡的力量＋3000。<br>【自】 此卡被从手牌放置入舞台的回合中，你的再演步骤开始之际，若前列存在此卡，则你将自己卡组顶的至多1张卡，放置入库存区，选择至多1张自己的手牌的触发标记为<img src=\"/effect-icons/treasure.webp\">的高潮卡公开，返回卡组，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-114",
+        "rarity": "C"
+      },
+      {
+        "id": "SMP/WZ11-114S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-115": {
+    "name": "Summer Pockets",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "你检视自己的卡组并选择至多1张持有《Summer Pockets》特征的角色卡展示给对手，加入手牌，将卡组洗切。将此卡放置入回忆区。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-115",
+        "rarity": "U"
+      },
+      {
+        "id": "SMP/WZ11-115S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-116": {
+    "name": "关于某个男孩的故事",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "你选择1张处于【竖置】状态的你的持有《Summer Pockets》特征的角色卡【横置】。若如此做，则你选择至多2张自己休息室的等级小于等于0的角色卡，放置入舞台上的不同格子。<br>将此卡放置入回忆区。",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-116",
+        "rarity": "U"
+      },
+      {
+        "id": "SMP/WZ11-116S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-117": {
+    "name": "自己的罪",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【反击】 若不存在你的持有《Summer Pockets》特征的角色卡，则此卡无法从手牌中使用。你选择1张自己的角色卡，该回合中，赋予其以下能力。『【永】 此卡不会【倒置】。』",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-117",
+        "rarity": "U"
+      },
+      {
+        "id": "SMP/WZ11-117S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-118": {
+    "name": "幸运的意外",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000,魂＋1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-118",
+        "rarity": "CR"
+      },
+      {
+        "id": "SMP/WZ11-118R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "SMP/WZ11-118SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "SMP/WZ11-119": {
+    "name": "满满的回忆",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000,魂＋1。<br>（<img src=\"/effect-icons/draw.webp\">：此卡触发时，你可以抽1张卡）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-119",
+        "rarity": "CR"
+      },
+      {
+        "id": "SMP/WZ11-119R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "SMP/WZ11-120": {
+    "name": "只有三个人的婚礼",
+    "product_name": "补充包【Summer Pockets REFLECTION BLUE Re:Edit】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "SMP/WZ11-120",
+        "rarity": "CR"
+      },
+      {
+        "id": "SMP/WZ11-120R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 1
+  }
+}

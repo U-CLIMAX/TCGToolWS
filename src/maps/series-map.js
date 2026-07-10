@@ -1422,6 +1422,21 @@ const wscSeriesMap = {
     prefixes: ['[cn]NIK'],
     latestReleaseDate: '2025-07-25',
   },
+  '[cn]smp': {
+    name: '[cn]Summer Pockets',
+    prefixes: ['[cn]SMP'],
+    latestReleaseDate: '2025-07-18',
+  },
+  '[cn]btr': {
+    name: '[cn]孤独摇滚',
+    prefixes: ['[cn]BTR'],
+    latestReleaseDate: '2025-02-21',
+  },
+  '[cn]hbr': {
+    name: '[cn]炽焰天穹',
+    prefixes: ['[cn]HBR'],
+    latestReleaseDate: '2024-12-20',
+  },
   'wsc': {
     name: '其他',
     prefixes: ['[cn]WS', '[cn]CGS'],
