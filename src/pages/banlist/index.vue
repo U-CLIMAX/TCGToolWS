@@ -32,24 +32,43 @@
                 thickness="3"
               ></v-divider>
 
-              <div class="mt-8 d-flex justify-center" style="max-width: 300px">
-                <v-autocomplete
-                  v-model="selectedSeries"
-                  :items="filterOptions"
-                  label="系列"
-                  variant="outlined"
-                  density="compact"
-                  hide-details
-                  rounded="pill"
-                  class="w-100"
-                  clearable
-                  :menu-props="uiStore.menuProps"
-                ></v-autocomplete>
+              <div class="d-flex flex-wrap align-center ga-4 mt-8 mb-4">
+                <!-- 游戏种类选择 -->
+                <div class="flex-grow-1 flex-sm-grow-0">
+                  <InsetTabs
+                    v-model="activeGame"
+                    :options="GAME_TYPE_OPTIONS"
+                    :color="GAME_TYPE_OPTIONS.find((o) => o.value === activeGame)?.color"
+                    @update:model-value="onGameChange"
+                  />
+                </div>
+
+                <!-- 系列选择 -->
+                <div class="flex-grow-1 flex-sm-grow-0" style="min-width: 250px">
+                  <v-autocomplete
+                    v-model="selectedSeries"
+                    :items="filterOptions"
+                    label="系列"
+                    variant="outlined"
+                    density="compact"
+                    hide-details
+                    rounded="pill"
+                    class="w-100"
+                    clearable
+                    :menu-props="uiStore.menuProps"
+                  ></v-autocomplete>
+                </div>
               </div>
             </v-col>
 
             <v-col cols="12" class="px-0">
-              <div class="banlist-masonry w-100">
+              <div
+                v-if="filteredBanlistData.length === 0"
+                class="text-center text-medium-emphasis mt-10"
+              >
+                暂无限制卡表
+              </div>
+              <div v-else class="banlist-masonry w-100">
                 <div
                   v-for="series in filteredBanlistData"
                   :key="series.id"
@@ -152,7 +171,7 @@ import banListIcon from '@/assets/ui/banlist.svg'
 import { useDisplay, useTheme } from 'vuetify'
 import DOMPurify from 'dompurify'
 import { deckRestrictionsLastUpdated, deckRestrictions } from '@/maps/deck-restrictions'
-import { ALL_SERIES_OPTIONS } from '@/maps/series-map'
+import { ALL_SERIES_OPTIONS, GAME_TYPE_OPTIONS } from '@/maps/series-map'
 import { getCardUrls } from '@/utils/getCardImage'
 import { useUIStore } from '@/stores/ui'
 
@@ -205,6 +224,7 @@ const banlistData = (() => {
     const seriesData = {
       id: seriesId,
       title: seriesTitle,
+      game: restrictions.game,
       categories: [],
     }
 
@@ -247,16 +267,26 @@ const banlistData = (() => {
   return result
 })()
 
-const filterOptions = [
-  { title: '全部系列', value: null },
-  ...banlistData.map((series) => ({ title: series.title, value: series.id })),
-]
+const activeGame = ref('ws')
+
+const onGameChange = () => {
+  selectedSeries.value = null
+}
+
+const filterOptions = computed(() => {
+  const filtered = banlistData.filter((series) => series.game === activeGame.value)
+  return [
+    { title: '全部系列', value: null },
+    ...filtered.map((series) => ({ title: series.title, value: series.id })),
+  ]
+})
 
 const selectedSeries = ref(null)
 
 const filteredBanlistData = computed(() => {
-  if (!selectedSeries.value) return banlistData
-  return banlistData.filter((series) => series.id === selectedSeries.value)
+  const gameData = banlistData.filter((series) => series.game === activeGame.value)
+  if (!selectedSeries.value) return gameData
+  return gameData.filter((series) => series.id === selectedSeries.value)
 })
 </script>
 

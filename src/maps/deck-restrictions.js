@@ -1,6 +1,6 @@
-export const deckRestrictionsLastUpdated = '2026/6/24'
+export const deckRestrictionsLastUpdated = '2026/7/11'
 
-export const deckRestrictions = {
+export const wsDeckRestrictions = {
   'dc': {
     choice: [
       [
@@ -520,4 +520,69 @@ export const deckRestrictions = {
       ],
     ],
   },
+}
+
+export const wsrDeckRestrictions = {}
+
+export const wscDeckRestrictions = {
+  '[cn]sao': {
+    banned: [
+      {
+        cardName: '坚定不移的道路 爱丽丝',
+        cardId: ['SAO/SZ04-012', 'SAO/SZ04-012S'],
+        prefix: '[cn]sao-sz04',
+      },
+    ],
+  },
+  '[cn]isc': {
+    limited: [
+      {
+        cardName: '乘于伸出的手之上的是 风野灯织',
+        cardId: ['ISC/SZ07-009', 'ISC/SZ07-009SP'],
+        limit: 1,
+        prefix: '[cn]isc-sz07',
+      },
+    ],
+    choice: [
+      [
+        {
+          cardName: '283PRODUCTION',
+          cardId: ['ISC/SZ07-158'],
+          prefix: '[cn]isc-sz07',
+        },
+        {
+          cardName: 'Beautiful Sunset 白瀬咲耶',
+          cardId: ['ISC/SZ07-150', 'ISC/SZ07-150WIR'],
+          prefix: '[cn]isc-sz07',
+        },
+        {
+          cardName: 'interStellar-Stella 樱木真乃',
+          cardId: ['ISC/SZ07-062', 'ISC/SZ07-062OFR', 'ISC/SZ07-062SSP'],
+          prefix: '[cn]isc-sz07',
+        },
+        {
+          cardName: 'Unseen・Double Cast 黛冬优子',
+          cardId: ['ISC/SZ07-043', 'ISC/SZ07-043SP'],
+          prefix: '[cn]isc-sz07',
+        },
+        {
+          cardName: '黄昏Swag 八宫巡',
+          cardId: ['ISC/SZ07-005', 'ISC/SZ07-005OFR', 'ISC/SZ07-005SSP'],
+          prefix: '[cn]isc-sz07',
+        },
+      ],
+    ],
+  },
+}
+
+export const deckRestrictions = {
+  ...Object.fromEntries(
+    Object.entries(wsDeckRestrictions).map(([id, v]) => [id, { ...v, game: 'ws' }])
+  ),
+  ...Object.fromEntries(
+    Object.entries(wsrDeckRestrictions).map(([id, v]) => [id, { ...v, game: 'wsr' }])
+  ),
+  ...Object.fromEntries(
+    Object.entries(wscDeckRestrictions).map(([id, v]) => [id, { ...v, game: 'wsc' }])
+  ),
 }
