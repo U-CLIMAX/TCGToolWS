@@ -1,0 +1,445 @@
+{
+  "LNJ/WZ02-T21": {
+    "name": "偶尔也要享受这样的假期♪ 朝香 果林",
+    "product_name": "Love Live! 虹咲学园学园偶像同好会 feat. 学园偶像季：群星闪耀 预构筑卡组",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["音乐"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【自】此卡被从手牌放置入舞台时，你可以将自己计时区顶的1张卡，放置入休息室。<br>【自】再演［将1张手牌的角色卡放置入休息室］（此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则将此卡以【横置】状态放置入此卡曾经存在的格子）",
+    "all_cards": [
+      {
+        "id": "LNJ/WZ02-T21",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "LNJ/WZ02-T19": {
+    "name": "梦物语 近江 彼方",
+    "product_name": "Love Live! 虹咲学园学园偶像同好会 feat. 学园偶像季：群星闪耀 预构筑卡组",
+    "type": "角色卡",
+    "level": 2,
+    "power": 500,
+    "cost": 1,
+    "trait": ["音乐"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】若你的等级为大于等于2，则此卡获得以下能力。『【起】［（2）【横置】1张你的「大自然的气息 艾玛·维尔德」及此卡］你选择至多1张你的手牌中的「偶尔也要享受这样的假期♪ 朝香 果林」，放置入舞台的任意格子。』<br>【永】应援 所有此卡前面的你的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。",
+    "all_cards": [
+      {
+        "id": "LNJ/WZ02-T19R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "LNJ/WZ02-T19",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "LNJ/WZ02-T20": {
+    "name": "上门拜访！ 艾玛·维尔德",
+    "product_name": "Love Live! 虹咲学园学园偶像同好会 feat. 学园偶像季：群星闪耀 预构筑卡组",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["音乐"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【起】【反击】助太刀3000 等级2［（1）将手牌的此卡放置入休息室］（你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋3000）",
+    "all_cards": [
+      {
+        "id": "LNJ/WZ02-T20",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "LNJ/WZ02-T17": {
+    "name": "大自然的气息 艾玛·维尔德",
+    "product_name": "Love Live! 虹咲学园学园偶像同好会 feat. 学园偶像季：群星闪耀 预构筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音乐"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】你的高潮卡被放置入高潮区时，你选择1张自己的角色卡，该回合中，力量＋1000。<br>【起】集中［（1）【横置】此卡］你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你抽至多1张卡。",
+    "all_cards": [
+      {
+        "id": "LNJ/WZ02-T17R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "LNJ/WZ02-T17",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "LNJ/WZ02-T18": {
+    "name": "彼方的苦衷 近江 彼方",
+    "product_name": "Love Live! 虹咲学园学园偶像同好会 feat. 学园偶像季：群星闪耀 预构筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音乐"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】此卡被从手牌放置入舞台时，若存在其他的你的持有《音乐》特征的角色卡，则该回合中，此卡的力量＋2000。",
+    "all_cards": [
+      {
+        "id": "LNJ/WZ02-T18",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "LNJ/WZ02-T16": {
+    "name": "以顶点为目标 朝香 果林",
+    "product_name": "Love Live! 虹咲学园学园偶像同好会 feat. 学园偶像季：群星闪耀 预构筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音乐"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】若你的手牌大于等于5张，则此卡的力量＋1000。<br>【自】［将1张手牌中的高潮卡放置入休息室］此卡被从手牌放置入舞台时，你可以支付费用。若如此做，你选择1张自己休息室的持有《音乐》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "LNJ/WZ02-T16R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "LNJ/WZ02-T16",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "LNJ/WZ02-T15": {
+    "name": "不忘大家",
+    "product_name": "Love Live! 虹咲学园学园偶像同好会 feat. 学园偶像季：群星闪耀 预构筑卡组",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【自】此卡被从手牌放置入高潮区时，你选择至多1张自己休息室的等级小于等于自己等级的角色卡，返回手牌，选择至多2张自己的角色卡，该回合中，魂＋1。",
+    "all_cards": [
+      {
+        "id": "LNJ/WZ02-T15",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 2
+  },
+  "LNJ/WZ02-T14": {
+    "name": "TOKIMEKI Runners",
+    "product_name": "Love Live! 虹咲学园学园偶像同好会 feat. 学园偶像季：群星闪耀 预构筑卡组",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【永】所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "LNJ/WZ02-T14S",
+        "rarity": "SR"
+      },
+      {
+        "id": "LNJ/WZ02-T14",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "LNJ/WZ02-T12": {
+    "name": "LOVE＆PEACE 优木 雪菜",
+    "product_name": "Love Live! 虹咲学园学园偶像同好会 feat. 学园偶像季：群星闪耀 预构筑卡组",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["音乐"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【永】你的回合中，若存在大于等于4张其他的你的持有《音乐》特征的角色卡，则此卡的力量＋5000，此卡获得以下能力。『【永】此卡的战斗中，对方无法从手牌中使用事件及『助太刀』。』<br>【自】此卡被从手牌放置入舞台时，你公开自己卡组顶的1张卡。若该卡为持有《音乐》特征的角色卡，你可以给予对方1点伤害。（会发生伤害取消。公开的卡片放回原处）",
+    "all_cards": [
+      {
+        "id": "LNJ/WZ02-T12R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "LNJ/WZ02-T12",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "LNJ/WZ02-T13": {
+    "name": "再一次，启动！",
+    "product_name": "Love Live! 虹咲学园学园偶像同好会 feat. 学园偶像季：群星闪耀 预构筑卡组",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 3,
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "你选择1张自己的角色卡，该回合中，赋予其以下能力。『【自】此卡的战斗对手【倒置】时，你可以给予对方3点伤害。』（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "LNJ/WZ02-T13",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "LNJ/WZ02-T11": {
+    "name": "冷笑话攻击 宫下 爱",
+    "product_name": "Love Live! 虹咲学园学园偶像同好会 feat. 学园偶像季：群星闪耀 预构筑卡组",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["音乐"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】每存在1张其他的你的持有《音乐》特征的角色卡，此卡的力量＋500。",
+    "all_cards": [
+      {
+        "id": "LNJ/WZ02-T11R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "LNJ/WZ02-T11",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "LNJ/WZ02-T10": {
+    "name": "迈向梦想的阶梯 上原 步梦",
+    "product_name": "Love Live! 虹咲学园学园偶像同好会 feat. 学园偶像季：群星闪耀 预构筑卡组",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["音乐"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】此卡被从手牌放置入舞台时，该回合中，此卡的力量＋1500。<br>【自】【CX联动】此卡的战斗对【倒置】时，若你的高潮区存在「TOKIMEKI Runners」，则你检视自己卡组顶的至多4张卡，选择至多1张持有《音乐》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室，你选择1张自己的角色卡，该回合中，等级＋1，力量＋1500。",
+    "all_cards": [
+      {
+        "id": "LNJ/WZ02-T10SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "LNJ/WZ02-T10S",
+        "rarity": "SR"
+      },
+      {
+        "id": "LNJ/WZ02-T10",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "LNJ/WZ02-T09": {
+    "name": "因为我们是伙伴！ 优木 雪菜",
+    "product_name": "Love Live! 虹咲学园学园偶像同好会 feat. 学园偶像季：群星闪耀 预构筑卡组",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["音乐"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】其他的你的持有《音乐》特征角色卡攻击时，该回合中，此卡的力量＋1500。<br>【自】再演［将1张手牌的角色卡放置入休息室］（此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则将此卡以【横置】状态放置入此卡曾经存在的格子）",
+    "all_cards": [
+      {
+        "id": "LNJ/WZ02-T09",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "LNJ/WZ02-T08": {
+    "name": "自豪的便当！ 宫下 爱",
+    "product_name": "Love Live! 虹咲学园学园偶像同好会 feat. 学园偶像季：群星闪耀 预构筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 3000,
+    "cost": 0,
+    "trait": ["音乐"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "",
+    "all_cards": [
+      {
+        "id": "LNJ/WZ02-T08",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "LNJ/WZ02-T07": {
+    "name": "熟悉的味道 上原 步梦",
+    "product_name": "Love Live! 虹咲学园学园偶像同好会 feat. 学园偶像季：群星闪耀 预构筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["音乐"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】此卡攻击时，你选择1张自己的角色卡，该回合中，力量＋2500。",
+    "all_cards": [
+      {
+        "id": "LNJ/WZ02-T07",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "LNJ/WZ02-T06": {
+    "name": "惹人喜爱的空空霞 中须 霞",
+    "product_name": "Love Live! 虹咲学园学园偶像同好会 feat. 学园偶像季：群星闪耀 预构筑卡组",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["音乐"],
+    "color": "黄色",
+    "soul": 2,
+    "effect": "【自】此卡被从手牌放置入舞台时，你选择至多1张对方的角色卡，返回手牌，该回合中，此卡的力量＋2000。<br>【自】此卡攻击时，你选择1张你的持有《音乐》特征的角色卡，该回合中，力量＋1500。",
+    "all_cards": [
+      {
+        "id": "LNJ/WZ02-T06",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "LNJ/WZ02-T04": {
+    "name": "心电感应 天王寺 璃奈",
+    "product_name": "Love Live! 虹咲学园学园偶像同好会 feat. 学园偶像季：群星闪耀 预构筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["音乐"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】若你库存区中存在的卡片小于等于2张，则此卡的力量＋1500。",
+    "all_cards": [
+      {
+        "id": "LNJ/WZ02-T04R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "LNJ/WZ02-T04",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "LNJ/WZ02-T05": {
+    "name": "克服弱项？ 樱坂 雫",
+    "product_name": "Love Live! 虹咲学园学园偶像同好会 feat. 学园偶像季：群星闪耀 预构筑卡组",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6500,
+    "cost": 1,
+    "trait": ["音乐"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】每存在1张其他的你的持有《音乐》特征的角色卡，此卡的力量＋1000。",
+    "all_cards": [
+      {
+        "id": "LNJ/WZ02-T05",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "LNJ/WZ02-T02": {
+    "name": "实现的力量 樱坂 雫",
+    "product_name": "Love Live! 虹咲学园学园偶像同好会 feat. 学园偶像季：群星闪耀 预构筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音乐"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】应援 所有此卡前面的你的角色卡，力量＋500。<br>【自】［将此卡放置入休息室］其他的你的持有《音乐》特征的角色卡被从舞台放置入休息室时，若后列存在此卡，则你可以支付费用。若如此做，则将该卡以【横置】状态放置入该卡曾经存在的格子。",
+    "all_cards": [
+      {
+        "id": "LNJ/WZ02-T02R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "LNJ/WZ02-T02",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "LNJ/WZ02-T03": {
+    "name": "发生大危机 天王寺 璃奈",
+    "product_name": "Love Live! 虹咲学园学园偶像同好会 feat. 学园偶像季：群星闪耀 预构筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音乐"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】所有其他的你的「自豪的便当！ 宫下 爱」，力量＋1000。<br>【自】［将1张手牌中的持有《音乐》特征的角色卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，你检视自己的卡组并选择至多1张「自豪的便当！ 宫下 爱」展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "LNJ/WZ02-T03",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "LNJ/WZ02-T01": {
+    "name": "暗暗努力 中须 霞",
+    "product_name": "Love Live! 虹咲学园学园偶像同好会 feat. 学园偶像季：群星闪耀 预构筑卡组",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音乐"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】你的回合中，此卡的力量＋3000。<br>【自】［（2）］此卡被从舞台放置入休息室时，你可以支付费用。若如此做，你选择1张自己休息室的持有《音乐》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "LNJ/WZ02-T01R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "LNJ/WZ02-T01",
+        "rarity": "TD"
+      }
+    ],
+    "trigger_soul_count": 0
+  }
+}

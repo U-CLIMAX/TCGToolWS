@@ -1437,6 +1437,26 @@ const wscSeriesMap = {
     prefixes: ['[cn]HBR'],
     latestReleaseDate: '2024-12-20',
   },
+  '[cn]kgl': {
+    name: '[cn]辉夜大小姐想让我告白～天才们的恋爱头脑战～',
+    prefixes: ['[cn]KGL'],
+    latestReleaseDate: '2024-05-31',
+  },
+  '[cn]rsl': {
+    name: '[cn]少女☆歌剧 Revue Starlight',
+    prefixes: ['[cn]RSL'],
+    latestReleaseDate: '2024-03-29',
+  },
+  '[cn]lnj': {
+    name: '[cn]Love Live! 虹咲学园学园偶像同好会',
+    prefixes: ['[cn]LNJ'],
+    latestReleaseDate: '2024-10-25',
+  },
+  '[cn]isc': {
+    name: '[cn]偶像大师 闪耀色彩',
+    prefixes: ['[cn]ISC'],
+    latestReleaseDate: '2025-09-19',
+  },
   'wsc': {
     name: '其他',
     prefixes: ['[cn]WS', '[cn]CGS'],

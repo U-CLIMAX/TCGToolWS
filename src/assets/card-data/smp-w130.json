@@ -631,7 +631,7 @@
     "trait": "-",
     "color": "黄色",
     "soul": "-",
-    "effect": "【永】 所有你的角色卡，战斗力＋1000，魂＋1。<br>（<img src=\"/effect-icons/bounce.webp\">:（返回：此卡触发时，你可以选择1张对方的角色卡，返回手牌）",
+    "effect": "【永】 所有你的角色卡，战斗力＋1000，魂＋1。<br>（<img src=\"/effect-icons/bounce.webp\">:此卡触发时，你可以选择1张对方的角色卡，返回手牌）",
     "all_cards": [
       {
         "id": "SMP/W130-027",

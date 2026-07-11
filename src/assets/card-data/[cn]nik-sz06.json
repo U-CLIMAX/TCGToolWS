@@ -3481,24 +3481,5 @@
       }
     ],
     "trigger_soul_count": 1
-  },
-  "NIK/SZ06-P11": {
-    "name": "贯穿一切的赤红獠牙",
-    "product_name": "「GODDESS OF VICTORY: NIKKE」",
-    "type": "事件卡",
-    "level": 1,
-    "power": "-",
-    "cost": 1,
-    "trait": "-",
-    "color": "红色",
-    "soul": "-",
-    "effect": "你检视自己的卡组并选择至多1张高潮卡展示给对手，加入手牌，将卡组洗切。",
-    "all_cards": [
-      {
-        "id": "NIK/SZ06-P11EX",
-        "rarity": "PR＋"
-      }
-    ],
-    "trigger_soul_count": 0
   }
 }
