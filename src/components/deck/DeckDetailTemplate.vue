@@ -31,8 +31,9 @@
               <v-btn
                 icon
                 :variant="smAndUp || embedded ? 'text' : 'elevated'"
-                :density="smAndUp ? 'compact' : 'default'"
+                density="compact"
                 @click="openSaveDialog"
+                color="primary"
                 :disabled="!deck"
               >
                 <v-icon size="24" icon="i-mdi:content-save-outline" />
@@ -43,10 +44,11 @@
                 icon
                 variant="text"
                 density="compact"
+                color="cyan-lighten-1"
                 @click="copyArticleLink(deck.article_link)"
                 v-tooltip:bottom="{ text: '复制文章/视频链接', disabled: isTouch }"
               >
-                <v-icon size="24" icon="i-mdi:text-box-outline" />
+                <v-icon size="24" icon="i-mdi:newspaper-variant-outline" />
               </v-btn>
             </div>
 
@@ -54,6 +56,9 @@
             <div class="header-center d-flex align-center">
               <h1 v-if="deck" class="text-h6 text-sm-h5 text-truncate">
                 {{ deckTitle }}
+                <v-tooltip activator="parent" location="bottom" open-on-click>
+                  {{ deckTitle }}
+                </v-tooltip>
               </h1>
               <h1 v-else class="text-h6 text-sm-h5 text-truncate">N/A</h1>
 

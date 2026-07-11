@@ -108,8 +108,8 @@
           <div class="d-flex align-center ga-2 flex-shrink-0">
             <v-icon
               v-if="deck.article_link"
-              icon="i-mdi:text-box-outline"
-              class="mt-auto"
+              icon="i-mdi:newspaper-variant-outline"
+              class="mt-1"
               style="color: rgba(var(--v-theme-on-surface), 0.5)"
               size="x-small"
             />

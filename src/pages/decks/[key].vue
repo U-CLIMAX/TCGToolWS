@@ -120,6 +120,9 @@
                   class="text-h6 text-sm-h5 text-truncate text-center px-2 flex-grow-1"
                 >
                   {{ deck.name }}
+                  <v-tooltip activator="parent" location="bottom" open-on-click>
+                    {{ deck.name }}
+                  </v-tooltip>
                 </h1>
                 <h1 v-else class="text-h6 text-sm-h5 text-truncate text-center px-2 flex-grow-1">
                   N/A

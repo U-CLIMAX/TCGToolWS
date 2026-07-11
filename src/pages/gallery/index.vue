@@ -93,7 +93,11 @@
                       rounded="pill"
                       height="48"
                       width="48"
-                      :icon="localFilters.hasArticle ? 'i-mdi:text-box' : 'i-mdi:text-box-outline'"
+                      :icon="
+                        localFilters.hasArticle
+                          ? 'i-mdi:newspaper-variant'
+                          : 'i-mdi:newspaper-variant-outline'
+                      "
                       elevation="0"
                       @click="toggleHasArticle"
                       v-tooltip:bottom="{
