@@ -272,12 +272,6 @@
           </LazyCardWrapper>
         </div>
       </v-container>
-
-      <template v-slot:loading>
-        <div class="d-flex justify-center my-4 w-100">
-          <v-progress-circular indeterminate color="primary" />
-        </div>
-      </template>
     </v-infinite-scroll>
 
     <ShareToGalleryDialog

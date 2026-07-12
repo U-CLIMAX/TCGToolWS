@@ -109,12 +109,6 @@
             </LazyCardWrapper>
           </div>
         </div>
-
-        <template v-slot:loading>
-          <v-row justify="center" class="my-4">
-            <v-progress-circular indeterminate />
-          </v-row>
-        </template>
       </v-container>
     </v-infinite-scroll>
 
