@@ -214,7 +214,7 @@ export const useFilterStore = defineStore('filter', () => {
       const result = await fetchAndProcessCards(prefixes)
 
       allCards.value = result.allCards
-      productNames.value = result.productNames
+      productNames.value = result.productNames.sort()
       traits.value = result.traits
       rarities.value = result.rarities
       souls.value = result.souls
