@@ -65,9 +65,9 @@ const wsSeriesMap = {
   're0': {
     name: 'Re：从零开始的异世界生活',
     prefixes: ['RZ'],
-    latestReleaseDate: '2024-11-22',
+    latestReleaseDate: '2026-07-24',
     yytUrl:
-      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=rz&vers[]=rz2.0&vers[]=rz3.0&vers[]=rz4.0&vers[]=rzext1.0&rare=&type=&kizu=0',
+      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=rz&vers[]=rz2.0&vers[]=rz3.0&vers[]=rz4.0&vers[]=rz5.0&vers[]=rzext1.0&rare=&type=&kizu=0',
   },
   'fantasia': {
     name: '富士见Fantasia文库',
