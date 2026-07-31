@@ -158,5 +158,28 @@
         "rarity": "PR+"
       }
     ]
+  },
+  "OS09/R09-P10": {
+    "name": "壬生の教え 菊千代",
+    "product_name": "PRカード",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["アリスソフト", "武器"],
+    "color": "红色",
+    "effect": "【永】你其他全部的〈同OS〉的角色，战斗力＋500。<br>【自】你其他战斗中的〈同OS〉的角色【倒置】时，你选择自己的1个角色，那个回合中，战斗力＋500。",
+    "all_cards": [
+      {
+        "id": "OS09/R09-P10EX",
+        "rarity": "PR+"
+      },
+      {
+        "id": "OS09/R09-P10S",
+        "rarity": "PR"
+      }
+    ]
   }
 }

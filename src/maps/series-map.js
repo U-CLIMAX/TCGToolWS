@@ -1236,6 +1236,11 @@ const wsSeriesMap = {
 }
 
 const wsrSeriesMap = {
+  os12: {
+    name: '拔作岛 THE ANIMATION',
+    prefixes: ['OS12'],
+    latestReleaseDate: '2026-08-07',
+  },
   os11: {
     name: 'Purple software',
     prefixes: ['OS11'],
