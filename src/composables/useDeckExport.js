@@ -12,7 +12,7 @@ import { convertDeckToPDF } from '@/utils/domToPDF'
 /**
  * Composable for deck exporting, sharing, and image generation.
  */
-export function useDeckExport() {
+export const useDeckExport = () => {
   const uiStore = useUIStore()
   const deckStore = useDeckStore()
   const galleryStore = useDecksGalleryStore()

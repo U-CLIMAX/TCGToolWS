@@ -6,7 +6,7 @@ import { useSnackbar } from '@/composables/useSnackbar'
 /**
  * Composable for managing deck history view state and logic.
  */
-export function useDeckHistory() {
+export const useDeckHistory = () => {
   const uiStore = useUIStore()
   const { triggerSnackbar } = useSnackbar()
 
