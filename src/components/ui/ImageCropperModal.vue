@@ -9,11 +9,21 @@
     >
       <v-card class="d-flex flex-column rounded-2lg pa-2">
         <v-card-title>图片裁剪</v-card-title>
-        <v-card-text class="flex-grow-1 overflow-hidden">
+        <v-card-text class="overflow-hidden">
           <div ref="containerRef" class="cropper-container" :style="{ height: containerHeight }">
             <cropper ref="cropperRef" :src="src" :auto-zoom="true" />
           </div>
         </v-card-text>
+        <div class="d-flex justify-center ga-3">
+          <v-btn icon="i-mdi:rotate-left" variant="text" @click="cropperRef?.rotate(-90)" />
+          <v-btn icon="i-mdi:rotate-right" variant="text" @click="cropperRef?.rotate(90)" />
+          <v-btn
+            icon="i-mdi:flip-horizontal"
+            variant="text"
+            @click="cropperRef?.flip(true, false)"
+          />
+          <v-btn icon="i-mdi:flip-vertical" variant="text" @click="cropperRef?.flip(false, true)" />
+        </div>
         <v-card-actions class="mx-4">
           <v-spacer />
           <v-btn text="取消" @click="onCancel"></v-btn>
@@ -57,8 +67,7 @@ watch(
           const containerWidth = containerRef.value.clientWidth
           const imageAspectRatio = image.naturalHeight / image.naturalWidth
           const calculatedHeight = containerWidth * imageAspectRatio
-          const maxHeight = window.innerHeight * 0.9 - 120
-          containerHeight.value = `${Math.min(calculatedHeight, maxHeight)}px`
+          containerHeight.value = `${calculatedHeight}px`
         }
       }
     }
@@ -98,6 +107,7 @@ const onCancel = () => {
 .cropper-container {
   position: relative;
   width: 100%;
+  max-height: calc(90vh - 200px);
   overflow: hidden;
   transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
