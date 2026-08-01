@@ -103,7 +103,7 @@
           <div class="text-body-2 text-disabled">目前暂无公告</div>
         </div>
       </v-list>
-      <v-card-actions class="mt-3">
+      <v-card-actions class="mt-auto">
         <v-spacer></v-spacer>
         <v-btn variant="text" @click="menuOpen = false"> 关闭 </v-btn>
       </v-card-actions>
