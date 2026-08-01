@@ -86,7 +86,7 @@
               v-if="uiStore.backgroundImage"
               :src="uiStore.backgroundImage.src"
               :aspect-ratio="previewAspectRatio"
-              class="my-4 rounded-lg"
+              class="my-4"
               max-height="200"
             >
               <template #placeholder>
