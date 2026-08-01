@@ -141,7 +141,7 @@
               </span>
 
               <span class="text-caption text-grey d-flex align-center ml-2">
-                价格数据来自 : 遊々亭
+                数据来源 : 遊々亭
                 <v-tooltip location="top" open-on-click>
                   <template #activator="{ props: tooltipProps }">
                     <v-icon
@@ -153,7 +153,7 @@
                     />
                   </template>
                   <div class="text-caption">
-                    <div v-if="formattedLastUpdate">上次更新: {{ formattedLastUpdate }}</div>
+                    <div v-if="formattedLastUpdate">最近更新: {{ formattedLastUpdate }}</div>
                     <div v-if="formattedNextUpdate">下次更新: {{ formattedNextUpdate }}</div>
                   </div>
                 </v-tooltip>
