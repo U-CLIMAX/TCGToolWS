@@ -6,7 +6,7 @@
   >
     <v-sheet
       :rounded="smAndUp ? '3md' : false"
-      class="pa-4 ga-4 d-flex flex-column overflow-y-auto overflow-x-hidden themed-scrollbar"
+      class="d-flex flex-column"
       :class="{
         'glass-sheet': uiStore.backgroundImage && !transparent,
         'fill-height': !containerHeight,
@@ -14,7 +14,9 @@
       :color="transparent ? 'transparent' : undefined"
       :style="containerHeight ? { height: `${containerHeight}px` } : undefined"
     >
-      <div class="d-flex flex-column ga-4">
+      <div
+        class="pa-4 ga-4 d-flex flex-column overflow-y-auto overflow-x-hidden themed-scrollbar fill-height"
+      >
         <div class="d-flex justify-end">
           <v-btn
             size="small"
