@@ -103,8 +103,8 @@
       </v-card-actions>
     </v-card>
     <SponsorNoticeDialog v-model="isSponsorNoticeOpen" @confirm="proceedToPayment" />
-    <SettingsModal v-model="isSettingsModalOpen" />
   </v-dialog>
+  <SettingsModal v-model="isSettingsModalOpen" />
 </template>
 
 <script setup>
@@ -146,6 +146,7 @@ const handleUpgradeClick = () => {
 }
 
 const handleSettingsClick = () => {
+  isDialogOpen.value = false
   isSettingsModalOpen.value = true
 }
 
