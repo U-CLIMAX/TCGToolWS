@@ -26,8 +26,8 @@
   border-radius: 10px;
 }
 
-/* Firefox fallback */
-@supports not selector(::-webkit-scrollbar) {
+/* Firefox */
+@supports selector(:-moz-window-inactive) {
   .themed-scrollbar,
   .themed-scrollbar textarea,
   .themed-scrollbar .v-list {
@@ -45,7 +45,7 @@
   }
 
   /* Firefox */
-  @supports not selector(::-webkit-scrollbar) {
+  @supports selector(:-moz-window-inactive) {
     .themed-scrollbar,
     .themed-scrollbar .v-list {
       scrollbar-width: none;
