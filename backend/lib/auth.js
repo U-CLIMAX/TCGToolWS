@@ -333,7 +333,19 @@ export const handleAfdianWebhook = async (c) => {
   }
 
   const signStr = payload.data.sign
-  const isVerified = await verifyAfdianSignature(c.env.AFDIAN_PUBLIC_KEY, payload, signStr, c.env)
+  let isVerified = false
+
+  // 使用 Vite 提供的环境变量判断是否为开发环境
+  if (
+    import.meta.env.DEV &&
+    c.env.AFDIAN_WEBHOOK_BYPASS_TOKEN &&
+    signStr === c.env.AFDIAN_WEBHOOK_BYPASS_TOKEN
+  ) {
+    console.warn('⚠️ Webhook verification bypassed using local dev token.')
+    isVerified = true
+  } else {
+    isVerified = await verifyAfdianSignature(c.env.AFDIAN_PUBLIC_KEY, payload, signStr, c.env)
+  }
 
   if (!isVerified) {
     console.warn('Afdian Webhook: Invalid signature.')

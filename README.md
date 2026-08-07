@@ -37,7 +37,9 @@
   - [环境变量配置](#环境变量配置)
   - [安装与运行](#安装与运行)
   - [本地数据库初始化](#本地数据库初始化)
+- [AI Agents 与自动化测试](#ai-agents-与自动化测试)
 - [开发规范](#开发规范)
+- [Credits](#credits)
 - [免责声明](#免责声明)
 
 ---
@@ -117,22 +119,19 @@ VVITE_BLUR_IMAGE_BASE_URL=ws-blur-image-data
 
 ### 本地数据库初始化
 
-若需测试登录与后端功能，请执行：
+若需测试登录与后端功能，请按照以下步骤初始化数据库：
 
-1. **初始化本地 D1 数据库**
+1. **创建数据表结构**：
 
    ```bash
    npm run db:init
    ```
 
-2. **插入测试管理员账号**
-
+2. **创建本地测试账号**：
    ```bash
-   npx wrangler d1 execute ws-account-db --local --command="INSERT INTO users (id, email, hashed_password, salt, role) VALUES ('f892bf9e-f8c3-4c87-9a9a-1c3bc38547c0', 'admin@example.com', '9d7edc1be25e6ea2227d9b916fb0c0eb8f8d4dd01b3fc06fdb022941aa0b1a27', 'c26f314e-4570-47c1-abb1-712bd7964fb9', 0);"
+   npm run db:seed
    ```
-
-   - **账号**: `admin@example.com`
-   - **密码**: `12345678`
+   _说明：按照终端提示输入测试邮箱、密码及权限等级，即可安全地生成测试账号。_
 
 #### 定时任务测试 (Scheduler)
 
@@ -145,12 +144,40 @@ VVITE_BLUR_IMAGE_BASE_URL=ws-blur-image-data
 curl "http://localhost:5173/cdn-cgi/handler/scheduled"
 ```
 
+## AI Agents 与自动化测试
+
+本专案深度整合了 Antigravity AI 代理架构与多个自动化脚本，以加速本地开发与测试体验。
+
+### 1. 多代理协作开发模式 (Multi-Agent)
+
+如果您使用支持 Antigravity 的 AI 助手，专案中已内建了 `ucx-workspace` 插件，提供了完整的角色分工：
+
+- **`ucx_architect`**: 主架构师，负责分析需求并派发任务。
+- **`ucx_frontend_expert`**: 前端专家，精通 Vue 3、Vuetify 与 Composables 规范。
+- **`ucx_backend_expert`**: 后端专家，精通 Hono、Cloudflare D1 与 Webhook 机制。
+
+**如何使用？**
+只需在与 AI 助手的对话中自然提出需求，或主动提示：“请使用 `ucx-multi-agent-dev` 技能帮我开发...”，AI 就会自动读取 `.agents/rules` 下的所有设计规范，并唤醒对应的专家进行无缝协作。
+
+### 2. 本地测试与工具脚本
+
+- **创建测试账号 (`npm run db:seed`)**
+  交互式界面，输入邮箱、密码和权限等级，即可安全地生成加盐加密 (Scrypt) 后的测试账号。
+- **测试爱发电 Webhook (`npm run test:afdian`)**
+  在本地服务器启动 (`npm run dev`) 的前提下，执行此脚本可自动模拟：`登录 -> 发起订单 -> 获取订单 UUID -> 触发 Webhook 支付成功回调`。
+  _(注意：需确保您的 `.env.dev` 中已配置 `AFDIAN_WEBHOOK_BYPASS_TOKEN=dev_sign_bypass_123`，该安全后门在正式环境会被 Vite 自动剔除)_
+
 ## 开发规范
 
 - **组件风格**: 统一使用 `<script setup>` 与 Composition API。
 - **函数风格**: 优先使用 **箭头函数 (Arrow Functions)**。
 - **路径引用**: 使用 `@` 别名指向 `src/` 目录。
 - **代码质量**: 提交前请运行 `npm run lint` 和 `npm run fmt`。
+
+## Credits
+
+- **UI/UX 与美术设计**: Kamomim
+- **卡牌文字翻译**: [Card-缪](https://space.bilibili.com/3546826156280707) & U-CLIMAX项目组
 
 ## 免责声明
 

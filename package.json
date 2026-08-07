@@ -16,7 +16,9 @@
     "lint": "oxlint --fix",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
-    "db:init": "npx wrangler d1 execute ws-account-db --local --file=./schema.sql"
+    "db:init": "npx wrangler d1 execute ws-account-db --local --file=./schema.sql",
+    "db:seed": "node scripts/create-test-user.js",
+    "test:afdian": "node test/webhook-afdian.js"
   },
   "dependencies": {
     "@zumer/snapdom": "^2.12.0",
