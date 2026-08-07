@@ -1179,9 +1179,9 @@ const wsSeriesMap = {
   'osk': {
     name: '我推的孩子',
     prefixes: ['OSK'],
-    latestReleaseDate: '2025-02-14',
+    latestReleaseDate: '2026-08-07',
     yytUrl:
-      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=osk&vers[]=osk2.0&rare=&type=&kizu=0',
+      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=osk&vers[]=osk2.0&vers[]=osk3.0&rare=&type=&kizu=0',
   },
   'sfn': {
     name: '葬送的芙莉莲',
@@ -1240,6 +1240,7 @@ const wsrSeriesMap = {
     name: '拔作岛 THE ANIMATION',
     prefixes: ['OS12'],
     latestReleaseDate: '2026-08-07',
+    yytUrl: 'https://yuyu-tei.jp/sell/wsr/s/search?search_word=&vers[]=os12&rare=&type=&kizu=0',
   },
   os11: {
     name: 'Purple software',
@@ -1316,6 +1317,11 @@ const wsrSeriesMap = {
 }
 
 const wscSeriesMap = {
+  '[cn]gfl': {
+    name: '[cn]少女前线系列',
+    prefixes: ['[cn]GFL'],
+    latestReleaseDate: '2026-08-07',
+  },
   '[cn]p5x': {
     name: '[cn]女神异闻录：夜幕魅影',
     prefixes: ['[cn]P5X'],
