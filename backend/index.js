@@ -48,6 +48,7 @@ import { handleInitiatePayment } from './lib/payments.js'
 import { handleGetSeriesPrices } from './lib/prices.js'
 import { handleCreateTranslationReport } from './lib/reports.js'
 import { updateMarketStats } from './services/market-stats.js'
+import { cleanupDatabase } from './services/db-cleanup.js'
 
 /** @type {AppInstance} */
 const app = new Hono().basePath('/api')
@@ -192,7 +193,21 @@ app.route('/reports', reportRoutes)
 
 export default {
   fetch: app.fetch,
+  /**
+   * Handles Cloudflare Workers Cron Triggers scheduled tasks.
+   * Dispatches tasks based on the `event.cron` string defined in the `wrangler.jsonc` crons array.
+   * (When testing locally, append the URL-encoded `?cron` parameter to the `/cdn-cgi/handler/scheduled` request)
+   *
+   * @param {ScheduledController} event - The scheduled controller containing the cron string that triggered the event.
+   * @param {Env} env - Environment variables and bindings.
+   * @param {ExecutionContext} ctx - Execution context providing methods like waitUntil.
+   */
   scheduled: async (event, env, ctx) => {
-    ctx.waitUntil(updateMarketStats(env))
+    if (event.cron === '0 * * * *') {
+      ctx.waitUntil(updateMarketStats(env))
+    }
+    if (event.cron === '0 0 * * 7') {
+      ctx.waitUntil(cleanupDatabase(env))
+    }
   },
 }
