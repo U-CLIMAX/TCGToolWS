@@ -176,7 +176,8 @@ curl "http://localhost:5173/cdn-cgi/handler/scheduled"
 
 ## Credits
 
-- **UI/UX 与美术设计**: Kamomim
+- **UI/UX 与美术设计**: Kamomim  
+  <img src="image/Kamomim_avatar.jpg" width="120" alt="Kamomim Avatar" style="border-radius: 50%; margin-top: 8px;">
 - **卡牌文字翻译**: [Card-缪](https://space.bilibili.com/3546826156280707) & U-CLIMAX项目组
 
 ## 免责声明
