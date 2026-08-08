@@ -271,7 +271,12 @@
                   style="font-size: 10px"
                 >
                   更新于:
-                  {{ new Date(marketStore.rankingStats.updated_at * 1000).toLocaleTimeString() }}
+                  {{
+                    new Date(marketStore.rankingStats.updated_at * 1000).toLocaleTimeString([], {
+                      hour: '2-digit',
+                      minute: '2-digit',
+                    })
+                  }}
                 </div>
               </v-sheet>
             </v-col>
