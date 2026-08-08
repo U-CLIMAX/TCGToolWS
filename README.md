@@ -184,7 +184,7 @@ VVITE_BLUR_IMAGE_BASE_URL=ws-blur-image-data
 ## Credits
 
 - **UI/UX 与美术设计**: Kamomim  
-  <img src="image/Kamomim_avatar.jpg" width="120" alt="Kamomim Avatar" style="border-radius: 50%; margin-top: 8px;">
+  <img src="https://images.weserv.nl/?url=raw.githubusercontent.com/U-CLIMAX/TCGToolWS/main/image/Kamomim_avatar.jpg&mask=circle" width="120" alt="Kamomim Avatar">
 - **卡牌文字翻译**: [Card-缪](https://space.bilibili.com/3546826156280707) & U-CLIMAX项目组
 
 ## 免责声明
