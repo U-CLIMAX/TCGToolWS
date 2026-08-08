@@ -14,6 +14,7 @@ trigger: always_on
 
 3. **类型与绑定**:
    - 新增 Cloudflare Worker 绑定（Bindings）或环境变量时，需同步更新 [`worker-configuration.d.ts`](file:///C:/Users/ASUS/Code/web/TCGToolWS/worker-configuration.d.ts)。
+   - **所有的 Backend 核心函数（如 Scheduled Handlers、Services 等）必须编写标准的 JSDoc 注释（特别是明确 `@param {Env} env` 等环境变量的类型）。否则在 Cloudflare 环境下类型无法正确推导，也不会有代码提示。**
 
 4. **Cloudflare 官方文档查阅 (CF Docs)**:
    - 对于所有与 Cloudflare (Workers, D1, KV, R2 等) 相关的开发与 API 说明，代理程序 (Agent) **必须直接读取并解析**专属的 LLM 优化文档入口：`https://developers.cloudflare.com/agents/llms.txt`，以此来搜索最新规范，禁止盲目猜测。
