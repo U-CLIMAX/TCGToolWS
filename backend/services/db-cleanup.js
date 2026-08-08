@@ -1,8 +1,8 @@
 /**
  * Weekly scheduled task to clean up expired temporary data (older than 24 hours) from the database.
- * This includes: unverified registrations (pending_registrations), password reset requests (password_resets), 
+ * This includes: unverified registrations (pending_registrations), password reset requests (password_resets),
  * and expired orders (afdian_orders).
- * 
+ *
  * @param {Env} env - Environment variables and bindings. Must contain the D1 Database binding (env.DB).
  */
 export const cleanupDatabase = async (env) => {
