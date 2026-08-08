@@ -34,7 +34,7 @@
           </div>
 
           <!-- Desktop Counter -->
-          <div class="counter-area d-none d-lg-block">
+          <div class="counter-area">
             <div class="counter-container">
               <div
                 v-for="(image, index) in images"
@@ -70,7 +70,7 @@
             </transition>
 
             <!-- Mobile Counter -->
-            <div class="counter-area d-block d-xl-none">
+            <div class="counter-area">
               <div class="counter-container">
                 <div
                   v-for="(image, index) in images"
@@ -774,8 +774,13 @@ onUnmounted(() => {
 }
 
 .content-section .counter-area {
+  display: block;
   margin-top: auto; /* Push counter to the bottom of the flex container */
   margin-bottom: var(--axis-gap); /* Align with image bottom */
+}
+
+.coordinate-system .counter-area {
+  display: none;
 }
 
 .content-section .counter-container {
@@ -1112,8 +1117,13 @@ onUnmounted(() => {
     --w-active-tablet: calc(var(--w-tablet) * 4);
   }
 
+  .content-section .counter-area {
+    display: none;
+  }
+
   /* Mobile Counter Styles */
   .coordinate-system .counter-area {
+    display: block;
     position: absolute;
     bottom: calc(-1 * (var(--mobile-counter-gap) + var(--mobile-counter-height-tablet)));
     left: var(--axis-gap); /* Align with image left */
