@@ -637,4 +637,8 @@ const toggleSearchMode = () => {
   width: max-content !important;
   flex-shrink: 0 !important;
 }
+
+.v-select {
+  flex: none !important;
+}
 </style>
