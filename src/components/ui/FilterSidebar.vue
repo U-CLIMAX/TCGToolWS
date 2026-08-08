@@ -99,7 +99,7 @@
           </v-combobox>
         </div>
 
-        <div class="d-flex flex-nowrap ga-x-0 mt-n5 ml-n1">
+        <div class="d-flex flex-wrap ga-x-0 mt-n5 ml-n1">
           <v-checkbox
             v-model="filterStore.searchTargets"
             label="卡号"
