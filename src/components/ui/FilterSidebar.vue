@@ -99,40 +99,18 @@
           </v-combobox>
         </div>
 
-        <div class="d-flex flex-wrap ga-x-0 mt-n5 ml-n1">
-          <v-checkbox
-            v-model="filterStore.searchTargets"
-            label="卡号"
-            value="id"
-            hide-details
-            density="compact"
-            color="primary"
-            :disabled="props.disabled"
-            :ripple="false"
-            class="compact-checkbox"
-          ></v-checkbox>
-          <v-checkbox
-            v-model="filterStore.searchTargets"
-            label="卡名"
-            value="name"
-            hide-details
-            density="compact"
-            color="primary"
-            :disabled="props.disabled"
-            :ripple="false"
-            class="compact-checkbox"
-          ></v-checkbox>
-          <v-checkbox
-            v-model="filterStore.searchTargets"
-            label="效果"
-            value="effect"
-            hide-details
-            density="compact"
-            color="primary"
-            :disabled="props.disabled"
-            :ripple="false"
-            class="compact-checkbox"
-          ></v-checkbox>
+        <div class="mt-n3 d-flex align-center">
+          <v-chip-group v-model="filterStore.searchTargets" multiple color="primary" column>
+            <v-chip value="id" size="small" variant="tonal" :disabled="props.disabled">
+              卡号
+            </v-chip>
+            <v-chip value="name" size="small" variant="tonal" :disabled="props.disabled">
+              卡名
+            </v-chip>
+            <v-chip value="effect" size="small" variant="tonal" :disabled="props.disabled">
+              效果
+            </v-chip>
+          </v-chip-group>
         </div>
 
         <v-switch
@@ -632,12 +610,6 @@ const toggleSearchMode = () => {
 </script>
 
 <style scoped>
-.compact-checkbox :deep(.v-label) {
-  white-space: nowrap !important;
-  width: max-content !important;
-  flex-shrink: 0 !important;
-}
-
 .v-select {
   flex: none !important;
 }
