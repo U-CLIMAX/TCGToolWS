@@ -154,11 +154,6 @@
           class="flex-grow-1 themed-scrollbar pl-4 pr-4"
           :style="{ '--sb-margin-top': `${headerOffsetHeight + 20}px` }"
         />
-        <template v-if="smAndUp">
-          <div class="sidebar-container">
-            <DeckSidebar class="fill-height pr-4 pb-4" :header-offset-height="headerOffsetHeight" />
-          </div>
-        </template>
       </div>
 
       <!-- Mobile FABs for Bottom Sheet -->
