@@ -99,7 +99,7 @@ export const useDeckUpgradeRarity = () => {
 
       for (const card of allCards) {
         idToCardMap.set(card.id, card)
-        const baseId = card.baseId || card.id
+        const baseId = card.baseId
         if (!baseIdToCardsMap.has(baseId)) {
           baseIdToCardsMap.set(baseId, [])
         }
