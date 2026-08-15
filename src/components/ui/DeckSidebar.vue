@@ -59,8 +59,8 @@
         </v-btn>
       </div>
 
-      <v-row dense>
-        <v-col cols="7" sm="8" class="pa-0">
+      <v-row dense align="center">
+        <v-col class="pa-0 flex-grow-1" style="min-width: 0">
           <v-btn-toggle
             v-model="uiStore.cardClickMode"
             density="compact"
@@ -69,7 +69,7 @@
             rounded="pill"
             divided
             mandatory
-            class="w-100 h-100"
+            class="w-100"
           >
             <v-btn value="remove" class="flex-1-1" style="min-width: 0">
               <v-icon icon="i-mdi:minus" />
@@ -87,7 +87,22 @@
             </v-btn>
           </v-btn-toggle>
         </v-col>
-        <v-col cols="5" sm="4" class="pa-0 pl-2">
+        <v-col cols="auto" class="pa-0 px-1">
+          <v-btn
+            icon="i-mdi:sparkles"
+            size="40"
+            variant="tonal"
+            color="amber-darken-2"
+            :loading="isUpgrading"
+            :disabled="deckStore.totalCardCount === 0 || priceStore.isLoading || isUpgrading"
+            @click="handleUpgradeRarity"
+            v-tooltip:top-center="{
+              text: priceStore.isLoading ? '价格数据加载中...' : '一键升罕',
+              disabled: isTouch,
+            }"
+          />
+        </v-col>
+        <v-col cols="5" sm="4" class="pa-0">
           <v-select
             v-model="groupBy"
             :items="groupByOptions"
@@ -480,6 +495,7 @@ import { useSnackbar } from '@/composables/useSnackbar'
 import { useUIStore } from '@/stores/ui'
 import { usePriceStore } from '@/stores/price'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
+import { useDeckUpgradeRarity } from '@/composables/useDeckUpgradeRarity'
 import { sortCards } from '@/utils/cardsSort'
 import { deckRestrictionsLastUpdated } from '@/maps/deck-restrictions'
 import { generateDeckKey } from '@/utils/nanoid'
@@ -509,7 +525,12 @@ const { triggerSnackbar } = useSnackbar()
 const uiStore = useUIStore()
 const priceStore = usePriceStore()
 const { isTouch } = useDevice()
+const { isUpgrading, upgradeAllCardsToHighRarity } = useDeckUpgradeRarity()
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
+
+const handleUpgradeRarity = async () => {
+  await upgradeAllCardsToHighRarity()
+}
 
 const totalPrice = computed(() => {
   return Object.values(deckStore.cardsInDeck).reduce((sum, item) => {
