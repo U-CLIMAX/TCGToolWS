@@ -149,6 +149,8 @@
             :is-modal-visible="isModalVisible"
             :linked-cards="linkedCardsDetails"
             :is-loading-links="isLoadingLinkedCards"
+            :high-rarity-cards="highRarityCardsDetails"
+            :is-loading-high-rarity="isLoadingHighRarityCards"
             :selected-card-index="selectedCardIndex"
             :total-cards="deckCards.length"
             :deck-key="deckKey"
@@ -290,7 +292,11 @@ import { useRoute } from 'vue-router'
 import { getCardUrls } from '@/utils/getCardImage'
 import { useDisplay } from 'vuetify'
 import { useDeckGrouping } from '@/composables/useDeckGrouping'
-import { fetchCardsByBaseIdAndPrefix, getCardSeriesId } from '@/utils/card'
+import {
+  fetchCardsByBaseIdAndPrefix,
+  fetchAlternateRarityCards,
+  getCardSeriesId,
+} from '@/utils/card'
 import { useAuthStore } from '@/stores/auth'
 import { useUIStore } from '@/stores/ui'
 import { usePriceStore } from '@/stores/price'
@@ -481,6 +487,8 @@ const selectedCardPrice = ref(null)
 const selectedCardPriceUpdateTimes = ref(null)
 const linkedCardsDetails = ref([])
 const isLoadingLinkedCards = ref(false)
+const highRarityCardsDetails = ref([])
+const isLoadingHighRarityCards = ref(false)
 
 const { selectedCardIndex, getPrevCard, getNextCard } = useCardNavigation(
   flattenedDisplayCards,
@@ -539,38 +547,66 @@ const handleShowNewCard = async (cardPayload) => {
     selectedCardPriceUpdateTimes.value = getPriceUpdateTimes(card)
 
     linkedCardsDetails.value = []
+    highRarityCardsDetails.value = []
     isLoadingLinkedCards.value = true
+    isLoadingHighRarityCards.value = true
     selectedCardData.value = card
     isModalVisible.value = true
 
-    if (card.link && Array.isArray(card.link) && card.link.length > 0) {
-      const linkedCardsData = await Promise.all(
-        card.link.map(async (linkId) => fetchCardsByBaseIdAndPrefix(linkId, card.cardIdPrefix))
-      )
-      if (selectedCardData.value && selectedCardData.value.id === card.id) {
-        const flatCards = linkedCardsData.flat().filter(Boolean)
-        const cardsWithPrice = flatCards.map((c) => {
-          const infos = getCardSeriesId(c.cardIdPrefix)
-          let p = null
-          for (const info of infos) {
-            const foundPrice = priceStore.getPrice(info.id, c.id)
-            if (foundPrice) {
-              p = foundPrice
-              break
-            }
-          }
-          return {
-            ...c,
-            price: p ? p.toLocaleString() : null,
-          }
-        })
-        linkedCardsDetails.value = sortCards(cardsWithPrice)
+    const getCardPrice = (c) => {
+      const infos = getCardSeriesId(c.cardIdPrefix)
+      for (const info of infos) {
+        const foundPrice = priceStore.getPrice(info.id, c.id)
+        if (foundPrice) return foundPrice.toLocaleString()
       }
+      return null
     }
+
+    const loadLinkedCardsPromise = (async () => {
+      try {
+        if (card.link && Array.isArray(card.link) && card.link.length > 0) {
+          const linkedCardsData = await Promise.all(
+            card.link.map(async (linkId) => fetchCardsByBaseIdAndPrefix(linkId, card.cardIdPrefix))
+          )
+          if (selectedCardData.value && selectedCardData.value.id === card.id) {
+            const flatCards = linkedCardsData.flat().filter(Boolean)
+            const cardsWithPrice = flatCards.map((c) => ({
+              ...c,
+              price: getCardPrice(c),
+            }))
+            linkedCardsDetails.value = sortCards(cardsWithPrice)
+          }
+        }
+      } catch (err) {
+        console.error('Failed to load linked cards:', err)
+      } finally {
+        if (selectedCardData.value && selectedCardData.value.id === card.id) {
+          isLoadingLinkedCards.value = false
+        }
+      }
+    })()
+
+    const loadHighRarityCardsPromise = (async () => {
+      try {
+        const result = await fetchAlternateRarityCards(card, getCardPrice)
+        if (selectedCardData.value && selectedCardData.value.id === card.id) {
+          highRarityCardsDetails.value = result
+        }
+      } catch (err) {
+        console.error('Failed to load alternate rarity cards:', err)
+      } finally {
+        if (selectedCardData.value && selectedCardData.value.id === card.id) {
+          isLoadingHighRarityCards.value = false
+        }
+      }
+    })()
+
+    await Promise.all([loadLinkedCardsPromise, loadHighRarityCardsPromise])
   } catch (error) {
     console.error('Error handling show new card:', error)
   } finally {
     isLoadingLinkedCards.value = false
+    isLoadingHighRarityCards.value = false
   }
 }
 

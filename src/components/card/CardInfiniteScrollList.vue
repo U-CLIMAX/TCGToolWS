@@ -80,6 +80,8 @@
       :price-update-times="selectedCardData.priceUpdateTimes"
       :linked-cards="selectedLinkedCards"
       :is-loading-links="isLoadingLinks"
+      :high-rarity-cards="selectedHighRarityCards"
+      :is-loading-high-rarity="isLoadingHighRarity"
       :showActions="$route.name === 'GlobalSearch' ? false : true"
       :card-index="selectedCardIndex"
       :total-cards="displayedCards.length"
@@ -97,7 +99,12 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
 import { useDisplay } from 'vuetify'
-import { fetchCardByIdAndPrefix, fetchCardsByBaseIdAndPrefix, getCardSeriesId } from '@/utils/card'
+import {
+  fetchCardByIdAndPrefix,
+  fetchCardsByBaseIdAndPrefix,
+  fetchAlternateRarityCards,
+  getCardSeriesId,
+} from '@/utils/card'
 import { getCardUrls } from '@/utils/getCardImage'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import { useUIStore } from '@/stores/ui'
@@ -177,6 +184,8 @@ const isModalVisible = ref(false)
 const selectedCardData = ref(null)
 const selectedLinkedCards = ref([])
 const isLoadingLinks = ref(false)
+const selectedHighRarityCards = ref([])
+const isLoadingHighRarity = ref(false)
 const isTransitionDisabled = ref(false)
 
 watch(
@@ -297,27 +306,44 @@ const fetchLinkedCards = async (card) => {
   }
 }
 
+const fetchHighRarityCards = async (card) => {
+  try {
+    const result = await fetchAlternateRarityCards(card, getPrice)
+    if (selectedCardData.value?.card?.id === card.id) {
+      selectedHighRarityCards.value = result
+    }
+  } catch (error) {
+    console.error('Failed to fetch alternate rarity cards:', error)
+  } finally {
+    isLoadingHighRarity.value = false
+  }
+}
+
 const onShowDetails = async (payload) => {
   isLoadingLinks.value = true
+  isLoadingHighRarity.value = true
   selectedLinkedCards.value = []
+  selectedHighRarityCards.value = []
   const updateTimes = getPriceUpdateTimes(payload.card)
   selectedCardData.value = {
     ...payload,
     priceUpdateTimes: updateTimes,
   }
   isModalVisible.value = true
-  await fetchLinkedCards(payload.card)
+  await Promise.all([fetchLinkedCards(payload.card), fetchHighRarityCards(payload.card)])
 }
 
 const onShowNewCard = async (payload) => {
   isLoadingLinks.value = true
+  isLoadingHighRarity.value = true
   selectedLinkedCards.value = []
+  selectedHighRarityCards.value = []
   const updateTimes = getPriceUpdateTimes(payload.card)
   selectedCardData.value = {
     ...payload,
     priceUpdateTimes: updateTimes,
   }
-  await fetchLinkedCards(payload.card)
+  await Promise.all([fetchLinkedCards(payload.card), fetchHighRarityCards(payload.card)])
 }
 
 const infiniteScrollRef = ref(null)

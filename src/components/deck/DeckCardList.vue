@@ -149,6 +149,8 @@
         :price-update-times="priceUpdateTimes"
         :linked-cards="linkedCards"
         :is-loading-links="isLoadingLinks"
+        :high-rarity-cards="highRarityCards"
+        :is-loading-high-rarity="isLoadingHighRarity"
         :show-actions="false"
         :card-index="selectedCardIndex"
         :total-cards="totalCards"
@@ -207,6 +209,14 @@ const props = defineProps({
     default: () => [],
   },
   isLoadingLinks: {
+    type: Boolean,
+    default: false,
+  },
+  highRarityCards: {
+    type: Array,
+    default: () => [],
+  },
+  isLoadingHighRarity: {
     type: Boolean,
     default: false,
   },
