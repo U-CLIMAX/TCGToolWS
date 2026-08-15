@@ -16,7 +16,7 @@
       <v-card-text class="pt-0 themed-scrollbar">
         <v-list>
           <v-list-item>
-            <v-list-item-title>暗黑模式</v-list-item-title>
+            <v-list-item-title>深色模式</v-list-item-title>
             <template #append>
               <v-switch
                 v-model="uiStore.theme"
