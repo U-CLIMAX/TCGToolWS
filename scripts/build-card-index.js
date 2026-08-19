@@ -13,7 +13,7 @@ const CARD_DATA_DIR = path.join(__dirname, '../src/assets/card-data')
 const OUTPUT_DIR = path.join(__dirname, '../public')
 
 // 腳本邏輯版本
-const BUILD_LOGIC_VERSION = 'v3'
+const BUILD_LOGIC_VERSION = 'v4'
 
 console.log('🔍 Starting to build card index...')
 
@@ -323,17 +323,17 @@ const transformToColumnarStructure = (cards, valueMaps, filterOptions) => {
     cols.prod.push(
       c.product_name && prodIndexMap.has(c.product_name) ? prodIndexMap.get(c.product_name) : -1
     )
-    cols.type.push(c.type ? typeMap.indexOf(c.type) : -1)
-    cols.level.push(typeof c.level === 'number' ? c.level : c.level === '-' ? 0 : 0)
-    cols.power.push(typeof c.power === 'number' ? c.power / 500 : 0)
-    cols.cost.push(typeof c.cost === 'number' ? c.cost : 0)
+    cols.type.push(c.type && typeMap.indexOf(c.type) >= 0 ? typeMap.indexOf(c.type) : -1)
+    cols.level.push(typeof c.level === 'number' ? c.level : null)
+    cols.power.push(typeof c.power === 'number' ? c.power / 500 : null)
+    cols.cost.push(typeof c.cost === 'number' ? c.cost : null)
     cols.trait.push(
       Array.isArray(c.trait)
         ? c.trait.map((t) => traitIndexMap.get(t)).filter((idx) => idx !== undefined)
-        : []
+        : null
     )
     cols.color.push(c.color ? colorMap.indexOf(c.color) : -1)
-    cols.soul.push(typeof c.soul === 'number' ? c.soul : 0)
+    cols.soul.push(typeof c.soul === 'number' ? c.soul : null)
     cols.effect.push(effectIndexMap.has(c.effect || '') ? effectIndexMap.get(c.effect || '') : -1)
     cols.tsc.push(c.trigger_soul_count || 0)
     cols.rarity.push(c.rarity && rarityIndexMap.has(c.rarity) ? rarityIndexMap.get(c.rarity) : -1)
