@@ -10,7 +10,10 @@
     }"
   >
     <div style="position: relative">
-      <div v-if="card.rarity" class="rarity-label">
+      <div
+        v-if="card.rarity"
+        :class="['rarity-label', { 'rarity-label--high': !card.isLowestRarity }]"
+      >
         {{ card.rarity }}
       </div>
       <v-img
@@ -81,5 +84,15 @@ const handleCardClick = () => {
   background-color: rgba(var(--v-theme-primary), 0.85);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.rarity-label--high {
+  background-color: rgba(18, 18, 22, 0.78);
+  color: #d4af6a;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  border: 1px solid rgba(212, 175, 106, 0.3);
+  text-shadow: 0 0 6px rgba(212, 175, 106, 0.25);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
 </style>
