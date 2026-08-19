@@ -80,6 +80,8 @@
       :price-update-times="selectedCardData.priceUpdateTimes"
       :linked-cards="selectedLinkedCards"
       :is-loading-links="isLoadingLinks"
+      :parallel-cards="selectedParallelCards"
+      :is-loading-parallels="isLoadingParallels"
       :showActions="$route.name === 'GlobalSearch' ? false : true"
       :card-index="selectedCardIndex"
       :total-cards="displayedCards.length"
@@ -177,6 +179,8 @@ const isModalVisible = ref(false)
 const selectedCardData = ref(null)
 const selectedLinkedCards = ref([])
 const isLoadingLinks = ref(false)
+const selectedParallelCards = ref([])
+const isLoadingParallels = ref(false)
 const isTransitionDisabled = ref(false)
 
 watch(
@@ -297,27 +301,58 @@ const fetchLinkedCards = async (card) => {
   }
 }
 
+const fetchParallelCards = async (card) => {
+  try {
+    const cardToDisplay = await fetchCardByIdAndPrefix(card.id, card.cardIdPrefix)
+
+    if (cardToDisplay && cardToDisplay.parallelCards && cardToDisplay.parallelCards.length > 0) {
+      const parallelCardsData = await Promise.all(
+        cardToDisplay.parallelCards.map((id) =>
+          fetchCardByIdAndPrefix(id, cardToDisplay.cardIdPrefix)
+        )
+      )
+
+      if (selectedCardData.value?.card?.id === card.id) {
+        const flatCards = parallelCardsData.filter(Boolean)
+        const cardsWithPrice = flatCards.map((c) => ({
+          ...c,
+          price: getPrice(c),
+        }))
+        selectedParallelCards.value = sortCards(cardsWithPrice)
+      }
+    }
+  } catch (error) {
+    console.error('Failed to fetch parallel cards:', error)
+  } finally {
+    isLoadingParallels.value = false
+  }
+}
+
 const onShowDetails = async (payload) => {
   isLoadingLinks.value = true
+  isLoadingParallels.value = true
   selectedLinkedCards.value = []
+  selectedParallelCards.value = []
   const updateTimes = getPriceUpdateTimes(payload.card)
   selectedCardData.value = {
     ...payload,
     priceUpdateTimes: updateTimes,
   }
   isModalVisible.value = true
-  await fetchLinkedCards(payload.card)
+  await Promise.all([fetchLinkedCards(payload.card), fetchParallelCards(payload.card)])
 }
 
 const onShowNewCard = async (payload) => {
   isLoadingLinks.value = true
+  isLoadingParallels.value = true
   selectedLinkedCards.value = []
+  selectedParallelCards.value = []
   const updateTimes = getPriceUpdateTimes(payload.card)
   selectedCardData.value = {
     ...payload,
     priceUpdateTimes: updateTimes,
   }
-  await fetchLinkedCards(payload.card)
+  await Promise.all([fetchLinkedCards(payload.card), fetchParallelCards(payload.card)])
 }
 
 const infiniteScrollRef = ref(null)

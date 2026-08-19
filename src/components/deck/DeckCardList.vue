@@ -149,6 +149,8 @@
         :price-update-times="priceUpdateTimes"
         :linked-cards="linkedCards"
         :is-loading-links="isLoadingLinks"
+        :parallel-cards="parallelCards"
+        :is-loading-parallels="isLoadingParallels"
         :show-actions="false"
         :card-index="selectedCardIndex"
         :total-cards="totalCards"
@@ -207,6 +209,14 @@ const props = defineProps({
     default: () => [],
   },
   isLoadingLinks: {
+    type: Boolean,
+    default: false,
+  },
+  parallelCards: {
+    type: Array,
+    default: () => [],
+  },
+  isLoadingParallels: {
     type: Boolean,
     default: false,
   },

@@ -13,7 +13,7 @@ const CARD_DATA_DIR = path.join(__dirname, '../src/assets/card-data')
 const OUTPUT_DIR = path.join(__dirname, '../public')
 
 // 腳本邏輯版本
-const BUILD_LOGIC_VERSION = 'v2'
+const BUILD_LOGIC_VERSION = 'v3'
 
 console.log('🔍 Starting to build card index...')
 
@@ -224,6 +224,28 @@ const processCardLinks = (cards) => {
   return cards
 }
 
+// 平行卡片處理函式
+const processParallelCards = (cards) => {
+  const baseIdToCardsMap = new Map()
+  for (const card of cards) {
+    if (!baseIdToCardsMap.has(card.baseId)) {
+      baseIdToCardsMap.set(card.baseId, [])
+    }
+    baseIdToCardsMap.get(card.baseId).push(card)
+  }
+
+  for (const card of cards) {
+    const group = baseIdToCardsMap.get(card.baseId) || []
+    if (card.isLowestRarity) {
+      card.parallelCards = group.filter((c) => !c.isLowestRarity).map((c) => c.id)
+    } else {
+      card.parallelCards = group.filter((c) => c.isLowestRarity).map((c) => c.id)
+    }
+  }
+
+  return cards
+}
+
 // 資料優化
 const collectValueMaps = (cards) => {
   const colorSet = new Set()
@@ -358,6 +380,10 @@ const processGameData = async (game, cards) => {
   // 處理卡片連結
   console.log('     - Processing card links...')
   processCardLinks(cards)
+
+  // 處理平行卡片
+  console.log('     - Processing parallel cards...')
+  processParallelCards(cards)
 
   const indexFiles = await buildAndSaveSearchIndex(game, cards, hash)
 

@@ -269,6 +269,42 @@
                 </div>
               </v-slide-y-reverse-transition>
             </div>
+
+            <div
+              v-if="card.parallelCards && card.parallelCards.length > 0"
+              :key="`${card.id}-parallels`"
+              class="mt-4"
+            >
+              <div class="text-body-2 mb-2 text-grey">
+                <v-icon size="18" class="mr-1" icon="i-mdi:star-four-points-outline" />
+                {{ card.isLowestRarity ? '高罕卡片' : '低罕卡片' }}
+              </div>
+              <v-slide-y-reverse-transition mode="out-in">
+                <div :key="isLoadingParallels ? 'loading' : 'content'">
+                  <!-- Loading -->
+                  <div
+                    v-if="isLoadingParallels"
+                    class="d-flex justify-center align-center pa-4 mx-4"
+                  >
+                    <v-progress-linear indeterminate color="primary" />
+                  </div>
+
+                  <!-- Parallel cards -->
+                  <v-row v-else dense>
+                    <v-col
+                      v-for="card in parallelCards"
+                      :key="card.id"
+                      cols="6"
+                      sm="4"
+                      md="3"
+                      lg="2"
+                    >
+                      <LinkedCard :card="card" @show-details="handleShowNewCard" />
+                    </v-col>
+                  </v-row>
+                </div>
+              </v-slide-y-reverse-transition>
+            </div>
           </div>
         </div>
       </div>
@@ -413,6 +449,8 @@ const props = defineProps({
   priceUpdateTimes: { type: Object, default: null },
   linkedCards: { type: Array, default: () => [] },
   isLoadingLinks: { type: Boolean, default: false },
+  parallelCards: { type: Array, default: () => [] },
+  isLoadingParallels: { type: Boolean, default: false },
   showActions: { type: Boolean, default: false },
   cardIndex: { type: Number, default: 0 },
   totalCards: { type: Number, default: 1 },

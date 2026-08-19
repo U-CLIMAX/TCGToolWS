@@ -149,6 +149,8 @@
             :is-modal-visible="isModalVisible"
             :linked-cards="linkedCardsDetails"
             :is-loading-links="isLoadingLinkedCards"
+            :parallel-cards="parallelCardsDetails"
+            :is-loading-parallels="isLoadingParallelCards"
             :selected-card-index="selectedCardIndex"
             :total-cards="deckCards.length"
             :deck-key="deckKey"
@@ -290,7 +292,7 @@ import { useRoute } from 'vue-router'
 import { getCardUrls } from '@/utils/getCardImage'
 import { useDisplay } from 'vuetify'
 import { useDeckGrouping } from '@/composables/useDeckGrouping'
-import { fetchCardsByBaseIdAndPrefix, getCardSeriesId } from '@/utils/card'
+import { fetchCardByIdAndPrefix, fetchCardsByBaseIdAndPrefix, getCardSeriesId } from '@/utils/card'
 import { useAuthStore } from '@/stores/auth'
 import { useUIStore } from '@/stores/ui'
 import { usePriceStore } from '@/stores/price'
@@ -481,6 +483,8 @@ const selectedCardPrice = ref(null)
 const selectedCardPriceUpdateTimes = ref(null)
 const linkedCardsDetails = ref([])
 const isLoadingLinkedCards = ref(false)
+const parallelCardsDetails = ref([])
+const isLoadingParallelCards = ref(false)
 
 const { selectedCardIndex, getPrevCard, getNextCard } = useCardNavigation(
   flattenedDisplayCards,
@@ -539,38 +543,92 @@ const handleShowNewCard = async (cardPayload) => {
     selectedCardPriceUpdateTimes.value = getPriceUpdateTimes(card)
 
     linkedCardsDetails.value = []
+    parallelCardsDetails.value = []
     isLoadingLinkedCards.value = true
+    isLoadingParallelCards.value = true
     selectedCardData.value = card
     isModalVisible.value = true
 
+    const promises = []
+
     if (card.link && Array.isArray(card.link) && card.link.length > 0) {
-      const linkedCardsData = await Promise.all(
-        card.link.map(async (linkId) => fetchCardsByBaseIdAndPrefix(linkId, card.cardIdPrefix))
-      )
-      if (selectedCardData.value && selectedCardData.value.id === card.id) {
-        const flatCards = linkedCardsData.flat().filter(Boolean)
-        const cardsWithPrice = flatCards.map((c) => {
-          const infos = getCardSeriesId(c.cardIdPrefix)
-          let p = null
-          for (const info of infos) {
-            const foundPrice = priceStore.getPrice(info.id, c.id)
-            if (foundPrice) {
-              p = foundPrice
-              break
+      promises.push(
+        (async () => {
+          try {
+            const linkedCardsData = await Promise.all(
+              card.link.map(async (linkId) =>
+                fetchCardsByBaseIdAndPrefix(linkId, card.cardIdPrefix)
+              )
+            )
+            if (selectedCardData.value && selectedCardData.value.id === card.id) {
+              const flatCards = linkedCardsData.flat().filter(Boolean)
+              const cardsWithPrice = flatCards.map((c) => {
+                const infos = getCardSeriesId(c.cardIdPrefix)
+                let p = null
+                for (const info of infos) {
+                  const foundPrice = priceStore.getPrice(info.id, c.id)
+                  if (foundPrice) {
+                    p = foundPrice
+                    break
+                  }
+                }
+                return {
+                  ...c,
+                  price: p ? p.toLocaleString() : null,
+                }
+              })
+              linkedCardsDetails.value = sortCards(cardsWithPrice)
             }
+          } finally {
+            isLoadingLinkedCards.value = false
           }
-          return {
-            ...c,
-            price: p ? p.toLocaleString() : null,
-          }
-        })
-        linkedCardsDetails.value = sortCards(cardsWithPrice)
-      }
+        })()
+      )
+    } else {
+      isLoadingLinkedCards.value = false
     }
+
+    if (card.parallelCards && Array.isArray(card.parallelCards) && card.parallelCards.length > 0) {
+      promises.push(
+        (async () => {
+          try {
+            const parallelCardsData = await Promise.all(
+              card.parallelCards.map(async (id) => fetchCardByIdAndPrefix(id, card.cardIdPrefix))
+            )
+            if (selectedCardData.value && selectedCardData.value.id === card.id) {
+              const flatCards = parallelCardsData.filter(Boolean)
+              const cardsWithPrice = flatCards.map((c) => {
+                const infos = getCardSeriesId(c.cardIdPrefix)
+                let p = null
+                for (const info of infos) {
+                  const foundPrice = priceStore.getPrice(info.id, c.id)
+                  if (foundPrice) {
+                    p = foundPrice
+                    break
+                  }
+                }
+                return {
+                  ...c,
+                  price: p ? p.toLocaleString() : null,
+                }
+              })
+              parallelCardsDetails.value = sortCards(cardsWithPrice)
+            }
+          } finally {
+            isLoadingParallelCards.value = false
+          }
+        })()
+      )
+    } else {
+      isLoadingParallelCards.value = false
+    }
+
+    await Promise.all(promises)
   } catch (error) {
     console.error('Error handling show new card:', error)
   } finally {
     isLoadingLinkedCards.value = false
+    isLoadingParallelCards.value = false
   }
 }
 

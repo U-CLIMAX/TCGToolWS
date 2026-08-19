@@ -107,13 +107,14 @@ const CardFilterService = {
               cardIdPrefix: file.cardIdPrefix,
               isLowestRarity: isLowest,
               link: [], // Initialize link array
+              parallelCards: [], // Initialize parallel cards array
             })
           })
         }
       }
     }
 
-    // Link Logic
+    // Link & Parallel Cards Logic
     const nameToCardBaseIds = new Map()
     const baseIdToCardsMap = new Map()
 
@@ -128,6 +129,20 @@ const CardFilterService = {
         baseIdToCardsMap.set(card.baseId, [])
       }
       baseIdToCardsMap.get(card.baseId).push(card)
+    }
+
+    // Populate Parallel Cards
+    for (const [, cards] of baseIdToCardsMap.entries()) {
+      const highRarityCardIds = cards.filter((c) => !c.isLowestRarity).map((c) => c.id)
+      const lowestRarityCardIds = cards.filter((c) => c.isLowestRarity).map((c) => c.id)
+
+      for (const card of cards) {
+        if (card.isLowestRarity) {
+          card.parallelCards = highRarityCardIds
+        } else {
+          card.parallelCards = lowestRarityCardIds
+        }
+      }
     }
 
     // Regex Matching
