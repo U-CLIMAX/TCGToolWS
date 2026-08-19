@@ -136,12 +136,11 @@ const CardFilterService = {
 
         const isLowestFn = (cardVersion) => {
           const lastChar = cardVersion.id.slice(-1)
-          const isLastCharLetter =
-            (lastChar >= 'A' && lastChar <= 'Z') || (lastChar >= 'a' && lastChar <= 'z')
+          const isLastCharUpper = lastChar >= 'A' && lastChar <= 'Z'
           const isShortestLength = cardVersion.id.length === minIdLength
           return NON_LOWEST_RARITIES.includes(cardVersion.rarity)
             ? false
-            : all_cards.length === 1 && isLastCharLetter
+            : isLastCharUpper
               ? false
               : isShortestLength
         }
