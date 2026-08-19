@@ -217,6 +217,22 @@ export const useCardFiltering = (
     selectedSoul.value = []
   }
 
+  /**
+   * Gets a single card by its ID from the worker
+   * @param {string} id
+   * @returns {Promise<Object|null>}
+   */
+  const getCardById = async (id) => {
+    if (workerReadyPromise) await workerReadyPromise
+    if (!workerApiInstance) return null
+    try {
+      return await workerApiInstance.getCardById(id)
+    } catch (e) {
+      console.error('Error fetching card by id from worker:', e)
+      return null
+    }
+  }
+
   // Cleanup on scope dispose (works in components, stores, or manual scopes)
   onScopeDispose(terminateWorker)
 
@@ -243,5 +259,6 @@ export const useCardFiltering = (
     terminateWorker,
     initializeWorker,
     processRawDataInWorker,
+    getCardById,
   }
 }

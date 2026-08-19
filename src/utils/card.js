@@ -1,4 +1,5 @@
 import { useFilterStore } from '@/stores/filter.js'
+import { useGlobalSearchStore } from '@/stores/globalSearch.js'
 import { seriesMap } from '@/maps/series-map.js'
 
 const findAllPrefixesByCardPrefix = (prefix) => {
@@ -26,6 +27,16 @@ export const fetchCardByIdAndPrefix = (id, prefix) => {
 
   const fetchPromise = (async () => {
     try {
+      // 1. 全局搜尋頁面：若 globalSearchStore 已就緒，優先直接從記憶體/Worker 查詢
+      const globalSearchStore = useGlobalSearchStore()
+      if (globalSearchStore.isReady) {
+        const card = await globalSearchStore.getCardById(id)
+        if (card) {
+          return card
+        }
+      }
+
+      // 2. 其他頁面或未命中：按需調用 filterStore 下載系列 JSON
       const filterStore = useFilterStore()
       const seriesPrefixes = findAllPrefixesByCardPrefix(prefix)
       const { allCards } = await filterStore.fetchAndProcessCards(seriesPrefixes)

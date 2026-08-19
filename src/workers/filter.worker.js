@@ -357,6 +357,16 @@ const CardFilterService = {
       return true
     })
   },
+
+  /**
+   * 依卡片 ID 取得單張卡片資料
+   * @param {string} id - 卡片 ID
+   * @returns {Object|null} 卡片物件或 null
+   */
+  getCardById: (id) => {
+    if (!id || !allCards || allCards.length === 0) return null
+    return allCards.find((c) => c.id === id) || null
+  },
 }
 
 expose(CardFilterService)

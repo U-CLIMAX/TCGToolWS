@@ -49,6 +49,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     filteredCards,
     initializeWorker,
     terminateWorker,
+    getCardById,
   } = useCardFiltering(productNames, traits, rarities, costRange, powerRange)
 
   // --- Results ---
@@ -421,5 +422,6 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     initialize,
     resetFilters,
     terminate,
+    getCardById,
   }
 })
