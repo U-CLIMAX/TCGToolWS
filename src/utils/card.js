@@ -1,6 +1,5 @@
 import { useFilterStore } from '@/stores/filter.js'
 import { seriesMap } from '@/maps/series-map.js'
-import { sortCards } from '@/utils/cardsSort.js'
 
 const findAllPrefixesByCardPrefix = (prefix) => {
   const keyPart = prefix.split('-')[0].toLowerCase()
@@ -83,31 +82,4 @@ export const getCardSeriesId = (id) => {
   seriesIdCache.set(prefix, result)
 
   return result
-}
-
-export const fetchAlternateRarityCards = async (card, getPriceFn) => {
-  if (!card) return []
-  const baseId = card.baseId || card.id
-  if (!baseId || !card.cardIdPrefix) return []
-
-  try {
-    const candidates = await fetchCardsByBaseIdAndPrefix(baseId, card.cardIdPrefix)
-    if (!candidates || candidates.length === 0) return []
-
-    const isCurrentLowest = !!card.isLowestRarity
-    const filtered = candidates.filter((c) => {
-      if (c.id === card.id) return false
-      return isCurrentLowest ? !c.isLowestRarity : !!c.isLowestRarity
-    })
-
-    const cardsWithPrice = filtered.map((c) => ({
-      ...c,
-      price: typeof getPriceFn === 'function' ? getPriceFn(c) : null,
-    }))
-
-    return sortCards(cardsWithPrice)
-  } catch (e) {
-    console.error(`Failed to load alternate rarity cards for ${card.id}:`, e)
-    return []
-  }
 }
