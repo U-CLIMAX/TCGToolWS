@@ -115,46 +115,56 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
 
   /**
    * Helper: Hydrates cards from columnar format back to object format
-   * @param {Array} rows - Raw data rows
-   * @param {Array} schema - Field name array
-   * @param {Object} valueMaps - Maps for decoding optimized values
+   * @param {Object} cols - Column arrays
+   * @param {Object} valueMaps - Maps for decoding values (colors, types, prefixes, effects)
+   * @param {Object} filterOptions - Filter options containing productNames, traits, rarities
+   * @returns {Array<Object>}
    */
-  const hydrateCards = (rows, schema, valueMaps) => {
-    if (!schema || !rows) return rows
-    console.log(`💧 Hydrating ${rows.length} cards using schema & value maps...`)
+  const hydrateCards = (cols, valueMaps, filterOptions) => {
+    if (!cols || !cols.id) return []
+    const totalCards = cols.id.length
+    console.log(`💧 Hydrating ${totalCards} cards using columnar format & string pools...`)
 
-    const colorIdx = schema.indexOf('color')
-    const typeIdx = schema.indexOf('type')
-    const traitIdx = schema.indexOf('trait')
-    const lowRarityIdx = schema.indexOf('isLowestRarity')
-    const powerIdx = schema.indexOf('power')
-    const { colorMap, typeMap, traitMap } = valueMaps
+    const { productNames = [], traits = [], rarities = [] } = filterOptions || {}
+    const { colorMap = [], typeMap = [], prefixes = [], effects = [] } = valueMaps || {}
 
-    return rows.map((row) => {
-      const card = {}
-      row.forEach((val, idx) => {
-        if (val === null) return
+    const hydrated = new Array(totalCards)
 
-        let finalVal = val
+    for (let i = 0; i < totalCards; i++) {
+      const cardId = cols.id[i]
+      const pIdx = cols.prefix[i]
+      const prodIdx = cols.prod[i]
+      const rIdx = cols.rarity[i]
+      const effIdx = cols.effect[i]
+      const colorIdx = cols.color[i]
+      const typeIdx = cols.type[i]
+      const customBaseId = cols.baseId[i]
+      const traitIndices = cols.trait[i]
 
-        if (valueMaps) {
-          if (idx === colorIdx) {
-            finalVal = colorMap[val]
-          } else if (idx === typeIdx) {
-            finalVal = typeMap[val]
-          } else if (idx === traitIdx && Array.isArray(val)) {
-            finalVal = val.map((v) => traitMap[v])
-          } else if (idx === lowRarityIdx) {
-            finalVal = val === 1
-          } else if (idx === powerIdx && typeof val === 'number') {
-            finalVal = val * 500
-          }
-        }
-
-        card[schema[idx]] = finalVal
-      })
-      return card
-    })
+      hydrated[i] = {
+        id: cardId,
+        name: cols.name[i] || '',
+        product_name: prodIdx >= 0 ? productNames[prodIdx] || '' : '',
+        type: typeIdx >= 0 ? typeMap[typeIdx] || '' : '',
+        level: cols.level[i] || 0,
+        power: (cols.power[i] || 0) * 500,
+        cost: cols.cost[i] || 0,
+        trait: Array.isArray(traitIndices)
+          ? traitIndices.map((t) => traits[t]).filter(Boolean)
+          : [],
+        color: colorIdx >= 0 ? colorMap[colorIdx] || '' : '',
+        soul: cols.soul[i] || 0,
+        effect: effIdx >= 0 ? effects[effIdx] || '' : '',
+        trigger_soul_count: cols.tsc[i] || 0,
+        rarity: rIdx >= 0 ? rarities[rIdx] || '' : '',
+        baseId: customBaseId || cardId,
+        cardIdPrefix: pIdx >= 0 ? prefixes[pIdx] || '' : '',
+        isLowestRarity: cols.isLowest[i] === 1,
+        link: cols.link[i] || [],
+        parallelCards: cols.parallel[i] || [],
+      }
+    }
+    return hydrated
   }
 
   /**
@@ -169,7 +179,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     error.value = null
     let db
     try {
-      const { version, chunked, chunks, fileName, indexFiles, schema, valueMaps } = manifest
+      const { version, chunked, chunks, fileName, indexFiles } = manifest
 
       const fileStream = new ReadableStream({
         async start(controller) {
@@ -241,8 +251,16 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
       }
 
       console.log('Hz Decoding complete, parsing JSON...')
-      const data = JSON.parse(jsonString)
-      data.cards = hydrateCards(data.cards, schema, valueMaps)
+      const rawPayload = JSON.parse(jsonString)
+      const hydratedCards = hydrateCards(
+        rawPayload.cols,
+        rawPayload.valueMaps,
+        rawPayload.filterOptions
+      )
+      const data = {
+        filterOptions: rawPayload.filterOptions,
+        cards: hydratedCards,
+      }
 
       db = await openDB(dbName, storeName, 'key')
       await saveData(db, storeName, { key: `card-data-${currentGame.value}`, data })
