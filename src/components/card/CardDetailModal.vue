@@ -416,7 +416,6 @@ import { useDisplay } from 'vuetify'
 import { storeToRefs } from 'pinia'
 import LinkedCard from './LinkedCard.vue'
 import DownloadTextDialog from './DownloadTextDialog.vue'
-import DOMPurify from 'dompurify'
 import { useAuthStore } from '@/stores/auth'
 import { useDeckStore } from '@/stores/deck'
 import { useDownloadStore } from '@/stores/download'
@@ -557,8 +556,7 @@ const cardCount = computed(() => {
 })
 
 const formattedEffect = computed(() => {
-  const rawHtml = formatEffectToHtml(props.card.effect)
-  return DOMPurify.sanitize(rawHtml)
+  return formatEffectToHtml(props.card?.effect)
 })
 
 const handleDownloadText = () => {

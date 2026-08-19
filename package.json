@@ -27,7 +27,6 @@
     "comlink": "^4.4.2",
     "detect-gpu": "^5.0.70",
     "documonster": "^0.0.3",
-    "dompurify": "^3.4.11",
     "epic-spinners": "^2.0.0",
     "flexsearch": "^0.8.212",
     "hono": "^4.12.26",

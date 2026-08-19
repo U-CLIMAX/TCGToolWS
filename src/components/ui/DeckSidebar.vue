@@ -393,7 +393,7 @@
                     theme.global.current.value.dark ? 'bg-grey-darken-3' : 'bg-grey-lighten-4'
                   "
                   style="line-height: 1.5; font-size: 13px"
-                  v-html="DOMPurify.sanitize(v.desc)"
+                  v-html="v.desc"
                 ></div>
               </template>
 
@@ -420,7 +420,7 @@
                     theme.global.current.value.dark ? 'bg-grey-darken-3' : 'bg-grey-lighten-4'
                   "
                   style="line-height: 1.5; font-size: 13px"
-                  v-html="DOMPurify.sanitize(v.desc)"
+                  v-html="v.desc"
                 ></div>
               </template>
 
@@ -449,7 +449,7 @@
                     theme.global.current.value.dark ? 'bg-grey-darken-3' : 'bg-grey-lighten-4'
                   "
                   style="line-height: 1.5; font-size: 13px"
-                  v-html="DOMPurify.sanitize(v.desc)"
+                  v-html="v.desc"
                 ></div>
               </template>
             </v-list-item>
@@ -486,7 +486,6 @@ import { useDeckStore } from '@/stores/deck'
 import { getCardUrls } from '@/utils/getCardImage'
 import { fetchCardByIdAndPrefix, getCardSeriesId } from '@/utils/card'
 import { useDisplay, useTheme } from 'vuetify'
-import DOMPurify from 'dompurify'
 import { storeToRefs } from 'pinia'
 import { useDeckGrouping } from '@/composables/useDeckGrouping'
 import { useDeckEncoder } from '@/composables/useDeckEncoder'

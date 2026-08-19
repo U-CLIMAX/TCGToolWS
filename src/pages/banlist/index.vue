@@ -145,7 +145,7 @@
                                     : 'bg-grey-lighten-4'
                                 "
                                 style="line-height: 1.5; font-size: 13px"
-                                v-html="DOMPurify.sanitize(card.desc)"
+                                v-html="card.desc"
                               ></div>
                             </template>
                           </div>
@@ -169,7 +169,6 @@
 import { computed, ref, onMounted, nextTick } from 'vue'
 import banListIcon from '@/assets/ui/banlist.svg'
 import { useDisplay, useTheme } from 'vuetify'
-import DOMPurify from 'dompurify'
 import { deckRestrictionsLastUpdated, deckRestrictions } from '@/maps/deck-restrictions'
 import { ALL_SERIES_OPTIONS, GAME_TYPE_OPTIONS } from '@/maps/series-map'
 import { getCardUrls } from '@/utils/getCardImage'
