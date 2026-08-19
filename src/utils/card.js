@@ -49,24 +49,6 @@ export const fetchCardByIdAndPrefix = (id, prefix) => {
   return fetchPromise
 }
 
-export const fetchCardsByBaseIdAndPrefix = async (baseId, prefix) => {
-  try {
-    const filterStore = useFilterStore()
-    const seriesPrefixes = findAllPrefixesByCardPrefix(prefix)
-    const { allCards } = await filterStore.fetchAndProcessCards(seriesPrefixes)
-    const cards = allCards.filter((c) => c.baseId === baseId)
-
-    if (cards.length === 0) {
-      console.warn(`Base card ${baseId} not found in ${prefix}`)
-    }
-
-    return cards
-  } catch (e) {
-    console.error(`Failed to load baseId ${baseId} (${prefix}):`, e)
-    return []
-  }
-}
-
 export const getCardSeriesId = (id) => {
   const prefix = id.split('-')[0]
 

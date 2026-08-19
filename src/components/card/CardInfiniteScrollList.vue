@@ -99,7 +99,7 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
 import { useDisplay } from 'vuetify'
-import { fetchCardByIdAndPrefix, fetchCardsByBaseIdAndPrefix, getCardSeriesId } from '@/utils/card'
+import { fetchCardByIdAndPrefix, getCardSeriesId } from '@/utils/card'
 import { getCardUrls } from '@/utils/getCardImage'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import { useUIStore } from '@/stores/ui'
@@ -280,13 +280,11 @@ const fetchLinkedCards = async (card) => {
 
     if (cardToDisplay && cardToDisplay.link && cardToDisplay.link.length > 0) {
       const linkedCardsData = await Promise.all(
-        cardToDisplay.link.map((linkId) =>
-          fetchCardsByBaseIdAndPrefix(linkId, cardToDisplay.cardIdPrefix)
-        )
+        cardToDisplay.link.map((id) => fetchCardByIdAndPrefix(id, cardToDisplay.cardIdPrefix))
       )
 
       if (selectedCardData.value?.card?.id === card.id) {
-        const flatCards = linkedCardsData.flat().filter(Boolean)
+        const flatCards = linkedCardsData.filter(Boolean)
         const cardsWithPrice = flatCards.map((c) => ({
           ...c,
           price: getPrice(c),

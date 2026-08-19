@@ -292,7 +292,7 @@ import { useRoute } from 'vue-router'
 import { getCardUrls } from '@/utils/getCardImage'
 import { useDisplay } from 'vuetify'
 import { useDeckGrouping } from '@/composables/useDeckGrouping'
-import { fetchCardByIdAndPrefix, fetchCardsByBaseIdAndPrefix, getCardSeriesId } from '@/utils/card'
+import { fetchCardByIdAndPrefix, getCardSeriesId } from '@/utils/card'
 import { useAuthStore } from '@/stores/auth'
 import { useUIStore } from '@/stores/ui'
 import { usePriceStore } from '@/stores/price'
@@ -556,12 +556,10 @@ const handleShowNewCard = async (cardPayload) => {
         (async () => {
           try {
             const linkedCardsData = await Promise.all(
-              card.link.map(async (linkId) =>
-                fetchCardsByBaseIdAndPrefix(linkId, card.cardIdPrefix)
-              )
+              card.link.map(async (id) => fetchCardByIdAndPrefix(id, card.cardIdPrefix))
             )
             if (selectedCardData.value && selectedCardData.value.id === card.id) {
-              const flatCards = linkedCardsData.flat().filter(Boolean)
+              const flatCards = linkedCardsData.filter(Boolean)
               const cardsWithPrice = flatCards.map((c) => {
                 const infos = getCardSeriesId(c.cardIdPrefix)
                 let p = null

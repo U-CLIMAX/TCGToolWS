@@ -484,7 +484,7 @@
 import { ref, computed, toRaw } from 'vue'
 import { useDeckStore } from '@/stores/deck'
 import { getCardUrls } from '@/utils/getCardImage'
-import { fetchCardByIdAndPrefix, fetchCardsByBaseIdAndPrefix, getCardSeriesId } from '@/utils/card'
+import { fetchCardByIdAndPrefix, getCardSeriesId } from '@/utils/card'
 import { useDisplay, useTheme } from 'vuetify'
 import DOMPurify from 'dompurify'
 import { storeToRefs } from 'pinia'
@@ -921,12 +921,10 @@ const handleShowNewCard = async (cardPayload) => {
         (async () => {
           try {
             const linkedCardsData = await Promise.all(
-              card.link.map(async (linkId) =>
-                fetchCardsByBaseIdAndPrefix(linkId, card.cardIdPrefix)
-              )
+              card.link.map(async (id) => fetchCardByIdAndPrefix(id, card.cardIdPrefix))
             )
             if (selectedCardData.value && selectedCardData.value.id === card.id) {
-              const flatCards = linkedCardsData.flat().filter(Boolean)
+              const flatCards = linkedCardsData.filter(Boolean)
               const cardsWithPrice = flatCards.map((c) => {
                 const infos = getCardSeriesId(c.cardIdPrefix)
                 let p = null

@@ -503,7 +503,7 @@ import { useDeckEncoder } from '@/composables/useDeckEncoder'
 import { useDisplay } from 'vuetify'
 import { storeToRefs } from 'pinia'
 import { useDeckGrouping } from '@/composables/useDeckGrouping'
-import { fetchCardByIdAndPrefix, fetchCardsByBaseIdAndPrefix } from '@/utils/card'
+import { fetchCardByIdAndPrefix, getCardSeriesId } from '@/utils/card'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useUIStore } from '@/stores/ui'
 import { useDeckStore } from '@/stores/deck'
@@ -512,7 +512,6 @@ import { usePriceStore } from '@/stores/price'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import { useDevice } from '@/composables/useDevice'
 import { sortCards } from '@/utils/cardsSort'
-import { getCardSeriesId } from '@/utils/card'
 import { convertElementToPng } from '@/utils/domToImage.js'
 import { useDeckHistory } from '@/composables/useDeckHistory'
 import { useDeckExport } from '@/composables/useDeckExport'
@@ -969,12 +968,12 @@ const handleShowNewCard = async (cardPayload) => {
         (async () => {
           try {
             const linkedCardsData = await Promise.all(
-              cardToDisplay.link.map(async (linkId) =>
-                fetchCardsByBaseIdAndPrefix(linkId, cardToDisplay.cardIdPrefix)
+              cardToDisplay.link.map(async (id) =>
+                fetchCardByIdAndPrefix(id, cardToDisplay.cardIdPrefix)
               )
             )
             if (selectedCardData.value && selectedCardData.value.id === cardToDisplay.id) {
-              const flatCards = linkedCardsData.flat().filter(Boolean)
+              const flatCards = linkedCardsData.filter(Boolean)
               const cardsWithPrice = flatCards.map((c) => {
                 const infos = getCardSeriesId(c.cardIdPrefix)
                 let p = null

@@ -55,127 +55,119 @@ const CardFilterService = {
       minPower = Infinity,
       maxPower = -Infinity
 
+    // 1. 建立基礎索引 (名稱 -> baseIds, baseId -> 所有 card.id)
+    const nameToBaseIds = new Map()
+    const baseIdToAllIds = new Map()
+    const baseCards = []
+
     for (const file of rawFiles) {
       for (const baseId in file.content) {
         const cardData = file.content[baseId]
+        const allCards = cardData.all_cards || []
+        const ids = allCards.map((c) => c.id)
 
-        if (cardData.product_name) productNamesSet.add(cardData.product_name)
-        if (cardData.trait && Array.isArray(cardData.trait))
-          cardData.trait.forEach((t) => traitsSet.add(t))
-
-        const levelValue = cardData.level === '-' ? 0 : cardData.level
-        if (typeof levelValue === 'number') {
-          levelsSet.add(levelValue)
+        baseIdToAllIds.set(baseId, ids)
+        if (cardData.name) {
+          if (!nameToBaseIds.has(cardData.name)) {
+            nameToBaseIds.set(cardData.name, new Set())
+          }
+          nameToBaseIds.get(cardData.name).add(baseId)
         }
 
-        if (typeof cardData.cost === 'number') {
-          minCost = Math.min(minCost, cardData.cost)
-          maxCost = Math.max(maxCost, cardData.cost)
-        }
-        if (typeof cardData.power === 'number') {
-          minPower = Math.min(minPower, cardData.power)
-          maxPower = Math.max(maxPower, cardData.power)
-        }
-        const soulValue = cardData.soul === '-' ? 0 : cardData.soul
-        if (typeof soulValue === 'number') {
-          soulsSet.add(soulValue)
-        }
-
-        const { all_cards, ...baseCardData } = cardData
-        if (all_cards && Array.isArray(all_cards)) {
-          const minIdLength =
-            all_cards.length > 0 ? Math.min(...all_cards.map((c) => c.id.length)) : 0
-
-          all_cards.forEach((cardVersion) => {
-            if (cardVersion.rarity) raritiesSet.add(cardVersion.rarity)
-
-            // Logic from store: determine if isLowestRarity
-            const lastChar = cardVersion.id.slice(-1)
-            const isLastCharLetter =
-              (lastChar >= 'A' && lastChar <= 'Z') || (lastChar >= 'a' && lastChar <= 'z')
-            const isShortestLength = cardVersion.id.length === minIdLength
-            const isLowest = NON_LOWEST_RARITIES.includes(cardVersion.rarity)
-              ? false
-              : all_cards.length === 1 && isLastCharLetter
-                ? false
-                : isShortestLength
-
-            fetchedCards.push({
-              ...baseCardData,
-              ...cardVersion,
-              baseId,
-              cardIdPrefix: file.cardIdPrefix,
-              isLowestRarity: isLowest,
-              link: [], // Initialize link array
-              parallelCards: [], // Initialize parallel cards array
-            })
-          })
-        }
+        baseCards.push({ baseId, cardData, cardIdPrefix: file.cardIdPrefix })
       }
     }
 
-    // Link & Parallel Cards Logic
-    const nameToCardBaseIds = new Map()
-    const baseIdToCardsMap = new Map()
-
-    // Build Maps
-    for (const card of fetchedCards) {
-      if (!nameToCardBaseIds.has(card.name)) {
-        nameToCardBaseIds.set(card.name, new Set())
-      }
-      nameToCardBaseIds.get(card.name).add(card.baseId)
-
-      if (!baseIdToCardsMap.has(card.baseId)) {
-        baseIdToCardsMap.set(card.baseId, [])
-      }
-      baseIdToCardsMap.get(card.baseId).push(card)
-    }
-
-    // Populate Parallel Cards
-    for (const [, cards] of baseIdToCardsMap.entries()) {
-      const highRarityCardIds = cards.filter((c) => !c.isLowestRarity).map((c) => c.id)
-      const lowestRarityCardIds = cards.filter((c) => c.isLowestRarity).map((c) => c.id)
-
-      for (const card of cards) {
-        if (card.isLowestRarity) {
-          card.parallelCards = highRarityCardIds
-        } else {
-          card.parallelCards = lowestRarityCardIds
-        }
-      }
-    }
-
-    // Regex Matching
-    if (nameToCardBaseIds.size > 0) {
-      const allNamesPattern = [...nameToCardBaseIds.keys()].map(escapeRegex).join('|')
+    // 2. 在 Base Card 層級建立雙向連結
+    const baseLinks = new Map()
+    if (nameToBaseIds.size > 0) {
+      const allNamesPattern = [...nameToBaseIds.keys()].map(escapeRegex).join('|')
       const nameMatcherRegex = new RegExp(`[「｢](${allNamesPattern})[」｣]`, 'g')
 
-      for (const targetCard of fetchedCards) {
-        const effectText = targetCard.effect || ''
+      for (const { baseId, cardData } of baseCards) {
+        const effectText = cardData.effect || ''
         if (!effectText) continue
 
         const matches = effectText.matchAll(nameMatcherRegex)
-
         for (const match of matches) {
           const foundName = match[1]
-          const sourceBaseIds = nameToCardBaseIds.get(foundName)
-
+          const sourceBaseIds = nameToBaseIds.get(foundName)
           if (sourceBaseIds) {
             for (const sourceBaseId of sourceBaseIds) {
-              if (!targetCard.link.includes(sourceBaseId)) {
-                targetCard.link.push(sourceBaseId)
-              }
-              const sourceCardsToUpdate = baseIdToCardsMap.get(sourceBaseId)
-              if (sourceCardsToUpdate) {
-                for (const sourceCard of sourceCardsToUpdate) {
-                  if (!sourceCard.link.includes(targetCard.baseId)) {
-                    sourceCard.link.push(targetCard.baseId)
-                  }
-                }
-              }
+              if (!baseLinks.has(baseId)) baseLinks.set(baseId, new Set())
+              if (!baseLinks.has(sourceBaseId)) baseLinks.set(sourceBaseId, new Set())
+              baseLinks.get(baseId).add(sourceBaseId)
+              baseLinks.get(sourceBaseId).add(baseId)
             }
           }
         }
+      }
+    }
+
+    // 3. 展開卡片版本並直接注入 link 與 parallelCards
+    for (const { baseId, cardData, cardIdPrefix } of baseCards) {
+      if (cardData.product_name) productNamesSet.add(cardData.product_name)
+      if (cardData.trait && Array.isArray(cardData.trait)) {
+        cardData.trait.forEach((t) => traitsSet.add(t))
+      }
+
+      const levelValue = cardData.level === '-' ? 0 : cardData.level
+      if (typeof levelValue === 'number') {
+        levelsSet.add(levelValue)
+      }
+
+      if (typeof cardData.cost === 'number') {
+        minCost = Math.min(minCost, cardData.cost)
+        maxCost = Math.max(maxCost, cardData.cost)
+      }
+      if (typeof cardData.power === 'number') {
+        minPower = Math.min(minPower, cardData.power)
+        maxPower = Math.max(maxPower, cardData.power)
+      }
+      const soulValue = cardData.soul === '-' ? 0 : cardData.soul
+      if (typeof soulValue === 'number') {
+        soulsSet.add(soulValue)
+      }
+
+      const { all_cards, ...baseCardData } = cardData
+      if (all_cards && Array.isArray(all_cards)) {
+        const minIdLength =
+          all_cards.length > 0 ? Math.min(...all_cards.map((c) => c.id.length)) : 0
+
+        const isLowestFn = (cardVersion) => {
+          const lastChar = cardVersion.id.slice(-1)
+          const isLastCharLetter =
+            (lastChar >= 'A' && lastChar <= 'Z') || (lastChar >= 'a' && lastChar <= 'z')
+          const isShortestLength = cardVersion.id.length === minIdLength
+          return NON_LOWEST_RARITIES.includes(cardVersion.rarity)
+            ? false
+            : all_cards.length === 1 && isLastCharLetter
+              ? false
+              : isShortestLength
+        }
+
+        const highRarityCardIds = all_cards.filter((c) => !isLowestFn(c)).map((c) => c.id)
+        const lowestRarityCardIds = all_cards.filter((c) => isLowestFn(c)).map((c) => c.id)
+
+        const linkedBaseIds = baseLinks.get(baseId)
+        const fullLinkedIds = linkedBaseIds
+          ? [...linkedBaseIds].flatMap((bId) => baseIdToAllIds.get(bId) || [])
+          : []
+
+        all_cards.forEach((cardVersion) => {
+          if (cardVersion.rarity) raritiesSet.add(cardVersion.rarity)
+          const isLowest = isLowestFn(cardVersion)
+
+          fetchedCards.push({
+            ...baseCardData,
+            ...cardVersion,
+            baseId,
+            cardIdPrefix,
+            isLowestRarity: isLowest,
+            link: fullLinkedIds,
+            parallelCards: isLowest ? highRarityCardIds : lowestRarityCardIds,
+          })
+        })
       }
     }
 
