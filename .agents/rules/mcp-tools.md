@@ -4,7 +4,7 @@ trigger: always_on
 
 # MCP 工具与外部文档查阅规范 (MCP Tools Guide)
 
-本项目整合了 `vuetify-mcp`、`mdn` 与 `context7` 三个 Model Context Protocol (MCP) 服务，Agent 在进行前端 UI 开发或第三方库接入时，应优先使用对应的 MCP 工具进行准确的 API 查阅与文档检索。
+本项目整合了 `vuetify-mcp`、`context7`、`mdn` 与 `chrome-devtools` 四个 Model Context Protocol (MCP) 服务，Agent 在进行前端 UI 开发、第三方库接入、文档检索或浏览器交互与测试排错时，应优先使用对应的 MCP 工具进行准确的 API 查阅与自动化调试。
 
 ---
 
@@ -55,3 +55,42 @@ trigger: always_on
 - **`get-compat`**: 检查特定 Web 特性在各主流浏览器（Chrome, Safari 等）中的兼容性支持情况。
 
 > **使用原则**：在开发过程中遇到纯 JS API、CSS 属性或原生 DOM 操作，且不确定其语法与浏览器兼容性时，应优先使用 `mdn` 工具进行查阅，确保前端代码符合 Web 标准。
+
+---
+
+## 4. Chrome DevTools 浏览器自动化与调试 (`chrome-devtools`)
+
+用于在开发与测试过程中驱动真实/无头 Chrome 浏览器，进行页面交互自动化、UI 状态核验、控制台排错及性能评估。
+
+### 常用工具分类及适用场景：
+
+1. **页面与标签页导航 (Page & Navigation)**:
+   - **`new_page` / `close_page`**: 打开或关闭浏览器页面/标签页。
+   - **`navigate_page`**: 导航页面至指定 URL（如 `http://localhost:5173`）。
+   - **`list_pages` / `select_page`**: 检视并切换当前操作的目标页面。
+   - **`resize_page` / `emulate`**: 调整视窗大小或模拟不同移动设备视口、网络与地理位置。
+
+2. **DOM 交互与表单操作 (Interaction & Input)**:
+   - **`click` / `hover` / `drag`**: 模拟鼠标点击、悬停与拖曳操作。
+   - **`fill` / `fill_form` / `type_text` / `press_key`**: 针对输入框填充数据或触发键盘事件。
+   - **`wait_for`**: 等待特定 DOM 元素出现、导航完成或特定文本加载，确保异步数据与 Vue 组件已完全渲染。
+
+3. **视图快照与脚本执行 (Snapshot & Scripting)**:
+   - **`take_snapshot`**: 获取当前页面的 DOM 与无障碍树结构，快速理解页面渲染后的元素布局。
+   - **`take_screenshot`**: 截取整页或特定组件的视觉渲染截图，便于验证 UI 样式与响应式布局。
+   - **`evaluate_script`**: 在页面上下文中直接执行 JavaScript 脚本，获取运行时状态或计算属性。
+
+4. **控制台与网络请求排查 (Console & Network Diagnostics)**:
+   - **`list_console_messages` / `get_console_message`**: 抓取浏览器控制台输出的 Logs、Warnings 与 Errors，精准捕获前端运行时未捕获异常或 Vue 警告。
+   - **`list_network_requests` / `get_network_request`**: 检视 API 请求（如向后端 Hono API 或 D1 代理发送的请求）的状态码、请求头及响应 Body。
+
+5. **性能审查与内存分析 (Performance & Profiling)**:
+   - **`lighthouse_audit`**: 运行 Lighthouse 对页面进行性能、无障碍性与最佳实践评分。
+   - **`performance_start_trace` / `performance_stop_trace` / `performance_analyze_insight`**: 采集与分析页面交互或渲染过程中的性能瓶颈。
+   - **`take_heapsnapshot`**: 采集内存快照，排查组件销毁未清理导致的内存泄漏。
+
+> **使用原则**：
+>
+> - 在本地开发服务器（`npm run dev`）启动后，若需端到端（E2E）验证新 UI 功能或复杂表单提交流程，优先使用 `chrome-devtools` 模拟操作与截取快照。
+> - 遇到前端白屏或渲染异常时，必须使用 `list_console_messages` 与 `list_network_requests` 检索控制台报错与网络失败原因，严禁凭空盲猜。
+> - 在进行 DOM 操作前，应善用 `wait_for` 避免因 Vue 异步渲染尚未就绪导致的元素查找失败。

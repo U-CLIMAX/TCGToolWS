@@ -13,7 +13,7 @@ description: 当用户需要实作复杂功能或透过多 Agent 协作流修改
 
 1. **`ucx_frontend_expert`**:
    - 精通 Vue 3 与 Vuetify 3 的前端专家。
-   - 会主动使用 `vuetify-mcp` 确保 UI 组件被完美实作，并使用 `mdn` 查询 Web 标准。
+   - 会主动使用 `vuetify-mcp` 确保 UI 组件被完美实作，使用 `mdn` 查询 Web 标准，并在需要时借助 `chrome-devtools` 进行浏览器与 UI 交互核验。
 2. **`ucx_backend_expert`**:
    - 精通 Hono、Cloudflare Workers 与 D1 数据库的后端专家。
    - 会主动透过 `context7` 与 Cloudflare `llms.txt` 查阅官方文档。
