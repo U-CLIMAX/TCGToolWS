@@ -140,16 +140,12 @@ export const useFilterStore = defineStore('filter', () => {
         (path) => seriesDataCache.value[path]
       ).length
 
-      const newPathsToFetch = dataFilePaths.filter((path) => !processedPathsHistory.has(path))
+      const newPathsToFetch = dataFilePaths.filter(
+        (path) => !seriesDataCache.value[path] && !activeFetchPromises.has(path)
+      )
 
       if (newPathsToFetch.length > 0) {
         newPathsToFetch.forEach((path) => {
-          processedPathsHistory.add(path)
-
-          if (seriesDataCache.value[path] || activeFetchPromises.has(path)) {
-            return
-          }
-
           let resolve, reject
           const promise = new Promise((res, rej) => {
             resolve = res

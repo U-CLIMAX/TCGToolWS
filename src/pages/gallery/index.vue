@@ -287,7 +287,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, nextTick } from 'vue'
+import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
 import { onBeforeRouteLeave } from 'vue-router'
 import { useDecksGalleryStore } from '@/stores/decksGallery'
 import { useUIStore } from '@/stores/ui'
@@ -553,6 +553,11 @@ onMounted(async () => {
   nextTick(() => {
     scrollContainer.value = infiniteScrollRef.value?.$el
   })
+})
+
+onUnmounted(() => {
+  selectedDeckKey.value = null
+  drawer.value = false
 })
 </script>
 

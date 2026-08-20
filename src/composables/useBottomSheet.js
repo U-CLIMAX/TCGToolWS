@@ -201,6 +201,9 @@ export const useBottomSheet = (externalSheetContent) => {
     runSpringAnimation(finalSnap)
   }
 
+  let openingTimeout = null
+  let closingTimeout = null
+
   // Watch content state
   watch(sheetContent, (newContent, oldContent) => {
     if (newContent) {
@@ -210,20 +213,30 @@ export const useBottomSheet = (externalSheetContent) => {
     if (newContent && !oldContent) {
       // --- OPENING ---
       cancelAnimation()
+      if (closingTimeout) {
+        clearTimeout(closingTimeout)
+        closingTimeout = null
+      }
       sheetTranslateYPercent.value = SNAP_POINTS.CLOSED
       // Use a double delay to give Firefox's rendering engine time to process the new complex component
       nextTick(() => {
-        setTimeout(() => {
+        openingTimeout = setTimeout(() => {
           sheetTranslateYPercent.value = SNAP_POINTS.DEFAULT
+          openingTimeout = null
         }, 0) // A 0ms timeout pushes this to the next event loop cycle, after rendering
       })
     } else if (!newContent && oldContent) {
       // --- CLOSING ---
       cancelAnimation()
+      if (openingTimeout) {
+        clearTimeout(openingTimeout)
+        openingTimeout = null
+      }
       isAnimatingOut.value = true
       sheetTranslateYPercent.value = SNAP_POINTS.CLOSED
-      setTimeout(() => {
+      closingTimeout = setTimeout(() => {
         isAnimatingOut.value = false
+        closingTimeout = null
       }, 300) // Must match CSS transition duration
     }
   })
@@ -238,6 +251,14 @@ export const useBottomSheet = (externalSheetContent) => {
   onScopeDispose(() => {
     cleanupEventListeners()
     cancelAnimation()
+    if (openingTimeout) {
+      clearTimeout(openingTimeout)
+      openingTimeout = null
+    }
+    if (closingTimeout) {
+      clearTimeout(closingTimeout)
+      closingTimeout = null
+    }
   })
 
   return {

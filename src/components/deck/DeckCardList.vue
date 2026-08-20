@@ -70,7 +70,7 @@
                         (uiStore.showCardPrices || shouldForceElementsOpen) &&
                         route.meta.showCardPrice &&
                         !priceStore.isLoading &&
-                        shouldShowPriceContainer(item, itemIndex, group)
+                        groupHasPriceMap.get(groupName)
                       "
                       class="price-container d-flex align-center justify-center font-DINCond text-currency"
                     >
@@ -163,7 +163,7 @@
 </template>
 
 <script setup>
-import { computed, ref, watch } from 'vue'
+import { computed, ref, watch, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useTheme } from 'vuetify'
 import { useDisplay } from 'vuetify'
@@ -262,16 +262,25 @@ const shouldForceElementsOpen = computed(() => {
   return ['DeckLog', 'ShareDeckDetail'].includes(route.name)
 })
 const showCards = ref(true)
+let showCardsTimeout = null
 
 watch(
   () => uiStore.showStatsDashboard,
   () => {
     showCards.value = false
-    setTimeout(() => {
+    if (showCardsTimeout) clearTimeout(showCardsTimeout)
+    showCardsTimeout = setTimeout(() => {
       showCards.value = true
+      showCardsTimeout = null
     }, 300)
   }
 )
+
+onUnmounted(() => {
+  if (showCardsTimeout) {
+    clearTimeout(showCardsTimeout)
+  }
+})
 
 const iconFilterStyle = computed(() => {
   return theme.global.name.value === 'dark' ? 'none' : 'invert(1)'
@@ -308,6 +317,7 @@ const getGroupName = (groupName) => {
       return groupName
   }
 }
+
 const getItemPrice = (item) => {
   const infos = getCardSeriesId(item.cardIdPrefix)
   if (!infos || infos.length === 0) return null
@@ -323,9 +333,17 @@ const getItemPrice = (item) => {
   return null
 }
 
-const shouldShowPriceContainer = (item, index, group) => {
-  return group.some((item) => !!getItemPrice(item))
-}
+const groupHasPriceMap = computed(() => {
+  const map = new Map()
+  if (!props.displayGroupedCards) return map
+  for (const [groupName, group] of props.displayGroupedCards) {
+    map.set(
+      groupName,
+      group.some((item) => !!getItemPrice(item))
+    )
+  }
+  return map
+})
 </script>
 
 <style scoped>

@@ -42,10 +42,10 @@ export const useDeckStore = defineStore(
 
     const authStore = useAuthStore()
 
-    // --- Computed ---
-    const getCardCount = computed(() => {
-      return (cardId) => cardsInDeck.value[cardId]?.quantity || 0
-    })
+    // --- Helper Getters ---
+    const getCardCount = (cardId) => {
+      return cardsInDeck.value[cardId]?.quantity || 0
+    }
 
     const totalCardCount = computed(() => {
       return Object.values(cardsInDeck.value).reduce((sum, item) => sum + item.quantity, 0)

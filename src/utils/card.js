@@ -16,6 +16,7 @@ const findAllPrefixesByCardPrefix = (prefix) => {
   return allPrefixes.size > 0 ? Array.from(allPrefixes) : [prefix]
 }
 
+const MAX_CARD_CACHE = 300
 const cardCache = new Map()
 const seriesIdCache = new Map()
 
@@ -23,6 +24,11 @@ export const fetchCardByIdAndPrefix = (id, prefix) => {
   const cacheKey = `${prefix}-${id}`
   if (cardCache.has(cacheKey)) {
     return cardCache.get(cacheKey)
+  }
+
+  if (cardCache.size >= MAX_CARD_CACHE) {
+    const firstKey = cardCache.keys().next().value
+    if (firstKey) cardCache.delete(firstKey)
   }
 
   const fetchPromise = (async () => {

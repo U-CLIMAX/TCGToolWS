@@ -154,14 +154,6 @@ const cardCounts = computed(() => {
   return counts
 })
 
-const cardPrices = computed(() => {
-  const prices = {}
-  for (const card of props.cards) {
-    prices[card.id] = getPrice(card)
-  }
-  return prices
-})
-
 const isDeckFull = computed(() => {
   return deckStore.totalCardCount >= 50 && userRole.value === 0
 })
@@ -181,14 +173,17 @@ const isLoadingLinks = ref(false)
 const selectedParallelCards = ref([])
 const isLoadingParallels = ref(false)
 const isTransitionDisabled = ref(false)
+let tableModeTimeout = null
 
 watch(
   () => props.isTableModeActive,
   () => {
     isTransitionDisabled.value = true
+    if (tableModeTimeout) clearTimeout(tableModeTimeout)
     nextTick(() => {
-      setTimeout(() => {
+      tableModeTimeout = setTimeout(() => {
         isTransitionDisabled.value = false
+        tableModeTimeout = null
       }, 150)
     })
   }
@@ -199,6 +194,16 @@ const isListVisible = ref(true)
 const page = ref(1)
 const displayedCards = computed(() => props.cards.slice(0, page.value * props.itemsPerLoad))
 const selectedCard = computed(() => selectedCardData.value?.card)
+
+const cardPrices = computed(() => {
+  const prices = {}
+  const activeCards = displayedCards.value
+  for (let i = 0; i < activeCards.length; i++) {
+    const card = activeCards[i]
+    prices[card.id] = getPrice(card)
+  }
+  return prices
+})
 
 watch(
   () => displayedCards.value.length,
@@ -485,6 +490,9 @@ onUnmounted(() => {
   uiStore.setRenderedCardsCount(0)
   if (freezeTimeout) {
     clearTimeout(freezeTimeout)
+  }
+  if (tableModeTimeout) {
+    clearTimeout(tableModeTimeout)
   }
 })
 </script>
