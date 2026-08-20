@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import { useDeckStore } from './deck'
 import { useMarketStore } from './market'
 import { usePriceStore } from './price'
+import { useDecksGalleryStore } from './decksGallery'
 import { jwtDecode } from 'jwt-decode'
 
 export const useAuthStore = defineStore('auth', () => {
@@ -114,10 +115,12 @@ export const useAuthStore = defineStore('auth', () => {
     const deckStore = useDeckStore()
     const marketStore = useMarketStore()
     const priceStore = usePriceStore()
+    const decksGalleryStore = useDecksGalleryStore()
 
     deckStore.reset()
     marketStore.reset()
     priceStore.reset()
+    decksGalleryStore.reset()
     router.push({ name: 'Home' })
   }
 

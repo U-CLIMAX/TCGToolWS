@@ -46,12 +46,18 @@ export const handleGetSeriesPrices = async (c) => {
     const kvKey = isPremium ? `premium:${seriesId}` : seriesId
     const ttl = isPremium ? 3 * 60 * 60 : 7 * 24 * 60 * 60 // 3 hours vs 7 days
 
+    const cacheControl = isPremium
+      ? 'private, no-cache, must-revalidate'
+      : 'public, max-age=300, s-maxage=1800, stale-while-revalidate=3600'
+
     // 1. Check KV cache
     const cachedData = await c.env.DAILY_SERIES_PRICE_KV.get(kvKey, 'arrayBuffer')
     if (cachedData) {
       return c.body(cachedData, 200, {
         'Content-Type': 'application/octet-stream',
         'Content-Encoding': 'gzip',
+        'Cache-Control': cacheControl,
+        'Vary': 'Authorization, Accept-Encoding',
       })
     }
 
@@ -98,24 +104,16 @@ export const handleGetSeriesPrices = async (c) => {
       const pagePromises = Array.from({ length: maxPage - 1 }, async (_, i) => {
         const page = i + 2
         const pageUrl = `${yytUrl}&page=${page}`
-        const isProdInLoop = import.meta.env.PROD
-        const res = await fetchPageWithFallback(
-          pageUrl,
-          { headers },
-          scraperApiTokens,
-          isProdInLoop
-        )
-        return {
-          index: i + 1,
-          html: res.ok ? await res.text() : null,
+        const res = await fetchPageWithFallback(pageUrl, { headers }, scraperApiTokens, isProd)
+        if (res.ok) {
+          const html = await res.text()
+          htmls[page - 1] = html
         }
       })
+      await Promise.all(pagePromises)
 
-      const results = await Promise.all(pagePromises)
-
-      for (const { index, html } of results) {
-        if (!html) return createErrorResponse(c, 502, '无法从 Yuyu-tei 获取数据')
-        htmls[index] = html
+      for (let i = 1; i < maxPage; i++) {
+        if (!htmls[i]) return createErrorResponse(c, 502, '无法从 Yuyu-tei 获取数据')
       }
     }
 
@@ -140,6 +138,8 @@ export const handleGetSeriesPrices = async (c) => {
     return c.body(compressedArrayBuffer, 200, {
       'Content-Type': 'application/octet-stream',
       'Content-Encoding': 'gzip',
+      'Cache-Control': cacheControl,
+      'Vary': 'Authorization, Accept-Encoding',
     })
   } catch (error) {
     console.error('Error fetching series prices:', error)

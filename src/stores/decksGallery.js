@@ -216,6 +216,14 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
     return await response.json()
   }
 
+  /**
+   * Resets user-specific state upon logout
+   */
+  const reset = () => {
+    userDeckCount.value = 0
+    filters.source = 'all'
+  }
+
   return {
     decks,
     userDeckCount,
@@ -230,5 +238,6 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
     rateDeck,
     fetchMyRating,
     updateDeckMetadata,
+    reset,
   }
 })

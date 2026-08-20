@@ -421,6 +421,9 @@ export const authMiddleware = async (c, next) => {
     })
     c.set('jwtPayload', payload)
     await next()
+    c.header('Cache-Control', 'private, no-cache, no-store, must-revalidate, max-age=0')
+    c.header('Pragma', 'no-cache')
+    c.header('Vary', 'Authorization')
   } catch (error) {
     return createErrorResponse(c, 401, `Unauthorized: ${error.message}`)
   }

@@ -1,4 +1,5 @@
 import { Hono } from 'hono'
+import { etag } from 'hono/etag'
 import {
   handleSendVerificationCode,
   handleVerifyAndRegister,
@@ -49,13 +50,21 @@ import { handleGetSeriesPrices } from './lib/prices.js'
 import { handleCreateTranslationReport } from './lib/reports.js'
 import { updateMarketStats } from './services/market-stats.js'
 import { cleanupDatabase } from './services/db-cleanup.js'
+import { publicCache } from './lib/utils.js'
 
 /** @type {AppInstance} */
 const app = new Hono().basePath('/api')
 
+// Enable global ETag calculation (allows 304 Not Modified zero-byte response on weak networks)
+app.use('*', etag())
+
+// Fallback safety middleware: guarantee private no-cache for endpoints that don't explicitly declare public cache
 app.use('*', async (c, next) => {
   await next()
-  c.header('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0')
+  if (!c.res.headers.has('Cache-Control')) {
+    c.header('Cache-Control', 'private, no-cache, no-store, must-revalidate, max-age=0')
+    c.header('Pragma', 'no-cache')
+  }
 })
 
 // === Rate Limiter Middlewares ===
@@ -114,20 +123,38 @@ deckRoutes.delete('/:key', handleDeleteDeck)
 /** @type {AppInstance} */
 const publicDeckRoutes = new Hono()
 publicDeckRoutes.use('/*', publicReadLimiter)
-publicDeckRoutes.get('/:key', handleGetDeckByKey)
+publicDeckRoutes.get(
+  '/:key',
+  publicCache({ maxAge: 60, sMaxAge: 300, staleWhileRevalidate: 600 }),
+  handleGetDeckByKey
+)
 
 // === 公開的 Decklog 路由 ===
 /** @type {AppInstance} */
 const decklogRoutes = new Hono()
 decklogRoutes.use('/*', publicReadLimiter)
-decklogRoutes.get('/:key', handleGetDecklogData)
+decklogRoutes.get(
+  '/:key',
+  publicCache({ maxAge: 300, sMaxAge: 1800, staleWhileRevalidate: 3600 }),
+  handleGetDecklogData
+)
 
 // === Market 路由 ===
 /** @type {AppInstance} */
 const marketRoutes = new Hono()
 // 公開讀取
-marketRoutes.get('/listings', publicReadLimiter, handleGetListings)
-marketRoutes.get('/stats', publicReadLimiter, handleGetMarketStats)
+marketRoutes.get(
+  '/listings',
+  publicReadLimiter,
+  publicCache({ maxAge: 15, sMaxAge: 60, staleWhileRevalidate: 120 }),
+  handleGetListings
+)
+marketRoutes.get(
+  '/stats',
+  publicReadLimiter,
+  publicCache({ maxAge: 60, sMaxAge: 300, staleWhileRevalidate: 600 }),
+  handleGetMarketStats
+)
 // 需要驗證
 marketRoutes.use('/*', authMiddleware, apiUserLimiter)
 marketRoutes.post('/listings', handleCreateListing)
@@ -140,7 +167,12 @@ marketRoutes.delete('/listings/:id', handleDeleteListing)
 /** @type {AppInstance} */
 const galleryRoutes = new Hono()
 // 公開讀取
-galleryRoutes.get('/decks', publicReadLimiter, handleGetDecksGallery)
+galleryRoutes.get(
+  '/decks',
+  publicReadLimiter,
+  publicCache({ maxAge: 15, sMaxAge: 60, staleWhileRevalidate: 120 }),
+  handleGetDecksGallery
+)
 // 需要驗證
 galleryRoutes.use('/*', authMiddleware, apiUserLimiter)
 galleryRoutes.get('/my-decks', handleGetUserDecksGallery)
@@ -153,7 +185,12 @@ galleryRoutes.get('/decks/:key/rating', handleGetMyDeckRating)
 // === Notice 路由 ===
 /** @type {AppInstance} */
 const noticeRoutes = new Hono()
-noticeRoutes.get('/', publicReadLimiter, handleGetNotices)
+noticeRoutes.get(
+  '/',
+  publicReadLimiter,
+  publicCache({ maxAge: 60, sMaxAge: 300, staleWhileRevalidate: 600 }),
+  handleGetNotices
+)
 noticeRoutes.post('/', authMiddleware, apiUserLimiter, handleCreateNotice)
 noticeRoutes.delete('/:id', authMiddleware, apiUserLimiter, handleDeleteNotice)
 
