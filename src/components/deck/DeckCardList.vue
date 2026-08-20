@@ -60,7 +60,7 @@
                 :key="item.id"
                 cols="4"
                 sm="3"
-                md="2"
+                :md="route.name !== 'DecksGallery' ? 2 : undefined"
                 :style="{ '--stagger-index': itemIndex }"
               >
                 <v-tooltip :text="item.id" location="top center" :disabled="isTouch">
