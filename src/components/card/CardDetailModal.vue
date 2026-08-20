@@ -262,7 +262,7 @@
 
                   <!-- Linked cards -->
                   <v-row v-else dense>
-                    <v-col v-for="card in linkedCards" :key="card.id" cols="6" sm="4" md="3" lg="2">
+                    <v-col v-for="card in linkedCards" :key="card.id" cols="4" sm="4" md="3">
                       <LinkedCard :card="card" @show-details="handleShowNewCard" />
                     </v-col>
                   </v-row>
@@ -291,14 +291,7 @@
 
                   <!-- Parallel cards -->
                   <v-row v-else dense>
-                    <v-col
-                      v-for="card in parallelCards"
-                      :key="card.id"
-                      cols="6"
-                      sm="4"
-                      md="3"
-                      lg="2"
-                    >
+                    <v-col v-for="card in parallelCards" :key="card.id" cols="4" sm="4" md="3">
                       <LinkedCard :card="card" @show-details="handleShowNewCard" />
                     </v-col>
                   </v-row>
@@ -1007,17 +1000,23 @@ const submitReport = async () => {
 }
 
 @media (min-width: 960px) {
+  .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+  }
+
   .nav-button-left,
   .nav-button-right {
     position: absolute;
   }
 
   .nav-button-left {
-    left: -60px;
+    left: -56px;
   }
 
   .nav-button-right {
-    right: -60px;
+    right: -56px;
   }
 }
 
@@ -1079,9 +1078,9 @@ const submitReport = async () => {
 
 @media (min-width: 960px) {
   .image-container {
-    width: 40%;
-    max-width: clamp(400px, 22vw, 550px);
-    padding: clamp(16px, 1.3vw, 32px);
+    width: 38%;
+    max-width: 380px;
+    padding: 20px;
   }
 }
 </style>

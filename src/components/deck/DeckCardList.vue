@@ -136,9 +136,8 @@
       :model-value="isModalVisible"
       @update:model-value="$emit('update:isModalVisible', $event)"
       :fullscreen="!smAndUp"
-      :max-width="!smAndUp ? undefined : smAndDown ? '80%' : '60%'"
+      :max-width="!smAndUp ? undefined : smAndDown ? '85%' : '1050px'"
       :max-height="!smAndUp ? undefined : '95%'"
-      :min-height="!smAndUp ? undefined : '60%'"
       :close-on-back="!smAndUp ? true : false"
     >
       <CardDetailModal
