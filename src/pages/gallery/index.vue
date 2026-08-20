@@ -319,7 +319,8 @@ const drawer = ref(false)
 const selectedDeckKey = ref(null)
 
 const drawerWidth = computed(() => {
-  return !smAndUp.value ? '1000' : width.value * 0.45
+  if (!smAndUp.value) return width.value
+  return Math.min(Math.max(width.value * 0.35, 500), 620)
 })
 
 const scrollStyle = computed(() => {
