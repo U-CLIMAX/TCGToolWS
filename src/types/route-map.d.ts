@@ -20,9 +20,9 @@ import type {
 
 declare module 'vue-router' {
   interface TypesConfig {
-    ParamParsers:
-      | never
+    _ParamParsers: {}
     RouteNamedMap: import('vue-router/auto-routes').RouteNamedMap
+    _RouteFileInfoMap: import('vue-router/auto-routes')._RouteFileInfoMap
   }
 }
 
@@ -147,11 +147,15 @@ declare module 'vue-router/auto-routes' {
         | 'Home'
       views:
         | never
+      pathParamNames:
+        | never
     }
     'src/pages/banlist/index.vue': {
       routes:
         | 'BanList'
       views:
+        | never
+      pathParamNames:
         | never
     }
     'src/pages/community/index.vue': {
@@ -159,17 +163,23 @@ declare module 'vue-router/auto-routes' {
         | 'Community'
       views:
         | never
+      pathParamNames:
+        | never
     }
     'src/pages/decklog/[key].vue': {
       routes:
         | 'DeckLog'
       views:
         | never
+      pathParamNames:
+        | 'key'
     }
     'src/pages/decks/index.vue': {
       routes:
         | 'Decks'
       views:
+        | never
+      pathParamNames:
         | never
     }
     'src/pages/decks/[key].vue': {
@@ -177,11 +187,15 @@ declare module 'vue-router/auto-routes' {
         | 'DeckDetail'
       views:
         | never
+      pathParamNames:
+        | 'key'
     }
     'src/pages/forgot-password/index.vue': {
       routes:
         | 'ForgotPassword'
       views:
+        | never
+      pathParamNames:
         | never
     }
     'src/pages/gallery/index.vue': {
@@ -189,11 +203,15 @@ declare module 'vue-router/auto-routes' {
         | 'DecksGallery'
       views:
         | never
+      pathParamNames:
+        | never
     }
     'src/pages/market/index.vue': {
       routes:
         | 'Market'
       views:
+        | never
+      pathParamNames:
         | never
     }
     'src/pages/reset-password/index.vue': {
@@ -201,17 +219,23 @@ declare module 'vue-router/auto-routes' {
         | 'ResetPassword'
       views:
         | never
+      pathParamNames:
+        | never
     }
     'src/pages/search/[game].vue': {
       routes:
         | 'GlobalSearch'
       views:
         | never
+      pathParamNames:
+        | 'game'
     }
     'src/pages/series/index.vue': {
       routes:
         | 'SeriesCardTable'
       views:
+        | never
+      pathParamNames:
         | never
     }
     'src/pages/series/[seriesId].vue': {
@@ -219,12 +243,16 @@ declare module 'vue-router/auto-routes' {
         | 'SeriesDetail'
       views:
         | never
+      pathParamNames:
+        | 'seriesId'
     }
     'src/pages/share-decks/[key].vue': {
       routes:
         | 'ShareDeckDetail'
       views:
         | never
+      pathParamNames:
+        | 'key'
     }
   }
 
