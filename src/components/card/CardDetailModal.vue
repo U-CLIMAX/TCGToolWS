@@ -261,11 +261,14 @@
                   </div>
 
                   <!-- Linked cards -->
-                  <v-row v-else dense>
-                    <v-col v-for="card in linkedCards" :key="card.id" cols="4" sm="4" md="3">
-                      <LinkedCard :card="card" @show-details="handleShowNewCard" />
-                    </v-col>
-                  </v-row>
+                  <div v-else class="linked-cards-grid">
+                    <LinkedCard
+                      v-for="linkedCard in linkedCards"
+                      :key="linkedCard.id"
+                      :card="linkedCard"
+                      @show-details="handleShowNewCard"
+                    />
+                  </div>
                 </div>
               </v-slide-y-reverse-transition>
             </div>
@@ -290,11 +293,14 @@
                   </div>
 
                   <!-- Parallel cards -->
-                  <v-row v-else dense>
-                    <v-col v-for="card in parallelCards" :key="card.id" cols="4" sm="4" md="3">
-                      <LinkedCard :card="card" @show-details="handleShowNewCard" />
-                    </v-col>
-                  </v-row>
+                  <div v-else class="linked-cards-grid">
+                    <LinkedCard
+                      v-for="parallelCard in parallelCards"
+                      :key="parallelCard.id"
+                      :card="parallelCard"
+                      @show-details="handleShowNewCard"
+                    />
+                  </div>
                 </div>
               </v-slide-y-reverse-transition>
             </div>
@@ -1081,6 +1087,27 @@ const submitReport = async () => {
     width: 38%;
     max-width: 380px;
     padding: 20px;
+  }
+}
+
+.linked-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  width: 100%;
+}
+
+@media (max-width: 959px) {
+  .linked-cards-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+  }
+}
+
+@media (max-width: 599px) {
+  .linked-cards-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
   }
 }
 </style>

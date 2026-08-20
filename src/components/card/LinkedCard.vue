@@ -29,7 +29,7 @@
         </template>
       </v-img>
     </div>
-    <div class="pa-2" style="width: 100%">
+    <div class="py-1 px-2" style="width: 100%">
       <div class="text-caption text-grey text-truncate">{{ card.id }}</div>
       <div class="text-subtitle-2 font-weight-bold text-truncate" style="height: 24px">
         <span>{{ card.name }}</span>
