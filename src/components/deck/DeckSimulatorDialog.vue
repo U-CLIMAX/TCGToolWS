@@ -64,17 +64,17 @@
                   variant="outlined"
                   class="rounded-pill"
                 >
-                  <v-btn :value="500" size="small" class="px-3">500</v-btn>
-                  <v-btn :value="1000" size="small" class="px-3">1,000</v-btn>
-                  <v-btn :value="5000" size="small" class="px-3">5,000</v-btn>
-                  <v-btn :value="10000" size="small" class="px-3">10,000</v-btn>
+                  <v-btn :value="500" size="small">500</v-btn>
+                  <v-btn :value="1000" size="small">1,000</v-btn>
+                  <v-btn :value="5000" size="small">5,000</v-btn>
+                  <v-btn :value="10000" size="small">10,000</v-btn>
                 </v-btn-toggle>
               </div>
 
               <v-btn
                 color="primary"
                 variant="elevated"
-                class="rounded-pill px-5"
+                class="rounded-pill px-5 ml-auto"
                 :loading="isSimulating"
                 prepend-icon="i-mdi:play-circle"
                 @click="executeBatch"
@@ -1020,10 +1020,5 @@ const getProbBarColor = (prob) => {
   border-radius: 3px;
   overflow: hidden;
   flex-shrink: 0;
-}
-
-/* ── btn toggle child sizing ── */
-.flex-1-1 {
-  flex: 1 1 0 !important;
 }
 </style>
