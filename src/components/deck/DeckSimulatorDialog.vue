@@ -38,7 +38,7 @@
           </v-tab>
           <v-tab value="single" class="text-subtitle-2 font-weight-medium">
             <v-icon icon="i-mdi:dice-multiple-outline" start />
-            {{ smAndUp ? '单次起手演练' : '演练' }}
+            {{ smAndUp ? '单次起手模拟' : '单次' }}
           </v-tab>
           <v-tab value="rules" class="text-subtitle-2 font-weight-medium">
             <v-icon icon="i-mdi:tune-variant" start />
@@ -64,9 +64,10 @@
                   variant="outlined"
                   class="rounded-pill"
                 >
-                  <v-btn :value="100" size="small" class="px-3">100</v-btn>
-                  <v-btn :value="1000" size="small" class="px-3">1000</v-btn>
-                  <v-btn :value="100000" size="small" class="px-3">10k</v-btn>
+                  <v-btn :value="500" size="small" class="px-3">500</v-btn>
+                  <v-btn :value="1000" size="small" class="px-3">1,000</v-btn>
+                  <v-btn :value="5000" size="small" class="px-3">5,000</v-btn>
+                  <v-btn :value="10000" size="small" class="px-3">10,000</v-btn>
                 </v-btn-toggle>
               </div>
 
@@ -110,11 +111,11 @@
 
               <v-col cols="6" sm="3">
                 <v-card variant="flat" class="sim-section-card pa-3 text-center rounded-xl h-100">
-                  <div class="text-caption text-medium-emphasis mb-1">手牌无高潮 (0 CX)</div>
+                  <div class="text-caption text-medium-emphasis mb-1">手牌无高潮卡 (0 CX)</div>
                   <div class="text-h5 font-weight-black font-DINCond text-teal-accent-4">
                     {{ batchResult.zeroCxProb }}%
                   </div>
-                  <div class="text-caption text-disabled mt-1">起手不留高潮安全率</div>
+                  <div class="text-caption text-disabled mt-1">起手不留高潮卡安全率</div>
                 </v-card>
               </v-col>
 

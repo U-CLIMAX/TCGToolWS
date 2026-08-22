@@ -13,7 +13,7 @@ import {
  */
 export const useDeckSimulator = (cardsRef) => {
   const rules = ref(getDefaultMulliganRules())
-  const sampleSize = ref(50)
+  const sampleSize = ref(1000)
   const isSimulating = ref(false)
   const singleResult = shallowRef(null)
   const batchResult = shallowRef(null)
