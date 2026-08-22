@@ -209,7 +209,7 @@
             hide-details="auto"
             class="mb-4 flex-grow-0"
             placeholder="添加标签 (按回车新建)"
-            :menu-props="uiStore.menuPropsNoGlass"
+            :menu-props="{ contentClass: 'themed-scrollbar scrollbar-gutter-auto' }"
           ></v-combobox>
 
           <p class="text-subtitle-1 mb-2 flex-grow-0">选择封面</p>

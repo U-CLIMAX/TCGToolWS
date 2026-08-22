@@ -58,10 +58,6 @@ export const useUIStore = defineStore(
       return { contentClass: classes.join(' '), offset: 3 }
     })
 
-    const menuPropsNoGlass = computed(() => {
-      return { contentClass: 'themed-scrollbar scrollbar-gutter-auto' }
-    })
-
     // --- Actions ---
 
     /**
@@ -223,7 +219,6 @@ export const useUIStore = defineStore(
       clearBackgroundImage,
       restoreBackgroundImage,
       menuProps,
-      menuPropsNoGlass,
       showForceUpdate,
       triggerForceUpdate,
       confirmUpdate,

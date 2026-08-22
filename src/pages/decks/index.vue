@@ -197,7 +197,6 @@
                   :is-touch="isTouch"
                   :sm-and-down="smAndDown"
                   :all-existing-tags="allAvailableTags"
-                  :menu-props="uiStore.menuPropsNoGlass"
                   :on-delete="handleDeleteDeck"
                   :on-save-tags="handleSaveTags"
                 />

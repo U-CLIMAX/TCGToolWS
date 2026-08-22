@@ -198,7 +198,7 @@
                     variant="outlined"
                     density="compact"
                     hide-details
-                    :menu-props="uiStore.menuPropsNoGlass"
+                    :menu-props="{ contentClass: 'themed-scrollbar scrollbar-gutter-auto' }"
                   ></v-autocomplete>
                 </v-col>
               </v-row>

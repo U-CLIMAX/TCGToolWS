@@ -720,7 +720,7 @@
                 density="compact"
                 variant="outlined"
                 hide-details
-                :menu-props="uiStore.menuPropsNoGlass"
+                :menu-props="{ contentClass: 'themed-scrollbar scrollbar-gutter-auto' }"
               >
                 <template #selection="{ item }">
                   <div class="d-flex align-center ga-2 py-1" style="max-width: 100%">
@@ -803,7 +803,6 @@ import { ref, computed, toRef, watch } from 'vue'
 import { useDisplay } from 'vuetify'
 import { useDeckSimulator } from '@/composables/useDeckSimulator'
 import { getCardUrls } from '@/utils/getCardImage'
-import { useUIStore } from '@/stores/ui'
 
 const props = defineProps({
   modelValue: { type: Boolean, default: false },
@@ -814,7 +813,6 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue'])
 
 const { smAndUp } = useDisplay()
-const uiStore = useUIStore()
 
 const cardsRef = toRef(props, 'cards')
 const {

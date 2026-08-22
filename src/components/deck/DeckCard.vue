@@ -115,7 +115,7 @@
                 (v) => !v || v.every((tag) => tag.length <= 5) || '每个标签最多 5 个字',
               ]"
               hide-details="auto"
-              :menu-props="menuProps"
+              :menu-props="{ contentClass: 'themed-scrollbar scrollbar-gutter-auto' }"
             />
           </v-card-text>
           <v-card-actions class="px-6 pb-2">
@@ -167,10 +167,6 @@ const props = defineProps({
   allExistingTags: {
     type: Array,
     default: () => [],
-  },
-  menuProps: {
-    type: Object,
-    default: () => ({ contentClass: 'themed-scrollbar scrollbar-gutter-auto' }),
   },
   onDelete: {
     type: Function,
