@@ -75,6 +75,14 @@
                   v-tooltip:bottom="{ text: '编辑卡组', disabled: isTouch }"
                 ></v-btn>
                 <v-btn
+                  v-if="userRole !== 0"
+                  icon="i-mdi:dice-multiple"
+                  variant="text"
+                  density="compact"
+                  @click="isSimulatorDialogVisible = true"
+                  v-tooltip:bottom="{ text: '起手模拟', disabled: isTouch }"
+                ></v-btn>
+                <v-btn
                   v-if="userRole !== 0 && !isLocalDeck"
                   icon="i-mdi:history"
                   variant="text"
@@ -314,6 +322,12 @@
           </template>
           <v-list-item-title>编辑卡组</v-list-item-title>
         </v-list-item>
+        <v-list-item v-if="userRole !== 0" @click="handleSimulatorClick">
+          <template #prepend>
+            <v-icon icon="i-mdi:dice-multiple" />
+          </template>
+          <v-list-item-title>起手模拟</v-list-item-title>
+        </v-list-item>
         <v-list-item v-if="userRole !== 0 && !isLocalDeck" @click="handleHistoryClick">
           <template #prepend>
             <v-icon icon="i-mdi:history" />
@@ -373,6 +387,12 @@
       :generated-image-result="generatedImageResult"
       @generate-image="handleGenerateDeckImage"
       @download-pdf="handleDownloadDeckPDF"
+    />
+
+    <DeckSimulatorDialog
+      v-model="isSimulatorDialogVisible"
+      :cards="originalCards"
+      :deck-name="deck?.name || '卡组'"
     />
 
     <v-dialog v-model="isHistoryDialogVisible" max-width="650" scrollable>
@@ -568,6 +588,7 @@ const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 const isConfirmEditDialogVisible = ref(false)
 const isGoToGalleryDialogVisible = ref(false)
 const isTextModalVisible = ref(false)
+const isSimulatorDialogVisible = ref(false)
 const modalTextContent = ref('')
 
 const history = computed(() => {
@@ -1150,6 +1171,11 @@ const handleViewHistoryState = async (index) => {
 
 const handleHistoryClick = () => {
   isHistoryDialogVisible.value = true
+  showMoreActionsBottomSheet.value = false
+}
+
+const handleSimulatorClick = () => {
+  isSimulatorDialogVisible.value = true
   showMoreActionsBottomSheet.value = false
 }
 

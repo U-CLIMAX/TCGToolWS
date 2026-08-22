@@ -107,6 +107,17 @@
                     价格每3小时会自动更新一次，方便您随时了解市场动态
                   </v-list-item-subtitle>
                 </v-list-item>
+                <v-list-item class="px-0 mb-3">
+                  <template v-slot:prepend>
+                    <v-icon color="green-accent-2" size="20" icon="i-mdi:check-circle" />
+                  </template>
+                  <v-list-item-title class="text-body-1 font-weight-medium">
+                    起手调度模拟器
+                  </v-list-item-title>
+                  <v-list-item-subtitle class="text-caption">
+                    模拟 5 张起手与调度策略，支持自定义规则
+                  </v-list-item-subtitle>
+                </v-list-item>
               </v-list>
             </v-expansion-panel-text>
           </v-expansion-panel>
