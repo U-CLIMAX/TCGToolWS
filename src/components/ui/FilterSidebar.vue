@@ -152,11 +152,9 @@
         <div>
           <div class="text-caption text-disabled mb-1">种类</div>
           <v-chip-group v-model="filterStore.selectedCardTypes" multiple column color="primary">
-            <v-chip value="角色卡" density="comfortable" :disabled="props.disabled">角色</v-chip>
-            <v-chip value="事件卡" density="comfortable" :disabled="props.disabled">事件</v-chip>
-            <v-chip value="高潮卡" density="comfortable" :disabled="props.disabled">
-              高潮卡
-            </v-chip>
+            <v-chip value="角色卡" density="comfortable" :disabled="props.disabled">角色卡</v-chip>
+            <v-chip value="事件卡" density="comfortable" :disabled="props.disabled">事件卡</v-chip>
+            <v-chip value="高潮卡" density="comfortable" :disabled="props.disabled">高潮卡</v-chip>
           </v-chip-group>
         </div>
 
