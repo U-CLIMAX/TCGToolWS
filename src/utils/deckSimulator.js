@@ -536,24 +536,26 @@ export const runMonteCarloSimulation = (cardList, rules, iterations = 10000) => 
     levelStats[3].finalCountDist[Math.min(fl3, 5)]++
   }
 
-  // Format and compile final results
-  const cardResults = Array.from(cardStatsMap.values()).map((item) => {
-    const initialProb = (item.initialHitCount / iterations) * 100
-    const finalProb = (item.finalHitCount / iterations) * 100
-    const deltaProb = finalProb - initialProb
-    const avgInitialCopies = item.initialTotalCopies / iterations
-    const avgFinalCopies = item.finalTotalCopies / iterations
+  // Format and compile final results (sorted by finalProb desc)
+  const cardResults = Array.from(cardStatsMap.values())
+    .map((item) => {
+      const initialProb = (item.initialHitCount / iterations) * 100
+      const finalProb = (item.finalHitCount / iterations) * 100
+      const deltaProb = finalProb - initialProb
+      const avgInitialCopies = item.initialTotalCopies / iterations
+      const avgFinalCopies = item.finalTotalCopies / iterations
 
-    return {
-      card: item.card,
-      quantity: item.card.quantity || 1,
-      initialProb: Number(initialProb.toFixed(2)),
-      finalProb: Number(finalProb.toFixed(2)),
-      deltaProb: Number(deltaProb.toFixed(2)),
-      avgInitialCopies: Number(avgInitialCopies.toFixed(2)),
-      avgFinalCopies: Number(avgFinalCopies.toFixed(2)),
-    }
-  })
+      return {
+        card: item.card,
+        quantity: item.card.quantity || 1,
+        initialProb: Number(initialProb.toFixed(2)),
+        finalProb: Number(finalProb.toFixed(2)),
+        deltaProb: Number(deltaProb.toFixed(2)),
+        avgInitialCopies: Number(avgInitialCopies.toFixed(2)),
+        avgFinalCopies: Number(avgFinalCopies.toFixed(2)),
+      }
+    })
+    .sort((a, b) => b.finalProb - a.finalProb || b.quantity - a.quantity)
 
   // Format type stats
   const typeResults = Object.keys(typeStats).map((typeKey) => {

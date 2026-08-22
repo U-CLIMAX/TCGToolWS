@@ -252,32 +252,25 @@
 
             <!-- 单卡上手率矩阵画廊 -->
             <v-card variant="flat" class="sim-section-card pa-4 rounded-xl">
-              <div class="d-flex flex-wrap justify-space-between align-center ga-3 mb-3">
-                <div>
-                  <div class="text-subtitle-2 font-weight-bold d-flex align-center ga-2">
-                    <v-icon icon="i-mdi:view-grid-outline" size="18" color="primary" />
-                    单卡上手率 ({{ sortedCardResults.length }} 种)
-                  </div>
-                  <div class="text-caption text-medium-emphasis">
-                    卡图 · 投入张数 · 初抽与调度后上手率
-                  </div>
+              <div class="mb-3">
+                <div class="text-subtitle-2 font-weight-bold d-flex align-center ga-2">
+                  <v-icon icon="i-mdi:view-grid-outline" size="18" color="primary" />
+                  单卡上手率 ({{ batchResult?.cardResults?.length || 0 }} 种)
                 </div>
-
-                <div class="d-flex align-center ga-2">
-                  <v-select
-                    v-model="cardSortBy"
-                    :items="cardSortOptions"
-                    density="compact"
-                    variant="outlined"
-                    hide-details
-                    rounded
-                  />
+                <div class="text-caption text-medium-emphasis">
+                  卡图 · 投入张数 · 初抽与调度后上手率
                 </div>
               </div>
 
               <!-- 卡片网格展示 -->
               <v-row dense>
-                <v-col v-for="item in sortedCardResults" :key="item.card.id" cols="4" md="3" lg="2">
+                <v-col
+                  v-for="item in batchResult?.cardResults || []"
+                  :key="item.card.id"
+                  cols="4"
+                  md="3"
+                  lg="2"
+                >
                   <v-card
                     elevation="1"
                     class="h-100 rounded-3md overflow-hidden d-flex flex-column single-card-item"
@@ -835,14 +828,6 @@ const {
 const activeTab = ref('batch')
 const showAddRuleModal = ref(false)
 
-const cardSortBy = ref('finalProb_desc')
-const cardSortOptions = [
-  { title: '上手率 (高→低)', value: 'finalProb_desc' },
-  { title: '上手率 (低→高)', value: 'finalProb_asc' },
-  { title: '投入张数 (多→少)', value: 'qty_desc' },
-  { title: '等级 (低→高)', value: 'level_asc' },
-]
-
 // Add Rule Form
 const newRuleForm = ref({
   type: 'card_type',
@@ -975,25 +960,6 @@ const getProbBarColor = (prob) => {
   if (prob >= 40) return 'primary'
   return 'deep-purple-lighten-1'
 }
-
-const sortedCardResults = computed(() => {
-  if (!batchResult.value?.cardResults) return []
-  let list = [...batchResult.value.cardResults]
-
-  list.sort((a, b) => {
-    if (cardSortBy.value === 'finalProb_desc') return b.finalProb - a.finalProb
-    if (cardSortBy.value === 'finalProb_asc') return a.finalProb - b.finalProb
-    if (cardSortBy.value === 'qty_desc') return b.quantity - a.quantity
-    if (cardSortBy.value === 'level_asc') {
-      const la = a.card.level === '-' ? 99 : Number(a.card.level || 0)
-      const lb = b.card.level === '-' ? 99 : Number(b.card.level || 0)
-      return la - lb
-    }
-    return 0
-  })
-
-  return list
-})
 </script>
 
 <style scoped>
