@@ -535,11 +535,10 @@
         <div v-if="activeTab === 'rules'" class="d-flex flex-column ga-4">
           <div class="d-flex justify-space-between align-center flex-wrap ga-2">
             <div>
-              <div class="text-subtitle-1 font-weight-bold">
-                起手保留规则 (规则的执行顺序自上而下)
-              </div>
+              <div class="text-subtitle-1 font-weight-bold">起手保留规则 (由上而下逐条执行)</div>
               <div class="text-caption text-medium-emphasis">
-                命中卡牌依限制保留，未命中一律丢弃（高潮卡视为 0 等）
+                优先符合规则的卡牌会先被处理且不重复判定。未符合任何规则的卡牌一律弃牌（高潮卡默认视为
+                0 等）。
               </div>
             </div>
 
