@@ -434,7 +434,6 @@ import HomeIcon from '@/assets/ui/home.svg'
 import seriesCardTableIcon from '@/assets/ui/series-card-table.svg'
 import deckIcon from '@/assets/ui/deck.svg'
 import searchIcon from '@/assets/ui/search.svg'
-import marketIcon from '@/assets/ui/market.svg'
 import toolboxIcon from '@/assets/ui/toolbox.svg'
 import deckGalleryIcon from '@/assets/ui/deck-gallery.svg'
 import communityIcon from '@/assets/ui/community.svg'
@@ -546,7 +545,6 @@ const confirmLogout = () => {
 
 const navIcons = {
   'home.svg': HomeIcon,
-  'market.svg': marketIcon,
   'series-card-table.svg': seriesCardTableIcon,
   'deck.svg': deckIcon,
   'search.svg': searchIcon,
@@ -569,13 +567,6 @@ const navItems = [
 ]
 
 const toolboxItems = [
-  {
-    text: '集换大厅',
-    name: 'Market',
-    icon: 'market.svg',
-    requiresAuth: false,
-    group: 'toolbox',
-  },
   {
     text: '卡组广场',
     name: 'DecksGallery',

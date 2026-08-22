@@ -31,15 +31,6 @@ import {
 } from './lib/gallery.js'
 import { handleGetNotices, handleCreateNotice, handleDeleteNotice } from './lib/notices.js'
 import {
-  handleCreateListing,
-  handleGetListings,
-  handleGetUserListings,
-  handleDeleteListing,
-  handleUpdateListing,
-  handleGetMyListingCount,
-  handleGetMarketStats,
-} from './lib/market.js'
-import {
   createRateLimiter,
   emailBodyKeyExtractor,
   ipKeyExtractor,
@@ -48,7 +39,6 @@ import {
 import { handleInitiatePayment } from './lib/payments.js'
 import { handleGetSeriesPrices } from './lib/prices.js'
 import { handleCreateTranslationReport } from './lib/reports.js'
-import { updateMarketStats } from './services/market-stats.js'
 import { cleanupDatabase } from './services/db-cleanup.js'
 import { publicCache } from './lib/utils.js'
 
@@ -139,30 +129,6 @@ decklogRoutes.get(
   handleGetDecklogData
 )
 
-// === Market 路由 ===
-/** @type {AppInstance} */
-const marketRoutes = new Hono()
-// 公開讀取
-marketRoutes.get(
-  '/listings',
-  publicReadLimiter,
-  publicCache({ maxAge: 15, sMaxAge: 60, staleWhileRevalidate: 120 }),
-  handleGetListings
-)
-marketRoutes.get(
-  '/stats',
-  publicReadLimiter,
-  publicCache({ maxAge: 60, sMaxAge: 300, staleWhileRevalidate: 600 }),
-  handleGetMarketStats
-)
-// 需要驗證
-marketRoutes.use('/*', authMiddleware, apiUserLimiter)
-marketRoutes.post('/listings', handleCreateListing)
-marketRoutes.put('/listings/:id', handleUpdateListing)
-marketRoutes.get('/my-listings', handleGetUserListings)
-marketRoutes.get('/my-count', handleGetMyListingCount)
-marketRoutes.delete('/listings/:id', handleDeleteListing)
-
 // === Gallery 路由 ===
 /** @type {AppInstance} */
 const galleryRoutes = new Hono()
@@ -220,7 +186,6 @@ app.route('/', authRoutes)
 app.route('/decks', deckRoutes)
 app.route('/shared-decks', publicDeckRoutes)
 app.route('/decklog', decklogRoutes)
-app.route('/market', marketRoutes)
 app.route('/gallery', galleryRoutes)
 app.route('/notices', noticeRoutes)
 app.route('/prices', priceRoutes)
@@ -240,9 +205,6 @@ export default {
    * @param {ExecutionContext} ctx - Execution context providing methods like waitUntil.
    */
   scheduled: async (event, env, ctx) => {
-    if (event.cron === '0 * * * *') {
-      ctx.waitUntil(updateMarketStats(env))
-    }
     if (event.cron === '0 0 * * 7') {
       ctx.waitUntil(cleanupDatabase(env))
     }

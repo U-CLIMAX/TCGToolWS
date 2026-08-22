@@ -101,17 +101,6 @@
                     <v-icon color="green-accent-2" size="20" icon="i-mdi:check-circle" />
                   </template>
                   <v-list-item-title class="text-body-1 font-weight-medium">
-                    在集换大厅发布更多的卡组
-                  </v-list-item-title>
-                  <v-list-item-subtitle class="text-caption">
-                    可发布最多50副卡组
-                  </v-list-item-subtitle>
-                </v-list-item>
-                <v-list-item class="px-0 mb-3">
-                  <template v-slot:prepend>
-                    <v-icon color="green-accent-2" size="20" icon="i-mdi:check-circle" />
-                  </template>
-                  <v-list-item-title class="text-body-1 font-weight-medium">
                     参考价格更新时间缩短
                   </v-list-item-title>
                   <v-list-item-subtitle class="text-caption">

@@ -140,12 +140,6 @@ VVITE_BLUR_IMAGE_BASE_URL=ws-blur-image-data
 
 您可以在本地 Worker 运行时，透过 curl 加上特定的 `cron` 参数发送请求来手动触发对应的任务：
 
-- **测试每小时的集换大厅数据更新** (`0 * * * *`)：
-
-  ```bash
-  curl "http://localhost:5173/cdn-cgi/handler/scheduled?cron=0+*+*+*+*"
-  ```
-
 - **测试每周的数据库清理** (`0 0 * * 7`)：
   ```bash
   curl "http://localhost:5173/cdn-cgi/handler/scheduled?cron=0+0+*+*+7"

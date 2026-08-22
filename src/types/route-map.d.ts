@@ -87,13 +87,6 @@ declare module 'vue-router/auto-routes' {
       Record<never, never>,
       | never
     >,
-    'Market': RouteRecordInfo<
-      'Market',
-      '/market',
-      Record<never, never>,
-      Record<never, never>,
-      | never
-    >,
     'ResetPassword': RouteRecordInfo<
       'ResetPassword',
       '/reset-password',
@@ -201,14 +194,6 @@ declare module 'vue-router/auto-routes' {
     'src/pages/gallery/index.vue': {
       routes:
         | 'DecksGallery'
-      views:
-        | never
-      pathParamNames:
-        | never
-    }
-    'src/pages/market/index.vue': {
-      routes:
-        | 'Market'
       views:
         | never
       pathParamNames:

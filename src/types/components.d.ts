@@ -38,8 +38,6 @@ declare module 'vue' {
     InsetTabs: typeof import('./../components/ui/InsetTabs.vue')['default']
     LazyCardWrapper: typeof import('./../components/common/LazyCardWrapper.vue')['default']
     LinkedCard: typeof import('./../components/card/LinkedCard.vue')['default']
-    MarketCreateDialog: typeof import('./../components/market/MarketCreateDialog.vue')['default']
-    MarketListingItem: typeof import('./../components/market/MarketListingItem.vue')['default']
     NoticeDialog: typeof import('./../components/common/NoticeDialog.vue')['default']
     QR: typeof import('./../components/common/QR.js')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
