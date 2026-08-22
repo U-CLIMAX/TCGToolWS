@@ -52,6 +52,10 @@
       {
         "id": "CHA/W40-T03",
         "rarity": "TD"
+      },
+      {
+        "id": "CHA/W40-T03R",
+        "rarity": "RRR"
       }
     ],
     "trigger_soul_count": 0
@@ -147,6 +151,14 @@
       {
         "id": "CHA/W40-T08",
         "rarity": "TD"
+      },
+      {
+        "id": "CHA/W40-T08S",
+        "rarity": "SR"
+      },
+      {
+        "id": "CHA/W40-T08SP",
+        "rarity": "SP"
       }
     ],
     "trigger_soul_count": 1
@@ -280,6 +292,10 @@
       {
         "id": "CHA/W40-T15",
         "rarity": "TD"
+      },
+      {
+        "id": "CHA/W40-T15R",
+        "rarity": "RRR"
       }
     ],
     "trigger_soul_count": 1
