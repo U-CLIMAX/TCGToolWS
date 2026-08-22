@@ -72,6 +72,33 @@ export const matchesRule = (card, rule) => {
 }
 
 /**
+ * Check if the initial hand satisfies the premise condition of a rule.
+ * @param {Array<Object>} hand
+ * @param {Object} condition
+ * @returns {boolean}
+ */
+export const checkRuleCondition = (hand, condition) => {
+  if (!condition || !condition.enabled) return true
+  if (!Array.isArray(hand) || hand.length === 0) return false
+
+  let count = 0
+  const target = condition.cardTarget
+  for (let i = 0; i < hand.length; i++) {
+    const c = hand[i]
+    if (c.id === target || c.baseId === target) {
+      count++
+    }
+  }
+
+  if (condition.operator === 'not_has') {
+    return count === 0
+  }
+
+  const requiredCount = Number(condition.count) || 1
+  return count >= requiredCount
+}
+
+/**
  * Generate human-readable text for a rule
  * @param {Object} rule
  * @param {Array<Object>} cardList
@@ -79,6 +106,23 @@ export const matchesRule = (card, rule) => {
  */
 export const getRuleDescription = (rule, cardList = []) => {
   if (!rule) return ''
+
+  let prefixText = ''
+  if (rule.condition?.enabled && rule.condition.cardTarget) {
+    const foundCond = cardList.find(
+      (c) => c.id === rule.condition.cardTarget || c.baseId === rule.condition.cardTarget
+    )
+    const condCardName = foundCond ? foundCond.name : ''
+    const cardLabel = `「${rule.condition.cardTarget}${condCardName ? ` · ${condCardName}` : ''}」`
+    const condCount = Number(rule.condition.count) || 1
+
+    if (rule.condition.operator === 'not_has') {
+      prefixText = `若手牌不含 ${cardLabel} ➔ `
+    } else {
+      const countLabel = condCount > 1 ? ` (≥${condCount}张)` : ''
+      prefixText = `若手牌含 ${cardLabel}${countLabel} ➔ `
+    }
+  }
 
   let conditionText = ''
   if (rule.type === 'specific_card') {
@@ -103,7 +147,7 @@ export const getRuleDescription = (rule, cardList = []) => {
     limitText = `保留 至少 ${rule.limitCount} 张`
   }
 
-  return `${conditionText} ➔ ${limitText}`
+  return `${prefixText}${conditionText} ➔ ${limitText}`
 }
 
 /**
@@ -121,6 +165,12 @@ export const evaluateHandMulligan = (hand, rules) => {
   if (Array.isArray(rules) && rules.length > 0) {
     for (let rIdx = 0; rIdx < rules.length; rIdx++) {
       const rule = rules[rIdx]
+
+      // Check premise condition if enabled
+      if (rule.condition?.enabled && !checkRuleCondition(hand, rule.condition)) {
+        continue
+      }
+
       const matchingIndices = []
 
       for (let i = 0; i < hand.length; i++) {
@@ -271,6 +321,26 @@ export const fastEvaluateMulligan = (hand, rules, keptCardsBuf) => {
   const ruleCount = rules ? rules.length : 0
   for (let rIdx = 0; rIdx < ruleCount; rIdx++) {
     const rule = rules[rIdx]
+
+    // Fast check premise condition
+    if (rule.condition && rule.condition.enabled) {
+      const condTarget = rule.condition.cardTarget
+      let condCount = 0
+      for (let i = 0; i < handLen; i++) {
+        const c = hand[i]
+        if (c.id === condTarget || c.baseId === condTarget) {
+          condCount++
+        }
+      }
+
+      if (rule.condition.operator === 'not_has') {
+        if (condCount !== 0) continue
+      } else {
+        const req = Number(rule.condition.count) || 1
+        if (condCount < req) continue
+      }
+    }
+
     let matchCount = 0
     let m0 = -1
     let m1 = -1
