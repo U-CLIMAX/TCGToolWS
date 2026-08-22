@@ -585,21 +585,11 @@
                 </v-chip>
 
                 <div style="min-width: 0" class="flex-grow-1">
-                  <div class="text-subtitle-2 font-weight-bold d-flex align-center flex-wrap ga-1">
-                    <v-chip
-                      v-if="rule.condition?.enabled"
-                      size="x-small"
-                      color="warning"
-                      variant="tonal"
-                      class="font-weight-bold mr-1"
-                    >
-                      <v-icon icon="i-mdi:source-branch" start size="12" />
-                      条件触发
-                    </v-chip>
-                    <span>{{ describeRule(rule) }}</span>
+                  <div class="text-subtitle-2 font-weight-bold">
+                    {{ describeRule(rule) }}
                   </div>
                   <div class="text-caption text-medium-emphasis text-truncate">
-                    目标: {{ getRuleTypeName(rule.type) }} ·
+                    条件: {{ getRuleTypeName(rule.type) }} ·
                     {{ idx === 0 ? '优先级最高' : `第 ${idx + 1}` }}
                   </div>
                 </div>
@@ -653,10 +643,10 @@
       </v-card-text>
 
       <!-- 添加规则弹窗 -->
-      <v-dialog v-model="showAddRuleModal" max-width="520">
+      <v-dialog v-model="showAddRuleModal" max-width="480">
         <v-card class="pa-2 rounded-2lg">
-          <v-card-title class="d-flex justify-space-between align-center pb-1">
-            <span class="text-subtitle-1 font-weight-bold">添加调度规则</span>
+          <v-card-title class="d-flex justify-space-between align-center">
+            <span>添加调度规则</span>
             <v-btn
               icon="i-mdi:close"
               variant="text"
@@ -666,103 +656,9 @@
           </v-card-title>
 
           <v-card-text class="pt-2 d-flex flex-column ga-3">
-            <!-- 0. 触发前提条件 (If-Then 开关) -->
-            <v-card variant="flat" class="sim-section-card pa-3 rounded-xl">
-              <div class="d-flex justify-space-between align-center">
-                <div class="d-flex align-center ga-2">
-                  <v-icon
-                    icon="i-mdi:source-branch"
-                    :color="newRuleForm.hasCondition ? 'warning' : 'medium-emphasis'"
-                    size="20"
-                  />
-                  <div>
-                    <div class="text-subtitle-2 font-weight-bold">触发前提条件 (If)</div>
-                    <div class="text-caption text-medium-emphasis">
-                      开启后仅当手牌满足前提时才执行本条规则
-                    </div>
-                  </div>
-                </div>
-                <v-switch
-                  v-model="newRuleForm.hasCondition"
-                  color="warning"
-                  density="compact"
-                  hide-details
-                  inset
-                />
-              </div>
-
-              <!-- 前提展开项 -->
-              <div
-                v-if="newRuleForm.hasCondition"
-                class="mt-3 d-flex flex-column ga-2 pt-2 border-t"
-              >
-                <div class="d-flex ga-2">
-                  <v-select
-                    v-model="newRuleForm.conditionOperator"
-                    :items="[
-                      { title: '手牌包含', value: 'has' },
-                      { title: '手牌不含 (0张)', value: 'not_has' },
-                    ]"
-                    label="关系"
-                    density="compact"
-                    variant="outlined"
-                    hide-details
-                  />
-                  <v-select
-                    v-if="newRuleForm.conditionOperator === 'has'"
-                    v-model="newRuleForm.conditionCount"
-                    :items="[
-                      { title: '≥ 1 张', value: 1 },
-                      { title: '≥ 2 张', value: 2 },
-                      { title: '≥ 3 张', value: 3 },
-                      { title: '≥ 4 张', value: 4 },
-                    ]"
-                    label="张数要求"
-                    density="compact"
-                    variant="outlined"
-                    hide-details
-                  />
-                </div>
-
-                <v-select
-                  v-model="newRuleForm.conditionCardTarget"
-                  :items="deckCardSelectItems"
-                  label="指定卡牌"
-                  density="compact"
-                  variant="outlined"
-                  hide-details
-                  :menu-props="{ contentClass: 'themed-scrollbar scrollbar-gutter-auto' }"
-                >
-                  <template #selection="{ item }">
-                    <div class="d-flex align-center ga-2 py-1" style="max-width: 100%">
-                      <div class="sim-select-thumb" style="width: 22px; height: 31px">
-                        <v-img :src="item.raw.imageUrl" :aspect-ratio="400 / 559" cover />
-                      </div>
-                      <span class="text-truncate">{{ item.raw.title }}</span>
-                    </div>
-                  </template>
-                  <template #item="{ props: itemProps, item }">
-                    <v-list-item
-                      v-bind="itemProps"
-                      :title="item.raw.title"
-                      :subtitle="item.raw.subtitle"
-                    >
-                      <template #prepend>
-                        <div class="sim-select-thumb mr-2" style="width: 32px; height: 45px">
-                          <v-img :src="item.raw.imageUrl" :aspect-ratio="400 / 559" cover />
-                        </div>
-                      </template>
-                    </v-list-item>
-                  </template>
-                </v-select>
-              </div>
-            </v-card>
-
-            <!-- 1. 目标动作维度选择 -->
+            <!-- 1. 维度选择 -->
             <div>
-              <div class="text-caption text-medium-emphasis mb-1">
-                {{ newRuleForm.hasCondition ? '执行动作 (Then)' : '规则目标' }}
-              </div>
+              <div class="text-caption text-medium-emphasis mb-1">条件维度</div>
               <v-btn-toggle
                 v-model="newRuleForm.type"
                 mandatory
@@ -771,8 +667,8 @@
                 variant="outlined"
                 class="w-100 rounded-pill"
               >
-                <v-btn value="specific_card" class="flex-1-1">指定单卡</v-btn>
                 <v-btn value="level" class="flex-1-1">卡牌等级</v-btn>
+                <v-btn value="specific_card" class="flex-1-1">指定单卡</v-btn>
                 <v-btn value="card_type" class="flex-1-1">卡牌种类</v-btn>
               </v-btn-toggle>
             </div>
@@ -934,32 +830,24 @@ const showAddRuleModal = ref(false)
 
 // Add Rule Form
 const newRuleForm = ref({
-  hasCondition: false,
-  conditionOperator: 'has',
-  conditionCardTarget: null,
-  conditionCount: 1,
-  type: 'specific_card',
+  type: 'card_type',
   operator: '=',
   levelTarget: 0,
   cardTarget: null,
   cardTypeTarget: '高潮卡',
-  limitType: 'at_most',
-  limitCount: 1,
+  limitType: 'none',
+  limitCount: 0,
 })
 
 const openAddRuleModal = () => {
   newRuleForm.value = {
-    hasCondition: false,
-    conditionOperator: 'has',
-    conditionCardTarget: deckCardSelectItems.value[0]?.value || null,
-    conditionCount: 1,
-    type: 'specific_card',
+    type: 'card_type',
     operator: '=',
     levelTarget: 0,
     cardTarget: deckCardSelectItems.value[0]?.value || null,
     cardTypeTarget: '高潮卡',
-    limitType: 'at_most',
-    limitCount: 1,
+    limitType: 'none',
+    limitCount: 0,
   }
   showAddRuleModal.value = true
 }
@@ -983,13 +871,8 @@ const deckCardSelectItems = computed(() =>
 watch(
   deckCardSelectItems,
   (items) => {
-    if (items.length > 0) {
-      if (!newRuleForm.value.cardTarget) {
-        newRuleForm.value.cardTarget = items[0].value
-      }
-      if (!newRuleForm.value.conditionCardTarget) {
-        newRuleForm.value.conditionCardTarget = items[0].value
-      }
+    if (items.length > 0 && !newRuleForm.value.cardTarget) {
+      newRuleForm.value.cardTarget = items[0].value
     }
   },
   { immediate: true }
@@ -1030,25 +913,14 @@ const submitAddRule = () => {
   const isNone = newRuleForm.value.limitType === 'none'
   const isAll = newRuleForm.value.limitType === 'all'
 
-  const rulePayload = {
+  addRule({
     type: newRuleForm.value.type,
     operator: newRuleForm.value.operator,
     targetValue: targetVal,
     limitType: newRuleForm.value.limitType,
     limitCount: isNone ? 0 : isAll ? 5 : Math.max(1, Number(newRuleForm.value.limitCount) || 1),
-  }
+  })
 
-  if (newRuleForm.value.hasCondition && newRuleForm.value.conditionCardTarget) {
-    rulePayload.condition = {
-      enabled: true,
-      type: 'specific_card',
-      cardTarget: newRuleForm.value.conditionCardTarget,
-      operator: newRuleForm.value.conditionOperator,
-      count: Number(newRuleForm.value.conditionCount) || 1,
-    }
-  }
-
-  addRule(rulePayload)
   showAddRuleModal.value = false
 }
 
