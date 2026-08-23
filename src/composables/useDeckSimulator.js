@@ -4,7 +4,6 @@ import {
   expandDeck,
   simulateSingleDraw,
   runMonteCarloSimulation,
-  getRuleDescription,
 } from '@/utils/deckSimulator'
 
 /**
@@ -41,11 +40,16 @@ export const useDeckSimulator = (cardsRef) => {
   )
 
   /**
+   * Active rules that are currently enabled
+   */
+  const activeRules = computed(() => rules.value.filter((r) => r.enabled !== false))
+
+  /**
    * Add a new rule
    */
   const addRule = (newRule) => {
     const id = `rule_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`
-    rules.value = [...rules.value, { ...newRule, id }]
+    rules.value = [...rules.value, { enabled: true, ...newRule, id }]
   }
 
   /**
@@ -91,7 +95,7 @@ export const useDeckSimulator = (cardsRef) => {
    */
   const runSingle = () => {
     if (expandedDeck.value.length === 0) return null
-    const result = simulateSingleDraw(expandedDeck.value, rules.value)
+    const result = simulateSingleDraw(expandedDeck.value, activeRules.value)
     singleResult.value = result
     return result
   }
@@ -106,7 +110,7 @@ export const useDeckSimulator = (cardsRef) => {
 
     return new Promise((resolve) => {
       simTimeoutId = setTimeout(() => {
-        const stats = runMonteCarloSimulation(cardList.value, rules.value, runs)
+        const stats = runMonteCarloSimulation(cardList.value, activeRules.value, runs)
         batchResult.value = stats
         isSimulating.value = false
         resolve(stats)
@@ -116,11 +120,13 @@ export const useDeckSimulator = (cardsRef) => {
 
   return {
     rules,
+    activeRules,
     sampleSize,
     isSimulating,
     singleResult,
     batchResult,
     totalDeckCount,
+    cardList,
     addRule,
     removeRule,
     moveRuleUp,
@@ -128,6 +134,5 @@ export const useDeckSimulator = (cardsRef) => {
     resetRules,
     runSingle,
     runBatch,
-    describeRule: (rule) => getRuleDescription(rule, cardList.value),
   }
 }

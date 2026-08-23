@@ -42,7 +42,11 @@
           </v-tab>
           <v-tab value="rules" class="text-subtitle-2 font-weight-medium">
             <v-icon icon="i-mdi:tune-variant" start />
-            {{ smAndUp ? `调度规则配置 (${rules.length})` : `规则 (${rules.length})` }}
+            {{
+              smAndUp
+                ? `调度规则配置 (${activeRules.length}/${rules.length})`
+                : `规则 (${activeRules.length}/${rules.length})`
+            }}
           </v-tab>
         </v-tabs>
       </div>
@@ -77,7 +81,7 @@
                 class="rounded-pill px-5 ml-auto"
                 :loading="isSimulating"
                 prepend-icon="i-mdi:play-circle"
-                @click="executeBatch"
+                @click="runBatch()"
               >
                 开始模拟
               </v-btn>
@@ -378,7 +382,7 @@
               variant="elevated"
               class="rounded-pill px-5"
               prepend-icon="i-mdi:dice-multiple"
-              @click="executeSingle"
+              @click="runSingle()"
             >
               抽取起手 5 张
             </v-btn>
@@ -476,7 +480,7 @@
                     variant="flat"
                     class="rounded-3md overflow-hidden h-100 hand-card-item"
                     :class="{
-                      'redraw-border': isRedrawnCard(card),
+                      'redraw-border': isRedrawnCard(idx),
                     }"
                   >
                     <div class="position-relative">
@@ -491,7 +495,7 @@
                         </template>
                       </v-img>
                       <div
-                        v-if="isRedrawnCard(card)"
+                        v-if="isRedrawnCard(idx)"
                         class="position-absolute"
                         style="top: 4px; right: 4px"
                       >
@@ -571,31 +575,101 @@
               v-for="(rule, idx) in rules"
               :key="rule.id"
               variant="flat"
-              class="sim-section-card pa-3 rounded-xl d-flex align-center justify-space-between ga-2"
+              class="sim-section-card pa-3 rounded-xl d-flex align-center justify-space-between ga-3 rule-card-item"
+              :class="{ 'rule-card-disabled': rule.enabled === false }"
             >
               <div class="d-flex align-center ga-3 flex-grow-1" style="min-width: 0">
                 <v-chip
-                  size="small"
-                  color="primary"
-                  variant="elevated"
+                  size="x-small"
+                  :color="rule.enabled === false ? 'default' : 'primary'"
+                  :variant="rule.enabled === false ? 'tonal' : 'elevated'"
                   class="font-weight-bold flex-shrink-0"
                 >
                   #{{ idx + 1 }}
                 </v-chip>
 
-                <div style="min-width: 0" class="flex-grow-1">
-                  <div class="text-subtitle-2 font-weight-bold">
-                    {{ describeRule(rule) }}
-                  </div>
-                  <div class="text-caption text-medium-emphasis text-truncate">
-                    条件: {{ getRuleTypeName(rule.type) }} ·
-                    {{ idx === 0 ? '优先级最高' : `第 ${idx + 1}` }}
-                  </div>
+                <!-- 分段式彩色 Chip 標籤組 (純文字無圖示) -->
+                <div class="d-flex align-center flex-wrap ga-2 flex-grow-1" style="min-width: 0">
+                  <!-- 1. 前提條件 (若有) -->
+                  <template
+                    v-if="
+                      rule.conditionCard &&
+                      (rule.conditionType === 'has_card' || rule.conditionType === 'not_has_card')
+                    "
+                  >
+                    <v-chip
+                      size="small"
+                      :color="rule.conditionType === 'has_card' ? 'info' : 'deep-orange'"
+                      variant="tonal"
+                      class="font-weight-bold flex-shrink-0 h-auto py-1"
+                    >
+                      <span class="text-wrap text-break">
+                        {{
+                          rule.conditionType === 'has_card'
+                            ? `若含 ${rule.conditionCard} (留${rule.conditionCardKeepCount || 1}张)`
+                            : `若无 ${rule.conditionCard}`
+                        }}
+                      </span>
+                    </v-chip>
+                    <span class="text-caption text-disabled flex-shrink-0 font-weight-bold">➔</span>
+                  </template>
+
+                  <!-- 2. 判定對象 -->
+                  <v-chip
+                    size="small"
+                    color="primary"
+                    variant="tonal"
+                    class="font-weight-bold flex-shrink-0 h-auto py-1"
+                  >
+                    <span class="text-wrap text-break">{{ getTargetLabel(rule) }}</span>
+                  </v-chip>
+
+                  <span class="text-caption text-disabled flex-shrink-0 font-weight-bold">➔</span>
+
+                  <!-- 3. 執行策略 -->
+                  <v-chip
+                    size="small"
+                    :color="getPolicyColor(rule)"
+                    variant="tonal"
+                    class="font-weight-bold flex-shrink-0 h-auto py-1"
+                  >
+                    <span class="text-wrap text-break">{{ getPolicyLabel(rule) }}</span>
+                  </v-chip>
+
+                  <!-- 3.1 優先/排除微調 -->
+                  <v-chip
+                    v-if="
+                      rule.limitType === 'at_most' &&
+                      rule.priorityCard &&
+                      rule.priorityModifier !== 'none'
+                    "
+                    size="x-small"
+                    :color="
+                      rule.priorityModifier === 'prioritize_card' ? 'amber-darken-2' : 'error'
+                    "
+                    variant="tonal"
+                    class="font-weight-bold flex-shrink-0 h-auto py-1"
+                  >
+                    <span class="text-wrap text-break">
+                      {{
+                        rule.priorityModifier === 'prioritize_card'
+                          ? `优先 ${rule.priorityCard} ×${rule.priorityCount || 1}`
+                          : `排除 ${rule.priorityCard}`
+                      }}
+                    </span>
+                  </v-chip>
                 </div>
               </div>
 
-              <!-- 排序与删除按钮 -->
+              <!-- 开关、排序与删除按钮 -->
               <div class="d-flex align-center ga-1 flex-shrink-0">
+                <v-switch
+                  v-model="rule.enabled"
+                  color="primary"
+                  density="compact"
+                  hide-details
+                  class="mr-1"
+                />
                 <v-btn
                   icon="i-mdi:arrow-up"
                   variant="text"
@@ -619,6 +693,7 @@
                   size="small"
                   density="compact"
                   @click="removeRule(idx)"
+                  class="ml-1"
                 />
               </div>
             </v-card>
@@ -642,84 +717,113 @@
       </v-card-text>
 
       <!-- 添加规则弹窗 -->
-      <v-dialog v-model="showAddRuleModal" max-width="480">
+      <v-dialog v-model="showAddRuleModal" max-width="540" scrollable>
         <v-card class="pa-2 rounded-2lg">
-          <v-card-title class="d-flex justify-space-between align-center">
-            <span>添加调度规则</span>
+          <v-card-title class="d-flex justify-space-between align-center px-4 pt-3 pb-2">
+            <div class="d-flex align-center ga-2">
+              <v-avatar color="primary" variant="tonal" size="32" class="rounded-lg">
+                <v-icon icon="i-mdi:tune" size="18" color="primary" />
+              </v-avatar>
+              <span class="font-weight-bold text-subtitle-1">添加调度规则</span>
+            </div>
             <v-btn
               icon="i-mdi:close"
               variant="text"
               size="small"
+              density="comfortable"
               @click="showAddRuleModal = false"
             />
           </v-card-title>
 
-          <v-card-text class="pt-2 d-flex flex-column ga-3">
-            <!-- 1. 维度选择 -->
-            <div>
-              <div class="text-caption text-medium-emphasis mb-1">条件维度</div>
+          <v-card-text class="px-4 py-2 d-flex flex-column ga-3">
+            <!-- 1. 触发前提 -->
+            <v-card variant="flat" class="sim-modal-section pa-3 rounded-lg">
+              <div
+                class="text-caption font-weight-bold text-medium-emphasis mb-2 d-flex align-center ga-1"
+              >
+                <span>1. 手牌触发條件</span>
+              </div>
               <v-btn-toggle
-                v-model="newRuleForm.type"
+                v-model="newRuleForm.conditionType"
                 mandatory
                 density="compact"
                 color="primary"
                 variant="outlined"
-                class="w-100 rounded-pill"
+                class="w-100 rounded-pill mb-3"
               >
-                <v-btn value="level" class="flex-1-1">卡牌等级</v-btn>
-                <v-btn value="specific_card" class="flex-1-1">指定单卡</v-btn>
-                <v-btn value="card_type" class="flex-1-1">卡牌种类</v-btn>
+                <v-btn value="always" class="flex-1-1">总是执行</v-btn>
+                <v-btn value="has_card" class="flex-1-1">含某卡</v-btn>
+                <v-btn value="not_has_card" class="flex-1-1">不含某卡</v-btn>
               </v-btn-toggle>
-            </div>
 
-            <!-- 等级条件 -->
-            <div v-if="newRuleForm.type === 'level'" class="d-flex ga-2">
-              <v-select
-                v-model="newRuleForm.operator"
-                :items="[
-                  { title: '等于 (=)', value: '=' },
-                  { title: '大于等于 (>=)', value: '>=' },
-                  { title: '小于等于 (<=)', value: '<=' },
-                ]"
-                label="比较方式"
-                density="compact"
-                variant="outlined"
-                hide-details
-                class="w-50"
-              />
-              <v-select
-                v-model="newRuleForm.levelTarget"
-                :items="[
-                  { title: '0 等', value: 0 },
-                  { title: '1 等', value: 1 },
-                  { title: '2 等', value: 2 },
-                  { title: '3 等', value: 3 },
-                ]"
-                label="等级"
-                density="compact"
-                variant="outlined"
-                hide-details
-                class="w-50"
-              />
-            </div>
+              <!-- 前提指定单卡与保留张数 -->
+              <div
+                v-if="newRuleForm.conditionType === 'has_card'"
+                class="d-flex flex-wrap ga-2 align-stretch"
+              >
+                <v-select
+                  v-model="newRuleForm.conditionCard"
+                  :items="deckCardSelectItems"
+                  label="选择卡组单卡"
+                  density="compact"
+                  variant="outlined"
+                  hide-details
+                  class="flex-1-1"
+                  style="min-width: 220px"
+                  :menu-props="{ contentClass: 'themed-scrollbar scrollbar-gutter-auto' }"
+                >
+                  <template #selection="{ item }">
+                    <div class="d-flex align-center ga-2" style="max-width: 100%; height: 24px">
+                      <div class="sim-select-thumb-mini">
+                        <v-img :src="item.raw.imageUrl" :aspect-ratio="400 / 559" cover />
+                      </div>
+                      <span class="text-truncate text-body-2">{{ item.raw.title }}</span>
+                    </div>
+                  </template>
+                  <template #item="{ props: itemProps, item }">
+                    <v-list-item
+                      v-bind="itemProps"
+                      :title="item.raw.title"
+                      :subtitle="item.raw.subtitle"
+                    >
+                      <template #prepend>
+                        <div class="sim-select-thumb mr-2">
+                          <v-img :src="item.raw.imageUrl" :aspect-ratio="400 / 559" cover />
+                        </div>
+                      </template>
+                    </v-list-item>
+                  </template>
+                </v-select>
 
-            <!-- 指定单卡条件 -->
-            <div v-if="newRuleForm.type === 'specific_card'">
+                <v-select
+                  v-model="newRuleForm.conditionCardKeepCount"
+                  :items="[1, 2, 3, 4, 5]"
+                  label="保留张数(最多)"
+                  density="compact"
+                  variant="outlined"
+                  hide-details
+                  class="flex-1-1"
+                  style="min-width: 140px"
+                />
+              </div>
+
+              <!-- 不含某卡时仅显示单卡选择 -->
               <v-select
-                v-model="newRuleForm.cardTarget"
+                v-else-if="newRuleForm.conditionType === 'not_has_card'"
+                v-model="newRuleForm.conditionCard"
                 :items="deckCardSelectItems"
-                label="选择卡组单卡"
+                label="指定排除单卡"
                 density="compact"
                 variant="outlined"
                 hide-details
                 :menu-props="{ contentClass: 'themed-scrollbar scrollbar-gutter-auto' }"
               >
                 <template #selection="{ item }">
-                  <div class="d-flex align-center ga-2 py-1" style="max-width: 100%">
-                    <div class="sim-select-thumb" style="width: 22px; height: 31px">
+                  <div class="d-flex align-center ga-2" style="max-width: 100%; height: 24px">
+                    <div class="sim-select-thumb-mini">
                       <v-img :src="item.raw.imageUrl" :aspect-ratio="400 / 559" cover />
                     </div>
-                    <span class="text-truncate">{{ item.raw.title }}</span>
+                    <span class="text-truncate text-body-2">{{ item.raw.title }}</span>
                   </div>
                 </template>
                 <template #item="{ props: itemProps, item }">
@@ -729,59 +833,230 @@
                     :subtitle="item.raw.subtitle"
                   >
                     <template #prepend>
-                      <div class="sim-select-thumb mr-2" style="width: 32px; height: 45px">
+                      <div class="sim-select-thumb mr-2">
                         <v-img :src="item.raw.imageUrl" :aspect-ratio="400 / 559" cover />
                       </div>
                     </template>
                   </v-list-item>
                 </template>
               </v-select>
-            </div>
+            </v-card>
 
-            <!-- 卡牌种类条件 -->
-            <div v-if="newRuleForm.type === 'card_type'">
-              <v-select
-                v-model="newRuleForm.cardTypeTarget"
-                :items="['角色卡', '事件卡', '高潮卡']"
-                label="种类"
+            <!-- 2. 维度选择 -->
+            <v-card variant="flat" class="sim-modal-section pa-3 rounded-lg">
+              <div
+                class="text-caption font-weight-bold text-medium-emphasis mb-2 d-flex align-center ga-1"
+              >
+                <span>2. 判定对象</span>
+              </div>
+              <v-btn-toggle
+                v-model="newRuleForm.type"
+                mandatory
                 density="compact"
+                color="primary"
                 variant="outlined"
-                hide-details
-              />
-            </div>
+                class="w-100 rounded-pill mb-3"
+              >
+                <v-btn value="level" class="flex-1-1">卡牌等级</v-btn>
+                <v-btn value="specific_card" class="flex-1-1">指定单卡</v-btn>
+                <v-btn value="card_type" class="flex-1-1">卡牌种类</v-btn>
+              </v-btn-toggle>
 
-            <!-- 2. 保留限制 -->
-            <div class="d-flex ga-2">
-              <v-select
-                v-model="newRuleForm.limitType"
-                :items="[
-                  { title: '保留 至多', value: 'at_most' },
-                  { title: '全部保留', value: 'all' },
-                  { title: '全部丢弃 (保留0张)', value: 'none' },
-                ]"
-                label="保留策略"
-                density="compact"
-                variant="outlined"
-                hide-details
-                class="flex-grow-1"
-              />
-              <v-select
+              <!-- 等级条件 -->
+              <div v-if="newRuleForm.type === 'level'" class="d-flex flex-wrap ga-2 align-stretch">
+                <v-select
+                  v-model="newRuleForm.operator"
+                  :items="[
+                    { title: '等于 (=)', value: '=' },
+                    { title: '大于等于 (>=)', value: '>=' },
+                    { title: '小于等于 (<=)', value: '<=' },
+                  ]"
+                  label="比较方式"
+                  density="compact"
+                  variant="outlined"
+                  hide-details
+                  class="flex-1-1"
+                  style="min-width: 180px"
+                />
+                <v-select
+                  v-model="newRuleForm.levelTarget"
+                  :items="[
+                    { title: '0 等', value: 0 },
+                    { title: '1 等', value: 1 },
+                    { title: '2 等', value: 2 },
+                    { title: '3 等', value: 3 },
+                  ]"
+                  label="等级"
+                  density="compact"
+                  variant="outlined"
+                  hide-details
+                  class="flex-1-1"
+                  style="min-width: 140px"
+                />
+              </div>
+
+              <!-- 指定单卡条件 -->
+              <div v-if="newRuleForm.type === 'specific_card'">
+                <v-select
+                  v-model="newRuleForm.cardTarget"
+                  :items="deckCardSelectItems"
+                  label="选择卡组单卡"
+                  density="compact"
+                  variant="outlined"
+                  hide-details
+                  :menu-props="{ contentClass: 'themed-scrollbar scrollbar-gutter-auto' }"
+                >
+                  <template #selection="{ item }">
+                    <div class="d-flex align-center ga-2" style="max-width: 100%; height: 24px">
+                      <div class="sim-select-thumb-mini">
+                        <v-img :src="item.raw.imageUrl" :aspect-ratio="400 / 559" cover />
+                      </div>
+                      <span class="text-truncate text-body-2">{{ item.raw.title }}</span>
+                    </div>
+                  </template>
+                  <template #item="{ props: itemProps, item }">
+                    <v-list-item
+                      v-bind="itemProps"
+                      :title="item.raw.title"
+                      :subtitle="item.raw.subtitle"
+                    >
+                      <template #prepend>
+                        <div class="sim-select-thumb mr-2">
+                          <v-img :src="item.raw.imageUrl" :aspect-ratio="400 / 559" cover />
+                        </div>
+                      </template>
+                    </v-list-item>
+                  </template>
+                </v-select>
+              </div>
+
+              <!-- 卡牌种类条件 -->
+              <div v-if="newRuleForm.type === 'card_type'">
+                <v-select
+                  v-model="newRuleForm.cardTypeTarget"
+                  :items="['角色卡', '事件卡', '高潮卡']"
+                  label="种类"
+                  density="compact"
+                  variant="outlined"
+                  hide-details
+                />
+              </div>
+            </v-card>
+
+            <!-- 3. 保留策略 -->
+            <v-card variant="flat" class="sim-modal-section pa-3 rounded-lg">
+              <div
+                class="text-caption font-weight-bold text-medium-emphasis mb-2 d-flex align-center ga-1"
+              >
+                <span>3. 保留策略</span>
+              </div>
+              <div class="d-flex flex-wrap ga-2 align-stretch">
+                <v-select
+                  v-model="newRuleForm.limitType"
+                  :items="[
+                    { title: '保留 最多', value: 'at_most' },
+                    { title: '全部保留', value: 'all' },
+                    { title: '全部丢弃 (保留 0 张)', value: 'none' },
+                  ]"
+                  density="compact"
+                  variant="outlined"
+                  hide-details
+                  class="flex-1-1"
+                  style="min-width: 220px"
+                />
+                <v-select
+                  v-if="newRuleForm.limitType === 'at_most'"
+                  v-model="newRuleForm.limitCount"
+                  :items="[1, 2, 3, 4, 5]"
+                  label="张数"
+                  density="compact"
+                  variant="outlined"
+                  hide-details
+                  class="flex-1-1"
+                  style="min-width: 140px"
+                />
+              </div>
+
+              <!-- 3.1 优先/排除微调 -->
+              <div
                 v-if="newRuleForm.limitType === 'at_most'"
-                v-model="newRuleForm.limitCount"
-                :items="[1, 2, 3, 4, 5]"
-                label="张数"
-                density="compact"
-                variant="outlined"
-                hide-details
-                style="max-width: 100px"
-              />
-            </div>
+                class="mt-3 pt-3 d-flex flex-column ga-2"
+                style="border-top: 1px dashed rgba(var(--v-border-color), 0.2)"
+              >
+                <div class="text-caption text-medium-emphasis">单卡保留优先级 (可选)</div>
+                <v-select
+                  v-model="newRuleForm.priorityModifier"
+                  :items="[
+                    { title: '无微调 (按手牌抽取顺序)', value: 'none' },
+                    { title: '优先保留指定单卡', value: 'prioritize_card' },
+                    { title: '排除指定单卡 (直接丢弃)', value: 'exclude_card' },
+                  ]"
+                  label="微调策略"
+                  density="compact"
+                  variant="outlined"
+                  hide-details
+                />
+
+                <div
+                  v-if="newRuleForm.priorityModifier !== 'none'"
+                  class="d-flex flex-wrap ga-2 align-stretch"
+                >
+                  <v-select
+                    v-model="newRuleForm.priorityCard"
+                    :items="deckCardSelectItems"
+                    label="指定单卡"
+                    density="compact"
+                    variant="outlined"
+                    hide-details
+                    class="flex-1-1"
+                    style="min-width: 220px"
+                    :menu-props="{ contentClass: 'themed-scrollbar scrollbar-gutter-auto' }"
+                  >
+                    <template #selection="{ item }">
+                      <div class="d-flex align-center ga-2" style="max-width: 100%; height: 24px">
+                        <div class="sim-select-thumb-mini">
+                          <v-img :src="item.raw.imageUrl" :aspect-ratio="400 / 559" cover />
+                        </div>
+                        <span class="text-truncate text-body-2">{{ item.raw.title }}</span>
+                      </div>
+                    </template>
+                    <template #item="{ props: itemProps, item }">
+                      <v-list-item
+                        v-bind="itemProps"
+                        :title="item.raw.title"
+                        :subtitle="item.raw.subtitle"
+                      >
+                        <template #prepend>
+                          <div class="sim-select-thumb mr-2">
+                            <v-img :src="item.raw.imageUrl" :aspect-ratio="400 / 559" cover />
+                          </div>
+                        </template>
+                      </v-list-item>
+                    </template>
+                  </v-select>
+
+                  <v-select
+                    v-if="newRuleForm.priorityModifier === 'prioritize_card'"
+                    v-model="newRuleForm.priorityCount"
+                    :items="[1, 2, 3, 4, 5]"
+                    label="优先最多"
+                    density="compact"
+                    variant="outlined"
+                    hide-details
+                    class="flex-1-1"
+                    style="min-width: 140px"
+                  />
+                </div>
+              </div>
+            </v-card>
           </v-card-text>
 
-          <v-card-actions class="pa-3">
+          <v-card-actions class="px-4 py-3">
             <v-spacer />
             <v-btn variant="text" @click="showAddRuleModal = false">取消</v-btn>
-            <v-btn color="primary" variant="tonal" @click="submitAddRule">确认添加</v-btn>
+            <v-btn color="primary" variant="tonal" class="px-4" @click="submitAddRule"
+              >确认添加</v-btn
+            >
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -808,11 +1083,13 @@ const { smAndUp } = useDisplay()
 const cardsRef = toRef(props, 'cards')
 const {
   rules,
+  activeRules,
   sampleSize,
   isSimulating,
   singleResult,
   batchResult,
   totalDeckCount,
+  cardList,
   addRule,
   removeRule,
   moveRuleUp,
@@ -820,7 +1097,6 @@ const {
   resetRules,
   runSingle,
   runBatch,
-  describeRule,
 } = useDeckSimulator(cardsRef)
 
 const activeTab = ref('batch')
@@ -828,37 +1104,46 @@ const showAddRuleModal = ref(false)
 
 // Add Rule Form
 const newRuleForm = ref({
-  type: 'card_type',
+  enabled: true,
+  conditionType: 'always',
+  conditionCard: null,
+  conditionCardKeepCount: 1,
+  type: 'level',
   operator: '=',
   levelTarget: 0,
   cardTarget: null,
   cardTypeTarget: '高潮卡',
-  limitType: 'none',
-  limitCount: 0,
+  limitType: 'at_most',
+  limitCount: 3,
+  priorityModifier: 'none',
+  priorityCard: null,
+  priorityCount: 1,
 })
 
 const openAddRuleModal = () => {
+  const defaultCard = deckCardSelectItems.value[0]?.value || null
   newRuleForm.value = {
-    type: 'card_type',
+    enabled: true,
+    conditionType: 'always',
+    conditionCard: defaultCard,
+    conditionCardKeepCount: 1,
+    type: 'level',
     operator: '=',
     levelTarget: 0,
-    cardTarget: deckCardSelectItems.value[0]?.value || null,
+    cardTarget: defaultCard,
     cardTypeTarget: '高潮卡',
-    limitType: 'none',
-    limitCount: 0,
+    limitType: 'at_most',
+    limitCount: 3,
+    priorityModifier: 'none',
+    priorityCard: defaultCard,
+    priorityCount: 1,
   }
   showAddRuleModal.value = true
 }
 
-const cardList = computed(() => {
-  const raw = props.cards
-  if (!raw) return []
-  return Array.isArray(raw) ? raw : Object.values(raw)
-})
-
 const deckCardSelectItems = computed(() =>
   cardList.value.map((c) => ({
-    title: `${c.id} · ${c.name}`,
+    title: `${c.id}`,
     subtitle: `${c.type} · ×${c.quantity || 1}`,
     value: c.id,
     imageUrl: getCardUrls(c.cardIdPrefix, c.id).base,
@@ -869,8 +1154,10 @@ const deckCardSelectItems = computed(() =>
 watch(
   deckCardSelectItems,
   (items) => {
-    if (items.length > 0 && !newRuleForm.value.cardTarget) {
-      newRuleForm.value.cardTarget = items[0].value
+    if (items.length > 0) {
+      if (!newRuleForm.value.cardTarget) newRuleForm.value.cardTarget = items[0].value
+      if (!newRuleForm.value.conditionCard) newRuleForm.value.conditionCard = items[0].value
+      if (!newRuleForm.value.priorityCard) newRuleForm.value.priorityCard = items[0].value
     }
   },
   { immediate: true }
@@ -880,22 +1167,14 @@ const closeDialog = () => {
   emit('update:modelValue', false)
 }
 
-const executeBatch = () => {
-  runBatch()
-}
-
-const executeSingle = () => {
-  runSingle()
-}
-
 const isCardKept = (handIndex) => {
   if (!singleResult.value) return false
-  return singleResult.value.decisions.find((d) => d.cardIndex === handIndex)?.action === 'keep'
+  return singleResult.value.keptIndices?.has(handIndex) ?? false
 }
 
-const isRedrawnCard = (card) => {
+const isRedrawnCard = (idx) => {
   if (!singleResult.value) return false
-  return singleResult.value.replacementCards.some((rc) => rc.instanceId === card.instanceId)
+  return idx >= singleResult.value.keptCards.length
 }
 
 const submitAddRule = () => {
@@ -910,23 +1189,61 @@ const submitAddRule = () => {
 
   const isNone = newRuleForm.value.limitType === 'none'
   const isAll = newRuleForm.value.limitType === 'all'
+  const isAtMost = newRuleForm.value.limitType === 'at_most'
 
   addRule({
+    enabled: true,
+    conditionType: newRuleForm.value.conditionType || 'always',
+    conditionCard:
+      newRuleForm.value.conditionType !== 'always' ? newRuleForm.value.conditionCard : null,
+    conditionCardKeepCount:
+      newRuleForm.value.conditionType === 'has_card'
+        ? Math.max(1, Number(newRuleForm.value.conditionCardKeepCount) || 1)
+        : 1,
     type: newRuleForm.value.type,
     operator: newRuleForm.value.operator,
     targetValue: targetVal,
     limitType: newRuleForm.value.limitType,
     limitCount: isNone ? 0 : isAll ? 5 : Math.max(1, Number(newRuleForm.value.limitCount) || 1),
+    priorityModifier: isAtMost ? newRuleForm.value.priorityModifier || 'none' : 'none',
+    priorityCard:
+      isAtMost && newRuleForm.value.priorityModifier !== 'none'
+        ? newRuleForm.value.priorityCard
+        : null,
+    priorityCount:
+      isAtMost && newRuleForm.value.priorityModifier === 'prioritize_card'
+        ? Math.max(1, Number(newRuleForm.value.priorityCount) || 1)
+        : 1,
   })
 
   showAddRuleModal.value = false
 }
 
-const getRuleTypeName = (type) => {
-  if (type === 'level') return '卡牌等级'
-  if (type === 'specific_card') return '指定单卡'
-  if (type === 'card_type') return '卡牌种类'
+const getTargetLabel = (rule) => {
+  if (!rule) return ''
+  if (rule.type === 'level') {
+    const op = rule.operator === '>=' ? '以上' : rule.operator === '<=' ? '以下' : '等'
+    return `Lv.${rule.targetValue} ${op}`
+  }
+  if (rule.type === 'specific_card') {
+    return `${rule.targetValue}`
+  }
+  if (rule.type === 'card_type') {
+    return `${rule.targetValue}`
+  }
   return '自订'
+}
+
+const getPolicyColor = (rule) => {
+  if (rule.limitType === 'all') return 'success'
+  if (rule.limitType === 'none' || Number(rule.limitCount) === 0) return 'error'
+  return 'teal'
+}
+
+const getPolicyLabel = (rule) => {
+  if (rule.limitType === 'all') return '全部保留'
+  if (rule.limitType === 'none' || Number(rule.limitCount) === 0) return '全部丢弃'
+  return `保留最多 ${rule.limitCount} 张`
 }
 
 const getCardImage = (card) => getCardUrls(card.cardIdPrefix, card.id)
@@ -964,6 +1281,11 @@ const getProbBarColor = (prob) => {
 /* ── Section cards & rows: pure background color without any tonal overlay ── */
 .sim-section-card {
   background: rgba(var(--v-theme-on-surface), 0.04) !important;
+}
+
+.sim-modal-section {
+  background: rgba(var(--v-theme-on-surface), 0.035) !important;
+  border: 1px solid rgba(var(--v-border-color), 0.08);
 }
 
 .sim-stat-row {
@@ -1012,11 +1334,30 @@ const getProbBarColor = (prob) => {
   }
 }
 
-/* ── Select dropdown card thumbnail ── */
+/* ── Select dropdown card thumbnails ── */
+.sim-select-thumb-mini {
+  width: 16px;
+  height: 22px;
+  border-radius: 2px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
 .sim-select-thumb {
-  width: 32px;
+  width: 28px;
+  height: 39px;
   border-radius: 3px;
   overflow: hidden;
   flex-shrink: 0;
+}
+
+/* ── Rule card states & switch ── */
+.rule-card-item {
+  transition: all 0.2s ease-in-out;
+}
+
+.rule-card-disabled {
+  opacity: 0.55;
+  filter: grayscale(0.4);
 }
 </style>
