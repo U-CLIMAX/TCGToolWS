@@ -99,8 +99,6 @@ export const getRuleDescription = (rule, cardList = []) => {
     limitText = '全部丢弃 (保留 0 张)'
   } else if (rule.limitType === 'at_most') {
     limitText = `保留 至多 ${rule.limitCount} 张`
-  } else if (rule.limitType === 'at_least') {
-    limitText = `保留 至少 ${rule.limitCount} 张`
   }
 
   return `${conditionText} ➔ ${limitText}`
@@ -141,11 +139,6 @@ export const evaluateHandMulligan = (hand, rules) => {
         keepCount = 0
       } else if (rule.limitType === 'at_most') {
         keepCount = Math.min(matchingIndices.length, Number(rule.limitCount) || 0)
-      } else if (rule.limitType === 'at_least') {
-        keepCount = Math.min(
-          matchingIndices.length,
-          Math.max(Number(rule.limitCount) || 0, matchingIndices.length)
-        )
       }
 
       for (let k = 0; k < keepCount; k++) {
@@ -299,8 +292,6 @@ export const fastEvaluateMulligan = (hand, rules, keptCardsBuf) => {
       keepLimit = 0
     } else if (rule.limitType === 'at_most') {
       keepLimit = Math.min(matchCount, Number(rule.limitCount) || 0)
-    } else if (rule.limitType === 'at_least') {
-      keepLimit = Math.min(matchCount, Math.max(Number(rule.limitCount) || 0, matchCount))
     }
 
     if (keepLimit > 0 && m0 !== -1) keptCardsBuf[keptCount++] = hand[m0]

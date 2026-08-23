@@ -756,7 +756,6 @@
                 v-model="newRuleForm.limitType"
                 :items="[
                   { title: '保留 至多', value: 'at_most' },
-                  { title: '保留 至少', value: 'at_least' },
                   { title: '全部保留', value: 'all' },
                   { title: '全部丢弃 (保留0张)', value: 'none' },
                 ]"
@@ -767,7 +766,7 @@
                 class="flex-grow-1"
               />
               <v-select
-                v-if="newRuleForm.limitType === 'at_most' || newRuleForm.limitType === 'at_least'"
+                v-if="newRuleForm.limitType === 'at_most'"
                 v-model="newRuleForm.limitCount"
                 :items="[1, 2, 3, 4, 5]"
                 label="张数"
