@@ -429,7 +429,7 @@
                           <v-img src="/placehold.webp" :aspect-ratio="400 / 559" cover />
                         </template>
                       </v-img>
-                      <div class="position-absolute" style="top: 4px; right: 4px">
+                      <div class="position-absolute" style="bottom: 4px; right: 4px">
                         <v-chip
                           size="x-small"
                           :color="isCardKept(idx) ? 'success' : 'error'"
@@ -497,7 +497,7 @@
                       <div
                         v-if="isRedrawnCard(idx)"
                         class="position-absolute"
-                        style="top: 4px; right: 4px"
+                        style="bottom: 4px; right: 4px"
                       >
                         <v-chip
                           size="x-small"
@@ -857,13 +857,29 @@
                 variant="outlined"
                 class="w-100 rounded-pill mb-3"
               >
-                <v-btn value="level" class="flex-1-1">卡牌等级</v-btn>
+                <v-btn value="numeric_attribute" class="flex-1-1">卡牌数值</v-btn>
                 <v-btn value="specific_card" class="flex-1-1">指定单卡</v-btn>
                 <v-btn value="card_type" class="flex-1-1">卡牌种类</v-btn>
               </v-btn-toggle>
 
-              <!-- 等级条件 -->
-              <div v-if="newRuleForm.type === 'level'" class="d-flex flex-wrap ga-2 align-stretch">
+              <!-- 数值属性条件 (等级 / 触发魂标) -->
+              <div
+                v-if="newRuleForm.type === 'numeric_attribute'"
+                class="d-flex flex-wrap ga-2 align-stretch"
+              >
+                <v-select
+                  v-model="newRuleForm.attributeType"
+                  :items="[
+                    { title: '等级', value: 'level' },
+                    { title: '触发魂标', value: 'trigger_soul' },
+                  ]"
+                  label="数值类型"
+                  density="compact"
+                  variant="outlined"
+                  hide-details
+                  class="flex-1-1"
+                  style="min-width: 140px"
+                />
                 <v-select
                   v-model="newRuleForm.operator"
                   :items="[
@@ -876,9 +892,10 @@
                   variant="outlined"
                   hide-details
                   class="flex-1-1"
-                  style="min-width: 180px"
+                  style="min-width: 140px"
                 />
                 <v-select
+                  v-if="newRuleForm.attributeType === 'level'"
                   v-model="newRuleForm.levelTarget"
                   :items="[
                     { title: '0 等', value: 0 },
@@ -891,7 +908,22 @@
                   variant="outlined"
                   hide-details
                   class="flex-1-1"
-                  style="min-width: 140px"
+                  style="min-width: 120px"
+                />
+                <v-select
+                  v-else
+                  v-model="newRuleForm.soulTarget"
+                  :items="[
+                    { title: '0 魂', value: 0 },
+                    { title: '1 魂', value: 1 },
+                    { title: '2 魂', value: 2 },
+                  ]"
+                  label="魂标"
+                  density="compact"
+                  variant="outlined"
+                  hide-details
+                  class="flex-1-1"
+                  style="min-width: 120px"
                 />
               </div>
 
@@ -1108,9 +1140,11 @@ const newRuleForm = ref({
   conditionType: 'always',
   conditionCard: null,
   conditionCardKeepCount: 1,
-  type: 'level',
+  type: 'numeric_attribute',
+  attributeType: 'level',
   operator: '=',
   levelTarget: 0,
+  soulTarget: 1,
   cardTarget: null,
   cardTypeTarget: '高潮卡',
   limitType: 'at_most',
@@ -1127,9 +1161,11 @@ const openAddRuleModal = () => {
     conditionType: 'always',
     conditionCard: defaultCard,
     conditionCardKeepCount: 1,
-    type: 'level',
+    type: 'numeric_attribute',
+    attributeType: 'level',
     operator: '=',
     levelTarget: 0,
+    soulTarget: 1,
     cardTarget: defaultCard,
     cardTypeTarget: '高潮卡',
     limitType: 'at_most',
@@ -1178,9 +1214,14 @@ const isRedrawnCard = (idx) => {
 }
 
 const submitAddRule = () => {
+  let targetType = newRuleForm.value.type
   let targetVal
-  if (newRuleForm.value.type === 'level') {
-    targetVal = newRuleForm.value.levelTarget
+  if (newRuleForm.value.type === 'numeric_attribute') {
+    targetType = newRuleForm.value.attributeType
+    targetVal =
+      newRuleForm.value.attributeType === 'level'
+        ? newRuleForm.value.levelTarget
+        : newRuleForm.value.soulTarget
   } else if (newRuleForm.value.type === 'specific_card') {
     targetVal = newRuleForm.value.cardTarget
   } else {
@@ -1200,7 +1241,7 @@ const submitAddRule = () => {
       newRuleForm.value.conditionType === 'has_card'
         ? Math.max(1, Number(newRuleForm.value.conditionCardKeepCount) || 1)
         : 1,
-    type: newRuleForm.value.type,
+    type: targetType,
     operator: newRuleForm.value.operator,
     targetValue: targetVal,
     limitType: newRuleForm.value.limitType,
@@ -1224,6 +1265,10 @@ const getTargetLabel = (rule) => {
   if (rule.type === 'level') {
     const op = rule.operator === '>=' ? '以上' : rule.operator === '<=' ? '以下' : '等'
     return `Lv.${rule.targetValue} ${op}`
+  }
+  if (rule.type === 'trigger_soul' || rule.type === 'trigger_soul_count') {
+    const op = rule.operator === '>=' ? '以上' : rule.operator === '<=' ? '以下' : ''
+    return `${rule.targetValue} 魂${op}`
   }
   if (rule.type === 'specific_card') {
     return `${rule.targetValue}`

@@ -41,6 +41,12 @@ export const expandDeck = (cardList) => {
     const qty = Number(card.quantity) || 1
     const normalizedLevel =
       card.level === '-' || card.level === undefined || card.level === null ? 0 : Number(card.level)
+    const normalizedTriggerSoul =
+      card.trigger_soul_count === '-' ||
+      card.trigger_soul_count === undefined ||
+      card.trigger_soul_count === null
+        ? 0
+        : Number(card.trigger_soul_count)
     const typeIdx =
       card.type === '角色卡' ? 0 : card.type === '事件卡' ? 1 : card.type === '高潮卡' ? 2 : -1
 
@@ -49,6 +55,7 @@ export const expandDeck = (cardList) => {
         ...card,
         cardIdx,
         normalizedLevel,
+        normalizedTriggerSoul,
         typeIdx,
         baseId: card.baseId || card.id,
       })
@@ -95,6 +102,21 @@ const matchesRule = (card, rule) => {
       : rule.operator === '<='
         ? lvl <= target
         : lvl === target
+  }
+  if (rule.type === 'trigger_soul' || rule.type === 'trigger_soul_count') {
+    const soul =
+      card.normalizedTriggerSoul ??
+      (card.trigger_soul_count === '-' ||
+      card.trigger_soul_count === undefined ||
+      card.trigger_soul_count === null
+        ? 0
+        : Number(card.trigger_soul_count))
+    const target = Number(rule.targetValue)
+    return rule.operator === '>='
+      ? soul >= target
+      : rule.operator === '<='
+        ? soul <= target
+        : soul === target
   }
   return false
 }
