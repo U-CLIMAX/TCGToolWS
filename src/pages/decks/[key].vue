@@ -263,7 +263,7 @@
     <div v-if="renderShareImage && deck">
       <DeckShareImage
         ref="deckShareImageRef"
-        :deck-cards="cards"
+        :deck-cards="cardMap"
         :deck-key="deckKey"
         :deck-name="deck.name"
         :mode="imageExportMode"
@@ -382,7 +382,7 @@
 
     <DeckExportDialog
       v-model="exportDialog"
-      :cards="cards"
+      :cards="cardMap"
       :deck-name="deck?.name || 'deck'"
       :generated-image-result="generatedImageResult"
       @generate-image="handleGenerateDeckImage"
@@ -391,7 +391,7 @@
 
     <DeckSimulatorDialog
       v-model="isSimulatorDialogVisible"
-      :cards="originalCards"
+      :cards="savedCards"
       :deck-name="deck?.name || '卡组'"
     />
 
@@ -583,7 +583,7 @@ const {
 const deckKey = route.params.key
 const isLocalDeck = computed(() => deckKey === 'local')
 const deck = ref(null)
-const cards = ref({})
+const cardMap = ref({})
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 const isConfirmEditDialogVisible = ref(false)
 const isGoToGalleryDialogVisible = ref(false)
@@ -600,7 +600,7 @@ const history = computed(() => {
 })
 
 // Use shallowRef for performance optimization when handling large lists
-const originalCards = shallowRef([])
+const savedCards = shallowRef([])
 const editedCards = shallowRef([])
 const showDifferences = ref(true)
 const isEditing = computed(() => {
@@ -612,7 +612,7 @@ const isEditing = computed(() => {
 
 const initializePrices = async (cardsToUse = null) => {
   const configs = []
-  const cardsToProcess = cardsToUse || Object.values(cards.value)
+  const cardsToProcess = cardsToUse || Object.values(cardMap.value)
 
   if (cardsToProcess.length > 0) {
     const seriesConfigMap = new Map()
@@ -645,10 +645,10 @@ const isDataReady = ref(false)
 const handleShareCard = () => baseHandleShareCard(deckKey, isLocalDeck.value)
 const handleShareToDeckGallery = () => {
   shareForm.value.deckName = deck.value?.name || ''
-  baseHandleShareToDeckGallery(deck.value, originalCards.value)
+  baseHandleShareToDeckGallery(deck.value, savedCards.value)
 }
 const confirmShareToDeckGallery = async (formData) => {
-  const success = await baseConfirmShareToDeckGallery(deck.value, originalCards.value, formData)
+  const success = await baseConfirmShareToDeckGallery(deck.value, savedCards.value, formData)
   if (success) {
     isGoToGalleryDialogVisible.value = true
   }
@@ -766,7 +766,7 @@ onMounted(async () => {
       initialCards = deck.value.deckData
     }
 
-    cards.value = Object.values(initialCards).reduce((acc, card) => {
+    cardMap.value = Object.values(initialCards).reduce((acc, card) => {
       const baseId = card.id.replace(/\D+$/, '')
       if (acc[card.id]) {
         acc[card.id].quantity += card.quantity
@@ -776,10 +776,10 @@ onMounted(async () => {
       return acc
     }, {})
 
-    // Process originalCards here after deck.value is set
+    // Process savedCards here after deck.value is set
     if (deck.value?.deckData) {
       const cardsArray = Object.values(deck.value.deckData)
-      originalCards.value = await Promise.all(
+      savedCards.value = await Promise.all(
         cardsArray.map(async (card) => {
           const fullCardData = await fetchCardByIdAndPrefix(card.id, card.cardIdPrefix)
           if (!fullCardData) {
@@ -790,10 +790,11 @@ onMounted(async () => {
         })
       )
       // 過濾掉 null 值
-      originalCards.value = originalCards.value.filter(Boolean)
-      console.log('Loaded deck with cards:', cards.value)
+      savedCards.value = savedCards.value.filter(Boolean)
+      console.log('Loaded deck with cards:', cardMap.value)
+      console.log('Saved cards:', savedCards.value)
     } else {
-      originalCards.value = []
+      savedCards.value = []
     }
 
     // 如果正在編輯，也要加載 editedCards
@@ -802,7 +803,7 @@ onMounted(async () => {
     // 確保所有資料都準備好
     await nextTick()
     isDataReady.value = true
-    initializePrices([...originalCards.value, ...editedCards.value])
+    initializePrices([...savedCards.value, ...editedCards.value])
   } catch (error) {
     triggerSnackbar(error.message, 'error')
   } finally {
@@ -822,16 +823,16 @@ const groupByOptions = [
 const cardsForDisplay = computed(() => {
   // When NOT showing diffs, or when not editing, always show the remote deck.
   if (!isEditing.value || !showDifferences.value) {
-    return originalCards.value.map((c) => ({ ...c, diffStatus: 'unchanged' }))
+    return savedCards.value.map((c) => ({ ...c, diffStatus: 'unchanged' }))
   }
 
   // WHEN SHOWING DIFFS:
-  const originalCardMap = new Map(originalCards.value.map((c) => [c.id, c.quantity]))
+  const originalCardMap = new Map(savedCards.value.map((c) => [c.id, c.quantity]))
   const editedCardMap = new Map(editedCards.value.map((c) => [c.id, c.quantity]))
   const allCardIds = new Set([...originalCardMap.keys(), ...editedCardMap.keys()])
 
   const cardInfoSource = {}
-  originalCards.value.forEach((c) => (cardInfoSource[c.id] = c))
+  savedCards.value.forEach((c) => (cardInfoSource[c.id] = c))
   editedCards.value.forEach((c) => {
     cardInfoSource[c.id] = { ...(cardInfoSource[c.id] || {}), ...c }
   })
@@ -871,7 +872,7 @@ const cardsForStats = computed(() => {
     return editedCards.value.filter((c) => c.quantity > 0)
   }
   // Otherwise, stats are for the REMOTE deck.
-  return originalCards.value.filter((c) => c.quantity > 0)
+  return savedCards.value.filter((c) => c.quantity > 0)
 })
 
 const cardsToDisplayOrGroup = computed(() => {
@@ -1087,7 +1088,7 @@ const handleGenerateDeckImage = (options) => {
 }
 
 const handleDownloadDeckPDF = (language) =>
-  baseHandleDownloadDeckPDF(originalCards.value, deck.value.name, language)
+  baseHandleDownloadDeckPDF(savedCards.value, deck.value.name, language)
 
 watch(
   [() => isGenerationTriggered.value, () => deckShareImageRef.value?.allImagesLoaded],
@@ -1162,7 +1163,7 @@ const handleCopyClick = () => {
 }
 
 const handleViewHistoryState = async (index) => {
-  await viewHistoryState(index, history.value, originalCards.value)
+  await viewHistoryState(index, history.value, savedCards.value)
   // Initialize prices for historical cards (in case they belong to different series)
   if (historicalCards.value.length > 0) {
     initializePrices(historicalCards.value)
