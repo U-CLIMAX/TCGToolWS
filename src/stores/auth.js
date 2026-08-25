@@ -188,7 +188,13 @@ export const useAuthStore = defineStore('auth', () => {
       if (!response.ok) throw new Error(data.error || '创建订单失败')
 
       if (data.success && data.url) {
-        window.location.href = data.url
+        const a = document.createElement('a')
+        a.href = data.url
+        a.target = '_blank'
+        a.rel = 'noopener noreferrer'
+        document.body.appendChild(a)
+        a.click()
+        document.body.removeChild(a)
       } else {
         throw new Error('无法获取支付 URL')
       }
