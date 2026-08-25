@@ -1,0 +1,44 @@
+{
+  "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
+  "productName": "U-CLIMAX",
+  "version": "1.0.0",
+  "identifier": "top.uclimax.tcgtoolws",
+  "build": {
+    "frontendDist": "https://www.uclimax.top",
+    "devUrl": "http://localhost:5173",
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": ""
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "U-CLIMAX",
+        "width": 1280,
+        "height": 800,
+        "minWidth": 800,
+        "minHeight": 600,
+        "center": true,
+        "resizable": true,
+        "fullscreen": false
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis"],
+    "publisher": "U-CLIMAX Team",
+    "copyright": "Copyright © 2026 U-CLIMAX Team. All rights reserved.",
+    "shortDescription": "U CLIMAX 致力于让 Weiβ Schwarz 简中卡查更快速，让构筑与分享卡组更直观高效，为玩家带来流畅的构筑体验。",
+    "windows": {
+      "webviewInstallMode": {
+        "type": "downloadBootstrapper"
+      },
+      "nsis": {
+        "installerIcon": "icons/icon.ico"
+      }
+    }
+  }
+}
