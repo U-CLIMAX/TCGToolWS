@@ -579,5 +579,28 @@
         "rarity": "PR"
       }
     ]
+  },
+  "WS/WSPR-P29": {
+    "name": "Happy 18th Anniversary !! [丘]",
+    "product_name": "PRカード【Sサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 1,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/bounce.webp\">:此卡被触发时，你可以选择对手的1个角色，返回手牌）",
+    "all_cards": [
+      {
+        "id": "WS/WSPR-P29",
+        "rarity": "PR"
+      },
+      {
+        "id": "WS/WSPR-P29S",
+        "rarity": "PR"
+      }
+    ]
   }
 }

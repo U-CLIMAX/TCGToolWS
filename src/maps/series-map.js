@@ -1186,7 +1186,7 @@ const wsSeriesMap = {
   'sfn': {
     name: '葬送的芙莉莲',
     prefixes: ['SFN'],
-    latestReleaseDate: '2026-03-20',
+    latestReleaseDate: '2026-08-28',
     yytUrl:
       'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=sfn&vers[]=sfnre&rare=&type=&kizu=0',
   },
