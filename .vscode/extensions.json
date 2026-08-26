@@ -1,3 +1,8 @@
 {
-  "recommendations": ["Vue.volar", "EditorConfig.EditorConfig", "oxc.oxc-vscode"]
+  "recommendations": [
+    "Vue.volar",
+    "EditorConfig.EditorConfig",
+    "oxc.oxc-vscode",
+    "rust-lang.rust-analyzer"
+  ]
 }

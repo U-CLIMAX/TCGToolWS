@@ -141,12 +141,67 @@ jobs:
           retention-days: 30
 
   # ==========================================
-  # 3. 发布 GitHub Release (可选)
+  # 3. Linux 构建 (.AppImage)
+  # ==========================================
+  build-linux:
+    name: Build Linux (.AppImage)
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Setup Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: x86_64-unknown-linux-gnu
+
+      - name: Install Linux System Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libwebkit2gtk-4.1-dev \
+            build-essential \
+            curl \
+            wget \
+            file \
+            libxdo-dev \
+            libssl-dev \
+            libayatana-appindicator3-dev \
+            librsvg2-dev \
+            libfuse2
+
+      - name: Rust Cache
+        uses: swatinem/rust-cache@v2
+        with:
+          workspaces: './src-tauri -> target'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Tauri Linux AppImage
+        run: npm run tauri:build -- --bundles appimage
+
+      - name: Upload Linux Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: U-CLIMAX-Linux
+          path: src-tauri/target/release/bundle/appimage/*.AppImage
+          if-no-files-found: error
+          retention-days: 30
+
+  # ==========================================
+  # 4. 发布 GitHub Release (可选)
   # ==========================================
   publish-release:
     name: Publish GitHub Release
     if: ${{ inputs.create_release == true }}
-    needs: [build-windows, build-android]
+    needs: [build-windows, build-android, build-linux]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -173,7 +228,7 @@ jobs:
       - name: Organize release files
         run: |
           mkdir -p release-files
-          find release-assets -type f \( -name "*.exe" -o -name "*.apk" \) -exec cp {} release-files/ \;
+          find release-assets -type f \( -name "*.exe" -o -name "*.apk" -o -name "*.AppImage" \) -exec cp {} release-files/ \;
           echo "Files to release:"
           ls -lah release-files
 

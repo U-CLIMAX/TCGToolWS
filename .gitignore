@@ -61,3 +61,8 @@ public/card-db-manifest-ws.json
 public/card-db-manifest-wsr.json
 public/card-db-manifest-wsc.json
 docs/superpowers/
+
+# Android signing keys
+*.jks
+*.keystore
+keystore.properties

@@ -10,11 +10,18 @@
     "source.fixAll.oxc": "always"
   },
   "editor.formatOnSave": true,
+  "editor.insertSpaces": true,
   "oxc.fmt.configPath": ".oxfmtrc.json",
   "editor.defaultFormatter": "oxc.oxc-vscode",
   "[vue]": {
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "oxc.oxc-vscode"
+    "editor.defaultFormatter": "oxc.oxc-vscode",
+    "editor.tabSize": 2
+  },
+  "[rust]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "rust-lang.rust-analyzer",
+    "editor.tabSize": 4
   },
   "files.readonlyInclude": {
     "src/types/route-map.d.ts": true,

@@ -15,11 +15,18 @@ import Components from 'unplugin-vue-components/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  clearScreen: false,
   server: {
+    port: 5173,
+    strictPort: true,
     host: true,
     allowedHosts: true,
     cors: true,
+    watch: {
+      ignored: ['**/src-tauri/**'],
+    },
   },
+  envPrefix: ['VITE_', 'TAURI_ENV_*'],
   preview: {
     cors: true,
   },

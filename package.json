@@ -14,11 +14,16 @@
     "setup-img": "node scripts/setup-images.js",
     "lint:check": "oxlint",
     "lint": "oxlint --fix",
-    "fmt": "oxfmt",
-    "fmt:check": "oxfmt --check",
+    "fmt": "oxfmt && cargo fmt --manifest-path src-tauri/Cargo.toml",
+    "fmt:check": "oxfmt --check && cargo fmt --manifest-path src-tauri/Cargo.toml -- --check",
     "db:init": "npx wrangler d1 execute ws-account-db --local --file=./schema.sql",
     "db:seed": "node scripts/create-test-user.js",
-    "test:afdian": "node test/webhook-afdian.js"
+    "test:afdian": "node test/webhook-afdian.js",
+    "tauri": "tauri",
+    "tauri:dev": "tauri dev",
+    "tauri:build": "tauri build",
+    "tauri:android:init": "tauri android init",
+    "tauri:android:build": "tauri android build --apk"
   },
   "dependencies": {
     "@zumer/snapdom": "^2.24.3",
@@ -54,6 +59,7 @@
     "@cloudflare/vite-plugin": "^1.53.0",
     "@cloudflare/workers-types": "^5.20260820.1",
     "@iconify-json/mdi": "^1.2.3",
+    "@tauri-apps/cli": "^2.11.4",
     "@vitejs/plugin-vue": "^6.0.8",
     "esbuild": "^0.28.2",
     "globals": "^17.11.0",
