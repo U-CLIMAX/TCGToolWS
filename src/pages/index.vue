@@ -127,14 +127,13 @@
           <p class="pc-phone-text">支持网页端与手机端</p>
           <v-btn
             v-if="!isTauriApp"
-            color="light-blue-darken-1"
             size="large"
-            variant="elevated"
+            variant="flat"
             rounded="pill"
             prepend-icon="i-mdi:cloud-download"
             :to="{ name: 'Download' }"
-            class="mt-2 font-weight-bold"
-            elevation="3"
+            class="glass-download-btn mt-2 font-weight-bold"
+            :class="{ 'has-blur': isHardwareAccelerated === true }"
           >
             下载客户端
           </v-btn>
@@ -961,6 +960,38 @@ onUnmounted(() => {
   width: 100%;
   height: auto;
   border-radius: var(--border-radius-card);
+}
+
+/* --- Component: Glassmorphism Download Button --- */
+.glass-download-btn {
+  /* Fallback background for when blur is off */
+  background: rgba(var(--color-white-rgb), 0.25) !important;
+  color: rgb(var(--color-white-rgb)) !important;
+  border: 1px solid rgba(var(--color-white-rgb), 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  letter-spacing: 0.05em;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    backdrop-filter 0.3s ease;
+}
+
+.glass-download-btn.has-blur {
+  backdrop-filter: blur(12px) saturate(120%);
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
+  /* Original background for when blur is on */
+  background: rgba(var(--color-white-rgb), 0.15) !important;
+}
+
+.glass-download-btn:hover {
+  background: rgba(var(--color-white-rgb), 0.35) !important;
+  border-color: rgba(var(--color-white-rgb), 0.5);
+  box-shadow: 0 4px 24px rgba(var(--color-white-rgb), 0.15);
+}
+
+.glass-download-btn.has-blur:hover {
+  background: rgba(var(--color-white-rgb), 0.25) !important;
 }
 
 /* --- Promo Section --- */
