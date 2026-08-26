@@ -175,6 +175,8 @@ export const useAuthStore = defineStore('auth', () => {
   const initiatePayment = async () => {
     if (!token.value) throw new Error('请先登录')
 
+    const newWindow = window.open('about:blank', '_blank')
+
     try {
       const response = await fetch('/api/payments/initiate', {
         method: 'POST',
@@ -188,17 +190,18 @@ export const useAuthStore = defineStore('auth', () => {
       if (!response.ok) throw new Error(data.error || '创建订单失败')
 
       if (data.success && data.url) {
-        const a = document.createElement('a')
-        a.href = data.url
-        a.target = '_blank'
-        a.rel = 'noopener noreferrer'
-        document.body.appendChild(a)
-        a.click()
-        document.body.removeChild(a)
+        if (newWindow) {
+          newWindow.location.href = data.url
+        } else {
+          window.location.href = data.url
+        }
       } else {
         throw new Error('无法获取支付 URL')
       }
     } catch (error) {
+      if (newWindow) {
+        newWindow.close()
+      }
       console.error('Payment initiation error:', error)
       throw error
     }
