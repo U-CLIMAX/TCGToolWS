@@ -29,6 +29,13 @@
   "bundle": {
     "active": true,
     "targets": ["nsis", "appimage"],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
     "publisher": "U-CLIMAX Team",
     "copyright": "Copyright © 2026 U-CLIMAX Team. All rights reserved.",
     "shortDescription": "U CLIMAX 致力于让 Weiβ Schwarz 简中卡查更快速，让构筑与分享卡组更直观高效，为玩家带来流畅的构筑体验。",
