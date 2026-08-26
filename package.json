@@ -21,7 +21,9 @@
     "test:afdian": "node test/webhook-afdian.js",
     "tauri": "tauri",
     "tauri:dev": "tauri dev",
-    "tauri:build": "tauri build"
+    "tauri:build": "tauri build",
+    "tauri:android:init": "tauri android init",
+    "tauri:android:build": "tauri android build --apk"
   },
   "dependencies": {
     "@zumer/snapdom": "^2.24.3",
