@@ -1,4 +1,5 @@
 import { fileURLToPath, URL } from 'node:url'
+import { readFileSync } from 'node:fs'
 
 import { defineConfig } from 'vite'
 import VueRouter from 'vue-router/vite'
@@ -12,6 +13,8 @@ import svgLoader from 'vite-svg-loader'
 import lqip from 'vite-plugin-lqip'
 import UnoCSS from 'unocss/vite'
 import Components from 'unplugin-vue-components/vite'
+
+const pkg = JSON.parse(readFileSync(new URL('./package.json', import.meta.url), 'utf-8'))
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -31,6 +34,12 @@ export default defineConfig({
     cors: true,
   },
   plugins: [
+    {
+      name: 'html-transform-version',
+      transformIndexHtml(html) {
+        return html.replace(/%APP_VERSION%/g, pkg.version)
+      },
+    },
     UnoCSS(),
     VueRouter({
       routesFolder: 'src/pages',

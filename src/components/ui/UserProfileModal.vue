@@ -51,10 +51,21 @@
               </div>
             </template>
           </v-list-item>
-          <v-list-item v-if="isTauriApp && appVersion" title="客户端版本">
+          <v-list-item v-if="isTauriApp && (appVersion || localAppVersion)" title="客户端版本">
             <template #subtitle>
               <div class="d-flex align-center" style="min-height: 32px">
-                <span>v{{ appVersion }}</span>
+                <span>v{{ appVersion || localAppVersion }}</span>
+                <v-chip
+                  v-if="hasClientUpdate"
+                  color="warning"
+                  size="small"
+                  class="ml-2 font-weight-bold"
+                  variant="tonal"
+                  prepend-icon="i-mdi:arrow-up-bold-circle"
+                  @click.stop="handleClientUpdateClick"
+                >
+                  新版本 v{{ clientUpdateVersion }}
+                </v-chip>
               </div>
             </template>
           </v-list-item>
@@ -116,12 +127,14 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { isTauri } from '@tauri-apps/api/core'
 import { getVersion } from '@tauri-apps/api/app'
 import { useAuthStore } from '@/stores/auth'
 import { useUIStore } from '@/stores/ui'
 import { useSnackbar } from '@/composables/useSnackbar'
+import { useClientUpdate } from '@/composables/useClientUpdate'
 import { writeText } from '@/utils/clipboard'
 
 const props = defineProps({
@@ -132,8 +145,10 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['update:modelValue', 'logout'])
+const router = useRouter()
 const uiStore = useUIStore()
 const { theme } = storeToRefs(uiStore)
+const { hasClientUpdate, clientUpdateVersion, localAppVersion } = useClientUpdate()
 
 const isSponsorNoticeOpen = ref(false)
 const isSettingsModalOpen = ref(false)
@@ -149,6 +164,11 @@ onMounted(async () => {
     }
   }
 })
+
+const handleClientUpdateClick = () => {
+  isDialogOpen.value = false
+  router.push({ name: 'Download' })
+}
 
 const handleLogout = () => {
   emit('update:modelValue', false) // Close the modal

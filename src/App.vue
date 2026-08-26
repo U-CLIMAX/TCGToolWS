@@ -406,6 +406,7 @@
     </v-dialog>
 
     <AppUpdateDialog />
+    <ClientUpdateDialog />
     <NoticeDialog ref="NoticeDialogRef" />
 
     <!-- Global Loading Overlay -->
