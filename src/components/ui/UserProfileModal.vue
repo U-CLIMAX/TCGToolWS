@@ -51,6 +51,13 @@
               </div>
             </template>
           </v-list-item>
+          <v-list-item v-if="isTauriApp && appVersion" title="客户端版本">
+            <template #subtitle>
+              <div class="d-flex align-center" style="min-height: 32px">
+                <span>v{{ appVersion }}</span>
+              </div>
+            </template>
+          </v-list-item>
         </v-list>
 
         <v-divider v-if="userStatus.role === 0" class="my-2"></v-divider>
@@ -108,8 +115,10 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
+import { isTauri } from '@tauri-apps/api/core'
+import { getVersion } from '@tauri-apps/api/app'
 import { useAuthStore } from '@/stores/auth'
 import { useUIStore } from '@/stores/ui'
 import { useSnackbar } from '@/composables/useSnackbar'
@@ -128,6 +137,18 @@ const { theme } = storeToRefs(uiStore)
 
 const isSponsorNoticeOpen = ref(false)
 const isSettingsModalOpen = ref(false)
+const isTauriApp = isTauri()
+const appVersion = ref('')
+
+onMounted(async () => {
+  if (isTauriApp) {
+    try {
+      appVersion.value = await getVersion()
+    } catch (err) {
+      console.warn('获取客户端版本失败:', err)
+    }
+  }
+})
 
 const handleLogout = () => {
   emit('update:modelValue', false) // Close the modal
