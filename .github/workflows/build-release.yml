@@ -187,17 +187,6 @@ jobs:
       - name: Build Tauri Linux AppImage
         run: npm run tauri:build -- --bundles appimage
 
-      - name: Rename AppImage to x86_64
-        shell: bash
-        run: |
-          for file in src-tauri/target/release/bundle/appimage/*amd64.AppImage; do
-            if [ -f "$file" ]; then
-              new_file="${file//amd64/x86_64}"
-              mv "$file" "$new_file"
-              echo "Renamed $(basename "$file") to $(basename "$new_file")"
-            fi
-          done
-
       - name: Upload Linux Artifact
         uses: actions/upload-artifact@v4
         with:
