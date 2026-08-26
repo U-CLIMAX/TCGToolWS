@@ -316,7 +316,6 @@ const { triggerSnackbar } = useSnackbar()
 
 // 问卷
 const SURVEY_URL = 'https://docs.qq.com/form/page/DYUtZZ0V0dU9mcWtB'
-const SURVEY_ITEM = { _isSurvey: true }
 
 const openSurvey = () => {
   window.open(SURVEY_URL, '_blank', 'noopener,noreferrer')
@@ -405,11 +404,6 @@ const filteredAllItems = computed(() => {
     }
     return true
   })
-})
-
-// 始终在第一位插入问卷卡片，不受任何筛选影响
-const displayItemsWithSurvey = computed(() => {
-  return [SURVEY_ITEM, ...displayItems.value]
 })
 
 const scrollStyle = computed(() => {
