@@ -231,7 +231,13 @@ const platforms = [
 ]
 
 const openUrl = (url) => {
-  window.open(url, '_blank', 'noopener,noreferrer')
+  const a = document.createElement('a')
+  a.href = url
+  a.target = '_blank'
+  a.rel = 'noopener noreferrer'
+  document.body.appendChild(a)
+  a.click()
+  a.remove()
 }
 </script>
 
