@@ -25,13 +25,13 @@
       </v-app-bar-title>
 
       <template #append>
-        <div class="d-none d-sm-block">
+        <div class="d-none d-sm-flex flex-nowrap align-center">
           <template v-for="item in navItems" :key="item.name">
             <v-btn
               variant="text"
               :to="{ name: item.name }"
               :text="item.text"
-              class="rounded-3md mr-1"
+              class="nav-btn-compact rounded-3md mr-1"
               :class="{ 'home-route-btn': isHomeRoute }"
               :active="item.group && $route.meta.group === item.group"
               :active-color="isHomeRoute ? 'cyan-accent-2' : undefined"
@@ -54,7 +54,7 @@
             <template v-slot:activator="{ props }">
               <v-btn
                 variant="text"
-                class="rounded-3md mr-1"
+                class="nav-btn-compact rounded-3md mr-1"
                 v-bind="props"
                 :active="$route.meta.group === 'toolbox'"
                 :active-color="isHomeRoute ? 'cyan-accent-2' : undefined"
@@ -466,7 +466,7 @@ onMounted(async () => {
 const titleImgStyle = computed(() => {
   const isDark = vuetifyTheme.global.current.value.dark
   return {
-    maxWidth: '110px',
+    maxWidth: mdAndUp.value ? '110px' : '85px',
     filter: !isHomeRoute.value && isDark ? 'invert(1)' : undefined,
   }
 })
@@ -737,6 +737,34 @@ watch(
   width: 60px !important;
   left: auto !important;
   top: 0px !important;
+}
+
+/* Responsive compact layout for SM screens (600px - 959px) */
+@media (min-width: 600px) and (max-width: 959.98px) {
+  .floating-bar.main-bar .v-toolbar__content {
+    padding-left: 8px !important;
+  }
+
+  .floating-bar.main-bar .v-app-bar-title {
+    min-width: 80px !important;
+    max-width: 90px !important;
+    margin-inline-start: 0 !important;
+  }
+
+  .floating-bar.main-bar .nav-btn-compact {
+    padding: 0 6px !important;
+    min-width: 0 !important;
+    font-size: 0.75rem !important;
+    letter-spacing: 0 !important;
+    margin-right: 2px !important;
+  }
+
+  .floating-bar.main-bar .nav-btn-compact .v-icon {
+    font-size: 18px !important;
+    width: 18px !important;
+    height: 18px !important;
+    margin-inline-end: 2px !important;
+  }
 }
 
 .floating-bottom-bar.main-bottom-bar {
