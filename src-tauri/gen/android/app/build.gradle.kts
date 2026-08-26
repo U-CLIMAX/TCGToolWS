@@ -48,7 +48,7 @@ android {
         outputs.all {
             val output = this as? com.android.build.gradle.internal.api.BaseVariantOutputImpl
             if (variant.buildType.name == "release") {
-                output?.outputFileName = "U-CLIMAX-v${variant.versionName}.apk"
+                output?.outputFileName = "U-CLIMAX_${variant.versionName}.apk"
             }
         }
     }
