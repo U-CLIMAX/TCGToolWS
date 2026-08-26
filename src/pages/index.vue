@@ -116,7 +116,7 @@
       </div>
 
       <!-- PC and Phone Support Section -->
-      <div v-once ref="pcPhoneSection" class="pc-phone-section animated-section">
+      <div ref="pcPhoneSection" class="pc-phone-section animated-section">
         <div class="pc-phone-content">
           <v-img
             :src="pcPhoneImg.src"
@@ -125,6 +125,19 @@
             cover
           ></v-img>
           <p class="pc-phone-text">支持网页端与手机端</p>
+          <v-btn
+            v-if="!isTauriApp"
+            color="light-blue-darken-1"
+            size="large"
+            variant="elevated"
+            rounded="pill"
+            prepend-icon="i-mdi:cloud-download"
+            :to="{ name: 'Download' }"
+            class="mt-2 font-weight-bold"
+            elevation="3"
+          >
+            下载客户端
+          </v-btn>
         </div>
       </div>
 
@@ -371,6 +384,7 @@ import { useAuthStore } from '@/stores/auth'
 import { useUIStore } from '@/stores/ui'
 import { useIntersectionObserver } from '@/composables/useIntersectionObserver'
 import { useHardwareAcceleration } from '@/composables/useHardwareAcceleration'
+import { isTauri } from '@tauri-apps/api/core'
 
 // 使用 ?lqip 後綴，插件返回 Object：{ lqip, src, width, height }
 import seriesCardImg from '@/assets/intro/series_card_list.webp?lqip'
@@ -387,6 +401,7 @@ definePage({
   alias: '/home',
 })
 
+const isTauriApp = isTauri()
 const { isHardwareAccelerated } = useHardwareAcceleration()
 const authStore = useAuthStore()
 const uiStore = useUIStore()

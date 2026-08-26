@@ -73,6 +73,13 @@ declare module 'vue-router/auto-routes' {
       { key: ParamValue<false> },
       | never
     >,
+    'Download': RouteRecordInfo<
+      'Download',
+      '/download',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
     'ForgotPassword': RouteRecordInfo<
       'ForgotPassword',
       '/forgot-password',
@@ -182,6 +189,14 @@ declare module 'vue-router/auto-routes' {
         | never
       pathParamNames:
         | 'key'
+    }
+    'src/pages/download/index.vue': {
+      routes:
+        | 'Download'
+      views:
+        | never
+      pathParamNames:
+        | never
     }
     'src/pages/forgot-password/index.vue': {
       routes:

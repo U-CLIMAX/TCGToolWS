@@ -495,7 +495,8 @@ const noPaddingsRoute = computed(
     route.name === 'DecksGallery' ||
     route.name === 'Community' ||
     route.name === 'BanList' ||
-    route.name === 'Decks'
+    route.name === 'Decks' ||
+    route.name === 'Download'
 )
 
 const routeGameColor = computed(() => {
