@@ -1,6 +1,6 @@
 import { normalizeFileName } from './sanitizeFilename'
 import { getMatchedWenkaiFontCss } from './fontEmbedding'
-import { fetchAsDataUrl } from './fetchDataUrl'
+import { inlineDomImages } from './imageInliner'
 
 /**
  * 将指定 DOM 节点转为 PNG 图片
@@ -43,16 +43,8 @@ export const convertElementToPng = async (
     clone.style.margin = '0px'
     clone.style.transform = 'none'
 
-    // 将 <img> 内联为 Base64 避免跨域阻断
-    const imgElements = Array.from(clone.querySelectorAll('img'))
-    await Promise.all(
-      imgElements.map(async (img) => {
-        if (img.src && !img.src.startsWith('data:')) {
-          const dataUrl = await fetchAsDataUrl(img.src)
-          img.setAttribute('src', dataUrl)
-        }
-      })
-    )
+    // 将 <img> 内联化处理（SVG 转原生矢量节点，位图转 Base64）
+    await inlineDomImages(clone)
 
     let fontCss = ''
     if (embedFonts) {

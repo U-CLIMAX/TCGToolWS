@@ -74,6 +74,7 @@ export const getIconStyle = (cardW) => {
   const r = (n) => round(n * s)
   return {
     height: `${r(14.4)}px`,
+    width: 'auto',
     verticalAlign: `${r(-2.4)}px`,
     display: 'inline-block',
   }

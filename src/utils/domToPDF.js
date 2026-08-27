@@ -2,7 +2,7 @@ import { formatEffectToHtml } from './cardEffectFormatter'
 import { sortCards } from './cardsSort.js'
 import { normalizeFileName } from './sanitizeFilename'
 import { getMatchedWenkaiFontCss } from './fontEmbedding'
-import { fetchAsDataUrl } from './fetchDataUrl'
+import { inlineDomImages } from './imageInliner'
 import { getOverlayStyle, getOverlayBottom, getIconStyle, styleToCssRule } from './overlayStyle'
 
 const PAGE_OPTS = { w: 595, h: 842, cardW: 178.58, cardH: 249.45, gap: 2.83, cols: 3, rows: 3 }
@@ -10,7 +10,7 @@ const PAGE_OPTS = { w: 595, h: 842, cardW: 178.58, cardH: 249.45, gap: 2.83, col
 const PRINT_CSS = [
   `.pdf-card { position: absolute; width: ${PAGE_OPTS.cardW}px; height: ${PAGE_OPTS.cardH}px; overflow: hidden; background: transparent; }`,
   styleToCssRule('.pdf-overlay', getOverlayStyle(PAGE_OPTS.cardW)),
-  styleToCssRule('.pdf-overlay img', getIconStyle(PAGE_OPTS.cardW)),
+  styleToCssRule('.pdf-overlay img, .pdf-overlay svg', getIconStyle(PAGE_OPTS.cardW)),
 ].join('\n')
 
 const loadImage = (src) =>
@@ -116,16 +116,8 @@ export const convertDeckToPDF = async (cards, name, language) => {
           container.style.cssText = `position: relative; width: ${PAGE_OPTS.w}px; height: ${PAGE_OPTS.h}px; margin: 0; padding: 0; background: transparent;`
           container.innerHTML = overlaysHtml
 
-          // 内联覆层中的所有图标为 Base64
-          const imgElements = Array.from(container.querySelectorAll('img'))
-          await Promise.all(
-            imgElements.map(async (img) => {
-              if (img.src && !img.src.startsWith('data:')) {
-                const dataUrl = await fetchAsDataUrl(img.src)
-                img.setAttribute('src', dataUrl)
-              }
-            })
-          )
+          // 内联覆层中的所有图标（SVG 转原生矢量节点，位图转 Base64）
+          await inlineDomImages(container)
 
           const allPageText = pageCards.map((c) => c.effect || '').join(' ')
           const wenkaiFontCss = await getMatchedWenkaiFontCss(allPageText)
