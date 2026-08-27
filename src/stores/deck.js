@@ -39,6 +39,8 @@ export const useDeckStore = defineStore(
       totalCount: 0,
     })
     const isLoading = ref(false)
+    const shouldResetView = ref(false)
+    const pendingGameType = ref(null)
     let currentFetchController = null
 
     const authStore = useAuthStore()
@@ -286,10 +288,10 @@ export const useDeckStore = defineStore(
         decks.value = [
           {
             key,
-            deck_name: name,
-            series_id: seriesId,
+            name,
+            seriesId,
             game_type,
-            cover_cards_id: coverCardId,
+            coverCardId,
             tags,
             updated_at: now,
           },
@@ -306,6 +308,12 @@ export const useDeckStore = defineStore(
           }
         })
         meta.value.allTags.sort()
+
+        shouldResetView.value = true
+        pendingGameType.value = game_type
+        if (typeof sessionStorage !== 'undefined') {
+          sessionStorage.removeItem('decksViewState')
+        }
       }
     }
 
@@ -387,6 +395,12 @@ export const useDeckStore = defineStore(
         }
       })
       meta.value.allTags.sort()
+
+      shouldResetView.value = true
+      pendingGameType.value = game_type
+      if (typeof sessionStorage !== 'undefined') {
+        sessionStorage.removeItem('decksViewState')
+      }
     }
 
     /**
@@ -681,6 +695,8 @@ export const useDeckStore = defineStore(
       filters,
       meta,
       isLoading,
+      shouldResetView,
+      pendingGameType,
     }
   },
   {

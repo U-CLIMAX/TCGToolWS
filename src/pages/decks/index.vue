@@ -281,13 +281,25 @@ const handleSaveTags = async (key, tags) => {
   }
 }
 
-const deckCode = ref('')
-const deckNameSearchTerm = debounceRef(deckStore.filters.search, 300)
-const selectedGameType = ref(deckStore.filters.gameType)
-const selectedSeries = ref(deckStore.filters.series)
-const selectedTags = ref(deckStore.filters.tags)
+if (deckStore.shouldResetView) {
+  uiStore.setLoading(true)
+  deckStore.decks = []
+}
 
-const initialLoadingComplete = ref(deckStore.decks.length > 0)
+const deckCode = ref('')
+const deckNameSearchTerm = debounceRef(
+  deckStore.shouldResetView ? '' : deckStore.filters.search,
+  300
+)
+const selectedGameType = ref(
+  deckStore.shouldResetView && deckStore.pendingGameType
+    ? deckStore.pendingGameType
+    : deckStore.filters.gameType
+)
+const selectedSeries = ref(deckStore.shouldResetView ? null : deckStore.filters.series)
+const selectedTags = ref(deckStore.shouldResetView ? [] : deckStore.filters.tags)
+
+const initialLoadingComplete = ref(!deckStore.shouldResetView && deckStore.decks.length > 0)
 const showDeckCodeDialog = ref(false)
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
@@ -312,8 +324,11 @@ const handleSearch = async () => {
   }
 }
 
+let isResetting = false
+
 // Watch debounced search term to trigger search
 watch(deckNameSearchTerm, () => {
+  if (isResetting) return
   handleSearch()
 })
 
@@ -436,6 +451,56 @@ const loadMore = async ({ done }) => {
   }
 }
 
+const resetViewAndFetch = async () => {
+  isResetting = true
+  deckStore.shouldResetView = false
+  sessionStorage.removeItem(storageKey.value)
+
+  deckNameSearchTerm.value = ''
+  selectedSeries.value = null
+  selectedTags.value = []
+
+  if (deckStore.pendingGameType) {
+    selectedGameType.value = deckStore.pendingGameType
+    deckStore.pendingGameType = null
+  }
+
+  deckStore.filters.search = ''
+  deckStore.filters.gameType = selectedGameType.value
+  deckStore.filters.series = null
+  deckStore.filters.tags = []
+
+  uiStore.setLoading(true)
+  try {
+    await deckStore.fetchDecksMeta()
+    await deckStore.fetchDecks()
+    nextTick(() => {
+      infiniteScrollRef.value?.reset()
+      infiniteScrollRef.value?.$el.scrollTo({ top: 0, behavior: 'instant' })
+      setTimeout(() => {
+        isResetting = false
+      }, 350)
+    })
+  } catch (error) {
+    triggerSnackbar(error.message || '加载卡组失败', 'error')
+    isResetting = false
+  } finally {
+    uiStore.setLoading(false)
+    initialLoadingComplete.value = true
+  }
+}
+
+watch(
+  () => deckStore.shouldResetView,
+  (val) => {
+    if (val) {
+      initialLoadingComplete.value = false
+      deckStore.decks = []
+      resetViewAndFetch()
+    }
+  }
+)
+
 useInfiniteScrollState({
   storageKey,
   scrollRef: infiniteScrollRef,
@@ -450,6 +515,7 @@ useInfiniteScrollState({
     return null
   },
   onRestore: (savedState) => {
+    if (deckStore.shouldResetView) return
     nextTick(() => {
       const scrollableElement = infiniteScrollRef.value?.$el
       if (scrollableElement && savedState.scrollPosition) {
@@ -460,22 +526,26 @@ useInfiniteScrollState({
 })
 
 onMounted(async () => {
-  const hasExistingDecks = deckStore.decks.length > 0
-  if (!hasExistingDecks) {
-    uiStore.setLoading(true)
-  }
-
-  try {
-    await deckStore.fetchDecksMeta()
+  if (deckStore.shouldResetView) {
+    await resetViewAndFetch()
+  } else {
+    const hasExistingDecks = deckStore.decks.length > 0
     if (!hasExistingDecks) {
-      await deckStore.fetchDecks()
+      uiStore.setLoading(true)
     }
-  } catch (error) {
-    triggerSnackbar(error.message, 'error')
-  } finally {
-    if (!hasExistingDecks) {
-      uiStore.setLoading(false)
-      initialLoadingComplete.value = true
+
+    try {
+      await deckStore.fetchDecksMeta()
+      if (!hasExistingDecks) {
+        await deckStore.fetchDecks()
+      }
+    } catch (error) {
+      triggerSnackbar(error.message, 'error')
+    } finally {
+      if (!hasExistingDecks) {
+        uiStore.setLoading(false)
+        initialLoadingComplete.value = true
+      }
     }
   }
 
