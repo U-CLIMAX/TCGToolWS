@@ -90,10 +90,9 @@
                   icon
                   variant="text"
                   density="compact"
-                  :href="`/share-decks/${deckKey}`"
-                  target="_blank"
+                  :to="{ name: 'ShareDeckDetail', params: { key: deckKey } }"
                   color="teal-lighten-1"
-                  v-tooltip:bottom="{ text: '在新窗口打开', disabled: isTouch }"
+                  v-tooltip:bottom="{ text: '前往分享页面', disabled: isTouch }"
                 >
                   <v-icon size="24" icon="i-mdi:open-in-new" />
                 </v-btn>
