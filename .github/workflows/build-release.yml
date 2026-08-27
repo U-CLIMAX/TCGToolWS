@@ -3,6 +3,16 @@ name: Build & Release (Tauri)
 on:
   workflow_dispatch:
     inputs:
+      platform:
+        description: '选择打包目标平台'
+        type: choice
+        required: true
+        default: 'all'
+        options:
+          - 'all'
+          - 'windows'
+          - 'android'
+          - 'linux'
       create_release:
         description: '是否创建并发布 GitHub Release'
         type: boolean
@@ -37,6 +47,7 @@ jobs:
   # ==========================================
   build-windows:
     name: Build Windows (.exe)
+    if: ${{ inputs.platform == 'all' || inputs.platform == 'windows' }}
     runs-on: windows-latest
     steps:
       - name: Checkout repository
@@ -77,6 +88,7 @@ jobs:
   # ==========================================
   build-android:
     name: Build Android (.apk)
+    if: ${{ inputs.platform == 'all' || inputs.platform == 'android' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -145,6 +157,7 @@ jobs:
   # ==========================================
   build-linux:
     name: Build Linux (.AppImage)
+    if: ${{ inputs.platform == 'all' || inputs.platform == 'linux' }}
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout repository
@@ -200,7 +213,7 @@ jobs:
   # ==========================================
   publish-release:
     name: Publish GitHub Release
-    if: ${{ inputs.create_release == true }}
+    if: ${{ inputs.create_release == true && inputs.platform == 'all' }}
     needs: [build-windows, build-android, build-linux]
     runs-on: ubuntu-latest
     steps:
