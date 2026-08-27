@@ -41,6 +41,7 @@
 - [开发规范](#开发规范)
 - [Credits](#credits)
 - [免责声明](#免责声明)
+- [隐私政策 (Privacy Policy)](PRIVACY.md)
 
 ---
 
@@ -186,3 +187,5 @@ VVITE_BLUR_IMAGE_BASE_URL=ws-blur-image-data
 本项目为非官方粉丝制作工具，与 **Bushiroad (武士道)** 无任何关联。
 卡片图片与相关资料版权归 **Bushiroad** 及各版权方所有。
 本项目仅供学习与交流使用，严禁用于商业用途。
+
+有关用户个人信息、本地数据与隐私保护规范，请参阅完整的 [隐私政策](PRIVACY.md)。
