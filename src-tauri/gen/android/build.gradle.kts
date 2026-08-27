@@ -1,3 +1,7 @@
+plugins {
+    id("org.jlleitschuh.gradle.ktlint") version "12.1.2" apply false
+}
+
 buildscript {
     repositories {
         google()

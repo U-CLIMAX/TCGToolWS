@@ -6,6 +6,17 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("rust")
+    id("org.jlleitschuh.gradle.ktlint")
+}
+
+configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
+    filter {
+        exclude("**/generated/**")
+    }
+}
+
+tasks.matching { it.name.contains("KotlinScript") }.configureEach {
+    enabled = false
 }
 
 val tauriProperties = Properties().apply {
