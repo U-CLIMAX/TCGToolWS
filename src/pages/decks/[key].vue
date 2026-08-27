@@ -381,7 +381,7 @@
 
     <DeckSimulatorDialog
       v-model="isSimulatorDialogVisible"
-      :cards="savedCards"
+      :cards="cardsForStats"
       :deck-name="deck?.name || '卡组'"
     />
 
@@ -1068,7 +1068,6 @@ const handleCardClick = async (item) => {
   await handleShowNewCard({ card: item })
 }
 
-const deckShareImageRef = ref(null)
 const includeQrCodeInImage = ref(true)
 
 const openExportDialog = () => baseOpenExportDialog(deck.value)
@@ -1080,7 +1079,7 @@ const handleGenerateDeckImage = (options) => {
 }
 
 const handleDownloadDeckPDF = (language) =>
-  baseHandleDownloadDeckPDF(savedCards.value, deck.value.name, language)
+  baseHandleDownloadDeckPDF(cardsForStats.value, deck.value.name, language)
 
 watch(
   () => isGenerationTriggered.value,
@@ -1092,7 +1091,7 @@ watch(
           URL.revokeObjectURL(generatedImageResult.value.src)
         }
         const result = await renderDeckToCanvas({
-          cards: savedCards.value,
+          cards: cardsForStats.value,
           deckName: deck.value.name ? deck.value.name.trim() : 'deck',
           deckKey: deckKey,
           mode: imageExportMode.value,
