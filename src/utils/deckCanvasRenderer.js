@@ -72,7 +72,7 @@ const truncateText = (ctx, text, maxWidth) => {
  * @param {'u_climax'|'tts'} [options.mode='u_climax'] - 导出模式
  * @param {boolean} [options.includeQrCode=true] - 是否生成二维码
  * @param {number} [options.scale=2] - 输出缩放倍数
- * @returns {Promise<{ src: string, width: number, height: number, blob: Blob }>}
+ * @returns {Promise<{ src: string, width: number, height: number, blob: Blob, format: 'jpg'|'png' }>}
  */
 export const renderDeckToCanvas = async ({
   cards,
