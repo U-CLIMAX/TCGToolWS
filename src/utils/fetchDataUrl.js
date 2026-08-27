@@ -1,3 +1,4 @@
+const MAX_CACHE_SIZE = 60
 const dataUrlCache = new Map()
 
 /**
@@ -7,7 +8,12 @@ const dataUrlCache = new Map()
  */
 export const fetchAsDataUrl = async (src) => {
   if (!src || src.startsWith('data:')) return src
-  if (dataUrlCache.has(src)) return dataUrlCache.get(src)
+  if (dataUrlCache.has(src)) {
+    const dataUrl = dataUrlCache.get(src)
+    dataUrlCache.delete(src)
+    dataUrlCache.set(src, dataUrl)
+    return dataUrl
+  }
 
   try {
     const res = await fetch(src)
@@ -20,6 +26,9 @@ export const fetchAsDataUrl = async (src) => {
       reader.readAsDataURL(blob)
     })
     dataUrlCache.set(src, dataUrl)
+    if (dataUrlCache.size > MAX_CACHE_SIZE) {
+      dataUrlCache.delete(dataUrlCache.keys().next().value)
+    }
     return dataUrl
   } catch {
     return src
