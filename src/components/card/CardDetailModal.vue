@@ -419,6 +419,7 @@ import { useAuthStore } from '@/stores/auth'
 import { useDeckStore } from '@/stores/deck'
 import { useDownloadStore } from '@/stores/download'
 import { convertElementToPng } from '@/utils/domToImage.js'
+import { getOverlayStyle, getIconStyle } from '@/utils/overlayStyle'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { writeImage } from '@/utils/clipboard'
 import { useRoute } from 'vue-router'
@@ -653,45 +654,25 @@ const buildExportContainer = () => {
     height: '557px',
     borderRadius: '8px',
     overflow: 'hidden',
-    fontFamily: 'LXGW WenKai Lite, system-ui, sans-serif',
   })
 
   const img = document.createElement('img')
   Object.assign(img, { crossOrigin: 'anonymous', src: props.imgUrl })
   Object.assign(img.style, { width: '100%', height: '100%', objectFit: 'cover', display: 'block' })
 
-  // 文字覆层
+  // 文字覆层 — 使用共享样式确保与 PDF 视觉一致
   const overlay = document.createElement('div')
-  Object.assign(overlay.style, {
-    position: 'absolute',
-    bottom: props.card.type === '事件卡' ? '53px' : '67px',
-    left: '12px',
-    right: '12px',
-    backgroundColor: 'rgba(255, 255, 255, 0.85)',
-    color: 'black',
-    padding: '10px',
-    boxSizing: 'border-box',
-    borderRadius: '8px',
-  })
+  Object.assign(overlay.style, getOverlayStyle(400, props.card.type))
 
-  // 效果文字
+  // 效果文字（fontSize / lineHeight / textAlign 等从 overlay 继承）
   const effectText = document.createElement('div')
   effectText.innerHTML = formattedEffect.value
-  Object.assign(effectText.style, {
-    fontSize: '0.9rem',
-    lineHeight: '1.2',
-    wordBreak: 'break-word',
-    textAlign: 'justify',
-  })
 
   // 设置图标跨域与尺寸
+  const iconSt = getIconStyle(400)
   effectText.querySelectorAll('img').forEach((icon) => {
     Object.assign(icon, { crossOrigin: 'anonymous' })
-    Object.assign(icon.style, {
-      height: '0.9rem',
-      verticalAlign: '-0.15rem',
-      display: 'inline-block',
-    })
+    Object.assign(icon.style, iconSt)
   })
 
   overlay.appendChild(effectText)

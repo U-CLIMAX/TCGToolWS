@@ -55,8 +55,11 @@ const extractReplayName = (prefix, replayContent) => {
 /**
  * Replace card effect keywords with icon img tags.
  */
-export const formatEffectToHtml = (rawEffect) => {
+export const formatEffectToHtml = (rawEffect, cardW = 400) => {
   const effect = rawEffect || '无'
+  const width = Number.isFinite(cardW) && cardW > 0 ? cardW : 400
+  const scale = width / 400
+  const px = (value) => `${Math.round(value * scale * 100) / 100}px`
 
   // Match strictly <br>【replay】 case insensitively with flexible <br> styles
   const matchReplay = effect.match(/(<br\s*\/?>)【replay】/i)
@@ -139,7 +142,7 @@ export const formatEffectToHtml = (rawEffect) => {
     prefix = replaceIcons(prefix)
     const replayBlock = processedSegments.join('')
 
-    const wrappedReplay = `<div class="replay-block" style="border: 3px solid #4caf50; border-radius: 8px; padding: 4px 7px; margin-top: 4px; display: block;">${replayBlock}</div>`
+    const wrappedReplay = `<div class="replay-block" style="border: ${px(3)} solid #4caf50; border-radius: ${px(8)}; padding: ${px(4)} ${px(7)}; margin-top: ${px(4)}; display: block;">${replayBlock}</div>`
 
     return prefix + wrappedReplay
   }

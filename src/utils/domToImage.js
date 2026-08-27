@@ -1,33 +1,6 @@
 import { normalizeFileName } from './sanitizeFilename'
 import { getMatchedWenkaiFontCss } from './fontEmbedding'
-
-const dataUrlCache = new Map()
-
-export const fetchAsDataUrl = async (src) => {
-  if (!src || src.startsWith('data:')) return src
-  if (dataUrlCache.has(src)) return dataUrlCache.get(src)
-
-  try {
-    const res = await fetch(src)
-    if (!res.ok) return src
-    const blob = await res.blob()
-    const dataUrl = await new Promise((resolve) => {
-      const reader = new FileReader()
-      reader.onloadend = () => resolve(reader.result)
-      reader.onerror = () => resolve(src)
-      reader.readAsDataURL(blob)
-    })
-    dataUrlCache.set(src, dataUrl)
-    return dataUrl
-  } catch {
-    return src
-  }
-}
-
-const COMMON_EXPORT_CSS = `
-  .replay-block { border: 3px solid #4caf50; border-radius: 8px; padding: 4px 7px; margin-top: 4px; display: block; }
-  .inline-icon { height: 0.9em; vertical-align: -0.15em; display: inline-block; }
-`
+import { fetchAsDataUrl } from './fetchDataUrl'
 
 /**
  * 将指定 DOM 节点转为 PNG 图片
@@ -81,7 +54,7 @@ export const convertElementToPng = async (
       })
     )
 
-    let fontCss = COMMON_EXPORT_CSS
+    let fontCss = ''
     if (embedFonts) {
       const text = element.textContent || ''
       const wenkaiCss = await getMatchedWenkaiFontCss(text)

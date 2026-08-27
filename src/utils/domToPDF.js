@@ -2,30 +2,16 @@ import { formatEffectToHtml } from './cardEffectFormatter'
 import { sortCards } from './cardsSort.js'
 import { normalizeFileName } from './sanitizeFilename'
 import { getMatchedWenkaiFontCss } from './fontEmbedding'
-import { fetchAsDataUrl } from './domToImage'
+import { fetchAsDataUrl } from './fetchDataUrl'
+import { getOverlayStyle, getOverlayBottom, getIconStyle, styleToCssRule } from './overlayStyle'
 
 const PAGE_OPTS = { w: 595, h: 842, cardW: 178.58, cardH: 249.45, gap: 2.83, cols: 3, rows: 3 }
 
-const PRINT_CSS = `
-  .pdf-card { position: absolute; width: ${PAGE_OPTS.cardW}px; height: ${PAGE_OPTS.cardH}px; overflow: hidden; background: transparent; }
-  .pdf-overlay {
-    position: absolute;
-    left: 3%;
-    right: 3%;
-    background: rgba(255, 255, 255, 0.85);
-    padding: 2.5%;
-    border-radius: 1.5mm;
-    box-sizing: border-box;
-    color: #000;
-    font-family: 'LXGW WenKai Lite', 'Microsoft JhengHei', 'PingFang TC', 'Heiti TC', 'Noto Sans TC', 'Noto Sans CJK TC', sans-serif;
-    font-size: 7px;
-    line-height: 1.2;
-    text-align: justify;
-    word-break: break-word;
-  }
-  .pdf-overlay img { height: 0.9em; vertical-align: -0.15em; display: inline-block; }
-  .replay-block { border: 3px solid #4caf50; border-radius: 8px; padding: 4px 7px; margin-top: 4px; display: block; }
-`
+const PRINT_CSS = [
+  `.pdf-card { position: absolute; width: ${PAGE_OPTS.cardW}px; height: ${PAGE_OPTS.cardH}px; overflow: hidden; background: transparent; }`,
+  styleToCssRule('.pdf-overlay', getOverlayStyle(PAGE_OPTS.cardW)),
+  styleToCssRule('.pdf-overlay img', getIconStyle(PAGE_OPTS.cardW)),
+].join('\n')
 
 const loadImage = (src) =>
   new Promise((resolve) => {
@@ -38,10 +24,10 @@ const loadImage = (src) =>
   })
 
 // 生成单卡中文效果覆层 HTML
-const getCardOverlayHtml = (card, x, y, lang) => {
-  if (card.type === '高潮卡' || lang !== 'zh' || !card.effect) return ''
-  const bottom = card.type === '事件卡' ? '9.51%' : '12.02%'
-  return `<div class="pdf-card" style="left:${x}px; top:${y}px"><div class="pdf-overlay" style="bottom:${bottom}">${formatEffectToHtml(card.effect)}</div></div>`
+const getCardOverlayHtml = (card, x, y) => {
+  if (card.type === '高潮卡' || !card.effect) return ''
+  const bottom = getOverlayBottom(PAGE_OPTS.cardW, card.type)
+  return `<div class="pdf-card" style="left:${x}px; top:${y}px"><div class="pdf-overlay" style="bottom:${bottom}">${formatEffectToHtml(card.effect, PAGE_OPTS.cardW)}</div></div>`
 }
 
 /**
@@ -120,7 +106,7 @@ export const convertDeckToPDF = async (cards, name, language) => {
             const row = Math.floor(idx / PAGE_OPTS.cols)
             const x = startX + col * (PAGE_OPTS.cardW + PAGE_OPTS.gap)
             const y = startY + row * (PAGE_OPTS.cardH + PAGE_OPTS.gap)
-            return getCardOverlayHtml(card, x, y, language)
+            return getCardOverlayHtml(card, x, y)
           })
           .join('')
 
