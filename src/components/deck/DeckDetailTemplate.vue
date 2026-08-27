@@ -30,7 +30,7 @@
             >
               <v-btn
                 icon
-                :variant="smAndUp ? 'text' : 'elevated'"
+                :variant="smAndUp || isGallery ? 'text' : 'elevated'"
                 :density="smAndUp ? 'compact' : 'default'"
                 @click="openSaveDialog"
                 :disabled="!deck"
@@ -335,6 +335,7 @@ const { copyArticleLink } = useDeckExport()
 const { isTouch } = useDevice()
 const { triggerSnackbar } = useSnackbar()
 
+const isGallery = computed(() => route.name === 'DecksGallery' || route.path.startsWith('/gallery'))
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 // Auth Alert Dialog State
