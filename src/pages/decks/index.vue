@@ -224,6 +224,7 @@ import { useUIStore } from '@/stores/ui'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useDevice } from '@/composables/useDevice'
 import { debounceRef } from '@/composables/useDebounceRef'
+import { useInfiniteScrollState } from '@/composables/useInfiniteScrollState.js'
 import { seriesMap, GAME_TYPE_OPTIONS } from '@/maps/series-map'
 
 import DeckIcon from '@/assets/ui/deck.svg'
@@ -286,15 +287,19 @@ const selectedGameType = ref(deckStore.filters.gameType)
 const selectedSeries = ref(deckStore.filters.series)
 const selectedTags = ref(deckStore.filters.tags)
 
-const initialLoadingComplete = ref(false)
+const initialLoadingComplete = ref(deckStore.decks.length > 0)
 const showDeckCodeDialog = ref(false)
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
+
+const storageKey = computed(() => 'decksViewState')
 
 const handleSearch = async () => {
   deckStore.filters.search = deckNameSearchTerm.value
   deckStore.filters.gameType = selectedGameType.value
   deckStore.filters.series = selectedSeries.value
   deckStore.filters.tags = selectedTags.value
+
+  sessionStorage.removeItem(storageKey.value)
 
   try {
     await deckStore.fetchDecks()
@@ -413,6 +418,11 @@ const displayedDecks = computed(() => {
 })
 
 const loadMore = async ({ done }) => {
+  if (!initialLoadingComplete.value || deckStore.isLoading) {
+    done('ok')
+    return
+  }
+
   if (deckStore.pagination.hasMore) {
     try {
       await deckStore.fetchDecks(true)
@@ -426,17 +436,47 @@ const loadMore = async ({ done }) => {
   }
 }
 
+useInfiniteScrollState({
+  storageKey,
+  scrollRef: infiniteScrollRef,
+  onSave: () => {
+    const scrollableElement = infiniteScrollRef.value?.$el
+    if (scrollableElement) {
+      return {
+        itemCount: displayedDecks.value.length,
+        scrollPosition: scrollableElement.scrollTop,
+      }
+    }
+    return null
+  },
+  onRestore: (savedState) => {
+    nextTick(() => {
+      const scrollableElement = infiniteScrollRef.value?.$el
+      if (scrollableElement && savedState.scrollPosition) {
+        scrollableElement.scrollTop = savedState.scrollPosition
+      }
+    })
+  },
+})
+
 onMounted(async () => {
-  uiStore.setLoading(true)
+  const hasExistingDecks = deckStore.decks.length > 0
+  if (!hasExistingDecks) {
+    uiStore.setLoading(true)
+  }
 
   try {
     await deckStore.fetchDecksMeta()
-    await deckStore.fetchDecks()
+    if (!hasExistingDecks) {
+      await deckStore.fetchDecks()
+    }
   } catch (error) {
     triggerSnackbar(error.message, 'error')
   } finally {
-    uiStore.setLoading(false)
-    initialLoadingComplete.value = true
+    if (!hasExistingDecks) {
+      uiStore.setLoading(false)
+      initialLoadingComplete.value = true
+    }
   }
 
   nextTick(() => {

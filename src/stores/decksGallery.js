@@ -27,6 +27,8 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
     limit: 20,
   })
 
+  let currentFetchController = null
+
   // --- Computed ---
   const seriesOptions = computed(() => {
     return ALL_SERIES_OPTIONS.filter((opt) => opt.game === filters.gameType)
@@ -39,15 +41,19 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
    * @param {boolean} isLoadMore - Whether to append results to existing list
    */
   const fetchDecks = async (isLoadMore = false) => {
-    if (!isLoadMore) {
+    if (isLoadMore) {
+      if (isLoading.value || !pagination.hasMore) return
+    } else {
+      if (currentFetchController) {
+        currentFetchController.abort()
+      }
       pagination.cursor = null
       pagination.hasMore = true
       decks.value = []
     }
 
-    if (isLoading.value) return
-    if (isLoadMore && !pagination.hasMore) return
-
+    currentFetchController = new AbortController()
+    const { signal } = currentFetchController
     isLoading.value = true
 
     try {
@@ -70,7 +76,7 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
       }
 
       const endpoint = filters.source === 'mine' ? '/api/gallery/my-decks' : '/api/gallery/decks'
-      const response = await fetch(`${endpoint}?${params.toString()}`, { headers })
+      const response = await fetch(`${endpoint}?${params.toString()}`, { headers, signal })
 
       if (!response.ok) throw new Error('获取广场卡组失败')
 
@@ -89,10 +95,15 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
       pagination.cursor = data.nextCursor
       pagination.hasMore = !!data.nextCursor
     } catch (error) {
+      if (error.name === 'AbortError') {
+        return
+      }
       console.error('Fetch gallery decks error:', error)
       throw error
     } finally {
-      isLoading.value = false
+      if (currentFetchController?.signal === signal) {
+        isLoading.value = false
+      }
     }
   }
 

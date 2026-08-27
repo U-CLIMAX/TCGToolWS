@@ -506,6 +506,11 @@ const handleDelete = async (key) => {
 }
 
 const loadMore = async ({ done }) => {
+  if (galleryStore.isLoading) {
+    done('ok')
+    return
+  }
+
   if (galleryStore.pagination.hasMore) {
     try {
       await galleryStore.fetchDecks(true)

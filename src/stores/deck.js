@@ -39,6 +39,7 @@ export const useDeckStore = defineStore(
       totalCount: 0,
     })
     const isLoading = ref(false)
+    let currentFetchController = null
 
     const authStore = useAuthStore()
 
@@ -395,15 +396,19 @@ export const useDeckStore = defineStore(
     const fetchDecks = async (isLoadMore = false) => {
       if (!authStore.token) throw new Error('请先登录')
 
-      if (!isLoadMore) {
+      if (isLoadMore) {
+        if (isLoading.value || !pagination.value.hasMore) return
+      } else {
+        if (currentFetchController) {
+          currentFetchController.abort()
+        }
         pagination.value.cursor = null
         pagination.value.hasMore = true
         decks.value = []
       }
 
-      if (isLoading.value) return
-      if (isLoadMore && !pagination.value.hasMore) return
-
+      currentFetchController = new AbortController()
+      const { signal } = currentFetchController
       isLoading.value = true
 
       try {
@@ -425,6 +430,7 @@ export const useDeckStore = defineStore(
           headers: {
             Authorization: `Bearer ${authStore.token}`,
           },
+          signal,
         })
 
         if (!response.ok) {
@@ -478,8 +484,15 @@ export const useDeckStore = defineStore(
             }
           }
         })
+      } catch (error) {
+        if (error.name === 'AbortError') {
+          return
+        }
+        throw error
       } finally {
-        isLoading.value = false
+        if (currentFetchController?.signal === signal) {
+          isLoading.value = false
+        }
       }
     }
 
