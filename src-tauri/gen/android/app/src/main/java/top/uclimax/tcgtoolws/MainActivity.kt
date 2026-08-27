@@ -1,7 +1,13 @@
 package top.uclimax.tcgtoolws
 
+import android.os.Build
 import android.os.Bundle
+import android.view.View
+import android.view.WindowManager
+import android.webkit.WebSettings
 import android.webkit.WebView
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -9,21 +15,83 @@ import androidx.webkit.WebViewCompat
 import androidx.webkit.WebViewFeature
 
 class MainActivity : TauriActivity() {
+  private var mWebView: WebView? = null
+  private var lastBackPressTime = 0L
+
   override fun onCreate(savedInstanceState: Bundle?) {
     enableEdgeToEdge()
+    window.setFlags(
+      WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+      WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+    )
+
+    // Boost UI and display thread priority to URGENT_DISPLAY
+    try {
+      android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_URGENT_DISPLAY)
+    } catch (_: Exception) {
+    }
+
+    // Enable sustained performance mode on supported devices to lock high GPU/CPU clocks
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+      window.setSustainedPerformanceMode(true)
+    }
+
     super.onCreate(savedInstanceState)
 
     ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content)) { v, insets ->
-      val bars = insets.getInsets(
-        WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout()
-      )
+      val bars =
+        insets.getInsets(
+          WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout(),
+        )
       v.setPadding(bars.left, bars.top, bars.right, bars.bottom)
       insets
     }
+
+    onBackPressedDispatcher.addCallback(
+      this,
+      object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+          val wv = mWebView
+          if (wv != null && wv.canGoBack()) {
+            wv.goBack()
+          } else {
+            val currentTime = System.currentTimeMillis()
+            if (currentTime - lastBackPressTime < 2000) {
+              isEnabled = false
+              onBackPressedDispatcher.onBackPressed()
+              isEnabled = true
+            } else {
+              lastBackPressTime = currentTime
+              Toast.makeText(this@MainActivity, "再按一次退出应用", Toast.LENGTH_SHORT).show()
+            }
+          }
+        }
+      },
+    )
   }
 
   override fun onWebViewCreate(webView: WebView) {
     super.onWebViewCreate(webView)
+    this.mWebView = webView
+
+    // Use LAYER_TYPE_NONE with transparent background to prevent modal/dialog flicker
+    webView.setLayerType(View.LAYER_TYPE_NONE, null)
+    webView.setBackgroundColor(0)
+
+    // Optimize settings for rendering, caching, and offscreen canvas
+    webView.settings.apply {
+      textZoom = 100 // Lock text zoom to 100% to prevent UI layout breakage
+      domStorageEnabled = true
+      cacheMode = WebSettings.LOAD_DEFAULT
+      allowFileAccess = true
+      allowContentAccess = true
+      offscreenPreRaster = true
+
+      // Disable Google SafeBrowsing to eliminate DNS/network timeout delays on launch
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        safeBrowsingEnabled = false
+      }
+    }
 
     val bridge = AndroidBridge(this, webView)
     webView.addJavascriptInterface(bridge, AndroidBridge.BRIDGE_NAME)
@@ -37,4 +105,3 @@ class MainActivity : TauriActivity() {
     }
   }
 }
-
