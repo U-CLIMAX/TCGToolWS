@@ -30,13 +30,12 @@
             >
               <v-btn
                 icon
-                :variant="smAndUp || embedded ? 'text' : 'elevated'"
-                density="compact"
+                :variant="smAndUp ? 'text' : 'elevated'"
+                :density="smAndUp ? 'compact' : 'default'"
                 @click="openSaveDialog"
-                color="primary"
                 :disabled="!deck"
               >
-                <v-icon size="24" icon="i-mdi:content-save-outline" />
+                <v-icon size="24" color="primary" icon="i-mdi:content-save-outline" />
               </v-btn>
 
               <v-btn
