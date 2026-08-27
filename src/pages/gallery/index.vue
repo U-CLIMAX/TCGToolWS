@@ -524,8 +524,16 @@ const loadMore = async ({ done }) => {
   }
 }
 
+const ALLOWED_LEAVE_ROUTE_NAMES = ['DeckDetail', 'ShareDeckDetail']
+
 onBeforeRouteLeave((to, from) => {
   if (smAndUp.value) {
+    return true
+  }
+
+  if (ALLOWED_LEAVE_ROUTE_NAMES.includes(to.name)) {
+    uiStore.isCardDetailModalOpen = false
+    drawer.value = false
     return true
   }
 
