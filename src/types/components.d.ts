@@ -25,7 +25,6 @@ declare module 'vue' {
     DeckExportDialog: typeof import('./../components/deck/DeckExportDialog.vue')['default']
     DeckRating: typeof import('./../components/deck/DeckRating.vue')['default']
     DecksGalleryItem: typeof import('./../components/deck/DecksGalleryItem.vue')['default']
-    DeckShareImage: typeof import('./../components/deck/DeckShareImage.vue')['default']
     DeckSidebar: typeof import('./../components/ui/DeckSidebar.vue')['default']
     DeckSimulatorDialog: typeof import('./../components/deck/DeckSimulatorDialog.vue')['default']
     DeckStatsDashboard: typeof import('./../components/deck/DeckStatsDashboard.vue')['default']

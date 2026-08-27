@@ -20,7 +20,6 @@ export const useDeckExport = () => {
   const { encodeData } = useDeckEncoder()
 
   // Export & Image Generation State
-  const renderShareImage = ref(false)
   const exportDialog = ref(false)
   const imageExportMode = ref('u_climax')
   const generatedImageResult = ref(null)
@@ -181,7 +180,6 @@ export const useDeckExport = () => {
     imageExportMode.value = mode
 
     uiStore.setLoading(true)
-    renderShareImage.value = true
     await nextTick()
     isGenerationTriggered.value = true
   }
@@ -236,7 +234,6 @@ export const useDeckExport = () => {
   }
 
   return {
-    renderShareImage,
     exportDialog,
     imageExportMode,
     generatedImageResult,

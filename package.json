@@ -29,7 +29,6 @@
   },
   "dependencies": {
     "@tauri-apps/api": "^2.11.1",
-    "@zumer/snapdom": "^2.24.3",
     "brotli-wasm": "^3.0.1",
     "clipboard-polyfill": "^4.1.1",
     "comlink": "^4.4.2",

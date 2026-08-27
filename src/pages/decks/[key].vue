@@ -260,16 +260,6 @@
       </div>
     </v-container>
 
-    <div v-if="renderShareImage && deck">
-      <DeckShareImage
-        ref="deckShareImageRef"
-        :deck-cards="cardMap"
-        :deck-key="deckKey"
-        :deck-name="deck.name"
-        :mode="imageExportMode"
-      />
-    </div>
-
     <v-bottom-sheet v-model="showBottomSheet">
       <v-list :class="{ 'glass-sheet': hasBackgroundImage }" rounded="t-xl">
         <v-list-subheader>分类</v-list-subheader>
@@ -382,7 +372,7 @@
 
     <DeckExportDialog
       v-model="exportDialog"
-      :cards="cardMap"
+      :cards="cardsForStats"
       :deck-name="deck?.name || 'deck'"
       :generated-image-result="generatedImageResult"
       @generate-image="handleGenerateDeckImage"
@@ -532,7 +522,7 @@ import { usePriceStore } from '@/stores/price'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import { useDevice } from '@/composables/useDevice'
 import { sortCards } from '@/utils/cardsSort'
-import { convertElementToPng } from '@/utils/domToImage.js'
+import { renderDeckToCanvas } from '@/utils/deckCanvasRenderer.js'
 import { useDeckHistory } from '@/composables/useDeckHistory'
 import { useDeckExport } from '@/composables/useDeckExport'
 
@@ -564,7 +554,6 @@ const {
 } = useDeckHistory()
 
 const {
-  renderShareImage,
   exportDialog,
   imageExportMode,
   generatedImageResult,
@@ -909,6 +898,9 @@ onUnmounted(() => {
   if (observer) {
     observer.disconnect()
   }
+  if (generatedImageResult.value?.src) {
+    URL.revokeObjectURL(generatedImageResult.value.src)
+  }
 })
 
 const isModalVisible = ref(false)
@@ -1091,38 +1083,29 @@ const handleDownloadDeckPDF = (language) =>
   baseHandleDownloadDeckPDF(savedCards.value, deck.value.name, language)
 
 watch(
-  [() => isGenerationTriggered.value, () => deckShareImageRef.value?.allImagesLoaded],
-  async ([triggered, loaded]) => {
-    if (triggered && loaded && deckShareImageRef.value) {
-      const imageRef = deckShareImageRef.value
+  () => isGenerationTriggered.value,
+  async (triggered) => {
+    if (triggered && deck.value) {
       try {
         isGenerationTriggered.value = false
-
-        if (imageRef) {
-          imageRef.toggleQrCode(includeQrCodeInImage.value && !isLocalDeck.value)
-          await nextTick()
+        if (generatedImageResult.value?.src) {
+          URL.revokeObjectURL(generatedImageResult.value.src)
         }
-
-        await new Promise((resolve) => setTimeout(resolve, 300))
-
-        const result = await convertElementToPng(
-          'deck-share-image-content',
-          deck.value.name.trim(),
-          2,
-          false,
-          false,
-          true
-        )
+        const result = await renderDeckToCanvas({
+          cards: savedCards.value,
+          deckName: deck.value.name ? deck.value.name.trim() : 'deck',
+          deckKey: deckKey,
+          mode: imageExportMode.value,
+          includeQrCode: includeQrCodeInImage.value && !isLocalDeck.value,
+          scale: 2,
+        })
         generatedImageResult.value = result
       } catch (error) {
         console.error('生成图片失败:', error)
         triggerSnackbar('生成图片失败，请稍后再试。', 'error')
       } finally {
         uiStore.setLoading(false)
-        renderShareImage.value = false
       }
-    } else if (triggered && !loaded) {
-      console.log('Waiting for images to load...')
     }
   },
   {

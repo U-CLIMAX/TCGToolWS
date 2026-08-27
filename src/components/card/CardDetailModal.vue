@@ -427,7 +427,6 @@ import { useFilterStore } from '@/stores/filter'
 import { useGlobalSearchStore } from '@/stores/globalSearch'
 import { useDevice } from '@/composables/useDevice'
 import { formatEffectToHtml } from '@/utils/cardEffectFormatter'
-import { normalizeFileName } from '@/utils/sanitizeFilename'
 
 const { triggerSnackbar } = useSnackbar()
 const { smAndUp } = useDisplay()
@@ -592,10 +591,6 @@ const executeDownloadText = async () => {
   effectText.style.color = downloadStore.textColor
 
   effectText.querySelectorAll('img').forEach((icon) => {
-    let src = icon.getAttribute('src')
-    if (src && src.endsWith('.svg')) {
-      icon.setAttribute('src', src.replace(/\.svg$/, '.webp'))
-    }
     icon.crossOrigin = 'anonymous'
     icon.style.height = `${downloadStore.textFontSize}px`
     icon.style.verticalAlign = '-0.15em'
@@ -606,26 +601,8 @@ const executeDownloadText = async () => {
   document.body.appendChild(exportContainer)
 
   try {
-    const images = Array.from(exportContainer.querySelectorAll('img'))
-    const imageLoadPromises = images.map(
-      (image) =>
-        new Promise((resolve) => {
-          if (image.complete) {
-            resolve()
-          } else {
-            image.onload = resolve
-            image.onerror = resolve
-          }
-        })
-    )
-    await Promise.all(imageLoadPromises)
-    await new Promise((resolve) => setTimeout(resolve, 100))
-    await new Promise((resolve) => requestAnimationFrame(resolve))
-    await new Promise((resolve) => requestAnimationFrame(resolve))
-
     const filename = `${props.card.id}-effect`
     await convertElementToPng('temp-text-export-container', filename, 1, true)
-
     triggerSnackbar('效果文本图片已成功汇出', 'success')
   } catch (error) {
     console.error('Failed to export card text image:', error)
@@ -634,33 +611,6 @@ const executeDownloadText = async () => {
     document.body.removeChild(exportContainer)
     uiStore.setLoading(false)
   }
-}
-
-const triggerDownload = (url, filename) => {
-  const a = document.createElement('a')
-  a.href = url
-  a.download = filename
-  document.body.appendChild(a)
-  a.click()
-  document.body.removeChild(a)
-}
-
-const waitForImages = (container) => {
-  const images = Array.from(container.querySelectorAll('img'))
-  return Promise.all(
-    images.map(
-      (img) =>
-        new Promise((resolve) => {
-          img.complete ? resolve() : ((img.onload = resolve), (img.onerror = resolve))
-        })
-    )
-  )
-}
-
-const waitForRender = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 100))
-  await new Promise((resolve) => requestAnimationFrame(resolve))
-  await new Promise((resolve) => requestAnimationFrame(resolve))
 }
 
 // ─── 无文字模式：直接下载原图 ──────────────────────────────────
@@ -734,10 +684,8 @@ const buildExportContainer = () => {
     textAlign: 'justify',
   })
 
-  // 替换 SVG 图标为 webp，设置跨域与尺寸
+  // 设置图标跨域与尺寸
   effectText.querySelectorAll('img').forEach((icon) => {
-    const src = icon.getAttribute('src')
-    if (src?.endsWith('.svg')) icon.setAttribute('src', src.replace(/\.svg$/, '.webp'))
     Object.assign(icon, { crossOrigin: 'anonymous' })
     Object.assign(icon.style, {
       height: '0.9rem',
@@ -755,8 +703,6 @@ const downloadCardWithText = async () => {
   const exportContainer = buildExportContainer()
   document.body.appendChild(exportContainer)
   try {
-    await waitForImages(exportContainer)
-    await waitForRender()
     await convertElementToPng('temp-export-container', props.card.id || 'card', 2, true)
     triggerSnackbar('图片已成功导出', 'success')
   } catch (error) {
@@ -809,17 +755,14 @@ const copyCardWithText = async () => {
   const exportContainer = buildExportContainer()
   document.body.appendChild(exportContainer)
   try {
-    await waitForImages(exportContainer)
-    await waitForRender()
-    const generatedImageResult = await convertElementToPng(
+    const blob = await convertElementToPng(
       'temp-export-container',
       props.card.id || 'card',
       2,
       true,
       false
     )
-    const blob = await fetch(generatedImageResult.src).then((r) => r.blob())
-    await writeImage(blob)
+    if (blob) await writeImage(blob)
   } finally {
     document.body.removeChild(exportContainer)
   }

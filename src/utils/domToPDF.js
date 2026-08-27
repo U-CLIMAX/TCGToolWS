@@ -1,75 +1,73 @@
 import { formatEffectToHtml } from './cardEffectFormatter'
 import { sortCards } from './cardsSort.js'
 import { normalizeFileName } from './sanitizeFilename'
+import { getMatchedWenkaiFontCss } from './fontEmbedding'
+import { fetchAsDataUrl } from './domToImage'
 
 const PAGE_OPTS = { w: 595, h: 842, cardW: 178.58, cardH: 249.45, gap: 2.83, cols: 3, rows: 3 }
+
 const PRINT_CSS = `
-  #pdf-render-content { position: fixed; top: 0; left: -9999px; width: ${PAGE_OPTS.w}pt; height: ${PAGE_OPTS.h}pt; background: #fff; }
-  .pdf-card { position: absolute; width: ${PAGE_OPTS.cardW}pt; height: ${PAGE_OPTS.cardH}pt; overflow: hidden; font-family: system-ui, sans-serif; font-size: 7pt; }
-  .pdf-overlay { position: absolute; left: 3%; right: 3%; background: rgba(255,255,255,0.85); padding: 2.5%; border-radius: 1.5mm; box-sizing: border-box; color: #000; }
+  .pdf-card { position: absolute; width: ${PAGE_OPTS.cardW}px; height: ${PAGE_OPTS.cardH}px; overflow: hidden; background: transparent; }
+  .pdf-overlay {
+    position: absolute;
+    left: 3%;
+    right: 3%;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 2.5%;
+    border-radius: 1.5mm;
+    box-sizing: border-box;
+    color: #000;
+    font-family: 'LXGW WenKai Lite', 'Microsoft JhengHei', 'PingFang TC', 'Heiti TC', 'Noto Sans TC', 'Noto Sans CJK TC', sans-serif;
+    font-size: 7px;
+    line-height: 1.2;
+    text-align: justify;
+    word-break: break-word;
+  }
   .pdf-overlay img { height: 0.9em; vertical-align: -0.15em; display: inline-block; }
+  .replay-block { border: 3px solid #4caf50; border-radius: 8px; padding: 4px 7px; margin-top: 4px; display: block; }
 `
 
-const getCardHtml = (card, x, y, lang, imgCache) => {
-  const cachedSrc = imgCache.get(card.imgUrl) || card.imgUrl
+const loadImage = (src) =>
+  new Promise((resolve) => {
+    if (!src) return resolve(null)
+    const img = new Image()
+    img.crossOrigin = 'anonymous'
+    img.onload = () => resolve(img)
+    img.onerror = () => resolve(null)
+    img.src = src
+  })
+
+// 生成单卡中文效果覆层 HTML
+const getCardOverlayHtml = (card, x, y, lang) => {
+  if (card.type === '高潮卡' || lang !== 'zh' || !card.effect) return ''
   const bottom = card.type === '事件卡' ? '9.51%' : '12.02%'
-  let effectHtml = ''
-
-  if (card.type !== '高潮卡' && lang === 'zh') {
-    const html = formatEffectToHtml(card.effect).replace(/\.svg/g, '.webp')
-    effectHtml = `<div class="pdf-overlay" style="bottom: ${bottom}"><div style="font-size:0.9em; line-height:1.2; text-align:justify; word-break:break-word;">${html}</div></div>`
-  }
-
-  return `<div class="pdf-card" style="left:${x}pt; top:${y}pt"><img src="${cachedSrc}" crossorigin="anonymous" style="width:100%; height:100%; object-fit:cover;">${effectHtml}</div>`
+  return `<div class="pdf-card" style="left:${x}px; top:${y}px"><div class="pdf-overlay" style="bottom:${bottom}">${formatEffectToHtml(card.effect)}</div></div>`
 }
 
+/**
+ * 导出卡组为 PDF (Canvas 2D 底图拼版 + SVG 效果覆层)
+ */
 export const convertDeckToPDF = async (cards, name, language) => {
   console.time('PDF conversion')
-  const [documonsterPdf, snapdomModule] = await Promise.all([
-    import('documonster/pdf'),
-    import('@zumer/snapdom'),
-  ])
-  const Pdf = documonsterPdf.Pdf
-  const snapdom = snapdomModule.snapdom
+
+  const { Pdf } = await import('documonster/pdf')
 
   const flatCards = sortCards(cards)
     .flatMap((c) => Array(c.quantity || 1).fill(c))
     .filter((c) => c.imgUrl)
   if (!flatCards.length) return
 
-  const imgCache = new Map()
+  // 并行预加载卡图
+  const uniqueCardUrls = [...new Set(flatCards.map((c) => c.imgUrl))]
+  const cardImageMap = new Map()
   await Promise.all(
-    [...new Set(flatCards.map((c) => c.imgUrl))].map(
-      (src) =>
-        new Promise((r) => {
-          const img = new Image()
-          img.crossOrigin = 'anonymous'
-          img.onload = () => {
-            const canvas = document.createElement('canvas')
-            canvas.width = img.naturalWidth
-            canvas.height = img.naturalHeight
-            const ctx = canvas.getContext('2d')
-
-            ctx.fillStyle = '#ffffff'
-            ctx.fillRect(0, 0, canvas.width, canvas.height)
-
-            ctx.drawImage(img, 0, 0)
-            imgCache.set(src, canvas.toDataURL('image/jpeg', 0.8))
-            r()
-          }
-          img.onerror = r
-          img.src = src
-        })
-    )
+    uniqueCardUrls.map(async (src) => {
+      const img = await loadImage(src)
+      if (img) cardImageMap.set(src, img)
+    })
   )
 
-  const style = document.createElement('style')
-  style.innerHTML = PRINT_CSS
-  document.head.appendChild(style)
-  const container = document.createElement('div')
-  container.id = 'pdf-render-content'
-  document.body.appendChild(container)
-
+  let canvas = null
   try {
     const doc = new Pdf.Builder()
     const cardsPerPage = PAGE_OPTS.cols * PAGE_OPTS.rows
@@ -80,37 +78,95 @@ export const convertDeckToPDF = async (cards, name, language) => {
     const startY =
       (PAGE_OPTS.h - (PAGE_OPTS.rows * PAGE_OPTS.cardH + (PAGE_OPTS.rows - 1) * PAGE_OPTS.gap)) / 2
 
-    for (let i = 0; i < totalPages; i++) {
-      const pageCards = flatCards.slice(i * cardsPerPage, (i + 1) * cardsPerPage)
+    const scale = 2
+    canvas = document.createElement('canvas')
+    canvas.width = Math.round(PAGE_OPTS.w * scale)
+    canvas.height = Math.round(PAGE_OPTS.h * scale)
+    const ctx = canvas.getContext('2d', { willReadFrequently: false })
+    if (!ctx) throw new Error('无法创建 Canvas 2D 上下文')
 
-      container.innerHTML = pageCards
-        .map((card, idx) => {
-          const col = idx % PAGE_OPTS.cols
-          const row = Math.floor(idx / PAGE_OPTS.cols)
-          return getCardHtml(
-            card,
-            startX + col * (PAGE_OPTS.cardW + PAGE_OPTS.gap),
-            startY + row * (PAGE_OPTS.cardH + PAGE_OPTS.gap),
-            language,
-            imgCache
-          )
-        })
-        .join('')
+    for (let pageIdx = 0; pageIdx < totalPages; pageIdx++) {
+      const pageCards = flatCards.slice(pageIdx * cardsPerPage, (pageIdx + 1) * cardsPerPage)
 
-      await new Promise((r) => setTimeout(r, 100))
-      await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)))
+      // 绘制 9 张卡片底图
+      ctx.save()
+      ctx.setTransform(1, 0, 0, 1, 0, 0)
+      ctx.fillStyle = '#ffffff'
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+      ctx.scale(scale, scale)
 
-      const blob = await snapdom.toBlob(container, {
-        type: 'jpeg',
-        width: PAGE_OPTS.w,
-        height: PAGE_OPTS.h,
-        dpr: 1,
-        quality: 0.6,
-        scale: 2,
+      pageCards.forEach((card, idx) => {
+        const col = idx % PAGE_OPTS.cols
+        const row = Math.floor(idx / PAGE_OPTS.cols)
+        const x = startX + col * (PAGE_OPTS.cardW + PAGE_OPTS.gap)
+        const y = startY + row * (PAGE_OPTS.cardH + PAGE_OPTS.gap)
+
+        const img = cardImageMap.get(card.imgUrl)
+        if (img) {
+          ctx.drawImage(img, x, y, PAGE_OPTS.cardW, PAGE_OPTS.cardH)
+        } else {
+          ctx.fillStyle = '#f0f0f0'
+          ctx.fillRect(x, y, PAGE_OPTS.cardW, PAGE_OPTS.cardH)
+        }
       })
-      const arrayBuffer = await blob.arrayBuffer()
-      const bytes = new Uint8Array(arrayBuffer)
 
+      ctx.restore()
+
+      // 中文模式绘制效果覆层
+      if (language === 'zh') {
+        const overlaysHtml = pageCards
+          .map((card, idx) => {
+            const col = idx % PAGE_OPTS.cols
+            const row = Math.floor(idx / PAGE_OPTS.cols)
+            const x = startX + col * (PAGE_OPTS.cardW + PAGE_OPTS.gap)
+            const y = startY + row * (PAGE_OPTS.cardH + PAGE_OPTS.gap)
+            return getCardOverlayHtml(card, x, y, language)
+          })
+          .join('')
+
+        if (overlaysHtml.trim()) {
+          const container = document.createElement('div')
+          container.setAttribute('xmlns', 'http://www.w3.org/1999/xhtml')
+          container.style.cssText = `position: relative; width: ${PAGE_OPTS.w}px; height: ${PAGE_OPTS.h}px; margin: 0; padding: 0; background: transparent;`
+          container.innerHTML = overlaysHtml
+
+          // 内联覆层中的所有图标为 Base64
+          const imgElements = Array.from(container.querySelectorAll('img'))
+          await Promise.all(
+            imgElements.map(async (img) => {
+              if (img.src && !img.src.startsWith('data:')) {
+                const dataUrl = await fetchAsDataUrl(img.src)
+                img.setAttribute('src', dataUrl)
+              }
+            })
+          )
+
+          const allPageText = pageCards.map((c) => c.effect || '').join(' ')
+          const wenkaiFontCss = await getMatchedWenkaiFontCss(allPageText)
+
+          const xhtml = new XMLSerializer().serializeToString(container)
+          const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${PAGE_OPTS.w}" height="${PAGE_OPTS.h}">
+            <style>
+              ${PRINT_CSS}
+              ${wenkaiFontCss}
+            </style>
+            <foreignObject width="100%" height="100%">${xhtml}</foreignObject>
+          </svg>`
+
+          const dataUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`
+          const overlayImg = await loadImage(dataUrl)
+
+          if (overlayImg) {
+            ctx.drawImage(overlayImg, 0, 0, canvas.width, canvas.height)
+          }
+        }
+      }
+
+      // 输出当前页至 PDF
+      const pageBlob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/jpeg', 0.8))
+      if (!pageBlob) continue
+
+      const bytes = new Uint8Array(await pageBlob.arrayBuffer())
       const page = doc.addPage({ width: PAGE_OPTS.w, height: PAGE_OPTS.h })
       page.drawImage({
         data: bytes,
@@ -124,19 +180,22 @@ export const convertDeckToPDF = async (cards, name, language) => {
 
     const pdfBytes = await doc.build()
     const deckName = normalizeFileName(name)
-    const blob = new Blob([pdfBytes], { type: 'application/pdf' })
-    const url = URL.createObjectURL(blob)
+    const pdfUrl = URL.createObjectURL(new Blob([pdfBytes], { type: 'application/pdf' }))
+
     const link = document.createElement('a')
-    link.href = url
+    link.href = pdfUrl
     link.download = `${deckName || 'deck'}_${language}.pdf`
     link.click()
-    URL.revokeObjectURL(url)
-  } catch (e) {
-    console.error('PDF conversion failed:', e)
+    URL.revokeObjectURL(pdfUrl)
+  } catch (error) {
+    console.error('PDF conversion failed:', error)
+    throw error
   } finally {
-    container.remove()
-    style.remove()
-    imgCache.clear()
+    if (canvas) {
+      canvas.width = 0
+      canvas.height = 0
+    }
+    cardImageMap.clear()
     console.timeEnd('PDF conversion')
   }
 }
