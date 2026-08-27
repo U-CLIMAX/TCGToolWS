@@ -212,10 +212,10 @@ const handleDownloadResult = async () => {
   uiStore.setLoading(true)
   try {
     const filename = normalizeFileName(props.deckName)
+    const ext = props.generatedImageResult.format || 'png'
     const link = document.createElement('a')
     link.href = props.generatedImageResult.src
-    console.log(link.href)
-    link.download = `${filename || 'image'}.png`
+    link.download = `${filename || 'image'}.${ext}`
     link.click()
     triggerSnackbar('下载成功', 'success')
   } catch (error) {
@@ -230,10 +230,12 @@ const handleCopyResult = async () => {
   if (!props.generatedImageResult) return
   uiStore.setLoading(true)
   try {
-    const blob = await fetch(props.generatedImageResult.src).then((response) => {
-      if (!response.ok) throw new Error('Network response was not ok')
-      return response.blob()
-    })
+    const blob =
+      props.generatedImageResult.blob ||
+      (await fetch(props.generatedImageResult.src).then((response) => {
+        if (!response.ok) throw new Error('Network response was not ok')
+        return response.blob()
+      }))
 
     await writeImage(blob)
     triggerSnackbar('图片已复制', 'success')

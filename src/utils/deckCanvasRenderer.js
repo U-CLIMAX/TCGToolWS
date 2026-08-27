@@ -2,6 +2,15 @@ import { sortCards } from '@/utils/cardsSort.js'
 import { getCardUrls } from '@/utils/getCardImage'
 import { generate } from 'lean-qr'
 import logoUrl from '@/assets/ui/logo.webp'
+import { isTauri } from '@tauri-apps/api/core'
+
+/**
+ * 判断是否在 Tauri Android 客户端环境中运行
+ * @returns {boolean}
+ */
+export const isTauriAndroid = () => {
+  return isTauri() && typeof navigator !== 'undefined' && /android/i.test(navigator.userAgent)
+}
 
 /**
  * 异步加载单张图片为 HTMLImageElement，支持跨域
@@ -92,17 +101,21 @@ export const renderDeckToCanvas = async ({
       ? sortedCards.flatMap((card) => Array(Number(card.quantity) || 1).fill(card))
       : sortedCards
 
-  // 4. 并行预加载占位图、所有卡图与 Logo
+  // 4. 并行预加载占位图、所有卡图与 Logo（分批控制并发度为 6)
   const placeholderImg = await loadImage('/placehold.webp')
   const uniqueCards = Array.from(new Map(targetCards.map((c) => [c.id, c])).values())
   const cardImageMap = new Map()
+  const CONCURRENCY_LIMIT = 6
 
-  await Promise.all(
-    uniqueCards.map(async (card) => {
-      const img = await loadCardImage(card, placeholderImg)
-      if (img) cardImageMap.set(card.id, img)
-    })
-  )
+  for (let i = 0; i < uniqueCards.length; i += CONCURRENCY_LIMIT) {
+    const batch = uniqueCards.slice(i, i + CONCURRENCY_LIMIT)
+    await Promise.all(
+      batch.map(async (card) => {
+        const img = await loadCardImage(card, placeholderImg)
+        if (img) cardImageMap.set(card.id, img)
+      })
+    )
+  }
 
   let logoImg = null
   if (mode === 'u_climax') {
@@ -308,11 +321,15 @@ export const renderDeckToCanvas = async ({
     })
   }
 
-  // 6. 导出 Blob 与 Object URL
+  // 6. 导出 Blob 与 Object URL（安卓端转为 JPEG 避免大型 PNG 软编码极度耗时与显存飙升）
   const width = canvas.width
   const height = canvas.height
+  const isAndroid = isTauriAndroid()
+  const mimeType = isAndroid ? 'image/jpeg' : 'image/png'
+  const quality = isAndroid ? 0.8 : undefined
+
   const blob = await new Promise((resolve) => {
-    canvas.toBlob(resolve, 'image/png')
+    canvas.toBlob(resolve, mimeType, quality)
   })
 
   // 立即释放 Canvas 显存/内存后备缓冲区
@@ -330,5 +347,6 @@ export const renderDeckToCanvas = async ({
     width,
     height,
     blob,
+    format: isAndroid ? 'jpg' : 'png',
   }
 }
