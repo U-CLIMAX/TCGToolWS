@@ -5,7 +5,20 @@
       <!-- View 1: Credentials Input (登录/注册信息输入) -->
       <!-- ============================================= -->
       <template v-if="step === 'credentials'">
-        <v-card :title="isLoginMode ? '登录' : '注册'">
+        <v-card>
+          <template #title>
+            <div class="d-flex align-center">
+              <span>{{ isLoginMode ? '登录' : '注册' }}</span>
+              <v-chip
+                v-if="isLoginMode && isTauriApp && appVersion"
+                size="x-small"
+                variant="tonal"
+                class="ml-2 font-weight-regular"
+              >
+                v{{ appVersion }}
+              </v-chip>
+            </div>
+          </template>
           <template #append>
             <v-btn
               v-if="isLoginMode"
@@ -170,7 +183,9 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import { isTauri } from '@tauri-apps/api/core'
+import { getVersion } from '@tauri-apps/api/app'
 import { useAuthStore } from '@/stores/auth'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useCooldown } from '@/composables/useCooldown'
@@ -196,6 +211,18 @@ const dialog = ref(false)
 const isSettingsModalOpen = ref(false)
 const step = ref('credentials') // 'credentials' or 'verification'
 const mode = ref('login') // 'login' or 'register'
+const isTauriApp = isTauri()
+const appVersion = ref('')
+
+onMounted(async () => {
+  if (isTauriApp) {
+    try {
+      appVersion.value = await getVersion()
+    } catch (err) {
+      console.warn('获取客户端版本失败:', err)
+    }
+  }
+})
 
 // --- Form Data ---
 const email = ref('')
