@@ -8,6 +8,11 @@ pub fn run() {
         builder = builder.plugin(tauri_plugin_window_state::Builder::default().build());
     }
 
+    #[cfg(target_os = "android")]
+    {
+        builder = builder.plugin(tauri_plugin_webview_upgrade::init());
+    }
+
     builder
         .setup(|app| {
             if cfg!(debug_assertions) {

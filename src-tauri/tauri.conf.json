@@ -48,5 +48,11 @@
         "installerIcon": "icons/icon.ico"
       }
     }
+  },
+  "plugins": {
+    "webview-upgrade": {
+      "minUpgradeMajor": 121,
+      "minSupportedMajor": 111
+    }
   }
 }

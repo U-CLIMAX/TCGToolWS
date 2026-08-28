@@ -3586,6 +3586,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "tauri-plugin-webview-upgrade"
+version = "0.1.0"
+source = "git+https://github.com/readest/tauri-plugin-webview-upgrade?rev=bbb5bd33ef4ab644e915f7264ef15a8da97cb284#bbb5bd33ef4ab644e915f7264ef15a8da97cb284"
+dependencies = [
+ "tauri",
+ "tauri-plugin",
+]
+
+[[package]]
 name = "tauri-plugin-window-state"
 version = "2.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3711,6 +3720,7 @@ dependencies = [
  "tauri-build",
  "tauri-plugin-log",
  "tauri-plugin-opener",
+ "tauri-plugin-webview-upgrade",
  "tauri-plugin-window-state",
 ]
 
