@@ -44,29 +44,18 @@ export const renderDeckToCanvas = async ({
       ? sortedCards.flatMap((card) => Array(Number(card.quantity) || 1).fill(card))
       : sortedCards
 
-  const placeholderImg = await loadImageWithDecode('/placehold.webp')
+  const placeholderBitmap = await loadImageWithDecode('/placehold.webp')
   const uniqueCards = Array.from(new Map(targetCards.map((c) => [c.id, c])).values())
   const cardUrls = uniqueCards
     .map((card) => card.imgUrl || getCardUrls(card.cardIdPrefix, card.id)?.base)
     .filter(Boolean)
 
-  const loadedImagesMap = await batchLoadImages(cardUrls, 6)
-  const cardImageMap = new Map()
+  const loadedBitmapsMap = await batchLoadImages(cardUrls, 6)
 
-  uniqueCards.forEach((card) => {
-    const url = card.imgUrl || getCardUrls(card.cardIdPrefix, card.id)?.base
-    const img = (url && loadedImagesMap.get(url)) || placeholderImg
-    if (img) cardImageMap.set(card.id, img)
-  })
-
-  let logoImg = null
+  let logoBitmap = null
   if (mode === 'u_climax') {
-    logoImg = await loadImageWithDecode(logoUrl)
+    logoBitmap = await loadImageWithDecode(logoUrl)
   }
-
-  // 轉換為 ImageBitmap 以支援零拷貝移交給 Worker
-  const placeholderBitmap = placeholderImg ? await createImageBitmap(placeholderImg) : null
-  const logoBitmap = logoImg ? await createImageBitmap(logoImg) : null
 
   let qrBitmap = null
   if (includeQrCode && Boolean(deckKey) && mode === 'u_climax') {
@@ -81,18 +70,14 @@ export const renderDeckToCanvas = async ({
     }
   }
 
-  const cardBitmaps = await Promise.all(
-    uniqueCards.map(async (card) => {
-      const img = cardImageMap.get(card.id)
-      if (!img) return null
-      try {
-        const bitmap = await createImageBitmap(img)
-        return { id: card.id, bitmap }
-      } catch {
-        return null
-      }
-    })
-  )
+  const cardBitmaps = []
+  uniqueCards.forEach((card) => {
+    const url = card.imgUrl || getCardUrls(card.cardIdPrefix, card.id)?.base
+    const bitmap = url ? loadedBitmapsMap.get(url) : null
+    if (bitmap) {
+      cardBitmaps.push({ id: card.id, bitmap })
+    }
+  })
 
   const transferList = []
   if (placeholderBitmap) transferList.push(placeholderBitmap)
@@ -123,6 +108,12 @@ export const renderDeckToCanvas = async ({
         transferList
       )
     )
+  } catch (err) {
+    placeholderBitmap?.close?.()
+    logoBitmap?.close?.()
+    qrBitmap?.close?.()
+    cardBitmaps.forEach((item) => item?.bitmap?.close?.())
+    throw err
   } finally {
     worker.terminate()
   }

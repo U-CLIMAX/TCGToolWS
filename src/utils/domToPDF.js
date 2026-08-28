@@ -4,7 +4,7 @@ import { normalizeFileName } from './sanitizeFilename'
 import { getMatchedWenkaiFontCss } from './fontEmbedding'
 import { inlineDomImages } from './imageInliner'
 import { getOverlayStyle, getOverlayBottom, getIconStyle, styleToCssRule } from './overlayStyle'
-import { batchLoadImages, loadImageWithDecode } from './cardImageLoader.js'
+import { batchLoadImages } from './cardImageLoader.js'
 import { wrap, transfer } from 'comlink'
 import DeckPdfWorker from '@/workers/deckPdf.worker.js?worker'
 
@@ -22,6 +22,44 @@ const getCardOverlayHtml = (card, x, y) => {
   const bottom = getOverlayBottom(PAGE_OPTS.cardW, card.type)
   return `<div class="pdf-card" style="left:${x}px; top:${y}px"><div class="pdf-overlay" style="bottom:${bottom}">${formatEffectToHtml(card.effect, PAGE_OPTS.cardW)}</div></div>`
 }
+
+/**
+ * 載入 SVG 向量圖為 HTMLImageElement，確保在目標 OffscreenCanvas 上以 2x 等高倍率向量光柵化
+ * @param {string} dataUrl
+ * @returns {Promise<HTMLImageElement|null>}
+ */
+const loadSvgImage = (dataUrl) =>
+  new Promise((resolve) => {
+    const img = new Image()
+    let resolved = false
+    const onDone = (success) => {
+      if (resolved) return
+      resolved = true
+      img.onload = null
+      img.onerror = null
+      resolve(success ? img : null)
+    }
+
+    img.onload = () => {
+      if (typeof img.decode === 'function') {
+        img
+          .decode()
+          .then(() => onDone(true))
+          .catch(() => onDone(true))
+      } else {
+        onDone(true)
+      }
+    }
+    img.onerror = () => onDone(false)
+    img.src = dataUrl
+
+    if (img.complete && typeof img.decode === 'function') {
+      img
+        .decode()
+        .then(() => onDone(true))
+        .catch(() => {})
+    }
+  })
 
 /**
  * 導出卡組為 PDF (透過 Web Worker + OffscreenCanvas 進行拼版與二進位構建)
@@ -52,19 +90,13 @@ export const convertDeckToPDF = async (cards, name, language) => {
   const scale = 2
 
   try {
-    // 預先載入卡圖並轉為 ImageBitmap
-    const cardBitmaps = await Promise.all(
-      uniqueCardUrls.map(async (url) => {
-        const img = cardImageMap.get(url)
-        if (!img) return null
-        try {
-          const bitmap = await createImageBitmap(img)
-          return { url, bitmap }
-        } catch {
-          return null
-        }
-      })
-    )
+    const cardBitmaps = []
+    for (const url of uniqueCardUrls) {
+      const bitmap = cardImageMap.get(url)
+      if (bitmap) {
+        cardBitmaps.push({ url, bitmap })
+      }
+    }
 
     // 中文模式在主線程預先將 SVG 效果覆層以目標尺寸 (1190x1684) 向量光柵化為 ImageBitmap
     const overlayBitmaps = []
@@ -102,7 +134,7 @@ export const convertDeckToPDF = async (cards, name, language) => {
           </svg>`
 
           const dataUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`
-          const overlayImg = await loadImageWithDecode(dataUrl)
+          const overlayImg = await loadSvgImage(dataUrl)
           if (overlayImg) {
             const targetW = Math.round(PAGE_OPTS.w * scale)
             const targetH = Math.round(PAGE_OPTS.h * scale)
@@ -158,6 +190,8 @@ export const convertDeckToPDF = async (cards, name, language) => {
     link.click()
     URL.revokeObjectURL(pdfUrl)
   } catch (error) {
+    cardBitmaps?.forEach((item) => item?.bitmap?.close?.())
+    overlayBitmaps?.forEach((item) => item?.bitmap?.close?.())
     console.error('PDF generation failed:', error)
     throw error
   } finally {
