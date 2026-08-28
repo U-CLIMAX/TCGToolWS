@@ -50,7 +50,7 @@ export const renderDeckToCanvas = async ({
     .map((card) => card.imgUrl || getCardUrls(card.cardIdPrefix, card.id)?.base)
     .filter(Boolean)
 
-  const loadedImagesMap = await batchLoadImages(cardUrls, 18)
+  const loadedImagesMap = await batchLoadImages(cardUrls, 6)
   const cardImageMap = new Map()
 
   uniqueCards.forEach((card) => {

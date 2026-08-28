@@ -39,7 +39,7 @@ export const convertDeckToPDF = async (cards, name, language) => {
   if (!flatCards.length) return
 
   const uniqueCardUrls = [...new Set(flatCards.map((c) => c.imgUrl))]
-  const cardImageMap = await batchLoadImages(uniqueCardUrls, 18)
+  const cardImageMap = await batchLoadImages(uniqueCardUrls, 6)
 
   const cardsPerPage = PAGE_OPTS.cols * PAGE_OPTS.rows
   const totalPages = Math.ceil(flatCards.length / cardsPerPage)
