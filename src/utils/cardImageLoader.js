@@ -138,17 +138,65 @@ export const loadImageWithDecode = async (src) => {
 }
 
 /**
- * 以指定並發窗口批量加載圖片為 ImageBitmap，充分發揮 HTTP/2 多路複用效能
+ * 動態計算最佳並發窗口 (完全相容 Chrome, Safari, Firefox, iOS, Android)
+ * 基於 Network Information API (Chromium)、CPU 邏輯核心數 (全瀏覽器) 與 RAM 進行漸進增強估算
+ *
+ * @returns {number} 建議並發數 (2 ~ 8)
+ */
+export const getOptimalConcurrency = () => {
+  if (typeof navigator === 'undefined') return 6
+
+  // 1. 網路狀態探測 (Chromium/Android 支援；Safari/Firefox 靜默回退為 undefined)
+  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection
+  if (connection) {
+    // 省流量模式或 2G 弱網：降至最低並發，防止封包阻塞
+    if (
+      connection.saveData ||
+      connection.effectiveType === 'slow-2g' ||
+      connection.effectiveType === '2g'
+    ) {
+      return 2
+    }
+    // 3G 網路：適度降低並發
+    if (connection.effectiveType === '3g') {
+      return 4
+    }
+  }
+
+  // 2. CPU 核心數 (Chrome, Safari, Firefox 全平台 100% 支援)
+  const cores =
+    typeof navigator.hardwareConcurrency === 'number' ? navigator.hardwareConcurrency : 4
+
+  // 3. 記憶體容量 (Chromium 支援；Safari/Firefox 不支援時依 CPU 核心數合理推估)
+  const memory =
+    typeof navigator.deviceMemory === 'number' ? navigator.deviceMemory : cores >= 8 ? 8 : 4
+
+  // 4. 綜合權衡分級：
+  // 低階設備 (雙核/四核 或 RAM <= 2GB)
+  if (cores <= 4 || memory <= 2) {
+    return 4
+  }
+
+  // 高配環境 (8 核以上 + 記憶體充足)
+  if (cores >= 8 && memory >= 8) {
+    return 8
+  }
+
+  return 6
+}
+
+/**
+ * 批量加載圖片為 ImageBitmap，自動依硬體算力與網路計算最佳並發窗口
  *
  * @param {Array<string>} urls - 待載入的 URL 列表（已去重）
- * @param {number} [concurrency=18] - 並發請求上限
  * @returns {Promise<Map<string, ImageBitmap>>}
  */
-export const batchLoadImages = async (urls, concurrency = 18) => {
+export const batchLoadImages = async (urls) => {
   const resultMap = new Map()
   const validUrls = (urls || []).filter(Boolean)
   if (!validUrls.length) return resultMap
 
+  const concurrency = getOptimalConcurrency()
   let currentIndex = 0
 
   const worker = async () => {

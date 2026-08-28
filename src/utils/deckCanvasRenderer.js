@@ -50,7 +50,7 @@ export const renderDeckToCanvas = async ({
     .map((card) => card.imgUrl || getCardUrls(card.cardIdPrefix, card.id)?.base)
     .filter(Boolean)
 
-  const loadedBitmapsMap = await batchLoadImages(cardUrls, 6)
+  const loadedBitmapsMap = await batchLoadImages(cardUrls)
 
   let logoBitmap = null
   if (mode === 'u_climax') {
