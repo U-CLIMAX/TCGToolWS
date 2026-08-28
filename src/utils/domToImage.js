@@ -1,6 +1,8 @@
 import { normalizeFileName } from './sanitizeFilename'
 import { getMatchedWenkaiFontCss } from './fontEmbedding'
 import { inlineDomImages } from './imageInliner'
+import { wrap, transfer } from 'comlink'
+import DomToImageWorker from '@/workers/domToImage.worker.js?worker'
 
 /**
  * 将指定 DOM 节点转为 PNG 图片
@@ -69,18 +71,35 @@ export const convertElementToPng = async (
       img.src = dataUrl
     })
 
-    const canvas = document.createElement('canvas')
-    canvas.width = Math.round(width * scale)
-    canvas.height = Math.round(height * scale)
-    const ctx = canvas.getContext('2d')
-    if (!ctx) throw new Error('无法创建 Canvas 2D 上下文')
+    const targetW = Math.round(width * scale)
+    const targetH = Math.round(height * scale)
 
-    ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+    const offscreen = new OffscreenCanvas(targetW, targetH)
+    const octx = offscreen.getContext('2d')
+    if (!octx) throw new Error('无法创建 OffscreenCanvas 2D 上下文')
 
-    const blob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png'))
-    canvas.width = 0
-    canvas.height = 0
-    if (!blob) throw new Error('Canvas 导出 PNG 失败')
+    octx.drawImage(img, 0, 0, targetW, targetH)
+    const bitmap = offscreen.transferToImageBitmap()
+
+    const worker = new DomToImageWorker()
+    const api = wrap(worker)
+    let blob
+    try {
+      blob = await api.renderToBlob(
+        transfer(
+          {
+            bitmap,
+            width: targetW,
+            height: targetH,
+          },
+          [bitmap]
+        )
+      )
+    } finally {
+      worker.terminate()
+    }
+
+    if (!blob) throw new Error('Worker 导出 PNG 失败')
 
     if (download) {
       const filename = normalizeFileName(name)

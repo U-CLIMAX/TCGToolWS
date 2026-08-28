@@ -13,6 +13,7 @@
 @import './utilities/_rwd-text.css';
 @import './utilities/_gradient.css';
 @import './utilities/_lazy-load.css';
+@import './utilities/_overlay-accel.css';
 
 /* 主題定義與變數覆蓋 */
 @import './themes/_app.css';

@@ -4,6 +4,9 @@ import { normalizeFileName } from './sanitizeFilename'
 import { getMatchedWenkaiFontCss } from './fontEmbedding'
 import { inlineDomImages } from './imageInliner'
 import { getOverlayStyle, getOverlayBottom, getIconStyle, styleToCssRule } from './overlayStyle'
+import { batchLoadImages, loadImageWithDecode } from './cardImageLoader.js'
+import { wrap, transfer } from 'comlink'
+import DeckPdfWorker from '@/workers/deckPdf.worker.js?worker'
 
 const PAGE_OPTS = { w: 595, h: 842, cardW: 178.58, cardH: 249.45, gap: 2.83, cols: 3, rows: 3 }
 
@@ -13,17 +16,7 @@ const PRINT_CSS = [
   styleToCssRule('.pdf-overlay img, .pdf-overlay svg', getIconStyle(PAGE_OPTS.cardW)),
 ].join('\n')
 
-const loadImage = (src) =>
-  new Promise((resolve) => {
-    if (!src) return resolve(null)
-    const img = new Image()
-    img.crossOrigin = 'anonymous'
-    img.onload = () => resolve(img)
-    img.onerror = () => resolve(null)
-    img.src = src
-  })
-
-// 生成单卡中文效果覆层 HTML
+// 生成單卡中文效果覆層 HTML
 const getCardOverlayHtml = (card, x, y) => {
   if (card.type === '高潮卡' || !card.effect) return ''
   const bottom = getOverlayBottom(PAGE_OPTS.cardW, card.type)
@@ -31,86 +24,56 @@ const getCardOverlayHtml = (card, x, y) => {
 }
 
 /**
- * 导出卡组为 PDF (Canvas 2D 底图拼版 + SVG 效果覆层)
+ * 導出卡組為 PDF (透過 Web Worker + OffscreenCanvas 進行拼版與二進位構建)
+ *
+ * @param {Array} cards - 卡牌清單
+ * @param {string} name - 卡組檔名
+ * @param {'zh'|'jp'} language - 語言模式 ('zh' 需中文覆層)
  */
 export const convertDeckToPDF = async (cards, name, language) => {
   console.time('PDF conversion')
-
-  const { Pdf } = await import('documonster/pdf')
 
   const flatCards = sortCards(cards)
     .flatMap((c) => Array(c.quantity || 1).fill(c))
     .filter((c) => c.imgUrl)
   if (!flatCards.length) return
 
-  // 并行预加载卡图（限制并发度为 6，平滑网络与内存）
   const uniqueCardUrls = [...new Set(flatCards.map((c) => c.imgUrl))]
-  const cardImageMap = new Map()
-  const CONCURRENCY_LIMIT = 6
-  for (let i = 0; i < uniqueCardUrls.length; i += CONCURRENCY_LIMIT) {
-    const batch = uniqueCardUrls.slice(i, i + CONCURRENCY_LIMIT)
-    await Promise.all(
-      batch.map(async (src) => {
-        const img = await loadImage(src)
-        if (img) cardImageMap.set(src, img)
-      })
-    )
-  }
+  const cardImageMap = await batchLoadImages(uniqueCardUrls, 18)
 
-  let canvas = null
+  const cardsPerPage = PAGE_OPTS.cols * PAGE_OPTS.rows
+  const totalPages = Math.ceil(flatCards.length / cardsPerPage)
+
+  const startX =
+    (PAGE_OPTS.w - (PAGE_OPTS.cols * PAGE_OPTS.cardW + (PAGE_OPTS.cols - 1) * PAGE_OPTS.gap)) / 2
+  const startY =
+    (PAGE_OPTS.h - (PAGE_OPTS.rows * PAGE_OPTS.cardH + (PAGE_OPTS.rows - 1) * PAGE_OPTS.gap)) / 2
+
+  const scale = 2
+
   try {
-    const doc = new Pdf.Builder()
-    const cardsPerPage = PAGE_OPTS.cols * PAGE_OPTS.rows
-    const totalPages = Math.ceil(flatCards.length / cardsPerPage)
-
-    const startX =
-      (PAGE_OPTS.w - (PAGE_OPTS.cols * PAGE_OPTS.cardW + (PAGE_OPTS.cols - 1) * PAGE_OPTS.gap)) / 2
-    const startY =
-      (PAGE_OPTS.h - (PAGE_OPTS.rows * PAGE_OPTS.cardH + (PAGE_OPTS.rows - 1) * PAGE_OPTS.gap)) / 2
-
-    // 中文模式在循环外全卡组一次性提取所需字体子集，避免每页重复解析
-    let wenkaiFontCss = ''
-    if (language === 'zh') {
-      const allDeckText = flatCards.map((c) => c.effect || '').join(' ')
-      wenkaiFontCss = await getMatchedWenkaiFontCss(allDeckText)
-    }
-
-    const scale = 2
-    canvas = document.createElement('canvas')
-    canvas.width = Math.round(PAGE_OPTS.w * scale)
-    canvas.height = Math.round(PAGE_OPTS.h * scale)
-    const ctx = canvas.getContext('2d', { willReadFrequently: false })
-    if (!ctx) throw new Error('无法创建 Canvas 2D 上下文')
-
-    for (let pageIdx = 0; pageIdx < totalPages; pageIdx++) {
-      const pageCards = flatCards.slice(pageIdx * cardsPerPage, (pageIdx + 1) * cardsPerPage)
-
-      // 绘制 9 张卡片底图
-      ctx.save()
-      ctx.setTransform(1, 0, 0, 1, 0, 0)
-      ctx.fillStyle = '#ffffff'
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
-      ctx.scale(scale, scale)
-
-      pageCards.forEach((card, idx) => {
-        const col = idx % PAGE_OPTS.cols
-        const row = Math.floor(idx / PAGE_OPTS.cols)
-        const x = startX + col * (PAGE_OPTS.cardW + PAGE_OPTS.gap)
-        const y = startY + row * (PAGE_OPTS.cardH + PAGE_OPTS.gap)
-
-        const img = cardImageMap.get(card.imgUrl)
-        if (img) {
-          ctx.drawImage(img, x, y, PAGE_OPTS.cardW, PAGE_OPTS.cardH)
-        } else {
-          ctx.fillStyle = '#f0f0f0'
-          ctx.fillRect(x, y, PAGE_OPTS.cardW, PAGE_OPTS.cardH)
+    // 預先載入卡圖並轉為 ImageBitmap
+    const cardBitmaps = await Promise.all(
+      uniqueCardUrls.map(async (url) => {
+        const img = cardImageMap.get(url)
+        if (!img) return null
+        try {
+          const bitmap = await createImageBitmap(img)
+          return { url, bitmap }
+        } catch {
+          return null
         }
       })
+    )
 
-      ctx.restore()
+    // 中文模式在主線程預先將 SVG 效果覆層以目標尺寸 (1190x1684) 向量光柵化為 ImageBitmap
+    const overlayBitmaps = []
+    if (language === 'zh') {
+      const allDeckText = flatCards.map((c) => c.effect || '').join(' ')
+      const wenkaiFontCss = await getMatchedWenkaiFontCss(allDeckText)
 
-      // 中文模式绘制效果覆层
-      if (language === 'zh') {
+      for (let pageIdx = 0; pageIdx < totalPages; pageIdx++) {
+        const pageCards = flatCards.slice(pageIdx * cardsPerPage, (pageIdx + 1) * cardsPerPage)
         const overlaysHtml = pageCards
           .map((card, idx) => {
             const col = idx % PAGE_OPTS.cols
@@ -127,7 +90,6 @@ export const convertDeckToPDF = async (cards, name, language) => {
           container.style.cssText = `position: relative; width: ${PAGE_OPTS.w}px; height: ${PAGE_OPTS.h}px; margin: 0; padding: 0; background: transparent;`
           container.innerHTML = overlaysHtml
 
-          // 内联覆层中的所有图标（SVG 转原生矢量节点，位图转 Base64）
           await inlineDomImages(container)
 
           const xhtml = new XMLSerializer().serializeToString(container)
@@ -140,35 +102,53 @@ export const convertDeckToPDF = async (cards, name, language) => {
           </svg>`
 
           const dataUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`
-          const overlayImg = await loadImage(dataUrl)
-
+          const overlayImg = await loadImageWithDecode(dataUrl)
           if (overlayImg) {
-            ctx.drawImage(overlayImg, 0, 0, canvas.width, canvas.height)
+            const targetW = Math.round(PAGE_OPTS.w * scale)
+            const targetH = Math.round(PAGE_OPTS.h * scale)
+            const overlayCanvas = new OffscreenCanvas(targetW, targetH)
+            const octx = overlayCanvas.getContext('2d')
+            octx.drawImage(overlayImg, 0, 0, targetW, targetH)
+            const bitmap = overlayCanvas.transferToImageBitmap()
+
+            overlayBitmaps.push({ pageIdx, bitmap })
             overlayImg.src = ''
           }
         }
       }
-
-      // 输出当前页至 PDF
-      const pageBlob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/jpeg', 0.8))
-      if (!pageBlob) continue
-
-      const bytes = new Uint8Array(await pageBlob.arrayBuffer())
-      const page = doc.addPage({ width: PAGE_OPTS.w, height: PAGE_OPTS.h })
-      page.drawImage({
-        data: bytes,
-        format: 'jpeg',
-        x: 0,
-        y: 0,
-        width: PAGE_OPTS.w,
-        height: PAGE_OPTS.h,
-      })
-
-      // 让出主线程微时间片，便于安卓 WebView 进行垃圾回收并保持 UI 响应
-      await new Promise((resolve) => setTimeout(resolve, 0))
     }
 
-    const pdfBytes = await doc.build()
+    const transferList = []
+    for (const item of cardBitmaps) {
+      if (item?.bitmap) transferList.push(item.bitmap)
+    }
+    for (const item of overlayBitmaps) {
+      if (item?.bitmap) transferList.push(item.bitmap)
+    }
+
+    const worker = new DeckPdfWorker()
+    const api = wrap(worker)
+
+    let pdfBytes
+    try {
+      pdfBytes = await api.buildPdf(
+        transfer(
+          {
+            flatCards: flatCards.map((c) => ({ imgUrl: c.imgUrl })),
+            cardBitmaps,
+            overlayBitmaps,
+            pageOpts: PAGE_OPTS,
+            totalPages,
+            cardsPerPage,
+            scale,
+          },
+          transferList
+        )
+      )
+    } finally {
+      worker.terminate()
+    }
+
     const deckName = normalizeFileName(name)
     const pdfUrl = URL.createObjectURL(new Blob([pdfBytes], { type: 'application/pdf' }))
 
@@ -178,13 +158,9 @@ export const convertDeckToPDF = async (cards, name, language) => {
     link.click()
     URL.revokeObjectURL(pdfUrl)
   } catch (error) {
-    console.error('PDF conversion failed:', error)
+    console.error('PDF generation failed:', error)
     throw error
   } finally {
-    if (canvas) {
-      canvas.width = 0
-      canvas.height = 0
-    }
     cardImageMap.clear()
     console.timeEnd('PDF conversion')
   }

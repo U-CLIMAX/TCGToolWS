@@ -1,0 +1,12 @@
+/* Vuetify Overlay / Dialog GPU 合成層提升，避免彈窗展開時觸發底層重繪與 Alpha 混合卡頓 */
+.v-overlay__scrim {
+  will-change: opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.v-overlay__content {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}

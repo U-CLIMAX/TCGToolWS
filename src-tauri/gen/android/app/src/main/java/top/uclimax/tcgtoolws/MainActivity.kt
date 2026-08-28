@@ -74,9 +74,9 @@ class MainActivity : TauriActivity() {
     super.onWebViewCreate(webView)
     this.mWebView = webView
 
-    // Use LAYER_TYPE_NONE with transparent background to prevent modal/dialog flicker
-    webView.setLayerType(View.LAYER_TYPE_NONE, null)
-    webView.setBackgroundColor(0)
+    // Enable hardware acceleration layer with dark background to enable zero-copy GPU compositing
+    webView.setLayerType(View.LAYER_TYPE_HARDWARE, null)
+    webView.setBackgroundColor(android.graphics.Color.parseColor("#121212"))
 
     // Optimize settings for rendering, caching, and offscreen canvas
     webView.settings.apply {
@@ -85,7 +85,7 @@ class MainActivity : TauriActivity() {
       cacheMode = WebSettings.LOAD_DEFAULT
       allowFileAccess = true
       allowContentAccess = true
-      offscreenPreRaster = true
+      offscreenPreRaster = false
 
       // Disable Google SafeBrowsing to eliminate DNS/network timeout delays on launch
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
