@@ -1188,7 +1188,7 @@ const wsSeriesMap = {
     prefixes: ['SFN'],
     latestReleaseDate: '2026-08-28',
     yytUrl:
-      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=sfn&vers[]=sfnre&rare=&type=&kizu=0',
+      'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=sfn&vers[]=sfnre&vers[]=sfn2.0&rare=&type=&kizu=0',
   },
   'mrp': {
     name: 'Disney 镜之守卫者',
