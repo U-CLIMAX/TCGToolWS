@@ -77,10 +77,6 @@
       :blur-url="selectedCardData.blurUrl"
       :price="selectedCardData.price"
       :price-update-times="selectedCardData.priceUpdateTimes"
-      :linked-cards="selectedLinkedCards"
-      :is-loading-links="isLoadingLinks"
-      :parallel-cards="selectedParallelCards"
-      :is-loading-parallels="isLoadingParallels"
       :showActions="$route.name === 'GlobalSearch' ? false : true"
       :card-index="selectedCardIndex"
       :total-cards="displayedCards.length"
@@ -98,7 +94,7 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
 import { useDisplay } from 'vuetify'
-import { fetchCardByIdAndPrefix, getCardSeriesId } from '@/utils/card'
+import { getCardSeriesId } from '@/utils/card'
 import { getCardUrls } from '@/utils/getCardImage'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import { useUIStore } from '@/stores/ui'
@@ -107,7 +103,6 @@ import { useDeckStore } from '@/stores/deck'
 import { useAuthStore } from '@/stores/auth'
 import { useDevice } from '@/composables/useDevice'
 import { storeToRefs } from 'pinia'
-import { sortCards } from '@/utils/cardsSort'
 
 const props = defineProps({
   cards: {
@@ -168,10 +163,6 @@ const shouldHideLoader = computed(() => xs.value && props.cards.length <= 3)
 
 const isModalVisible = ref(false)
 const selectedCardData = ref(null)
-const selectedLinkedCards = ref([])
-const isLoadingLinks = ref(false)
-const selectedParallelCards = ref([])
-const isLoadingParallels = ref(false)
 const isTransitionDisabled = ref(false)
 let tableModeTimeout = null
 
@@ -278,83 +269,30 @@ const onNextCard = () => {
   }
 }
 
-const fetchLinkedCards = async (card) => {
-  try {
-    const cardToDisplay = await fetchCardByIdAndPrefix(card.id, card.cardIdPrefix)
-
-    if (cardToDisplay && cardToDisplay.link && cardToDisplay.link.length > 0) {
-      const linkedCardsData = await Promise.all(
-        cardToDisplay.link.map((id) => fetchCardByIdAndPrefix(id, cardToDisplay.cardIdPrefix))
-      )
-
-      if (selectedCardData.value?.card?.id === card.id) {
-        const flatCards = linkedCardsData.filter(Boolean)
-        const cardsWithPrice = flatCards.map((c) => ({
-          ...c,
-          price: getPrice(c),
-        }))
-        selectedLinkedCards.value = sortCards(cardsWithPrice)
-      }
-    }
-  } catch (error) {
-    console.error('Failed to fetch linked cards:', error)
-  } finally {
-    isLoadingLinks.value = false
-  }
-}
-
-const fetchParallelCards = async (card) => {
-  try {
-    const cardToDisplay = await fetchCardByIdAndPrefix(card.id, card.cardIdPrefix)
-
-    if (cardToDisplay && cardToDisplay.parallelCards && cardToDisplay.parallelCards.length > 0) {
-      const parallelCardsData = await Promise.all(
-        cardToDisplay.parallelCards.map((id) =>
-          fetchCardByIdAndPrefix(id, cardToDisplay.cardIdPrefix)
-        )
-      )
-
-      if (selectedCardData.value?.card?.id === card.id) {
-        const flatCards = parallelCardsData.filter(Boolean)
-        const cardsWithPrice = flatCards.map((c) => ({
-          ...c,
-          price: getPrice(c),
-        }))
-        selectedParallelCards.value = sortCards(cardsWithPrice)
-      }
-    }
-  } catch (error) {
-    console.error('Failed to fetch parallel cards:', error)
-  } finally {
-    isLoadingParallels.value = false
-  }
-}
-
-const onShowDetails = async (payload) => {
-  isLoadingLinks.value = true
-  isLoadingParallels.value = true
-  selectedLinkedCards.value = []
-  selectedParallelCards.value = []
+/**
+ * 响应卡牌卡片点击事件，唤起卡牌详情弹窗。
+ * 仅同步传递基础卡牌元数据与价格；重度的关联卡与平行卡数据由 CardDetailModal 在弹窗进场动效结束后自主获取。
+ * @param {object} payload 包含 card、imageUrl、blurUrl、price 与 priceUpdateTimes 的数据载荷
+ */
+const onShowDetails = (payload) => {
   const updateTimes = getPriceUpdateTimes(payload.card)
   selectedCardData.value = {
     ...payload,
     priceUpdateTimes: updateTimes,
   }
   isModalVisible.value = true
-  await Promise.all([fetchLinkedCards(payload.card), fetchParallelCards(payload.card)])
 }
 
-const onShowNewCard = async (payload) => {
-  isLoadingLinks.value = true
-  isLoadingParallels.value = true
-  selectedLinkedCards.value = []
-  selectedParallelCards.value = []
+/**
+ * 响应弹窗内部切换展示卡牌（如在详情弹窗内点击关联卡/平行卡）时的更新回调。
+ * @param {object} payload 目标卡牌数据载荷
+ */
+const onShowNewCard = (payload) => {
   const updateTimes = getPriceUpdateTimes(payload.card)
   selectedCardData.value = {
     ...payload,
     priceUpdateTimes: updateTimes,
   }
-  await Promise.all([fetchLinkedCards(payload.card), fetchParallelCards(payload.card)])
 }
 
 const infiniteScrollRef = ref(null)

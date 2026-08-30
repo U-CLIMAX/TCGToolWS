@@ -193,10 +193,6 @@
       :blur-url="modalCardImageUrl.blur"
       :price="selectedCardPrice"
       :price-update-times="selectedCardPriceUpdateTimes"
-      :linked-cards="linkedCardsDetails"
-      :is-loading-links="isLoadingLinkedCards"
-      :parallel-cards="parallelCardsDetails"
-      :is-loading-parallels="isLoadingParallelCards"
       :show-actions="true"
       :card-index="selectedCardIndex"
       :total-cards="deckCards.length"
@@ -496,7 +492,6 @@ import { useUIStore } from '@/stores/ui'
 import { usePriceStore } from '@/stores/price'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import { useDeckUpgradeRarity } from '@/composables/useDeckUpgradeRarity'
-import { sortCards } from '@/utils/cardsSort'
 import { deckRestrictionsLastUpdated } from '@/maps/deck-restrictions'
 import { generateDeckKey } from '@/utils/nanoid'
 import { seriesMap } from '@/maps/series-map'
@@ -820,10 +815,6 @@ const isModalVisible = ref(false)
 const selectedCardData = ref(null)
 const selectedCardPrice = ref(null)
 const selectedCardPriceUpdateTimes = ref(null)
-const linkedCardsDetails = ref([])
-const isLoadingLinkedCards = ref(false)
-const parallelCardsDetails = ref([])
-const isLoadingParallelCards = ref(false)
 
 const { selectedCardIndex, getPrevCard, getNextCard } = useCardNavigation(
   flattenedDisplayCards,
@@ -873,10 +864,10 @@ const modalCardImageUrl = computed(() => {
 })
 
 /**
- * Handles displaying a new card in the CardDetailModal.
- * Fetches card details and linked cards based on the provided payload.
- * The payload can either be the card object directly (from initial click) or an object containing a 'card' property (from CardDetailModal emit).
- * @param {object|{card: object, imgUrl: string}} cardPayload - The payload containing card information.
+ * 处理在 CardDetailModal 中展示新卡牌。
+ * 获取主卡牌基础信息与价格并显示弹窗；关联卡与平行卡数据由弹窗在进场动效结束后自主异步获取。
+ *
+ * @param {object|{card: object, imgUrl?: string, price?: number|string}} cardPayload - 包含卡牌数据或包装对象的载荷
  */
 const handleShowNewCard = async (cardPayload) => {
   try {
@@ -905,91 +896,10 @@ const handleShowNewCard = async (cardPayload) => {
       console.error('Failed to fetch card details for', cardToDisplay.id)
       return
     }
-    linkedCardsDetails.value = []
-    parallelCardsDetails.value = []
-    isLoadingLinkedCards.value = true
-    isLoadingParallelCards.value = true
     selectedCardData.value = card
     isModalVisible.value = true
-
-    const promises = []
-
-    if (card.link && Array.isArray(card.link) && card.link.length > 0) {
-      promises.push(
-        (async () => {
-          try {
-            const linkedCardsData = await Promise.all(
-              card.link.map(async (id) => fetchCardByIdAndPrefix(id, card.cardIdPrefix))
-            )
-            if (selectedCardData.value && selectedCardData.value.id === card.id) {
-              const flatCards = linkedCardsData.filter(Boolean)
-              const cardsWithPrice = flatCards.map((c) => {
-                const infos = getCardSeriesId(c.cardIdPrefix)
-                let p = null
-                for (const info of infos) {
-                  const foundPrice = priceStore.getPrice(info.id, c.id)
-                  if (foundPrice) {
-                    p = foundPrice
-                    break
-                  }
-                }
-                return {
-                  ...c,
-                  price: p ? p.toLocaleString() : null,
-                }
-              })
-              linkedCardsDetails.value = sortCards(cardsWithPrice)
-            }
-          } finally {
-            isLoadingLinkedCards.value = false
-          }
-        })()
-      )
-    } else {
-      isLoadingLinkedCards.value = false
-    }
-
-    if (card.parallelCards && Array.isArray(card.parallelCards) && card.parallelCards.length > 0) {
-      promises.push(
-        (async () => {
-          try {
-            const parallelCardsData = await Promise.all(
-              card.parallelCards.map(async (id) => fetchCardByIdAndPrefix(id, card.cardIdPrefix))
-            )
-            if (selectedCardData.value && selectedCardData.value.id === card.id) {
-              const flatCards = parallelCardsData.filter(Boolean)
-              const cardsWithPrice = flatCards.map((c) => {
-                const infos = getCardSeriesId(c.cardIdPrefix)
-                let p = null
-                for (const info of infos) {
-                  const foundPrice = priceStore.getPrice(info.id, c.id)
-                  if (foundPrice) {
-                    p = foundPrice
-                    break
-                  }
-                }
-                return {
-                  ...c,
-                  price: p ? p.toLocaleString() : null,
-                }
-              })
-              parallelCardsDetails.value = sortCards(cardsWithPrice)
-            }
-          } finally {
-            isLoadingParallelCards.value = false
-          }
-        })()
-      )
-    } else {
-      isLoadingParallelCards.value = false
-    }
-
-    await Promise.all(promises)
   } catch (error) {
     console.error('Error handling show new card:', error)
-  } finally {
-    isLoadingLinkedCards.value = false
-    isLoadingParallelCards.value = false
   }
 }
 

@@ -1,6 +1,7 @@
 <template>
   <v-card
     id="card-detail"
+    ref="cardModalRef"
     :ripple="false"
     v-touch="{
       left: handleSwipeLeft,
@@ -325,10 +326,14 @@
       :disabled="cardIndex === totalCards - 1"
     ></v-btn>
 
-    <DownloadTextDialog v-model="isDownloadTextDialogOpen" @confirm="executeDownloadText" />
+    <DownloadTextDialog
+      v-if="isDownloadTextDialogOpen"
+      v-model="isDownloadTextDialogOpen"
+      @confirm="executeDownloadText"
+    />
 
     <!-- Copy Card Option Dialog -->
-    <v-dialog v-model="isCopyCardDialogOpen" max-width="300">
+    <v-dialog v-if="isCopyCardDialogOpen" v-model="isCopyCardDialogOpen" max-width="300">
       <v-card class="rounded-2lg pa-2">
         <v-card-title class="text-subtitle-1">选择复制版本</v-card-title>
         <v-list nav density="compact">
@@ -348,7 +353,7 @@
     </v-dialog>
 
     <!-- Download Card Option Dialog -->
-    <v-dialog v-model="isDownloadCardDialogOpen" max-width="300">
+    <v-dialog v-if="isDownloadCardDialogOpen" v-model="isDownloadCardDialogOpen" max-width="300">
       <v-card class="rounded-2lg pa-2">
         <v-card-title class="text-subtitle-1">选择下载版本</v-card-title>
         <v-list nav density="compact">
@@ -368,7 +373,7 @@
     </v-dialog>
 
     <!-- Translation Report Dialog -->
-    <v-dialog v-model="isReportDialogOpen" max-width="500">
+    <v-dialog v-if="isReportDialogOpen" v-model="isReportDialogOpen" max-width="500">
       <v-card class="rounded-2lg pa-4">
         <v-card-title class="px-0 pt-0 text-subtitle-1 font-weight-bold d-flex align-center">
           <v-icon icon="i-mdi:flag-outline" class="mr-2" color="warning" size="20" />
@@ -410,7 +415,7 @@
 </template>
 
 <script setup>
-import { computed, ref, onUnmounted, onMounted } from 'vue'
+import { computed, ref, onUnmounted, onMounted, watch } from 'vue'
 import { useDisplay } from 'vuetify'
 import { storeToRefs } from 'pinia'
 import LinkedCard from './LinkedCard.vue'
@@ -428,6 +433,10 @@ import { useFilterStore } from '@/stores/filter'
 import { useGlobalSearchStore } from '@/stores/globalSearch'
 import { useDevice } from '@/composables/useDevice'
 import { formatEffectToHtml } from '@/utils/cardEffectFormatter'
+import { usePriceStore } from '@/stores/price'
+import { fetchCardByIdAndPrefix, getCardSeriesId } from '@/utils/card'
+import { sortCards } from '@/utils/cardsSort'
+import { useModalTransition } from '@/composables/useModalTransition'
 
 const { triggerSnackbar } = useSnackbar()
 const { smAndUp } = useDisplay()
@@ -436,6 +445,10 @@ const uiStore = useUIStore()
 const filterStore = useFilterStore()
 const globalSearchStore = useGlobalSearchStore()
 const downloadStore = useDownloadStore()
+const priceStore = usePriceStore()
+const { waitForTransition } = useModalTransition()
+
+const cardModalRef = ref(null)
 
 const emit = defineEmits(['close', 'show-new-card', 'prev-card', 'next-card', 'load-more'])
 
@@ -445,10 +458,6 @@ const props = defineProps({
   blurUrl: { type: String, required: true },
   price: { type: [String, Number], default: null },
   priceUpdateTimes: { type: Object, default: null },
-  linkedCards: { type: Array, default: () => [] },
-  isLoadingLinks: { type: Boolean, default: false },
-  parallelCards: { type: Array, default: () => [] },
-  isLoadingParallels: { type: Boolean, default: false },
   showActions: { type: Boolean, default: false },
   cardIndex: { type: Number, default: 0 },
   totalCards: { type: Number, default: 1 },
@@ -539,11 +548,128 @@ const handleKeydown = (e) => {
   }
 }
 
+// ─── 关联卡与平行卡延后加载状态 ─────────────
+// 弹窗自主管理关联卡与平行卡数据，等待进场动画完成后异步加载以确保 60fps 流畅体验
+
+const linkedCards = ref([])
+const isLoadingLinks = ref(false)
+const parallelCards = ref([])
+const isLoadingParallels = ref(false)
+
+/**
+ * 获取指定卡牌的当前市场价格。
+ * @param {object} targetCard 目标卡牌对象
+ * @returns {string|null} 格式化后的价格字符串或 null
+ */
+const getCardPrice = (targetCard) => {
+  const infos = getCardSeriesId(targetCard.cardIdPrefix)
+  if (!infos || infos.length === 0) return null
+
+  for (const info of infos) {
+    const p = priceStore.getPrice(info.id, targetCard.id)
+    if (p) {
+      return p.toLocaleString()
+    }
+  }
+  return null
+}
+
+/** 当前异步请求批次编号，用于在快速切换卡牌或组件卸载时消除竞态效应 */
+let currentCardRequestId = 0
+
+/**
+ * 延后加载关联卡与平行卡详情数据。
+ *
+ * 核心优化策略：
+ * 1. 优先等待弹窗进场 CSS 动画彻底完成。
+ * 2. 动效完成后，异步批量请求关联卡与平行卡数据，并在后台完成价格计算与排序。
+ * 3. 通过 requestId 严格校验，防止前后卡牌切换时的异步竞态乱序覆盖。
+ *
+ * @param {object} targetCard 当前展示的卡牌对象
+ */
+const loadSecondaryCards = async (targetCard) => {
+  if (!targetCard || !targetCard.id) return
+
+  const requestId = ++currentCardRequestId
+  isLoadingLinks.value = true
+  isLoadingParallels.value = true
+  linkedCards.value = []
+  parallelCards.value = []
+
+  // 1. 等待弹窗进场动画彻底完成（基于原生 DOM transitionend + 350ms 超时保底）
+  await waitForTransition(cardModalRef)
+
+  // 若已发生卡牌切换或组件已注销，丢弃当前批次
+  if (requestId !== currentCardRequestId || !targetCard.id) return
+
+  try {
+    const cardData = await fetchCardByIdAndPrefix(targetCard.id, targetCard.cardIdPrefix)
+    if (requestId !== currentCardRequestId || !cardData) return
+
+    // 2. 异步处理关联卡列表
+    if (cardData.link && Array.isArray(cardData.link) && cardData.link.length > 0) {
+      const linkedList = await Promise.all(
+        cardData.link.map((id) => fetchCardByIdAndPrefix(id, cardData.cardIdPrefix))
+      )
+      if (requestId === currentCardRequestId) {
+        const flatCards = linkedList.filter(Boolean)
+        const cardsWithPrice = flatCards.map((c) => ({
+          ...c,
+          price: getCardPrice(c),
+        }))
+        linkedCards.value = sortCards(cardsWithPrice)
+      }
+    } else {
+      linkedCards.value = []
+    }
+    isLoadingLinks.value = false
+
+    // 3. 异步处理平行卡（高罕/低罕）列表
+    if (
+      cardData.parallelCards &&
+      Array.isArray(cardData.parallelCards) &&
+      cardData.parallelCards.length > 0
+    ) {
+      const parallelList = await Promise.all(
+        cardData.parallelCards.map((id) => fetchCardByIdAndPrefix(id, cardData.cardIdPrefix))
+      )
+      if (requestId === currentCardRequestId) {
+        const flatCards = parallelList.filter(Boolean)
+        const cardsWithPrice = flatCards.map((c) => ({
+          ...c,
+          price: getCardPrice(c),
+        }))
+        parallelCards.value = sortCards(cardsWithPrice)
+      }
+    } else {
+      parallelCards.value = []
+    }
+    isLoadingParallels.value = false
+  } catch (err) {
+    console.error('Failed to fetch secondary cards in modal:', err)
+  } finally {
+    if (requestId === currentCardRequestId) {
+      isLoadingLinks.value = false
+      isLoadingParallels.value = false
+    }
+  }
+}
+
+// 监听卡牌 ID 切换（如下一张/上一张/关联卡跳转），自动重新加载对应的关联数据
+watch(
+  () => props.card?.id,
+  () => {
+    loadSecondaryCards(props.card)
+  }
+)
+
 onMounted(() => {
   window.addEventListener('keydown', handleKeydown)
+  loadSecondaryCards(props.card)
 })
 
 onUnmounted(() => {
+  currentCardRequestId++
   window.removeEventListener('keydown', handleKeydown)
   if (hideTimeout) {
     clearTimeout(hideTimeout)
