@@ -7,9 +7,6 @@
 /effect-icons/*
   Cache-Control: public, max-age=31536000, immutable
 
-/gpu-benchmarks/*
-  Cache-Control: public, max-age=31536000, immutable
-
 /icons/*
   Cache-Control: public, max-age=31536000, immutable
 

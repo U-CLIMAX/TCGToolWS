@@ -97,10 +97,7 @@
         >
           <div v-for="feature in features" :key="feature.id" class="feature-item">
             <div class="feature-card">
-              <div
-                class="feature-glass-bg"
-                :class="{ 'has-blur': isHardwareAccelerated === true }"
-              ></div>
+              <div class="feature-glass-bg"></div>
               <div class="feature-img-wrapper">
                 <v-img
                   :src="feature.image.src"
@@ -132,7 +129,6 @@
             prepend-icon="i-mdi:cloud-download"
             :to="{ name: 'Download' }"
             class="glass-download-btn mt-2 font-weight-bold"
-            :class="{ 'has-blur': isHardwareAccelerated === true }"
           >
             下载客户端
           </v-btn>
@@ -142,10 +138,7 @@
       <!-- Support Section -->
       <div ref="supportSection" class="support-section animated-section">
         <!-- Left Block -->
-        <div
-          class="glass-block support-left-block"
-          :class="{ 'has-blur': isHardwareAccelerated === true }"
-        >
+        <div class="glass-block support-left-block">
           <v-row class="pa-4 fill-height" align="center">
             <v-col cols="12" md="7" class="d-flex flex-column align-center justify-center">
               <div class="d-flex align-center mb-4">
@@ -233,10 +226,7 @@
           </v-row>
         </div>
         <!-- Right Block -->
-        <div
-          class="glass-block support-right-block"
-          :class="{ 'has-blur': isHardwareAccelerated === true }"
-        >
+        <div class="glass-block support-right-block">
           <h3>问题反馈邮箱</h3>
           <div class="feedback-email">
             <a href="mailto:issues@uclimax.cn">issues@uclimax.cn</a>
@@ -381,7 +371,6 @@ import { useDisplay } from 'vuetify'
 import { useAuthStore } from '@/stores/auth'
 import { useUIStore } from '@/stores/ui'
 import { useIntersectionObserver } from '@/composables/useIntersectionObserver'
-import { useHardwareAcceleration } from '@/composables/useHardwareAcceleration'
 
 // 使用 ?lqip 後綴，插件返回 Object：{ lqip, src, width, height }
 import seriesCardImg from '@/assets/intro/series_card_list.webp?lqip'
@@ -398,7 +387,6 @@ definePage({
   alias: '/home',
 })
 
-const { isHardwareAccelerated } = useHardwareAcceleration()
 const authStore = useAuthStore()
 const uiStore = useUIStore()
 const { smAndDown } = useDisplay()
@@ -911,21 +899,12 @@ onUnmounted(() => {
   left: 0;
   width: 100%;
   aspect-ratio: 49 / 32;
-  /* Fallback background for when blur is off */
-  background: rgba(var(--color-white-rgb), 0.4); /* Slightly more opaque */
-  border-radius: var(--border-radius-feature-glass);
-  border: 1px solid rgba(var(--color-white-rgb), 0.1);
-  transition:
-    backdrop-filter 0.3s ease,
-    background 0.3s ease;
-  z-index: 1;
-}
-
-.feature-glass-bg.has-blur {
   backdrop-filter: blur(10px) saturate(120%);
   -webkit-backdrop-filter: blur(10px) saturate(120%);
-  /* Original background for when blur is on */
   background: rgba(var(--color-white-rgb), 0.2);
+  border-radius: var(--border-radius-feature-glass);
+  border: 1px solid rgba(var(--color-white-rgb), 0.1);
+  z-index: 1;
 }
 
 .feature-img-wrapper {
@@ -961,8 +940,9 @@ onUnmounted(() => {
 
 /* --- Component: Glassmorphism Download Button --- */
 .glass-download-btn {
-  /* Fallback background for when blur is off */
-  background: rgba(var(--color-white-rgb), 0.25) !important;
+  backdrop-filter: blur(12px) saturate(120%);
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
+  background: rgba(var(--color-white-rgb), 0.15) !important;
   color: rgb(var(--color-white-rgb)) !important;
   border: 1px solid rgba(var(--color-white-rgb), 0.3);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
@@ -970,25 +950,13 @@ onUnmounted(() => {
   transition:
     background 0.3s ease,
     border-color 0.3s ease,
-    box-shadow 0.3s ease,
-    backdrop-filter 0.3s ease;
-}
-
-.glass-download-btn.has-blur {
-  backdrop-filter: blur(12px) saturate(120%);
-  -webkit-backdrop-filter: blur(12px) saturate(120%);
-  /* Original background for when blur is on */
-  background: rgba(var(--color-white-rgb), 0.15) !important;
+    box-shadow 0.3s ease;
 }
 
 .glass-download-btn:hover {
-  background: rgba(var(--color-white-rgb), 0.35) !important;
+  background: rgba(var(--color-white-rgb), 0.25) !important;
   border-color: rgba(var(--color-white-rgb), 0.5);
   box-shadow: 0 4px 24px rgba(var(--color-white-rgb), 0.15);
-}
-
-.glass-download-btn.has-blur:hover {
-  background: rgba(var(--color-white-rgb), 0.25) !important;
 }
 
 /* --- Promo Section --- */
@@ -1053,21 +1021,12 @@ onUnmounted(() => {
 }
 
 .glass-block {
-  /* Fallback background for when blur is off */
-  background: rgba(var(--color-white-rgb), 0.2); /* Slightly more opaque */
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  background: rgba(var(--color-white-rgb), 0.1);
   border-radius: var(--border-radius-glass-block);
   border: 1px solid rgba(var(--color-white-rgb), 0.1);
   padding: 2rem;
-  transition:
-    backdrop-filter 0.3s ease,
-    background 0.3s ease;
-}
-
-.glass-block.has-blur {
-  backdrop-filter: blur(10px) saturate(120%);
-  -webkit-backdrop-filter: blur(10px) saturate(120%);
-  /* Original background for when blur is on */
-  background: rgba(var(--color-white-rgb), 0.1);
 }
 
 .support-right-block {

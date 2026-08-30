@@ -1,7 +1,7 @@
 <template>
   <div class="home-background">
     <div class="solid-background-layer"></div>
-    <div v-show="isHardwareAccelerated === true" class="ambient-glow-layer" aria-hidden="true">
+    <div class="ambient-glow-layer" aria-hidden="true">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 710 710"
@@ -121,16 +121,10 @@
         </g>
       </svg>
     </div>
-    <div class="glass-layer" :class="{ 'has-blur': isHardwareAccelerated === true }"></div>
+    <div class="glass-layer"></div>
     <div class="texture-layer"></div>
   </div>
 </template>
-
-<script setup>
-import { useHardwareAcceleration } from '@/composables/useHardwareAcceleration'
-
-const { isHardwareAccelerated } = useHardwareAcceleration()
-</script>
 
 <style scoped>
 /* --- Base & Background --- */
@@ -180,11 +174,9 @@ const { isHardwareAccelerated } = useHardwareAcceleration()
   left: 0;
   width: 100%;
   height: 100%;
-  /* Fallback background for when blur is off */
-  background: linear-gradient(135deg, rgba(18, 18, 18, 0.4) 0%, rgba(18, 18, 18, 0.6) 100%);
-  transition:
-    backdrop-filter 0.3s ease,
-    background 0.3s ease; /* Smooth transition if check is slow */
+  backdrop-filter: blur(160px) saturate(180%) brightness(1.1);
+  -webkit-backdrop-filter: blur(160px) saturate(180%);
+  background: linear-gradient(135deg, rgba(18, 18, 18, 0.1) 0%, rgba(18, 18, 18, 0.3) 100%);
 }
 
 .texture-layer {
@@ -196,12 +188,5 @@ const { isHardwareAccelerated } = useHardwareAcceleration()
   background-image: url('/texture.webp'); /* Texture image */
   background-size: cover;
   background-position: center;
-}
-
-.glass-layer.has-blur {
-  backdrop-filter: blur(160px) saturate(180%) brightness(1.1);
-  -webkit-backdrop-filter: blur(160px) saturate(180%);
-  /* Background for when blur is on */
-  background: linear-gradient(135deg, rgba(18, 18, 18, 0.1) 0%, rgba(18, 18, 18, 0.3) 100%);
 }
 </style>
