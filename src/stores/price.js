@@ -35,7 +35,7 @@ export const usePriceStore = defineStore('price', () => {
           const now = Date.now()
           const refreshInterval = isPremium ? 3 * 60 * 60 * 1000 : 7 * 24 * 60 * 60 * 1000
 
-          if (seriesMeta && now < seriesMeta.ttl) {
+          if (seriesMeta && seriesMeta.yytUrl === yytUrl && now < seriesMeta.ttl) {
             prices.value = {
               ...prices.value,
               [seriesId]: seriesMeta.data,
@@ -94,6 +94,7 @@ export const usePriceStore = defineStore('price', () => {
           await priceCache.setItem(cacheKey, {
             data: parsedPrices,
             ttl,
+            yytUrl,
           })
         })
       )
@@ -115,28 +116,6 @@ export const usePriceStore = defineStore('price', () => {
     return priceMetadata.value[seriesId] || null
   }
 
-  const getCachedSeriesIds = async () => {
-    if (!priceCache) return []
-    const keys = await priceCache.keys()
-    return keys
-      .filter((k) => k.startsWith('meta_') || k.startsWith('meta_premium_'))
-      .map((k) => k.replace(/^meta_premium_|^meta_/, ''))
-  }
-
-  const clearCache = async (seriesId) => {
-    if (!priceCache || !seriesId) return
-    await priceCache.removeItem(`meta_${seriesId}`)
-    await priceCache.removeItem(`meta_premium_${seriesId}`)
-
-    const newPrices = { ...prices.value }
-    delete newPrices[seriesId]
-    prices.value = newPrices
-
-    const newMeta = { ...priceMetadata.value }
-    delete newMeta[seriesId]
-    priceMetadata.value = newMeta
-  }
-
   const reset = () => {
     prices.value = {}
     priceMetadata.value = {}
@@ -149,8 +128,6 @@ export const usePriceStore = defineStore('price', () => {
     fetchPrices,
     getPrice,
     getPriceUpdateTime,
-    getCachedSeriesIds,
-    clearCache,
     reset,
   }
 })

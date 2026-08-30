@@ -170,52 +170,6 @@
               </v-list-item>
             </div>
           </template>
-
-          <v-divider class="mt-2" />
-
-          <v-list-item>
-            <v-list-item-title class="mt-4 pb-1">数据管理</v-list-item-title>
-            <div class="text-body-2 text-medium-emphasis mt-2">
-              如果遇到价格无法显示或过旧，可以尝试清空本地系列价格缓存
-            </div>
-            <div class="d-flex flex-column ga-3 mt-4">
-              <v-row dense>
-                <v-col cols="12" sm="3">
-                  <v-select
-                    v-model="clearGameType"
-                    :items="GAME_TYPE_OPTIONS"
-                    variant="outlined"
-                    density="compact"
-                    hide-details
-                    @update:model-value="clearSeriesId = null"
-                  ></v-select>
-                </v-col>
-                <v-col cols="12" sm="9">
-                  <v-autocomplete
-                    v-model="clearSeriesId"
-                    :items="availableSeriesOptions"
-                    label="选择系列"
-                    variant="outlined"
-                    density="compact"
-                    hide-details
-                    :menu-props="{ contentClass: 'themed-scrollbar scrollbar-gutter-auto' }"
-                  ></v-autocomplete>
-                </v-col>
-              </v-row>
-
-              <v-btn
-                variant="tonal"
-                color="warning"
-                prepend-icon="i-mdi:cached"
-                @click="handleClearPriceCache"
-                :loading="isClearingCache"
-                :disabled="!clearSeriesId"
-                class="rounded-lg"
-              >
-                清空该系列缓存
-              </v-btn>
-            </div>
-          </v-list-item>
         </v-list>
       </v-card-text>
     </v-card>
@@ -230,40 +184,28 @@
 </template>
 
 <script setup>
-import { ref, watch, computed, defineAsyncComponent } from 'vue'
+import { ref, computed, defineAsyncComponent } from 'vue'
 import { useUIStore } from '@/stores/ui'
-import { usePriceStore } from '@/stores/price'
 import { useDisplay } from 'vuetify'
-import { useSnackbar } from '@/composables/useSnackbar'
-import { GAME_TYPE_OPTIONS, ALL_SERIES_OPTIONS } from '@/maps/series-map'
 
 const ImageCropperModal = defineAsyncComponent(() => import('./ImageCropperModal.vue'))
 
 const { smAndUp, xs } = useDisplay()
-const { triggerSnackbar } = useSnackbar()
 
 const uiStore = useUIStore()
-const priceStore = usePriceStore()
 const fileInputRef = ref(null)
 const isCropperOpen = ref(false)
 const imageToCrop = ref(null)
 const isDraggingSlider = ref(false)
-const isClearingCache = ref(false)
 
-const clearGameType = ref(GAME_TYPE_OPTIONS[0].value)
-const clearSeriesId = ref(null)
-const cachedSeriesIds = ref([])
-
-const props = defineProps({
+defineProps({
   modelValue: {
     type: Boolean,
     required: true,
   },
 })
 
-const emit = defineEmits(['update:modelValue'])
-
-const dialog = ref(props.modelValue)
+defineEmits(['update:modelValue'])
 
 const previewAspectRatio = computed(() => {
   if (uiStore.backgroundImage) {
@@ -271,28 +213,6 @@ const previewAspectRatio = computed(() => {
     return width && height ? width / height : 16 / 9
   }
   return 16 / 9
-})
-
-const availableSeriesOptions = computed(() => {
-  return ALL_SERIES_OPTIONS.filter(
-    (opt) => opt.game === clearGameType.value && cachedSeriesIds.value.includes(opt.value)
-  )
-})
-
-watch(
-  () => props.modelValue,
-  async (newValue) => {
-    dialog.value = newValue
-    if (newValue) {
-      cachedSeriesIds.value = await priceStore.getCachedSeriesIds()
-    }
-  }
-)
-
-watch(dialog, (newValue) => {
-  if (!newValue) {
-    emit('update:modelValue', false)
-  }
 })
 
 const onFileChange = (event) => {
@@ -327,21 +247,6 @@ const clearBackground = () => {
 
 const handleUploadClick = () => {
   fileInputRef.value?.click()
-}
-
-const handleClearPriceCache = async () => {
-  try {
-    isClearingCache.value = true
-    await priceStore.clearCache(clearSeriesId.value)
-    triggerSnackbar('价格缓存已清空', 'success')
-    clearSeriesId.value = null
-    cachedSeriesIds.value = await priceStore.getCachedSeriesIds()
-  } catch (error) {
-    console.error('Clear price cache error:', error)
-    triggerSnackbar('清空价格缓存失败', 'error')
-  } finally {
-    isClearingCache.value = false
-  }
 }
 </script>
 

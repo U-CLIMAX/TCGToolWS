@@ -4,6 +4,20 @@ import { decompressFromEncodedURIComponent } from 'lz-string'
 import { parseTokens, fetchPageWithFallback } from '../services/scraper.js'
 
 /**
+ * Fast non-cryptographic string hash (32-bit FNV-1a)
+ * @param {string} str - String to hash.
+ * @returns {string} Base36 encoded hash string.
+ */
+const getFastHash = (str) => {
+  let hash = 2166136261
+  for (let i = 0; i < str.length; i++) {
+    hash ^= str.charCodeAt(i)
+    hash = Math.imul(hash, 16777619)
+  }
+  return (hash >>> 0).toString(36)
+}
+
+/**
  * Handles fetching series prices from Yuyu-tei.
  * Fetches all pages with max 3 concurrent requests, compresses, and caches in KV.
  * @param {AppContext} c - Hono context object.
@@ -43,7 +57,8 @@ export const handleGetSeriesPrices = async (c) => {
       }
     }
 
-    const kvKey = isPremium ? `premium:${seriesId}` : seriesId
+    const urlHash = getFastHash(yytUrl)
+    const kvKey = isPremium ? `premium:${seriesId}:${urlHash}` : `${seriesId}:${urlHash}`
     const ttl = isPremium ? 3 * 60 * 60 : 7 * 24 * 60 * 60 // 3 hours vs 7 days
 
     const cacheControl = isPremium
