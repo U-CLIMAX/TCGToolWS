@@ -59,7 +59,7 @@ export const handleGetSeriesPrices = async (c) => {
 
     const urlHash = getFastHash(yytUrl)
     const kvKey = isPremium ? `premium:${seriesId}:${urlHash}` : `${seriesId}:${urlHash}`
-    const ttl = isPremium ? 3 * 60 * 60 : 7 * 24 * 60 * 60 // 3 hours vs 7 days
+    const ttl = isPremium ? 3 * 60 * 60 : 24 * 60 * 60 // 3 hours vs 1 day
 
     const cacheControl = isPremium
       ? 'private, no-cache, must-revalidate'

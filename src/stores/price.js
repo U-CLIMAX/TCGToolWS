@@ -33,7 +33,7 @@ export const usePriceStore = defineStore('price', () => {
           // Check localforage cache first
           const seriesMeta = await priceCache.getItem(cacheKey)
           const now = Date.now()
-          const refreshInterval = isPremium ? 3 * 60 * 60 * 1000 : 7 * 24 * 60 * 60 * 1000
+          const refreshInterval = isPremium ? 3 * 60 * 60 * 1000 : 24 * 60 * 60 * 1000
 
           if (seriesMeta && seriesMeta.yytUrl === yytUrl && now < seriesMeta.ttl) {
             prices.value = {
