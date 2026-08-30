@@ -8,12 +8,13 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useDeckEncoder } from '@/composables/useDeckEncoder'
 import { fetchCardByIdAndPrefix } from '@/utils/card'
 import { useUIStore } from '@/stores/ui'
 import { useDeckStore } from '@/stores/deck'
+import { useFilterStore } from '@/stores/filter'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { findDeckSeriesId } from '@/utils/findDeckSeriesId'
 import { seriesMap } from '@/maps/series-map'
@@ -35,6 +36,11 @@ const { triggerSnackbar } = useSnackbar()
 const deckKey = route.params.key
 const deck = ref(null)
 const cards = ref({})
+const filterStore = useFilterStore()
+
+onUnmounted(() => {
+  filterStore.reset()
+})
 
 const handleSaveDeck = async ({ name, coverCardId, closeDialog, tags }) => {
   uiStore.setLoading(true)

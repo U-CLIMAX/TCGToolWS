@@ -105,13 +105,15 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     costRange.value = data.filterOptions.costRange
     powerRange.value = data.filterOptions.powerRange
 
+    const cardCount = data.cards?.length || 0
     resetFilters()
     await initializeWorker(data.cards, {
       game: currentGame.value,
       version,
       indexFiles,
     })
-    console.log(`✅ Successfully loaded ${data.cards.length} cards from ${source}`)
+    console.log(`✅ Successfully loaded ${cardCount} cards from ${source}`)
+    data.cards = null
   }
 
   /**

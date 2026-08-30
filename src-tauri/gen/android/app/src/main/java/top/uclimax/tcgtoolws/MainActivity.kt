@@ -104,4 +104,31 @@ class MainActivity : TauriActivity() {
       bridge.handleDownloadListener(url, userAgent, contentDisposition, mimetype)
     }
   }
+
+  override fun onStop() {
+    super.onStop()
+    mWebView?.let { wv ->
+      wv.onPause()
+      // false indicates clearing only the RAM bitmap/decode cache, preserving disk cache to avoid network re-fetches
+      wv.clearCache(false)
+    }
+  }
+
+  override fun onStart() {
+    super.onStart()
+    mWebView?.onResume()
+  }
+
+  override fun onTrimMemory(level: Int) {
+    super.onTrimMemory(level)
+    if (level >= android.content.ComponentCallbacks2.TRIM_MEMORY_UI_HIDDEN) {
+      mWebView?.clearCache(false)
+      System.gc()
+    }
+  }
+
+  override fun onDestroy() {
+    mWebView = null
+    super.onDestroy()
+  }
 }

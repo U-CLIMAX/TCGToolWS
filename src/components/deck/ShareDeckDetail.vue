@@ -30,6 +30,7 @@ import { fetchCardByIdAndPrefix } from '@/utils/card'
 import { useUIStore } from '@/stores/ui'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useDeckStore } from '@/stores/deck'
+import { useFilterStore } from '@/stores/filter'
 import { generateDeckKey } from '@/utils/nanoid'
 import { seriesMap } from '@/maps/series-map'
 import { useModalTransition } from '@/composables/useModalTransition'
@@ -58,6 +59,7 @@ const containerRef = ref(null)
 const deck = ref(null)
 const cards = ref({})
 const isLoading = ref(false)
+const filterStore = useFilterStore()
 
 /**
  * 保存或另存卡组至用户个人库。
@@ -178,5 +180,6 @@ onMounted(() => {
 
 onUnmounted(() => {
   currentLoadRequestId++
+  filterStore.reset()
 })
 </script>

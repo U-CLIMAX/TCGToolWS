@@ -3713,6 +3713,7 @@ dependencies = [
 name = "tcgtoolws"
 version = "1.0.2"
 dependencies = [
+ "libc",
  "log",
  "serde",
  "serde_json",

@@ -36,6 +36,9 @@ tauri-plugin-window-state = "2"
 [target.'cfg(target_os = "android")'.dependencies]
 tauri-plugin-webview-upgrade = { git = "https://github.com/readest/tauri-plugin-webview-upgrade", rev = "bbb5bd33ef4ab644e915f7264ef15a8da97cb284" }
 
+[target.'cfg(target_os = "linux")'.dependencies]
+libc = "0.2"
+
 [profile.dev]
 incremental = true
 

@@ -519,6 +519,7 @@ import { useUIStore } from '@/stores/ui'
 import { useDeckStore } from '@/stores/deck'
 import { useAuthStore } from '@/stores/auth'
 import { usePriceStore } from '@/stores/price'
+import { useFilterStore } from '@/stores/filter'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import { useDevice } from '@/composables/useDevice'
 import { sortCards } from '@/utils/cardsSort'
@@ -540,6 +541,7 @@ const { triggerSnackbar } = useSnackbar()
 const uiStore = useUIStore()
 const authStore = useAuthStore()
 const priceStore = usePriceStore()
+const filterStore = useFilterStore()
 const { isTouch } = useDevice()
 const { userRole } = storeToRefs(authStore)
 const deckStore = useDeckStore()
@@ -798,6 +800,10 @@ onMounted(async () => {
   } finally {
     uiStore.setLoading(false)
   }
+})
+
+onUnmounted(() => {
+  filterStore.reset()
 })
 
 const groupBy = ref('level')

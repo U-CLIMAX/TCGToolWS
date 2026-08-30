@@ -1,4 +1,4 @@
-import { ref, computed, watch, shallowRef, toRaw, onScopeDispose } from 'vue'
+import { ref, computed, watch, shallowRef, toRaw } from 'vue'
 import { wrap } from 'comlink'
 import FilterWorker from '@/workers/filter.worker.js?worker'
 import { debounceRef } from '@/composables/useDebounceRef'
@@ -159,6 +159,7 @@ export const useCardFiltering = (
       workerApiInstance = null
       workerReadyPromise = null
       resolveWorkerReady = null
+      workerResults.value = []
     }
   }
 
@@ -232,9 +233,6 @@ export const useCardFiltering = (
       return null
     }
   }
-
-  // Cleanup on scope dispose (works in components, stores, or manual scopes)
-  onScopeDispose(terminateWorker)
 
   return {
     // State
