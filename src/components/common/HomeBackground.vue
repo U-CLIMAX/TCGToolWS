@@ -185,8 +185,16 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('/texture.webp'); /* Texture image */
-  background-size: cover;
-  background-position: center;
+  background-image: url('@/assets/ui/bg.svg');
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: auto 100%;
+}
+
+@media (max-width: 600px) {
+  .texture-layer {
+    background-size: auto 75%;
+    background-position: right -70px center;
+  }
 }
 </style>
