@@ -27,7 +27,7 @@
 
         <!-- Compact 模式下 Hover 時顯示的資訊覆蓋層 -->
         <div v-if="isCompact" class="hover-overlay rounded-2lg d-flex align-end">
-          <div class="overlay-content pa-2 w-100">
+          <div class="pa-2 w-100">
             <div class="text-caption text-white text-truncate mb-1">
               <v-icon size="x-small" class="mr-1" icon="i-mdi:layers-outline" />
               {{ seriesData.prefixes.map((p) => p.replace('[cn]', '')).join(', ') }}
