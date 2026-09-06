@@ -50,6 +50,7 @@
             location="bottom center"
             offset="10"
             open-on-hover
+            :content-class="hasBackgroundImage ? 'glass-menu rounded-3md' : undefined"
           >
             <template v-slot:activator="{ props }">
               <v-btn
@@ -69,7 +70,6 @@
             <v-list
               v-model:opened="desktopOpenedGroups"
               density="compact"
-              :class="{ 'glass-menu': hasBackgroundImage }"
               class="rounded-3md"
               nav
               indent="20"
@@ -241,7 +241,12 @@
       :bg-color="isHomeRoute ? 'rgb(33, 33, 33)' : undefined"
     >
       <!-- Toolbox Menu Activator instead of Profile btn -->
-      <v-menu :close-on-content-click="false" location="top right" offset="10">
+      <v-menu
+        :close-on-content-click="false"
+        location="top right"
+        offset="10"
+        :content-class="hasBackgroundImage ? 'glass-menu rounded-3md' : undefined"
+      >
         <template v-slot:activator="{ props }">
           <v-btn
             v-bind="props"
@@ -258,7 +263,6 @@
         <v-list
           v-model:opened="mobileOpenedGroups"
           density="compact"
-          :class="{ 'glass-menu': hasBackgroundImage }"
           class="rounded-3md"
           nav
           indent="20"

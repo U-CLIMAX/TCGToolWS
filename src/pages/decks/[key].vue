@@ -25,7 +25,12 @@
                   @click="openExportDialog"
                   v-tooltip:bottom="{ text: '汇出卡组', disabled: isTouch }"
                 ></v-btn>
-                <v-menu location="bottom start" offset="12" open-on-hover>
+                <v-menu
+                  location="bottom start"
+                  offset="12"
+                  open-on-hover
+                  :content-class="hasBackgroundImage ? 'glass-menu rounded-3md' : undefined"
+                >
                   <template v-slot:activator="{ props }">
                     <v-btn
                       v-bind="props"
@@ -35,12 +40,7 @@
                       :disabled="isLocalDeck"
                     ></v-btn>
                   </template>
-                  <v-list
-                    nav
-                    density="compact"
-                    :class="{ 'glass-menu': hasBackgroundImage }"
-                    class="rounded-3md"
-                  >
+                  <v-list nav density="compact" class="rounded-3md">
                     <v-list-item
                       @click="handleShareCard"
                       title="复制分享链接"
