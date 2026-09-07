@@ -113,6 +113,7 @@
         :style="{ position: $vuetify.display.mdAndUp ? 'relative' : 'static', minWidth: 0 }"
       >
         <div
+          ref="detailsContainerRef"
           class="themed-scrollbar flex-grow-1 w-100"
           :class="{
             'position-absolute': $vuetify.display.mdAndUp,
@@ -415,7 +416,7 @@
 </template>
 
 <script setup>
-import { computed, ref, onUnmounted, onMounted, watch } from 'vue'
+import { computed, ref, onUnmounted, onMounted, watch, nextTick } from 'vue'
 import { useDisplay } from 'vuetify'
 import { storeToRefs } from 'pinia'
 import LinkedCard from './LinkedCard.vue'
@@ -449,6 +450,7 @@ const priceStore = usePriceStore()
 const { waitForTransition } = useModalTransition()
 
 const cardModalRef = ref(null)
+const detailsContainerRef = ref(null)
 
 const emit = defineEmits(['close', 'show-new-card', 'prev-card', 'next-card', 'load-more'])
 
@@ -655,16 +657,36 @@ const loadSecondaryCards = async (targetCard) => {
   }
 }
 
-// 监听卡牌 ID 切换（如下一张/上一张/关联卡跳转），自动重新加载对应的关联数据
+/**
+ * 将卡片详情弹窗的滚动条重置回最顶端。
+ * 针对桌面端（右侧详情栏）与移动端（卡片主体）的滚动容器分别执行重置。
+ */
+const scrollToTop = () => {
+  nextTick(() => {
+    if (detailsContainerRef.value) {
+      detailsContainerRef.value.scrollTop = 0
+    }
+    const cardEl = cardModalRef.value?.$el || cardModalRef.value
+    if (cardEl) {
+      cardEl.scrollTop = 0
+    }
+  })
+}
+
+// 监听卡牌切换（如下一张/上一张/关联卡跳转/重新打开），自动重置滚动条并重新加载对应的关联数据
 watch(
-  () => props.card?.id,
-  () => {
-    loadSecondaryCards(props.card)
+  () => props.card,
+  (newCard, oldCard) => {
+    scrollToTop()
+    if (newCard?.id !== oldCard?.id) {
+      loadSecondaryCards(newCard)
+    }
   }
 )
 
 onMounted(() => {
   window.addEventListener('keydown', handleKeydown)
+  scrollToTop()
   loadSecondaryCards(props.card)
 })
 
