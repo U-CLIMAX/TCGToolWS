@@ -39,7 +39,7 @@
               :disabled="item.requiresAuth && !authStore.isAuthenticated"
             >
               <template #prepend>
-                <v-icon :icon="navIcons[item.icon]" size="24" />
+                <v-icon :icon="item.icon" size="24" />
               </template>
             </v-btn>
           </template>
@@ -62,7 +62,7 @@
                 :color="isHomeRoute ? 'white' : undefined"
               >
                 <template #prepend>
-                  <v-icon :icon="navIcons['toolbox.svg']" size="24" />
+                  <v-icon :icon="toolboxIcon" size="24" />
                 </template>
                 工具箱
               </v-btn>
@@ -84,7 +84,7 @@
                   <v-list-item
                     v-bind="props"
                     title="卡片搜索"
-                    :prepend-icon="navIcons['search.svg']"
+                    :prepend-icon="searchIcon"
                     :active="$route.name === 'GlobalSearch'"
                     :color="routeGameColor"
                     slim
@@ -110,7 +110,7 @@
                 <v-list-item
                   :to="{ name: subItem.name }"
                   :title="subItem.text"
-                  :prepend-icon="navIcons[subItem.icon]"
+                  :prepend-icon="subItem.icon"
                   slim
                   class="rounded-3md"
                   :disabled="subItem.requiresAuth && !authStore.isAuthenticated"
@@ -225,7 +225,7 @@
           class="rounded-pill mx-1"
           :disabled="item.requiresAuth && !authStore.isAuthenticated"
         >
-          <v-icon :icon="navIcons[item.icon]" size="32" />
+          <v-icon :icon="item.icon" size="32" />
         </v-btn>
       </template>
     </v-bottom-navigation>
@@ -256,7 +256,7 @@
             :color="isHomeRoute ? 'white' : undefined"
           >
             <v-badge :model-value="noticeStore.hasNew" color="error" dot offset-x="2" offset-y="2">
-              <v-icon :icon="navIcons['toolbox.svg']" size="32" />
+              <v-icon :icon="toolboxIcon" size="32" />
             </v-badge>
           </v-btn>
         </template>
@@ -298,7 +298,7 @@
               <v-list-item
                 v-bind="props"
                 title="卡片搜索"
-                :prepend-icon="navIcons['search.svg']"
+                :prepend-icon="searchIcon"
                 :active="$route.name === 'GlobalSearch'"
                 :color="routeGameColor"
                 slim
@@ -324,7 +324,7 @@
             <v-list-item
               :to="{ name: subItem.name }"
               :title="subItem.text"
-              :prepend-icon="navIcons[subItem.icon]"
+              :prepend-icon="subItem.icon"
               slim
               class="rounded-3md"
               :disabled="subItem.requiresAuth && !authStore.isAuthenticated"
@@ -564,55 +564,44 @@ const confirmLogout = () => {
   isUserProfileModalOpen.value = false
 }
 
-const navIcons = {
-  'home.svg': HomeIcon,
-  'series-card-table.svg': seriesCardTableIcon,
-  'deck.svg': deckIcon,
-  'search.svg': searchIcon,
-  'toolbox.svg': toolboxIcon,
-  'deck-gallery.svg': deckGalleryIcon,
-  'community.svg': communityIcon,
-  'banlist.svg': banListIcon,
-}
-
 const navItems = [
-  { text: '首页', name: 'Home', requiresAuth: false, icon: 'home.svg' },
+  { text: '首页', name: 'Home', requiresAuth: false, icon: HomeIcon },
   {
     text: '系列卡表',
     name: 'SeriesCardTable',
     requiresAuth: false,
-    icon: 'series-card-table.svg',
+    icon: seriesCardTableIcon,
     group: 'series',
   },
-  { text: '我的卡组', name: 'Decks', requiresAuth: true, icon: 'deck.svg', group: 'decks' },
+  { text: '我的卡组', name: 'Decks', requiresAuth: true, icon: deckIcon, group: 'decks' },
 ]
 
 const toolboxItems = [
   {
     text: '卡组广场',
     name: 'DecksGallery',
-    icon: 'deck-gallery.svg',
+    icon: deckGalleryIcon,
     requiresAuth: false,
     group: 'toolbox',
   },
   {
     text: '限制卡表',
     name: 'BanList',
-    icon: 'banlist.svg',
+    icon: banListIcon,
     requiresAuth: false,
     group: 'toolbox',
   },
   {
     text: '玩家社群',
     name: 'Community',
-    icon: 'community.svg',
+    icon: communityIcon,
     requiresAuth: false,
     group: 'toolbox',
   },
   {
     text: '卡片搜索',
     name: 'GlobalSearch',
-    icon: 'search.svg',
+    icon: searchIcon,
     group: 'toolbox',
   },
 ]
