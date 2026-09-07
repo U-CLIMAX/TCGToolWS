@@ -1,8 +1,11 @@
 import { normalizeFileName } from './sanitizeFilename'
 import { getMatchedWenkaiFontCss } from './fontEmbedding'
 import { inlineDomImages } from './imageInliner'
-import { wrap, transfer } from 'comlink'
+import { transfer } from 'comlink'
 import DomToImageWorker from '@/workers/domToImage.worker.js?worker'
+import { createManagedWorker } from '@/utils/workerManager'
+
+const domToImageWorkerManager = createManagedWorker(DomToImageWorker)
 
 /**
  * 将指定 DOM 节点转为 PNG 图片
@@ -81,22 +84,23 @@ export const convertElementToPng = async (
     octx.drawImage(img, 0, 0, targetW, targetH)
     const bitmap = offscreen.transferToImageBitmap()
 
-    const worker = new DomToImageWorker()
-    const api = wrap(worker)
     let blob
     try {
-      blob = await api.renderToBlob(
-        transfer(
-          {
-            bitmap,
-            width: targetW,
-            height: targetH,
-          },
-          [bitmap]
+      blob = await domToImageWorkerManager.run((api) =>
+        api.renderToBlob(
+          transfer(
+            {
+              bitmap,
+              width: targetW,
+              height: targetH,
+            },
+            [bitmap]
+          )
         )
       )
-    } finally {
-      worker.terminate()
+    } catch (err) {
+      bitmap?.close?.()
+      throw err
     }
 
     if (!blob) throw new Error('Worker 导出 PNG 失败')

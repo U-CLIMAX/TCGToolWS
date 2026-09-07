@@ -3,8 +3,11 @@ import { getCardUrls } from '@/utils/getCardImage'
 import { generate } from 'lean-qr'
 import logoUrl from '@/assets/ui/logo.webp'
 import { batchLoadImages, loadImageWithDecode } from '@/utils/cardImageLoader.js'
-import { wrap, transfer } from 'comlink'
+import { transfer } from 'comlink'
 import DeckCanvasWorker from '@/workers/deckCanvas.worker.js?worker'
+import { createManagedWorker } from '@/utils/workerManager'
+
+const deckCanvasWorkerManager = createManagedWorker(DeckCanvasWorker)
 
 /**
  * 渲染卡組大圖 (支援 U-CLIMAX 與 TTS 模式)
@@ -87,25 +90,24 @@ export const renderDeckToCanvas = async ({
     if (item?.bitmap) transferList.push(item.bitmap)
   }
 
-  const worker = new DeckCanvasWorker()
-  const api = wrap(worker)
-
   let result
   try {
-    result = await api.render(
-      transfer(
-        {
-          targetCards,
-          cardBitmaps,
-          placeholderBitmap,
-          logoBitmap,
-          qrBitmap,
-          deckName,
-          deckKey,
-          mode,
-          scale,
-        },
-        transferList
+    result = await deckCanvasWorkerManager.run((api) =>
+      api.render(
+        transfer(
+          {
+            targetCards,
+            cardBitmaps,
+            placeholderBitmap,
+            logoBitmap,
+            qrBitmap,
+            deckName,
+            deckKey,
+            mode,
+            scale,
+          },
+          transferList
+        )
       )
     )
   } catch (err) {
@@ -114,8 +116,6 @@ export const renderDeckToCanvas = async ({
     qrBitmap?.close?.()
     cardBitmaps.forEach((item) => item?.bitmap?.close?.())
     throw err
-  } finally {
-    worker.terminate()
   }
 
   const src = URL.createObjectURL(result.blob)

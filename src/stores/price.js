@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia'
 import { ref, shallowRef } from 'vue'
 import localforage from 'localforage'
-import { wrap, transfer } from 'comlink'
+import { transfer } from 'comlink'
 import PriceWorker from '@/workers/price.worker.js?worker'
+import { createManagedWorker } from '@/utils/workerManager'
 import { useAuthStore } from './auth'
 import { compressToEncodedURIComponent } from 'lz-string'
 
@@ -10,26 +11,7 @@ const priceCache = localforage.createInstance({
   name: 'card-prices',
 })
 
-let workerInstance = null
-let priceWorker = null
-let idleTimer = null
-let activeWorkerTasks = 0
-
-/**
- * Get or initialize singleton PriceWorker Comlink instance.
- * @returns {import('comlink').Remote<typeof import('@/workers/price.worker.js')>}
- */
-const getPriceWorker = () => {
-  if (idleTimer) {
-    clearTimeout(idleTimer)
-    idleTimer = null
-  }
-  if (!priceWorker) {
-    workerInstance = new PriceWorker()
-    priceWorker = wrap(workerInstance)
-  }
-  return priceWorker
-}
+const priceWorkerManager = createManagedWorker(PriceWorker)
 
 export const usePriceStore = defineStore('price', () => {
   const prices = shallowRef({}) // { seriesId: { [cardId]: price } }
@@ -107,37 +89,9 @@ export const usePriceStore = defineStore('price', () => {
       }
 
       const compressedBuffer = await res.arrayBuffer()
-      const worker = getPriceWorker()
-      if (idleTimer) {
-        clearTimeout(idleTimer)
-        idleTimer = null
-      }
-      activeWorkerTasks++
-
-      let parsedPrices
-      try {
-        parsedPrices = await worker.parsePricesFromBuffer(
-          transfer(compressedBuffer, [compressedBuffer])
-        )
-      } finally {
-        activeWorkerTasks = Math.max(0, activeWorkerTasks - 1)
-        if (activeWorkerTasks === 0 && workerInstance) {
-          if (idleTimer) {
-            clearTimeout(idleTimer)
-          }
-          idleTimer = setTimeout(
-            () => {
-              if (workerInstance) {
-                workerInstance.terminate()
-              }
-              workerInstance = null
-              priceWorker = null
-              idleTimer = null
-            },
-            5 * 60 * 1000
-          )
-        }
-      }
+      const parsedPrices = await priceWorkerManager.run((worker) =>
+        worker.parsePricesFromBuffer(transfer(compressedBuffer, [compressedBuffer]))
+      )
 
       const ttl = Date.now() + refreshInterval
       const metadata = {
@@ -249,16 +203,7 @@ export const usePriceStore = defineStore('price', () => {
     prices.value = {}
     priceMetadata.value = {}
     pendingRequests.clear()
-    if (idleTimer) {
-      clearTimeout(idleTimer)
-      idleTimer = null
-    }
-    if (workerInstance) {
-      workerInstance.terminate()
-      workerInstance = null
-      priceWorker = null
-    }
-    activeWorkerTasks = 0
+    priceWorkerManager.terminate()
   }
 
   return {

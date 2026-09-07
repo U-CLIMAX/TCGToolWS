@@ -5,8 +5,11 @@ import { getMatchedWenkaiFontCss } from './fontEmbedding'
 import { inlineDomImages } from './imageInliner'
 import { getOverlayStyle, getOverlayBottom, getIconStyle, styleToCssRule } from './overlayStyle'
 import { batchLoadImages } from './cardImageLoader.js'
-import { wrap, transfer } from 'comlink'
+import { transfer } from 'comlink'
 import DeckPdfWorker from '@/workers/deckPdf.worker.js?worker'
+import { createManagedWorker } from '@/utils/workerManager'
+
+const deckPdfWorkerManager = createManagedWorker(DeckPdfWorker)
 
 const PAGE_OPTS = { w: 595, h: 842, cardW: 178.58, cardH: 249.45, gap: 2.83, cols: 3, rows: 3 }
 
@@ -158,12 +161,8 @@ export const convertDeckToPDF = async (cards, name, language) => {
       if (item?.bitmap) transferList.push(item.bitmap)
     }
 
-    const worker = new DeckPdfWorker()
-    const api = wrap(worker)
-
-    let pdfBytes
-    try {
-      pdfBytes = await api.buildPdf(
+    const pdfBytes = await deckPdfWorkerManager.run((api) =>
+      api.buildPdf(
         transfer(
           {
             flatCards: flatCards.map((c) => ({ imgUrl: c.imgUrl })),
@@ -177,9 +176,7 @@ export const convertDeckToPDF = async (cards, name, language) => {
           transferList
         )
       )
-    } finally {
-      worker.terminate()
-    }
+    )
 
     const deckName = normalizeFileName(name)
     const pdfUrl = URL.createObjectURL(new Blob([pdfBytes], { type: 'application/pdf' }))
