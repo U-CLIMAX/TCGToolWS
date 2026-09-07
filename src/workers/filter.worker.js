@@ -4,6 +4,7 @@ import { expose } from 'comlink'
 const toZero = (val) => (val === '-' ? 0 : +val)
 
 let allCards = []
+const idToCardMap = new Map()
 let keywordResultsCache = null
 let searchIndex = null
 
@@ -21,22 +22,20 @@ const createNewIndex = () => {
 // Fallback: 舊的客戶端索引建立邏輯 (僅在沒有預先生成的索引檔時使用)
 const addAllToIndex = (cards, index) => {
   console.log('⚠️ No pre-built index found. Building index on client side (this may be slow)...')
-  cards.forEach((card, idx) => {
+  for (let idx = 0; idx < cards.length; idx++) {
+    const card = cards[idx]
     index.add({
       index: idx,
       name: card.name || '',
       effect: card.effect || '',
       id: card.id || '',
     })
-  })
+  }
 }
 
-// Helper to escape regex characters
-const escapeRegex = (str) => {
-  return str.replace(/[.*+?^${}()|[\]]/g, '\\$&')
-}
+const NON_LOWEST_RARITIES = new Set(['AGR'])
+const QUOTE_REGEX = /[「｢]([^」｣]+)[」｣]/g
 
-const NON_LOWEST_RARITIES = ['AGR']
 const CardFilterService = {
   /**
    * Processes raw card data (flattening, linking, stats) without fetching.
@@ -45,6 +44,7 @@ const CardFilterService = {
    */
   processRawData: async (rawFiles) => {
     const fetchedCards = []
+    idToCardMap.clear()
     const productNamesSet = new Set()
     const traitsSet = new Set()
     const raritiesSet = new Set()
@@ -55,49 +55,81 @@ const CardFilterService = {
       minPower = Infinity,
       maxPower = -Infinity
 
+    if (!rawFiles || rawFiles.length === 0) {
+      allCards = fetchedCards
+      return {
+        allCards: fetchedCards,
+        productNames: [],
+        traits: [],
+        rarities: [],
+        souls: [],
+        levels: [],
+        costRange: { min: 0, max: 0 },
+        powerRange: { min: 0, max: 0 },
+      }
+    }
+
     // 1. 建立基礎索引 (名稱 -> baseIds, baseId -> 所有 card.id)
     const nameToBaseIds = new Map()
     const baseIdToAllIds = new Map()
     const baseCards = []
 
-    for (const file of rawFiles) {
-      for (const baseId in file.content) {
-        const cardData = file.content[baseId]
-        const allCards = cardData.all_cards || []
-        const ids = allCards.map((c) => c.id)
+    for (let f = 0; f < rawFiles.length; f++) {
+      const file = rawFiles[f]
+      const content = file?.content
+      if (!content) continue
+
+      for (const baseId in content) {
+        const cardData = content[baseId]
+        if (!cardData) continue
+        const cardVersions = cardData.all_cards || []
+        const ids = new Array(cardVersions.length)
+        for (let i = 0; i < cardVersions.length; i++) {
+          ids[i] = cardVersions[i].id
+        }
 
         baseIdToAllIds.set(baseId, ids)
         if (cardData.name) {
-          if (!nameToBaseIds.has(cardData.name)) {
-            nameToBaseIds.set(cardData.name, new Set())
+          let nameSet = nameToBaseIds.get(cardData.name)
+          if (!nameSet) {
+            nameSet = new Set()
+            nameToBaseIds.set(cardData.name, nameSet)
           }
-          nameToBaseIds.get(cardData.name).add(baseId)
+          nameSet.add(baseId)
         }
 
         baseCards.push({ baseId, cardData, cardIdPrefix: file.cardIdPrefix })
       }
     }
 
-    // 2. 在 Base Card 層級建立雙向連結
+    // 2. 在 Base Card 層級建立雙向連結 (使用高效局部正則掃描 + Map O(1) 查找)
     const baseLinks = new Map()
     if (nameToBaseIds.size > 0) {
-      const allNamesPattern = [...nameToBaseIds.keys()].map(escapeRegex).join('|')
-      const nameMatcherRegex = new RegExp(`[「｢](${allNamesPattern})[」｣]`, 'g')
-
-      for (const { baseId, cardData } of baseCards) {
+      for (let b = 0; b < baseCards.length; b++) {
+        const { baseId, cardData } = baseCards[b]
         const effectText = cardData.effect || ''
         if (!effectText) continue
 
-        const matches = effectText.matchAll(nameMatcherRegex)
-        for (const match of matches) {
+        QUOTE_REGEX.lastIndex = 0
+        let match
+        while ((match = QUOTE_REGEX.exec(effectText)) !== null) {
           const foundName = match[1]
           const sourceBaseIds = nameToBaseIds.get(foundName)
           if (sourceBaseIds) {
             for (const sourceBaseId of sourceBaseIds) {
-              if (!baseLinks.has(baseId)) baseLinks.set(baseId, new Set())
-              if (!baseLinks.has(sourceBaseId)) baseLinks.set(sourceBaseId, new Set())
-              baseLinks.get(baseId).add(sourceBaseId)
-              baseLinks.get(sourceBaseId).add(baseId)
+              let baseSet = baseLinks.get(baseId)
+              if (!baseSet) {
+                baseSet = new Set()
+                baseLinks.set(baseId, baseSet)
+              }
+              baseSet.add(sourceBaseId)
+
+              let sourceSet = baseLinks.get(sourceBaseId)
+              if (!sourceSet) {
+                sourceSet = new Set()
+                baseLinks.set(sourceBaseId, sourceSet)
+              }
+              sourceSet.add(baseId)
             }
           }
         }
@@ -105,10 +137,13 @@ const CardFilterService = {
     }
 
     // 3. 展開卡片版本並直接注入 link 與 parallelCards
-    for (const { baseId, cardData, cardIdPrefix } of baseCards) {
+    for (let b = 0; b < baseCards.length; b++) {
+      const { baseId, cardData, cardIdPrefix } = baseCards[b]
       if (cardData.product_name) productNamesSet.add(cardData.product_name)
       if (cardData.trait && Array.isArray(cardData.trait)) {
-        cardData.trait.forEach((t) => traitsSet.add(t))
+        for (let i = 0; i < cardData.trait.length; i++) {
+          traitsSet.add(cardData.trait[i])
+        }
       }
 
       const levelValue = cardData.level === '-' ? 0 : cardData.level
@@ -117,47 +152,72 @@ const CardFilterService = {
       }
 
       if (typeof cardData.cost === 'number') {
-        minCost = Math.min(minCost, cardData.cost)
-        maxCost = Math.max(maxCost, cardData.cost)
+        if (cardData.cost < minCost) minCost = cardData.cost
+        if (cardData.cost > maxCost) maxCost = cardData.cost
       }
       if (typeof cardData.power === 'number') {
-        minPower = Math.min(minPower, cardData.power)
-        maxPower = Math.max(maxPower, cardData.power)
+        if (cardData.power < minPower) minPower = cardData.power
+        if (cardData.power > maxPower) maxPower = cardData.power
       }
       const soulValue = cardData.soul === '-' ? 0 : cardData.soul
       if (typeof soulValue === 'number') {
         soulsSet.add(soulValue)
       }
 
-      const { all_cards, ...baseCardData } = cardData
-      if (all_cards && Array.isArray(all_cards)) {
-        const minIdLength =
-          all_cards.length > 0 ? Math.min(...all_cards.map((c) => c.id.length)) : 0
+      const cardVersions = cardData.all_cards
+      if (cardVersions && Array.isArray(cardVersions) && cardVersions.length > 0) {
+        let minIdLength = Infinity
+        for (let i = 0; i < cardVersions.length; i++) {
+          const idLen = cardVersions[i].id ? cardVersions[i].id.length : 0
+          if (idLen < minIdLength) minIdLength = idLen
+        }
+        if (minIdLength === Infinity) minIdLength = 0
 
-        const isLowestFn = (cardVersion) => {
-          const lastChar = cardVersion.id.slice(-1)
-          const isLastCharUpper = lastChar >= 'A' && lastChar <= 'Z'
-          const isShortestLength = cardVersion.id.length === minIdLength
-          return NON_LOWEST_RARITIES.includes(cardVersion.rarity)
+        const isLowestList = new Array(cardVersions.length)
+        const highRarityCardIds = []
+        const lowestRarityCardIds = []
+
+        for (let i = 0; i < cardVersions.length; i++) {
+          const cardVersion = cardVersions[i]
+          const id = cardVersion.id || ''
+          const lastCharCode = id.charCodeAt(id.length - 1)
+          const isLastCharUpper = lastCharCode >= 65 && lastCharCode <= 90
+          const isShortestLength = id.length === minIdLength
+          const isLowest = NON_LOWEST_RARITIES.has(cardVersion.rarity)
             ? false
             : isLastCharUpper
               ? false
               : isShortestLength
+
+          isLowestList[i] = isLowest
+          if (isLowest) {
+            lowestRarityCardIds.push(id)
+          } else {
+            highRarityCardIds.push(id)
+          }
         }
 
-        const highRarityCardIds = all_cards.filter((c) => !isLowestFn(c)).map((c) => c.id)
-        const lowestRarityCardIds = all_cards.filter((c) => isLowestFn(c)).map((c) => c.id)
-
         const linkedBaseIds = baseLinks.get(baseId)
-        const fullLinkedIds = linkedBaseIds
-          ? [...linkedBaseIds].flatMap((bId) => baseIdToAllIds.get(bId) || [])
-          : []
+        const fullLinkedIds = []
+        if (linkedBaseIds && linkedBaseIds.size > 0) {
+          for (const bId of linkedBaseIds) {
+            const ids = baseIdToAllIds.get(bId)
+            if (ids) {
+              for (let j = 0; j < ids.length; j++) {
+                fullLinkedIds.push(ids[j])
+              }
+            }
+          }
+        }
 
-        all_cards.forEach((cardVersion) => {
+        const { all_cards: _all_cards, ...baseCardData } = cardData
+
+        for (let i = 0; i < cardVersions.length; i++) {
+          const cardVersion = cardVersions[i]
           if (cardVersion.rarity) raritiesSet.add(cardVersion.rarity)
-          const isLowest = isLowestFn(cardVersion)
+          const isLowest = isLowestList[i]
 
-          fetchedCards.push({
+          const card = {
             ...baseCardData,
             ...cardVersion,
             baseId,
@@ -165,10 +225,17 @@ const CardFilterService = {
             isLowestRarity: isLowest,
             link: fullLinkedIds,
             parallelCards: isLowest ? highRarityCardIds : lowestRarityCardIds,
-          })
-        })
+          }
+
+          fetchedCards.push(card)
+          if (card.id) {
+            idToCardMap.set(card.id, card)
+          }
+        }
       }
     }
+
+    allCards = fetchedCards
 
     return {
       allCards: fetchedCards,
@@ -198,7 +265,14 @@ const CardFilterService = {
    */
   init: async (cards, options = {}) => {
     const { version, game, indexFiles } = options
-    allCards = cards
+    allCards = cards || []
+    idToCardMap.clear()
+    for (let i = 0; i < allCards.length; i++) {
+      const card = allCards[i]
+      if (card && card.id) {
+        idToCardMap.set(card.id, card)
+      }
+    }
     keywordResultsCache = null
     searchIndex = createNewIndex()
 
@@ -247,6 +321,11 @@ const CardFilterService = {
       return
     }
 
+    if (!searchIndex) {
+      keywordResultsCache = allCards
+      return
+    }
+
     const effectiveTargets =
       searchTargets && searchTargets.length > 0 ? searchTargets : ['id', 'name', 'effect']
 
@@ -264,37 +343,42 @@ const CardFilterService = {
 
       // 收集所有匹配索引
       const matchedIndices = new Set()
-      searchResults.forEach((fieldResult) => {
+      for (let i = 0; i < searchResults.length; i++) {
+        const fieldResult = searchResults[i]
         if (fieldResult && fieldResult.result) {
-          fieldResult.result.forEach((idx) => matchedIndices.add(idx))
+          const res = fieldResult.result
+          for (let j = 0; j < res.length; j++) {
+            matchedIndices.add(res[j])
+          }
         }
-      })
+      }
 
-      // 取出卡片物件
-      let results = Array.from(matchedIndices).map((idx) => allCards[idx])
+      // 取出卡片物件 (過濾無效 index 避免 undefined 導致後續 filter/sort 例外)
+      const results = []
+      for (const idx of matchedIndices) {
+        const card = allCards[idx]
+        if (card) results.push(card)
+      }
 
       // precise 模式下用 includes 過濾
+      let filteredResults = results
       if (searchMode === 'precise') {
         const lowerKeyword = keyword.toLowerCase()
-        results = results.filter((card) => {
-          const inName =
-            effectiveTargets.includes('name') &&
-            card.name &&
-            card.name.toLowerCase().includes(lowerKeyword)
-          const inId =
-            effectiveTargets.includes('id') &&
-            card.id &&
-            card.id.toLowerCase().includes(lowerKeyword)
+        const checkName = effectiveTargets.includes('name')
+        const checkId = effectiveTargets.includes('id')
+        const checkEffect = effectiveTargets.includes('effect')
+
+        filteredResults = results.filter((card) => {
+          const inName = checkName && card.name && card.name.toLowerCase().includes(lowerKeyword)
+          const inId = checkId && card.id && card.id.toLowerCase().includes(lowerKeyword)
           const inEffect =
-            effectiveTargets.includes('effect') &&
-            card.effect &&
-            card.effect.toLowerCase().includes(lowerKeyword)
+            checkEffect && card.effect && card.effect.toLowerCase().includes(lowerKeyword)
           return inName || inId || inEffect
         })
       }
 
       // 精確匹配排前面
-      results.sort((a, b) => {
+      filteredResults.sort((a, b) => {
         const aExact =
           a.name === keyword || a.id === keyword || (a.effect && a.effect.includes(keyword))
         const bExact =
@@ -307,7 +391,7 @@ const CardFilterService = {
       console.timeEnd('search time')
       console.log(`Search found ${matchedIndices.size} potential matches.`)
 
-      keywordResultsCache = results
+      keywordResultsCache = filteredResults
     } else {
       keywordResultsCache = []
     }
@@ -322,37 +406,70 @@ const CardFilterService = {
     let results = keywordResultsCache
     if (!results) results = allCards // Keyword search results cache is empty. Filtering all cards.
 
-    const mappedLevels =
-      filters.selectedLevels.length > 0 ? new Set(filters.selectedLevels.map(toZero)) : null
-    const mappedSoul =
-      filters.selectedSoul.length > 0 ? new Set(filters.selectedSoul.map(toZero)) : null
+    const {
+      selectedCardTypes = [],
+      selectedColors = [],
+      selectedProductName,
+      selectedTraits = [],
+      selectedLevels = [],
+      selectedRarities = [],
+      showUniqueCards,
+      selectedCostRange,
+      selectedPowerRange,
+      showTriggerSoul,
+      selectedSoul = [],
+    } = filters || {}
+
+    const hasCardTypes = selectedCardTypes.length > 0
+    const cardTypesSet = hasCardTypes ? new Set(selectedCardTypes) : null
+
+    const hasColors = selectedColors.length > 0
+    const colorsSet = hasColors ? new Set(selectedColors) : null
+
+    const hasTraits = selectedTraits.length > 0
+
+    const mappedLevels = selectedLevels.length > 0 ? new Set(selectedLevels.map(toZero)) : null
+
+    const hasRarities = selectedRarities.length > 0
+    const raritiesSet = hasRarities ? new Set(selectedRarities) : null
+
+    const mappedSoul = selectedSoul.length > 0 ? new Set(selectedSoul.map(toZero)) : null
+
+    const minCost = selectedCostRange ? selectedCostRange[0] : -Infinity
+    const maxCost = selectedCostRange ? selectedCostRange[1] : Infinity
+    const minPower = selectedPowerRange ? selectedPowerRange[0] : -Infinity
+    const maxPower = selectedPowerRange ? selectedPowerRange[1] : Infinity
 
     return results.filter((card) => {
-      const cardCost = card.cost === '-' ? 0 : Number(card.cost)
-
-      if (filters.showUniqueCards && !card.isLowestRarity) {
+      if (!card) return false
+      if (showUniqueCards && !card.isLowestRarity) {
         return false
       }
-      if (filters.selectedCardTypes.length > 0 && !filters.selectedCardTypes.includes(card.type))
+      if (hasCardTypes && !cardTypesSet.has(card.type)) {
         return false
-      if (filters.selectedColors.length > 0 && !filters.selectedColors.includes(card.color))
+      }
+      if (hasColors && !colorsSet.has(card.color)) {
         return false
-      if (filters.selectedProductName && card.product_name !== filters.selectedProductName)
+      }
+      if (selectedProductName && card.product_name !== selectedProductName) {
         return false
+      }
       if (
-        filters.selectedTraits.length > 0 &&
-        !filters.selectedTraits.some((trait) => card.trait && card.trait.includes(trait))
-      )
+        hasTraits &&
+        (!card.trait || !selectedTraits.some((trait) => card.trait.includes(trait)))
+      ) {
         return false
+      }
       if (mappedLevels && !mappedLevels.has(toZero(card.level))) return false
-      if (filters.selectedRarities.length > 0 && !filters.selectedRarities.includes(card.rarity))
+      if (hasRarities && !raritiesSet.has(card.rarity)) return false
+
+      const cardCost = card.cost === '-' ? 0 : Number(card.cost)
+      if (cardCost < minCost || cardCost > maxCost) return false
+      if (card.power < minPower || card.power > maxPower) return false
+
+      if (showTriggerSoul && (!card.trigger_soul_count || card.trigger_soul_count < 1)) {
         return false
-      if (cardCost < filters.selectedCostRange[0] || cardCost > filters.selectedCostRange[1])
-        return false
-      if (card.power < filters.selectedPowerRange[0] || card.power > filters.selectedPowerRange[1])
-        return false
-      if (filters.showTriggerSoul && (!card.trigger_soul_count || card.trigger_soul_count < 1))
-        return false
+      }
       if (mappedSoul && !mappedSoul.has(toZero(card.soul))) return false
       return true
     })
@@ -364,8 +481,8 @@ const CardFilterService = {
    * @returns {Object|null} 卡片物件或 null
    */
   getCardById: (id) => {
-    if (!id || !allCards || allCards.length === 0) return null
-    return allCards.find((c) => c.id === id) || null
+    if (!id) return null
+    return idToCardMap.get(id) || null
   },
 }
 

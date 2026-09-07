@@ -4,19 +4,52 @@ import { findSeriesDataFileName } from '@/maps/series-card-map.js'
 import { getAssetsFile } from '@/utils/getAssetsFile.js'
 import { useCardFiltering } from '@/composables/useCardFiltering.js'
 
+/**
+ * Dynamic calculation of optimal concurrency for fetching card data JSON assets.
+ * Adapts based on Network Information API, CPU logical cores, and device memory.
+ * @returns {number}
+ */
+export const getOptimalFetchConcurrency = () => {
+  if (typeof navigator === 'undefined') return 8
+
+  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection
+  if (connection) {
+    if (
+      connection.saveData ||
+      connection.effectiveType === 'slow-2g' ||
+      connection.effectiveType === '2g'
+    ) {
+      return 3
+    }
+    if (connection.effectiveType === '3g') {
+      return 6
+    }
+  }
+
+  const cores =
+    typeof navigator.hardwareConcurrency === 'number' ? navigator.hardwareConcurrency : 4
+  const memory =
+    typeof navigator.deviceMemory === 'number' ? navigator.deviceMemory : cores >= 8 ? 8 : 4
+
+  if (cores <= 4 || memory <= 2) {
+    return 6
+  }
+  if (cores >= 8 && memory >= 8) {
+    return 16
+  }
+  return 10
+}
+
 export const useFilterStore = defineStore('filter', () => {
   // --- State ---
 
-  // Cache for series data to prevent re-fetching
+  // Cache for series data to prevent re-fetching (path -> { content, cardIdPrefix })
   const seriesDataCache = shallowRef({})
-
-  // History of all paths added to the queue to avoid duplicate processing
-  const processedPathsHistory = new Set()
 
   // Queue system for fetching files
   const fetchQueue = []
   const activeFetchPromises = new Map()
-  let isProcessingQueue = false
+  let activeWorkers = 0
 
   // Raw data from API
   const allCards = shallowRef([]) // Optimized: shallowRef for large dataset
@@ -64,58 +97,62 @@ export const useFilterStore = defineStore('filter', () => {
   // --- Actions ---
 
   /**
-   * Processes the fetch queue in batches
+   * Continuously pumps the fetch queue with dynamic concurrency.
+   * Spawns worker tasks up to optimal concurrency and automatically refills slots.
    */
-  const processFetchQueue = async () => {
-    if (isProcessingQueue) return
-    isProcessingQueue = true
+  const pumpFetchQueue = () => {
+    const maxConcurrency = getOptimalFetchConcurrency()
+    while (activeWorkers < maxConcurrency && fetchQueue.length > 0) {
+      const path = fetchQueue.shift()
+      if (!path) break
 
-    try {
-      while (fetchQueue.length > 0) {
-        const batch = fetchQueue.splice(0, 30)
-        await Promise.all(
-          batch.map(async (path) => {
-            const deferred = activeFetchPromises.get(path)
-            if (!deferred) return
+      activeWorkers++
 
-            try {
-              if (seriesDataCache.value[path]) {
-                deferred.resolve(seriesDataCache.value[path])
-                return
-              }
+      ;(async () => {
+        const deferred = activeFetchPromises.get(path)
+        try {
+          if (seriesDataCache.value[path]) {
+            if (deferred) deferred.resolve(seriesDataCache.value[path])
+            return
+          }
 
-              const url = await getAssetsFile(path)
-              const response = await fetch(url)
-              if (!response.ok) throw new Error(`Failed to fetch ${path}`)
+          const url = await getAssetsFile(path)
+          const response = await fetch(url)
+          if (!response.ok) throw new Error(`Failed to fetch ${path}`)
 
-              const result = {
-                content: await response.json(),
-                cardIdPrefix: path.split('/').pop().replace('.json', ''),
-              }
+          const content = await response.json()
+          const result = {
+            content,
+            cardIdPrefix: path.split('/').pop().replace('.json', ''),
+          }
 
-              seriesDataCache.value = {
-                ...seriesDataCache.value,
-                [path]: result,
-              }
-              fetchProgress.value.current++
-              deferred.resolve(result)
-            } catch (err) {
-              console.warn(`Error loading ${path}:`, err)
-              deferred.resolve(null)
-            } finally {
-              activeFetchPromises.delete(path)
-            }
-          })
-        )
-      }
-    } finally {
-      isProcessingQueue = false
+          // In-place mutation to eliminate O(N^2) shallow copies and race condition key drops
+          seriesDataCache.value[path] = result
+          fetchProgress.value.current++
+          if (deferred) deferred.resolve(result)
+        } catch (err) {
+          console.warn(`Error loading ${path}:`, err)
+          if (deferred) deferred.resolve(null)
+        } finally {
+          activeFetchPromises.delete(path)
+          activeWorkers--
+          pumpFetchQueue()
+        }
+      })()
     }
+  }
+
+  /**
+   * Processes the fetch queue with sliding window dynamic concurrency
+   */
+  const processFetchQueue = () => {
+    pumpFetchQueue()
   }
 
   /**
    * Fetches and processes card data for given prefixes
    * @param {string[]} prefixes
+   * @returns {Promise<Object>}
    */
   const fetchAndProcessCards = async (prefixes) => {
     if (!prefixes || prefixes.length === 0) {
@@ -156,7 +193,7 @@ export const useFilterStore = defineStore('filter', () => {
           fetchQueue.push(path)
         })
 
-        await processFetchQueue()
+        pumpFetchQueue()
       }
 
       const fetchTasks = dataFilePaths.map((path) => {
@@ -176,7 +213,9 @@ export const useFilterStore = defineStore('filter', () => {
           allCards: [],
           productNames: [],
           traits: [],
+          rarities: [],
           souls: [],
+          levels: [],
           costRange: { min: 0, max: 0 },
           powerRange: { min: 0, max: 0 },
         }
@@ -233,7 +272,6 @@ export const useFilterStore = defineStore('filter', () => {
    */
   const reset = () => {
     terminateWorker()
-    processedPathsHistory.clear()
     allCards.value = []
     productNames.value = []
     traits.value = []
@@ -242,6 +280,8 @@ export const useFilterStore = defineStore('filter', () => {
     levels.value = []
     costRange.value = { min: 0, max: 0 }
     powerRange.value = { min: 0, max: 0 }
+    fetchProgress.value = { current: 0, total: 0 }
+    error.value = null
     resetFilters()
   }
 
@@ -277,6 +317,7 @@ export const useFilterStore = defineStore('filter', () => {
     // Actions
     initialize,
     fetchAndProcessCards,
+    processFetchQueue,
     resetFilters,
     reset,
   }
