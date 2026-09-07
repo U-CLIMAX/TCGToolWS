@@ -1,47 +1,70 @@
 import { expose } from 'comlink'
-import { Parser } from 'htmlparser2'
 
 const priceRegex = /[,円\s]/g
 
+const TAG_REGEX =
+  /<span\b[^>]*class=["'](?=[^"']*\bborder-dark\b)(?=[^"']*\btext-center\b)[^"']*["'][^>]*>([^<]+)<\/span>|<strong\b[^>]*class=["'][^"']*\btext-end\b[^"']*["'][^>]*>([^<]+)<\/strong>/gi
+
+/**
+ * Decompresses Gzip buffer using native DecompressionStream or pako fallback.
+ * @param {ArrayBuffer|Uint8Array} buffer - Compressed data buffer.
+ * @returns {Promise<string>} Decompressed JSON string.
+ */
+const decompressBuffer = async (buffer) => {
+  if (typeof DecompressionStream !== 'undefined') {
+    try {
+      const ds = new DecompressionStream('gzip')
+      const stream = new Response(buffer).body.pipeThrough(ds)
+      return await new Response(stream).text()
+    } catch (e) {
+      console.warn('[PriceWorker] DecompressionStream failed, falling back to pako:', e)
+    }
+  }
+  const { ungzip } = await import('pako')
+  const uint8 =
+    buffer instanceof Uint8Array
+      ? buffer
+      : ArrayBuffer.isView(buffer)
+        ? new Uint8Array(buffer.buffer, buffer.byteOffset, buffer.byteLength)
+        : new Uint8Array(buffer)
+  return ungzip(uint8, { toText: true })
+}
+
 const priceProcessor = {
+  /**
+   * Decompresses Gzip buffer and parses card prices from JSON HTML array.
+   * @param {ArrayBuffer|Uint8Array} compressedBuffer - Gzip compressed JSON array buffer.
+   * @returns {Promise<object>} Map of card numbers to prices.
+   */
+  async parsePricesFromBuffer(compressedBuffer) {
+    const jsonText = await decompressBuffer(compressedBuffer)
+    const htmls = JSON.parse(jsonText)
+    return this.parsePrices(htmls)
+  },
+
   /**
    * Parses multiple HTML strings to extract card prices.
    * @param {string[]} htmls - Array of HTML strings.
    * @returns {object} Map of card numbers to prices.
    */
   parsePrices(htmls) {
-    console.time('parsePrices Worker')
+    if (!Array.isArray(htmls)) return {}
+
     const prices = {}
     const seenCount = {}
-
     let currentCardId = null
-    let isIdSpan = false
-    let isPriceStrong = false
 
-    const parser = new Parser({
-      onopentag(name, attribs) {
-        const className = attribs.class
-        if (!className) return
+    for (let i = 0; i < htmls.length; i++) {
+      const html = htmls[i]
+      if (!html) continue
 
-        // Look for <span class="d-block border border-dark p-1 w-100 text-center my-2">DC/WE30-08SSP</span>
-        if (
-          name === 'span' &&
-          className.includes('border-dark') &&
-          className.includes('text-center')
-        ) {
-          isIdSpan = true
-        }
-        // Look for <strong class="d-block text-end ">6,980 円</strong>
-        else if (name === 'strong' && className.includes('text-end')) {
-          isPriceStrong = true
-        }
-      },
-      ontext(text) {
-        if (isIdSpan) {
-          currentCardId = text.trim()
-        } else if (isPriceStrong && currentCardId) {
-          // Extract number from "6,980 円" or "6980円"
-          const priceValue = text.replace(priceRegex, '')
+      const matches = html.matchAll(TAG_REGEX)
+      for (const match of matches) {
+        const [, cardId, priceText] = match
+        if (cardId !== undefined) {
+          currentCardId = cardId.trim()
+        } else if (priceText !== undefined && currentCardId) {
+          const priceValue = priceText.replace(priceRegex, '')
           const priceNum = parseInt(priceValue, 10)
 
           if (!isNaN(priceNum)) {
@@ -63,19 +86,9 @@ const priceProcessor = {
             currentCardId = null
           }
         }
-      },
-      onclosetag(name) {
-        if (name === 'span') isIdSpan = false
-        else if (name === 'strong') isPriceStrong = false
-      },
-    })
-
-    for (let i = 0; i < htmls.length; i++) {
-      parser.write(htmls[i])
+      }
     }
-    parser.end()
 
-    console.timeEnd('parsePrices Worker')
     return prices
   },
 }
