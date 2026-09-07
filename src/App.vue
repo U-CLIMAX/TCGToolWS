@@ -375,9 +375,8 @@
     <v-snackbar
       v-model="show"
       :color="vuetifyTheme.global.current.value.dark ? 'grey-darken-4' : 'grey-lighten-5'"
-      timeout="1600"
-      :timer="color"
-      location="top"
+      timeout="1000"
+      :location="smAndUp ? 'bottom right' : 'top center'"
       rounded="2lg"
       eager
       :close-on-content-click="true"
@@ -387,7 +386,10 @@
           : 'padding-bottom: calc(var(--v-layout-bottom) / 2);'
       "
     >
-      {{ text }}
+      <div class="d-flex align-center">
+        <v-icon :icon="snackbarIcon" :color="color" class="mr-2" size="20" />
+        <span>{{ text }}</span>
+      </div>
     </v-snackbar>
 
     <AuthDialog ref="authDialog" />
@@ -491,6 +493,19 @@ const accountIconClass = computed(() => {
 const authDialog = ref(null)
 const NoticeDialogRef = ref(null)
 const { show, text, color, triggerSnackbar } = useSnackbar()
+const snackbarIcon = computed(() => {
+  switch (color.value) {
+    case 'success':
+      return 'i-mdi:check-circle'
+    case 'error':
+      return 'i-mdi:alert-circle'
+    case 'warning':
+      return 'i-mdi:alert'
+    case 'info':
+    default:
+      return 'i-mdi:information'
+  }
+})
 const route = useRoute()
 const isSettingsModalOpen = ref(false)
 const isUserProfileModalOpen = ref(false)
