@@ -94,7 +94,7 @@ npm run setup-img
 
 ```properties
 VITE_IMAGE_BASE_URL=ws-image-data
-VVITE_BLUR_IMAGE_BASE_URL=ws-blur-image-data
+VITE_BLUR_IMAGE_BASE_URL=ws-blur-image-data
 ```
 
 ### 安装与运行
