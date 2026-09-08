@@ -1,0 +1,88 @@
+name: Sync Release to GitCode
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Release Tag（留空则自动读取 tauri.conf.json 版本号）'
+        type: string
+        required: false
+        default: ''
+
+concurrency:
+  group: gitcode-sync-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  sync-to-gitcode:
+    name: Sync Release & Assets to GitCode
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Determine Target Release Tag
+        id: target
+        shell: bash
+        run: |
+          if [ -n "${{ github.event.release.tag_name }}" ]; then
+            TAG="${{ github.event.release.tag_name }}"
+          elif [ -n "${{ inputs.tag_name }}" ]; then
+            TAG="${{ inputs.tag_name }}"
+          else
+            VERSION=$(node -p "require('./src-tauri/tauri.conf.json').version")
+            TAG="v${VERSION}"
+          fi
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "Target Release Tag: $TAG"
+
+      - name: Push Git Tag to GitCode
+        env:
+          GITCODE_TOKEN: ${{ secrets.GITCODE_TOKEN }}
+          TAG: ${{ steps.target.outputs.tag }}
+        run: |
+          if [ -z "$GITCODE_TOKEN" ]; then
+            echo "::error::Secret GITCODE_TOKEN is missing! Please configure GITCODE_TOKEN in repository secrets."
+            exit 1
+          fi
+          echo "Syncing Git Tag ${TAG} to GitCode..."
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git remote add gitcode "https://oauth2:${GITCODE_TOKEN}@gitcode.com/zhuang39/TCGToolWS.git"
+          git push gitcode "${TAG}" --force || git push gitcode HEAD:refs/tags/"${TAG}" --force
+          echo "Tag ${TAG} synchronized successfully to GitCode."
+
+      - name: Download Release Assets from GitHub
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.target.outputs.tag }}
+        run: |
+          mkdir -p release-files
+          echo "Downloading release assets for tag ${TAG} from GitHub..."
+          gh release download "${TAG}" --pattern "*.exe" --pattern "*.apk" --pattern "*.AppImage" --dir release-files --clobber || true
+          echo "Downloaded assets list:"
+          ls -lah release-files
+
+      - name: Sync Release & Upload Assets to GitCode
+        env:
+          GITCODE_TOKEN: ${{ secrets.GITCODE_TOKEN }}
+          GITCODE_REPO: zhuang39/TCGToolWS
+          TAG_NAME: ${{ steps.target.outputs.tag }}
+          RELEASE_TITLE: ${{ github.event.release.name || steps.target.outputs.tag }}
+          RELEASE_BODY: ${{ github.event.release.body || '' }}
+          IS_PRERELEASE: ${{ github.event.release.prerelease || 'false' }}
+          RELEASE_FILES_DIR: release-files
+        run: |
+          node scripts/sync-gitcode-release.mjs
