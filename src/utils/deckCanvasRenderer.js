@@ -3,6 +3,7 @@ import { getCardUrls } from '@/utils/getCardImage'
 import { generate } from 'lean-qr'
 import logoUrl from '@/assets/ui/logo.webp'
 import { batchLoadImages, loadImageWithDecode } from '@/utils/cardImageLoader.js'
+import { getWebsiteUrl } from '@/utils/api'
 import { transfer } from 'comlink'
 import DeckCanvasWorker from '@/workers/deckCanvas.worker.js?worker'
 import { createManagedWorker } from '@/utils/workerManager'
@@ -63,7 +64,7 @@ export const renderDeckToCanvas = async ({
   let qrBitmap = null
   if (includeQrCode && Boolean(deckKey) && mode === 'u_climax') {
     try {
-      const shareUrl = `${window.location.origin}/share-decks/${deckKey}`
+      const shareUrl = `${getWebsiteUrl()}/share-decks/${deckKey}`
       const code = generate(shareUrl)
       const qrCanvas = document.createElement('canvas')
       code.toCanvas(qrCanvas, { pad: 0 })

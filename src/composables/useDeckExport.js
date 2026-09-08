@@ -8,6 +8,7 @@ import { useDeckEncoder } from '@/composables/useDeckEncoder'
 import { generateDeckKey } from '@/utils/nanoid'
 import { getCardUrls } from '@/utils/getCardImage'
 import { convertDeckToPDF } from '@/utils/domToPDF'
+import { getWebsiteUrl } from '@/utils/api'
 
 /**
  * Composable for deck exporting, sharing, and image generation.
@@ -65,7 +66,7 @@ export const useDeckExport = () => {
       triggerSnackbar('无法生成分享链接', 'error')
       return
     }
-    const shareUrl = `${window.location.origin}/share-decks/${deckKey}`
+    const shareUrl = `${getWebsiteUrl()}/share-decks/${deckKey}`
     try {
       await writeText(shareUrl)
       triggerSnackbar('分享链接已复制', 'success')
