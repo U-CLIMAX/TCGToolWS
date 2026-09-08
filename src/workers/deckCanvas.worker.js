@@ -169,38 +169,49 @@ const deckCanvasRenderer = {
         ctx.fillText(label1, currentX, textY)
         currentX += ctx.measureText(label1).width + 6
 
-        // "卡組代碼" 與代碼值佔用寬度預留
-        ctx.font = `bold 16px ${fontStack}`
-        const label2 = '卡组代码'
-        const label2Width = ctx.measureText(label2).width
+        const hasDeckCode = Boolean(deckKey?.trim())
 
-        ctx.font = `16px ${fontStack}`
-        const codeVal = deckKey || ''
-        const codeValWidth = ctx.measureText(codeVal).width
+        if (hasDeckCode) {
+          // "卡組代碼" 與代碼值佔用寬度預留
+          ctx.font = `bold 16px ${fontStack}`
+          const label2 = '卡组代码'
+          const label2Width = ctx.measureText(label2).width
 
-        const rightMetaWidth = 16 + label2Width + 6 + codeValWidth
-        const availableNameWidth = Math.max(
-          60,
-          maxTextWidth - (currentX - padding) - rightMetaWidth - 24
-        )
+          ctx.font = `16px ${fontStack}`
+          const codeVal = deckKey.trim()
+          const codeValWidth = ctx.measureText(codeVal).width
 
-        // deckName (帶省略號自適應截斷)
-        ctx.font = `16px ${fontStack}`
-        ctx.fillStyle = '#000000'
-        const truncatedDeckName = truncateText(ctx, deckName || '', availableNameWidth)
-        ctx.fillText(truncatedDeckName, currentX, textY)
-        currentX += ctx.measureText(truncatedDeckName).width + 16
+          const rightMetaWidth = 16 + label2Width + 6 + codeValWidth
+          const availableNameWidth = Math.max(
+            60,
+            maxTextWidth - (currentX - padding) - rightMetaWidth - 24
+          )
 
-        // "卡組代碼"
-        ctx.font = `bold 16px ${fontStack}`
-        ctx.fillStyle = '#000000'
-        ctx.fillText(label2, currentX, textY)
-        currentX += label2Width + 6
+          // deckName (帶省略號自適應截斷)
+          ctx.font = `16px ${fontStack}`
+          ctx.fillStyle = '#000000'
+          const truncatedDeckName = truncateText(ctx, deckName || '', availableNameWidth)
+          ctx.fillText(truncatedDeckName, currentX, textY)
+          currentX += ctx.measureText(truncatedDeckName).width + 16
 
-        // deckKey 值
-        ctx.font = `16px ${fontStack}`
-        ctx.fillStyle = '#000000'
-        ctx.fillText(codeVal, currentX, textY)
+          // "卡組代碼"
+          ctx.font = `bold 16px ${fontStack}`
+          ctx.fillStyle = '#000000'
+          ctx.fillText(label2, currentX, textY)
+          currentX += label2Width + 6
+
+          // deckKey 值
+          ctx.font = `16px ${fontStack}`
+          ctx.fillStyle = '#000000'
+          ctx.fillText(codeVal, currentX, textY)
+        } else {
+          // 本地卡組不繪製卡組代碼，卡組名稱享有最大寬度
+          const availableNameWidth = Math.max(60, maxTextWidth - (currentX - padding))
+          ctx.font = `16px ${fontStack}`
+          ctx.fillStyle = '#000000'
+          const truncatedDeckName = truncateText(ctx, deckName || '', availableNameWidth)
+          ctx.fillText(truncatedDeckName, currentX, textY)
+        }
 
         // B. 繪製卡牌網格
         const gridStartY = headerY + headerH + gridTopGap

@@ -1144,12 +1144,13 @@ watch(
         if (generatedImageResult.value?.src) {
           URL.revokeObjectURL(generatedImageResult.value.src)
         }
+        const isLocal = isLocalDeck.value || !!deckStore.localDecks[deckKey]
         const result = await renderDeckToCanvas({
           cards: cardsForStats.value,
           deckName: deck.value.name ? deck.value.name.trim() : 'deck',
-          deckKey: deckKey,
+          deckKey: isLocal ? '' : deckKey,
           mode: imageExportMode.value,
-          includeQrCode: includeQrCodeInImage.value && !isLocalDeck.value,
+          includeQrCode: includeQrCodeInImage.value && !isLocal,
           scale: 2,
         })
         generatedImageResult.value = result

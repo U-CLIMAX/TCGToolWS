@@ -136,6 +136,7 @@ import { useSnackbar } from '@/composables/useSnackbar'
 import { sortCards } from '@/utils/cardsSort.js'
 import { normalizeFileName } from '@/utils/sanitizeFilename'
 import { useUIStore } from '@/stores/ui'
+import { useDeckStore } from '@/stores/deck'
 import { writeText, writeImage } from '@/utils/clipboard'
 
 const props = defineProps({
@@ -160,6 +161,7 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue', 'download-image', 'download-pdf', 'generate-image'])
 const { triggerSnackbar } = useSnackbar()
 const route = useRoute()
+const deckStore = useDeckStore()
 
 const selectedLanguage = ref('jp')
 const selectedImageMode = ref('u_climax')
@@ -167,7 +169,9 @@ const includeQrCode = ref(false)
 const selectedExportFormat = ref('excel')
 
 const deckKey = route.params.key
-const isLocalDeck = computed(() => deckKey === 'local')
+const isLocalDeck = computed(
+  () => !deckKey || deckKey === 'local' || !!deckStore.localDecks[deckKey]
+)
 
 const uiStore = useUIStore()
 const { xs, smAndUp } = useDisplay()
