@@ -6,6 +6,7 @@ import PriceWorker from '@/workers/price.worker.js?worker'
 import { createManagedWorker } from '@/utils/workerManager'
 import { useAuthStore } from './auth'
 import { compressToEncodedURIComponent } from 'lz-string'
+import { apiFetch } from '@/utils/api.js'
 
 const priceCache = localforage.createInstance({
   name: 'card-prices',
@@ -29,6 +30,14 @@ export const usePriceStore = defineStore('price', () => {
    * @returns {Promise<{ seriesId: string, data: object, metadata: { lastUpdate: number, nextUpdate: number, yytUrl?: string } }>}
    */
   const fetchSingleSeries = async ({ seriesId, yytUrl }) => {
+    if (!authStore.isOnline) {
+      return {
+        seriesId,
+        data: {},
+        metadata: { lastUpdate: 0, nextUpdate: 0, yytUrl },
+      }
+    }
+
     const isPremium = authStore.userRole !== 0
     const cachePrefix = isPremium ? 'meta_premium_' : 'meta_'
     const cacheKey = `${cachePrefix}${seriesId}`
@@ -80,7 +89,7 @@ export const usePriceStore = defineStore('price', () => {
         headers['Authorization'] = `Bearer ${authStore.token}`
       }
 
-      const res = await fetch(
+      const res = await apiFetch(
         `/api/prices/${seriesId}?ref=${compressToEncodedURIComponent(yytUrl)}`,
         { headers }
       )
@@ -125,6 +134,7 @@ export const usePriceStore = defineStore('price', () => {
    * @param {{ seriesId: string, yytUrl: string } | { seriesId: string, yytUrl: string }[]} configs
    */
   const fetchPrices = async (configs) => {
+    if (!authStore.isOnline) return
     const configArray = Array.isArray(configs) ? configs : [configs]
     // SeriesId deduplication
     const validConfigs = []
@@ -190,12 +200,13 @@ export const usePriceStore = defineStore('price', () => {
   }
 
   const getPrice = (seriesId, cardId) => {
+    if (!authStore.isOnline) return null
     // Return from memory if available
-    return prices.value[seriesId]?.[cardId]
+    return prices.value[seriesId]?.[cardId] || null
   }
 
   const getPriceUpdateTime = (seriesId) => {
-    if (!seriesId) return null
+    if (!authStore.isOnline || !seriesId) return null
     return priceMetadata.value[seriesId] || null
   }
 

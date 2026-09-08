@@ -51,7 +51,7 @@
               </div>
             </template>
           </v-list-item>
-          <v-list-item v-if="isTauriApp && (appVersion || localAppVersion)" title="客户端版本">
+          <v-list-item v-if="isTauri && (appVersion || localAppVersion)" title="客户端版本">
             <template #subtitle>
               <div class="d-flex align-center" style="min-height: 32px">
                 <span>v{{ appVersion || localAppVersion }}</span>
@@ -126,15 +126,13 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
-import { isTauri } from '@tauri-apps/api/core'
-import { getVersion } from '@tauri-apps/api/app'
+import { isTauri } from '@/utils/isTauri'
 import { useAuthStore } from '@/stores/auth'
 import { useUIStore } from '@/stores/ui'
 import { useSnackbar } from '@/composables/useSnackbar'
-import { useClientUpdate } from '@/composables/useClientUpdate'
 import { writeText } from '@/utils/clipboard'
 
 const props = defineProps({
@@ -148,19 +146,36 @@ const emit = defineEmits(['update:modelValue', 'logout'])
 const router = useRouter()
 const uiStore = useUIStore()
 const { theme } = storeToRefs(uiStore)
-const { hasClientUpdate, clientUpdateVersion, localAppVersion } = useClientUpdate()
+
+const hasClientUpdate = ref(false)
+const clientUpdateVersion = ref('')
+const localAppVersion = ref('')
 
 const isSponsorNoticeOpen = ref(false)
 const isSettingsModalOpen = ref(false)
-const isTauriApp = isTauri()
 const appVersion = ref('')
 
 onMounted(async () => {
-  if (isTauriApp) {
+  if (isTauri) {
     try {
-      appVersion.value = await getVersion()
+      const { useClientUpdate } = await import('@/composables/useClientUpdate')
+      const update = useClientUpdate()
+      watchEffect(() => {
+        hasClientUpdate.value = update.hasClientUpdate.value
+        clientUpdateVersion.value = update.clientUpdateVersion.value
+        localAppVersion.value = update.localAppVersion.value
+        if (update.localAppVersion.value) {
+          appVersion.value = update.localAppVersion.value
+        }
+      })
+      if (!update.localAppVersion.value) {
+        const { getVersion } = await import('@tauri-apps/api/app')
+        const ver = await getVersion()
+        appVersion.value = ver
+        localAppVersion.value = ver
+      }
     } catch (err) {
-      console.warn('获取客户端版本失败:', err)
+      console.warn('获取客户端版本或更新失败:', err)
     }
   }
 })

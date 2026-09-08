@@ -4,10 +4,10 @@
   "version": "1.0.3",
   "identifier": "top.uclimax.tcgtoolws",
   "build": {
-    "frontendDist": "https://www.uclimax.top",
+    "frontendDist": "../dist/client",
     "devUrl": "http://localhost:5173",
     "beforeDevCommand": "npm run dev",
-    "beforeBuildCommand": ""
+    "beforeBuildCommand": "npm run build"
   },
   "app": {
     "windows": [
@@ -24,7 +24,11 @@
       }
     ],
     "security": {
-      "csp": null
+      "csp": null,
+      "assetProtocol": {
+        "enable": true,
+        "scope": ["**"]
+      }
     }
   },
   "bundle": {

@@ -4,6 +4,7 @@ import { useAuthStore } from './auth'
 import { findDeckSeriesId } from '@/utils/findDeckSeriesId'
 import { deckRestrictions } from '@/maps/deck-restrictions'
 import { hasSensitiveWords } from '@/utils/sensitiveWords'
+import { apiFetch } from '@/utils/api.js'
 
 export const useDeckStore = defineStore(
   'deck',
@@ -18,6 +19,7 @@ export const useDeckStore = defineStore(
     const deckHistory = shallowRef([])
     const originalCardsInDeck = shallowRef({})
     const savedDecks = ref({})
+    const localDecks = ref({})
     const restrictionViolations = shallowRef([])
 
     const decks = ref([])
@@ -52,6 +54,21 @@ export const useDeckStore = defineStore(
 
     const totalCardCount = computed(() => {
       return Object.values(cardsInDeck.value).reduce((sum, item) => sum + item.quantity, 0)
+    })
+
+    const localDecksList = computed(() => {
+      return Object.entries(localDecks.value)
+        .map(([key, deck]) => ({
+          key,
+          name: deck.name,
+          seriesId: deck.seriesId,
+          game_type: deck.game_type,
+          coverCardId: deck.coverCardId,
+          tags: deck.tags || [],
+          updated_at: deck.updated_at,
+          isLocal: true,
+        }))
+        .sort((a, b) => (b.updated_at || 0) - (a.updated_at || 0))
     })
 
     // --- Helper Functions ---
@@ -216,6 +233,87 @@ export const useDeckStore = defineStore(
       seriesId.value = findDeckSeriesId(currentCardIdPrefixes)
     }
 
+    // --- Local Decks Actions (100% 離線可用) ---
+
+    /**
+     * Saves or updates a local deck (Offline)
+     */
+    const saveLocalDeck = (
+      key,
+      deckData,
+      { name, seriesId, game_type = 'ws', coverCardId, history = [], tags = [] } = {}
+    ) => {
+      const now = Math.floor(Date.now() / 1000)
+      const existing = localDecks.value[key] || {}
+      localDecks.value = {
+        ...localDecks.value,
+        [key]: {
+          ...existing,
+          deckData,
+          name: name || existing.name || '未命名本地卡组',
+          seriesId: seriesId || existing.seriesId,
+          game_type: game_type || existing.game_type || 'ws',
+          coverCardId: coverCardId || existing.coverCardId,
+          history: history.length > 0 ? history : existing.history || [],
+          tags: tags.length > 0 ? tags : existing.tags || [],
+          updated_at: now,
+          isLocal: true,
+        },
+      }
+    }
+
+    /**
+     * Updates only the tags of an existing local deck
+     */
+    const updateLocalDeckTags = (key, tags) => {
+      if (localDecks.value[key]) {
+        localDecks.value = {
+          ...localDecks.value,
+          [key]: {
+            ...localDecks.value[key],
+            tags: Array.isArray(tags) ? tags : [],
+            updated_at: Math.floor(Date.now() / 1000),
+          },
+        }
+      }
+    }
+
+    /**
+     * Deletes a local deck
+     */
+    const deleteLocalDeck = (key) => {
+      if (localDecks.value[key]) {
+        const copy = { ...localDecks.value }
+        delete copy[key]
+        localDecks.value = copy
+      }
+      if (editingDeckKey.value === key) {
+        clearDeck()
+      }
+    }
+
+    /**
+     * Uploads a local deck to the Cloud (D1) and removes it from local upon success
+     */
+    const uploadLocalDeckToCloud = async (key) => {
+      const localDeck = localDecks.value[key]
+      if (!localDeck) throw new Error('未找到本地卡组')
+      if (!authStore.isOnline) throw new Error('网络连接不可用，请检查网络状态')
+      if (!authStore.token) throw new Error('请先登录后再上传至云端')
+
+      await saveEncodedDeck(key, localDeck.deckData, {
+        name: localDeck.name,
+        seriesId: localDeck.seriesId,
+        game_type: localDeck.game_type,
+        coverCardId: localDeck.coverCardId,
+        history: localDeck.history || [],
+        tags: localDeck.tags || [],
+      })
+
+      // 上传成功后从本地移除
+      deleteLocalDeck(key)
+    }
+
     // --- Async Actions ---
 
     /**
@@ -237,13 +335,13 @@ export const useDeckStore = defineStore(
         placement = null,
         articleLink = null,
         tags = [],
-      }
+      } = {}
     ) => {
       if (!authStore.token) throw new Error('请先登录')
 
       if (await hasSensitiveWords(name)) throw new Error('检测到敏感词！')
 
-      const response = await fetch('/api/decks', {
+      const response = await apiFetch('/api/decks', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -323,13 +421,13 @@ export const useDeckStore = defineStore(
     const updateEncodedDeck = async (
       key,
       deckData,
-      { name, seriesId, game_type, coverCardId, history = [], tags = [] }
+      { name, seriesId, game_type, coverCardId, history = [], tags = [] } = {}
     ) => {
       if (!authStore.token) throw new Error('请先登录')
 
       if (await hasSensitiveWords(name)) throw new Error('检测到敏感词！')
 
-      const response = await fetch(`/api/decks/${key}`, {
+      const response = await apiFetch(`/api/decks/${key}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -440,7 +538,7 @@ export const useDeckStore = defineStore(
           params.append('cursor', pagination.value.cursor)
         }
 
-        const response = await fetch(`/api/decks?${params.toString()}`, {
+        const response = await apiFetch(`/api/decks?${params.toString()}`, {
           headers: {
             Authorization: `Bearer ${authStore.token}`,
           },
@@ -516,7 +614,7 @@ export const useDeckStore = defineStore(
     const fetchDecksMeta = async () => {
       if (!authStore.token) throw new Error('请先登录')
 
-      const response = await fetch('/api/decks/meta', {
+      const response = await apiFetch('/api/decks/meta', {
         headers: {
           Authorization: `Bearer ${authStore.token}`,
         },
@@ -542,7 +640,7 @@ export const useDeckStore = defineStore(
     const updateDeckTags = async (key, tags) => {
       if (!authStore.token) throw new Error('请先登录')
 
-      const response = await fetch(`/api/decks/${key}/tags`, {
+      const response = await apiFetch(`/api/decks/${key}/tags`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -579,7 +677,7 @@ export const useDeckStore = defineStore(
      * Fetches a publicly shared deck by key.
      */
     const fetchDeckByKey = async (key) => {
-      const response = await fetch(`/api/shared-decks/${key}`)
+      const response = await apiFetch(`/api/shared-decks/${key}`)
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}))
         throw new Error(errorData.error || '获取卡组失败')
@@ -592,7 +690,7 @@ export const useDeckStore = defineStore(
      * Fetches Decklog JSON data from backend.
      */
     const fetchDecklog = async (key) => {
-      const response = await fetch(`/api/decklog/${key}`)
+      const response = await apiFetch(`/api/decklog/${key}`)
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}))
         throw new Error(errorData.error || '获取 Decklog 资料失败')
@@ -608,7 +706,7 @@ export const useDeckStore = defineStore(
     const deleteDeck = async (key) => {
       if (!authStore.token) throw new Error('请先登录')
 
-      const response = await fetch(`/api/decks/${key}`, {
+      const response = await apiFetch(`/api/decks/${key}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${authStore.token}`,
@@ -690,6 +788,12 @@ export const useDeckStore = defineStore(
       fetchDecklog,
       restrictionViolations,
       checkRestrictions,
+      localDecks,
+      localDecksList,
+      saveLocalDeck,
+      updateLocalDeckTags,
+      deleteLocalDeck,
+      uploadLocalDeckToCloud,
       decks,
       pagination,
       filters,
@@ -712,6 +816,7 @@ export const useDeckStore = defineStore(
         'deckHistory',
         'originalCardsInDeck',
         'restrictionViolations',
+        'localDecks',
       ],
     },
   }

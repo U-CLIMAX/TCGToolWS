@@ -67,6 +67,7 @@
                   <template v-slot:activator="{ props }">
                     <div
                       v-if="
+                        authStore.isOnline &&
                         (uiStore.showCardPrices || shouldForceElementsOpen) &&
                         route.meta.showCardPrice &&
                         !priceStore.isLoading &&
@@ -166,6 +167,7 @@ import { useDisplay } from 'vuetify'
 import { getCardUrls } from '@/utils/getCardImage'
 import { useDevice } from '@/composables/useDevice'
 import { usePriceStore } from '@/stores/price'
+import { useAuthStore } from '@/stores/auth'
 import { getCardSeriesId } from '@/utils/card'
 import WsIcon from '@/assets/ui/ws-icon.svg?url'
 import { useUIStore } from '@/stores/ui'
@@ -235,6 +237,7 @@ const { smAndUp, smAndDown } = useDisplay()
 const theme = useTheme()
 const uiStore = useUIStore()
 const priceStore = usePriceStore()
+const authStore = useAuthStore()
 const { isTouch } = useDevice()
 const route = useRoute()
 

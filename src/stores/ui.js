@@ -16,6 +16,7 @@ export const useUIStore = defineStore(
     const version = ref(1)
     const theme = ref('dark')
     const country = ref(null)
+    const imageSource = ref('remote') // 'remote' | 'local'
     const isFilterOpen = ref(false)
     const isCardDeckOpen = ref(false)
     const isCardDetailModalOpen = ref(false)
@@ -190,6 +191,7 @@ export const useUIStore = defineStore(
       version,
       theme,
       country,
+      imageSource,
       isFilterOpen,
       isCardDeckOpen,
       isCardDetailModalOpen,

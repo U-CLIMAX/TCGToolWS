@@ -549,6 +549,11 @@ onBeforeRouteLeave((to, from) => {
 })
 
 onMounted(async () => {
+  if (!authStore.isOnline) {
+    triggerSnackbar('当前处于离线状态，卡组广场已禁用', 'warning')
+    return
+  }
+
   // Initialize local filters from store
   Object.assign(localFilters.value, galleryStore.filters)
 

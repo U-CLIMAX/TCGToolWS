@@ -16,6 +16,7 @@ import androidx.webkit.WebViewFeature
 
 class MainActivity : TauriActivity() {
   private var mWebView: WebView? = null
+  private var mBridge: AndroidBridge? = null
   private var lastBackPressTime = 0L
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +38,12 @@ class MainActivity : TauriActivity() {
     }
 
     super.onCreate(savedInstanceState)
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+      if (checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS) != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+        requestPermissions(arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), 101)
+      }
+    }
 
     ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content)) { v, insets ->
       val bars =
@@ -94,6 +101,8 @@ class MainActivity : TauriActivity() {
     }
 
     val bridge = AndroidBridge(this, webView)
+    this.mBridge = bridge
+    bridge.registerNetworkCallback()
     webView.addJavascriptInterface(bridge, AndroidBridge.BRIDGE_NAME)
 
     if (WebViewFeature.isFeatureSupported(WebViewFeature.DOCUMENT_START_SCRIPT)) {
@@ -105,20 +114,6 @@ class MainActivity : TauriActivity() {
     }
   }
 
-  override fun onStop() {
-    super.onStop()
-    mWebView?.let { wv ->
-      wv.onPause()
-      // false indicates clearing only the RAM bitmap/decode cache, preserving disk cache to avoid network re-fetches
-      wv.clearCache(false)
-    }
-  }
-
-  override fun onStart() {
-    super.onStart()
-    mWebView?.onResume()
-  }
-
   override fun onTrimMemory(level: Int) {
     super.onTrimMemory(level)
     if (level >= android.content.ComponentCallbacks2.TRIM_MEMORY_UI_HIDDEN) {
@@ -128,6 +123,8 @@ class MainActivity : TauriActivity() {
   }
 
   override fun onDestroy() {
+    mBridge?.unregisterNetworkCallback()
+    mBridge = null
     mWebView = null
     super.onDestroy()
   }

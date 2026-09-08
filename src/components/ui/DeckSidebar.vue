@@ -495,6 +495,7 @@ import { useDeckUpgradeRarity } from '@/composables/useDeckUpgradeRarity'
 import { deckRestrictionsLastUpdated } from '@/maps/deck-restrictions'
 import { generateDeckKey } from '@/utils/nanoid'
 import { seriesMap } from '@/maps/series-map'
+import { isTauri } from '@/utils/isTauri'
 
 defineProps({
   headerOffsetHeight: {
@@ -528,6 +529,7 @@ const handleUpgradeRarity = async () => {
 }
 
 const totalPrice = computed(() => {
+  if (!authStore.isOnline) return 0
   return Object.values(deckStore.cardsInDeck).reduce((sum, item) => {
     const infos = getCardSeriesId(item.cardIdPrefix)
     let price = null
@@ -578,7 +580,7 @@ const flattenedDisplayCards = computed(() => {
 })
 
 const openSaveDialog = () => {
-  if (!authStore.isAuthenticated) {
+  if (!authStore.isAuthenticated && !isTauri) {
     isAuthAlertOpen.value = true
   } else if (deckCards.value.length > 0) {
     if (
@@ -589,7 +591,11 @@ const openSaveDialog = () => {
     }
     if (deckStore.editingDeckKey) {
       deckName.value = deckStore.deckName
-      deckTags.value = [...(deckStore.savedDecks[deckStore.editingDeckKey]?.tags || [])]
+      deckTags.value = [
+        ...(deckStore.localDecks[deckStore.editingDeckKey]?.tags ||
+          deckStore.savedDecks[deckStore.editingDeckKey]?.tags ||
+          []),
+      ]
     } else {
       deckTags.value = []
     }
@@ -626,8 +632,7 @@ const confirmClearAction = () => {
 }
 
 const navigateToDeckDetail = () => {
-  if (!authStore.isAuthenticated) isAuthAlertOpen.value = true
-  else if (deckStore.editingDeckKey)
+  if (deckStore.editingDeckKey)
     router.push({ name: 'DeckDetail', params: { key: deckStore.editingDeckKey } })
   else if (deckStore.totalCardCount > 0)
     router.push({ name: 'DeckDetail', params: { key: 'local' } })
@@ -639,19 +644,30 @@ const handleCreateDeck = async () => {
   try {
     const key = generateDeckKey()
     const compressedDeckData = await encodeData(toRaw(deckStore.cardsInDeck))
-
     const gameType = seriesMap[deckStore.seriesId]?.game || 'ws'
 
-    await deckStore.saveEncodedDeck(key, compressedDeckData, {
-      name: deckName.value,
-      seriesId: deckStore.seriesId,
-      game_type: gameType,
-      coverCardId: selectedCoverCardId.value,
-      tags: toRaw(deckTags.value),
-    })
+    const isSaveToCloud = !isTauri || (authStore.isAuthenticated && authStore.isOnline)
+
+    if (isSaveToCloud) {
+      await deckStore.saveEncodedDeck(key, compressedDeckData, {
+        name: deckName.value,
+        seriesId: deckStore.seriesId,
+        game_type: gameType,
+        coverCardId: selectedCoverCardId.value,
+        tags: toRaw(deckTags.value),
+      })
+    } else {
+      deckStore.saveLocalDeck(key, compressedDeckData, {
+        name: deckName.value,
+        seriesId: deckStore.seriesId,
+        game_type: gameType,
+        coverCardId: selectedCoverCardId.value,
+        tags: toRaw(deckTags.value),
+      })
+    }
 
     isSaveDialogOpen.value = false
-    triggerSnackbar('新卡组已成功创建！', 'success')
+    triggerSnackbar(isSaveToCloud ? '新卡组已成功创建！' : '新卡组已成功保存到本地！', 'success')
     await router.push(`/decks/${key}`)
     deckStore.clearDeck()
   } catch (error) {
@@ -750,23 +766,39 @@ const handleUpdateDeck = async (historyText = '', diff = []) => {
 
     const compressedDeckData = await encodeData(toRaw(deckStore.cardsInDeck))
     const compressedHistoryData = await encodeData(updatedHistory)
-
     const gameType = seriesMap[deckStore.seriesId]?.game || 'ws'
 
-    await deckStore.updateEncodedDeck(deckStore.editingDeckKey, compressedDeckData, {
-      name: deckName.value,
-      seriesId: deckStore.seriesId,
-      game_type: gameType,
-      coverCardId: selectedCoverCardId.value,
-      history: compressedHistoryData,
-      tags: toRaw(deckTags.value),
-    })
+    const isLocal =
+      isTauri &&
+      (!!deckStore.localDecks[deckStore.editingDeckKey] ||
+        !authStore.isAuthenticated ||
+        !authStore.isOnline)
+
+    if (isLocal) {
+      deckStore.saveLocalDeck(deckStore.editingDeckKey, compressedDeckData, {
+        name: deckName.value,
+        seriesId: deckStore.seriesId,
+        game_type: gameType,
+        coverCardId: selectedCoverCardId.value,
+        history: compressedHistoryData,
+        tags: toRaw(deckTags.value),
+      })
+    } else {
+      await deckStore.updateEncodedDeck(deckStore.editingDeckKey, compressedDeckData, {
+        name: deckName.value,
+        seriesId: deckStore.seriesId,
+        game_type: gameType,
+        coverCardId: selectedCoverCardId.value,
+        history: compressedHistoryData,
+        tags: toRaw(deckTags.value),
+      })
+    }
     // Sync local decoded history state
     deckStore.deckHistory = updatedHistory
     const key = deckStore.editingDeckKey
 
     isSaveDialogOpen.value = false
-    triggerSnackbar('卡组已成功更新！', 'success')
+    triggerSnackbar(isLocal ? '本地卡组已成功更新！' : '卡组已成功更新！', 'success')
     await router.push(`/decks/${key}`)
     deckStore.clearDeck()
   } catch (error) {

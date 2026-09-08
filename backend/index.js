@@ -1,4 +1,5 @@
 import { Hono } from 'hono'
+import { cors } from 'hono/cors'
 import { etag } from 'hono/etag'
 import {
   handleSendVerificationCode,
@@ -44,6 +45,33 @@ import { publicCache } from './lib/utils.js'
 
 /** @type {AppInstance} */
 const app = new Hono().basePath('/api')
+
+// Enable CORS for Tauri desktop/mobile clients and local development
+app.use(
+  '*',
+  cors({
+    origin: (origin) => {
+      if (!origin) return 'https://www.uclimax.top'
+      if (
+        origin === 'http://tauri.localhost' ||
+        origin === 'https://tauri.localhost' ||
+        origin === 'tauri://localhost' ||
+        origin === 'https://www.uclimax.top' ||
+        origin === 'https://test.uclimax.top' ||
+        origin === 'https://uclimax.top' ||
+        /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)
+      ) {
+        return origin
+      }
+      return null
+    },
+    allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'If-None-Match'],
+    exposeHeaders: ['Content-Length', 'ETag'],
+    maxAge: 86400,
+    credentials: true,
+  })
+)
 
 // Enable global ETag calculation (allows 304 Not Modified zero-byte response on weak networks)
 app.use('*', etag())

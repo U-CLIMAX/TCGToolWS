@@ -10,6 +10,7 @@ import { piniaVersioningPlugin } from '@/plugins/pinia-versioning.js'
 import { useUIStore } from './stores/ui'
 import { registerSW } from 'virtual:pwa-register'
 import { createVersionPolling } from 'version-polling'
+import { isTauri } from '@/utils/isTauri'
 
 import 'virtual:uno.css'
 import '@/assets/styles/main.css'
@@ -82,16 +83,18 @@ const bootstrap = async () => {
   app.use(router)
   app.use(vuetify)
 
-  createVersionPolling({
-    vcType: 'chunkHash',
-    htmlFileUrl: `${window.location.origin}/index.html`,
-    chunkName: 'index',
-    silent: import.meta.env.DEV,
-    pollingInterval: 10 * 60 * 1000,
-    onUpdate: (self) => {
-      uiStore.triggerForceUpdate(self)
-    },
-  })
+  if (!isTauri) {
+    createVersionPolling({
+      vcType: 'chunkHash',
+      htmlFileUrl: `${window.location.origin}/index.html`,
+      chunkName: 'index',
+      silent: import.meta.env.DEV,
+      pollingInterval: 10 * 60 * 1000,
+      onUpdate: (self) => {
+        uiStore.triggerForceUpdate(self)
+      },
+    })
+  }
 
   app.mount('#app')
 }

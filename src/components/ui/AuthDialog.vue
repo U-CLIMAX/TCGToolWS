@@ -10,7 +10,7 @@
             <div class="d-flex align-center">
               <span>{{ isLoginMode ? '登录' : '注册' }}</span>
               <v-chip
-                v-if="isLoginMode && isTauriApp && appVersion"
+                v-if="isLoginMode && isTauri && appVersion"
                 size="x-small"
                 variant="tonal"
                 class="ml-2 font-weight-regular"
@@ -36,6 +36,9 @@
           </template>
 
           <v-card-text>
+            <v-alert v-if="!authStore.isOnline" type="warning" density="compact" class="mb-4">
+              当前处于离线状态，请连接网络后再进行操作
+            </v-alert>
             <v-alert v-if="error" type="error" density="compact" class="mb-4">{{ error }}</v-alert>
             <v-form
               ref="credentialsForm"
@@ -47,7 +50,7 @@
                 label="邮箱"
                 type="email"
                 variant="outlined"
-                :readonly="loading"
+                :readonly="loading || !authStore.isOnline"
                 :rules="emailRules"
                 class="mb-2"
               ></v-text-field>
@@ -58,7 +61,7 @@
                 v-model="password"
                 label="密码"
                 variant="outlined"
-                :readonly="loading"
+                :readonly="loading || !authStore.isOnline"
                 :autocomplete="isLoginMode ? 'on' : 'off'"
                 :rules="isLoginMode ? [] : passwordRules"
                 class="mb-2"
@@ -87,7 +90,7 @@
                 label="确定密码"
                 type="password"
                 variant="outlined"
-                :readonly="loading"
+                :readonly="loading || !authStore.isOnline"
                 autocomplete="off"
                 :rules="passwordConfirmRules"
                 class="mb-2"
@@ -100,7 +103,7 @@
                 color="primary"
                 size="large"
                 :loading="loading"
-                :disabled="!isFormValid || isRegisterCoolingDown"
+                :disabled="!isFormValid || isRegisterCoolingDown || !authStore.isOnline"
               >
                 {{ `发送验证码 ${registerCooldownText}` }}
               </v-btn>
@@ -111,7 +114,7 @@
                 color="primary"
                 size="large"
                 :loading="loading"
-                :disabled="email.trim() && password.length >= 8 ? false : true"
+                :disabled="!authStore.isOnline || !email.trim() || password.length < 8"
               >
                 登录
               </v-btn>
@@ -141,6 +144,9 @@
           </template>
 
           <v-card-text>
+            <v-alert v-if="!authStore.isOnline" type="warning" density="compact" class="mb-4">
+              当前处于离线状态，请连接网络后再进行操作
+            </v-alert>
             <v-alert v-if="error" type="error" density="compact" class="mb-4">{{ error }}</v-alert>
             <v-alert v-if="successMessage" type="success" density="compact" class="mb-4">{{
               successMessage
@@ -157,7 +163,7 @@
                 color="primary"
                 size="large"
                 :loading="loading"
-                :disabled="!isVerificationCodeReady"
+                :disabled="!isVerificationCodeReady || !authStore.isOnline"
               >
                 验证并注册
               </v-btn>
@@ -170,7 +176,7 @@
               variant="text"
               @click="handleResendCode"
               :loading="resending"
-              :disabled="isResendCoolingDown"
+              :disabled="isResendCoolingDown || !authStore.isOnline"
             >
               {{ resendButtonText }}
             </v-btn>
@@ -184,8 +190,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import { isTauri } from '@tauri-apps/api/core'
-import { getVersion } from '@tauri-apps/api/app'
+import { isTauri } from '@/utils/isTauri'
 import { useAuthStore } from '@/stores/auth'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useCooldown } from '@/composables/useCooldown'
@@ -211,12 +216,12 @@ const dialog = ref(false)
 const isSettingsModalOpen = ref(false)
 const step = ref('credentials') // 'credentials' or 'verification'
 const mode = ref('login') // 'login' or 'register'
-const isTauriApp = isTauri()
 const appVersion = ref('')
 
 onMounted(async () => {
-  if (isTauriApp) {
+  if (isTauri) {
     try {
+      const { getVersion } = await import('@tauri-apps/api/app')
       appVersion.value = await getVersion()
     } catch (err) {
       console.warn('获取客户端版本失败:', err)
@@ -272,6 +277,11 @@ const resendButtonText = computed(() => {
 const handleCredentialSubmit = async () => {
   error.value = null
 
+  if (!authStore.isOnline) {
+    error.value = '当前处于离线状态，请检查网络连接'
+    return
+  }
+
   if (!isLoginMode.value) {
     const { valid } = await credentialsForm.value.validate()
     if (!valid) return
@@ -299,6 +309,10 @@ const handleCredentialSubmit = async () => {
 
 const handleVerificationSubmit = async () => {
   error.value = null
+  if (!authStore.isOnline) {
+    error.value = '当前处于离线状态，请检查网络连接'
+    return
+  }
   loading.value = true
   try {
     const result = await authStore.verifyAndRegister(email.value, verificationCode.value)
@@ -315,6 +329,10 @@ const handleVerificationSubmit = async () => {
 }
 
 const handleResendCode = async () => {
+  if (!authStore.isOnline) {
+    error.value = '当前处于离线状态，请检查网络连接'
+    return
+  }
   resending.value = true
   error.value = null
   successMessage.value = null

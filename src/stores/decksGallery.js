@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { ref, reactive, computed, shallowRef } from 'vue'
 import { useAuthStore } from './auth'
 import { ALL_SERIES_OPTIONS } from '@/maps/series-map'
+import { apiFetch } from '@/utils/api.js'
 
 export const useDecksGalleryStore = defineStore('decksGallery', () => {
   const authStore = useAuthStore()
@@ -76,7 +77,7 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
       }
 
       const endpoint = filters.source === 'mine' ? '/api/gallery/my-decks' : '/api/gallery/decks'
-      const response = await fetch(`${endpoint}?${params.toString()}`, { headers, signal })
+      const response = await apiFetch(`${endpoint}?${params.toString()}`, { headers, signal })
 
       if (!response.ok) throw new Error('获取广场卡组失败')
 
@@ -114,7 +115,7 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
     if (!authStore.isAuthenticated) return
 
     try {
-      const response = await fetch('/api/gallery/my-count', {
+      const response = await apiFetch('/api/gallery/my-count', {
         headers: { Authorization: `Bearer ${authStore.token}` },
       })
       if (!response.ok) throw new Error('获取广场分享数量失败')
@@ -133,7 +134,7 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
   const rateDeck = async (key, rating) => {
     if (!authStore.isAuthenticated) throw new Error('请先登录')
 
-    const response = await fetch(`/api/gallery/decks/${key}/rating`, {
+    const response = await apiFetch(`/api/gallery/decks/${key}/rating`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -157,7 +158,7 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
   const fetchMyRating = async (key) => {
     if (!authStore.isAuthenticated) return 0
 
-    const response = await fetch(`/api/gallery/decks/${key}/rating`, {
+    const response = await apiFetch(`/api/gallery/decks/${key}/rating`, {
       headers: { Authorization: `Bearer ${authStore.token}` },
     })
 
@@ -173,7 +174,7 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
   const deleteDeck = async (key) => {
     if (!authStore.isAuthenticated) throw new Error('请先登录')
 
-    const response = await fetch(`/api/gallery/decks/${key}`, {
+    const response = await apiFetch(`/api/gallery/decks/${key}`, {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${authStore.token}` },
     })
@@ -195,7 +196,7 @@ export const useDecksGalleryStore = defineStore('decksGallery', () => {
   const updateDeckMetadata = async (key, metadata) => {
     if (!authStore.isAuthenticated) throw new Error('请先登录')
 
-    const response = await fetch(`/api/gallery/decks/${key}`, {
+    const response = await apiFetch(`/api/gallery/decks/${key}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

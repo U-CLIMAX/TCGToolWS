@@ -5,6 +5,7 @@ import { useDeckStore } from './deck'
 import { usePriceStore } from './price'
 import { useDecksGalleryStore } from './decksGallery'
 import { jwtDecode } from 'jwt-decode'
+import { apiFetch } from '@/utils/api.js'
 
 export const useAuthStore = defineStore('auth', () => {
   const codeVersion = ref(1)
@@ -23,8 +24,7 @@ export const useAuthStore = defineStore('auth', () => {
         if (parsed.version === codeVersion.value) {
           return { token: parsed.token, rememberMe: parsed.rememberMe ?? true }
         }
-        // eslint-disable-next-line no-unused-vars
-      } catch (e) {
+      } catch {
         localStorage.removeItem('auth')
         sessionStorage.removeItem('auth')
       }
@@ -32,13 +32,74 @@ export const useAuthStore = defineStore('auth', () => {
     return { token: null, rememberMe: true }
   }
 
+  const parseToken = (tokenString) => {
+    if (!tokenString) return null
+    try {
+      const decoded = jwtDecode(tokenString)
+      const now = Math.floor(Date.now() / 1000)
+      if (decoded.exp && decoded.exp < now) {
+        return null
+      }
+      let effectiveRole = decoded.role ?? 0
+      let effectivePremiumTime = decoded.p_exp ?? null
+      if (effectiveRole === 1 && effectivePremiumTime && effectivePremiumTime < now) {
+        effectiveRole = 0
+        effectivePremiumTime = null
+      }
+      return {
+        id: decoded.sub,
+        role: effectiveRole,
+        premium_expire_time: effectivePremiumTime,
+        exp: decoded.exp,
+      }
+    } catch {
+      return null
+    }
+  }
+
   const { token: initToken, rememberMe: initRemember } = initState()
   const token = ref(initToken)
   const rememberMe = ref(initRemember)
-  const userRole = ref(0)
-  const userStatus = shallowRef(null)
+  const initialParsed = parseToken(initToken)
+  const userRole = ref(initialParsed ? initialParsed.role : 0)
+  const userStatus = shallowRef(
+    initialParsed
+      ? {
+          id: initialParsed.id,
+          role: initialParsed.role,
+          premium_expire_time: initialParsed.premium_expire_time,
+        }
+      : null
+  )
+
+  const checkInitialOnline = () => {
+    if (typeof window !== 'undefined' && window.__AndroidNativeBridge__?.isNetworkAvailable) {
+      try {
+        return window.__AndroidNativeBridge__.isNetworkAvailable()
+      } catch {
+        // fallback
+      }
+    }
+    return typeof navigator !== 'undefined' ? navigator.onLine : true
+  }
+
   const isAuthReady = ref(false)
+  const isOnline = ref(checkInitialOnline())
   const isAuthenticated = computed(() => !!token.value)
+
+  const handleOnline = () => {
+    isOnline.value = true
+    fetchUserStatus()
+  }
+
+  const handleOffline = () => {
+    isOnline.value = false
+  }
+
+  if (typeof window !== 'undefined') {
+    window.addEventListener('online', handleOnline)
+    window.addEventListener('offline', handleOffline)
+  }
 
   /**
    * Save auth state to persistent or session storage
@@ -59,8 +120,27 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
+  const updateUserFromToken = (tokenString) => {
+    const parsed = parseToken(tokenString)
+    if (!parsed) {
+      if (tokenString) logout()
+      else {
+        userStatus.value = null
+        userRole.value = 0
+      }
+      return
+    }
+    userStatus.value = {
+      id: parsed.id,
+      role: parsed.role,
+      premium_expire_time: parsed.premium_expire_time,
+    }
+    userRole.value = parsed.role
+  }
+
   const sendVerificationCode = async (email, password) => {
-    const response = await fetch('/api/register/send-code', {
+    if (!isOnline.value) throw new Error('网络连接已断开，请检查网络')
+    const response = await apiFetch('/api/register/send-code', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
@@ -71,7 +151,8 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   const verifyAndRegister = async (email, code) => {
-    const response = await fetch('/api/register/verify', {
+    if (!isOnline.value) throw new Error('网络连接已断开，请检查网络')
+    const response = await apiFetch('/api/register/verify', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, code }),
@@ -82,7 +163,8 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   const login = async (email, password) => {
-    const response = await fetch('/api/login', {
+    if (!isOnline.value) throw new Error('网络连接已断开，请检查网络')
+    const response = await apiFetch('/api/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
@@ -91,6 +173,7 @@ export const useAuthStore = defineStore('auth', () => {
     if (!response.ok) throw new Error(data.error || '登录失败')
     token.value = data.token
     saveToStorage()
+    updateUserFromToken(data.token)
 
     const priceStore = usePriceStore()
     priceStore.reset()
@@ -123,31 +206,32 @@ export const useAuthStore = defineStore('auth', () => {
 
   const refreshSession = async () => {
     if (!token.value) return
+    if (typeof navigator !== 'undefined' && !navigator.onLine) return
 
     try {
-      const response = await fetch('/api/session/refresh', {
+      const response = await apiFetch('/api/session/refresh', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token.value}`,
         },
       })
-      const data = await response.json()
+      const data = await response.json().catch(() => ({}))
       if (response.ok && data.token) {
         token.value = data.token
         saveToStorage()
         updateUserFromToken(data.token)
         console.log('Session refreshed successfully.')
-      } else {
+      } else if (response.status === 401 || response.status === 403) {
         logout()
       }
     } catch (error) {
-      console.error('Failed to refresh session:', error)
-      logout()
+      console.warn('Failed to refresh session due to network error:', error)
     }
   }
 
   const forgotPassword = async (email) => {
-    const response = await fetch('/api/password/forgot', {
+    if (!isOnline.value) throw new Error('网络连接已断开，请检查网络')
+    const response = await apiFetch('/api/password/forgot', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email }),
@@ -160,7 +244,8 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   const resetPassword = async (token, password) => {
-    const response = await fetch('/api/password/reset', {
+    if (!isOnline.value) throw new Error('网络连接已断开，请检查网络')
+    const response = await apiFetch('/api/password/reset', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ token, password }),
@@ -174,9 +259,10 @@ export const useAuthStore = defineStore('auth', () => {
 
   const initiatePayment = async () => {
     if (!token.value) throw new Error('请先登录')
+    if (!isOnline.value) throw new Error('网络连接已断开，请检查网络')
 
     try {
-      const response = await fetch('/api/payments/initiate', {
+      const response = await apiFetch('/api/payments/initiate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -198,37 +284,6 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  const updateUserFromToken = (tokenString) => {
-    if (!tokenString) {
-      userStatus.value = null
-      userRole.value = 0
-      return
-    }
-
-    try {
-      const decodedToken = jwtDecode(tokenString)
-      const now = Math.floor(Date.now() / 1000)
-
-      let effectiveRole = decodedToken.role
-      let effectivePremiumTime = decodedToken.p_exp
-      if (effectivePremiumTime && effectivePremiumTime < now) {
-        effectivePremiumTime = null
-      }
-
-      const status = {
-        id: decodedToken.sub,
-        role: effectiveRole,
-        premium_expire_time: effectivePremiumTime,
-      }
-
-      userStatus.value = status
-      userRole.value = status.role
-    } catch (e) {
-      console.error('Failed to decode token:', e)
-      logout()
-    }
-  }
-
   const fetchUserStatus = async () => {
     if (!token.value) {
       userStatus.value = null
@@ -237,36 +292,35 @@ export const useAuthStore = defineStore('auth', () => {
       return
     }
 
-    try {
-      let decodedToken
-      try {
-        decodedToken = jwtDecode(token.value)
-        // eslint-disable-next-line no-unused-vars
-      } catch (e) {
-        logout()
-        return
-      }
-
-      const now = Math.floor(Date.now() / 1000)
-      if (decodedToken.exp < now) {
-        logout()
-        return
-      }
-
-      // Proactive session refresh (if expiring within 24 hours)
-      const oneDay = 24 * 60 * 60
-      if (decodedToken.exp < now + oneDay) {
-        await refreshSession()
-      } else {
-        updateUserFromToken(token.value)
-      }
-      // eslint-disable-next-line no-unused-vars
-    } catch (e) {
-      userStatus.value = null
-      userRole.value = 0
-    } finally {
+    const parsed = parseToken(token.value)
+    if (!parsed) {
+      logout()
       isAuthReady.value = true
+      return
     }
+
+    userStatus.value = {
+      id: parsed.id,
+      role: parsed.role,
+      premium_expire_time: parsed.premium_expire_time,
+    }
+    userRole.value = parsed.role
+
+    if (!isOnline.value) {
+      isAuthReady.value = true
+      return
+    }
+
+    const now = Math.floor(Date.now() / 1000)
+    const oneDay = 24 * 60 * 60
+    if (parsed.exp && parsed.exp < now + oneDay) {
+      try {
+        await refreshSession()
+      } catch (e) {
+        console.warn('Network issue during fetchUserStatus session refresh:', e)
+      }
+    }
+    isAuthReady.value = true
   }
 
   return {
@@ -274,6 +328,7 @@ export const useAuthStore = defineStore('auth', () => {
     token,
     isAuthenticated,
     isAuthReady,
+    isOnline,
     rememberMe,
     userRole,
     userStatus,

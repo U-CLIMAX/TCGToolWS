@@ -37,7 +37,7 @@
                       icon="i-mdi:share-variant"
                       variant="text"
                       density="compact"
-                      :disabled="isLocalDeck"
+                      :disabled="isLocalDeck || !!deckStore.localDecks[deckKey]"
                     ></v-btn>
                   </template>
                   <v-list nav density="compact" class="rounded-3md">
@@ -55,15 +55,25 @@
                       prepend-icon="i-mdi:view-grid-plus"
                       slim
                       class="rounded-3md"
+                      :disabled="!authStore.isOnline"
                     >
                     </v-list-item>
                   </v-list>
                 </v-menu>
                 <v-btn
+                  v-if="deckStore.localDecks[deckKey]"
+                  icon="i-mdi:cloud-upload-outline"
+                  variant="text"
+                  density="compact"
+                  color="cyan-accent-2"
+                  @click="handleUploadToCloud"
+                  v-tooltip:bottom="{ text: '上传至云端', disabled: isTouch }"
+                ></v-btn>
+                <v-btn
                   icon="i-mdi:link-variant"
                   variant="text"
                   density="compact"
-                  :disabled="isLocalDeck"
+                  :disabled="isLocalDeck || !!deckStore.localDecks[deckKey]"
                   @click="handleCopyDeckKey"
                   v-tooltip:bottom="{ text: '复制卡组代码', disabled: isTouch }"
                 ></v-btn>
@@ -138,7 +148,10 @@
               </template>
 
               <v-fade-transition>
-                <div v-if="priceStore.isLoading" class="ml-2 d-flex align-center flex-shrink-0">
+                <div
+                  v-if="authStore.isOnline && priceStore.isLoading"
+                  class="ml-2 d-flex align-center flex-shrink-0"
+                >
                   <v-progress-circular
                     indeterminate
                     :size="smAndUp ? 18 : 14"
@@ -184,6 +197,7 @@
                   </template>
                 </v-tooltip>
                 <v-btn
+                  v-if="authStore.isOnline"
                   :icon="uiStore.showCardPrices ? 'i-mdi:cash' : 'i-mdi:cash-off'"
                   variant="text"
                   density="compact"
@@ -287,7 +301,7 @@
           <v-list-item-title v-if="!uiStore.showStatsDashboard">显示统计</v-list-item-title>
           <v-list-item-title v-else>隐藏统计</v-list-item-title>
         </v-list-item>
-        <v-list-item @click="handleShowCardPricesClick">
+        <v-list-item v-if="authStore.isOnline" @click="handleShowCardPricesClick">
           <template #prepend>
             <v-icon :icon="!uiStore.showCardPrices ? 'i-mdi:cash-off' : 'i-mdi:cash'" />
           </template>
@@ -324,19 +338,32 @@
           </template>
           <v-list-item-title>卡组历史</v-list-item-title>
         </v-list-item>
-        <v-list-item v-if="!isLocalDeck" @click="handleShareClick">
+        <v-list-item v-if="deckStore.localDecks[deckKey]" @click="handleUploadToCloudBottomSheet">
+          <template #prepend>
+            <v-icon color="cyan-accent-2" icon="i-mdi:cloud-upload-outline" />
+          </template>
+          <v-list-item-title>上传至云端</v-list-item-title>
+        </v-list-item>
+        <v-list-item
+          v-if="!isLocalDeck && !deckStore.localDecks[deckKey]"
+          @click="handleShareClick"
+        >
           <template #prepend>
             <v-icon icon="i-mdi:link" />
           </template>
           <v-list-item-title>复制分享链接</v-list-item-title>
         </v-list-item>
-        <v-list-item v-if="!isLocalDeck" @click="handleShareToDeckGallery">
+        <v-list-item
+          v-if="!isLocalDeck && !deckStore.localDecks[deckKey]"
+          :disabled="!authStore.isOnline"
+          @click="handleShareToDeckGallery"
+        >
           <template #prepend>
             <v-icon icon="i-mdi:view-grid-plus" />
           </template>
           <v-list-item-title>分享到卡组广场</v-list-item-title>
         </v-list-item>
-        <v-list-item v-if="!isLocalDeck" @click="handleCopyClick">
+        <v-list-item v-if="!isLocalDeck && !deckStore.localDecks[deckKey]" @click="handleCopyClick">
           <template #prepend>
             <v-icon icon="i-mdi:link-variant" />
           </template>
@@ -646,6 +673,27 @@ const confirmShareToDeckGallery = async (formData) => {
 }
 const handleCopyDeckKey = () => baseHandleCopyDeckKey(deckKey, isLocalDeck.value)
 
+const handleUploadToCloud = async () => {
+  if (!authStore.isOnline) {
+    triggerSnackbar('网络连接不可用，请检查网络状态', 'warning')
+    return
+  }
+  if (!authStore.token) {
+    triggerSnackbar('请先登录后再上传至云端', 'warning')
+    return
+  }
+  uiStore.setLoading(true)
+  try {
+    await deckStore.uploadLocalDeckToCloud(deckKey)
+    triggerSnackbar('卡组已成功同步至云端！', 'success')
+    router.push({ name: 'Decks' })
+  } catch (err) {
+    triggerSnackbar(err.message || '上传失败', 'error')
+  } finally {
+    uiStore.setLoading(false)
+  }
+}
+
 const handleEditDeck = async () => {
   if (!deck.value) {
     triggerSnackbar('无法编辑卡组', 'error')
@@ -728,7 +776,7 @@ onMounted(async () => {
         return
       }
     } else {
-      let targetDeck = deckStore.savedDecks[deckKey]
+      let targetDeck = deckStore.localDecks[deckKey] || deckStore.savedDecks[deckKey]
       if (!targetDeck || !targetDeck.deckData) {
         try {
           const fetched = await deckStore.fetchDeckByKey(deckKey)
@@ -1140,6 +1188,10 @@ const handleShowDifferencesClick = () => {
 const handleExportClick = () => {
   openExportDialog()
   showMoreActionsBottomSheet.value = false
+}
+const handleUploadToCloudBottomSheet = () => {
+  showMoreActionsBottomSheet.value = false
+  handleUploadToCloud()
 }
 const handleShareClick = () => {
   handleShareCard()

@@ -4,5 +4,5 @@
   "description": "enables desktop-specific permissions",
   "windows": ["main"],
   "platforms": ["windows", "macOS", "linux"],
-  "permissions": ["window-state:default"]
+  "permissions": ["window-state:default", "notification:default"]
 }

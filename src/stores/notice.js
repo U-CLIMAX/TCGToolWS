@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, shallowRef, computed } from 'vue'
 import { useAuthStore } from './auth'
+import { apiFetch } from '@/utils/api.js'
 
 export const useNoticeStore = defineStore('notice', () => {
   const authStore = useAuthStore()
@@ -27,7 +28,7 @@ export const useNoticeStore = defineStore('notice', () => {
    */
   const fetchNotices = async () => {
     try {
-      const response = await fetch('/api/notices')
+      const response = await apiFetch('/api/notices')
       if (response.ok) {
         notices.value = await response.json()
       }
@@ -53,7 +54,7 @@ export const useNoticeStore = defineStore('notice', () => {
     if (!authStore.isAuthenticated) throw new Error('请先登录')
 
     try {
-      const response = await fetch('/api/notices', {
+      const response = await apiFetch('/api/notices', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -79,7 +80,7 @@ export const useNoticeStore = defineStore('notice', () => {
     if (!authStore.isAuthenticated) throw new Error('请先登录')
 
     try {
-      const response = await fetch(`/api/notices/${id}`, {
+      const response = await apiFetch(`/api/notices/${id}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${authStore.token}`,

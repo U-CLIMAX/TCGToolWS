@@ -5,19 +5,26 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.ContentValues
 import android.content.Context
+import android.content.Intent
 import android.media.MediaScannerConnection
+import android.net.ConnectivityManager
+import android.net.Network
+import android.net.NetworkCapabilities
+import android.net.NetworkRequest
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.os.Handler
 import android.os.Looper
 import android.provider.MediaStore
+import android.provider.Settings
 import android.util.Base64
 import android.util.Log
 import android.webkit.JavascriptInterface
 import android.webkit.URLUtil
 import android.webkit.WebView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import java.io.File
 import java.io.FileOutputStream
@@ -27,9 +34,15 @@ import java.io.FileOutputStream
  * Handles file saving (MediaStore) and clipboard operations (FileProvider) without frontend changes.
  */
 class AndroidBridge(private val context: Context, private val webView: WebView) {
+  init {
+    cleanupOldUpdates()
+  }
+
   companion object {
     const val TAG = "TCGToolWS_NativeBridge"
     const val BRIDGE_NAME = "__AndroidNativeBridge__"
+    const val SYNC_CHANNEL_ID = "card_image_sync_channel"
+    const val SYNC_NOTIFICATION_ID = 2001
 
     /**
      * Polyfill script injected into WebView to intercept downloads and image copying.
@@ -271,6 +284,134 @@ class AndroidBridge(private val context: Context, private val webView: WebView) 
   }
 
   /**
+   * Directly download and install an APK file from URL in background without JS memory buffering.
+   */
+  @JavascriptInterface
+  fun downloadAndInstallApk(apkUrl: String) {
+    Thread {
+      try {
+        val cacheDir = File(context.cacheDir, "updates").apply { mkdirs() }
+        val apkFile = File(cacheDir, "tcgtoolws_update.apk")
+        var currentUrl = apkUrl
+        var redirects = 0
+        var conn: java.net.HttpURLConnection
+
+        while (true) {
+          val url = java.net.URL(currentUrl)
+          conn = url.openConnection() as java.net.HttpURLConnection
+          conn.connectTimeout = 15000
+          conn.readTimeout = 30000
+          conn.instanceFollowRedirects = true
+          conn.setRequestProperty("User-Agent", "TCGToolWS-Client")
+          conn.connect()
+
+          val status = conn.responseCode
+          if (status in listOf(301, 302, 303, 307, 308) && redirects < 5) {
+            val newLocation = conn.getHeaderField("Location")
+            if (!newLocation.isNullOrBlank()) {
+              currentUrl = newLocation
+              redirects++
+              conn.disconnect()
+              continue
+            }
+          }
+          if (status !in 200..299) {
+            throw Exception("HTTP $status")
+          }
+          break
+        }
+
+        val totalLength = conn.contentLength.toLong()
+        var downloaded = 0L
+        var lastEmitTime = 0L
+
+        conn.inputStream.use { input ->
+          FileOutputStream(apkFile).use { output ->
+            val buffer = ByteArray(8192)
+            var bytesRead: Int
+            while (input.read(buffer).also { bytesRead = it } != -1) {
+              output.write(buffer, 0, bytesRead)
+              downloaded += bytesRead
+              val now = System.currentTimeMillis()
+              if (now - lastEmitTime >= 100 || downloaded == totalLength) {
+                val progress = if (totalLength > 0) (downloaded.toDouble() / totalLength.toDouble()) * 100.0 else 0.0
+                val js =
+                  "window.dispatchEvent(new CustomEvent('android-update-progress', " +
+                    "{ detail: { progress: $progress, downloaded: $downloaded, total: $totalLength } }));"
+                Handler(Looper.getMainLooper()).post {
+                  webView.evaluateJavascript(js, null)
+                }
+                lastEmitTime = now
+              }
+            }
+          }
+        }
+
+        // Check unknown source install permission for Android 8.0+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+          if (!context.packageManager.canRequestPackageInstalls()) {
+            val settingsIntent =
+              Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES).apply {
+                data = Uri.parse("package:${context.packageName}")
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+              }
+            context.startActivity(settingsIntent)
+            showToast("请先允许安装未知应用")
+            Handler(Looper.getMainLooper()).post {
+              webView.evaluateJavascript(
+                "window.dispatchEvent(new CustomEvent('android-update-error', { detail: { error: '请在系统设置中允许安装来自此来源的应用，然后重试' } }));",
+                null,
+              )
+            }
+            return@Thread
+          }
+        }
+
+        val contentUri =
+          FileProvider.getUriForFile(
+            context,
+            "${context.packageName}.fileprovider",
+            apkFile,
+          )
+
+        val intent =
+          Intent(Intent.ACTION_VIEW).apply {
+            setDataAndType(contentUri, "application/vnd.android.package-archive")
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_ACTIVITY_NEW_TASK)
+          }
+
+        Handler(Looper.getMainLooper()).post {
+          try {
+            context.startActivity(intent)
+            webView.evaluateJavascript(
+              "window.dispatchEvent(new CustomEvent('android-update-installing'));",
+              null,
+            )
+          } catch (e: Exception) {
+            Log.e(TAG, "Failed to launch package installer", e)
+            val escaped = (e.localizedMessage ?: "唤起安装器失败").replace("'", "\\'")
+            showToast("唤起安装器失败: ${e.localizedMessage}")
+            webView.evaluateJavascript(
+              "window.dispatchEvent(new CustomEvent('android-update-error', { detail: { error: '$escaped' } }));",
+              null,
+            )
+          }
+        }
+      } catch (e: Exception) {
+        Log.e(TAG, "Error downloading APK", e)
+        val escaped = (e.localizedMessage ?: "下载安装包失败").replace("'", "\\'")
+        showToast("下载安装包失败: ${e.localizedMessage ?: "未知错误"}")
+        Handler(Looper.getMainLooper()).post {
+          webView.evaluateJavascript(
+            "window.dispatchEvent(new CustomEvent('android-update-error', { detail: { error: '$escaped' } }));",
+            null,
+          )
+        }
+      }
+    }.start()
+  }
+
+  /**
    * Fallback for standard HTTP/HTTPS file downloads.
    */
   @JavascriptInterface
@@ -392,6 +533,160 @@ class AndroidBridge(private val context: Context, private val webView: WebView) 
   private fun showToast(message: String) {
     Handler(Looper.getMainLooper()).post {
       Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+    }
+  }
+
+  private fun cleanupOldUpdates() {
+    Thread {
+      try {
+        val cacheDir = File(context.cacheDir, "updates")
+        if (cacheDir.exists() && cacheDir.isDirectory) {
+          cacheDir.listFiles()?.forEach { it.delete() }
+        }
+      } catch (e: Exception) {
+        Log.w(TAG, "Failed to cleanup old update files", e)
+      }
+    }.start()
+  }
+
+  /**
+   * Start Foreground Service for card image sync to guarantee persistent background execution.
+   */
+  @JavascriptInterface
+  fun startSyncForegroundService() {
+    try {
+      val intent =
+        Intent(context, CardSyncForegroundService::class.java).apply {
+          action = CardSyncForegroundService.ACTION_START_SYNC
+          putExtra(CardSyncForegroundService.EXTRA_PROGRESS, 0)
+        }
+      ContextCompat.startForegroundService(context, intent)
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed to start CardSyncForegroundService", e)
+    }
+  }
+
+  /**
+   * Update ongoing background notification for card image sync progress.
+   */
+  @JavascriptInterface
+  fun updateSyncProgressNotification(progress: Int) {
+    try {
+      val intent =
+        Intent(context, CardSyncForegroundService::class.java).apply {
+          action = CardSyncForegroundService.ACTION_UPDATE_PROGRESS
+          putExtra(CardSyncForegroundService.EXTRA_PROGRESS, progress)
+        }
+      context.startService(intent)
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed to update sync progress via Service", e)
+    }
+  }
+
+  /**
+   * Update notification to indicate all card images have been synced.
+   */
+  @JavascriptInterface
+  fun completeSyncNotification() {
+    try {
+      val intent =
+        Intent(context, CardSyncForegroundService::class.java).apply {
+          action = CardSyncForegroundService.ACTION_COMPLETE_SYNC
+        }
+      context.startService(intent)
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed to complete sync notification via Service", e)
+    }
+  }
+
+  /**
+   * Cancel the card image sync notification and stop Foreground Service.
+   */
+  @JavascriptInterface
+  fun cancelSyncNotification() {
+    try {
+      val intent =
+        Intent(context, CardSyncForegroundService::class.java).apply {
+          action = CardSyncForegroundService.ACTION_STOP_SYNC
+        }
+      context.startService(intent)
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed to cancel sync notification via Service", e)
+    }
+  }
+
+  private var networkCallback: ConnectivityManager.NetworkCallback? = null
+
+  /**
+   * Registers a system network callback to dispatch real-time online/offline events to WebView.
+   */
+  fun registerNetworkCallback() {
+    try {
+      val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager ?: return
+      val callback =
+        object : ConnectivityManager.NetworkCallback() {
+          override fun onAvailable(network: Network) {
+            Handler(Looper.getMainLooper()).post {
+              webView.evaluateJavascript("window.dispatchEvent(new Event('online'));", null)
+            }
+          }
+
+          override fun onLost(network: Network) {
+            Handler(Looper.getMainLooper()).post {
+              webView.evaluateJavascript("window.dispatchEvent(new Event('offline'));", null)
+            }
+          }
+        }
+
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        cm.registerDefaultNetworkCallback(callback)
+      } else {
+        val request =
+          NetworkRequest.Builder()
+            .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+            .build()
+        cm.registerNetworkCallback(request, callback)
+      }
+      networkCallback = callback
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed to register network callback", e)
+    }
+  }
+
+  /**
+   * Unregisters the network callback on Activity destruction.
+   */
+  fun unregisterNetworkCallback() {
+    try {
+      networkCallback?.let {
+        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager
+        cm?.unregisterNetworkCallback(it)
+        networkCallback = null
+      }
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed to unregister network callback", e)
+    }
+  }
+
+  /**
+   * Checks if the device has active internet connectivity.
+   */
+  @JavascriptInterface
+  fun isNetworkAvailable(): Boolean {
+    return try {
+      val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager ?: return true
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        val activeNetwork = cm.activeNetwork ?: return false
+        val caps = cm.getNetworkCapabilities(activeNetwork) ?: return false
+        caps.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+      } else {
+        @Suppress("DEPRECATION")
+        val networkInfo = cm.activeNetworkInfo
+        networkInfo != null && networkInfo.isConnected
+      }
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed to check network availability", e)
+      true
     }
   }
 }

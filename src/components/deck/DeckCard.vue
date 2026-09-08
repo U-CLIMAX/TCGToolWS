@@ -49,7 +49,18 @@
       <v-scale-transition>
         <div v-show="(isHovering || isTouch) && imageUrl" class="action-btn-container">
           <v-btn
-            v-if="!isLocalDeck"
+            v-if="deckKey !== 'local' && deck.isLocal && onUploadCloud"
+            :variant="isTouch ? 'text' : 'tonal'"
+            icon
+            density="compact"
+            :size="smAndDown ? 'x-small' : 'large'"
+            class="mr-2"
+            @click.prevent="handleUploadCloud"
+          >
+            <v-icon color="cyan-accent-2" icon="i-mdi:cloud-upload-outline" />
+          </v-btn>
+          <v-btn
+            v-if="deckKey !== 'local'"
             :variant="isTouch ? 'text' : 'tonal'"
             icon
             density="compact"
@@ -176,6 +187,10 @@ const props = defineProps({
     type: Function,
     required: true,
   },
+  onUploadCloud: {
+    type: Function,
+    default: null,
+  },
 })
 
 const isDeleteDialogOpen = ref(false)
@@ -188,7 +203,11 @@ const { base: imageUrl, blur: blurUrl } = getCardUrls(
   props.deck.coverCardId.id
 )
 
-const isLocalDeck = computed(() => props.deckKey === 'local')
+const handleUploadCloud = async () => {
+  if (props.onUploadCloud) {
+    await props.onUploadCloud(props.deckKey)
+  }
+}
 
 const handleDeleteDeck = () => {
   isDeleteDialogOpen.value = true

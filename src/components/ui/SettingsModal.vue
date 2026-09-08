@@ -28,6 +28,8 @@
             </template>
           </v-list-item>
 
+          <LocalImageSyncSettings v-if="isTauri" />
+
           <v-divider />
 
           <v-list-item>
@@ -185,14 +187,16 @@
 
 <script setup>
 import { ref, computed, defineAsyncComponent } from 'vue'
+import { isTauri } from '@/utils/isTauri'
 import { useUIStore } from '@/stores/ui'
 import { useDisplay } from 'vuetify'
 
 const ImageCropperModal = defineAsyncComponent(() => import('./ImageCropperModal.vue'))
+const LocalImageSyncSettings = defineAsyncComponent(() => import('./LocalImageSyncSettings.vue'))
 
 const { smAndUp, xs } = useDisplay()
-
 const uiStore = useUIStore()
+
 const fileInputRef = ref(null)
 const isCropperOpen = ref(false)
 const imageToCrop = ref(null)
@@ -226,7 +230,6 @@ const onFileChange = (event) => {
   }
   reader.readAsDataURL(file)
 
-  // Reset file input to allow re-uploading the same file
   if (fileInputRef.value) {
     fileInputRef.value.value = ''
   }

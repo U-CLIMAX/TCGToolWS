@@ -36,7 +36,11 @@
               :active="item.group && $route.meta.group === item.group"
               :active-color="isHomeRoute ? 'cyan-accent-2' : undefined"
               :color="isHomeRoute ? 'white' : undefined"
-              :disabled="item.requiresAuth && !authStore.isAuthenticated"
+              :disabled="
+                item.requiresAuth &&
+                !authStore.isAuthenticated &&
+                !(isTauri && item.group === 'decks')
+              "
             >
               <template #prepend>
                 <v-icon :icon="item.icon" size="24" />
@@ -113,7 +117,10 @@
                   :prepend-icon="subItem.icon"
                   slim
                   class="rounded-3md"
-                  :disabled="subItem.requiresAuth && !authStore.isAuthenticated"
+                  :disabled="
+                    (subItem.requiresAuth && !authStore.isAuthenticated) ||
+                    (subItem.name === 'DecksGallery' && !authStore.isOnline)
+                  "
                 >
                 </v-list-item>
               </template>
@@ -223,7 +230,9 @@
           :active-color="isHomeRoute ? 'cyan-accent-2' : undefined"
           :color="isHomeRoute ? 'white' : undefined"
           class="rounded-pill mx-1"
-          :disabled="item.requiresAuth && !authStore.isAuthenticated"
+          :disabled="
+            item.requiresAuth && !authStore.isAuthenticated && !(isTauri && item.group === 'decks')
+          "
         >
           <v-icon :icon="item.icon" size="32" />
         </v-btn>
@@ -327,7 +336,10 @@
               :prepend-icon="subItem.icon"
               slim
               class="rounded-3md"
-              :disabled="subItem.requiresAuth && !authStore.isAuthenticated"
+              :disabled="
+                (subItem.requiresAuth && !authStore.isAuthenticated) ||
+                (subItem.name === 'DecksGallery' && !authStore.isOnline)
+              "
             >
             </v-list-item>
           </template>
@@ -412,7 +424,8 @@
     </v-dialog>
 
     <AppUpdateDialog />
-    <ClientUpdateDialog />
+    <ClientUpdateDialog v-if="isTauri" />
+    <CardImageUpdatePromptModal v-if="isTauri" />
     <NoticeDialog ref="NoticeDialogRef" />
 
     <!-- Global Loading Overlay -->
@@ -424,6 +437,7 @@
 
 <script setup>
 import { ref, watch, computed, onMounted, onBeforeMount, defineAsyncComponent } from 'vue'
+import { isTauri } from '@/utils/isTauri'
 import { useTheme, useDisplay } from 'vuetify'
 import { useRoute, useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
@@ -446,6 +460,12 @@ import deckGalleryIcon from '@/assets/ui/deck-gallery.svg'
 import communityIcon from '@/assets/ui/community.svg'
 import banListIcon from '@/assets/ui/banlist.svg'
 const HomeBackground = defineAsyncComponent(() => import('@/components/common/HomeBackground.vue'))
+const ClientUpdateDialog = defineAsyncComponent(
+  () => import('@/components/ui/ClientUpdateDialog.vue')
+)
+const CardImageUpdatePromptModal = defineAsyncComponent(
+  () => import('@/components/ui/CardImageUpdatePromptModal.vue')
+)
 
 usePerformanceManager()
 
@@ -455,6 +475,38 @@ const { userRole } = storeToRefs(authStore)
 const vuetifyTheme = useTheme()
 const uiStore = useUIStore()
 const { smAndUp, mdAndUp } = useDisplay()
+
+const performStartupCardImageCheck = async (clientUpdate, cardImageSync) => {
+  if (!isTauri || !cardImageSync || !clientUpdate) return
+  if (uiStore.imageSource !== 'local') return
+  if (cardImageSync.isPromptDismissedThisSession.value) return
+
+  try {
+    const { packagesToSync } = await cardImageSync.checkSyncStatus()
+    if (packagesToSync.length > 0 && !cardImageSync.isPromptDismissedThisSession.value) {
+      if (clientUpdate.showClientUpdateDialog.value) {
+        const unwatch = watch(
+          () => clientUpdate.showClientUpdateDialog.value,
+          (isOpen) => {
+            if (!isOpen) {
+              unwatch()
+              if (
+                !cardImageSync.isPromptDismissedThisSession.value &&
+                cardImageSync.hasPendingSync.value
+              ) {
+                cardImageSync.showUpdatePromptModal.value = true
+              }
+            }
+          }
+        )
+      } else {
+        cardImageSync.showUpdatePromptModal.value = true
+      }
+    }
+  } catch (err) {
+    console.warn('Startup card image check error:', err)
+  }
+}
 
 onBeforeMount(async () => {
   await runIPGeolocation()
@@ -466,6 +518,20 @@ onMounted(async () => {
     } catch (e) {
       // refreshSession internal error handling already triggers logout
       console.warn('Initial session refresh skipped or failed:', e.message)
+    }
+  }
+  if (isTauri) {
+    try {
+      const [{ resolveDefaultImageDir, useCardImageSync }, { useClientUpdate }] = await Promise.all(
+        [import('@/composables/useCardImageSync'), import('@/composables/useClientUpdate')]
+      )
+      await resolveDefaultImageDir()
+      const clientUpdate = useClientUpdate()
+      const cardImageSync = useCardImageSync()
+      await clientUpdate.checkClientUpdate()
+      await performStartupCardImageCheck(clientUpdate, cardImageSync)
+    } catch (err) {
+      console.warn('Tauri startup update check error:', err)
     }
   }
 })

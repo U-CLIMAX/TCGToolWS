@@ -201,6 +201,7 @@
                 <v-icon size="18" class="mr-1" icon="i-mdi:information-outline" />
                 效果
                 <v-btn
+                  v-if="authStore.isOnline"
                   prepend-icon="i-mdi:flag-outline"
                   variant="tonal"
                   color="warning"
@@ -426,6 +427,7 @@ import { useDeckStore } from '@/stores/deck'
 import { useDownloadStore } from '@/stores/download'
 import { convertElementToPng } from '@/utils/domToImage.js'
 import { getOverlayStyle, getIconStyle } from '@/utils/overlayStyle'
+import { apiFetch } from '@/utils/api.js'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { writeImage } from '@/utils/clipboard'
 import { useRoute } from 'vue-router'
@@ -978,7 +980,7 @@ const submitReport = async () => {
 
   isSubmittingReport.value = true
   try {
-    const response = await fetch('/api/reports/translation', {
+    const response = await apiFetch('/api/reports/translation', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
