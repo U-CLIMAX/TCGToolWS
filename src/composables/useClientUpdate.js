@@ -1,5 +1,4 @@
 import { ref, getCurrentInstance, onUnmounted } from 'vue'
-import { useRouter } from 'vue-router'
 import { invoke } from '@tauri-apps/api/core'
 import { isTauri } from '@/utils/isTauri'
 import { getVersion } from '@tauri-apps/api/app'
@@ -22,7 +21,6 @@ const downloadStatus = ref('idle') // 'idle' | 'downloading' | 'installing' | 'e
 const downloadError = ref('')
 
 let unlistenProgress = null
-let abortController = null
 let checkPromise = null
 let removeAndroidListeners = null
 
@@ -92,8 +90,6 @@ const matchPlatformAsset = (assets) => {
  * Composable for managing Tauri client updates via GitCode Releases API
  */
 export const useClientUpdate = () => {
-  const router = useRouter()
-
   const checkClientUpdate = async () => {
     if (!isTauri) return false
     if (checkPromise) return checkPromise
@@ -139,7 +135,8 @@ export const useClientUpdate = () => {
 
   const startDownloadAndInstall = async () => {
     if (!directDownloadUrl.value) {
-      goToDownload()
+      downloadStatus.value = 'error'
+      downloadError.value = '更新包下载失败，请点击下方「浏览器手动下载」按钮前往下载页面。'
       return
     }
 
@@ -261,10 +258,6 @@ export const useClientUpdate = () => {
   }
 
   const cancelDownload = () => {
-    if (abortController) {
-      abortController.abort()
-      abortController = null
-    }
     if (unlistenProgress) {
       unlistenProgress()
       unlistenProgress = null
@@ -282,15 +275,6 @@ export const useClientUpdate = () => {
     showClientUpdateDialog.value = false
     if (clientUpdateVersion.value) {
       sessionStorage.setItem('client_update_dismissed_version', clientUpdateVersion.value)
-    }
-  }
-
-  const goToDownload = () => {
-    showClientUpdateDialog.value = false
-    if (directDownloadUrl.value) {
-      window.open(directDownloadUrl.value, '_blank')
-    } else if (router) {
-      router.push({ name: 'Download' })
     }
   }
 
@@ -323,6 +307,5 @@ export const useClientUpdate = () => {
     startDownloadAndInstall,
     cancelDownload,
     dismissUpdateDialog,
-    goToDownload,
   }
 }

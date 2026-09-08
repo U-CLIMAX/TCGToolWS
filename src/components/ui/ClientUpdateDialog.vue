@@ -150,7 +150,14 @@
 
         <!-- 失敗狀態 -->
         <template v-else-if="downloadStatus === 'error'">
-          <v-btn variant="tonal" color="grey" class="flex-1-1" rounded="lg" @click="goToDownload">
+          <v-btn
+            variant="tonal"
+            color="grey"
+            class="flex-1-1"
+            rounded="lg"
+            :to="{ name: 'Download' }"
+            @click="showClientUpdateDialog = false"
+          >
             浏览器手动下载
           </v-btn>
           <v-btn
@@ -188,7 +195,6 @@ const {
   startDownloadAndInstall,
   cancelDownload,
   dismissUpdateDialog,
-  goToDownload,
 } = useClientUpdate()
 
 const formattedNotesHtml = computed(() => {
