@@ -19,12 +19,12 @@
 }
 
 .app-vfx-light {
-  background-image: url('@/assets/ui/vfx-white.svg');
+  background-image: url('@/assets/ui/vfx-white.webp');
   opacity: 0;
 }
 
 .app-vfx-dark {
-  background-image: url('@/assets/ui/vfx-black.svg');
+  background-image: url('@/assets/ui/vfx-black.webp');
   opacity: 0;
 }
 
