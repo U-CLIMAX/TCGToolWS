@@ -254,7 +254,7 @@
           color="default"
           style="min-height: 0"
         >
-          <v-row dense class="h-100">
+          <v-row dense>
             <v-col v-for="card in deckCards" :key="card.id" cols="4" lg="3">
               <div
                 class="cover-card-container"
