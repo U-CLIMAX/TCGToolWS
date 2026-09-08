@@ -124,6 +124,7 @@
             </v-row>
 
             <v-btn
+              v-if="!isTauri || authStore.isOnline"
               block
               variant="tonal"
               rounded="pill"
