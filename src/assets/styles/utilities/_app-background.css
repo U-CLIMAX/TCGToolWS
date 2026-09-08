@@ -1,0 +1,39 @@
+.app-background {
+  background-color: var(--default-bg-color);
+  transition: background-color 0.35s ease;
+}
+
+.app-vfx-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -2;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
+}
+
+.app-vfx-light {
+  background-image: url('@/assets/ui/vfx-white.svg');
+  opacity: 0;
+}
+
+.app-vfx-dark {
+  background-image: url('@/assets/ui/vfx-black.svg');
+  opacity: 0;
+}
+
+.v-theme--light .app-vfx-light,
+.v-theme--light.app-background .app-vfx-light {
+  opacity: 1;
+}
+
+.v-theme--dark .app-vfx-dark,
+.v-theme--dark.app-background .app-vfx-dark {
+  opacity: 1;
+}

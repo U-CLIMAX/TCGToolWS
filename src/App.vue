@@ -1,6 +1,8 @@
 <template>
-  <v-app id="app" class="grid-background" :style="appStyle">
+  <v-app id="app" class="app-background" :style="appStyle">
     <HomeBackground v-if="isHomeRoute" />
+    <div v-if="showDefaultBg" class="app-vfx-background app-vfx-light" aria-hidden="true" />
+    <div v-if="showDefaultBg" class="app-vfx-background app-vfx-dark" aria-hidden="true" />
 
     <v-app-bar
       v-if="smAndUp"
@@ -595,6 +597,7 @@ const titleImg = computed(() => {
   return isHomeRoute.value ? titleMonochrome : titleDefaultImg
 })
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
+const showDefaultBg = computed(() => !isHomeRoute.value && !hasBackgroundImage.value)
 const spinnerColor = computed(() => {
   return vuetifyTheme.current.value.colors.primary
 })

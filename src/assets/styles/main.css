@@ -3,7 +3,7 @@
 
 /* 可選用的工具類 */
 @import './utilities/_scrollbar.css';
-@import './utilities/_grid-background.css';
+@import './utilities/_app-background.css';
 @import './utilities/_chip.css';
 @import './utilities/_overlay-header.css';
 @import './utilities/_glass-header.css';

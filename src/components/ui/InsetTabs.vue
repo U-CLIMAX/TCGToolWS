@@ -65,7 +65,7 @@ const themeClass = computed(() => {
   /* Removes the internal grey ring */
   box-shadow: none !important;
 
-  background: rgba(var(--v-theme-surface), 0.75) !important;
+  background: rgba(var(--v-theme-surface), 0.5) !important;
 
   /* This adds the soft outer elevation you want */
   /* Format: [horizontal] [vertical] [blur] [spread] [color] */

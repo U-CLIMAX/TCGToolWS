@@ -3,9 +3,8 @@
   --sb-track-color: transparent;
   --sb-thumb-color: #757272;
 
-  /* For grid-background */
-  --grid-bg-color: #f7f7f8;
-  --grid-line-color: #f4f4f6;
+  /* For app-background (VFX) */
+  --default-bg-color: #e7e7e7;
 
   /* For search button - 黑白灰配色 */
   --search-btn-bg: rgba(45, 55, 72, 0.75);
@@ -31,9 +30,8 @@
   --sb-track-color: transparent;
   --sb-thumb-color: #a09ca7;
 
-  /* For grid-background */
-  --grid-bg-color: #171a1d;
-  --grid-line-color: #121518;
+  /* For app-background (VFX) */
+  --default-bg-color: #1c1d25;
 
   /* For search button - 黑白灰配色 */
   --search-btn-bg: rgba(255, 255, 255, 0.9);
