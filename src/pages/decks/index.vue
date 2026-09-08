@@ -20,8 +20,19 @@
             <div class="d-flex align-center ga-3 mb-4">
               <v-icon :icon="DeckIcon" color="primary" size="32" />
               <div>
-                <div class="text-h6 font-weight-bold" style="line-height: 1.2">
-                  {{ isTauri && !authStore.isOnline ? '我的卡组（离线）' : '我的卡组' }}
+                <div class="d-flex align-center ga-2" style="line-height: 1.2">
+                  <span class="text-h6 font-weight-bold">我的卡组</span>
+                  <v-chip
+                    v-if="isTauri && !authStore.isOnline"
+                    size="x-small"
+                    color="warning"
+                    variant="tonal"
+                    label
+                    prepend-icon="i-mdi:cloud-off-outline"
+                    class="font-weight-medium rounded-pill"
+                  >
+                    离线模式
+                  </v-chip>
                 </div>
                 <div class="text-caption text-medium-emphasis">管理并搜索您收藏的卡组</div>
               </div>
