@@ -37,7 +37,6 @@
                       icon="i-mdi:share-variant"
                       variant="text"
                       density="compact"
-                      :disabled="isLocalDeck || !!deckStore.localDecks[deckKey]"
                     ></v-btn>
                   </template>
                   <v-list nav density="compact" class="rounded-3md">
@@ -47,6 +46,7 @@
                       prepend-icon="i-mdi:link"
                       slim
                       class="rounded-3md"
+                      :disabled="isLocalDeck || !!deckStore.localDecks[deckKey]"
                     >
                     </v-list-item>
                     <v-list-item
@@ -353,11 +353,7 @@
           </template>
           <v-list-item-title>复制分享链接</v-list-item-title>
         </v-list-item>
-        <v-list-item
-          v-if="!isLocalDeck && !deckStore.localDecks[deckKey]"
-          :disabled="!authStore.isOnline"
-          @click="handleShareToDeckGallery"
-        >
+        <v-list-item :disabled="!authStore.isOnline" @click="handleShareToDeckGallery">
           <template #prepend>
             <v-icon icon="i-mdi:view-grid-plus" />
           </template>
