@@ -256,7 +256,7 @@ const displayEmptySearchMessage = computed(
 )
 const currentEmptyText = computed(() =>
   displayEmptySearchMessage.value
-    ? '请输入关键字或选择筛选条件以开始搜寻'
+    ? '请在左侧输入筛选条件或关键字以开始搜寻'
     : '~没有找到符合条件的卡片~'
 )
 
