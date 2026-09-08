@@ -65,8 +65,18 @@ app.use(
       }
       return null
     },
-    allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'If-None-Match'],
+    allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
+    allowHeaders: [
+      'Content-Type',
+      'Authorization',
+      'X-Requested-With',
+      'If-None-Match',
+      'Accept',
+      'Accept-Language',
+      'Origin',
+      'UA',
+      'ua',
+    ],
     exposeHeaders: ['Content-Length', 'ETag'],
     maxAge: 86400,
     credentials: true,
