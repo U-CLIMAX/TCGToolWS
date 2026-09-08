@@ -100,7 +100,7 @@
           density="compact"
           class="text-caption"
           rounded="lg"
-          :text="downloadError || '网络连接异常，请重试或前往浏览器下载。'"
+          :text="downloadError || '更新下载失败，请点击下方「浏览器手动下载」前往下载页面。'"
         />
       </div>
 

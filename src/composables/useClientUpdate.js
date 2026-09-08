@@ -177,9 +177,9 @@ export const useClientUpdate = () => {
           }
         }
 
-        const onError = (e) => {
+        const onError = () => {
           downloadStatus.value = 'error'
-          downloadError.value = e.detail?.error || '下载或安装失败'
+          downloadError.value = '更新下载失败，请点击下方「浏览器手动下载」前往下载页面。'
           isDownloading.value = false
           cleanAndroidListeners()
         }
@@ -201,16 +201,15 @@ export const useClientUpdate = () => {
           window.removeEventListener('android-update-installing', onInstalling)
         }
 
-        if (window.__AndroidNativeBridge__?.downloadAndInstallApk) {
-          window.__AndroidNativeBridge__.downloadAndInstallApk(directDownloadUrl.value)
-        } else if (window.__AndroidNativeBridge__?.downloadUrl) {
-          window.__AndroidNativeBridge__.downloadUrl(
-            directDownloadUrl.value,
-            matchedAssetName.value || 'tcgtoolws_update.apk'
-          )
-        } else {
-          window.open(directDownloadUrl.value, '_blank')
+        if (typeof window.__AndroidNativeBridge__?.downloadAndInstallApk !== 'function') {
+          downloadStatus.value = 'error'
+          downloadError.value =
+            '当前客户端版本过低，暂不支持应用内自动更新，请点击下方「浏览器手动下载」前往下载安装最新版本。'
+          isDownloading.value = false
+          cleanAndroidListeners()
+          return
         }
+        window.__AndroidNativeBridge__.downloadAndInstallApk(directDownloadUrl.value)
       } else {
         // Desktop client (Windows / Linux): stream download via Rust and invoke installer
         if (unlistenProgress) {
@@ -245,7 +244,20 @@ export const useClientUpdate = () => {
     } catch (err) {
       console.error('更新下载失败:', err)
       downloadStatus.value = 'error'
-      downloadError.value = err.message || String(err)
+      const rawError = err?.message || (typeof err === 'string' ? err : String(err || ''))
+      // 桌面端旧版本未注册 download_and_install_update 命令
+      if (
+        rawError.toLowerCase().includes('not found') ||
+        rawError.toLowerCase().includes('command') ||
+        rawError.includes('download_and_install_update')
+      ) {
+        downloadError.value =
+          '当前客户端版本过低，暂不支持应用内自动更新，请点击下方「浏览器手动下载」前往下载安装最新版本。'
+      } else {
+        downloadError.value = '更新下载失败，请点击下方「浏览器手动下载」前往下载页面。'
+      }
+      isDownloading.value = false
+      cleanAndroidListeners()
     } finally {
       if (!isAndroid) {
         isDownloading.value = false
@@ -267,6 +279,8 @@ export const useClientUpdate = () => {
     downloadStatus.value = 'idle'
     downloadProgress.value = 0
     downloadSpeed.value = ''
+    downloadedSize.value = ''
+    totalSize.value = ''
     downloadError.value = ''
   }
 
