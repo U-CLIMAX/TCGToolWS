@@ -94,9 +94,56 @@
                 </v-col>
               </v-row>
 
-              <!-- Download Channels Grid -->
+              <!-- Download Channels Section -->
               <div class="text-subtitle-1 font-weight-bold mb-4 text-medium-emphasis">下载渠道</div>
-              <v-row class="mb-6">
+
+              <!-- Instructions & Tips Card -->
+              <v-card
+                class="mb-6 rounded-2lg"
+                :class="{ 'glass-card': hasBackgroundImage }"
+                elevation="2"
+              >
+                <v-card-text class="pa-5">
+                  <div class="d-flex align-center mb-3">
+                    <v-icon icon="i-mdi:information-outline" color="primary" class="mr-2" />
+                    <span class="text-subtitle-1 font-weight-bold">安装与使用说明</span>
+                  </div>
+                  <v-list density="compact" bg-color="transparent" class="pa-0">
+                    <v-list-item class="px-0 py-1">
+                      <v-list-item-title class="text-body-2 text-wrap">
+                        <strong>Windows 端</strong>：下载
+                        <code>.exe</code> 安装程序后直接运行即可。如遇到 Windows SmartScreen
+                        拦截提示，请点击「更多信息」并选择「仍要运行」。
+                      </v-list-item-title>
+                    </v-list-item>
+                    <v-list-item class="px-0 py-1">
+                      <v-list-item-title class="text-body-2 text-wrap">
+                        <strong>Android 端</strong>：下载
+                        <code>.apk</code>
+                        文件后在手机上打开，如提示未知来源应用安装权限，请在系统设置中允许安装。
+                      </v-list-item-title>
+                    </v-list-item>
+                    <v-list-item class="px-0 py-1">
+                      <v-list-item-title class="text-body-2 text-wrap">
+                        <strong>Linux (amd64) 端</strong>：支持
+                        <code>.AppImage</code> 文件，下载后赋予执行权限 (<code>chmod +x</code>)
+                        即可直接运行。
+                      </v-list-item-title>
+                    </v-list-item>
+                    <v-list-item class="px-0 py-1">
+                      <v-list-item-title class="text-body-2 text-wrap">
+                        <strong>卡图加载与设置</strong
+                        >：客户端提供<strong>「在线加载」</strong>与<strong>「本地卡图」</strong>两种模式，默认采用在线加载以节省本地磁盘空间。如需离线使用或体验无延迟秒开卡图，可随时在<strong
+                          >「设置 - 卡图来源」</strong
+                        >中切换为本地卡图并一键同步卡图包。
+                      </v-list-item-title>
+                    </v-list-item>
+                  </v-list>
+                </v-card-text>
+              </v-card>
+
+              <!-- Download Channels Grid -->
+              <v-row class="mb-8">
                 <!-- GitCode Releases -->
                 <v-col cols="12" md="6" class="d-flex">
                   <v-card
@@ -173,43 +220,6 @@
                   </v-card>
                 </v-col>
               </v-row>
-
-              <!-- Instructions & Tips Card -->
-              <v-card
-                class="mb-8 rounded-2lg"
-                :class="{ 'glass-card': hasBackgroundImage }"
-                elevation="2"
-              >
-                <v-card-text class="pa-5">
-                  <div class="d-flex align-center mb-3">
-                    <v-icon icon="i-mdi:information-outline" color="primary" class="mr-2" />
-                    <span class="text-subtitle-1 font-weight-bold">安装与使用说明</span>
-                  </div>
-                  <v-list density="compact" bg-color="transparent" class="pa-0">
-                    <v-list-item class="px-0 py-1">
-                      <v-list-item-title class="text-body-2 text-wrap">
-                        <strong>Windows 端</strong>：下载
-                        <code>.exe</code> 安装程序后直接运行即可。如遇到 Windows SmartScreen
-                        拦截提示，请点击「更多信息」并选择「仍要运行」。
-                      </v-list-item-title>
-                    </v-list-item>
-                    <v-list-item class="px-0 py-1">
-                      <v-list-item-title class="text-body-2 text-wrap">
-                        <strong>Android 端</strong>：下载
-                        <code>.apk</code>
-                        文件后在手机上打开，如提示未知来源应用安装权限，请在系统设置中允许安装。
-                      </v-list-item-title>
-                    </v-list-item>
-                    <v-list-item class="px-0 py-1">
-                      <v-list-item-title class="text-body-2 text-wrap">
-                        <strong>Linux (amd64) 端</strong>：支持
-                        <code>.AppImage</code> 文件，下载后赋予执行权限 (<code>chmod +x</code>)
-                        即可直接运行。
-                      </v-list-item-title>
-                    </v-list-item>
-                  </v-list>
-                </v-card-text>
-              </v-card>
             </v-col>
           </v-row>
         </div>
