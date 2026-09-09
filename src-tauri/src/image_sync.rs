@@ -40,6 +40,97 @@ pub fn sanitize_share_id(raw_id: &str) -> &str {
     }
 }
 
+/// Helper: Decodes OEM bytes from Windows CLI tools (fsutil) to a UTF-8 String across all system locales.
+#[cfg(windows)]
+fn decode_oem_string(bytes: &[u8]) -> String {
+    if let Ok(s) = std::str::from_utf8(bytes) {
+        return s.to_string();
+    }
+    #[link(name = "kernel32")]
+    extern "system" {
+        fn MultiByteToWideChar(
+            code_page: u32,
+            flags: u32,
+            multi_byte_str: *const u8,
+            multi_byte_len: i32,
+            wide_char_str: *mut u16,
+            wide_char_len: i32,
+        ) -> i32;
+    }
+    const CP_OEMCP: u32 = 1;
+
+    unsafe {
+        let len = MultiByteToWideChar(
+            CP_OEMCP,
+            0,
+            bytes.as_ptr(),
+            bytes.len() as i32,
+            std::ptr::null_mut(),
+            0,
+        );
+        if len > 0 {
+            let mut wide_buf = vec![0u16; len as usize];
+            MultiByteToWideChar(
+                CP_OEMCP,
+                0,
+                bytes.as_ptr(),
+                bytes.len() as i32,
+                wide_buf.as_mut_ptr(),
+                len,
+            );
+            return String::from_utf16_lossy(&wide_buf);
+        }
+    }
+    String::from_utf8_lossy(bytes).to_string()
+}
+
+/// Helper: Checks if a directory has the case-sensitive attribute enabled on Windows.
+#[cfg(windows)]
+pub fn is_dir_case_sensitive(dir: &Path) -> bool {
+    use std::os::windows::process::CommandExt;
+    const CREATE_NO_WINDOW: u32 = 0x08000000;
+
+    let path_str = dir.to_string_lossy().to_string();
+    if let Ok(output) = std::process::Command::new("fsutil.exe")
+        .args(["file", "queryCaseSensitiveInfo", &path_str])
+        .creation_flags(CREATE_NO_WINDOW)
+        .output()
+    {
+        let text = decode_oem_string(&output.stdout).to_lowercase();
+        text.contains("is enabled")
+            || (text.contains("enabled") && !text.contains("disabled"))
+            || text.contains("已啟用")
+            || text.contains("啟用")
+            || text.contains("已启用")
+            || text.contains("启用")
+            // Big5 raw byte signature fallback for '啟' [0xB1, 0xD2]
+            || output.stdout.windows(2).any(|w| w == [0xb1, 0xd2])
+    } else {
+        false
+    }
+}
+
+/// Helper: Attempts to enable case-sensitivity on a newly created (empty) directory on Windows.
+/// Runs silently in background without window popups.
+#[cfg(windows)]
+pub fn enable_case_sensitive_dir(dir: &Path) {
+    use std::os::windows::process::CommandExt;
+    const CREATE_NO_WINDOW: u32 = 0x08000000;
+
+    let _ = std::process::Command::new("fsutil.exe")
+        .args([
+            "file",
+            "setCaseSensitiveInfo",
+            &dir.to_string_lossy(),
+            "enable",
+        ])
+        .creation_flags(CREATE_NO_WINDOW)
+        .output();
+}
+
+#[cfg(not(windows))]
+pub fn enable_case_sensitive_dir(_dir: &Path) {}
+
 /// Resolves the default card image directory within the app's AppData directory
 #[tauri::command]
 pub async fn get_default_card_image_dir(app_handle: tauri::AppHandle) -> Result<String, String> {
@@ -379,6 +470,27 @@ pub async fn sync_card_image_package(
     if !target_path.exists() {
         std::fs::create_dir_all(target_path)
             .map_err(|e| format!("Failed to create target dir: {}", e))?;
+        enable_case_sensitive_dir(target_path);
+    }
+
+    // Ensure the specific series subfolders in ws-image-data & ws-blur-image-data are case-sensitive on Windows
+    #[cfg(windows)]
+    {
+        let img_folder = target_path.join("ws-image-data").join(&folder);
+        let blur_folder = target_path.join("ws-blur-image-data").join(&folder);
+
+        for dir in [&img_folder, &blur_folder] {
+            // If the folder exists but was created previously without case-sensitivity,
+            // clean it first so fsutil setCaseSensitiveInfo can succeed on the empty folder.
+            if dir.exists() && !is_dir_case_sensitive(dir) {
+                let _ = std::fs::remove_dir_all(dir);
+            }
+            if !dir.exists() {
+                if let Ok(()) = std::fs::create_dir_all(dir) {
+                    enable_case_sensitive_dir(dir);
+                }
+            }
+        }
     }
 
     {
@@ -399,9 +511,12 @@ pub async fn sync_card_image_package(
             let outpath = target_path.join(enclosed);
 
             if file.is_dir() {
-                std::fs::create_dir_all(&outpath).map_err(|e| {
-                    format!("Failed to create directory {}: {}", outpath.display(), e)
-                })?;
+                if !outpath.exists() {
+                    std::fs::create_dir_all(&outpath).map_err(|e| {
+                        format!("Failed to create directory {}: {}", outpath.display(), e)
+                    })?;
+                    enable_case_sensitive_dir(&outpath);
+                }
             } else {
                 if let Some(parent) = outpath.parent() {
                     if !parent.exists() {
@@ -412,6 +527,7 @@ pub async fn sync_card_image_package(
                                 e
                             )
                         })?;
+                        enable_case_sensitive_dir(parent);
                     }
                 }
                 let mut outfile = File::create(&outpath)
@@ -629,5 +745,26 @@ mod tests {
             assert!(ro_delete_res.is_ok());
             assert!(!readonly_dir.exists());
         });
+    }
+
+    #[test]
+    #[cfg(windows)]
+    fn test_case_sensitive_dir_handling() {
+        let test_dir = std::env::temp_dir().join(format!(
+            "tcgtoolws_test_cs_{}",
+            std::time::SystemTime::now()
+                .duration_since(std::time::UNIX_EPOCH)
+                .unwrap()
+                .as_nanos()
+        ));
+        std::fs::create_dir_all(&test_dir).unwrap();
+        enable_case_sensitive_dir(&test_dir);
+
+        let is_cs = is_dir_case_sensitive(&test_dir);
+        let _ = std::fs::remove_dir_all(&test_dir);
+        assert!(
+            is_cs,
+            "Newly created empty directory should have case sensitivity enabled"
+        );
     }
 }
