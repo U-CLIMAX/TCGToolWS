@@ -251,7 +251,7 @@
             color="primary"
             variant="tonal"
             text="确定"
-            @click="emitSaveDeck"
+            @click="handleSaveClick"
             :disabled="
               !deckName.trim() ||
               !selectedCoverCardId ||
@@ -277,6 +277,54 @@
         </v-list-item>
       </v-list>
     </v-bottom-sheet>
+
+    <!-- Save Location Choice Dialog (Tauri only) -->
+    <v-dialog v-if="isTauri" v-model="isSaveLocationDialogOpen" max-width="360" persistent>
+      <v-card class="rounded-2lg pa-3">
+        <v-card-title class="text-subtitle-1 font-weight-bold d-flex align-center ga-2">
+          <v-icon icon="i-mdi:content-save-outline" color="primary" />
+          选择保存位置
+        </v-card-title>
+        <v-card-text class="text-body-2 text-medium-emphasis pt-1 pb-3">
+          请选择将此卡组保存至云端还是本地设备：
+          <div v-if="!canSaveToCloud" class="text-caption text-warning d-flex align-center mt-2">
+            <v-icon icon="i-mdi:alert-circle-outline" size="14" class="mr-1" />
+            <span>{{
+              !authStore.isOnline ? '离线模式下仅支持保存到本地' : '未登录状态下仅支持保存到本地'
+            }}</span>
+          </div>
+        </v-card-text>
+        <v-card-actions class="d-flex flex-column ga-2 px-3 pb-2">
+          <v-btn
+            block
+            color="primary"
+            variant="flat"
+            prepend-icon="i-mdi:cloud-outline"
+            :disabled="!canSaveToCloud"
+            @click="confirmSaveWithTarget('cloud')"
+          >
+            保存至云端
+          </v-btn>
+          <v-btn
+            block
+            variant="tonal"
+            prepend-icon="i-mdi:folder-outline"
+            @click="confirmSaveWithTarget('local')"
+          >
+            保存至本地
+          </v-btn>
+          <v-btn
+            block
+            variant="text"
+            density="compact"
+            class="text-medium-emphasis"
+            @click="isSaveLocationDialogOpen = false"
+          >
+            取消
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -295,6 +343,7 @@ import { useDevice } from '@/composables/useDevice'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import { useDeckStore } from '@/stores/deck'
+import { isTauri } from '@/utils/isTauri'
 
 const props = defineProps({
   deck: {
@@ -339,14 +388,16 @@ const isAuthAlertOpen = ref(false)
 // Save Deck Dialog State
 const deckStore = useDeckStore()
 const isSaveDialogOpen = ref(false)
+const isSaveLocationDialogOpen = ref(false)
 const deckName = ref('')
 const deckTags = ref([])
 const selectedCoverCardId = ref(null)
+const canSaveToCloud = computed(() => authStore.isAuthenticated && authStore.isOnline)
 
 const allExistingTags = computed(() => deckStore.meta.allTags || [])
 
 const openSaveDialog = () => {
-  if (!authStore.isAuthenticated) {
+  if (!authStore.isAuthenticated && !isTauri) {
     isAuthAlertOpen.value = true
   } else if (props.deck) {
     if (
@@ -369,14 +420,25 @@ const openSaveDialog = () => {
 
 const closeSaveDialog = () => {
   isSaveDialogOpen.value = false
+  isSaveLocationDialogOpen.value = false
 }
 
-const emitSaveDeck = () => {
+const handleSaveClick = () => {
+  if (isTauri) {
+    isSaveLocationDialogOpen.value = true
+  } else {
+    confirmSaveWithTarget('cloud')
+  }
+}
+
+const confirmSaveWithTarget = (target) => {
   emit('save', {
     name: deckName.value,
     coverCardId: selectedCoverCardId.value,
     tags: [...deckTags.value],
+    saveTarget: target,
     closeDialog: () => {
+      isSaveLocationDialogOpen.value = false
       isSaveDialogOpen.value = false
     },
   })

@@ -473,6 +473,54 @@
       </v-card-actions>
     </v-card>
   </v-dialog>
+
+  <!-- Save Location Choice Dialog (Tauri only) -->
+  <v-dialog v-if="isTauri" v-model="isSaveLocationDialogOpen" max-width="360" persistent>
+    <v-card class="rounded-2lg pa-3">
+      <v-card-title class="text-subtitle-1 font-weight-bold d-flex align-center ga-2">
+        <v-icon icon="i-mdi:content-save-outline" color="primary" />
+        选择保存位置
+      </v-card-title>
+      <v-card-text class="text-body-2 text-medium-emphasis pt-1 pb-3">
+        请选择将此卡组保存至云端还是本地设备：
+        <div v-if="!canSaveToCloud" class="text-caption text-warning d-flex align-center mt-2">
+          <v-icon icon="i-mdi:alert-circle-outline" size="14" class="mr-1" />
+          <span>{{
+            !authStore.isOnline ? '离线模式下仅支持保存到本地' : '未登录状态下仅支持保存到本地'
+          }}</span>
+        </div>
+      </v-card-text>
+      <v-card-actions class="d-flex flex-column ga-2 px-3 pb-2">
+        <v-btn
+          block
+          color="primary"
+          variant="flat"
+          prepend-icon="i-mdi:cloud-outline"
+          :disabled="!canSaveToCloud"
+          @click="executeCreateDeck('cloud')"
+        >
+          保存至云端
+        </v-btn>
+        <v-btn
+          block
+          variant="tonal"
+          prepend-icon="i-mdi:folder-outline"
+          @click="executeCreateDeck('local')"
+        >
+          保存至本地
+        </v-btn>
+        <v-btn
+          block
+          variant="text"
+          density="compact"
+          class="text-medium-emphasis"
+          @click="isSaveLocationDialogOpen = false"
+        >
+          取消
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script setup>
@@ -555,9 +603,11 @@ const isRestrictionDialogOpen = ref(false)
 
 // Save Deck Dialog State
 const isSaveDialogOpen = ref(false)
+const isSaveLocationDialogOpen = ref(false)
 const deckName = ref('')
 const deckTags = ref([])
 const selectedCoverCardId = ref(null)
+const canSaveToCloud = computed(() => authStore.isAuthenticated && authStore.isOnline)
 
 const allExistingTags = computed(() => deckStore.meta.allTags || [])
 
@@ -613,6 +663,7 @@ const openSaveDialog = () => {
 
 const closeSaveDialog = () => {
   isSaveDialogOpen.value = false
+  isSaveLocationDialogOpen.value = false
 }
 
 const openClearConfirmDialog = () => {
@@ -638,7 +689,15 @@ const navigateToDeckDetail = () => {
     router.push({ name: 'DeckDetail', params: { key: 'local' } })
 }
 
-const handleCreateDeck = async () => {
+const handleCreateDeck = () => {
+  if (isTauri) {
+    isSaveLocationDialogOpen.value = true
+  } else {
+    executeCreateDeck('cloud')
+  }
+}
+
+const executeCreateDeck = async (target = 'cloud') => {
   deckStore.updateDominantSeriesId()
   uiStore.setLoading(true)
   try {
@@ -646,7 +705,9 @@ const handleCreateDeck = async () => {
     const compressedDeckData = await encodeData(toRaw(deckStore.cardsInDeck))
     const gameType = seriesMap[deckStore.seriesId]?.game || 'ws'
 
-    const isSaveToCloud = !isTauri || (authStore.isAuthenticated && authStore.isOnline)
+    const isSaveToCloud = !isTauri
+      ? authStore.isAuthenticated && authStore.isOnline
+      : target === 'cloud' && authStore.isAuthenticated && authStore.isOnline
 
     if (isSaveToCloud) {
       await deckStore.saveEncodedDeck(key, compressedDeckData, {
@@ -666,6 +727,7 @@ const handleCreateDeck = async () => {
       })
     }
 
+    isSaveLocationDialogOpen.value = false
     isSaveDialogOpen.value = false
     triggerSnackbar(isSaveToCloud ? '新卡组已成功创建！' : '新卡组已成功保存到本地！', 'success')
     await router.push(`/decks/${key}`)

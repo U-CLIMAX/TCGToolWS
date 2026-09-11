@@ -28,12 +28,14 @@ import { useRouter } from 'vue-router'
 import { useDeckEncoder } from '@/composables/useDeckEncoder'
 import { fetchCardByIdAndPrefix } from '@/utils/card'
 import { useUIStore } from '@/stores/ui'
+import { useAuthStore } from '@/stores/auth'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useDeckStore } from '@/stores/deck'
 import { useFilterStore } from '@/stores/filter'
 import { generateDeckKey } from '@/utils/nanoid'
 import { seriesMap } from '@/maps/series-map'
 import { useModalTransition } from '@/composables/useModalTransition'
+import { isTauri } from '@/utils/isTauri'
 
 const props = defineProps({
   deckKey: {
@@ -51,6 +53,7 @@ defineEmits(['close'])
 const router = useRouter()
 const { decodeData, encodeData } = useDeckEncoder()
 const uiStore = useUIStore()
+const authStore = useAuthStore()
 const deckStore = useDeckStore()
 const { triggerSnackbar } = useSnackbar()
 const { isTransitionReady, waitForTransition } = useModalTransition()
@@ -68,8 +71,9 @@ const filterStore = useFilterStore()
  * @param {object} param0.coverCardId 封面卡牌标识
  * @param {Function} [param0.closeDialog] 关闭保存弹窗的回调函数
  * @param {string[]} [param0.tags] 卡组标签列表
+ * @param {string} [param0.saveTarget] 保存目标 ('cloud' | 'local')
  */
-const handleSaveDeck = async ({ name, coverCardId, closeDialog, tags }) => {
+const handleSaveDeck = async ({ name, coverCardId, closeDialog, tags, saveTarget }) => {
   const setLoading = (val) => (props.embedded ? (isLoading.value = val) : uiStore.setLoading(val))
   setLoading(true)
 
@@ -93,15 +97,29 @@ const handleSaveDeck = async ({ name, coverCardId, closeDialog, tags }) => {
 
     const gameType = seriesMap[deck.value.series_id]?.game || 'ws'
 
-    await deckStore.saveEncodedDeck(key, compressedData, {
-      name: name,
-      seriesId: deck.value.series_id,
-      game_type: gameType,
-      coverCardId: coverCardId,
-      tags: tags || [],
-    })
+    const isSaveToCloud = !isTauri
+      ? authStore.isAuthenticated && authStore.isOnline
+      : saveTarget === 'cloud' && authStore.isAuthenticated && authStore.isOnline
 
-    triggerSnackbar('卡组保存成功！', 'success')
+    if (isSaveToCloud) {
+      await deckStore.saveEncodedDeck(key, compressedData, {
+        name: name,
+        seriesId: deck.value.series_id,
+        game_type: gameType,
+        coverCardId: coverCardId,
+        tags: tags || [],
+      })
+    } else {
+      deckStore.saveLocalDeck(key, compressedData, {
+        name: name,
+        seriesId: deck.value.series_id,
+        game_type: gameType,
+        coverCardId: coverCardId,
+        tags: tags || [],
+      })
+    }
+
+    triggerSnackbar(isSaveToCloud ? '新卡组保存成功！' : '新卡组已成功保存到本地！', 'success')
     if (closeDialog) closeDialog()
     await router.push(`/decks/${key}`)
   } catch (error) {
