@@ -8,6 +8,7 @@
       @touchend="handleTouchEnd"
       @touchcancel="handleTouchCancel"
       @contextmenu="handleContextMenu"
+      @click.capture="handleCardClickCapture"
     >
       <v-card
         :to="{ name: 'DeckDetail', params: { key: deckKey } }"
@@ -15,7 +16,6 @@
         rounded="3md"
         class="deck-card"
         :class="{ 'is-lifted': isHovering && !isTouch }"
-        @click.capture="handleCardClickCapture"
       >
         <v-img
           :src="imageUrl"
@@ -267,11 +267,19 @@ let isLongPressActive = false
 let longPressTimer = null
 let touchStartX = 0
 let touchStartY = 0
+let longPressResetTimer = null
 
 const clearLongPressTimer = () => {
   if (longPressTimer) {
     clearTimeout(longPressTimer)
     longPressTimer = null
+  }
+}
+
+const clearLongPressResetTimer = () => {
+  if (longPressResetTimer) {
+    clearTimeout(longPressResetTimer)
+    longPressResetTimer = null
   }
 }
 
@@ -283,6 +291,7 @@ const handleTouchStart = (e) => {
   isLongPressActive = false
 
   clearLongPressTimer()
+  clearLongPressResetTimer()
   longPressTimer = setTimeout(() => {
     isLongPressActive = true
     if (typeof navigator !== 'undefined' && navigator.vibrate) {
@@ -304,17 +313,33 @@ const handleTouchMove = (e) => {
   }
 }
 
-const handleTouchEnd = () => {
+const handleTouchEnd = (e) => {
   clearLongPressTimer()
+  if (isLongPressActive) {
+    if (e.cancelable) {
+      e.preventDefault()
+    }
+    clearLongPressResetTimer()
+    longPressResetTimer = setTimeout(() => {
+      isLongPressActive = false
+      longPressResetTimer = null
+    }, 400)
+  }
 }
 
 const handleTouchCancel = () => {
   clearLongPressTimer()
-  isLongPressActive = false
+  if (isLongPressActive) {
+    clearLongPressResetTimer()
+    longPressResetTimer = setTimeout(() => {
+      isLongPressActive = false
+      longPressResetTimer = null
+    }, 400)
+  }
 }
 
 const handleContextMenu = (e) => {
-  if (props.isTouch) {
+  if (props.isTouch || isLongPressActive) {
     e.preventDefault()
   }
 }
@@ -324,14 +349,12 @@ const handleCardClickCapture = (e) => {
     e.preventDefault()
     e.stopPropagation()
     e.stopImmediatePropagation()
-    setTimeout(() => {
-      isLongPressActive = false
-    }, 100)
   }
 }
 
 onUnmounted(() => {
   clearLongPressTimer()
+  clearLongPressResetTimer()
 })
 
 const handleUploadCloud = async () => {
