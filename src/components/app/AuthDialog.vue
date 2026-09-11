@@ -184,8 +184,8 @@
         </v-card>
       </template>
     </v-card>
-    <SettingsModal v-model="isSettingsModalOpen" />
   </v-dialog>
+  <SettingsModal v-model="isSettingsModalOpen" />
 </template>
 
 <script setup>
@@ -348,6 +348,7 @@ const handleResendCode = async () => {
 }
 
 const handleSettingsClick = () => {
+  dialog.value = false
   isSettingsModalOpen.value = true
 }
 
