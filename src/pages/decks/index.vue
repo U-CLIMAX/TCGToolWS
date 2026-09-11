@@ -17,45 +17,48 @@
             elevation="2"
           >
             <!-- 標題區域 -->
-            <div class="d-flex align-center ga-3 mb-4">
-              <v-icon :icon="DeckIcon" color="primary" size="32" />
-              <div>
-                <div class="d-flex align-center ga-2" style="line-height: 1.2">
-                  <span class="text-h6 font-weight-bold">我的卡组</span>
-                  <v-chip
-                    v-if="isTauri && !authStore.isOnline"
-                    size="x-small"
-                    color="warning"
-                    variant="tonal"
-                    label
-                    prepend-icon="i-mdi:cloud-off-outline"
-                    class="font-weight-medium rounded-pill"
-                  >
-                    离线模式
-                  </v-chip>
+            <div
+              class="d-flex flex-column flex-sm-row justify-space-between align-start align-sm-center mb-4 ga-3"
+            >
+              <div class="d-flex align-center ga-3">
+                <v-icon :icon="DeckIcon" color="primary" size="32" />
+                <div>
+                  <div class="d-flex align-center ga-2" style="line-height: 1.2">
+                    <span class="text-h6 font-weight-bold">我的卡组</span>
+                    <v-chip
+                      v-if="isTauri && !authStore.isOnline"
+                      size="x-small"
+                      color="warning"
+                      variant="tonal"
+                      label
+                      prepend-icon="i-mdi:cloud-off-outline"
+                      class="font-weight-medium rounded-pill"
+                    >
+                      离线模式
+                    </v-chip>
+                  </div>
+                  <div class="text-caption text-medium-emphasis">管理并搜索您收藏的卡组</div>
                 </div>
-                <div class="text-caption text-medium-emphasis">管理并搜索您收藏的卡组</div>
+              </div>
+
+              <!-- 卡組來源切換 (Tauri 客戶端在線且已登入時提供切換) -->
+              <div
+                v-if="isTauri && authStore.isAuthenticated && authStore.isOnline"
+                class="d-flex ga-2 align-center flex-sm-grow-0 flex-grow-1 w-100 w-sm-auto"
+              >
+                <InsetTabs v-model="deckSourceMode" :options="deckSourceOptions">
+                  <template #tab-item="{ option }">
+                    <v-icon
+                      :icon="
+                        option.value === 'cloud' ? 'i-mdi:cloud-outline' : 'i-mdi:folder-outline'
+                      "
+                      start
+                    />
+                    {{ option.title }}
+                  </template>
+                </InsetTabs>
               </div>
             </div>
-
-            <!-- 卡組來源切換 (Tauri 客戶端在線且已登入時提供切換) -->
-            <v-btn-toggle
-              v-if="isTauri && authStore.isAuthenticated && authStore.isOnline"
-              v-model="deckSourceMode"
-              mandatory
-              color="primary"
-              rounded="pill"
-              density="comfortable"
-              variant="tonal"
-              class="w-100 mb-3"
-            >
-              <v-btn value="cloud" class="flex-grow-1" prepend-icon="i-mdi:cloud-outline">
-                云端卡组 ({{ deckStore.meta.totalCount }})
-              </v-btn>
-              <v-btn value="local" class="flex-grow-1" prepend-icon="i-mdi:folder-outline">
-                本地卡组 ({{ deckStore.localDecksList.length }})
-              </v-btn>
-            </v-btn-toggle>
 
             <!-- 搜尋與篩選區域 -->
             <v-row dense>
@@ -294,6 +297,17 @@ const deckSourceMode = ref(
   !isTauri ? 'cloud' : authStore.isAuthenticated && authStore.isOnline ? 'cloud' : 'local'
 )
 const isLocalMode = computed(() => isTauri && deckSourceMode.value === 'local')
+
+const deckSourceOptions = computed(() => [
+  {
+    title: `云端卡组 (${deckStore.meta.totalCount || 0})`,
+    value: 'cloud',
+  },
+  {
+    title: `本地卡组 (${deckStore.localDecksList.length})`,
+    value: 'local',
+  },
+])
 
 watch([() => authStore.isAuthenticated, () => authStore.isOnline], ([isAuth, isOnline]) => {
   if (isTauri) {
