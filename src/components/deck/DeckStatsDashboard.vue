@@ -73,7 +73,7 @@
           <template v-if="totalPrice > 0">
             <v-divider></v-divider>
             <div class="text-center px-4 py-4">
-              <div class="font-DINCond text-h5 mb-1 text-currency">
+              <div class="font-DINCond font-weight-black text-h5 mb-1 text-currency">
                 {{ totalPrice.toLocaleString() }}
               </div>
               <div class="text-body-2 text-disabled">参考总价 (JPY)</div>

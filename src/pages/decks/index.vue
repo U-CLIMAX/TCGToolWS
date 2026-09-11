@@ -37,7 +37,7 @@
                       离线模式
                     </v-chip>
                   </div>
-                  <div class="text-caption text-medium-emphasis">管理并搜索您收藏的卡组</div>
+                  <div class="text-caption font-weight-light">管理并搜索您收藏的卡组</div>
                 </div>
               </div>
 
@@ -129,7 +129,7 @@
             <v-btn
               v-if="!isTauri || authStore.isOnline"
               block
-              variant="tonal"
+              variant="flat"
               rounded="pill"
               color="primary"
               prepend-icon="i-mdi:import"
@@ -216,7 +216,7 @@
           </div>
           <div
             v-if="isTouch"
-            class="text-caption text-medium-emphasis ml-3 mt-1 mb-2 d-flex align-center ga-1"
+            class="text-caption font-weight-medium ml-3 mt-1 mb-2 d-flex align-center ga-1"
           >
             <v-icon icon="i-mdi:gesture-tap-hold" size="14" />
             <span>提示：长按卡组可开启管理功能</span>

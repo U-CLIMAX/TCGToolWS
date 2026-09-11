@@ -42,7 +42,7 @@
             :disabled="deckStore.totalCardCount <= 0"
             icon="i-mdi:open-in-new"
             variant="text"
-            color="teal-lighten-1"
+            color="primary"
             density="compact"
             @click="navigateToDeckDetail"
             v-tooltip:top-center="{ text: '前往卡组页面', disabled: isTouch }"
@@ -143,7 +143,7 @@
               :class="{ 'mt-3': index > 0 }"
             >
               <span>{{ getGroupName(groupName) }}</span>
-              <v-chip size="small" variant="tonal" color="secondary" label>
+              <v-chip size="small" variant="elevated">
                 {{ group.reduce((sum, item) => sum + item.quantity, 0) }}
               </v-chip>
             </div>

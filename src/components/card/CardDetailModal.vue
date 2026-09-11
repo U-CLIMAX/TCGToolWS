@@ -86,20 +86,22 @@
         <div>
           <v-card-actions v-if="showActions" class="d-flex justify-center align-center pa-0 pt-4">
             <v-btn
-              icon="i-mdi:minus"
+              icon
               size="small"
-              variant="tonal"
-              color="primary"
+              variant="flat"
+              color="grey-lighten-2"
               @click="deckStore.removeCard(card.id)"
               :disabled="cardCount === 0"
-            ></v-btn>
+            >
+              <v-icon icon="i-mdi:minus" color="white" />
+            </v-btn>
             <div class="mx-4 text-h6 font-weight-bold" style="min-width: 20px; text-align: center">
               {{ cardCount }}
             </div>
             <v-btn
               icon="i-mdi:plus"
               size="small"
-              variant="tonal"
+              variant="flat"
               color="primary"
               @click="deckStore.addCard(card)"
               :disabled="deckStore.totalCardCount >= 50 && userRole === 0"
@@ -202,15 +204,14 @@
                 效果
                 <v-btn
                   v-if="authStore.isOnline"
-                  prepend-icon="i-mdi:flag-outline"
                   variant="tonal"
-                  color="warning"
+                  color="blue-grey-lighten-4"
                   size="small"
-                  density="compact"
-                  class="ml-1 rounded-pill"
-                  text="回报错误"
+                  class="ml-1 rounded-pill font-weight-light ml-auto"
                   @click="openReportDialog"
                 >
+                  <v-icon icon="i-mdi:flag-outline" class="mr-1 text-amber-darken-1" />
+                  <span class="text-amber-darken-1">回报错误</span>
                 </v-btn>
               </div>
               <div class="font-wenkai text-body-1" v-html="formattedEffect"></div>

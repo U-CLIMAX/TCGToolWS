@@ -31,7 +31,7 @@
         </div>
         <div class="d-flex ga-2 align-center">
           <v-combobox
-            class="flex-grow-1"
+            class="flex-grow-1 font-weight-light"
             :label="`关键字 (${filterStore.searchMode === 'fuzzy' ? '模糊搜索' : '精准搜索'})`"
             placeholder="卡号、卡名、效果"
             :items="allKeywords"
@@ -150,17 +150,35 @@
 
         <!-- 种类 -->
         <div>
-          <div class="text-caption text-disabled mb-1">种类</div>
+          <div class="text-caption font-weight-light text-disabled mb-1">种类</div>
           <v-chip-group v-model="filterStore.selectedCardTypes" multiple column color="primary">
-            <v-chip value="角色卡" density="comfortable" :disabled="props.disabled">角色卡</v-chip>
-            <v-chip value="事件卡" density="comfortable" :disabled="props.disabled">事件卡</v-chip>
-            <v-chip value="高潮卡" density="comfortable" :disabled="props.disabled">高潮卡</v-chip>
+            <v-chip
+              class="font-weight-medium"
+              value="角色卡"
+              density="comfortable"
+              :disabled="props.disabled"
+              >角色卡</v-chip
+            >
+            <v-chip
+              class="font-weight-medium"
+              value="事件卡"
+              density="comfortable"
+              :disabled="props.disabled"
+              >事件卡</v-chip
+            >
+            <v-chip
+              class="font-weight-medium"
+              value="高潮卡"
+              density="comfortable"
+              :disabled="props.disabled"
+              >高潮卡</v-chip
+            >
           </v-chip-group>
         </div>
 
         <!-- 等级 -->
         <div>
-          <div class="text-caption text-disabled mb-1">等级</div>
+          <div class="text-caption font-weight-light text-disabled mb-1">等级</div>
           <v-chip-group v-model="filterStore.selectedLevels" multiple column color="primary">
             <v-chip
               v-for="lvl in filterStore.levels"
@@ -168,6 +186,7 @@
               :value="lvl"
               density="comfortable"
               :disabled="props.disabled"
+              class="font-weight-medium"
             >
               {{ lvl }}
             </v-chip>
@@ -176,7 +195,7 @@
 
         <!-- 魂伤 -->
         <div v-if="filterStore.souls?.length">
-          <div class="text-caption text-disabled mb-1">魂伤</div>
+          <div class="text-caption font-weight-light text-disabled mb-1">魂伤</div>
           <v-chip-group v-model="filterStore.selectedSoul" multiple column color="primary">
             <v-chip
               v-for="s in filterStore.souls"
@@ -184,6 +203,7 @@
               :value="s"
               density="comfortable"
               :disabled="props.disabled"
+              class="font-weight-medium"
             >
               {{ s }}
             </v-chip>
@@ -192,13 +212,14 @@
 
         <!-- 颜色 -->
         <div>
-          <div class="text-caption text-disabled mb-1">颜色</div>
+          <div class="text-caption font-weight-light text-disabled mb-1">颜色</div>
           <v-chip-group v-model="filterStore.selectedColors" multiple column>
             <v-chip
               value="黄色"
               density="comfortable"
               color="amber-darken-3"
               :disabled="props.disabled"
+              class="font-weight-medium"
             >
               黄
             </v-chip>
@@ -207,6 +228,7 @@
               density="comfortable"
               color="green-darken-1"
               :disabled="props.disabled"
+              class="font-weight-medium"
             >
               绿
             </v-chip>
@@ -215,6 +237,7 @@
               density="comfortable"
               color="red-darken-1"
               :disabled="props.disabled"
+              class="font-weight-medium"
             >
               红
             </v-chip>
@@ -223,6 +246,7 @@
               density="comfortable"
               color="blue-darken-1"
               :disabled="props.disabled"
+              class="font-weight-medium"
             >
               蓝
             </v-chip>
@@ -231,6 +255,7 @@
               density="comfortable"
               color="purple-darken-1"
               :disabled="props.disabled"
+              class="font-weight-medium"
             >
               紫
             </v-chip>
@@ -239,7 +264,7 @@
 
         <!-- 产品 -->
         <div>
-          <div class="text-caption text-disabled mb-1">产品</div>
+          <div class="text-caption font-weight-light text-disabled mb-1">产品</div>
           <v-select
             label="产品"
             :items="filterStore.productNames"
@@ -263,7 +288,7 @@
 
         <!-- 稀有度 -->
         <div>
-          <div class="text-caption text-disabled mb-1">稀有度</div>
+          <div class="text-caption font-weight-light text-disabled mb-1">稀有度</div>
           <v-select
             label="稀有度"
             :items="filterStore.rarities"
@@ -281,7 +306,7 @@
 
         <!-- 特征 -->
         <div>
-          <div class="text-caption text-disabled mb-1">特征</div>
+          <div class="text-caption font-weight-light text-disabled mb-1">特征</div>
           <v-select
             label="特征"
             :items="filterStore.traits"
@@ -299,7 +324,7 @@
 
         <div>
           <div class="d-flex justify-space-between align-center mb-1">
-            <div class="text-caption text-disabled">
+            <div class="text-caption font-weight-light text-disabled">
               费用
               <span class="pa-1 px-2 rounded-pill border-md">
                 {{ costRangeText }}
@@ -322,7 +347,7 @@
         </div>
 
         <div>
-          <div class="text-caption text-disabled">
+          <div class="text-caption font-weight-light text-disabled">
             战斗力
             <span class="pa-1 px-2 rounded-pill border-md">
               {{ powerRangeText }}
