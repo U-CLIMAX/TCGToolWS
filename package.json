@@ -27,7 +27,8 @@
     "tauri:dev": "tauri dev",
     "tauri:build": "tauri build",
     "tauri:android:init": "tauri android init",
-    "tauri:android:build": "tauri android build --apk"
+    "tauri:android:build": "tauri android build --apk",
+    "version": "node scripts/sync-version.js"
   },
   "dependencies": {
     "@tauri-apps/api": "^2.11.1",
