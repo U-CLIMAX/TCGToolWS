@@ -1,11 +1,6 @@
 <template>
   <v-dialog v-model="menuOpen" max-width="500px" :fullscreen="!smAndUp">
-    <v-card
-      class="overflow-hidden"
-      :class="{ 'glass-menu': hasBackgroundImage }"
-      :rounded="smAndUp ? '3md' : false"
-      elevation="12"
-    >
+    <v-card class="overflow-hidden" :rounded="smAndUp ? '3md' : false" elevation="12">
       <div class="d-flex align-center px-5 py-4">
         <span class="text-h6 font-weight-bold">最近公告</span>
         <v-spacer></v-spacer>
@@ -133,7 +128,11 @@
 
       <v-divider class="mx-6 opacity-10"></v-divider>
 
-      <v-card-text class="pa-8 text-body-1 whitespace-pre-wrap line-height-1-6 text-high-emphasis">
+      <v-card-text
+        class="pa-8 text-body-1 themed-scrollbar whitespace-pre-wrap line-height-1-6 text-high-emphasis"
+        max-height="180"
+        style="overflow-y: auto"
+      >
         {{ selectedNotice.content }}
       </v-card-text>
 
