@@ -461,12 +461,12 @@ import toolboxIcon from '@/assets/ui/toolbox.svg'
 import deckGalleryIcon from '@/assets/ui/deck-gallery.svg'
 import communityIcon from '@/assets/ui/community.svg'
 import banListIcon from '@/assets/ui/banlist.svg'
-const HomeBackground = defineAsyncComponent(() => import('@/components/common/HomeBackground.vue'))
+const HomeBackground = defineAsyncComponent(() => import('@/components/app/HomeBackground.vue'))
 const ClientUpdateDialog = defineAsyncComponent(
-  () => import('@/components/ui/ClientUpdateDialog.vue')
+  () => import('@/components/app/ClientUpdateDialog.vue')
 )
 const CardImageUpdatePromptModal = defineAsyncComponent(
-  () => import('@/components/ui/CardImageUpdatePromptModal.vue')
+  () => import('@/components/app/CardImageUpdatePromptModal.vue')
 )
 
 usePerformanceManager()

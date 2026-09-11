@@ -191,7 +191,9 @@ import { isTauri } from '@/utils/isTauri'
 import { useUIStore } from '@/stores/ui'
 import { useDisplay } from 'vuetify'
 
-const ImageCropperModal = defineAsyncComponent(() => import('./ImageCropperModal.vue'))
+const ImageCropperModal = defineAsyncComponent(
+  () => import('@/components/ui/ImageCropperModal.vue')
+)
 const LocalImageSyncSettings = defineAsyncComponent(() => import('./LocalImageSyncSettings.vue'))
 
 const { smAndUp, xs } = useDisplay()
