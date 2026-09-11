@@ -389,7 +389,7 @@
     <v-snackbar
       v-model="show"
       :color="vuetifyTheme.global.current.value.dark ? 'grey-darken-4' : 'grey-lighten-5'"
-      timeout="1000"
+      timeout="1600"
       :location="smAndUp ? 'bottom right' : 'top center'"
       rounded="2lg"
       eager
