@@ -1,12 +1,21 @@
 <template>
   <v-hover v-slot="{ isHovering, props }">
-    <div v-bind="props" class="position-relative">
+    <div
+      v-bind="props"
+      class="position-relative"
+      @touchstart="handleTouchStart"
+      @touchmove="handleTouchMove"
+      @touchend="handleTouchEnd"
+      @touchcancel="handleTouchCancel"
+      @contextmenu="handleContextMenu"
+    >
       <v-card
         :to="{ name: 'DeckDetail', params: { key: deckKey } }"
         variant="flat"
         rounded="3md"
         class="deck-card"
         :class="{ 'is-lifted': isHovering && !isTouch }"
+        @click.capture="handleCardClickCapture"
       >
         <v-img
           :src="imageUrl"
@@ -24,7 +33,7 @@
           <div
             v-if="imageUrl"
             class="action-background"
-            :class="{ 'action-background-visible': isHovering || isTouch }"
+            :class="{ 'action-background-visible': isHovering && !isTouch }"
           ></div>
           <div :class="{ 'title-background': !isEditing, 'full-mask': isEditing }"></div>
           <div v-if="isEditing" class="editing-text">编辑中</div>
@@ -47,10 +56,10 @@
       </v-card>
 
       <v-scale-transition>
-        <div v-show="(isHovering || isTouch) && imageUrl" class="action-btn-container">
+        <div v-show="isHovering && !isTouch && imageUrl" class="action-btn-container">
           <v-btn
             v-if="deckKey !== 'local' && deck.isLocal && onUploadCloud"
-            :variant="isTouch ? 'text' : 'tonal'"
+            variant="tonal"
             icon
             density="compact"
             :size="smAndDown ? 'x-small' : 'large'"
@@ -61,7 +70,7 @@
           </v-btn>
           <v-btn
             v-if="deckKey !== 'local'"
-            :variant="isTouch ? 'text' : 'tonal'"
+            variant="tonal"
             icon
             density="compact"
             :size="smAndDown ? 'x-small' : 'large'"
@@ -72,7 +81,7 @@
           </v-btn>
           <v-btn
             icon
-            :variant="isTouch ? 'text' : 'tonal'"
+            variant="tonal"
             density="compact"
             :size="smAndDown ? 'x-small' : 'large'"
             @click.prevent="handleDeleteDeck"
@@ -81,6 +90,55 @@
           </v-btn>
         </div>
       </v-scale-transition>
+
+      <v-menu
+        v-if="isTouch"
+        v-model="isActionMenuOpen"
+        target="parent"
+        location="bottom center"
+        origin="auto"
+        offset="6"
+        min-width="140"
+        :scrim="true"
+        :open-on-click="false"
+        :open-on-hover="false"
+        :close-on-content-click="false"
+      >
+        <v-list rounded="3md" elevation="6" density="compact" class="pa-1">
+          <v-list-item
+            v-if="deckKey !== 'local' && deck.isLocal && onUploadCloud"
+            rounded="md"
+            density="compact"
+            class="px-2"
+            @click="handleActionMenuUploadCloud"
+          >
+            <div class="d-flex align-center ga-2">
+              <v-icon color="cyan-accent-2" icon="i-mdi:cloud-upload-outline" size="18" />
+              <span class="text-caption font-weight-medium">上传云端</span>
+            </div>
+          </v-list-item>
+
+          <v-list-item
+            v-if="deckKey !== 'local'"
+            rounded="md"
+            density="compact"
+            class="px-2"
+            @click="handleActionMenuEditTags"
+          >
+            <div class="d-flex align-center ga-2">
+              <v-icon color="teal-accent-3" icon="i-mdi:tag-edit" size="18" />
+              <span class="text-caption font-weight-medium">编辑标签</span>
+            </div>
+          </v-list-item>
+
+          <v-list-item rounded="md" density="compact" class="px-2" @click="handleActionMenuDelete">
+            <div class="d-flex align-center ga-2">
+              <v-icon color="red-accent-3" icon="i-mdi:trash-can-outline" size="18" />
+              <span class="text-caption font-weight-medium">删除卡组</span>
+            </div>
+          </v-list-item>
+        </v-list>
+      </v-menu>
 
       <v-dialog v-model="isDeleteDialogOpen" max-width="400">
         <v-card class="rounded-2lg pa-2">
@@ -151,7 +209,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { ref, onUnmounted } from 'vue'
 import { getCardUrls } from '@/utils/getCardImage'
 
 const props = defineProps({
@@ -193,15 +251,88 @@ const props = defineProps({
   },
 })
 
+const isActionMenuOpen = ref(false)
 const isDeleteDialogOpen = ref(false)
 const isTagsDialogOpen = ref(false)
 const editTags = ref([])
 const isSavingTags = ref(false)
 
 const { base: imageUrl, blur: blurUrl } = getCardUrls(
-  props.deck.coverCardId.cardIdPrefix,
-  props.deck.coverCardId.id
+  props.deck.coverCardId?.cardIdPrefix,
+  props.deck.coverCardId?.id
 )
+
+// Long-press detection for touch devices
+let isLongPressActive = false
+let longPressTimer = null
+let touchStartX = 0
+let touchStartY = 0
+
+const clearLongPressTimer = () => {
+  if (longPressTimer) {
+    clearTimeout(longPressTimer)
+    longPressTimer = null
+  }
+}
+
+const handleTouchStart = (e) => {
+  if (!props.isTouch) return
+  const touch = e.touches[0]
+  touchStartX = touch.clientX
+  touchStartY = touch.clientY
+  isLongPressActive = false
+
+  clearLongPressTimer()
+  longPressTimer = setTimeout(() => {
+    isLongPressActive = true
+    if (typeof navigator !== 'undefined' && navigator.vibrate) {
+      try {
+        navigator.vibrate(30)
+      } catch {
+        // ignore vibration error
+      }
+    }
+    isActionMenuOpen.value = true
+  }, 500)
+}
+
+const handleTouchMove = (e) => {
+  if (!longPressTimer) return
+  const touch = e.touches[0]
+  if (Math.abs(touch.clientX - touchStartX) > 10 || Math.abs(touch.clientY - touchStartY) > 10) {
+    clearLongPressTimer()
+  }
+}
+
+const handleTouchEnd = () => {
+  clearLongPressTimer()
+}
+
+const handleTouchCancel = () => {
+  clearLongPressTimer()
+  isLongPressActive = false
+}
+
+const handleContextMenu = (e) => {
+  if (props.isTouch) {
+    e.preventDefault()
+  }
+}
+
+const handleCardClickCapture = (e) => {
+  if (isLongPressActive) {
+    e.preventDefault()
+    e.stopPropagation()
+    e.stopImmediatePropagation()
+    setTimeout(() => {
+      isLongPressActive = false
+    }, 100)
+  }
+}
+
+onUnmounted(() => {
+  clearLongPressTimer()
+})
 
 const handleUploadCloud = async () => {
   if (props.onUploadCloud) {
@@ -238,12 +369,30 @@ const saveTags = async () => {
     isSavingTags.value = false
   }
 }
+
+const handleActionMenuUploadCloud = () => {
+  isActionMenuOpen.value = false
+  handleUploadCloud()
+}
+
+const handleActionMenuEditTags = () => {
+  isActionMenuOpen.value = false
+  handleEditTags()
+}
+
+const handleActionMenuDelete = () => {
+  isActionMenuOpen.value = false
+  handleDeleteDeck()
+}
 </script>
 
 <style scoped>
 .deck-card {
   transition: transform 0.2s ease-in-out;
   overflow: hidden;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .deck-card.is-lifted {

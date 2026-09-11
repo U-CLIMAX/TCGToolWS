@@ -214,6 +214,13 @@
               </div>
             </div>
           </div>
+          <div
+            v-if="isTouch"
+            class="text-caption text-medium-emphasis ml-3 mt-1 mb-2 d-flex align-center ga-1"
+          >
+            <v-icon icon="i-mdi:gesture-tap-hold" size="14" />
+            <span>提示：长按卡组可开启管理功能</span>
+          </div>
           <div v-if="displayedDecks.length > 0" class="v-row ma-1 mt-0">
             <v-col
               v-for="item in displayedDecks"
