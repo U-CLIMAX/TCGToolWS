@@ -73,7 +73,8 @@
                         !priceStore.isLoading &&
                         groupHasPriceMap.get(groupName)
                       "
-                      class="price-container d-flex align-center justify-center font-DINCond font-weight-black text-currency"
+                      class="price-container d-flex align-center justify-center font-DINCond font-weight-bold text-currency"
+                      :class="{ 'text-h6': smAndUp }"
                     >
                       <template v-if="getItemPrice(item)">
                         <v-icon size="12" class="mr-1" icon="i-mdi:currency-jpy" />

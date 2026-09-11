@@ -89,7 +89,7 @@
               icon
               size="small"
               variant="flat"
-              color="grey-lighten-2"
+              color="grey-darken-2"
               @click="deckStore.removeCard(card.id)"
               :disabled="cardCount === 0"
             >
@@ -139,9 +139,9 @@
             </v-card-subtitle>
 
             <div v-if="price != null && route.meta.showCardPrice" class="mb-4 d-flex align-center">
-              <span class="font-weight-bold d-flex align-center text-currency">
+              <span class="d-flex align-center text-currency">
                 <v-icon size="16" class="mr-1" icon="i-mdi:currency-jpy" />
-                <span class="font-DINCond text-h6">{{ price }}</span>
+                <span class="font-DINCond text-h6 font-weight-bold">{{ price }}</span>
               </span>
 
               <span class="text-caption text-grey d-flex align-center ml-2">
