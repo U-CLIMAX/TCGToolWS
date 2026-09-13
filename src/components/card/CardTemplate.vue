@@ -13,7 +13,6 @@
         <v-img
           :key="card.id"
           :src="imageUrl"
-          :alt="card.id"
           :aspect-ratio="400 / 559"
           cover
           rounded="3md"
