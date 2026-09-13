@@ -81,9 +81,14 @@ class MainActivity : TauriActivity() {
     super.onWebViewCreate(webView)
     this.mWebView = webView
 
-    // Enable hardware acceleration layer with dark background to enable zero-copy GPU compositing
-    webView.setLayerType(View.LAYER_TYPE_HARDWARE, null)
+    // Allow Chromium to render directly to the window surface without intermediate FBO layer
+    webView.setLayerType(View.LAYER_TYPE_NONE, null)
     webView.setBackgroundColor(android.graphics.Color.parseColor("#121212"))
+
+    // Match Chrome's renderer process priority for full CPU core allocation
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+      webView.setRendererPriorityPolicy(WebView.RENDERER_PRIORITY_IMPORTANT, false)
+    }
 
     // Optimize settings for rendering, caching, and offscreen canvas
     webView.settings.apply {
@@ -93,6 +98,7 @@ class MainActivity : TauriActivity() {
       allowFileAccess = true
       allowContentAccess = true
       offscreenPreRaster = false
+      setNeedInitialFocus(false)
 
       // Disable Google SafeBrowsing to eliminate DNS/network timeout delays on launch
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

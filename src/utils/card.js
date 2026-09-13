@@ -42,8 +42,16 @@ export const fetchCardByIdAndPrefix = (id, prefix) => {
         }
       }
 
-      // 2. 其他頁面或未命中：按需調用 filterStore 下載系列 JSON
+      // 2. 检查 filterStore 内存中当前是否已有该卡
       const filterStore = useFilterStore()
+      if (filterStore.allCards && filterStore.allCards.length > 0) {
+        const found = filterStore.allCards.find((c) => c.id === id)
+        if (found) {
+          return found
+        }
+      }
+
+      // 3. 其他頁面或未命中：按需調用 filterStore 下載系列 JSON
       const seriesPrefixes = findAllPrefixesByCardPrefix(prefix)
       const { allCards } = await filterStore.fetchAndProcessCards(seriesPrefixes)
 

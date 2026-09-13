@@ -90,7 +90,8 @@
                   icon
                   variant="text"
                   density="compact"
-                  :to="{ name: 'ShareDeckDetail', params: { key: deckKey } }"
+                  :to="deckKey ? { name: 'ShareDeckDetail', params: { key: deckKey } } : undefined"
+                  :disabled="!deckKey"
                   color="teal-lighten-1"
                   v-tooltip:bottom="{ text: '前往分享页面', disabled: isTouch }"
                 >
@@ -329,7 +330,7 @@
 </template>
 
 <script setup>
-import { computed, ref, onUnmounted, onMounted, watch } from 'vue'
+import { computed, ref, onUnmounted, onMounted, watch, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import { getCardUrls } from '@/utils/getCardImage'
 import { useDisplay } from 'vuetify'
@@ -600,7 +601,12 @@ const handleShowNewCard = (cardPayload) => {
 
     selectedCardPriceUpdateTimes.value = getPriceUpdateTimes(card)
     selectedCardData.value = card
-    isModalVisible.value = true
+
+    if (isModalVisible.value) return
+
+    nextTick(() => {
+      isModalVisible.value = true
+    })
   } catch (error) {
     console.error('Error handling show new card:', error)
   }

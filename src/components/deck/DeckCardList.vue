@@ -134,16 +134,16 @@
     </div>
 
     <v-dialog
-      v-if="selectedCard"
       :model-value="isModalVisible"
       @update:model-value="$emit('update:isModalVisible', $event)"
+      eager
       :fullscreen="!smAndUp"
       :max-width="!smAndUp ? undefined : smAndDown ? '85%' : '1050px'"
       :max-height="!smAndUp ? undefined : '95%'"
       :close-on-back="!smAndUp ? true : false"
     >
       <CardDetailModal
-        :card="selectedCard"
+        :card="selectedCard || {}"
         :img-url="modalCardImageUrl.base"
         :blur-url="modalCardImageUrl.blur"
         :price="selectedCardPrice"

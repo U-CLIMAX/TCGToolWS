@@ -180,15 +180,15 @@
 
   <!-- Card Detail Modal -->
   <v-dialog
-    v-if="selectedCardData"
     v-model="isModalVisible"
+    eager
     :fullscreen="!smAndUp"
     :max-width="!smAndUp ? undefined : smAndDown ? '85%' : '1050px'"
     :max-height="!smAndUp ? undefined : '95%'"
     :close-on-back="!smAndUp ? true : false"
   >
     <CardDetailModal
-      :card="selectedCardData"
+      :card="selectedCardData || {}"
       :img-url="modalCardImageUrl.base"
       :blur-url="modalCardImageUrl.blur"
       :price="selectedCardPrice"
@@ -524,7 +524,7 @@
 </template>
 
 <script setup>
-import { ref, computed, toRaw } from 'vue'
+import { ref, computed, toRaw, nextTick } from 'vue'
 import { useDeckStore } from '@/stores/deck'
 import { getCardUrls } from '@/utils/getCardImage'
 import { fetchCardByIdAndPrefix, getCardSeriesId } from '@/utils/card'
@@ -959,15 +959,16 @@ const modalCardImageUrl = computed(() => {
 
 /**
  * 处理在 CardDetailModal 中展示新卡牌。
- * 获取主卡牌基础信息与价格并显示弹窗；关联卡与平行卡数据由弹窗在进场动效结束后自主异步获取。
+ * 立即展示已有卡牌基础信息并唤起弹窗（0ms 响应），随后在后台异步补全效果与关联元数据。
  *
  * @param {object|{card: object, imgUrl?: string, price?: number|string}} cardPayload - 包含卡牌数据或包装对象的载荷
  */
-const handleShowNewCard = async (cardPayload) => {
+const handleShowNewCard = (cardPayload) => {
   try {
     const cardToDisplay = cardPayload.card || cardPayload
+    if (!cardToDisplay?.id) return
 
-    // Set price for the main card
+    // 设置主卡牌价格
     if (cardPayload.price !== undefined) {
       selectedCardPrice.value = cardPayload.price
     } else {
@@ -984,14 +985,27 @@ const handleShowNewCard = async (cardPayload) => {
     }
 
     selectedCardPriceUpdateTimes.value = getPriceUpdateTimes(cardToDisplay)
+    selectedCardData.value = cardToDisplay
 
-    const card = await fetchCardByIdAndPrefix(cardToDisplay.id, cardToDisplay.cardIdPrefix)
-    if (!card) {
-      console.error('Failed to fetch card details for', cardToDisplay.id)
-      return
+    if (!isModalVisible.value) {
+      nextTick(() => {
+        isModalVisible.value = true
+      })
     }
-    selectedCardData.value = card
-    isModalVisible.value = true
+
+    // 若缺少效果文本等完整元数据，后台静默异步拉取并无缝合并
+    if (!cardToDisplay.effect) {
+      const currentId = cardToDisplay.id
+      fetchCardByIdAndPrefix(cardToDisplay.id, cardToDisplay.cardIdPrefix)
+        .then((fullCard) => {
+          if (fullCard && selectedCardData.value?.id === currentId) {
+            selectedCardData.value = { ...selectedCardData.value, ...fullCard }
+          }
+        })
+        .catch((err) => {
+          console.error('Failed to fetch full card details for', currentId, err)
+        })
+    }
   } catch (error) {
     console.error('Error handling show new card:', error)
   }
@@ -1002,7 +1016,7 @@ const handleShowNewCard = async (cardPayload) => {
  * Depending on the active mode ('add', 'remove', 'none'), it will add/remove the card from the deck or display its details in the modal.
  * @param {object} item - The card item that was clicked.
  */
-const handleCardClick = async (item) => {
+const handleCardClick = (item) => {
   switch (uiStore.cardClickMode) {
     case 'add':
       deckStore.addCard(item)
@@ -1015,7 +1029,7 @@ const handleCardClick = async (item) => {
       deckStore.removeCard(item.id)
       break
     default: {
-      await handleShowNewCard({ card: item })
+      handleShowNewCard({ card: item })
       break
     }
   }

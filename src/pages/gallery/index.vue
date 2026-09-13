@@ -4,6 +4,7 @@
       v-model="drawer"
       location="right"
       temporary
+      eager
       :width="drawerWidth"
       :class="{
         'glass-sheet--low': hasBackgroundImage,
@@ -15,13 +16,7 @@
       }"
       touchless
     >
-      <ShareDeckDetail
-        v-if="selectedDeckKey"
-        :key="selectedDeckKey"
-        :deck-key="selectedDeckKey"
-        :embedded="true"
-        @close="drawer = false"
-      />
+      <ShareDeckDetail :deck-key="selectedDeckKey || ''" :embedded="true" @close="drawer = false" />
     </v-navigation-drawer>
 
     <v-infinite-scroll

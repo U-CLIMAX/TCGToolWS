@@ -64,19 +64,19 @@
   </v-infinite-scroll>
 
   <v-dialog
-    v-if="selectedCardData"
     v-model="isModalVisible"
+    eager
     :fullscreen="!smAndUp"
     :max-width="!smAndUp ? undefined : smAndDown ? '85%' : '1050px'"
     :max-height="!smAndUp ? undefined : '95%'"
     :close-on-back="!smAndUp ? true : false"
   >
     <CardDetailModal
-      :card="selectedCardData.card"
-      :img-url="selectedCardData.imageUrl"
-      :blur-url="selectedCardData.blurUrl"
-      :price="selectedCardData.price"
-      :price-update-times="selectedCardData.priceUpdateTimes"
+      :card="selectedCardData?.card || {}"
+      :img-url="selectedCardData?.imageUrl || '/empty-placehold.webp'"
+      :blur-url="selectedCardData?.blurUrl || '/empty-placehold.webp'"
+      :price="selectedCardData?.price || null"
+      :price-update-times="selectedCardData?.priceUpdateTimes || null"
       :showActions="$route.name === 'GlobalSearch' ? false : true"
       :card-index="selectedCardIndex"
       :total-cards="displayedCards.length"
@@ -280,7 +280,12 @@ const onShowDetails = (payload) => {
     ...payload,
     priceUpdateTimes: updateTimes,
   }
-  isModalVisible.value = true
+
+  if (isModalVisible.value) return
+
+  nextTick(() => {
+    isModalVisible.value = true
+  })
 }
 
 /**

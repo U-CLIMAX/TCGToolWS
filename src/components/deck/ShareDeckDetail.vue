@@ -1,21 +1,27 @@
 <template>
-  <div ref="containerRef" class="h-100 position-relative">
-    <!-- 抽屉滑动进场动画期间或数据加载中，仅展示极轻量的居中加载指示器，避免重度 DOM 与图表并发卡顿 -->
-    <div
-      v-if="embedded && (!isTransitionReady || isLoading || !deck)"
-      class="d-flex align-center justify-center h-100 w-100"
-    >
-      <v-progress-circular indeterminate color="primary" size="56" />
-    </div>
+  <div class="h-100 position-relative">
+    <!-- 数据加载中，展示居中加载指示器遮罩 -->
+    <v-fade-transition>
+      <div
+        v-if="embedded && isLoading"
+        class="d-flex align-center justify-center position-absolute fill-height w-100"
+      >
+        <v-progress-circular indeterminate color="primary" size="56" />
+      </div>
+    </v-fade-transition>
 
-    <!-- 仅在动画过渡完成且数据就绪后挂载 DeckDetailTemplate（独立页面 embedded 为 false 时直接渲染） -->
+    <!-- 挂载 DeckDetailTemplate（常驻布局保持预热，加载中透明隐藏且禁止交互） -->
     <DeckDetailTemplate
-      v-if="deck && (isTransitionReady || !embedded)"
       :deck="deck"
       :cards="cards"
       :deck-title="deck ? deck.deck_name : deckKey"
       :embedded="embedded"
       :deck-key="deckKey"
+      :style="{
+        opacity: embedded && isLoading ? 0 : 1,
+        pointerEvents: embedded && isLoading ? 'none' : 'auto',
+        transition: 'opacity 0.2s ease',
+      }"
       @save="handleSaveDeck"
       @close="$emit('close')"
     />
@@ -31,10 +37,8 @@ import { useUIStore } from '@/stores/ui'
 import { useAuthStore } from '@/stores/auth'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useDeckStore } from '@/stores/deck'
-import { useFilterStore } from '@/stores/filter'
 import { generateDeckKey } from '@/utils/nanoid'
 import { seriesMap } from '@/maps/series-map'
-import { useModalTransition } from '@/composables/useModalTransition'
 import { isTauri } from '@/utils/isTauri'
 
 const props = defineProps({
@@ -56,13 +60,10 @@ const uiStore = useUIStore()
 const authStore = useAuthStore()
 const deckStore = useDeckStore()
 const { triggerSnackbar } = useSnackbar()
-const { isTransitionReady, waitForTransition } = useModalTransition()
 
-const containerRef = ref(null)
 const deck = ref(null)
 const cards = ref({})
 const isLoading = ref(false)
-const filterStore = useFilterStore()
 
 /**
  * 保存或另存卡组至用户个人库。
@@ -135,25 +136,21 @@ let currentLoadRequestId = 0
 
 /**
  * 加载卡组详细数据并解析卡片信息。
- *
- * 策略：
- * 1. 当作为侧边抽屉内嵌展示（embedded === true）时，优先等待抽屉滑入动画（transitionend）彻底完成。
- * 2. 抽屉滑入就绪后，再触发卡组数据 fetch 与卡牌的详细元数据批量解析，保证移动端抽屉动画丝滑。
- * 3. 独立页面（embedded === false）无滑入动画，直接立即拉取，不引入任何额外延迟。
  */
 const loadDeckData = async () => {
-  if (!props.deckKey) return
+  if (!props.deckKey) {
+    deck.value = null
+    cards.value = {}
+    return
+  }
 
   const requestId = ++currentLoadRequestId
   const setLoading = (val) => (props.embedded ? (isLoading.value = val) : uiStore.setLoading(val))
   setLoading(true)
+  deck.value = null
+  cards.value = {}
 
   try {
-    if (props.embedded) {
-      await waitForTransition(containerRef)
-      if (requestId !== currentLoadRequestId) return
-    }
-
     let initialCards = {}
     const data = await deckStore.fetchDeckByKey(props.deckKey)
     if (requestId !== currentLoadRequestId) return
@@ -198,6 +195,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   currentLoadRequestId++
-  filterStore.reset()
+  deck.value = null
+  cards.value = {}
 })
 </script>

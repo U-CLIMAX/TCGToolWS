@@ -258,10 +258,6 @@
             :selected-card-price="selectedCardPrice"
             :price-update-times="selectedCardPriceUpdateTimes"
             :is-modal-visible="isModalVisible"
-            :linked-cards="linkedCardsDetails"
-            :is-loading-links="isLoadingLinkedCards"
-            :parallel-cards="parallelCardsDetails"
-            :is-loading-parallels="isLoadingParallelCards"
             :selected-card-index="selectedCardIndex"
             :total-cards="flattenedDisplayCards.length"
             @card-click="handleCardClick"
@@ -545,7 +541,6 @@ import { usePriceStore } from '@/stores/price'
 import { useFilterStore } from '@/stores/filter'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import { useDevice } from '@/composables/useDevice'
-import { sortCards } from '@/utils/cardsSort'
 import { renderDeckToCanvas } from '@/utils/deckCanvasRenderer.js'
 import { useDeckHistory } from '@/composables/useDeckHistory'
 import { useDeckExport } from '@/composables/useDeckExport'
@@ -957,10 +952,6 @@ const isModalVisible = ref(false)
 const selectedCardData = ref(null)
 const selectedCardPrice = ref(null)
 const selectedCardPriceUpdateTimes = ref(null)
-const linkedCardsDetails = ref([])
-const isLoadingLinkedCards = ref(false)
-const parallelCardsDetails = ref([])
-const isLoadingParallelCards = ref(false)
 
 const { selectedCardIndex, getPrevCard, getNextCard } = useCardNavigation(
   flattenedDisplayCards,
@@ -995,10 +986,10 @@ const getPriceUpdateTimes = (card) => {
   return null
 }
 
-const handleShowNewCard = async (cardPayload) => {
+const handleShowNewCard = (cardPayload) => {
   try {
     const cardToDisplay = cardPayload.card || cardPayload
-    if (!cardToDisplay) return
+    if (!cardToDisplay?.id) return
 
     // Set price for the main card
     if (cardPayload.price !== undefined) {
@@ -1017,105 +1008,20 @@ const handleShowNewCard = async (cardPayload) => {
     }
 
     selectedCardPriceUpdateTimes.value = getPriceUpdateTimes(cardToDisplay)
-
-    linkedCardsDetails.value = []
-    parallelCardsDetails.value = []
-    isLoadingLinkedCards.value = true
-    isLoadingParallelCards.value = true
     selectedCardData.value = cardToDisplay
-    isModalVisible.value = true
 
-    const promises = []
+    if (isModalVisible.value) return
 
-    if (cardToDisplay.link && Array.isArray(cardToDisplay.link) && cardToDisplay.link.length > 0) {
-      promises.push(
-        (async () => {
-          try {
-            const linkedCardsData = await Promise.all(
-              cardToDisplay.link.map(async (id) =>
-                fetchCardByIdAndPrefix(id, cardToDisplay.cardIdPrefix)
-              )
-            )
-            if (selectedCardData.value && selectedCardData.value.id === cardToDisplay.id) {
-              const flatCards = linkedCardsData.filter(Boolean)
-              const cardsWithPrice = flatCards.map((c) => {
-                const infos = getCardSeriesId(c.cardIdPrefix)
-                let p = null
-                for (const info of infos) {
-                  const foundPrice = priceStore.getPrice(info.id, c.id)
-                  if (foundPrice) {
-                    p = foundPrice
-                    break
-                  }
-                }
-                return {
-                  ...c,
-                  price: p ? p.toLocaleString() : null,
-                }
-              })
-              linkedCardsDetails.value = sortCards(cardsWithPrice)
-            }
-          } finally {
-            isLoadingLinkedCards.value = false
-          }
-        })()
-      )
-    } else {
-      isLoadingLinkedCards.value = false
-    }
-
-    if (
-      cardToDisplay.parallelCards &&
-      Array.isArray(cardToDisplay.parallelCards) &&
-      cardToDisplay.parallelCards.length > 0
-    ) {
-      promises.push(
-        (async () => {
-          try {
-            const parallelCardsData = await Promise.all(
-              cardToDisplay.parallelCards.map(async (id) =>
-                fetchCardByIdAndPrefix(id, cardToDisplay.cardIdPrefix)
-              )
-            )
-            if (selectedCardData.value && selectedCardData.value.id === cardToDisplay.id) {
-              const flatCards = parallelCardsData.filter(Boolean)
-              const cardsWithPrice = flatCards.map((c) => {
-                const infos = getCardSeriesId(c.cardIdPrefix)
-                let p = null
-                for (const info of infos) {
-                  const foundPrice = priceStore.getPrice(info.id, c.id)
-                  if (foundPrice) {
-                    p = foundPrice
-                    break
-                  }
-                }
-                return {
-                  ...c,
-                  price: p ? p.toLocaleString() : null,
-                }
-              })
-              parallelCardsDetails.value = sortCards(cardsWithPrice)
-            }
-          } finally {
-            isLoadingParallelCards.value = false
-          }
-        })()
-      )
-    } else {
-      isLoadingParallelCards.value = false
-    }
-
-    await Promise.all(promises)
+    nextTick(() => {
+      isModalVisible.value = true
+    })
   } catch (error) {
     console.error('Error handling show new card:', error)
-  } finally {
-    isLoadingLinkedCards.value = false
-    isLoadingParallelCards.value = false
   }
 }
 
-const handleCardClick = async (item) => {
-  await handleShowNewCard({ card: item })
+const handleCardClick = (item) => {
+  handleShowNewCard({ card: item })
 }
 
 const includeQrCodeInImage = ref(true)

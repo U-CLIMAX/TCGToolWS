@@ -34,7 +34,7 @@
           >
             <v-img
               :src="imgUrl"
-              :alt="card.name"
+              :alt="card?.name || ''"
               cover
               :aspect-ratio="400 / 559"
               :lazy-src="blurUrl"
@@ -90,7 +90,7 @@
               size="small"
               variant="flat"
               color="grey-darken-2"
-              @click="deckStore.removeCard(card.id)"
+              @click="card?.id && deckStore.removeCard(card.id)"
               :disabled="cardCount === 0"
             >
               <v-icon icon="i-mdi:minus" color="white" />
@@ -103,7 +103,7 @@
               size="small"
               variant="flat"
               color="primary"
-              @click="deckStore.addCard(card)"
+              @click="card?.id && deckStore.addCard(card)"
               :disabled="deckStore.totalCardCount >= 50 && userRole === 0"
             ></v-btn>
           </v-card-actions>
@@ -127,15 +127,15 @@
           <div class="pa-4 pl-md-0">
             <v-card-subtitle class="pb-1 text-body-2 pa-0 pr-8">
               <v-icon size="18" class="mr-1" icon="i-mdi:cube-outline" />
-              {{ card.product_name }}
+              {{ card?.product_name || '' }}
             </v-card-subtitle>
 
             <v-card-title class="pt-0 text-h5 text-wrap pa-0">
-              {{ card.name }}
+              {{ card?.name || '' }}
             </v-card-title>
 
             <v-card-subtitle class="pt-0 text-body-2 pa-0 mb-4">
-              {{ card.id }}
+              {{ card?.id || '' }}
             </v-card-subtitle>
 
             <div v-if="price != null && route.meta.showCardPrice" class="mb-4 d-flex align-center">
@@ -182,19 +182,19 @@
             <v-row dense class="my-4 text-center">
               <v-col>
                 <div class="text-body-2 text-grey">等级</div>
-                <div class="font-wenkai font-weight-bold text-body-1">{{ card.level }}</div>
+                <div class="font-wenkai font-weight-bold text-body-1">{{ card?.level ?? '' }}</div>
               </v-col>
               <v-col>
                 <div class="text-body-2 text-grey">费用</div>
-                <div class="font-wenkai font-weight-bold text-body-1">{{ card.cost }}</div>
+                <div class="font-wenkai font-weight-bold text-body-1">{{ card?.cost ?? '' }}</div>
               </v-col>
               <v-col>
                 <div class="text-body-2 text-grey">战斗力</div>
-                <div class="font-wenkai font-weight-bold text-body-1">{{ card.power }}</div>
+                <div class="font-wenkai font-weight-bold text-body-1">{{ card?.power ?? '' }}</div>
               </v-col>
               <v-col>
                 <div class="text-body-2 text-grey">灵魂值</div>
-                <div class="font-wenkai font-weight-bold text-body-1">{{ card.soul }}</div>
+                <div class="font-wenkai font-weight-bold text-body-1">{{ card?.soul ?? '' }}</div>
               </v-col>
             </v-row>
             <v-divider class="mb-4"></v-divider>
@@ -216,7 +216,7 @@
               </div>
               <div class="font-wenkai text-body-1" v-html="formattedEffect"></div>
             </div>
-            <div v-if="card.trait && card.trait.length > 0 && card.trait[0] !== '-'" class="mt-4">
+            <div v-if="card?.trait && card.trait.length > 0 && card.trait[0] !== '-'" class="mt-4">
               <div class="text-body-2 mb-2 text-grey">
                 <v-icon size="18" class="mr-1" icon="i-mdi:feather" />
                 特征
@@ -252,7 +252,11 @@
                 </v-tooltip>
               </v-chip>
             </div>
-            <div v-if="card.link && card.link.length > 0" :key="`${card.id}-links`" class="mt-4">
+            <div
+              v-if="card?.link && card.link.length > 0"
+              :key="`${card?.id || ''}-links`"
+              class="mt-4"
+            >
               <div class="text-body-2 mb-2 text-grey">
                 <v-icon size="18" class="mr-1" icon="i-mdi:link-variant" />
                 关联卡片
@@ -278,13 +282,13 @@
             </div>
 
             <div
-              v-if="card.parallelCards && card.parallelCards.length > 0"
-              :key="`${card.id}-parallels`"
+              v-if="card?.parallelCards && card.parallelCards.length > 0"
+              :key="`${card?.id || ''}-parallels`"
               class="mt-4"
             >
               <div class="text-body-2 mb-2 text-grey">
                 <v-icon size="18" class="mr-1" icon="i-mdi:star-four-points-outline" />
-                {{ card.isLowestRarity ? '高罕卡片' : '低罕卡片' }}
+                {{ card?.isLowestRarity ? '高罕卡片' : '低罕卡片' }}
               </div>
               <v-slide-y-reverse-transition mode="out-in">
                 <div :key="isLoadingParallels ? 'loading' : 'content'">
@@ -341,7 +345,7 @@
         <v-card-title class="text-subtitle-1">选择复制版本</v-card-title>
         <v-list nav density="compact">
           <v-list-item
-            v-if="card.type !== '高潮卡'"
+            v-if="card?.type !== '高潮卡'"
             prepend-icon="i-mdi:card-text-outline"
             title="包含效果文字"
             @click="handleCopyCard(true)"
@@ -361,7 +365,7 @@
         <v-card-title class="text-subtitle-1">选择下载版本</v-card-title>
         <v-list nav density="compact">
           <v-list-item
-            v-if="card.type !== '高潮卡'"
+            v-if="card?.type !== '高潮卡'"
             prepend-icon="i-mdi:card-text-outline"
             title="包含效果文字"
             @click="handleDownloadCard(true)"
@@ -435,12 +439,11 @@ import { useRoute } from 'vue-router'
 import { useUIStore } from '@/stores/ui'
 import { useFilterStore } from '@/stores/filter'
 import { useGlobalSearchStore } from '@/stores/globalSearch'
+import { usePriceStore } from '@/stores/price'
 import { useDevice } from '@/composables/useDevice'
 import { formatEffectToHtml } from '@/utils/cardEffectFormatter'
-import { usePriceStore } from '@/stores/price'
 import { fetchCardByIdAndPrefix, getCardSeriesId } from '@/utils/card'
 import { sortCards } from '@/utils/cardsSort'
-import { useModalTransition } from '@/composables/useModalTransition'
 import { normalizeFileName } from '@/utils/sanitizeFilename.js'
 
 const { triggerSnackbar } = useSnackbar()
@@ -451,7 +454,6 @@ const filterStore = useFilterStore()
 const globalSearchStore = useGlobalSearchStore()
 const downloadStore = useDownloadStore()
 const priceStore = usePriceStore()
-const { waitForTransition } = useModalTransition()
 
 const cardModalRef = ref(null)
 const detailsContainerRef = ref(null)
@@ -459,9 +461,9 @@ const detailsContainerRef = ref(null)
 const emit = defineEmits(['close', 'show-new-card', 'prev-card', 'next-card', 'load-more'])
 
 const props = defineProps({
-  card: { type: Object, required: true },
-  imgUrl: { type: String, required: true },
-  blurUrl: { type: String, required: true },
+  card: { type: Object, default: () => ({}) },
+  imgUrl: { type: String, default: '' },
+  blurUrl: { type: String, default: '' },
   price: { type: [String, Number], default: null },
   priceUpdateTimes: { type: Object, default: null },
   showActions: { type: Boolean, default: false },
@@ -584,73 +586,58 @@ const getCardPrice = (targetCard) => {
 let currentCardRequestId = 0
 
 /**
- * 延后加载关联卡与平行卡详情数据。
- *
- * 核心优化策略：
- * 1. 优先等待弹窗进场 CSS 动画彻底完成。
- * 2. 动效完成后，异步批量请求关联卡与平行卡数据，并在后台完成价格计算与排序。
- * 3. 通过 requestId 严格校验，防止前后卡牌切换时的异步竞态乱序覆盖。
- *
+ * 批量获取并格式化卡牌列表（带价格与排序）
+ * @param {string[]} ids 卡牌 ID 列表
+ * @param {string} cardPrefix 卡牌前缀
+ * @returns {Promise<Array>} 格式化并排序后的卡牌列表
+ */
+const fetchAndFormatCards = async (ids, cardPrefix) => {
+  if (!Array.isArray(ids) || ids.length === 0) return []
+  const list = await Promise.all(ids.map((id) => fetchCardByIdAndPrefix(id, cardPrefix)))
+  const validCards = list.filter(Boolean).map((c) => ({
+    ...c,
+    price: getCardPrice(c),
+  }))
+  return sortCards(validCards)
+}
+
+/**
+ * 异步加载关联卡与平行卡详情数据。
  * @param {object} targetCard 当前展示的卡牌对象
  */
 const loadSecondaryCards = async (targetCard) => {
-  if (!targetCard || !targetCard.id) return
+  if (!targetCard?.id) return
 
   const requestId = ++currentCardRequestId
-  isLoadingLinks.value = true
-  isLoadingParallels.value = true
+  const linkIds = targetCard.link || []
+  const parallelIds = targetCard.parallelCards || []
+
   linkedCards.value = []
   parallelCards.value = []
 
-  // 1. 等待弹窗进场动画彻底完成（基于原生 DOM transitionend + 350ms 超时保底）
-  await waitForTransition(cardModalRef)
+  // 若明确两者均为空数组，无需触发任何后续请求
+  if (linkIds.length === 0 && parallelIds.length === 0) {
+    isLoadingLinks.value = false
+    isLoadingParallels.value = false
+    return
+  }
 
-  // 若已发生卡牌切换或组件已注销，丢弃当前批次
-  if (requestId !== currentCardRequestId || !targetCard.id) return
+  isLoadingLinks.value = linkIds.length > 0
+  isLoadingParallels.value = parallelIds.length > 0
 
   try {
-    const cardData = await fetchCardByIdAndPrefix(targetCard.id, targetCard.cardIdPrefix)
-    if (requestId !== currentCardRequestId || !cardData) return
+    const cardPrefix = targetCard.cardIdPrefix
 
-    // 2. 异步处理关联卡列表
-    if (cardData.link && Array.isArray(cardData.link) && cardData.link.length > 0) {
-      const linkedList = await Promise.all(
-        cardData.link.map((id) => fetchCardByIdAndPrefix(id, cardData.cardIdPrefix))
-      )
-      if (requestId === currentCardRequestId) {
-        const flatCards = linkedList.filter(Boolean)
-        const cardsWithPrice = flatCards.map((c) => ({
-          ...c,
-          price: getCardPrice(c),
-        }))
-        linkedCards.value = sortCards(cardsWithPrice)
-      }
-    } else {
-      linkedCards.value = []
-    }
-    isLoadingLinks.value = false
+    // 并行获取关联卡与平行卡
+    const [links, parallels] = await Promise.all([
+      fetchAndFormatCards(linkIds, cardPrefix),
+      fetchAndFormatCards(parallelIds, cardPrefix),
+    ])
 
-    // 3. 异步处理平行卡（高罕/低罕）列表
-    if (
-      cardData.parallelCards &&
-      Array.isArray(cardData.parallelCards) &&
-      cardData.parallelCards.length > 0
-    ) {
-      const parallelList = await Promise.all(
-        cardData.parallelCards.map((id) => fetchCardByIdAndPrefix(id, cardData.cardIdPrefix))
-      )
-      if (requestId === currentCardRequestId) {
-        const flatCards = parallelList.filter(Boolean)
-        const cardsWithPrice = flatCards.map((c) => ({
-          ...c,
-          price: getCardPrice(c),
-        }))
-        parallelCards.value = sortCards(cardsWithPrice)
-      }
-    } else {
-      parallelCards.value = []
+    if (requestId === currentCardRequestId) {
+      linkedCards.value = links
+      parallelCards.value = parallels
     }
-    isLoadingParallels.value = false
   } catch (err) {
     console.error('Failed to fetch secondary cards in modal:', err)
   } finally {
@@ -681,8 +668,12 @@ const scrollToTop = () => {
 watch(
   () => props.card,
   (newCard, oldCard) => {
-    scrollToTop()
     if (newCard?.id !== oldCard?.id) {
+      scrollToTop()
+      if (newCard?.id) {
+        loadSecondaryCards(newCard)
+      }
+    } else if (newCard?.id && (newCard?.link?.length || newCard?.parallelCards?.length)) {
       loadSecondaryCards(newCard)
     }
   }
@@ -691,7 +682,9 @@ watch(
 onMounted(() => {
   window.addEventListener('keydown', handleKeydown)
   scrollToTop()
-  loadSecondaryCards(props.card)
+  if (props.card?.id) {
+    loadSecondaryCards(props.card)
+  }
 })
 
 onUnmounted(() => {
@@ -703,7 +696,7 @@ onUnmounted(() => {
 })
 
 const cardCount = computed(() => {
-  return props.card ? deckStore.getCardCount(props.card.id) : 0
+  return props.card?.id ? deckStore.getCardCount(props.card.id) : 0
 })
 
 const formattedEffect = computed(() => {
@@ -1116,7 +1109,6 @@ const submitReport = async () => {
 .image-wrapper {
   position: relative;
   overflow: visible;
-  transition: filter 0.3s ease-out;
 }
 
 .image-wrapper::after {
@@ -1127,15 +1119,15 @@ const submitReport = async () => {
   width: 100%;
   height: 100%;
   border-radius: inherit;
-  background: white;
   opacity: 0;
   z-index: -1;
-  filter: blur(8px);
+  box-shadow: 0 0 16px 4px rgba(255, 255, 255, 0.7);
   transition: opacity 0.3s ease-out;
+  pointer-events: none;
 }
 
 .image-wrapper.light-mode-glowing-border::after {
-  background: black;
+  box-shadow: 0 0 16px 4px rgba(0, 0, 0, 0.4);
 }
 
 .image-wrapper:hover::after {
