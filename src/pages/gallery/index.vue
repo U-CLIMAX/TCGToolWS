@@ -519,28 +519,33 @@ const loadMore = async ({ done }) => {
   }
 }
 
-const ALLOWED_LEAVE_ROUTE_NAMES = ['DeckDetail', 'ShareDeckDetail']
-
-onBeforeRouteLeave((to, from) => {
+onBeforeRouteLeave((to) => {
   if (smAndUp.value) {
     return true
   }
 
-  if (ALLOWED_LEAVE_ROUTE_NAMES.includes(to.name)) {
-    uiStore.isCardDetailModalOpen = false
-    drawer.value = false
-    return true
+  // 浏览器返回 (PopState) 时，window.history.state.current 已提前更新为 to.fullPath
+  const isPopNavigation = window.history.state?.current === to.fullPath
+
+  if (isPopNavigation) {
+    if (isEditDialogVisible.value) {
+      isEditDialogVisible.value = false
+      return false
+    }
+    if (uiStore.isCardDetailModalOpen) {
+      uiStore.isCardDetailModalOpen = false
+      return false
+    }
+    if (drawer.value) {
+      drawer.value = false
+      return false
+    }
   }
 
-  if (uiStore.isCardDetailModalOpen) {
-    uiStore.isCardDetailModalOpen = false
-    return false
-  } else if (drawer.value) {
-    drawer.value = false
-    return false
-  } else {
-    return true
-  }
+  // 主动跳转（如点击前往卡组详情/分享页面按钮）或弹窗已全部关闭时的正常离开
+  uiStore.isCardDetailModalOpen = false
+  drawer.value = false
+  return true
 })
 
 onMounted(async () => {
