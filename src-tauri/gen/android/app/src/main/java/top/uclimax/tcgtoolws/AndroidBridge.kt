@@ -286,12 +286,93 @@ class AndroidBridge(private val context: Context, private val webView: WebView) 
   @Volatile
   private var isApkDownloadCancelled = false
 
+  @Volatile
+  private var isWaitingForInstallPermission = false
+
   /**
    * Cancel ongoing APK download.
    */
   @JavascriptInterface
   fun cancelDownloadApk() {
     isApkDownloadCancelled = true
+    isWaitingForInstallPermission = false
+  }
+
+  /**
+   * Resumes APK installation when returning from system permission settings.
+   */
+  fun onResume() {
+    if (!isWaitingForInstallPermission) return
+    isWaitingForInstallPermission = false
+
+    val hasPermission =
+      Build.VERSION.SDK_INT < Build.VERSION_CODES.O || context.packageManager.canRequestPackageInstalls()
+
+    if (hasPermission) {
+      installDownloadedApk()
+    } else {
+      showToast("未允许安装未知应用")
+      Handler(Looper.getMainLooper()).post {
+        webView.evaluateJavascript(
+          "window.dispatchEvent(new CustomEvent('android-update-error', { detail: { error: '未开启安装未知应用权限，无法完成安装' } }));",
+          null,
+        )
+      }
+    }
+  }
+
+  /**
+   * Launch system package installer for the downloaded APK file.
+   */
+  private fun installDownloadedApk(): Boolean {
+    val apkFile = File(context.cacheDir, "updates/tcgtoolws_update.apk")
+    if (!apkFile.exists() || apkFile.length() <= 0L) {
+      return false
+    }
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && !context.packageManager.canRequestPackageInstalls()) {
+      isWaitingForInstallPermission = true
+      val settingsIntent =
+        Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES).apply {
+          data = Uri.parse("package:${context.packageName}")
+          addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
+      context.startActivity(settingsIntent)
+      showToast("请先允许安装未知应用")
+      return false
+    }
+
+    val contentUri =
+      FileProvider.getUriForFile(
+        context,
+        "${context.packageName}.fileprovider",
+        apkFile,
+      )
+
+    val intent =
+      Intent(Intent.ACTION_VIEW).apply {
+        setDataAndType(contentUri, "application/vnd.android.package-archive")
+        addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_ACTIVITY_NEW_TASK)
+      }
+
+    Handler(Looper.getMainLooper()).post {
+      try {
+        context.startActivity(intent)
+        webView.evaluateJavascript(
+          "window.dispatchEvent(new CustomEvent('android-update-installing'));",
+          null,
+        )
+      } catch (e: Exception) {
+        Log.e(TAG, "Failed to launch package installer", e)
+        val escaped = (e.localizedMessage ?: "唤起安装器失败").replace("'", "\\'")
+        showToast("唤起安装器失败: ${e.localizedMessage}")
+        webView.evaluateJavascript(
+          "window.dispatchEvent(new CustomEvent('android-update-error', { detail: { error: '$escaped' } }));",
+          null,
+        )
+      }
+    }
+    return true
   }
 
   /**
@@ -300,6 +381,7 @@ class AndroidBridge(private val context: Context, private val webView: WebView) 
   @JavascriptInterface
   fun downloadAndInstallApk(apkUrl: String) {
     isApkDownloadCancelled = false
+    isWaitingForInstallPermission = false
     Thread {
       try {
         val cacheDir = File(context.cacheDir, "updates").apply { mkdirs() }
@@ -378,56 +460,7 @@ class AndroidBridge(private val context: Context, private val webView: WebView) 
           return@Thread
         }
 
-        // Check unknown source install permission for Android 8.0+
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-          if (!context.packageManager.canRequestPackageInstalls()) {
-            val settingsIntent =
-              Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES).apply {
-                data = Uri.parse("package:${context.packageName}")
-                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-              }
-            context.startActivity(settingsIntent)
-            showToast("请先允许安装未知应用")
-            Handler(Looper.getMainLooper()).post {
-              webView.evaluateJavascript(
-                "window.dispatchEvent(new CustomEvent('android-update-error', { detail: { error: '请在系统设置中允许安装来自此来源的应用，然后重试' } }));",
-                null,
-              )
-            }
-            return@Thread
-          }
-        }
-
-        val contentUri =
-          FileProvider.getUriForFile(
-            context,
-            "${context.packageName}.fileprovider",
-            apkFile,
-          )
-
-        val intent =
-          Intent(Intent.ACTION_VIEW).apply {
-            setDataAndType(contentUri, "application/vnd.android.package-archive")
-            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_ACTIVITY_NEW_TASK)
-          }
-
-        Handler(Looper.getMainLooper()).post {
-          try {
-            context.startActivity(intent)
-            webView.evaluateJavascript(
-              "window.dispatchEvent(new CustomEvent('android-update-installing'));",
-              null,
-            )
-          } catch (e: Exception) {
-            Log.e(TAG, "Failed to launch package installer", e)
-            val escaped = (e.localizedMessage ?: "唤起安装器失败").replace("'", "\\'")
-            showToast("唤起安装器失败: ${e.localizedMessage}")
-            webView.evaluateJavascript(
-              "window.dispatchEvent(new CustomEvent('android-update-error', { detail: { error: '$escaped' } }));",
-              null,
-            )
-          }
-        }
+        installDownloadedApk()
       } catch (e: Exception) {
         Log.e(TAG, "Error downloading APK", e)
         val escaped = (e.localizedMessage ?: "下载安装包失败").replace("'", "\\'")

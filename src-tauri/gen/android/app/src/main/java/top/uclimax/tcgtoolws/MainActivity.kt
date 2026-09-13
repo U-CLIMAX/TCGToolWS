@@ -114,6 +114,11 @@ class MainActivity : TauriActivity() {
     }
   }
 
+  override fun onResume() {
+    super.onResume()
+    mBridge?.onResume()
+  }
+
   override fun onTrimMemory(level: Int) {
     super.onTrimMemory(level)
     if (level >= android.content.ComponentCallbacks2.TRIM_MEMORY_UI_HIDDEN) {
