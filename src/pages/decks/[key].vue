@@ -340,7 +340,7 @@
         </v-list-item>
         <v-list-item v-if="deckStore.localDecks[deckKey]" @click="handleUploadToCloudBottomSheet">
           <template #prepend>
-            <v-icon color="cyan-accent-2" icon="i-mdi:cloud-upload-outline" />
+            <v-icon icon="i-mdi:cloud-upload-outline" />
           </template>
           <v-list-item-title>上传至云端</v-list-item-title>
         </v-list-item>
