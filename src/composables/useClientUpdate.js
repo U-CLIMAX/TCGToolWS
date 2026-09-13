@@ -3,6 +3,11 @@ import { invoke } from '@tauri-apps/api/core'
 import { isTauri } from '@/utils/isTauri'
 import { getVersion } from '@tauri-apps/api/app'
 import { listen } from '@tauri-apps/api/event'
+import { useUIStore } from '@/stores/ui'
+
+const GITCODE_RELEASE_API =
+  'https://api.gitcode.com/api/v5/repos/zhuang39/TCGToolWS/releases/latest'
+const GITHUB_RELEASE_API = 'https://api.github.com/repos/U-CLIMAX/TCGToolWS/releases/latest'
 
 const hasClientUpdate = ref(false)
 const clientUpdateVersion = ref('')
@@ -87,9 +92,11 @@ const matchPlatformAsset = (assets) => {
 }
 
 /**
- * Composable for managing Tauri client updates via GitCode Releases API
+ * Composable for managing Tauri client updates via GitCode / GitHub Releases API
  */
 export const useClientUpdate = () => {
+  const uiStore = useUIStore()
+
   const checkClientUpdate = async () => {
     if (!isTauri) return false
     if (checkPromise) return checkPromise
@@ -99,9 +106,13 @@ export const useClientUpdate = () => {
         const localVer = await getVersion()
         localAppVersion.value = localVer
 
-        const response = await fetch(
-          'https://api.gitcode.com/api/v5/repos/zhuang39/TCGToolWS/releases/latest'
-        )
+        const apiUrl = uiStore.country === 'CN' ? GITCODE_RELEASE_API : GITHUB_RELEASE_API
+
+        const response = await fetch(apiUrl, {
+          headers: {
+            Accept: 'application/json',
+          },
+        })
         if (!response.ok) return false
 
         const release = await response.json()
@@ -217,6 +228,12 @@ export const useClientUpdate = () => {
           unlistenProgress = null
         }
 
+        try {
+          await invoke('reset_client_update_cancel')
+        } catch {
+          // ignore if old version doesn't support command
+        }
+
         unlistenProgress = await listen('client-update-progress', (event) => {
           const payload = event.payload
           downloadProgress.value = payload.progress || 0
@@ -239,12 +256,23 @@ export const useClientUpdate = () => {
           url: directDownloadUrl.value,
           filename,
         })
-        downloadStatus.value = 'installing'
+        if (downloadStatus.value === 'downloading') {
+          downloadStatus.value = 'installing'
+        }
       }
     } catch (err) {
+      const rawError = err?.message || (typeof err === 'string' ? err : String(err || ''))
+      // 若是使用者主動取消或已重置為 idle，不視為錯誤展示
+      if (
+        rawError.toLowerCase().includes('cancelled') ||
+        downloadStatus.value === 'idle' ||
+        !isDownloading.value
+      ) {
+        return
+      }
+
       console.error('更新下载失败:', err)
       downloadStatus.value = 'error'
-      const rawError = err?.message || (typeof err === 'string' ? err : String(err || ''))
       // 桌面端旧版本未注册 download_and_install_update 命令
       if (
         rawError.toLowerCase().includes('not found') ||
@@ -269,12 +297,7 @@ export const useClientUpdate = () => {
     }
   }
 
-  const cancelDownload = () => {
-    if (unlistenProgress) {
-      unlistenProgress()
-      unlistenProgress = null
-    }
-    cleanAndroidListeners()
+  const cancelDownload = async () => {
     isDownloading.value = false
     downloadStatus.value = 'idle'
     downloadProgress.value = 0
@@ -282,10 +305,30 @@ export const useClientUpdate = () => {
     downloadedSize.value = ''
     totalSize.value = ''
     downloadError.value = ''
+
+    const isAndroid =
+      typeof navigator !== 'undefined' && navigator.userAgent.toLowerCase().includes('android')
+
+    if (isAndroid) {
+      if (typeof window.__AndroidNativeBridge__?.cancelDownloadApk === 'function') {
+        window.__AndroidNativeBridge__.cancelDownloadApk()
+      }
+      cleanAndroidListeners()
+    } else if (isTauri) {
+      try {
+        await invoke('cancel_client_update')
+      } catch (err) {
+        console.warn('cancel_client_update error:', err)
+      }
+      if (unlistenProgress) {
+        unlistenProgress()
+        unlistenProgress = null
+      }
+    }
   }
 
-  const dismissUpdateDialog = () => {
-    cancelDownload()
+  const dismissUpdateDialog = async () => {
+    await cancelDownload()
     showClientUpdateDialog.value = false
     if (clientUpdateVersion.value) {
       sessionStorage.setItem('client_update_dismissed_version', clientUpdateVersion.value)
@@ -293,12 +336,16 @@ export const useClientUpdate = () => {
   }
 
   if (getCurrentInstance()) {
-    onUnmounted(() => {
-      if (unlistenProgress) {
-        unlistenProgress()
-        unlistenProgress = null
+    onUnmounted(async () => {
+      if (isDownloading.value) {
+        await cancelDownload()
+      } else {
+        if (unlistenProgress) {
+          unlistenProgress()
+          unlistenProgress = null
+        }
+        cleanAndroidListeners()
       }
-      cleanAndroidListeners()
     })
   }
 

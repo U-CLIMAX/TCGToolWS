@@ -1,7 +1,10 @@
 use futures_util::StreamExt;
 use serde::Serialize;
 use std::io::Write;
+use std::sync::atomic::{AtomicBool, Ordering};
 use tauri::Emitter;
+
+static UPDATER_CANCELLED: AtomicBool = AtomicBool::new(false);
 
 #[derive(Clone, Serialize)]
 pub struct ProgressPayload {
@@ -10,12 +13,26 @@ pub struct ProgressPayload {
     pub total: u64,
 }
 
+/// Cancels any ongoing client update download immediately
+#[tauri::command]
+pub fn cancel_client_update() {
+    UPDATER_CANCELLED.store(true, Ordering::Relaxed);
+}
+
+/// Resets the updater cancellation flag before starting a download
+#[tauri::command]
+pub fn reset_client_update_cancel() {
+    UPDATER_CANCELLED.store(false, Ordering::Relaxed);
+}
+
 #[tauri::command]
 pub async fn download_and_install_update(
     app_handle: tauri::AppHandle,
     url: String,
     filename: String,
 ) -> Result<(), String> {
+    UPDATER_CANCELLED.store(false, Ordering::Relaxed);
+
     let client = reqwest::Client::builder()
         .user_agent("TCGToolWS-Client")
         .build()
@@ -24,6 +41,10 @@ pub async fn download_and_install_update(
     let res = client.get(&url).send().await.map_err(|e| e.to_string())?;
     if !res.status().is_success() {
         return Err(format!("Download failed with status: {}", res.status()));
+    }
+
+    if UPDATER_CANCELLED.load(Ordering::Relaxed) {
+        return Err("Download cancelled by user".to_string());
     }
 
     let total_size = res.content_length().unwrap_or(0);
@@ -35,6 +56,12 @@ pub async fn download_and_install_update(
 
     let mut stream = res.bytes_stream();
     while let Some(item) = stream.next().await {
+        if UPDATER_CANCELLED.load(Ordering::Relaxed) {
+            drop(file);
+            let _ = std::fs::remove_file(&dest_path);
+            return Err("Download cancelled by user".to_string());
+        }
+
         let chunk = item.map_err(|e| e.to_string())?;
         file.write_all(&chunk).map_err(|e| e.to_string())?;
         downloaded += chunk.len() as u64;
@@ -57,6 +84,11 @@ pub async fn download_and_install_update(
 
     file.flush().map_err(|e| e.to_string())?;
     drop(file);
+
+    if UPDATER_CANCELLED.load(Ordering::Relaxed) {
+        let _ = std::fs::remove_file(&dest_path);
+        return Err("Download cancelled by user".to_string());
+    }
 
     #[cfg(windows)]
     {

@@ -13,6 +13,8 @@ pub fn run() {
         .plugin(tauri_plugin_window_state::Builder::default().build())
         .invoke_handler(tauri::generate_handler![
             updater::download_and_install_update,
+            updater::cancel_client_update,
+            updater::reset_client_update_cancel,
             image_sync::get_default_card_image_dir,
             image_sync::get_local_image_folders,
             image_sync::sync_card_image_package,
@@ -32,6 +34,8 @@ pub fn run() {
     #[cfg(not(desktop))]
     let builder = builder.invoke_handler(tauri::generate_handler![
         updater::download_and_install_update,
+        updater::cancel_client_update,
+        updater::reset_client_update_cancel,
         image_sync::get_default_card_image_dir,
         image_sync::get_local_image_folders,
         image_sync::sync_card_image_package,

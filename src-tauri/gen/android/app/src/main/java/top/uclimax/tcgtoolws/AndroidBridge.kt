@@ -283,11 +283,23 @@ class AndroidBridge(private val context: Context, private val webView: WebView) 
     }.start()
   }
 
+  @Volatile
+  private var isApkDownloadCancelled = false
+
+  /**
+   * Cancel ongoing APK download.
+   */
+  @JavascriptInterface
+  fun cancelDownloadApk() {
+    isApkDownloadCancelled = true
+  }
+
   /**
    * Directly download and install an APK file from URL in background without JS memory buffering.
    */
   @JavascriptInterface
   fun downloadAndInstallApk(apkUrl: String) {
+    isApkDownloadCancelled = false
     Thread {
       try {
         val cacheDir = File(context.cacheDir, "updates").apply { mkdirs() }
@@ -297,6 +309,7 @@ class AndroidBridge(private val context: Context, private val webView: WebView) 
         var conn: java.net.HttpURLConnection
 
         while (true) {
+          if (isApkDownloadCancelled) return@Thread
           val url = java.net.URL(currentUrl)
           conn = url.openConnection() as java.net.HttpURLConnection
           conn.connectTimeout = 15000
@@ -321,6 +334,8 @@ class AndroidBridge(private val context: Context, private val webView: WebView) 
           break
         }
 
+        if (isApkDownloadCancelled) return@Thread
+
         val totalLength = conn.contentLength.toLong()
         var downloaded = 0L
         var lastEmitTime = 0L
@@ -330,6 +345,14 @@ class AndroidBridge(private val context: Context, private val webView: WebView) 
             val buffer = ByteArray(8192)
             var bytesRead: Int
             while (input.read(buffer).also { bytesRead = it } != -1) {
+              if (isApkDownloadCancelled) {
+                output.flush()
+                try {
+                  apkFile.delete()
+                } catch (_: Exception) {
+                }
+                return@Thread
+              }
               output.write(buffer, 0, bytesRead)
               downloaded += bytesRead
               val now = System.currentTimeMillis()
@@ -345,6 +368,14 @@ class AndroidBridge(private val context: Context, private val webView: WebView) 
               }
             }
           }
+        }
+
+        if (isApkDownloadCancelled) {
+          try {
+            apkFile.delete()
+          } catch (_: Exception) {
+          }
+          return@Thread
         }
 
         // Check unknown source install permission for Android 8.0+
