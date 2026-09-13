@@ -26,7 +26,7 @@
 
         <p class="mb-4">感谢您的支持！在您完成充电后，请注意以下事项：</p>
 
-        <v-list density="compact" bg-color="transparent" class="py-0">
+        <v-list :lines="false" density="compact" bg-color="transparent" class="py-0">
           <v-list-item prepend-icon="i-mdi:numeric-1-circle-outline" class="px-1">
             <v-list-item-title class="text-wrap">
               充电完成後，请刷新网页或是前往<b>「账号资料」</b>，点击<b>「刷新」</b>按钮以更新您的帐号身份。
@@ -62,7 +62,7 @@
               充电福利
             </v-expansion-panel-title>
             <v-expansion-panel-text>
-              <v-list bg-color="transparent" class="flex-grow-1">
+              <v-list :lines="false" bg-color="transparent" class="flex-grow-1">
                 <v-list-item class="px-0 mb-3">
                   <template v-slot:prepend>
                     <v-icon color="green-accent-2" size="20" icon="i-mdi:check-circle" />
@@ -101,7 +101,7 @@
                     <v-icon color="green-accent-2" size="20" icon="i-mdi:check-circle" />
                   </template>
                   <v-list-item-title class="text-body-1 font-weight-medium">
-                    参考价格更新时间缩短
+                    价格更新时间缩短
                   </v-list-item-title>
                   <v-list-item-subtitle class="text-caption">
                     价格每3小时会自动更新一次，方便您随时了解市场动态
