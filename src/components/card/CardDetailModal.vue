@@ -441,6 +441,7 @@ import { usePriceStore } from '@/stores/price'
 import { fetchCardByIdAndPrefix, getCardSeriesId } from '@/utils/card'
 import { sortCards } from '@/utils/cardsSort'
 import { useModalTransition } from '@/composables/useModalTransition'
+import { normalizeFileName } from '@/utils/sanitizeFilename.js'
 
 const { triggerSnackbar } = useSnackbar()
 const { smAndUp } = useDisplay()
@@ -765,31 +766,52 @@ const executeDownloadText = async () => {
   }
 }
 
-// ─── 无文字模式：直接下载原图 ──────────────────────────────────
+// ─── 无文字模式：直接下载 / 复制原图 ──────────────────────────
 
-const downloadOriginalImage = async () => {
-  await new Promise((resolve, reject) => {
+const fetchOriginalImageBlob = () => {
+  return new Promise((resolve, reject) => {
     const img = new Image()
     img.crossOrigin = 'anonymous'
 
     img.onload = () => {
-      const canvas = document.createElement('canvas')
-      canvas.width = img.width
-      canvas.height = img.height
-      canvas.getContext('2d').drawImage(img, 0, 0)
+      try {
+        const canvas = document.createElement('canvas')
+        canvas.width = img.width
+        canvas.height = img.height
+        const ctx = canvas.getContext('2d')
+        if (!ctx) {
+          return reject(new Error('无法创建 Canvas 上下文'))
+        }
+        ctx.drawImage(img, 0, 0)
 
-      canvas.toBlob((blob) => {
-        if (!blob) return reject(new Error('Canvas 转换 Blob 失败'))
-        const objectUrl = URL.createObjectURL(blob)
-        triggerDownload(objectUrl, `${normalizeFileName(props.card.id)}.png`)
-        URL.revokeObjectURL(objectUrl)
-        resolve()
-      }, 'image/png')
+        canvas.toBlob((blob) => {
+          if (blob) {
+            resolve(blob)
+          } else {
+            reject(new Error('Canvas 转换 Blob 失败'))
+          }
+        }, 'image/png')
+      } catch (err) {
+        reject(err)
+      }
     }
 
     img.onerror = () => reject(new Error('图片加载失败'))
     img.src = props.imgUrl
   })
+}
+
+const downloadOriginalImage = async () => {
+  const blob = await fetchOriginalImageBlob()
+  const filename = normalizeFileName(props.card.id)
+  const objectUrl = URL.createObjectURL(blob)
+  const link = document.createElement('a')
+  link.href = objectUrl
+  link.download = `${filename}.png`
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+  URL.revokeObjectURL(objectUrl)
 }
 
 // ─── 有文字模式：生成带文字覆层的图片 ─────────────────────────
@@ -864,22 +886,7 @@ const handleDownloadCard = async (withText = true) => {
 }
 
 const copyOriginalImage = async () => {
-  const blob = await new Promise((resolve, reject) => {
-    const img = new Image()
-    img.crossOrigin = 'anonymous'
-    img.onload = () => {
-      const canvas = document.createElement('canvas')
-      canvas.width = img.width
-      canvas.height = img.height
-      canvas.getContext('2d').drawImage(img, 0, 0)
-      canvas.toBlob(
-        (b) => (b ? resolve(b) : reject(new Error('Canvas 转换 Blob 失败'))),
-        'image/png'
-      )
-    }
-    img.onerror = () => reject(new Error('图片加载失败'))
-    img.src = props.imgUrl
-  })
+  const blob = await fetchOriginalImageBlob()
   await writeImage(blob)
 }
 
