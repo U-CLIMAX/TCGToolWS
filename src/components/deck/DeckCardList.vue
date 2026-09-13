@@ -136,6 +136,7 @@
     <v-dialog
       :model-value="isModalVisible"
       @update:model-value="$emit('update:isModalVisible', $event)"
+      transition="fade-transition"
       eager
       :fullscreen="!smAndUp"
       :max-width="!smAndUp ? undefined : smAndDown ? '85%' : '1050px'"

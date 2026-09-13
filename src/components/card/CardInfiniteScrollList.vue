@@ -65,6 +65,7 @@
 
   <v-dialog
     v-model="isModalVisible"
+    transition="fade-transition"
     eager
     :fullscreen="!smAndUp"
     :max-width="!smAndUp ? undefined : smAndDown ? '85%' : '1050px'"
