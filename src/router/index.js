@@ -61,6 +61,7 @@ router.beforeEach(async (to, from) => {
 // eslint-disable-next-line no-unused-vars
 router.afterEach((to, from) => {
   const uiStore = useUIStore()
+  uiStore.isCardDetailModalOpen = false
   if (to.name === 'GlobalSearch') {
     uiStore.isFilterOpen = true
   }
