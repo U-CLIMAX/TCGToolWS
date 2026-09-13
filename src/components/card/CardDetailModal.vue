@@ -650,26 +650,25 @@ const loadSecondaryCards = async (targetCard) => {
 
 /**
  * 将卡片详情弹窗的滚动条重置回最顶端。
- * 针对桌面端（右侧详情栏）与移动端（卡片主体）的滚动容器分别执行重置。
  */
 const scrollToTop = () => {
-  nextTick(() => {
-    if (detailsContainerRef.value) {
-      detailsContainerRef.value.scrollTop = 0
-    }
-    const cardEl = cardModalRef.value?.$el || cardModalRef.value
-    if (cardEl) {
-      cardEl.scrollTop = 0
-    }
-  })
+  if (detailsContainerRef.value) detailsContainerRef.value.scrollTop = 0
+  const cardEl = cardModalRef.value?.$el || cardModalRef.value
+  if (cardEl) cardEl.scrollTop = 0
+
+  setTimeout(() => {
+    if (detailsContainerRef.value) detailsContainerRef.value.scrollTop = 0
+    const el = cardModalRef.value?.$el || cardModalRef.value
+    if (el) el.scrollTop = 0
+  }, 60)
 }
 
 // 监听卡牌切换（如下一张/上一张/关联卡跳转/重新打开），自动重置滚动条并重新加载对应的关联数据
 watch(
   () => props.card,
   (newCard, oldCard) => {
+    scrollToTop()
     if (newCard?.id !== oldCard?.id) {
-      scrollToTop()
       if (newCard?.id) {
         loadSecondaryCards(newCard)
       }
