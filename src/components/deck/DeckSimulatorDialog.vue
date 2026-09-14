@@ -281,16 +281,7 @@
                   >
                     <!-- 卡图区域 -->
                     <div class="position-relative">
-                      <v-img
-                        :src="getCardImage(item.card).base"
-                        :lazy-src="getCardImage(item.card).blur"
-                        :aspect-ratio="400 / 559"
-                        cover
-                      >
-                        <template #error>
-                          <v-img src="/placehold.webp" :aspect-ratio="400 / 559" cover />
-                        </template>
-
+                      <CardImage :card="item.card" rounded="lg">
                         <!-- 投入张数标记 -->
                         <div class="position-absolute" style="top: 3px; right: 3px">
                           <v-chip
@@ -302,7 +293,7 @@
                             ×{{ item.quantity }}
                           </v-chip>
                         </div>
-                      </v-img>
+                      </CardImage>
                     </div>
 
                     <!-- 卡牌信息与上手率 -->
@@ -419,16 +410,7 @@
                     }"
                   >
                     <div class="position-relative">
-                      <v-img
-                        :src="getCardImage(card).base"
-                        :lazy-src="getCardImage(card).blur"
-                        :aspect-ratio="400 / 559"
-                        cover
-                      >
-                        <template #error>
-                          <v-img src="/placehold.webp" :aspect-ratio="400 / 559" cover />
-                        </template>
-                      </v-img>
+                      <CardImage :card="card" rounded="lg" />
                       <div class="position-absolute" style="bottom: 4px; right: 4px">
                         <v-chip
                           size="x-small"
@@ -484,16 +466,7 @@
                     }"
                   >
                     <div class="position-relative">
-                      <v-img
-                        :src="getCardImage(card).base"
-                        :lazy-src="getCardImage(card).blur"
-                        :aspect-ratio="400 / 559"
-                        cover
-                      >
-                        <template #error>
-                          <v-img src="/placehold.webp" :aspect-ratio="400 / 559" cover />
-                        </template>
-                      </v-img>
+                      <CardImage :card="card" />
                       <div
                         v-if="isRedrawnCard(idx)"
                         class="position-absolute"
@@ -775,7 +748,7 @@
                   <template #selection="{ item }">
                     <div class="d-flex align-center ga-2" style="max-width: 100%; height: 24px">
                       <div class="sim-select-thumb-mini">
-                        <v-img :src="item.raw.imageUrl" :aspect-ratio="400 / 559" cover />
+                        <CardImage :src="item.raw.imageUrl" />
                       </div>
                       <span class="text-truncate text-body-2">{{ item.raw.title }}</span>
                     </div>
@@ -788,7 +761,7 @@
                     >
                       <template #prepend>
                         <div class="sim-select-thumb mr-2">
-                          <v-img :src="item.raw.imageUrl" :aspect-ratio="400 / 559" cover />
+                          <CardImage :src="item.raw.imageUrl" />
                         </div>
                       </template>
                     </v-list-item>
@@ -821,7 +794,7 @@
                 <template #selection="{ item }">
                   <div class="d-flex align-center ga-2" style="max-width: 100%; height: 24px">
                     <div class="sim-select-thumb-mini">
-                      <v-img :src="item.raw.imageUrl" :aspect-ratio="400 / 559" cover />
+                      <CardImage :src="item.raw.imageUrl" />
                     </div>
                     <span class="text-truncate text-body-2">{{ item.raw.title }}</span>
                   </div>
@@ -834,7 +807,7 @@
                   >
                     <template #prepend>
                       <div class="sim-select-thumb mr-2">
-                        <v-img :src="item.raw.imageUrl" :aspect-ratio="400 / 559" cover />
+                        <CardImage :src="item.raw.imageUrl" />
                       </div>
                     </template>
                   </v-list-item>
@@ -941,7 +914,7 @@
                   <template #selection="{ item }">
                     <div class="d-flex align-center ga-2" style="max-width: 100%; height: 24px">
                       <div class="sim-select-thumb-mini">
-                        <v-img :src="item.raw.imageUrl" :aspect-ratio="400 / 559" cover />
+                        <CardImage :src="item.raw.imageUrl" />
                       </div>
                       <span class="text-truncate text-body-2">{{ item.raw.title }}</span>
                     </div>
@@ -954,7 +927,7 @@
                     >
                       <template #prepend>
                         <div class="sim-select-thumb mr-2">
-                          <v-img :src="item.raw.imageUrl" :aspect-ratio="400 / 559" cover />
+                          <CardImage :src="item.raw.imageUrl" />
                         </div>
                       </template>
                     </v-list-item>
@@ -1047,7 +1020,7 @@
                     <template #selection="{ item }">
                       <div class="d-flex align-center ga-2" style="max-width: 100%; height: 24px">
                         <div class="sim-select-thumb-mini">
-                          <v-img :src="item.raw.imageUrl" :aspect-ratio="400 / 559" cover />
+                          <CardImage :src="item.raw.imageUrl" />
                         </div>
                         <span class="text-truncate text-body-2">{{ item.raw.title }}</span>
                       </div>
@@ -1060,7 +1033,7 @@
                       >
                         <template #prepend>
                           <div class="sim-select-thumb mr-2">
-                            <v-img :src="item.raw.imageUrl" :aspect-ratio="400 / 559" cover />
+                            <CardImage :src="item.raw.imageUrl" />
                           </div>
                         </template>
                       </v-list-item>
@@ -1290,8 +1263,6 @@ const getPolicyLabel = (rule) => {
   if (rule.limitType === 'none' || Number(rule.limitCount) === 0) return '全部丢弃'
   return `保留最多 ${rule.limitCount} 张`
 }
-
-const getCardImage = (card) => getCardUrls(card.cardIdPrefix, card.id)
 
 const getTypeChipColor = (type) => {
   if (type === '角色卡') return 'primary'

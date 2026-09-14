@@ -59,14 +59,13 @@
 
             <!-- Image Display -->
             <transition name="fade" mode="out-in">
-              <v-img
+              <img
                 :key="currentIndex"
                 :src="images[currentIndex].src"
-                :lazy-src="images[currentIndex].lqip"
                 class="display-image clickable-image preload-img"
-                cover
+                style="object-fit: cover"
                 @click="openImageDialog"
-              ></v-img>
+              />
             </transition>
 
             <!-- Mobile Counter -->
@@ -99,12 +98,11 @@
             <div class="feature-card">
               <div class="feature-glass-bg"></div>
               <div class="feature-img-wrapper">
-                <v-img
+                <img
                   :src="feature.image.src"
-                  :lazy-src="feature.image.lqip"
                   class="feature-img preload-img"
-                  cover
-                ></v-img>
+                  style="object-fit: cover"
+                />
               </div>
             </div>
             <p class="feature-text">{{ feature.text }}</p>
@@ -115,12 +113,7 @@
       <!-- PC and Phone Support Section -->
       <div ref="pcPhoneSection" class="pc-phone-section animated-section">
         <div class="pc-phone-content">
-          <v-img
-            :src="pcPhoneImg.src"
-            :lazy-src="pcPhoneImg.lqip"
-            class="pc-phone-img preload-img"
-            cover
-          ></v-img>
+          <img :src="pcPhoneImg.src" class="pc-phone-img preload-img" style="object-fit: cover" />
           <p class="pc-phone-text">支持网页端与手机端</p>
           <v-btn
             size="large"
@@ -766,8 +759,9 @@ onUnmounted(() => {
   left: var(--axis-gap);
   bottom: var(--axis-gap);
   right: 0;
-  width: auto;
-  height: auto;
+  width: calc(100% - var(--axis-gap));
+  height: calc(100% - var(--axis-gap));
+  object-fit: cover;
   border-radius: var(--border-radius-image);
   box-shadow: var(--shadow-image);
 }

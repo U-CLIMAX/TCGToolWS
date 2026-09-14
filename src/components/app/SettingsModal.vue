@@ -84,19 +84,12 @@
 
           <v-list-item>
             <v-list-item-title class="mt-4 pb-1">背景图片</v-list-item-title>
-            <v-img
+            <img
               v-if="uiStore.backgroundImage"
               :src="uiStore.backgroundImage.src"
-              :aspect-ratio="previewAspectRatio"
-              class="my-4"
-              max-height="200"
-            >
-              <template #placeholder>
-                <div class="d-flex align-center justify-center fill-height">
-                  <v-progress-circular color="grey-lighten-4" indeterminate></v-progress-circular>
-                </div>
-              </template>
-            </v-img>
+              class="my-4 rounded w-100"
+              :style="{ aspectRatio: previewAspectRatio, maxHeight: '200px', objectFit: 'cover' }"
+            />
 
             <input ref="fileInputRef" type="file" accept="image/*" hidden @change="onFileChange" />
 

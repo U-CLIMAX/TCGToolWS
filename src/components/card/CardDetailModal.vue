@@ -32,25 +32,13 @@
             class="image-wrapper rounded-5md"
             :class="{ 'light-mode-glowing-border': isLightMode }"
           >
-            <v-img
-              :src="imgUrl"
-              :alt="card?.name || ''"
-              cover
-              :aspect-ratio="400 / 559"
-              :lazy-src="blurUrl"
+            <CardImage
+              :key="card?.id"
+              :card="card"
+              rounded="5md"
               class="card-image preload-img w-100"
               :class="{ 'hover-scale': isHovering }"
-            >
-              <template #error>
-                <v-img
-                  src="/placehold.webp"
-                  :aspect-ratio="400 / 559"
-                  rounded="lg"
-                  cover
-                  class="w-100"
-                />
-              </template>
-            </v-img>
+            />
             <v-fade-transition>
               <v-btn
                 v-if="isHovering || isTouch"
@@ -445,6 +433,7 @@ import { formatEffectToHtml } from '@/utils/cardEffectFormatter'
 import { fetchCardByIdAndPrefix, getCardSeriesId } from '@/utils/card'
 import { sortCards } from '@/utils/cardsSort'
 import { normalizeFileName } from '@/utils/sanitizeFilename.js'
+import { getCardUrls } from '@/utils/getCardImage'
 
 const { triggerSnackbar } = useSnackbar()
 const { smAndUp } = useDisplay()
@@ -462,8 +451,6 @@ const emit = defineEmits(['close', 'show-new-card', 'prev-card', 'next-card', 'l
 
 const props = defineProps({
   card: { type: Object, default: () => ({}) },
-  imgUrl: { type: String, default: '' },
-  blurUrl: { type: String, default: '' },
   price: { type: [String, Number], default: null },
   priceUpdateTimes: { type: Object, default: null },
   showActions: { type: Boolean, default: false },
@@ -788,8 +775,10 @@ const fetchOriginalImageBlob = () => {
       }
     }
 
+    const imgUrl = getCardUrls(props.card?.cardIdPrefix, props.card?.id)?.base
+    if (!imgUrl) return reject(new Error('无法获取卡片图片链接'))
     img.onerror = () => reject(new Error('图片加载失败'))
-    img.src = props.imgUrl
+    img.src = imgUrl
   })
 }
 
@@ -821,8 +810,9 @@ const buildExportContainer = () => {
     overflow: 'hidden',
   })
 
+  const imgUrl = getCardUrls(props.card?.cardIdPrefix, props.card?.id)?.base || ''
   const img = document.createElement('img')
-  Object.assign(img, { crossOrigin: 'anonymous', src: props.imgUrl })
+  Object.assign(img, { crossOrigin: 'anonymous', src: imgUrl })
   Object.assign(img.style, { width: '100%', height: '100%', objectFit: 'cover', display: 'block' })
 
   // 文字覆层 — 使用共享样式确保与 PDF 视觉一致
@@ -1138,7 +1128,7 @@ const submitReport = async () => {
   border-radius: inherit;
 }
 
-.card-image :deep(.v-img__img) {
+.card-image :deep(img) {
   transform: scale(1.005);
   transform-origin: center;
 }

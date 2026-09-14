@@ -16,6 +16,7 @@ declare module 'vue' {
     AuthDialog: typeof import('./../components/app/AuthDialog.vue')['default']
     BackToTopButton: typeof import('./../components/ui/BackToTopButton.vue')['default']
     CardDetailModal: typeof import('./../components/card/CardDetailModal.vue')['default']
+    CardImage: typeof import('./../components/card/CardImage.vue')['default']
     CardImageUpdatePromptModal: typeof import('./../components/app/CardImageUpdatePromptModal.vue')['default']
     CardInfiniteScrollList: typeof import('./../components/card/CardInfiniteScrollList.vue')['default']
     CardTemplate: typeof import('./../components/card/CardTemplate.vue')['default']

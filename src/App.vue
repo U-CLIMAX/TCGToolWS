@@ -15,15 +15,13 @@
       :color="isHomeRoute ? 'transparent' : undefined"
     >
       <v-app-bar-title>
-        <v-img
+        <img
           :src="titleImg"
-          alt="UClimax for ws"
           :class="mdAndUp ? 'ml-16' : 'ml-1'"
-          contain
-          eager
+          class="cursor-pointer"
           :style="titleImgStyle"
           @click="goToHome"
-        ></v-img>
+        />
       </v-app-bar-title>
 
       <template #append>
@@ -542,6 +540,8 @@ const titleImgStyle = computed(() => {
   const isDark = vuetifyTheme.global.current.value.dark
   return {
     maxWidth: mdAndUp.value ? '110px' : '85px',
+    height: 'auto',
+    display: 'block',
     filter: !isHomeRoute.value && isDark ? 'invert(1)' : undefined,
   }
 })
@@ -750,12 +750,12 @@ watch(
 }
 
 /* Image fade-in animation on route enter */
-.slide-y-in-enter-active .series-card .v-img {
+.slide-y-in-enter-active .series-card .card-img-box {
   transition:
     transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0.1s,
     opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0.1s !important;
 }
-.slide-y-in-enter-from .series-card .v-img {
+.slide-y-in-enter-from .series-card .card-img-box {
   transform: scale(0.95);
   opacity: 0;
 }

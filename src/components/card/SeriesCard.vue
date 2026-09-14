@@ -12,18 +12,13 @@
         class="image-wrapper position-relative"
         :class="isCompact ? 'mb-1 rounded-2lg' : 'mb-2 rounded-xl'"
       >
-        <v-img
+        <CardImage
           :src="`/series-icons/original/${encodeURIComponent(seriesData.id)}.webp`"
-          :lazy-src="`/series-icons/blur/${encodeURIComponent(seriesData.id)}.webp`"
+          :blur="`/series-icons/blur/${encodeURIComponent(seriesData.id)}.webp`"
           aspect-ratio="1"
-          cover
           :rounded="isCompact ? '2lg' : 'xl'"
           class="series-image preload-img"
-        >
-          <template #error>
-            <v-img src="/placehold.webp" aspect-ratio="1" cover rounded="5xl" />
-          </template>
-        </v-img>
+        />
 
         <!-- Compact 模式下 Hover 時顯示的資訊覆蓋層 -->
         <div v-if="isCompact" class="hover-overlay rounded-2lg d-flex align-end">

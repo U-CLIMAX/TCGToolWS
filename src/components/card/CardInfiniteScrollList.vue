@@ -74,8 +74,6 @@
   >
     <CardDetailModal
       :card="selectedCardData?.card || {}"
-      :img-url="selectedCardData?.imageUrl || '/empty-placehold.webp'"
-      :blur-url="selectedCardData?.blurUrl || '/empty-placehold.webp'"
       :price="selectedCardData?.price || null"
       :price-update-times="selectedCardData?.priceUpdateTimes || null"
       :showActions="$route.name === 'GlobalSearch' ? false : true"
@@ -96,7 +94,6 @@
 import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
 import { useDisplay } from 'vuetify'
 import { getCardSeriesId } from '@/utils/card'
-import { getCardUrls } from '@/utils/getCardImage'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import { useUIStore } from '@/stores/ui'
 import { usePriceStore } from '@/stores/price'
@@ -243,12 +240,9 @@ const getPriceUpdateTimes = (card) => {
 const onPrevCard = () => {
   const prevCard = getPrevCard()
   if (prevCard) {
-    const { base, blur } = getCardUrls(prevCard.cardIdPrefix, prevCard.id)
     const updateTimes = getPriceUpdateTimes(prevCard)
     onShowDetails({
       card: prevCard,
-      imageUrl: base,
-      blurUrl: blur,
       price: getPrice(prevCard),
       priceUpdateTimes: updateTimes,
     })
@@ -258,12 +252,9 @@ const onPrevCard = () => {
 const onNextCard = () => {
   const nextCard = getNextCard()
   if (nextCard) {
-    const { base, blur } = getCardUrls(nextCard.cardIdPrefix, nextCard.id)
     const updateTimes = getPriceUpdateTimes(nextCard)
     onShowDetails({
       card: nextCard,
-      imageUrl: base,
-      blurUrl: blur,
       price: getPrice(nextCard),
       priceUpdateTimes: updateTimes,
     })

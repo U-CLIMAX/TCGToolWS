@@ -10,9 +10,8 @@
       :class="{ 'mb-19': !smAndUp }"
       @click="scrollToTop"
     >
-      <v-img
+      <img
         :src="WsIcon"
-        alt="Back to top"
         :width="!smAndUp ? 24 : 28"
         :height="!smAndUp ? 24 : 28"
         draggable="false"

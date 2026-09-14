@@ -150,25 +150,9 @@
             <v-row dense>
               <v-col v-for="item in group" :key="item.id" cols="4" lg="3">
                 <div class="card-container" @click="handleCardClick(item)">
-                  <div class="image-container">
-                    <v-img
-                      :src="getCardUrls(item.cardIdPrefix, item.id).base"
-                      :lazy-src="getCardUrls(item.cardIdPrefix, item.id).blur"
-                      :aspect-ratio="400 / 559"
-                      cover
-                      class="rounded preload-img"
-                    >
-                      <template #error>
-                        <v-img
-                          src="/placehold.webp"
-                          :aspect-ratio="400 / 559"
-                          cover
-                          class="rounded"
-                        />
-                      </template>
-                    </v-img>
+                  <CardImage :card="item" rounded="3sm" class="preload-img">
                     <div class="quantity-badge">{{ item.quantity }}</div>
-                  </div>
+                  </CardImage>
                 </div>
               </v-col>
             </v-row>
@@ -190,8 +174,6 @@
   >
     <CardDetailModal
       :card="selectedCardData || {}"
-      :img-url="modalCardImageUrl.base"
-      :blur-url="modalCardImageUrl.blur"
       :price="selectedCardPrice"
       :price-update-times="selectedCardPriceUpdateTimes"
       :show-actions="true"
@@ -261,26 +243,15 @@
                 class="cover-card-container"
                 @click="selectedCoverCardId = { id: card.id, cardIdPrefix: card.cardIdPrefix }"
               >
-                <v-img
-                  :src="getCardUrls(card.cardIdPrefix, card.id).base"
-                  :lazy-src="getCardUrls(card.cardIdPrefix, card.id).blur"
-                  :aspect-ratio="400 / 559"
-                  cover
-                  class="rounded-lg preload-img"
+                <CardImage
+                  :card="card"
+                  rounded="lg"
+                  class="preload-img"
                   :class="{
                     'selected-cover': selectedCoverCardId.id === card.id,
                     'clickable': true,
                   }"
-                >
-                  <template #error>
-                    <v-img
-                      src="/placehold.webp"
-                      :aspect-ratio="400 / 559"
-                      cover
-                      class="rounded-lg"
-                    />
-                  </template>
-                </v-img>
+                />
               </div>
             </v-col>
           </v-row>
@@ -374,13 +345,7 @@
                   {{ v.cardName }}
                 </v-list-item-subtitle>
                 <div class="mt-2" style="width: 80px">
-                  <v-img
-                    :src="getCardUrls(v.card.cardIdPrefix, v.card.id).base"
-                    :lazy-src="getCardUrls(v.card.cardIdPrefix, v.card.id).blur"
-                    cover
-                    :aspect-ratio="400 / 559"
-                    class="rounded-lg preload-img"
-                  ></v-img>
+                  <CardImage :card="v.card" rounded="lg" class="preload-img" />
                 </div>
                 <div
                   v-if="v.desc"
@@ -401,13 +366,7 @@
                   {{ v.cardName }} (当前: {{ v.card.quantity }})
                 </v-list-item-subtitle>
                 <div class="mt-2" style="width: 80px">
-                  <v-img
-                    :src="getCardUrls(v.card.cardIdPrefix, v.card.id).base"
-                    :lazy-src="getCardUrls(v.card.cardIdPrefix, v.card.id).blur"
-                    cover
-                    :aspect-ratio="400 / 559"
-                    class="rounded-lg preload-img"
-                  ></v-img>
+                  <CardImage :card="v.card" rounded="lg" class="preload-img" />
                 </div>
                 <div
                   v-if="v.desc"
@@ -429,13 +388,7 @@
                 </v-list-item-subtitle>
                 <div class="d-flex flex-wrap gap-2 mt-2">
                   <div v-for="c in v.found" :key="c.id" style="width: 80px" class="mr-2 mb-2">
-                    <v-img
-                      :src="getCardUrls(c.cardIdPrefix, c.id).base"
-                      :lazy-src="getCardUrls(c.cardIdPrefix, c.id).blur"
-                      cover
-                      :aspect-ratio="400 / 559"
-                      class="rounded-lg preload-img"
-                    ></v-img>
+                    <CardImage :card="c" rounded="lg" class="preload-img" />
                   </div>
                 </div>
                 <div
@@ -527,7 +480,6 @@
 <script setup>
 import { ref, computed, toRaw, nextTick } from 'vue'
 import { useDeckStore } from '@/stores/deck'
-import { getCardUrls } from '@/utils/getCardImage'
 import { fetchCardByIdAndPrefix, getCardSeriesId } from '@/utils/card'
 import { useDisplay, useTheme } from 'vuetify'
 import { storeToRefs } from 'pinia'
@@ -943,20 +895,6 @@ const getPriceUpdateTimes = (card) => {
   }
   return null
 }
-
-const modalCardImageUrl = computed(() => {
-  if (selectedCardData.value) {
-    const { base, blur } = getCardUrls(
-      selectedCardData.value.cardIdPrefix,
-      selectedCardData.value.id
-    )
-    return {
-      base: base,
-      blur: blur,
-    }
-  }
-  return { base: '/empty-placehold.webp', blur: '/empty-placehold.webp' }
-})
 
 /**
  * 处理在 CardDetailModal 中展示新卡牌。

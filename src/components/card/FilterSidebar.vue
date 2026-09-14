@@ -133,7 +133,7 @@
           <template v-slot:label>
             <div class="d-flex align-center">
               <span class="mr-2">魂标筛选</span>
-              <v-img
+              <img
                 :src="WsIcon"
                 width="16"
                 height="16"
@@ -141,7 +141,7 @@
                   filter: theme.global.name.value === 'dark' ? 'none' : 'invert(1)',
                   opacity: 0.7,
                 }"
-              ></v-img>
+              />
             </div>
           </template>
         </v-switch>

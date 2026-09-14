@@ -220,26 +220,15 @@
                   class="cover-card-container"
                   @click="selectedCoverCardId = { id: card.id, cardIdPrefix: card.cardIdPrefix }"
                 >
-                  <v-img
-                    :src="getCardUrls(card.cardIdPrefix, card.id).base"
-                    :lazy-src="getCardUrls(card.cardIdPrefix, card.id).blur"
-                    :aspect-ratio="400 / 559"
-                    cover
-                    class="rounded-lg preload-img"
+                  <CardImage
+                    :card="card"
+                    rounded="lg"
+                    class="preload-img"
                     :class="{
                       'selected-cover': selectedCoverCardId.id === card.id,
                       'clickable': true,
                     }"
-                  >
-                    <template #error>
-                      <v-img
-                        src="/placehold.webp"
-                        :aspect-ratio="400 / 559"
-                        cover
-                        class="rounded-lg"
-                      />
-                    </template>
-                  </v-img>
+                  />
                 </div>
               </v-col>
             </v-row>
@@ -332,7 +321,6 @@
 <script setup>
 import { computed, ref, onUnmounted, onMounted, watch, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
-import { getCardUrls } from '@/utils/getCardImage'
 import { useDisplay } from 'vuetify'
 import { useDeckGrouping } from '@/composables/useDeckGrouping'
 import { getCardSeriesId } from '@/utils/card'

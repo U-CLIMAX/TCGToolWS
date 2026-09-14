@@ -16,18 +16,7 @@
       >
         {{ card.rarity }}
       </div>
-      <v-img
-        :src="imageUrl"
-        :lazy-src="blurUrl"
-        :aspect-ratio="400 / 559"
-        rounded="lg"
-        cover
-        class="preload-img"
-      >
-        <template #error>
-          <v-img src="/placehold.webp" rounded="lg" :aspect-ratio="400 / 559" cover />
-        </template>
-      </v-img>
+      <CardImage :card="card" rounded="lg" class="preload-img" />
     </div>
     <div class="py-1 px-2" style="width: 100%">
       <div class="text-caption text-grey text-truncate">{{ card.id }}</div>
@@ -39,8 +28,6 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { getCardUrls } from '@/utils/getCardImage'
 import { useDevice } from '@/composables/useDevice'
 
 const props = defineProps({
@@ -50,15 +37,10 @@ const props = defineProps({
 const emit = defineEmits(['show-details'])
 
 const { isTouch } = useDevice()
-const cardUrls = computed(() => getCardUrls(props.card?.cardIdPrefix, props.card?.id))
-const imageUrl = computed(() => cardUrls.value.base)
-const blurUrl = computed(() => cardUrls.value.blur)
 
 const handleCardClick = () => {
   emit('show-details', {
     card: props.card,
-    imageUrl: imageUrl.value,
-    blurUrl: blurUrl.value,
     price: props.card.price,
   })
 }

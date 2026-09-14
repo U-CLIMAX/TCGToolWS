@@ -95,17 +95,15 @@
 
                       <div v-for="(group, gIdx) in cat.groups" :key="gIdx" class="mb-6">
                         <div class="d-flex flex-wrap ga-3 mb-4">
-                          <v-img
+                          <CardImage
                             v-for="card in group"
                             :key="card.name"
                             :src="card.image"
-                            :lazy-src="card.lazyImage"
-                            width="100"
-                            max-width="100"
-                            :aspect-ratio="400 / 559"
-                            class="rounded-lg preload-img"
-                          >
-                          </v-img>
+                            :blur="card.lazyImage"
+                            rounded="lg"
+                            class="preload-img"
+                            style="width: 100px; max-width: 100px"
+                          />
                         </div>
 
                         <div class="d-flex mt-2">

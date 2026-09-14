@@ -53,12 +53,11 @@
         </div>
 
         <div v-if="generatedImageResult" class="mb-3 flex-shrink-0">
-          <v-img
+          <img
             :src="generatedImageResult.src"
-            class="mb-2 border rounded"
-            max-height="300"
-            contain
-          ></v-img>
+            class="mb-2 border rounded w-100"
+            style="max-height: 300px; object-fit: contain"
+          />
           <div class="d-flex gap-2">
             <v-btn
               color="secondary"

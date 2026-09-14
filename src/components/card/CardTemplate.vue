@@ -10,19 +10,7 @@
       :elevation="isHovering ? 2 : 0"
     >
       <div :class="isTableMode ? 'ma-1' : 'ma-2'" style="position: relative">
-        <v-img
-          :key="card.id"
-          :src="imageUrl"
-          :aspect-ratio="400 / 559"
-          cover
-          rounded="3md"
-          :lazy-src="blurUrl"
-          class="preload-img"
-        >
-          <template #error>
-            <v-img src="/placehold.webp" :aspect-ratio="400 / 559" cover rounded="3md" />
-          </template>
-
+        <CardImage :card="card" rounded="3md" class="preload-img">
           <v-fade-transition>
             <div
               v-if="isHovering && !smAndDown && !isTouch && $route.name !== 'GlobalSearch'"
@@ -59,7 +47,7 @@
               >{{ cardCount }}</v-avatar
             >
           </div>
-        </v-img>
+        </CardImage>
       </div>
 
       <div
@@ -106,7 +94,6 @@
 
 <script setup>
 import { computed } from 'vue'
-import { getCardUrls } from '@/utils/getCardImage'
 
 const props = defineProps({
   card: { type: Object, required: true },
@@ -122,10 +109,6 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['show-details', 'add-card', 'remove-card', 'deck-full'])
-
-const cardUrls = computed(() => getCardUrls(props.card?.cardIdPrefix, props.card?.id))
-const imageUrl = computed(() => cardUrls.value.base)
-const blurUrl = computed(() => cardUrls.value.blur)
 
 const buttonSize = computed(() => (props.isCompact ? 'x-small' : 'small'))
 
@@ -143,8 +126,6 @@ const handleCardClick = () => {
   } else {
     emit('show-details', {
       card: props.card,
-      imageUrl: imageUrl.value,
-      blurUrl: blurUrl.value,
       price: props.cardPrice,
     })
   }

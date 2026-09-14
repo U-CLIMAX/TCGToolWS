@@ -16,12 +16,7 @@
         @touchend="handleTouchEnd"
         :style="{ touchAction: canRunCustomZoom ? 'none' : 'auto' }"
       >
-        <v-img
-          :src="images[currentImageIndex]"
-          contain
-          class="mobile-viewer__image"
-          :style="imageTransformStyle"
-        ></v-img>
+        <img :src="currentImageSrc" class="mobile-viewer__image" :style="imageTransformStyle" />
       </div>
       <div class="mobile-viewer__controls">
         <v-btn v-if="images.length > 1" icon variant="text" @click.stop="prevImage">
@@ -62,7 +57,7 @@
       </template>
 
       <!-- 放大圖片 -->
-      <v-img :src="images[currentImageIndex]" contain class="dialog-image"></v-img>
+      <img :src="currentImageSrc" class="dialog-image" />
 
       <!-- 圖片指示器 -->
       <div v-if="images.length > 1" class="dialog-indicator">
@@ -99,6 +94,11 @@ const { smAndUp } = useDisplay()
 const internalDialog = ref(false)
 const currentImageIndex = ref(0)
 const containerRef = ref(null)
+
+const currentImageSrc = computed(() => {
+  const item = props.images[currentImageIndex.value]
+  return typeof item === 'string' ? item : item?.src || ''
+})
 
 // 判斷是否處於手機全螢幕佈局
 const isMobileFullscreen = computed(() => !smAndUp.value)
@@ -346,6 +346,8 @@ onUnmounted(() => {
 .dialog-image {
   aspect-ratio: 16 / 9;
   max-height: 90vh;
+  width: 100%;
+  object-fit: contain;
   border-radius: 8px;
 }
 
@@ -384,6 +386,7 @@ onUnmounted(() => {
   width: 100%;
   height: auto;
   max-height: 100%;
+  object-fit: contain;
 }
 
 .mobile-viewer__controls {

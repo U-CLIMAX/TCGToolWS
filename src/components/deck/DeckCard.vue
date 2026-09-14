@@ -17,19 +17,13 @@
         class="deck-card"
         :class="{ 'is-lifted': isHovering && !isTouch }"
       >
-        <v-img
+        <CardImage
           :src="imageUrl"
-          class="align-end preload-img"
-          style="transform: scale(1.1)"
+          :blur="blurUrl"
           aspect-ratio="1"
-          cover
           position="top"
-          :lazy-src="blurUrl"
+          class="align-end preload-img"
         >
-          <template #error>
-            <v-img src="/placehold.webp" aspect-ratio="1" cover />
-          </template>
-
           <div
             v-if="imageUrl"
             class="action-background"
@@ -37,7 +31,7 @@
           ></div>
           <div :class="{ 'title-background': !isEditing, 'full-mask': isEditing }"></div>
           <div v-if="isEditing" class="editing-text">编辑中</div>
-          <v-card-text class="deck-title" style="z-index: 1">
+          <v-card-text class="deck-title">
             <div v-if="deck.tags && deck.tags.length > 0" class="d-flex flex-wrap ga-1 mb-1">
               <v-chip
                 v-for="tag in deck.tags"
@@ -52,7 +46,7 @@
             </div>
             {{ deck.name }}
           </v-card-text>
-        </v-img>
+        </CardImage>
       </v-card>
 
       <v-scale-transition>
@@ -209,7 +203,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onUnmounted } from 'vue'
+import { ref, onUnmounted } from 'vue'
 import { getCardUrls } from '@/utils/getCardImage'
 
 const props = defineProps({
@@ -257,11 +251,10 @@ const isTagsDialogOpen = ref(false)
 const editTags = ref([])
 const isSavingTags = ref(false)
 
-const cardUrls = computed(() =>
-  getCardUrls(props.deck?.coverCardId?.cardIdPrefix, props.deck?.coverCardId?.id)
+const { base: imageUrl, blur: blurUrl } = getCardUrls(
+  props.deck?.coverCardId?.cardIdPrefix,
+  props.deck?.coverCardId?.id
 )
-const imageUrl = computed(() => cardUrls.value.base)
-const blurUrl = computed(() => cardUrls.value.blur)
 
 // Long-press detection for touch devices
 let isLongPressActive = false
@@ -455,6 +448,12 @@ const handleActionMenuDelete = () => {
   font-size: clamp(0.6rem, 1vw, 1.1rem) !important;
   line-height: 1.3;
   color: white;
+  width: 100%;
+  flex: 0 0 auto;
+  margin-top: auto;
+  padding: 8px 10px !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  z-index: 2;
 }
 
 .title-background {
@@ -462,19 +461,27 @@ const handleActionMenuDelete = () => {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 50%;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 20%, transparent 100%);
+  height: 55%;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.5) 45%,
+    transparent 100%
+  );
   pointer-events: none;
+  z-index: 1;
 }
 
 .full-mask {
   position: absolute;
+  top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   height: 100%;
   background: rgba(0, 0, 0, 0.7);
   pointer-events: none;
+  z-index: 1;
 }
 
 .editing-text {
@@ -482,7 +489,7 @@ const handleActionMenuDelete = () => {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1;
+  z-index: 2;
   font-size: clamp(1rem, 3vw, 1.5rem);
   font-weight: bold;
   white-space: nowrap;

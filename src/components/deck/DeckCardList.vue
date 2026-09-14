@@ -36,11 +36,10 @@
 
               <!-- 魂標數量 -->
               <div class="d-flex align-center ga-2">
-                <v-img
+                <img
                   :src="WsIcon"
-                  alt="魂標"
                   width="14"
-                  aspect-ratio="1"
+                  height="14"
                   draggable="false"
                   :style="{ filter: iconFilterStyle }"
                 />
@@ -102,18 +101,7 @@
                         <span v-else-if="item.diffStatus === 'increased'">↑</span>
                         <span v-else-if="item.diffStatus === 'decreased'">↓</span>
                       </div>
-                      <v-img
-                        :src="getCardUrls(item.cardIdPrefix, item.id).base"
-                        :lazy-src="getCardUrls(item.cardIdPrefix, item.id).blur"
-                        :aspect-ratio="400 / 559"
-                        cover
-                        rounded="3md"
-                        class="preload-img"
-                      >
-                        <template #error>
-                          <v-img src="/placehold.webp" :aspect-ratio="400 / 559" cover />
-                        </template>
-                      </v-img>
+                      <CardImage :card="item" rounded="3md" class="preload-img" />
                       <div
                         class="quantity-badge"
                         :class="{
@@ -145,8 +133,6 @@
     >
       <CardDetailModal
         :card="selectedCard || {}"
-        :img-url="modalCardImageUrl.base"
-        :blur-url="modalCardImageUrl.blur"
         :price="selectedCardPrice"
         :price-update-times="priceUpdateTimes"
         :show-actions="false"
@@ -166,7 +152,6 @@ import { computed, ref, watch, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useTheme } from 'vuetify'
 import { useDisplay } from 'vuetify'
-import { getCardUrls } from '@/utils/getCardImage'
 import { useDevice } from '@/composables/useDevice'
 import { usePriceStore } from '@/stores/price'
 import { useAuthStore } from '@/stores/auth'
@@ -269,18 +254,6 @@ onUnmounted(() => {
 
 const iconFilterStyle = computed(() => {
   return theme.global.name.value === 'dark' ? 'none' : 'invert(1)'
-})
-
-const modalCardImageUrl = computed(() => {
-  if (props.selectedCard) {
-    const { base, blur } = getCardUrls(props.selectedCard.cardIdPrefix, props.selectedCard.id)
-    return {
-      base: base,
-      blur: blur,
-    }
-  }
-
-  return { base: '/empty-placehold.webp', blur: '/empty-placehold.webp' }
 })
 
 const colorMap = {
@@ -453,7 +426,7 @@ const groupHasPriceMap = computed(() => {
 }
 
 /* "移除" 獨有的容器樣式 (灰階、斜線) */
-.diff-removed .v-img {
+.diff-removed .card-img-box {
   filter: grayscale(90%);
   opacity: 0.5;
 }
