@@ -509,8 +509,20 @@ const handleTraitClick = (trait) => {
   }
 }
 
+const isModalActive = () => {
+  if (!props.card?.id) return false
+  const el = cardModalRef.value?.$el || cardModalRef.value
+  if (!el) return false
+  const overlay = el.closest('.v-overlay')
+  if (overlay && !overlay.classList.contains('v-overlay--active')) {
+    return false
+  }
+  return el.offsetWidth > 0 && el.offsetHeight > 0
+}
+
 const handleKeydown = (e) => {
   if (isDownloadTextDialogOpen.value) return
+  if (!isModalActive()) return
 
   switch (e.key) {
     case 'ArrowLeft':
