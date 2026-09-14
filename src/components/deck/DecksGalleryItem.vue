@@ -15,8 +15,8 @@
         <div class="d-flex flex-row flex-grow-1 pt-4">
           <div class="cover-section px-3">
             <v-img
-              :src="getCardUrls(deck.cover_cards_id.cardIdPrefix, deck.cover_cards_id.id).base"
-              :lazy-src="getCardUrls(deck.cover_cards_id.cardIdPrefix, deck.cover_cards_id.id).blur"
+              :src="coverUrls.base"
+              :lazy-src="coverUrls.blur"
               class="h-100 preload-img"
               :aspect-ratio="400 / 559"
             >
@@ -69,16 +69,9 @@
             </div>
 
             <div class="card-list-container mt-auto">
-              <div
-                v-if="deck.climax_cards_id && deck.climax_cards_id.length > 0"
-                class="card-scroll-wrapper"
-              >
-                <div v-for="cx in deck.climax_cards_id" :key="cx.id" class="mini-card-item">
-                  <v-img
-                    :src="getCardUrls(cx.cardIdPrefix, cx.id).base"
-                    :lazy-src="getCardUrls(cx.cardIdPrefix, cx.id).blur"
-                    class="preload-img"
-                  />
+              <div v-if="climaxCardsWithUrls.length > 0" class="card-scroll-wrapper">
+                <div v-for="cx in climaxCardsWithUrls" :key="cx.id" class="mini-card-item">
+                  <v-img :src="cx.urls.base" :lazy-src="cx.urls.blur" class="preload-img" />
                 </div>
               </div>
               <div
@@ -169,6 +162,18 @@ const props = defineProps({
 const emit = defineEmits(['delete', 'select', 'edit'])
 
 const showDeleteDialog = ref(false)
+
+const coverUrls = computed(() =>
+  getCardUrls(props.deck?.cover_cards_id?.cardIdPrefix, props.deck?.cover_cards_id?.id)
+)
+
+const climaxCardsWithUrls = computed(() => {
+  if (!props.deck?.climax_cards_id) return []
+  return props.deck.climax_cards_id.map((cx) => ({
+    ...cx,
+    urls: getCardUrls(cx.cardIdPrefix, cx.id),
+  }))
+})
 
 const isTopTier = computed(() => !!props.deck.tournament_type)
 

@@ -123,7 +123,9 @@ const props = defineProps({
 
 const emit = defineEmits(['show-details', 'add-card', 'remove-card', 'deck-full'])
 
-const { base: imageUrl, blur: blurUrl } = getCardUrls(props.card.cardIdPrefix, props.card.id)
+const cardUrls = computed(() => getCardUrls(props.card?.cardIdPrefix, props.card?.id))
+const imageUrl = computed(() => cardUrls.value.base)
+const blurUrl = computed(() => cardUrls.value.blur)
 
 const buttonSize = computed(() => (props.isCompact ? 'x-small' : 'small'))
 
@@ -141,8 +143,8 @@ const handleCardClick = () => {
   } else {
     emit('show-details', {
       card: props.card,
-      imageUrl: imageUrl,
-      blurUrl: blurUrl,
+      imageUrl: imageUrl.value,
+      blurUrl: blurUrl.value,
       price: props.cardPrice,
     })
   }

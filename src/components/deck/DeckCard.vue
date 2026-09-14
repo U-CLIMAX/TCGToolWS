@@ -209,7 +209,7 @@
 </template>
 
 <script setup>
-import { ref, onUnmounted } from 'vue'
+import { ref, computed, onUnmounted } from 'vue'
 import { getCardUrls } from '@/utils/getCardImage'
 
 const props = defineProps({
@@ -257,10 +257,11 @@ const isTagsDialogOpen = ref(false)
 const editTags = ref([])
 const isSavingTags = ref(false)
 
-const { base: imageUrl, blur: blurUrl } = getCardUrls(
-  props.deck.coverCardId?.cardIdPrefix,
-  props.deck.coverCardId?.id
+const cardUrls = computed(() =>
+  getCardUrls(props.deck?.coverCardId?.cardIdPrefix, props.deck?.coverCardId?.id)
 )
+const imageUrl = computed(() => cardUrls.value.base)
+const blurUrl = computed(() => cardUrls.value.blur)
 
 // Long-press detection for touch devices
 let isLongPressActive = false
