@@ -6,7 +6,6 @@
       class="card-img-blur"
       :style="imgStyle"
       decoding="async"
-      :loading="loading"
       draggable="false"
       aria-hidden="true"
     />
@@ -18,7 +17,6 @@
       :class="{ 'is-loaded': isLoaded }"
       :style="imgStyle"
       decoding="async"
-      :loading="loading"
       draggable="false"
       @load="isLoaded = true"
     />
@@ -43,7 +41,6 @@ const props = defineProps({
   maxHeight: { type: [String, Number], default: '' },
   width: { type: [String, Number], default: '' },
   maxWidth: { type: [String, Number], default: '' },
-  loading: { type: String, default: 'lazy' },
 })
 
 const isLoaded = ref(false)
