@@ -59,8 +59,7 @@ export default defineConfig({
       },
     }),
     visualizer({
-      emitFile: true,
-      filename: 'stats.html',
+      filename: './dist/stats.html',
     }),
     cloudflare(),
     VitePWA({
