@@ -469,8 +469,14 @@ const groupHasPriceMap = computed(() => {
 }
 
 .price-container {
-  min-height: 24px;
+  min-height: 32px;
   width: 100%;
+}
+
+@media (min-width: 600px) {
+  .price-container {
+    min-height: 32px;
+  }
 }
 
 /* 響應式設計 (Responsive) */
