@@ -39,6 +39,11 @@
       </v-btn>
     </v-btn-toggle>
 
+    <div class="text-caption text-medium-emphasis mt-1.5 d-flex align-center ga-1">
+      <v-icon icon="i-mdi:information-outline" size="14" />
+      <span>切换卡图来源后需刷新页面或重启 App 才会套用</span>
+    </div>
+
     <div v-if="uiStore.imageSource === 'local'" class="mt-3">
       <!-- Sync Summary & Status -->
       <div class="d-flex flex-wrap align-center justify-space-between ga-2 mb-2">
