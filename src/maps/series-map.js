@@ -957,7 +957,7 @@ const wsSeriesMap = {
   'nik': {
     name: '胜利女神：妮姬',
     prefixes: ['NIK'],
-    latestReleaseDate: '2024-12-13',
+    latestReleaseDate: '2026-09-19',
   },
   'ddd': {
     name: '胆大党',

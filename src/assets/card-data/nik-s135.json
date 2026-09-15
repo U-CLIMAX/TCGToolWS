@@ -1,0 +1,2762 @@
+{
+  "NIK/S135-001": {
+    "name": "エレグ：ブーム・アンド・ショック",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "エレクトリックショック"],
+    "color": "黄色",
+    "effect": "【自】你的高潮阶段开始时，你选择自己1个《NIKKE》的角色，那个回合中，战斗力＋1500。<br>【自】【CX联动】你的「BOOM！THE GHOST！」放置到高潮区时，你其他《NIKKE》的角色有3个以上的话，你选择自己的1个角色，那个回合中，给予以下能力。『【自】此卡的战斗对手【倒置】时，你看自己卡组顶1张卡，放置到卡组顶或休息室，从自己的休息室选择至多1张角色卡返回手牌。』",
+    "all_cards": [
+      {
+        "id": "NIK/S135-001",
+        "rarity": "RR"
+      },
+      {
+        "id": "NIK/S135-001SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "NIK/S135-001S",
+        "rarity": "SR⁂"
+      },
+      {
+        "id": "NIK/S135-001SEC",
+        "rarity": "SEC"
+      }
+    ]
+  },
+  "NIK/S135-002": {
+    "name": "“苦行難行”ナユタ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 3,
+    "power": 7500,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "パイオニア"],
+    "color": "黄色",
+    "effect": "【自】此卡从手牌放置到舞台时，你从自己的时计区选择至多1张角色卡思出，那个回合中，此卡的战斗力＋4500。<br>【自】【CX联动】记忆 此卡攻击时，高潮区有「GODDESS FALL」，你的手牌在5张以下的话，你从以下2个效果中选择1个执行。『给对手造成1点伤害。』『[(2) 3张手牌放置到休息室] 你可以支付费用。如果这么做的话，你将自己思出区全部的「二千の分身 ナユタ」以任意顺序正面朝上放置到此卡的下方作为指示物，给对手造成X次2点伤害。X是此卡下方的指示物在3张以下的话是1，4张或5张的话是2，6张以上的话是3。』（发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-002",
+        "rarity": "RR"
+      },
+      {
+        "id": "NIK/S135-002S",
+        "rarity": "SR⁂"
+      },
+      {
+        "id": "NIK/S135-002SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "NIK/S135-003": {
+    "name": "君の希望を守る ラプラス",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "メティス"],
+    "color": "黄色",
+    "effect": "【自】此卡从手牌放置到舞台时，你可以执行以下效果。『对手将自己的费用全部返回卡组，卡组洗切，从自己的卡组顶将相同张数的卡放置到库存区，你抽至多1张卡。抽了1张卡的话，你选择自己的1张手牌放置到休息室。』<br>【自】此卡从手牌放置到舞台时，你其他《NIKKE》的角色有4个以上的话，你可以从自己的休息室选择1张《NIKKE》的角色卡放置到库存区。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-003",
+        "rarity": "RR"
+      },
+      {
+        "id": "NIK/S135-003SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "NIK/S135-003S",
+        "rarity": "SR⁂"
+      }
+    ]
+  },
+  "NIK/S135-004": {
+    "name": "ナガ - ラストガールフッド",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "ダージリンパール"],
+    "color": "黄色",
+    "effect": "【永】你的回合中，你有其他《NIKKE》的角色的话，此卡的战斗力＋3000。<br>【自】此卡【倒置】时，对手的高潮区有高潮卡的话，你公开自己卡组顶1张卡。那张卡是等级1以上的卡的话，你可以将此卡返回手牌或放置到库存区。（高潮卡视为0级。公开的卡放回原处）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-004",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/S135-004S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/S135-004SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "NIK/S135-005": {
+    "name": "マスト：ロマンチックメイド",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "イージス"],
+    "color": "黄色",
+    "effect": "【自】你的高潮卡放置到高潮区时，你选择自己的1个角色，那个回合中，灵魂值＋1。<br>【自】【CX联动】你的「ROMANTIC VALENTINE」放置到高潮区时，你其他《NIKKE》的角色有2个以上的话，你选择自己其他1个角色，那个回合中，给予以下能力。『【自】【一回合1次】此卡造成的伤害被取消时，你看自己卡组顶至多4张卡，选择至多2张《NIKKE》的角色卡展示给对手后加入手牌，其余的卡放置到休息室。』",
+    "all_cards": [
+      {
+        "id": "NIK/S135-005",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/S135-005S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/S135-005SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "NIK/S135-006": {
+    "name": "ティア - スウィートシェフ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 1,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "ダージリンパール"],
+    "color": "黄色",
+    "effect": "【永】你的回合中，此卡的战斗力＋5000。<br>【自】[(1) 手牌中1张《NIKKE》的角色卡放置到休息室，你其他1个【竖置】的《NIKKE》的角色【横置】] 此卡从手牌放置到舞台的回合中，此卡的战斗对手【倒置】时，你的手牌在5张以下的话，你可以支付费用。如果这么做的话，你从自己的卡组找至多2张《NIKKE》的角色卡展示给对手后加入手牌，卡组洗切。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-006",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/S135-006S",
+        "rarity": "SR ⁑ "
+      }
+    ]
+  },
+  "NIK/S135-007": {
+    "name": "紅き力の解放 ラピ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "カウンターズ"],
+    "color": "黄色",
+    "effect": "【永】你的回合中，此卡的战斗力＋4000。<br>【自】【CX联动】[(1)] 此卡的战斗对手【倒置】时，你的高潮区有「CODENAME - RED HOOD -」，你有其他《NIKKE》的角色的话，你可以支付费用。如果这么做的话，你从自己的卡组找至多2张《NIKKE》的角色卡或「色づき出す世界」，公开，1张加入手牌，其余的卡放置到库存区底，卡组洗切。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-007",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/S135-007S",
+        "rarity": "SR ⁑ "
+      }
+    ]
+  },
+  "NIK/S135-008": {
+    "name": "アンカー：イノセントメイド",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "イージス"],
+    "color": "黄色",
+    "effect": "【自】[1张手牌放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你从自己的休息室选择1张等级0以下的《NIKKE》的角色卡，放置到舞台任意位置。<br>【自】你的高潮卡放置到高潮区时，你选择自己至多2个《NIKKE》的角色，那个回合中，战斗力＋1500。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-008",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/S135-008SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "NIK/S135-008S",
+        "rarity": "SR ⁑ "
+      }
+    ]
+  },
+  "NIK/S135-009": {
+    "name": "“イージスキャノン”ヘルム",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "イージス"],
+    "color": "黄色",
+    "effect": "【永】你有「アンカー：イノセントメイド」和「マスト：ロマンチックメイド」的话，你手牌中此卡的等级－1。<br>【永】此卡在前列中央的话，此卡的战斗力＋8000，灵魂值＋1。<br>【自】【一回合1次】此卡造成的伤害被取消时，你的高潮区有高潮卡的话，你可以选择对手后列1个等级2以下的角色放置到休息室。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-009",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/S135-009S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/S135-009SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "NIK/S135-010": {
+    "name": "バイパー - シャイン・オブ・ラブ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10500,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "エキゾチック"],
+    "color": "黄色",
+    "effect": "【永】休息室有此卡，你的等级在3级以上，你全部的角色是《NIKKE》的话，此卡获得以下能力。『【起】[(1) 2张手牌放置到休息室] 你将休息室的此卡放置到舞台没有角色的位置。』<br>【自】[(1)] 此卡从手牌放置到舞台或通过「バイパー - シャイン・オブ・ラブ」的【起】效果放置到舞台时，你可以支付费用。如果这么做的话，你从自己的休息室选择1张高潮卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-010",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/S135-010S",
+        "rarity": "SR ⁑ "
+      }
+    ]
+  },
+  "NIK/S135-011": {
+    "name": "BOOMインストール ネオン",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "カウンターズ"],
+    "color": "黄色",
+    "effect": "【自】【CX联动】[手牌中1张「CODENAME - RED HOOD -」或「FOOTSTEP, WALK, RUN」放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你从自己的休息室选择1张「CODENAME - RED HOOD -」或「FOOTSTEP, WALK, RUN」返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-011",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/S135-011S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-012": {
+    "name": "二千の分身 ナユタ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "パイオニア"],
+    "color": "黄色",
+    "effect": "【永】与此卡同卡名的卡可以在卡组中投入任意张数。<br>【永】记忆 你的回合中，你的思出区每有1张「二千の分身 ナユタ」，此卡的战斗力＋2000。<br>【自】[(1) 手牌中1张《NIKKE》的角色卡放置到休息室，此卡思出] 此卡【倒置】时，你可以支付费用。如果这么做的话，你从自己的卡组找至多1张《NIKKE》的角色卡展示给对手后加入手牌，卡组洗切。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-012S",
+        "rarity": "SR"
+      },
+      {
+        "id": "NIK/S135-012",
+        "rarity": "U"
+      }
+    ]
+  },
+  "NIK/S135-013": {
+    "name": "アウターリムの毒蛇 バイパー",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "エキゾチック"],
+    "color": "黄色",
+    "effect": "【自】此卡从手牌放置到舞台时，你公开自己卡组顶1张卡。那张卡是《NIKKE》的角色卡的话，你可以选择对手前列1个等级0以下的角色放置到休息室。（公开的卡放回原处）<br>【自】[(1) 1张手牌放置到休息室] 此卡从手牌放置到舞台时或从舞台放置到休息室时，你可以支付费用。如果这么做的话，你从自己的休息室选择1张角色卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-013",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/S135-013S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-014": {
+    "name": "T.T.STAR時代 アニス",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 2,
+    "power": 500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "カウンターズ"],
+    "color": "黄色",
+    "effect": "【自】[(2) 手牌中1张《NIKKE》的角色卡放置到休息室] 你使用此卡的『助太刀』时，你有「ラピ：レッドフード」的话，你可以支付费用。如果这么做的话，你选择对手的1个角色，那个回合中，灵魂值－3。<br>【起】【反击】助太刀2500 等级2 [(1) 手牌中此卡放置到休息室] （你选择自己1个被正面攻击的角色，那个回合中，战斗力＋2500）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-014",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/S135-014S",
+        "rarity": "SR"
+      },
+      {
+        "id": "NIK/S135-014SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "NIK/S135-015": {
+    "name": "“胸の中の隠しごと”ソラ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "オーバー・ザ・ホライズン"],
+    "color": "黄色",
+    "effect": "【永】应援 你此卡前全部的角色，战斗力+X。X是那个角色的等级×500。<br>【起】[(3) 此卡【横置】] 你从自己的时计区选择至多2张《NIKKE》的角色卡返回卡组，卡组洗切。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-015S",
+        "rarity": "SR"
+      },
+      {
+        "id": "NIK/S135-015",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/S135-015SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "NIK/S135-016": {
+    "name": "マクスウェル - メカニックホワイト",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "メティス"],
+    "color": "黄色",
+    "effect": "【自】絆／「君の希望を守る ラプラス」「最高のヴィラン ドレイク」 [1张手牌放置到休息室] （此卡从手牌放置到舞台或被使用放置到舞台时，你可以支付费用。如果这么做的话，你从自己的休息室选择1张「君の希望を守る ラプラス」或「最高のヴィラン ドレイク」返回手牌）<br>【起】[此卡放置到时计区] 你看自己卡组顶至多3张卡，选择至多1张《NIKKE》的角色卡或事件卡展示给对手后加入手牌，其余的卡放置到休息室。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-016",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/S135-016S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-017": {
+    "name": "“メガT.Rony”トロニー",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "エレクトリックショック"],
+    "color": "黄色",
+    "effect": "【永】你的高潮区有触发标记是<img src=\"/effect-icons/choice.webp\">的高潮卡的话，所有区域的此卡获得触发标记<img src=\"/effect-icons/choice.webp\">。<br>【自】休息室有此卡的话，你的第1回合开始时，你可以将此卡放置到库存区。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-017S",
+        "rarity": "SR"
+      },
+      {
+        "id": "NIK/S135-017",
+        "rarity": "C"
+      }
+    ]
+  },
+  "NIK/S135-018": {
+    "name": "“弱者の生存術”モリー",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "インキュベーター"],
+    "color": "黄色",
+    "effect": "【自】【CX联动】此卡从手牌放置到舞台时，你可以执行以下行动。『你从自己的卡组找至多1张「UNBREAKABLE SPHERE」或「OLD TALES」公开，从自己的手牌中选择至多1张「UNBREAKABLE SPHERE」或「OLD TALES」公开，将那些高潮卡互换，卡组洗切。』",
+    "all_cards": [
+      {
+        "id": "NIK/S135-018",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/S135-018S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-019": {
+    "name": "最高のヴィラン ドレイク",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 1,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "メティス"],
+    "color": "黄色",
+    "effect": "【自】此卡攻击时，那个回合中，此卡的战斗力+X。X是对手角色的数量×2000。<br>【自】此卡或此卡的战斗对手【倒置】时，那个回合中，那个角色不能使用『【自】再演』。（规则的『【自】再演 [(3)]』也不能使用）<br>【自】此卡从舞台放置到休息室时，你将自己卡组顶2张卡放置到休息室。那些卡中有高潮卡的话，你可以将此卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-019",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/S135-019S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-020": {
+    "name": "リター - フィッシュガード",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "マイティツールズ"],
+    "color": "黄色",
+    "effect": "【自】[(1) 你舞台的1个角色放置到休息室] 你使用此卡的『助太刀』时，你可以支付费用。如果这么做的话，给对手造成1点伤害。（发生伤害取消）<br>【起】【反击】助太刀2500 等级2 [(1) 手牌中此卡放置到休息室] （你选择自己1个被正面攻击的角色，那个回合中，战斗力＋2500）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-020",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/S135-020S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-021": {
+    "name": "センチ - オーシャンリペア",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 2,
+    "power": 3000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "マイティツールズ"],
+    "color": "黄色",
+    "effect": "【永】此卡的战斗中，所有玩家不能从手牌中使用『助太刀』。<br>【永】你的回合中，此卡的战斗力＋10000。<br>【自】你的回合中，此卡的等级2以上的战斗对手【倒置】时，你公开自己卡组顶1张卡。那张卡是《NIKKE》的角色卡的话，你可以选择对手的1个角色，返回手牌。（公开的卡放回原处）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-021",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/S135-021S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-022": {
+    "name": "ミシリス・インダストリーCEO シュエン",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 0,
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "[你舞台的1个角色放置到休息室] 你可以支付费用。如果这么做的话，你看自己卡组顶至多4张卡，选择至多2张等级1以上的卡展示给对手，1张加入手牌，1张放置到库存区，其余的卡放置到休息室，选择自己的1个角色，那个回合中，战斗力＋1000。（高潮卡视为0级）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-022",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/S135-022S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-023": {
+    "name": "SUPER HERO",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 1,
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "你从自己的卡组找至多2张《NIKKE》的角色卡展示给对手后加入手牌，选择自己的1张手牌放置到休息室，卡组洗切。<br>[(2) 手牌中1张「君の希望を守る ラプラス」和1张「マクスウェル - メカニックホワイト」和1张「最高のヴィラン ドレイク」放置到休息室] 你可以支付费用。如果这么做的话，对手将自己卡组顶12张卡放置到休息室，你给对手造成4点伤害。（发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-023",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/S135-023S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-024": {
+    "name": "BOOM！THE GHOST！",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-024R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "NIK/S135-024",
+        "rarity": "CR"
+      }
+    ]
+  },
+  "NIK/S135-025": {
+    "name": "GODDESS FALL",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-025R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "NIK/S135-025",
+        "rarity": "CR"
+      }
+    ]
+  },
+  "NIK/S135-026": {
+    "name": "CODENAME - RED HOOD -",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 1,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/shot.webp\">:这个回合中，触发此卡的攻击角色下一次造成的伤害被取消时，给对手造成1点伤害）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-026",
+        "rarity": "CR"
+      },
+      {
+        "id": "NIK/S135-026R",
+        "rarity": "RRR"
+      }
+    ]
+  },
+  "NIK/S135-027": {
+    "name": "ROMANTIC VALENTINE",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-027R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "NIK/S135-027",
+        "rarity": "CR"
+      }
+    ]
+  },
+  "NIK/S135-028": {
+    "name": "“ライターズ・スポイラー”グレイブ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "オールドテイルズ"],
+    "color": "绿色",
+    "effect": "【永】你全部的角色是《NIKKE》的话，此卡的战斗力＋3000，此卡获得以下能力。『【自】此卡攻击时，你看自己卡组顶1张卡，放置到卡组顶或卡组底或休息室。』<br>【自】此卡【倒置】时，你全部的角色是《NIKKE》的话，你公开自己卡组顶1张卡。那张卡是等级1以上的卡的话，你可以将此卡返回手牌。（高潮卡视为0级。公开的卡放回原处）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-028",
+        "rarity": "RR"
+      },
+      {
+        "id": "NIK/S135-028S",
+        "rarity": "SR⁂"
+      },
+      {
+        "id": "NIK/S135-028SSP",
+        "rarity": "SSP"
+      }
+    ]
+  },
+  "NIK/S135-029": {
+    "name": "“キル・ザ・ターゲット”D：キラーワイフ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "シージペリラス"],
+    "color": "绿色",
+    "effect": "【自】[(1) 你卡组顶1张卡放置到时计区] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你从自己的卡组找至多1张等级1以下的角色卡展示给对手后加入手牌，卡组洗切。<br>【自】此卡攻击时，你选择自己其他1个《NIKKE》的角色，直到下一个对手的回合结束为止，战斗力＋500，给予『【自】再演 [手牌中1张角色卡放置到休息室]』的能力。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-029S",
+        "rarity": "SR⁂"
+      },
+      {
+        "id": "NIK/S135-029SEC",
+        "rarity": "SEC"
+      },
+      {
+        "id": "NIK/S135-029",
+        "rarity": "RR"
+      },
+      {
+        "id": "NIK/S135-029SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "NIK/S135-030": {
+    "name": "“ガラスの靴・フルコンタクト”シンデレラ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "オールドテイルズ"],
+    "color": "绿色",
+    "effect": "【永】你的回合中，此卡的战斗力＋2000。<br>【自】【CX联动】此卡攻击时，高潮区有「OLD TALES」的话，你从自己的休息室选择至多2张角色卡或「穢れなき銀白」，1张返回手牌，其余的卡放置到库存区，直到下一个对手的回合结束为止，此卡获得以下能力。『【自】此卡正面的角色攻击时，你看自己卡组顶至多2张卡，选择至多1张卡，反面朝上放置到此卡的下方作为指示物，其余的卡按喜欢的顺序放置到卡组顶或休息室。』",
+    "all_cards": [
+      {
+        "id": "NIK/S135-030",
+        "rarity": "RR"
+      },
+      {
+        "id": "NIK/S135-030SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "NIK/S135-030S",
+        "rarity": "SR⁂"
+      },
+      {
+        "id": "NIK/S135-030SEC",
+        "rarity": "SEC"
+      }
+    ]
+  },
+  "NIK/S135-031": {
+    "name": "“過充電方程式”ツバイ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "スクールサークル"],
+    "color": "绿色",
+    "effect": "【自】此卡从手牌放置到舞台时或攻击时，你选择自己1个《NIKKE》的角色，那个回合中，战斗力＋1500。<br>【自】[(1) 1张手牌放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你将自己休息室的卡全部返回卡组，卡组洗切。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-031",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/S135-031SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "NIK/S135-031S",
+        "rarity": "SR ⁑ "
+      }
+    ]
+  },
+  "NIK/S135-032": {
+    "name": "ギロチン：ウィンタースレイヤー",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "エクスターナー"],
+    "color": "绿色",
+    "effect": "【永】经验 你的等级区每有1张《NIKKE》的角色卡，此卡的战斗力＋2500。<br>【自】【CX联动】[1张手牌放置到休息室，你高潮区的1张「ICE DRAGON SAGA」放置到休息室] 此卡的战斗对手【倒置】时，你可以支付费用。如果这么做的话，你从自己的卡组找至多2张《NIKKE》的角色卡展示给对手后加入手牌，卡组洗切。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-032",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/S135-032SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "NIK/S135-032S",
+        "rarity": "SR ⁑ "
+      }
+    ]
+  },
+  "NIK/S135-034": {
+    "name": "ミハラ：ボンディングチェーン",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "ワードレス"],
+    "color": "绿色",
+    "effect": "【永】对手有等级3以上的角色的话，你手牌中此卡的等级－1。<br>【自】此卡从手牌放置到舞台时，你公开自己卡组顶1张卡。那张卡是《NIKKE》的角色卡或事件卡的话，你可以将对手卡组顶1张卡放置到休息室。这样做的话，你选择对手前列1个等级3以下的角色放置到卡组顶。（公开的卡放回原处）<br>【自】此卡直接攻击时，你可以从自己的休息室选择1张《NIKKE》的角色卡放置到库存区。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-034",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/S135-034S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/S135-034SSP",
+        "rarity": "SSP"
+      }
+    ]
+  },
+  "NIK/S135-033": {
+    "name": "棺を背負う者 グレイブ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 2,
+    "power": 3500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "オールドテイルズ"],
+    "color": "绿色",
+    "effect": "【永】应援 你此卡前全部的角色，战斗力+X。X是那个角色的等级×500。<br>【自】[(1)] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你从自己的休息室选择1张「“ガラスの靴・フルコンタクト”シンデレラ」，正面朝上放置到此卡的下方作为指示物。<br>【自】【CX联动】你的高潮阶段中，「OLD TALES」放置到高潮区时，此卡是【竖置】状态的话，你可以执行以下行动。『你从自己的手牌或此卡下方的指示物中选择1张「“ガラスの靴・フルコンタクト”シンデレラ」，放置到舞台任意位置，此卡放置到休息室。』",
+    "all_cards": [
+      {
+        "id": "NIK/S135-033S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/S135-033",
+        "rarity": "R"
+      }
+    ]
+  },
+  "NIK/S135-035": {
+    "name": "“フェザーオールレンジ”アイン",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "スクールサークル"],
+    "color": "绿色",
+    "effect": "【自】此卡从手牌放置到舞台时，你从以下2个效果中选择1个执行。『你可以将自己时计区顶1张卡放置到休息室。』『对手将自己的费用全部返回卡组，卡组洗切，从自己的卡组顶将相同张数的卡放置到库存区，你选择自己其他1个角色，那个回合中，灵魂值＋1。』",
+    "all_cards": [
+      {
+        "id": "NIK/S135-035S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/S135-035SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "NIK/S135-035",
+        "rarity": "R"
+      }
+    ]
+  },
+  "NIK/S135-036": {
+    "name": "ミルク：ブルーミングバニー",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "カフェ・スウィーティー"],
+    "color": "绿色",
+    "effect": "【自】[1张手牌放置到休息室] 你触发到「テトララインCEO マスタング」或触发标记是<img src=\"/effect-icons/treasure.webp\">的高潮卡时，你可以支付费用。如果这么做的话，你看自己卡组顶至多2张卡，按喜欢的顺序放置到卡组顶，抽至多1张卡。<br>【起】[此卡【横置】] 你选择自己1个《NIKKE》的角色，那个回合中，战斗力＋1000。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-036",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/S135-036S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-038": {
+    "name": "メイデン：アイスローズ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "エクスターナー"],
+    "color": "绿色",
+    "effect": "【永】你其他全部的「ギロチン：ウィンタースレイヤー」，给予以下能力。『【自】此卡攻击时，此卡正面的角色的等级是2级以上的话，那个回合中，此卡的战斗力＋3000。』<br>【自】你的高潮阶段开始时，你选择自己1个《NIKKE》的角色，那个回合中，战斗力＋2000。<br>【起】[1张手牌放置到休息室，此卡【横置】] 你从自己的休息室选择1张「ギロチン：ウィンタースレイヤー」返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-038S",
+        "rarity": "SR"
+      },
+      {
+        "id": "NIK/S135-038",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/S135-038SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "NIK/S135-037": {
+    "name": "再び始まる物語 シンデレラ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "オールドテイルズ"],
+    "color": "绿色",
+    "effect": "【自】[1张手牌放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你从自己的休息室选择1张等级X以下的《NIKKE》的角色卡返回手牌。X是你休息室中「棺を背負う者 グレイブ」的数量。<br>【起】[(2) 此卡放置到休息室] 你的等级是3级以上的话，你从自己的休息室选择1张「“ガラスの靴・フルコンタクト”シンデレラ」，放置到此卡原来的位置。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-037S",
+        "rarity": "SR"
+      },
+      {
+        "id": "NIK/S135-037",
+        "rarity": "U"
+      }
+    ]
+  },
+  "NIK/S135-039": {
+    "name": "マルチャーナ - スクールデイズ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "アカデミア"],
+    "color": "绿色",
+    "effect": "【起】[此卡【横置】] 你看自己卡组顶1张卡，放置到卡组顶或卡组底或休息室，选择自己的1个角色，那个回合中，战斗力＋2000。<br>【起】[1张手牌放置到休息室，此卡放置到休息室] 你选择对手的2个角色，各自【竖置】互换。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-039S",
+        "rarity": "SR"
+      },
+      {
+        "id": "NIK/S135-039",
+        "rarity": "U"
+      }
+    ]
+  },
+  "NIK/S135-040": {
+    "name": "ルピー - ラグジュアリーラビット",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "タレント"],
+    "color": "绿色",
+    "effect": "【自】此卡攻击时，你有其他《NIKKE》的角色的话，那个回合中，此卡的战斗力＋3000。<br>【自】[2张手牌放置到休息室] 此卡的战斗对手【倒置】时，你的高潮区有触发标记是<img src=\"/effect-icons/treasure.webp\">的高潮卡的话，你可以支付费用。如果这么做的话，你从自己的休息室选择至多2张《NIKKE》的角色卡返回手牌，抽至多1张卡。抽了1张卡的话，你选择自己的1张手牌放置到休息室。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-040S",
+        "rarity": "SR "
+      },
+      {
+        "id": "NIK/S135-040",
+        "rarity": "U"
+      }
+    ]
+  },
+  "NIK/S135-041": {
+    "name": "“マザリーフォレスト”トリナ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "ボタニックガーデン"],
+    "color": "绿色",
+    "effect": "【永】应援 你此卡前全部的角色，战斗力＋1000。<br>【自】[1张手牌放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你从自己的休息室选择1张等级2以上的角色卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-041",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/S135-041S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-042": {
+    "name": "ユニ - ラブリーピンク",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 2,
+    "power": 3000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "ワードレス"],
+    "color": "绿色",
+    "effect": "【自】[1张手牌放置到休息室，你舞台的1个角色放置到休息室] 你使用此卡的『助太刀』时，你可以支付费用。如果这么做的话，你选择对手1个等级比对手等级高的角色返回手牌。<br>【起】【反击】助太刀2500 等级2 [(1) 手牌中此卡放置到休息室] （你选择自己1个被正面攻击的角色，那个回合中，战斗力＋2500）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-042",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/S135-042S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-043": {
+    "name": "ペッパー - オーシャンビタミン",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "セラフィム"],
+    "color": "绿色",
+    "effect": "【自】此卡【倒置】时，此卡的战斗对手的等级是0级以下的话，你可以将对手时计区顶1张卡放置到休息室。这样做的话，你将那个角色放置到时计区。<br>【起】[(1) 此卡放置到休息室] 你看自己卡组顶至多5张卡，选择至多1张等级1以上的卡展示给对手后加入手牌，其余的卡放置到休息室。（高潮卡视为0级）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-043S",
+        "rarity": "SR"
+      },
+      {
+        "id": "NIK/S135-043",
+        "rarity": "C"
+      }
+    ]
+  },
+  "NIK/S135-044": {
+    "name": "“正義への手段”K",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "シージペリラス"],
+    "color": "绿色",
+    "effect": "【自】此卡攻击时，你的手牌在4张以上的话，那个回合中，此卡的战斗力＋3000。<br>【自】此卡的战斗对手【倒置】时，你按喜欢的顺序执行以下2个效果各1次。『可以将对手时计区顶1张卡放置到休息室。这样做的话，你将那个战斗对手放置到时计区。』『从自己的休息室选择1张《NIKKE》的角色卡返回手牌，选择自己的1张手牌放置到休息室。』",
+    "all_cards": [
+      {
+        "id": "NIK/S135-044",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/S135-044S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-045": {
+    "name": "“ザ・ゲームマスター”ルージュ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "777"],
+    "color": "绿色",
+    "effect": "【自】此卡从手牌放置到舞台时，你可以从自己的等级区和休息室各选择1张卡互换。<br>【起】[1张手牌放置到休息室，此卡放置到休息室] 你从自己的休息室选择1张《NIKKE》的角色卡或「テトララインCEO マスタング」返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-045SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "NIK/S135-045S",
+        "rarity": "SR"
+      },
+      {
+        "id": "NIK/S135-045",
+        "rarity": "C"
+      }
+    ]
+  },
+  "NIK/S135-046": {
+    "name": "メアリー - メディカルラビット",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "セラフィム"],
+    "color": "绿色",
+    "effect": "【永】你的回合中，你有其他《NIKKE》的角色的话，此卡的战斗力＋3000。<br>【自】此卡的战斗对手【倒置】时，你的高潮区有触发标记是<img src=\"/effect-icons/treasure.webp\">的高潮卡的话，你从自己的休息室选择1张等级0以下的角色卡，【横置】放置到舞台任意位置。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-046S",
+        "rarity": "SR"
+      },
+      {
+        "id": "NIK/S135-046",
+        "rarity": "C"
+      }
+    ]
+  },
+  "NIK/S135-047": {
+    "name": "ドラー - ダークローズ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "タレント"],
+    "color": "绿色",
+    "effect": "【自】此卡从手牌放置到舞台时，你选择自己1个《NIKKE》的角色，那个回合中，战斗力＋1500。<br>【自】你的高潮阶段开始时，前列有此卡的话，你选择自己至多2个角色，那个回合中，给予以下能力。『【自】此卡攻击时，那次攻击中，你在触发步骤执行2次触发判定。执行2次的话，你将自己库存区顶1张卡放置到休息室。』",
+    "all_cards": [
+      {
+        "id": "NIK/S135-047",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/S135-047S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-048": {
+    "name": "“秘密の花園”フローラ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "ボタニックガーデン"],
+    "color": "绿色",
+    "effect": "【自】此卡攻击时，你选择自己其他1个《NIKKE》的角色，那个回合中，战斗力+X。X是你其他《NIKKE》的角色的数量×500。<br>【自】此卡攻击时，你全部的角色在那个回合中，给予以下能力。『【自】[(1)] 此卡的触发判定中出现高潮卡时，你可以支付费用。如果这么做的话，你将自己卡组顶1张卡放置到库存区，选择自己的1个角色，那个回合中，战斗力＋2000。』",
+    "all_cards": [
+      {
+        "id": "NIK/S135-048S",
+        "rarity": "SR"
+      },
+      {
+        "id": "NIK/S135-048",
+        "rarity": "C"
+      }
+    ]
+  },
+  "NIK/S135-049": {
+    "name": "ギルティ - ディスビリーフウェーブ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 2,
+    "power": 1500,
+    "cost": 1,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "リアルカインドネス"],
+    "color": "绿色",
+    "effect": "【自】[手牌中1张《NIKKE》的角色卡放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你选择对手前列2个等级2以下的角色。选择2个的话，你从以下2个效果中选择1个执行。『你从那些角色中选择1个战斗力最低的角色放置到休息室。』『那些角色全部的战斗力相同的话，你将那些角色全部放置到休息室。』",
+    "all_cards": [
+      {
+        "id": "NIK/S135-049",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/S135-049S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-050": {
+    "name": "ヤン - サンライズマーケット",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "タレント"],
+    "color": "绿色",
+    "effect": "【自】此卡从手牌放置到舞台时，那个回合中，此卡的战斗力+X。X是对手的角色数量×1000。<br>【自】此卡等级2以上的战斗对手【倒置】时，你的高潮区有高潮卡的话，你可以从自己的时计区选择1张《NIKKE》的角色卡放置到卡组底。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-050",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/S135-050S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-052": {
+    "name": "テトララインCEO マスタング",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 0,
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "你的《NIKKE》的角色在2个以下的话，此卡不能从手牌中使用。你从自己的休息室选择1张《NIKKE》的角色卡返回手牌。<br>［你等级区的1张《NIKKE》的角色卡放置到休息室］ 你可以支付费用。如果这么做的话，此卡放置到等级区。<br>【永】 你的高潮区有触发标记是<img src=\"/effect-icons/treasure.webp\">的高潮卡的话，所有区域的此卡获得触发标记<img src=\"/effect-icons/treasure.webp\">。<br>【永】 经验 等级区有此卡，你其他等级区有「テトララインCEO マスタング」的话，你手牌中全部《NIKKE》的角色卡，给予以下能力。『【永】 此卡可以在不满足颜色条件的情况下从手牌中使用。』",
+    "all_cards": [
+      {
+        "id": "NIK/S135-052",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/S135-052S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-051": {
+    "name": "穢れなき銀白",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 0,
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "【CX联动】你的等级在2级以下的话，你从自己的休息室选择1张等级X以下的《NIKKE》的角色卡返回手牌。X是你休息室中「OLD TALES」的数量。<br>[(2)] 你的等级在3级以上，你有持有指示物的「“ガラスの靴・フルコンタクト”シンデレラ」的话，你可以支付费用。如果这么做的话，你给对手造成2点或4点伤害。（发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-051S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/S135-051",
+        "rarity": "R"
+      }
+    ]
+  },
+  "NIK/S135-053": {
+    "name": "OLD TALES",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/treasure.webp\">:此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-053",
+        "rarity": "CR"
+      },
+      {
+        "id": "NIK/S135-053R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "NIK/S135-053A",
+        "rarity": "AGR"
+      }
+    ]
+  },
+  "NIK/S135-054": {
+    "name": "ICE DRAGON SAGA",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/treasure.webp\">:此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-054",
+        "rarity": "CR"
+      },
+      {
+        "id": "NIK/S135-054R",
+        "rarity": "RRR"
+      }
+    ]
+  },
+  "NIK/S135-055": {
+    "name": "GOLDEN COIN RUSH",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/treasure.webp\">:此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-055",
+        "rarity": "CR"
+      },
+      {
+        "id": "NIK/S135-055R",
+        "rarity": "RRR"
+      }
+    ]
+  },
+  "NIK/S135-056": {
+    "name": "“運命の鎖”アルカナ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "ベストセラー"],
+    "color": "红色",
+    "effect": "【自】此卡从手牌放置到舞台时，你选择自己的1个角色，那个回合中，战斗力＋2000。<br>【起】[【竖置】的此卡放置到卡组底] 你选择自己的1个角色，那个回合中，给予以下能力。『【自】此卡的战斗对手【倒置】时，你可以从自己的休息室选择1张《NIKKE》的角色卡返回手牌。』",
+    "all_cards": [
+      {
+        "id": "NIK/S135-056",
+        "rarity": "RR"
+      },
+      {
+        "id": "NIK/S135-056S",
+        "rarity": "SR⁂"
+      },
+      {
+        "id": "NIK/S135-056SSP",
+        "rarity": "SSP"
+      }
+    ]
+  },
+  "NIK/S135-057": {
+    "name": "王国を守る高貴な王 クラウン",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 2,
+    "power": 4000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "ヴァイスリッター"],
+    "color": "红色",
+    "effect": "【永】你其他《NIKKE》的角色有2个以上的话，此卡的战斗力＋6000。<br>【自】此卡从手牌放置到舞台时，你看自己卡组顶至多3张卡，选择至多1张事件卡或高潮卡展示给对手后加入手牌，其余的卡放置到休息室。加入了手牌的话，你选择自己的1张手牌放置到休息室。<br>【自】此卡从手牌放置到舞台时，你其他《NIKKE》的角色有4个以上的话，你可以从自己的休息室选择1张《NIKKE》的角色卡放置到库存区。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-057S",
+        "rarity": "SR⁂"
+      },
+      {
+        "id": "NIK/S135-057SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "NIK/S135-057",
+        "rarity": "RR"
+      }
+    ]
+  },
+  "NIK/S135-058": {
+    "name": "ラピ：レッドフード",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 3,
+    "power": 8000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "カウンターズ"],
+    "color": "红色",
+    "effect": "【永】你全部的角色是《NIKKE》的话，此卡的战斗力＋3000。<br>【自】此卡从手牌放置到舞台时，你可以将自己时计区顶1张卡放置到休息室。<br>【自】【CX联动】【一回合1次】此卡造成的伤害被取消时，你的高潮区有「FOOTSTEP, WALK, RUN」的话，你公开自己卡组顶4张卡，卡组洗切，给对手造成X次4点伤害。X是那些卡中高潮卡的数量。（公开的卡放回原处。发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-058",
+        "rarity": "RR"
+      },
+      {
+        "id": "NIK/S135-058S",
+        "rarity": "SR⁂"
+      },
+      {
+        "id": "NIK/S135-058SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "NIK/S135-058SEC",
+        "rarity": "SEC"
+      }
+    ]
+  },
+  "NIK/S135-059": {
+    "name": "“王のために”チャイム",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "ヴァイスリッター"],
+    "color": "红色",
+    "effect": "【自】此卡从手牌放置到舞台时，你可以从自己的时计区选择1张卡返回手牌。这样做的话，你选择自己的1张手牌放置到时计区。<br>【起】[1张手牌放置到休息室，此卡放置到休息室] 你从自己的休息室选择1张《NIKKE》的角色卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-059",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/S135-059S",
+        "rarity": "SR ⁑ "
+      }
+    ]
+  },
+  "NIK/S135-060": {
+    "name": "モダニア - セカンド・アフェクション",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "ヘレティック"],
+    "color": "红色",
+    "effect": "【自】此卡从手牌放置到舞台时，你公开自己卡组顶1张卡。那张卡是《NIKKE》的角色卡或「瞳に映る光」的话，你选择自己1个《NIKKE》的角色，那个回合中，战斗力＋1500。（公开的卡放回原处）<br>【自】此卡从手牌放置到舞台时，你选择自己的1个角色，那个回合中，给予以下能力。『【自】此卡的战斗对手【倒置】时，你选择自己其他1个角色，【横置】，移动到后列没有角色的位置。』",
+    "all_cards": [
+      {
+        "id": "NIK/S135-060",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/S135-060SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "NIK/S135-060S",
+        "rarity": "SR ⁑ "
+      }
+    ]
+  },
+  "NIK/S135-061": {
+    "name": "ロザンナ：シックオーシャン",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "アンダーワールドクイーン"],
+    "color": "红色",
+    "effect": "【自】[此卡返回手牌] 你的高潮卡放置到高潮区时，你可以支付费用。如果这么做的话，你选择自己的1个角色，那个回合中，战斗力＋2000。<br>【自】【CX联动】[(1)] 你的「BEAUTY FULL SHOT」放置到高潮区时，你可以支付费用。如果这么做的话，你选择自己其他1个「サクラ：ブルーム・イン・サマー」或「モラン - オフ・デューティー・クイーン」，【竖置】。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-061",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/S135-061SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "NIK/S135-061S",
+        "rarity": "SR ⁑ "
+      }
+    ]
+  },
+  "NIK/S135-062": {
+    "name": "エマ：タクティカル・アップ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "アブソルート"],
+    "color": "红色",
+    "effect": "【自】【CX联动】你的「ABSOLUTE」放置到高潮区时，你的等级在3级以上，前列有此卡，你前列有其他「ウンファ：タクティカル・アップ」和「ベスティー：タクティカル・アップ」的话，你看对手卡组顶至多4张卡，选择至多4张卡放置到休息室，其余的卡返回卡组，对手将卡组洗切。<br>【起】集中 [(1) 此卡【横置】] 你将自己卡组顶5张卡放置到休息室。那些卡中有高潮卡的话，你看自己卡组顶1张卡，放置到卡组顶或卡组底或休息室，从自己的休息室选择至多1张角色卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-062",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/S135-062S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/S135-062SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "NIK/S135-063": {
+    "name": "ウンファ：タクティカル・アップ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 2,
+    "power": 3000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "アブソルート"],
+    "color": "红色",
+    "effect": "【永】你的回合中，你其他全部《NIKKE》的角色，战斗力＋2000。<br>【自】【CX联动】你的「ABSOLUTE」放置到高潮区时，你的等级在3级以上，前列有此卡，你前列有其他「ベスティー：タクティカル・アップ」和「エマ：タクティカル・アップ」的话，你将自己卡组顶至多4张卡放置到库存区，执行以下行动。『你可以将对手卡组顶10张卡放置到休息室。』<br>【起】[此卡【横置】] 你抽1张卡，选择自己的1张手牌放置到休息室。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-063",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/S135-063S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/S135-063SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "NIK/S135-064": {
+    "name": "レッドフード - ナンセンスレッド",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "ゴッデス"],
+    "color": "红色",
+    "effect": "【永】你有「レッドフード - レトロデイズ」和「ラピ：レッドフード - レッドフレーバー」的话，你手牌中此卡的等级－1。<br>【自】此卡从手牌放置到舞台时，你从以下2个效果中选择1个执行。『你可以从自己的休息室选择1张《NIKKE》的角色卡返回手牌。』『直到下一个对手的回合结束为止，此卡的战斗力＋4000，此卡获得以下能力。『【永】此卡不会被对手的效果选择。』』<br>【自】此卡的战斗对手【倒置】时，你可以将那个角色思出。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-064",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/S135-064SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "NIK/S135-064S",
+        "rarity": "SR ⁑ "
+      }
+    ]
+  },
+  "NIK/S135-065": {
+    "name": "ベスティー：タクティカル・アップ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10500,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "アブソルート"],
+    "color": "红色",
+    "effect": "【自】【CX联动】此卡从手牌放置到舞台时，你可以从自己的休息室选择1张「ABSOLUTE」返回手牌或放置到库存区。<br>【自】【CX联动】[⑩ 5张手牌放置到休息室，此卡【横置】] 你的「ABSOLUTE」放置到高潮区时，前列有此卡，你前列有其他「ウンファ：タクティカル・アップ」和「エマ：タクティカル・アップ」的话，你可以支付费用。如果这么做的话，你执行以下行动3次。『你选择对手前列至多1个等级3以下的角色，放置到卡组顶，给对手造成4点伤害。』（发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-065",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/S135-065S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/S135-065SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "NIK/S135-066": {
+    "name": "“ファーストウィナー”ベイ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "リワインド"],
+    "color": "红色",
+    "effect": "【永】应援 你的回合中，你此卡前全部等级1以上的角色，战斗力＋500。<br>【起】集中 [(1) 此卡【横置】] 你将自己卡组顶4张卡放置到休息室。那些卡中每有1张高潮卡，执行以下行动。『你看自己卡组顶至多3张卡，选择至多1张卡加入手牌，其余的卡放置到休息室。』",
+    "all_cards": [
+      {
+        "id": "NIK/S135-066",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/S135-066SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "NIK/S135-066S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-067": {
+    "name": "“水底の世界”リバーレリオ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "ヘレティック"],
+    "color": "红色",
+    "effect": "【永】你的回合中，此卡的战斗力＋2000。<br>【自】[(1) 你舞台其他1个【竖置】的《NIKKE》的角色思出] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你从自己的卡组找至多1张《NIKKE》的角色卡展示给对手后加入手牌，卡组洗切。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-067",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/S135-067S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-068": {
+    "name": "デルタ：ニンジャシーフ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "スカウティング"],
+    "color": "红色",
+    "effect": "【自】[(1) 2张手牌放置到休息室] 此卡从手牌放置到舞台的回合中，此卡攻击时，你可以支付费用。如果这么做的话，你从自己的卡组找至多2张《NIKKE》的角色卡展示给对手后加入手牌，卡组洗切。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-068S",
+        "rarity": "SR"
+      },
+      {
+        "id": "NIK/S135-068",
+        "rarity": "U"
+      }
+    ]
+  },
+  "NIK/S135-069": {
+    "name": "レッドフード - レトロデイズ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "ゴッデス"],
+    "color": "红色",
+    "effect": "【永】【CX联动】你的高潮区有高潮卡，你没有其他「レッドフード - レトロデイズ」的话，你全部区域的「CODENAME - RED HOOD -」的触发标记给予<img src=\"/effect-icons/salvage.webp\">。<br>【起】【CX联动】集中 [(1) 此卡【横置】] 你将自己卡组顶5张卡放置到休息室。那些卡中每有1张「CODENAME - RED HOOD -」或「FOOTSTEP, WALK, RUN」，你从自己的休息室选择至多1张《NIKKE》的角色卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-069S",
+        "rarity": "SR"
+      },
+      {
+        "id": "NIK/S135-069",
+        "rarity": "U"
+      }
+    ]
+  },
+  "NIK/S135-070": {
+    "name": "ラピ：レッドフード - レッドフレーバー",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "カウンターズ"],
+    "color": "红色",
+    "effect": "【永】你有其他的「レッドフード - レトロデイズ」，这个回合中，你没有「色づき出す世界」的话，你手牌的「色づき出す世界」的费用－1。<br>【永】【CX联动】你的高潮区有高潮卡，你没有其他的「ラピ：レッドフード - レッドフレーバー」的话，你全部区域的「FOOTSTEP, WALK, RUN」的触发标记给予<img src=\"/effect-icons/shot.webp\">。<br>【永】应援 你此卡前全部《NIKKE》的角色，战斗力+X。X是那个角色的等级×500。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-070",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/S135-070S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-071": {
+    "name": "“GO！GO！VICTORY！”クレイ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "リワインド"],
+    "color": "红色",
+    "effect": "【永】应援 你的回合中，你有其他「“ファーストウィナー”ベイ」的话，你此卡前全部《NIKKE》的角色，战斗力＋1500。<br>【起】[(1) 1张手牌放置到休息室，此卡【横置】] 你从自己的休息室选择1张角色卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-071",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/S135-071SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "NIK/S135-071S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-072": {
+    "name": "“秘技・怪盗乱舞”ファントム",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "ベストセラー"],
+    "color": "红色",
+    "effect": "【永】你的回合中，你其他《NIKKE》的角色有2个以上的话，此卡的战斗力＋4000，此卡获得以下能力。『【自】此卡攻击时，此卡正面的角色的等级是2级的话，那个回合中，此卡的战斗力＋6000。』<br>【自】此卡【倒置】时，此卡的战斗对手的等级是1级以下的话，你可以将那个角色【倒置】。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-072",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/S135-072S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-073": {
+    "name": "クエンシー：エスケープクイーン",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 1,
+    "power": 1000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "リアルカインドネス"],
+    "color": "红色",
+    "effect": "【自】你使用此卡的『助太刀』时，你有《NIKKE》的角色的话，你将自己或对手卡组顶3张卡放置到休息室。<br>【起】【反击】助太刀2000 等级1 [(1) 手牌中此卡放置到休息室] （你选择自己1个被正面攻击的角色，那个回合中，战斗力＋2000）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-073",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/S135-073S",
+        "rarity": "SR"
+      },
+      {
+        "id": "NIK/S135-073SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "NIK/S135-074": {
+    "name": "モラン - オフ・デューティー・クイーン",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "アンダーワールドクイーン"],
+    "color": "红色",
+    "effect": "【永】你其他《NIKKE》的角色有2个以上的话，此卡的战斗力＋1500，此卡获得『【自】再演 [手牌中1张角色卡放置到休息室]』。<br>【自】此卡攻击时，那次攻击中，你在触发步骤执行2次触发判定。执行2次的话，你将自己库存区顶1张卡放置到休息室。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-074",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/S135-074S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-075": {
+    "name": "アリス：ワンダーランドバニー",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "アンリミテッド"],
+    "color": "红色",
+    "effect": "【永】你的回合中，你有其他《NIKKE》的角色的话，此卡的战斗力＋6000。<br>【自】【CX联动】你的「GOLDEN COIN RUSH」放置到高潮区时，前列有此卡，你其他《NIKKE》的角色有4个以上的话，你从自己的卡组找至多1张《NIKKE》的角色卡展示给对手后加入手牌，卡组洗切，从自己的休息室选择至多1张《NIKKE》的角色卡放置到库存区。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-075S",
+        "rarity": "SR"
+      },
+      {
+        "id": "NIK/S135-075",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/S135-075SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "NIK/S135-076": {
+    "name": "サクラ：ブルーム・イン・サマー",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "アンダーワールドクイーン"],
+    "color": "红色",
+    "effect": "【永】你的回合中，你其他《NIKKE》的角色有2个以上的话，此卡的战斗力＋5000，此卡获得以下能力。『【自】此卡攻击时，你看自己卡组顶1张卡，放置到卡组顶或休息室。』<br>【自】再演 [手牌中1张《NIKKE》的角色卡放置到休息室] （此卡从舞台放置到休息室时，你可以支付费用。如果这么做的话，你将此卡【横置】放置到原来的位置）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-076",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/S135-076SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "NIK/S135-076S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-077": {
+    "name": "色づき出す世界",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 1,
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "你从自己的休息室选择1张卡名含有「ラピ」或「レッドフード」的角色卡返回手牌。此卡思出。<br>【自】记忆 思出区有此卡的话，你的高潮阶段开始时，你可以选择自己1个没有指示物的「ラピ：レッドフード」，将此卡正面朝上放置到那个角色的下方作为指示物。这样做的话，那个回合中，那个角色的战斗力＋3000，给予那个角色以下能力。『【自】[(1) 2张手牌放置到休息室] 此卡的攻击结束时，你可以支付费用。如果这么做的话，给对手造成2点伤害。』（发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-077",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/S135-077S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-078": {
+    "name": "エリシオンCEO イングリッド",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 0,
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "你选择自己的1个角色，那个回合中，给予以下能力。『【自】此卡的战斗对手【倒置】时，你可以从自己的休息室选择1张《NIKKE》的角色卡返回手牌。』<br>此卡放置到库存区。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-078S",
+        "rarity": "SR"
+      },
+      {
+        "id": "NIK/S135-078",
+        "rarity": "U"
+      }
+    ]
+  },
+  "NIK/S135-079": {
+    "name": "GO！ NINJA THIEF！",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "事件卡",
+    "level": 3,
+    "power": "-",
+    "cost": 1,
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "你没有《NIKKE》的角色的话，此卡不能从手牌中使用。<br>你选择对手1个等级3以下的角色放置到休息室。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-079",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/S135-079S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-080": {
+    "name": "FOOTSTEP, WALK, RUN",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-080",
+        "rarity": "CR"
+      },
+      {
+        "id": "NIK/S135-080R",
+        "rarity": "RRR"
+      }
+    ]
+  },
+  "NIK/S135-081": {
+    "name": "BEAUTY FULL SHOT",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 1,
+    "trait": "-",
+    "color": "红色",
+    "effect": "【自】此卡从手牌放置到高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br>（<img src=\"/effect-icons/standby.webp\">:此卡被触发时，你可以从自己的休息室选择1张等级在自己等级＋1以下的角色卡，【横置】放置到舞台任意位置）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-081",
+        "rarity": "CR"
+      },
+      {
+        "id": "NIK/S135-081R",
+        "rarity": "RRR"
+      }
+    ]
+  },
+  "NIK/S135-082": {
+    "name": "ABSOLUTE",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-082",
+        "rarity": "CR"
+      },
+      {
+        "id": "NIK/S135-082R",
+        "rarity": "RRR"
+      }
+    ]
+  },
+  "NIK/S135-083": {
+    "name": "プリバティ - バンケット・プリンセス",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "トライアングル"],
+    "color": "蓝色",
+    "effect": "【自】[1张手牌放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你看自己卡组顶至多4张卡，选择至多1张「プリバティ - バンケット・プリンセス」或等级1以上的卡展示给对手后加入手牌，其余的卡放置到休息室。（高潮卡视为0级）<br>【自】此卡攻击时，你选择自己1个《NIKKE》的角色，那个回合中，战斗力＋1500。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-083",
+        "rarity": "RR"
+      },
+      {
+        "id": "NIK/S135-083SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "NIK/S135-083S",
+        "rarity": "SR⁂"
+      }
+    ]
+  },
+  "NIK/S135-084": {
+    "name": "“セイレーンソング”リトルマーメイド",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "オールドテイルズ"],
+    "color": "蓝色",
+    "effect": "【永】你的回合中，你有其他《NIKKE》的角色的话，此卡的战斗力＋4500。<br>【自】【CX联动】此卡攻击时，高潮区有「UNBREAKABLE SPHERE」的话，你看自己卡组顶至多5张卡，选择至多2张《NIKKE》的角色卡或事件卡展示给对手，1张加入手牌，1张放置到库存区，其余的卡放置到休息室。放置到库存区的话，你选择自己的1张手牌放置到休息室。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-084",
+        "rarity": "RR"
+      },
+      {
+        "id": "NIK/S135-084S",
+        "rarity": "SR⁂"
+      },
+      {
+        "id": "NIK/S135-084SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "NIK/S135-084SEC",
+        "rarity": "SEC"
+      }
+    ]
+  },
+  "NIK/S135-085": {
+    "name": "ディーゼル：ウィンタースイーツ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "インフィニティレール"],
+    "color": "蓝色",
+    "effect": "【永】你其他《NIKKE》的角色有2个以上的话，此卡的战斗力＋4000。<br>【自】【CX联动】你的「TERMINUS TICKET」放置到高潮区时，你的手牌在5张以下，你其他《NIKKE》的角色有4个以上的话，那个回合中，此卡获得以下2个能力。『【自】此卡攻击时，你看对手卡组顶至多2张卡，选择至多2张卡，以喜欢的顺序放置到卡组顶，其余的卡放置到休息室。』『【自】此卡的战斗对手【倒置】时，你公开自己卡组顶1张卡。那张卡是等级2以下的角色卡的话加入手牌。』（否则放回原处）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-085",
+        "rarity": "RR"
+      },
+      {
+        "id": "NIK/S135-085S",
+        "rarity": "SR⁂"
+      }
+    ]
+  },
+  "NIK/S135-086": {
+    "name": "紅蓮：ブラックシャドウ - ロンギングフラワー",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "ゴッデス"],
+    "color": "蓝色",
+    "effect": "【永】你的手牌在5张以上的话，此卡的战斗力＋3000，此卡获得以下能力。『【永】此卡正面的角色不能移动到其他位置，不能思出。』<br>【自】对手的攻击阶段开始时，你可以将此卡移动到前列没有角色，正面有对手角色的位置。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-086SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "NIK/S135-086S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/S135-086",
+        "rarity": "R"
+      }
+    ]
+  },
+  "NIK/S135-087": {
+    "name": "幸せを運ぶAZX ディーゼル",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "インフィニティレール"],
+    "color": "蓝色",
+    "effect": "【自】你的高潮卡放置到高潮区时，你可以从自己的时计区选择1张卡返回手牌。这样做的话，你选择自己的1张手牌放置到时计区。<br>【起】集中 [(1) 此卡【横置】] 你将自己卡组顶4张卡放置到休息室。那些卡中每有1张高潮卡，你从自己的休息室选择至多1张《NIKKE》的角色卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-087S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/S135-087",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/S135-087SSP",
+        "rarity": "SSP"
+      }
+    ]
+  },
+  "NIK/S135-088": {
+    "name": "“ニューフレーバー”ブレッディ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "クッキングオイル"],
+    "color": "蓝色",
+    "effect": "【自】【CX联动】[你高潮区的1张「NEW FLAVOR」放置到休息室] 你的再演步骤开始时，你有其他《NIKKE》的角色的话，你可以支付费用。如果这么做的话，你将自己卡组顶至多2张卡放置到库存区。<br>【起】[(1) 此卡【横置】] 你选择自己的1个角色，那个回合中，给予以下能力。『【自】此卡的战斗对手【倒置】时，你看自己卡组顶至多3张卡，选择至多1张《NIKKE》的角色卡或事件卡展示给对手后加入手牌，其余的卡放置到休息室。』",
+    "all_cards": [
+      {
+        "id": "NIK/S135-088",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/S135-088S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/S135-088SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "NIK/S135-089": {
+    "name": "リトルマーメイド - アビスフラワー",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "オールドテイルズ"],
+    "color": "蓝色",
+    "effect": "【永】你其他位于前列中央的「“セイレーンソング”リトルマーメイド」或「“ガラスの靴・フルコンタクト”シンデレラ」，战斗力＋500，给予以下能力。『【永】此卡不会被对手的效果选择。』<br>【起】【CX联动】集中 [(1) 此卡【横置】] 你将自己卡组顶4张卡放置到休息室。那些卡中每有1张「UNBREAKABLE SPHERE」或「OLD TALES」，你从自己的休息室选择至多1张角色卡返回手牌，选择自己的1个角色，直到下一个对手的回合结束为止，给予以下能力。『【永】对手的回合中，此卡不会被对手的效果选择。』",
+    "all_cards": [
+      {
+        "id": "NIK/S135-089",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/S135-089S",
+        "rarity": "SR ⁑ "
+      }
+    ]
+  },
+  "NIK/S135-090": {
+    "name": "ラプンツェル：ピュアグレイス",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "ゴッデス"],
+    "color": "蓝色",
+    "effect": "【自】[1张手牌放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你公开自己卡组顶1张卡，从自己的休息室选择1张等级X以下的《NIKKE》的角色卡返回手牌。X是公开的卡的等级。（高潮卡视为0级。公开的卡放回原处）<br>【自】此卡攻击时，你其他《NIKKE》的角色有2个以上的话，你选择自己的1个角色，直到下一个对手的回合结束为止，战斗力＋1000。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-090",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/S135-090S",
+        "rarity": "SR ⁑ "
+      }
+    ]
+  },
+  "NIK/S135-091": {
+    "name": "ドロシー：セレンディピティ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 3,
+    "power": 8000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "インヘルト"],
+    "color": "蓝色",
+    "effect": "【永】你休息室的高潮卡在2张以下的话，你手牌中此卡的等级－1。<br>【自】[1张手牌放置到休息室] 此卡从手牌放置到舞台时，那个回合中，此卡的战斗力＋4500，你可以支付费用。如果这么做的话，你将自己时计区底1张卡放置到库存区。<br>【自】此卡等级2以上的战斗对手【倒置】时，你公开自己卡组顶1张卡。那张卡是《NIKKE》的角色卡的话，你可以从自己的休息室选择1张《NIKKE》的角色卡返回手牌。（公开的卡放回原处）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-091",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/S135-091S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/S135-091SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "NIK/S135-092": {
+    "name": "ソーダ：トゥインクルバニー",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "メイド・フォー・ユー"],
+    "color": "蓝色",
+    "effect": "【永】你休息室触发标记是<img src=\"/effect-icons/treasure.webp\">的高潮卡有3张以上的话，你手牌中此卡的等级－1。<br>【自】此卡从手牌放置到舞台的回合中，此卡攻击时，你全部的角色在那个回合中，战斗力＋1000，给予以下能力。『【自】此卡的战斗对手【倒置】时，你可以将那个角色放置到卡组底。』",
+    "all_cards": [
+      {
+        "id": "NIK/S135-092S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/S135-092",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/S135-092SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "NIK/S135-093": {
+    "name": "“トゥルー・フレーバー”クラスト",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "クッキングオイル"],
+    "color": "蓝色",
+    "effect": "【自】[手牌中1张高潮卡放置到休息室，你其他舞台的1个角色放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你从自己的休息室选择1张高潮卡返回手牌。<br>【自】[手牌中1张高潮卡放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你从自己的休息室选择1张《NIKKE》的角色卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-093",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/S135-093S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-094": {
+    "name": "黄金色の光 ラプンツェル",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 2,
+    "power": 500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "パイオニア"],
+    "color": "蓝色",
+    "effect": "【永】你的等级在2级以上的话，你其他全部的「二千の分身 ナユタ」，灵魂值＋1。<br>【永】你的回合中，你其他全部的角色，战斗力+X。X是那个角色的灵魂值×1000。<br>【起】[此卡【横置】] 你的思出区在5张以下的话，你从自己的休息室选择1张「二千の分身 ナユタ」，放置到思出区。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-094S",
+        "rarity": "SR"
+      },
+      {
+        "id": "NIK/S135-094",
+        "rarity": "U"
+      }
+    ]
+  },
+  "NIK/S135-095": {
+    "name": "ブリッド：サイレントトラック",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "インフィニティレール"],
+    "color": "蓝色",
+    "effect": "【永】你其他《NIKKE》的角色有2个以上的话，此卡的战斗力＋3000，此卡获得以下能力。『【自】[(1)] 此卡攻击时，你可以支付费用。如果这么做的话，那次攻击中，你在触发步骤执行2次触发判定。』<br>【自】[手牌中1张《NIKKE》的角色卡放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你从自己的卡组找至多1张「ディーゼル：ウィンタースイーツ」展示给对手后加入手牌，卡组洗切。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-095",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/S135-095S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-096": {
+    "name": "ハラン - バンケット・ウィッチ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "インヘルト"],
+    "color": "蓝色",
+    "effect": "【永】你的回合中，此卡的战斗力＋4000。<br>【自】[手牌中1张高潮卡放置到休息室，此卡放置到休息室] 你其他《NIKKE》的角色被正面攻击时，你其他的角色有2个以上的话，你可以支付费用。如果这么做的话，那个回合中，那个角色不会【倒置】。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-096",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/S135-096S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-097": {
+    "name": "イサベル - ハネムーンパーティー",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 2,
+    "power": 4500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "インヘルト"],
+    "color": "蓝色",
+    "effect": "【自】此卡从手牌放置到舞台时，你选择自己至多2个角色，那个回合中，给予以下能力。『【自】此卡【倒置】时，此卡的战斗对手的等级比对手等级高的话，你可以将那个角色放置到卡组底。』",
+    "all_cards": [
+      {
+        "id": "NIK/S135-097",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/S135-097S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-098": {
+    "name": "エード：エージェントバニー",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 2,
+    "power": 5500,
+    "cost": 1,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "メイド・フォー・ユー"],
+    "color": "蓝色",
+    "effect": "【自】[(1) 1张手牌放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，对手从自己的休息室选择1张高潮卡，将休息室除那张卡以外的卡全部返回卡组，卡组洗切。<br>【自】此卡攻击时，你的休息室触发标记是<img src=\"/effect-icons/treasure.webp\">的高潮卡有2张以上的话，你选择自己其他1个《NIKKE》的角色，那个回合中，战斗力＋3000。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-098",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/S135-098S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-099": {
+    "name": "ミランダ - シーフ・オブ・ジャスティス",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "A.C.P.U."],
+    "color": "蓝色",
+    "effect": "【自】此卡从手牌放置到舞台时，你看自己卡组顶1张卡，放置到卡组顶或卡组底。<br>【自】此卡从手牌放置到舞台时，所有玩家将自己卡组顶1张卡放置到休息室。你通过这个效果放置到休息室的卡的等级比对手通过这个效果放置到休息室的卡的等级高的话，你可以抽1张卡。（高潮卡视为0级）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-099",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/S135-099S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-100": {
+    "name": "“フェイタルエラー！”マナ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "M.M.R."],
+    "color": "蓝色",
+    "effect": "【自】[此卡放置到卡组底] 你其他《NIKKE》的角色【倒置】时，后列有此卡的话，你可以支付费用。如果这么做的话，你将那个角色返回手牌。<br>【起】[此卡【横置】] 你选择对手的1个角色，直到下一个对手的回合结束为止，给予以下能力。『【永】此卡不能移动到其他位置。』",
+    "all_cards": [
+      {
+        "id": "NIK/S135-100",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/S135-100S",
+        "rarity": "SR"
+      },
+      {
+        "id": "NIK/S135-100SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "NIK/S135-101": {
+    "name": "“マッスルオールマイティー”ルマニ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "ライフトニック"],
+    "color": "蓝色",
+    "effect": "【起】[此卡放置到时计区] 你抽至多2张卡，选择自己的1张手牌放置到休息室。<br>【起】[此卡【横置】] 你选择自己的1个角色，那个回合中，战斗力+X。X是你等级×1500。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-101S",
+        "rarity": "SR"
+      },
+      {
+        "id": "NIK/S135-101",
+        "rarity": "C"
+      }
+    ]
+  },
+  "NIK/S135-102": {
+    "name": "ソリン：フロストチケット",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 1,
+    "power": 1000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "インフィニティレール"],
+    "color": "蓝色",
+    "effect": "【永】你其他位于前列中央的《インフィニティレール》的角色，战斗力＋500，给予『【自】再演 [手牌中1张角色卡放置到休息室]』的能力。<br>【永】应援 你此卡前全部《NIKKE》的角色，战斗力+X。X是那个角色的等级×500。<br>【自】【时计区】警铃 此卡在时计区最上面，你的《インフィニティレール》的角色有3个以上的话，你的攻击阶段开始时，你可以将自己卡组顶1张卡放置到库存区。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-102S",
+        "rarity": "SR"
+      },
+      {
+        "id": "NIK/S135-102",
+        "rarity": "C"
+      }
+    ]
+  },
+  "NIK/S135-104": {
+    "name": "紅蓮 - レーサーズハイ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 1,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "パイオニア"],
+    "color": "蓝色",
+    "effect": "【永】你<img src=\"/effect-icons/choice.webp\">或<img src=\"/effect-icons/gate.webp\">的效果可以选择自己休息室的「二千の分身 ナユタ」。<br>【自】此卡攻击时，那个回合中，此卡的战斗力+X。X是你其他《NIKKE》的角色的数量×1500。<br>【起】【一回合1次】集中 [(1) 你的2个角色【横置】] 你将自己卡组顶5张卡放置到休息室。那些卡中每有1张高潮卡，你从自己的休息室选择至多2张「二千の分身 ナユタ」返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-104",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/S135-104S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-105": {
+    "name": "シン - バックストリートドリーム",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 2,
+    "power": 1500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "リアルカインドネス"],
+    "color": "蓝色",
+    "effect": "【自】[你舞台的1个角色放置到休息室] 你使用此卡的『助太刀』时，你可以支付费用。如果这么做的话，你从自己的休息室选择1张「シン - バックストリートドリーム」返回手牌。<br>【起】【反击】助太刀2500 等级2 [(1) 手牌中此卡放置到休息室] （你选择自己1个被正面攻击的角色，那个回合中，战斗力＋2500）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-105",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/S135-105S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-106": {
+    "name": "フォルクヴァン - モイストラビット",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "ライフトニック"],
+    "color": "蓝色",
+    "effect": "【自】[1张手牌放置到休息室] 此卡从手牌放置到舞台时，你休息室触发标记是<img src=\"/effect-icons/treasure.webp\">的高潮卡有4张以上的话，你可以支付费用。如果这么做的话，你将自己时计区顶1张卡放置到休息室。<br>【起】[【竖置】的此卡放置到休息室] 你选择对手的1个角色返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-106",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/S135-106S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-103": {
+    "name": "“プライオリタイズ”キロ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["NIKKE", "ヘビーグラム"],
+    "color": "蓝色",
+    "effect": "【自】你的高潮卡放置到高潮区时，那个回合中，此卡的战斗力＋6000，此卡获得以下能力。『【自】此卡的战斗对手【倒置】时，你可以将那个角色放置到卡组底。』<br>【自】再演 [手牌中1张角色卡放置到休息室] （此卡从舞台放置到休息室时，你可以支付费用。如果这么做的话，你将此卡【横置】放置到原来的位置）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-103S",
+        "rarity": "SR"
+      },
+      {
+        "id": "NIK/S135-103",
+        "rarity": "C"
+      }
+    ]
+  },
+  "NIK/S135-107": {
+    "name": "アークのプロフェッショナルな警察官 ポリ",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["NIKKE", "A.C.P.U."],
+    "color": "蓝色",
+    "effect": "【自】此卡从手牌放置到舞台时，你执行以下行动2次。『你可以选择对手1个等级1以上的角色。这样做的话，对手从自己的休息室选择1个等级X以下的角色互换。X是你选择的角色的等级－1。』<br>【自】对手使用【起】效果时，那个回合中，此卡的战斗力＋1500。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-107",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/S135-107S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-108": {
+    "name": "白の上に重なるもうひとつの白",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 1,
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "你有《NIKKE》的角色的话，你从自己的卡组找至多1张等级2以上的《NIKKE》的角色卡展示给对手后加入手牌，卡组洗切。此卡思出。<br>【自】记忆 [1张手牌放置到休息室] 思出区有此卡的话，你的高潮卡触发时，你可以支付费用。如果这么做的话，你从自己的休息室选择1张《NIKKE》的角色卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-108",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/S135-108S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-110": {
+    "name": "UNBREAKABLE SPHERE",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-110R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "NIK/S135-110",
+        "rarity": "CR"
+      }
+    ]
+  },
+  "NIK/S135-109": {
+    "name": "WISDOM SPRING",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 1,
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【反击】[手牌中1张高潮卡放置到休息室] 你的《NIKKE》的角色有3个以上的话，你可以支付费用。如果这么做的话，你将自己时计区顶至多2张卡放置到休息室。此卡思出。",
+    "all_cards": [
+      {
+        "id": "NIK/S135-109",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/S135-109S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "NIK/S135-111": {
+    "name": "TERMINUS TICKET",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-111",
+        "rarity": "CR"
+      },
+      {
+        "id": "NIK/S135-111R",
+        "rarity": "RRR"
+      }
+    ]
+  },
+  "NIK/S135-112": {
+    "name": "NEW FLAVOR",
+    "product_name": "勝利の女神：NIKKE Vol.2",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "NIK/S135-112",
+        "rarity": "CR"
+      },
+      {
+        "id": "NIK/S135-112R",
+        "rarity": "RRR"
+      }
+    ]
+  }
+}
