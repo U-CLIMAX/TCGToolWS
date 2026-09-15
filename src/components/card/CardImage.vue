@@ -109,6 +109,9 @@ onMounted(() => {
   flex-direction: column;
   width: 100%;
   isolation: isolate;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: radial-gradient(white, black);
+  transform: translateZ(0);
 }
 
 .card-img-box.align-end {
@@ -132,6 +135,7 @@ onMounted(() => {
   -webkit-user-drag: none;
   -webkit-touch-callout: none;
   pointer-events: none;
+  border-radius: inherit;
 }
 
 .card-img-blur {
