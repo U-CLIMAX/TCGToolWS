@@ -34,7 +34,6 @@ const addAllToIndex = (cards, index) => {
 }
 
 const NON_LOWEST_RARITIES = new Set(['AGR'])
-const QUOTE_REGEX = /[「｢]([^」｣]+)[」｣]/g
 
 const CardFilterService = {
   /**
@@ -102,17 +101,20 @@ const CardFilterService = {
       }
     }
 
-    // 2. 在 Base Card 層級建立雙向連結 (使用高效局部正則掃描 + Map O(1) 查找)
+    // 2. 在 Base Card 層級建立雙向連結
     const baseLinks = new Map()
     if (nameToBaseIds.size > 0) {
+      const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+      const allNamesPattern = [...nameToBaseIds.keys()].map(escapeRegex).join('|')
+      const nameMatcherRegex = new RegExp(`[「｢](${allNamesPattern})[」｣]`, 'g')
+
       for (let b = 0; b < baseCards.length; b++) {
         const { baseId, cardData } = baseCards[b]
         const effectText = cardData.effect || ''
         if (!effectText) continue
 
-        QUOTE_REGEX.lastIndex = 0
-        let match
-        while ((match = QUOTE_REGEX.exec(effectText)) !== null) {
+        const matches = effectText.matchAll(nameMatcherRegex)
+        for (const match of matches) {
           const foundName = match[1]
           const sourceBaseIds = nameToBaseIds.get(foundName)
           if (sourceBaseIds) {
