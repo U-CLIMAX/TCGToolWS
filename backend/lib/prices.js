@@ -1,6 +1,6 @@
 import { verify } from 'hono/jwt'
 import { createErrorResponse } from './utils.js'
-import { decompressFromEncodedURIComponent } from 'lz-string'
+import { seriesYytMap } from '../maps/series-yyt-map.js'
 import { parseTokens, fetchPageWithFallback } from '../services/scraper.js'
 
 /**
@@ -18,21 +18,60 @@ const getFastHash = (str) => {
 }
 
 /**
- * Handles fetching series prices from Yuyu-tei.
- * Fetches all pages with max 3 concurrent requests, compresses, and caches in KV.
+ * Precomputed hash map for all series URLs
+ * @type {Record<string, string>}
+ */
+const seriesHashMap = Object.fromEntries(
+  Object.entries(seriesYytMap).map(([id, url]) => [id, getFastHash(url)])
+)
+
+/**
+ * Precomputed Gzip-compressed empty JSON array "[]" (22 bytes)
+ * @type {Uint8Array}
+ */
+const EMPTY_GZIP_BUFFER = new Uint8Array([
+  31, 139, 8, 0, 0, 0, 0, 0, 0, 3, 139, 138, 5, 0, 149, 155, 178, 12, 2, 0, 0, 0,
+])
+
+/**
+ * Handles fetching all series URL hashes.
  * @param {AppContext} c - Hono context object.
  * @returns {Response}
+ */
+export const handleGetSeriesHashes = async (c) => {
+  return c.json(seriesHashMap, 200, {
+    'Cache-Control': 'public, max-age=300, s-maxage=1800, stale-while-revalidate=3600',
+  })
+}
+
+/**
+ * Handles fetching series prices from Yuyu-tei based on seriesId.
+ * Looks up the series Yuyu-tei URL from backend seriesYytMap, fetches pages,
+ * compresses, and caches in KV.
+ * Returns empty array buffer (200 OK) if series has no price configuration.
+ * @param {AppContext} c - Hono context object.
+ * @returns {Promise<Response>}
  */
 export const handleGetSeriesPrices = async (c) => {
   try {
     const seriesId = c.req.param('seriesId')
-    const yytUrl = decompressFromEncodedURIComponent(c.req.query('ref'))
 
-    if (!seriesId || !yytUrl) {
-      return createErrorResponse(c, 400, '缺少 seriesId 或 url')
+    if (!seriesId) {
+      return createErrorResponse(c, 400, '缺少 seriesId')
     }
 
-    // SSRF Protection: Validate URL domain and protocol
+    const yytUrl = seriesYytMap[seriesId]
+    // 若该系列无价格配置（例如非日版/无游游亭端点），正常返回空数据 200，不作为错误处理
+    if (!yytUrl) {
+      return c.body(EMPTY_GZIP_BUFFER, 200, {
+        'Content-Type': 'application/octet-stream',
+        'Content-Encoding': 'gzip',
+        'Cache-Control': 'public, max-age=86400, s-maxage=604800',
+        'X-URL-Hash': '',
+      })
+    }
+
+    // SSRF Protection / Sanity check: Validate URL domain and protocol
     try {
       const url = new URL(yytUrl)
       if (url.protocol !== 'https:' || !url.hostname.endsWith('yuyu-tei.jp')) {
@@ -57,7 +96,7 @@ export const handleGetSeriesPrices = async (c) => {
       }
     }
 
-    const urlHash = getFastHash(yytUrl)
+    const urlHash = seriesHashMap[seriesId]
     const kvKey = isPremium ? `premium:${seriesId}:${urlHash}` : `${seriesId}:${urlHash}`
     const ttl = isPremium ? 3 * 60 * 60 : 24 * 60 * 60 // 3 hours vs 1 day
 
@@ -73,6 +112,7 @@ export const handleGetSeriesPrices = async (c) => {
         'Content-Encoding': 'gzip',
         'Cache-Control': cacheControl,
         'Vary': 'Authorization, Accept-Encoding',
+        'X-URL-Hash': urlHash,
       })
     }
 
@@ -155,6 +195,7 @@ export const handleGetSeriesPrices = async (c) => {
       'Content-Encoding': 'gzip',
       'Cache-Control': cacheControl,
       'Vary': 'Authorization, Accept-Encoding',
+      'X-URL-Hash': urlHash,
     })
   } catch (error) {
     console.error('Error fetching series prices:', error)

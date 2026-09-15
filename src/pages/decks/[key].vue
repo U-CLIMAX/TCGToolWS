@@ -620,31 +620,25 @@ const isEditing = computed(() => {
 })
 
 const initializePrices = async (cardsToUse = null) => {
-  const configs = []
+  const seriesIds = new Set()
   const cardsToProcess = cardsToUse || Object.values(cardMap.value)
 
   if (cardsToProcess.length > 0) {
-    const seriesConfigMap = new Map()
     cardsToProcess.forEach((c) => {
       const infos = getCardSeriesId(c.cardIdPrefix)
       infos.forEach((info) => {
-        if (info.id && info.yytUrl && !seriesConfigMap.has(info.id)) {
-          seriesConfigMap.set(info.id, { seriesId: info.id, yytUrl: info.yytUrl })
+        if (info.id) {
+          seriesIds.add(info.id)
         }
       })
     })
-
-    seriesConfigMap.forEach((config) => {
-      configs.push(config)
-    })
   }
 
-  if (configs.length > 0) {
+  if (seriesIds.size > 0) {
     try {
-      await priceStore.fetchPrices(configs)
+      await priceStore.fetchPrices(Array.from(seriesIds))
     } catch (error) {
       console.error('Error fetching prices:', error)
-      triggerSnackbar('价格加载失败，请稍后再试', 'error')
     }
   }
 }

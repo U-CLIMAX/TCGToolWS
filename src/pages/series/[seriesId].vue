@@ -371,53 +371,40 @@ watch([() => filterStore.filteredCards], () => {
 })
 
 const initializePrices = async () => {
-  const configs = []
+  const seriesIds = new Set()
 
   // Current series and its related series (sharing the same prefixes)
   const currentPrefixes = prefixes.value
   if (currentPrefixes.length > 0) {
-    const relatedSeriesConfigMap = new Map()
     currentPrefixes.forEach((prefix) => {
       Object.values(seriesMap).forEach((s) => {
         if (s.prefixes && s.prefixes.some((p) => p === prefix)) {
-          if (s.id && s.yytUrl && !relatedSeriesConfigMap.has(s.id)) {
-            relatedSeriesConfigMap.set(s.id, { seriesId: s.id, yytUrl: s.yytUrl })
+          if (s.id) {
+            seriesIds.add(s.id)
           }
         }
       })
     })
-    relatedSeriesConfigMap.forEach((config) => configs.push(config))
   }
 
   // Cards in deck series
   const cards = Object.values(deckStore.cardsInDeck)
   if (cards.length > 0) {
-    // Collect unique series configs from deck cards
-    const seriesConfigMap = new Map()
     cards.forEach((c) => {
       const infos = getCardSeriesId(c.cardIdPrefix)
       infos.forEach((info) => {
-        if (info.id && info.yytUrl && !seriesConfigMap.has(info.id)) {
-          seriesConfigMap.set(info.id, { seriesId: info.id, yytUrl: info.yytUrl })
+        if (info.id) {
+          seriesIds.add(info.id)
         }
       })
     })
-
-    seriesConfigMap.forEach((config) => {
-      // Avoid duplicate config if it's already the current series
-      if (config.seriesId !== props.seriesId) {
-        configs.push(config)
-      }
-    })
   }
 
-  if (configs.length > 0) {
-    console.log('Fetching prices for configs:', configs)
+  if (seriesIds.size > 0) {
     try {
-      await priceStore.fetchPrices(configs)
+      await priceStore.fetchPrices(Array.from(seriesIds))
     } catch (error) {
       console.error('Error fetching prices:', error)
-      triggerSnackbar('价格加载失败，请稍后再试', 'error')
     }
   }
 }

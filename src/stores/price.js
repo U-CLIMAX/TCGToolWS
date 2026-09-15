@@ -5,7 +5,6 @@ import { transfer } from 'comlink'
 import PriceWorker from '@/workers/price.worker.js?worker'
 import { createManagedWorker } from '@/utils/workerManager'
 import { useAuthStore } from './auth'
-import { compressToEncodedURIComponent } from 'lz-string'
 import { apiFetch } from '@/utils/api.js'
 
 const priceCache = localforage.createInstance({
@@ -16,25 +15,65 @@ const priceWorkerManager = createManagedWorker(PriceWorker)
 
 export const usePriceStore = defineStore('price', () => {
   const prices = shallowRef({}) // { seriesId: { [cardId]: price } }
-  const priceMetadata = shallowRef({}) // { seriesId: { lastUpdate, nextUpdate } }
+  const priceMetadata = shallowRef({}) // { seriesId: { lastUpdate, nextUpdate, urlHash } }
   const isLoading = ref(false)
   const authStore = useAuthStore()
 
   const pendingRequests = new Map()
   let activeFetchCount = 0
 
+  let seriesHashesCache = null
+  let hashesPromise = null
+
+  /**
+   * Fetches all series URL hashes from backend with in-flight deduplication and caching.
+   * @returns {Promise<Record<string, string> | null>}
+   */
+  const fetchAllSeriesHashes = async () => {
+    if (!authStore.isOnline) return null
+    if (seriesHashesCache) return seriesHashesCache
+    if (hashesPromise) return hashesPromise
+
+    hashesPromise = (async () => {
+      try {
+        const res = await apiFetch('/api/prices/hashes')
+        if (res.ok) {
+          seriesHashesCache = await res.json()
+          return seriesHashesCache
+        }
+      } catch (e) {
+        console.warn('[PriceStore] Failed to fetch series hashes:', e)
+      }
+      return null
+    })().finally(() => {
+      hashesPromise = null
+    })
+
+    return hashesPromise
+  }
+
+  /**
+   * Gets the backend URL hash for a specific seriesId.
+   * @param {string} seriesId
+   * @returns {Promise<string | null>}
+   */
+  const getBackendSeriesHash = async (seriesId) => {
+    const hashes = await fetchAllSeriesHashes()
+    return hashes ? hashes[seriesId] || '' : null
+  }
+
   /**
    * Fetches and parses prices for a single series.
    * Handles memory cache short-circuit, in-flight deduplication, localforage cache, and backend fetch.
-   * @param {{ seriesId: string, yytUrl: string }} config
-   * @returns {Promise<{ seriesId: string, data: object, metadata: { lastUpdate: number, nextUpdate: number, yytUrl?: string } }>}
+   * @param {string} seriesId
+   * @returns {Promise<{ seriesId: string, data: object, metadata: { lastUpdate: number, nextUpdate: number, urlHash?: string } }>}
    */
-  const fetchSingleSeries = async ({ seriesId, yytUrl }) => {
+  const fetchSingleSeries = async (seriesId) => {
     if (!authStore.isOnline) {
       return {
         seriesId,
         data: {},
-        metadata: { lastUpdate: 0, nextUpdate: 0, yytUrl },
+        metadata: { lastUpdate: 0, nextUpdate: 0, urlHash: '' },
       }
     }
 
@@ -47,12 +86,7 @@ export const usePriceStore = defineStore('price', () => {
     // 1. In-memory cache short-circuit
     const currentPrices = prices.value[seriesId]
     const currentMeta = priceMetadata.value[seriesId]
-    if (
-      currentPrices &&
-      currentMeta &&
-      (!currentMeta.yytUrl || currentMeta.yytUrl === yytUrl) &&
-      now < currentMeta.nextUpdate
-    ) {
+    if (currentPrices && currentMeta && now < currentMeta.nextUpdate) {
       return {
         seriesId,
         data: currentPrices,
@@ -69,15 +103,19 @@ export const usePriceStore = defineStore('price', () => {
       // 3. Localforage cache check
       const seriesMeta = await priceCache.getItem(cacheKey)
       const checkNow = Date.now()
-      if (seriesMeta && seriesMeta.yytUrl === yytUrl && checkNow < seriesMeta.ttl) {
-        return {
-          seriesId,
-          data: seriesMeta.data,
-          metadata: {
-            lastUpdate: seriesMeta.ttl - refreshInterval,
-            nextUpdate: seriesMeta.ttl,
-            yytUrl,
-          },
+      if (seriesMeta && checkNow < seriesMeta.ttl) {
+        // Compare with backend urlHash to detect if the series URL changed
+        const currentHash = await getBackendSeriesHash(seriesId)
+        if (!currentHash || seriesMeta.urlHash === currentHash) {
+          return {
+            seriesId,
+            data: seriesMeta.data,
+            metadata: {
+              lastUpdate: seriesMeta.ttl - refreshInterval,
+              nextUpdate: seriesMeta.ttl,
+              urlHash: seriesMeta.urlHash,
+            },
+          }
         }
       }
 
@@ -89,14 +127,12 @@ export const usePriceStore = defineStore('price', () => {
         headers['Authorization'] = `Bearer ${authStore.token}`
       }
 
-      const res = await apiFetch(
-        `/api/prices/${seriesId}?ref=${compressToEncodedURIComponent(yytUrl)}`,
-        { headers }
-      )
+      const res = await apiFetch(`/api/prices/${seriesId}`, { headers })
       if (!res.ok) {
         throw new Error(`Failed to fetch prices for series ${seriesId}: ${res.statusText}`)
       }
 
+      const urlHash = res.headers.get('X-URL-Hash') || ''
       const compressedBuffer = await res.arrayBuffer()
       const parsedPrices = await priceWorkerManager.run((worker) =>
         worker.parsePricesFromBuffer(transfer(compressedBuffer, [compressedBuffer]))
@@ -106,13 +142,13 @@ export const usePriceStore = defineStore('price', () => {
       const metadata = {
         lastUpdate: Date.now(),
         nextUpdate: ttl,
-        yytUrl,
+        urlHash,
       }
 
       await priceCache.setItem(cacheKey, {
         data: parsedPrices,
         ttl,
-        yytUrl,
+        urlHash,
       })
 
       return {
@@ -129,31 +165,31 @@ export const usePriceStore = defineStore('price', () => {
   }
 
   /**
-   * Fetches prices for given series configs.
+   * Fetches prices for given series IDs.
    * Deduplicates seriesId, utilizes worker parsing, and updates prices/metadata using Promise.allSettled.
-   * @param {{ seriesId: string, yytUrl: string } | { seriesId: string, yytUrl: string }[]} configs
+   * @param {string | string[]} seriesIds
    */
-  const fetchPrices = async (configs) => {
-    if (!authStore.isOnline) return
-    const configArray = Array.isArray(configs) ? configs : [configs]
+  const fetchPrices = async (seriesIds) => {
+    if (!authStore.isOnline || !seriesIds) return
+    const idArray = Array.isArray(seriesIds) ? seriesIds : [seriesIds]
     // SeriesId deduplication
-    const validConfigs = []
+    const validIds = []
     const seenSeries = new Set()
-    for (const c of configArray) {
-      if (c?.seriesId && c?.yytUrl && !seenSeries.has(c.seriesId)) {
-        seenSeries.add(c.seriesId)
-        validConfigs.push(c)
+    for (const id of idArray) {
+      if (typeof id === 'string' && id && !seenSeries.has(id)) {
+        seenSeries.add(id)
+        validIds.push(id)
       }
     }
 
-    if (validConfigs.length === 0) return
+    if (validIds.length === 0) return
 
     activeFetchCount++
     isLoading.value = true
 
     try {
       const results = await Promise.allSettled(
-        validConfigs.map((config) => fetchSingleSeries(config))
+        validIds.map((seriesId) => fetchSingleSeries(seriesId))
       )
 
       const newPrices = {}
@@ -213,6 +249,7 @@ export const usePriceStore = defineStore('price', () => {
   const reset = () => {
     prices.value = {}
     priceMetadata.value = {}
+    seriesHashesCache = null
     pendingRequests.clear()
     priceWorkerManager.terminate()
   }

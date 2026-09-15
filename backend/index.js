@@ -38,7 +38,7 @@ import {
   userIdFromJwtKeyExtractor,
 } from './lib/ratelimit.js'
 import { handleInitiatePayment } from './lib/payments.js'
-import { handleGetSeriesPrices } from './lib/prices.js'
+import { handleGetSeriesPrices, handleGetSeriesHashes } from './lib/prices.js'
 import { handleCreateTranslationReport } from './lib/reports.js'
 import { cleanupDatabase } from './services/db-cleanup.js'
 import { publicCache } from './lib/utils.js'
@@ -76,8 +76,9 @@ app.use(
       'Origin',
       'UA',
       'ua',
+      'X-URL-Hash',
     ],
-    exposeHeaders: ['Content-Length', 'ETag'],
+    exposeHeaders: ['Content-Length', 'ETag', 'X-URL-Hash'],
     maxAge: 86400,
     credentials: true,
   })
@@ -201,6 +202,7 @@ noticeRoutes.delete('/:id', authMiddleware, apiUserLimiter, handleDeleteNotice)
 // === Price 路由 ===
 /** @type {AppInstance} */
 const priceRoutes = new Hono()
+priceRoutes.get('/hashes', publicReadLimiter, handleGetSeriesHashes)
 priceRoutes.get('/:seriesId', publicReadLimiter, handleGetSeriesPrices)
 
 // === 受保護的 Payment 路由 ===

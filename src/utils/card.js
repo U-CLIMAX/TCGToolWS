@@ -85,7 +85,7 @@ export const getCardSeriesId = (id) => {
     (s) => s.prefixes && s.prefixes.some((p) => p.toUpperCase() === prefix.toUpperCase())
   )
 
-  const result = matchingSeries.map((s) => ({ id: s.id, yytUrl: s.yytUrl }))
+  const result = matchingSeries.map((s) => ({ id: s.id }))
   seriesIdCache.set(prefix, result)
 
   return result
