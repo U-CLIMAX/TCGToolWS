@@ -29,7 +29,7 @@
         <v-hover v-slot="{ isHovering, props: hoverProps }">
           <div
             v-bind="hoverProps"
-            class="image-wrapper rounded-5md"
+            class="image-wrapper"
             :class="{ 'light-mode-glowing-border': isLightMode }"
           >
             <CardImage
@@ -977,6 +977,8 @@ const submitReport = async () => {
 .image-wrapper {
   position: relative;
   overflow: visible;
+  isolation: isolate;
+  border-radius: 20px;
 }
 
 .image-wrapper::after {
@@ -986,12 +988,15 @@ const submitReport = async () => {
   left: 0;
   width: 100%;
   height: 100%;
-  border-radius: inherit;
+  border-radius: 20px;
   opacity: 0;
   z-index: -1;
   box-shadow: 0 0 16px 4px rgba(255, 255, 255, 0.7);
+  transform: translateZ(0);
   transition: opacity 0.3s ease-out;
   pointer-events: none;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .image-wrapper.light-mode-glowing-border::after {
@@ -1004,7 +1009,7 @@ const submitReport = async () => {
 
 .card-image {
   transition: transform 0.3s ease-out;
-  border-radius: inherit;
+  border-radius: 20px;
 }
 
 .card-image :deep(img) {
