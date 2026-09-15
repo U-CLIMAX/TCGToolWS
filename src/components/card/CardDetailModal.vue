@@ -330,7 +330,7 @@
     <!-- Copy Card Option Dialog -->
     <v-dialog v-if="isCopyCardDialogOpen" v-model="isCopyCardDialogOpen" max-width="300">
       <v-card class="rounded-2lg pa-2">
-        <v-card-title class="text-subtitle-1">选择复制版本</v-card-title>
+        <v-card-title class="text-subtitle-1 font-weight-bold">选择复制版本</v-card-title>
         <v-list nav density="compact">
           <v-list-item
             v-if="card?.type !== '高潮卡'"
@@ -350,7 +350,7 @@
     <!-- Download Card Option Dialog -->
     <v-dialog v-if="isDownloadCardDialogOpen" v-model="isDownloadCardDialogOpen" max-width="300">
       <v-card class="rounded-2lg pa-2">
-        <v-card-title class="text-subtitle-1">选择下载版本</v-card-title>
+        <v-card-title class="text-subtitle-1 font-weight-bold">选择下载版本</v-card-title>
         <v-list nav density="compact">
           <v-list-item
             v-if="card?.type !== '高潮卡'"
