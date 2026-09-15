@@ -216,7 +216,7 @@
           </div>
           <div
             v-if="isTouch"
-            class="text-caption font-weight-medium ml-3 mt-1 mb-2 d-flex align-center ga-1 cursor-default"
+            class="text-caption font-weight-medium ml-3 mt-1 mb-2 d-flex align-center ga-1"
           >
             <v-icon icon="i-mdi:gesture-tap-hold" size="14" />
             <span>提示：长按卡组可开启管理功能</span>
