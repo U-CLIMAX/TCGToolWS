@@ -8,3 +8,20 @@ html {
     overscroll-behavior-y: contain;
   }
 }
+
+/* 全域禁用非輸入框的閃爍輸入游標 (Caret) */
+*,
+*::before,
+*::after {
+  caret-color: transparent;
+}
+
+/* 針對輸入控制項與可編輯元素恢復輸入游標 */
+input,
+textarea,
+[contenteditable='true'],
+[contenteditable='plaintext-only'],
+.v-field__input input,
+.v-field__input textarea {
+  caret-color: auto;
+}
