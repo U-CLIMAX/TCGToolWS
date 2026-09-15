@@ -70,7 +70,7 @@
         </div>
 
         <!-- 客户端版本 -->
-        <div>
+        <div v-if="isTauri">
           <div class="text-subtitle-1 font-weight-bold text-high-emphasis">客户端版本</div>
           <div class="d-flex align-center text-body-2 font-weight-medium text-medium-emphasis">
             <span>{{ appVersionDisplay }}</span>
