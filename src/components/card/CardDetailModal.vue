@@ -418,8 +418,12 @@ import DownloadTextDialog from './DownloadTextDialog.vue'
 import { useAuthStore } from '@/stores/auth'
 import { useDeckStore } from '@/stores/deck'
 import { useDownloadStore } from '@/stores/download'
-import { convertElementToPng } from '@/utils/domToImage.js'
-import { getOverlayStyle, getIconStyle } from '@/utils/overlayStyle'
+import {
+  renderCardWithTextToBlob,
+  renderCardOriginalToBlob,
+  renderTextToBlob,
+  triggerDownloadBlob,
+} from '@/utils/domToImage.js'
 import { apiFetch } from '@/utils/api.js'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { writeImage } from '@/utils/clipboard'
@@ -432,7 +436,6 @@ import { useDevice } from '@/composables/useDevice'
 import { formatEffectToHtml } from '@/utils/cardEffectFormatter'
 import { fetchCardByIdAndPrefix, getCardSeriesId } from '@/utils/card'
 import { sortCards } from '@/utils/cardsSort'
-import { normalizeFileName } from '@/utils/sanitizeFilename.js'
 import { getCardUrls } from '@/utils/getCardImage'
 
 const { triggerSnackbar } = useSnackbar()
@@ -709,168 +712,56 @@ const executeDownloadText = async () => {
   isDownloadTextDialogOpen.value = false
   uiStore.setLoading(true)
 
-  const exportContainer = document.createElement('div')
-  exportContainer.id = 'temp-text-export-container'
-
-  exportContainer.style.position = 'absolute'
-  exportContainer.style.left = '-9999px'
-  exportContainer.style.top = '-9999px'
-  exportContainer.style.width = `${downloadStore.textWidth}px`
-  exportContainer.style.backgroundColor = downloadStore.textBgColor
-  exportContainer.style.borderRadius = `${downloadStore.textBorderRadius}px`
-  exportContainer.style.padding = '20px'
-  exportContainer.style.boxSizing = 'border-box'
-  exportContainer.style.fontFamily = 'LXGW WenKai Lite, system-ui, sans-serif'
-  exportContainer.style.display = 'flex'
-  exportContainer.style.alignItems = 'center'
-  exportContainer.style.justifyContent = 'center'
-
-  const effectText = document.createElement('div')
-  effectText.innerHTML = formattedEffect.value
-  effectText.style.fontSize = `${downloadStore.textFontSize}px`
-  effectText.style.lineHeight = `${downloadStore.textLineHeight}px`
-  effectText.style.wordBreak = 'break-word'
-  effectText.style.textAlign = 'justify'
-  effectText.style.width = '100%'
-  effectText.style.color = downloadStore.textColor
-
-  effectText.querySelectorAll('img').forEach((icon) => {
-    icon.crossOrigin = 'anonymous'
-    icon.style.height = `${downloadStore.textFontSize}px`
-    icon.style.verticalAlign = '-0.15em'
-    icon.style.display = 'inline-block'
-  })
-
-  exportContainer.appendChild(effectText)
-  document.body.appendChild(exportContainer)
-
   try {
-    const filename = `${props.card.id}-effect`
-    await convertElementToPng('temp-text-export-container', filename, 1, true)
-    triggerSnackbar('效果文本图片已成功汇出', 'success')
+    const blob = await renderTextToBlob({
+      effectHtml: formattedEffect.value,
+      width: downloadStore.textWidth,
+      fontSize: downloadStore.textFontSize,
+      lineHeight: downloadStore.textLineHeight,
+      bgColor: downloadStore.textBgColor,
+      textColor: downloadStore.textColor,
+      borderRadius: downloadStore.textBorderRadius,
+    })
+    triggerDownloadBlob(blob, `${props.card.id || 'card'}-effect`)
+    triggerSnackbar('效果文本图片已成功导出', 'success')
   } catch (error) {
     console.error('Failed to export card text image:', error)
     triggerSnackbar(`导出失败: ${error.message || '未知错误'}`, 'error')
   } finally {
-    document.body.removeChild(exportContainer)
     uiStore.setLoading(false)
   }
 }
 
-// ─── 无文字模式：直接下载 / 复制原图 ──────────────────────────
+// ─── 卡片图片 URL 计算 ───────────────────────────────────────
+const cardImageUrl = computed(() => {
+  return getCardUrls(props.card?.cardIdPrefix, props.card?.id)?.base || ''
+})
 
-const fetchOriginalImageBlob = () => {
-  return new Promise((resolve, reject) => {
-    const img = new Image()
-    img.crossOrigin = 'anonymous'
-
-    img.onload = () => {
-      try {
-        const canvas = document.createElement('canvas')
-        canvas.width = img.width
-        canvas.height = img.height
-        const ctx = canvas.getContext('2d')
-        if (!ctx) {
-          return reject(new Error('无法创建 Canvas 上下文'))
-        }
-        ctx.drawImage(img, 0, 0)
-
-        canvas.toBlob((blob) => {
-          if (blob) {
-            resolve(blob)
-          } else {
-            reject(new Error('Canvas 转换 Blob 失败'))
-          }
-        }, 'image/png')
-      } catch (err) {
-        reject(err)
-      }
-    }
-
-    const imgUrl = getCardUrls(props.card?.cardIdPrefix, props.card?.id)?.base
-    if (!imgUrl) return reject(new Error('无法获取卡片图片链接'))
-    img.onerror = () => reject(new Error('图片加载失败'))
-    img.src = imgUrl
-  })
-}
-
-const downloadOriginalImage = async () => {
-  const blob = await fetchOriginalImageBlob()
-  const filename = normalizeFileName(props.card.id)
-  const objectUrl = URL.createObjectURL(blob)
-  const link = document.createElement('a')
-  link.href = objectUrl
-  link.download = `${filename}.png`
-  document.body.appendChild(link)
-  link.click()
-  document.body.removeChild(link)
-  URL.revokeObjectURL(objectUrl)
-}
-
-// ─── 有文字模式：生成带文字覆层的图片 ─────────────────────────
-
-const buildExportContainer = () => {
-  const container = document.createElement('div')
-  Object.assign(container, { id: 'temp-export-container' })
-  Object.assign(container.style, {
-    position: 'absolute',
-    left: '-9999px',
-    top: '-9999px',
-    width: '400px',
-    height: '557px',
-    borderRadius: '8px',
-    overflow: 'hidden',
-  })
-
-  const imgUrl = getCardUrls(props.card?.cardIdPrefix, props.card?.id)?.base || ''
-  const img = document.createElement('img')
-  Object.assign(img, { crossOrigin: 'anonymous', src: imgUrl })
-  Object.assign(img.style, { width: '100%', height: '100%', objectFit: 'cover', display: 'block' })
-
-  // 文字覆层 — 使用共享样式确保与 PDF 视觉一致
-  const overlay = document.createElement('div')
-  Object.assign(overlay.style, getOverlayStyle(400, props.card.type))
-
-  // 效果文字（fontSize / lineHeight / textAlign 等从 overlay 继承）
-  const effectText = document.createElement('div')
-  effectText.innerHTML = formattedEffect.value
-
-  // 设置图标跨域与尺寸
-  const iconSt = getIconStyle(400)
-  effectText.querySelectorAll('img').forEach((icon) => {
-    Object.assign(icon, { crossOrigin: 'anonymous' })
-    Object.assign(icon.style, iconSt)
-  })
-
-  overlay.appendChild(effectText)
-  container.append(img, overlay)
-  return container
-}
-
-const downloadCardWithText = async () => {
-  const exportContainer = buildExportContainer()
-  document.body.appendChild(exportContainer)
-  try {
-    await convertElementToPng('temp-export-container', props.card.id || 'card', 2, true)
-    triggerSnackbar('图片已成功导出', 'success')
-  } catch (error) {
-    console.error('导出卡片图片失败:', error)
-    triggerSnackbar(`导出失败: ${error.message || '未知错误'}`, 'error')
-  } finally {
-    document.body.removeChild(exportContainer)
+/**
+ * 统一生成单卡 PNG Blob 的 Promise 任务
+ * @param {boolean} withText - 是否携带效果文字
+ * @returns {Promise<Blob>}
+ */
+const createCardBlobPromise = (withText) => {
+  if (withText) {
+    return renderCardWithTextToBlob({
+      imageUrl: cardImageUrl.value,
+      effectHtml: formattedEffect.value,
+      cardType: props.card?.type,
+      scale: 2,
+    })
   }
+  return renderCardOriginalToBlob(cardImageUrl.value)
 }
 
+// ─── 下载卡片 ──────────────────────────────────────────
 const handleDownloadCard = async (withText = true) => {
   isDownloadCardDialogOpen.value = false
   uiStore.setLoading(true)
   try {
-    if (withText) {
-      await downloadCardWithText()
-    } else {
-      await downloadOriginalImage()
-      triggerSnackbar('图片已成功导出', 'success')
-    }
+    const blob = await createCardBlobPromise(withText)
+    triggerDownloadBlob(blob, props.card.id || 'card')
+    triggerSnackbar('图片已成功导出', 'success')
   } catch (error) {
     console.error('下载卡片失败:', error)
     triggerSnackbar(`导出失败: ${error.message || '未知错误'}`, 'error')
@@ -879,37 +770,13 @@ const handleDownloadCard = async (withText = true) => {
   }
 }
 
-const copyOriginalImage = async () => {
-  const blob = await fetchOriginalImageBlob()
-  await writeImage(blob)
-}
-
-const copyCardWithText = async () => {
-  const exportContainer = buildExportContainer()
-  document.body.appendChild(exportContainer)
-  try {
-    const blob = await convertElementToPng(
-      'temp-export-container',
-      props.card.id || 'card',
-      2,
-      true,
-      false
-    )
-    if (blob) await writeImage(blob)
-  } finally {
-    document.body.removeChild(exportContainer)
-  }
-}
-
+// ─── 复制卡片 (同步传递 Promise 保持 Safari 用户手势有效) ────────
 const handleCopyCard = async (withText = true) => {
   isCopyCardDialogOpen.value = false
   uiStore.setLoading(true)
   try {
-    if (withText) {
-      await copyCardWithText()
-    } else {
-      await copyOriginalImage()
-    }
+    const blobPromise = createCardBlobPromise(withText)
+    await writeImage(blobPromise)
     triggerSnackbar('图片已复制', 'success')
   } catch (error) {
     console.error('复制卡片失败:', error)
