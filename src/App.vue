@@ -818,8 +818,8 @@ watch(
   top: 0px !important;
 }
 
-/* Responsive compact layout for SM screens (600px - 959px) */
-@media (min-width: 600px) and (max-width: 959.98px) {
+/* Responsive compact layout for narrow screens (600px - 719px) */
+@media (min-width: 600px) and (max-width: 719.98px) {
   .floating-bar.main-bar .v-toolbar__content {
     padding-left: 8px !important;
   }
@@ -843,6 +843,34 @@ watch(
     width: 18px !important;
     height: 18px !important;
     margin-inline-end: 2px !important;
+  }
+}
+
+/* Tablet / iPad portrait screens (720px - 959px) */
+@media (min-width: 720px) and (max-width: 959.98px) {
+  .floating-bar.main-bar .v-toolbar__content {
+    padding-left: 16px !important;
+  }
+
+  .floating-bar.main-bar .v-app-bar-title {
+    min-width: 110px !important;
+    max-width: 130px !important;
+    margin-inline-start: 0 !important;
+  }
+
+  .floating-bar.main-bar .nav-btn-compact {
+    padding: 0 12px !important;
+    min-width: 0 !important;
+    font-size: 0.875rem !important;
+    letter-spacing: normal !important;
+    margin-right: 6px !important;
+  }
+
+  .floating-bar.main-bar .nav-btn-compact .v-icon {
+    font-size: 22px !important;
+    width: 22px !important;
+    height: 22px !important;
+    margin-inline-end: 4px !important;
   }
 }
 

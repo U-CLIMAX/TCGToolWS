@@ -959,7 +959,9 @@ const submitReport = async () => {
   .nav-button-right {
     position: absolute;
   }
+}
 
+@media (min-width: 1280px) {
   .nav-button-left {
     left: -56px;
   }
