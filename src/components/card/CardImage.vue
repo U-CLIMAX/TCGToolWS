@@ -108,6 +108,7 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   width: 100%;
+  isolation: isolate;
 }
 
 .card-img-box.align-end {

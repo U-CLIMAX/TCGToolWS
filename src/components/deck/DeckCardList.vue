@@ -357,6 +357,7 @@ const groupHasPriceMap = computed(() => {
   align-items: center;
   justify-content: center;
   line-height: 1;
+  z-index: 2;
 }
 
 /* 左上角差異標籤 (Diff Label) */
