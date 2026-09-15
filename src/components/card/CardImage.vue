@@ -130,6 +130,8 @@ onMounted(() => {
   display: block;
   user-select: none;
   -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  pointer-events: none;
 }
 
 .card-img-blur {

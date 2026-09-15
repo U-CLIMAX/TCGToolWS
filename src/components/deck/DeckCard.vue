@@ -11,11 +11,11 @@
       @click.capture="handleCardClickCapture"
     >
       <v-card
-        :to="{ name: 'DeckDetail', params: { key: deckKey } }"
         variant="flat"
         rounded="3md"
         class="deck-card"
         :class="{ 'is-lifted': isHovering && !isTouch }"
+        @click="handleNavigate"
       >
         <CardImage
           :src="imageUrl"
@@ -204,6 +204,7 @@
 
 <script setup>
 import { ref, onUnmounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { getCardUrls } from '@/utils/getCardImage'
 
 const props = defineProps({
@@ -244,6 +245,8 @@ const props = defineProps({
     default: null,
   },
 })
+
+const router = useRouter()
 
 const isActionMenuOpen = ref(false)
 const isDeleteDialogOpen = ref(false)
@@ -344,6 +347,11 @@ const handleCardClickCapture = (e) => {
     e.stopPropagation()
     e.stopImmediatePropagation()
   }
+}
+
+const handleNavigate = () => {
+  if (isLongPressActive) return
+  router.push({ name: 'DeckDetail', params: { key: props.deckKey } })
 }
 
 onUnmounted(() => {
