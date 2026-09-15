@@ -247,8 +247,12 @@ const run = async () => {
   }
 
   // Ensure output directory and manifest directory exist
-  fs.mkdirSync(absoluteOutput, { recursive: true })
-  fs.mkdirSync(path.dirname(manifestPath), { recursive: true })
+  if (!fs.existsSync(absoluteOutput)) {
+    fs.mkdirSync(absoluteOutput, { recursive: true })
+  }
+  if (!fs.existsSync(path.dirname(manifestPath))) {
+    fs.mkdirSync(path.dirname(manifestPath), { recursive: true })
+  }
 
   // Read existing manifest if available
   let existingManifest = null
