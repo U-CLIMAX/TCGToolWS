@@ -354,15 +354,13 @@
       @dialog-closed="startAutoScroll"
     />
 
-    <SponsorNoticeDialog v-model="isSponsorNoticeOpen" @confirm="proceedToPayment" />
+    <SponsorNoticeDialog v-model="isSponsorNoticeOpen" />
   </v-container>
 </template>
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useDisplay } from 'vuetify'
-import { useAuthStore } from '@/stores/auth'
-import { useUIStore } from '@/stores/ui'
 import { useIntersectionObserver } from '@/composables/useIntersectionObserver'
 
 // 使用 ?lqip 後綴，插件返回 Object：{ lqip, src, width, height }
@@ -380,23 +378,9 @@ definePage({
   alias: '/home',
 })
 
-const authStore = useAuthStore()
-const uiStore = useUIStore()
 const { smAndDown } = useDisplay()
 
 const isSponsorNoticeOpen = ref(false)
-
-const proceedToPayment = async () => {
-  uiStore.setLoading(true)
-  try {
-    // 這裡才是真正呼叫付款的函數
-    await authStore.initiatePayment()
-  } catch (err) {
-    console.error(err)
-  } finally {
-    uiStore.setLoading(false)
-  }
-}
 
 // --- Splash Animation State ---
 const splashStatus = ref('active') // 'active', 'animating-out', 'finished'

@@ -407,7 +407,7 @@
     <AuthDialog ref="authDialog" />
     <SettingsModal v-model="isSettingsModalOpen" />
     <UserProfileModal v-model="isUserProfileModalOpen" @logout="handleLogoutClick" />
-    <SponsorNoticeDialog v-model="isSponsorNoticeOpen" @confirm="proceedToPayment" />
+    <SponsorNoticeDialog v-model="isSponsorNoticeOpen" />
 
     <v-dialog v-model="isLogoutDialogVisible" max-width="320" persistent no-click-animation>
       <v-card class="rounded-2lg pa-2">
@@ -608,17 +608,6 @@ const mobileOpenedGroups = ref([])
 
 const handleLogin = () => {
   authDialog.value?.open()
-}
-
-const proceedToPayment = async () => {
-  uiStore.setLoading(true)
-  try {
-    await authStore.initiatePayment()
-  } catch (err) {
-    console.error(err)
-  } finally {
-    uiStore.setLoading(false)
-  }
 }
 
 const isLogoutDialogVisible = ref(false)

@@ -274,10 +274,9 @@ export const useAuthStore = defineStore('auth', () => {
       if (!response.ok) throw new Error(data.error || '创建订单失败')
 
       if (data.success && data.url) {
-        window.location.href = data.url
-      } else {
-        throw new Error('无法获取支付 URL')
+        return data.url
       }
+      throw new Error('无法获取支付 URL')
     } catch (error) {
       console.error('Payment initiation error:', error)
       throw error

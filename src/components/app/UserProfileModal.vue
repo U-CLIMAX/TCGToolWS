@@ -165,7 +165,7 @@
         </v-btn>
       </v-card-actions>
     </v-card>
-    <SponsorNoticeDialog v-model="isSponsorNoticeOpen" @confirm="proceedToPayment" />
+    <SponsorNoticeDialog v-model="isSponsorNoticeOpen" />
   </v-dialog>
   <SettingsModal v-model="isSettingsModalOpen" />
 </template>
@@ -256,18 +256,6 @@ const handleUpgradeClick = () => {
 const handleSettingsClick = () => {
   isDialogOpen.value = false
   isSettingsModalOpen.value = true
-}
-
-const proceedToPayment = async () => {
-  isDialogOpen.value = false // Close the profile modal
-  uiStore.setLoading(true)
-  try {
-    await authStore.initiatePayment()
-  } catch (err) {
-    console.error(err)
-  } finally {
-    uiStore.setLoading(false)
-  }
 }
 
 const isDialogOpen = computed({
