@@ -28,12 +28,8 @@
         <!-- 账号ID -->
         <div>
           <div class="text-subtitle-1 font-weight-bold text-high-emphasis">账号ID</div>
-          <div v-if="!userStatus" class="py-1">
-            <div class="skeleton-pill w-100 mb-2"></div>
-            <div class="skeleton-pill w-50"></div>
-          </div>
           <div
-            v-else
+            v-if="userStatus?.id"
             class="d-flex align-center text-body-2 font-weight-medium text-medium-emphasis"
             style="word-break: break-all"
           >
@@ -53,10 +49,7 @@
         <!-- 账号身份 -->
         <div>
           <div class="text-subtitle-1 font-weight-bold text-high-emphasis">账号身份</div>
-          <div v-if="!userStatus" class="py-1">
-            <div class="skeleton-pill w-33"></div>
-          </div>
-          <div v-else class="text-body-2 font-weight-medium text-medium-emphasis">
+          <div class="text-body-2 font-weight-medium text-medium-emphasis">
             {{ userRoleText }}
           </div>
         </div>
@@ -92,7 +85,7 @@
         <div
           v-if="userStatus?.role === 0"
           ref="supportSection"
-          class="text-center pa-3 rounded-lg bg-surface border"
+          class="text-center pa-3 rounded-2lg bg-surface border"
         >
           <p class="text-body-2 text-medium-emphasis mb-2">
             您的支持是本站持续营运的关键！<br />
@@ -337,15 +330,5 @@ const copyUserId = async (id) => {
 .v-theme--dark .profile-divider {
   border-color: rgba(255, 255, 255, 0.15) !important;
   opacity: 1 !important;
-}
-.skeleton-pill {
-  height: 14px;
-  background-color: rgba(0, 0, 0, 0.12);
-  border-radius: 9999px;
-}
-
-:deep(.v-theme--dark) .skeleton-pill,
-.v-theme--dark .skeleton-pill {
-  background-color: rgba(255, 255, 255, 0.15);
 }
 </style>
