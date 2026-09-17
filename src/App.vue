@@ -423,7 +423,6 @@
       </v-card>
     </v-dialog>
 
-    <AppUpdateDialog />
     <ClientUpdateDialog v-if="isTauri" />
     <CardImageUpdatePromptModal v-if="isTauri" />
     <NoticeDialog ref="NoticeDialogRef" />

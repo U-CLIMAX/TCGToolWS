@@ -36,7 +36,5 @@
   CF-Cache-Level: cache_everything
 
 /index.html
-  Cache-Control: no-cache, no-store, must-revalidate
-  CF-Cache-Level: bypass
-  Pragma: no-cache
-  Expires: 0
+  Cache-Control: no-cache
+  CDN-Cache-Control: no-store

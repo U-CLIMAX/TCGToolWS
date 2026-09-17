@@ -42,10 +42,6 @@ export const useUIStore = defineStore(
     const seriesSortAscending = ref(false)
     const selectedGameType = ref('ws')
 
-    // Update website
-    const showForceUpdate = ref(false)
-    const pollingWorker = shallowRef(null)
-
     // --- Computed ---
 
     /**
@@ -147,26 +143,6 @@ export const useUIStore = defineStore(
     }
 
     /**
-     * Triggers a force update notification
-     * @param {object} worker - Service worker instance
-     */
-    const triggerForceUpdate = (worker) => {
-      pollingWorker.value = worker
-      showForceUpdate.value = true
-    }
-
-    /**
-     * Confirms and applies the website update
-     */
-    const confirmUpdate = () => {
-      if (pollingWorker.value) {
-        pollingWorker.value.onRefresh()
-      } else {
-        window.location.reload()
-      }
-    }
-
-    /**
      * Adds a custom search keyword to history
      * @param {string} keyword
      */
@@ -221,21 +197,12 @@ export const useUIStore = defineStore(
       clearBackgroundImage,
       restoreBackgroundImage,
       menuProps,
-      showForceUpdate,
-      triggerForceUpdate,
-      confirmUpdate,
     }
   },
   {
     persist: {
       storage: localStorage,
-      omit: [
-        'showForceUpdate',
-        'pollingWorker',
-        'seriesSearchTerm',
-        'isCardDetailModalOpen',
-        'backgroundImage',
-      ],
+      omit: ['seriesSearchTerm', 'isCardDetailModalOpen', 'backgroundImage'],
     },
   }
 )

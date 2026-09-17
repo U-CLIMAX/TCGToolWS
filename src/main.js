@@ -9,7 +9,6 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import { piniaVersioningPlugin } from '@/plugins/pinia-versioning.js'
 import { useUIStore } from './stores/ui'
 import { registerSW } from 'virtual:pwa-register'
-import { createVersionPolling } from 'version-polling'
 import { isTauri } from '@/utils/isTauri'
 
 import 'virtual:uno.css'
@@ -17,20 +16,27 @@ import '@/assets/styles/main.css'
 import 'vuetify/styles'
 
 const bootstrap = async () => {
-  // 避免 Safari 的 bfcache 導致無法獲取最新的 index.html
-  window.addEventListener('pageshow', (event) => {
-    if (event.persisted) {
-      window.location.reload()
-    }
-  })
+  if (!isTauri) {
+    // 避免 Safari 的 bfcache 導致無法獲取最新的 index.html
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) {
+        window.location.reload()
+      }
+    })
 
-  registerSW({
-    immediate: true,
-    onNeedRefresh() {
-      console.log('New content available, reloading...')
+    // 處理 Web 端 Vite 按需加載 chunk 404
+    window.addEventListener('vite:preloadError', (event) => {
+      event.preventDefault?.()
       window.location.reload()
-    },
-  })
+    })
+
+    registerSW({
+      immediate: true,
+      onNeedRefresh() {
+        window.location.reload()
+      },
+    })
+  }
 
   const app = createApp(App)
   const pinia = createPinia()
@@ -82,19 +88,6 @@ const bootstrap = async () => {
 
   app.use(router)
   app.use(vuetify)
-
-  if (!isTauri) {
-    createVersionPolling({
-      vcType: 'chunkHash',
-      htmlFileUrl: `${window.location.origin}/index.html`,
-      chunkName: 'index',
-      silent: import.meta.env.DEV,
-      pollingInterval: 10 * 60 * 1000,
-      onUpdate: (self) => {
-        uiStore.triggerForceUpdate(self)
-      },
-    })
-  }
 
   app.mount('#app')
 }

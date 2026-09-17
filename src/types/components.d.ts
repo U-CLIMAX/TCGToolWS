@@ -11,7 +11,6 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    AppUpdateDialog: typeof import('./../components/app/AppUpdateDialog.vue')['default']
     AuthAlertDialog: typeof import('./../components/app/AuthAlertDialog.vue')['default']
     AuthDialog: typeof import('./../components/app/AuthDialog.vue')['default']
     BackToTopButton: typeof import('./../components/ui/BackToTopButton.vue')['default']
