@@ -3,8 +3,9 @@ import path from 'path'
 import crypto from 'crypto'
 import { fileURLToPath } from 'url'
 import zlib from 'zlib'
-import { Document, Charset } from 'flexsearch'
+import { Document } from 'flexsearch'
 import { seriesMap } from '../src/maps/series-map.js'
+import { normalizeSearchText } from '../src/utils/searchNormalize.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -13,14 +14,17 @@ const CARD_DATA_DIR = path.join(__dirname, '../src/assets/card-data')
 const OUTPUT_DIR = path.join(__dirname, '../public')
 
 // 腳本邏輯版本
-const BUILD_LOGIC_VERSION = 'v4'
+const BUILD_LOGIC_VERSION = 'v5'
 
 console.log('🔍 Starting to build card index...')
 
 // --- FlexSearch 配置與生成函式 ---
 const createIndexConfig = () => ({
   tokenize: 'forward',
-  encoder: Charset.CJK,
+  encoder: {
+    split: '',
+    encode: normalizeSearchText,
+  },
   document: {
     id: 'index',
     index: ['name', 'effect', 'id'],

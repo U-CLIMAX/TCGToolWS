@@ -1,5 +1,6 @@
-import { Document, Charset } from 'flexsearch'
+import { Document } from 'flexsearch'
 import { expose } from 'comlink'
+import { normalizeSearchText } from '@/utils/searchNormalize.js'
 
 const toZero = (val) => (val === '-' ? 0 : +val)
 
@@ -11,7 +12,10 @@ let searchIndex = null
 const createNewIndex = () => {
   return new Document({
     tokenize: 'forward',
-    encoder: Charset.CJK,
+    encoder: {
+      split: '',
+      encode: normalizeSearchText,
+    },
     document: {
       id: 'index',
       index: ['name', 'effect', 'id'],
@@ -331,14 +335,16 @@ const CardFilterService = {
     const effectiveTargets =
       searchTargets && searchTargets.length > 0 ? searchTargets : ['id', 'name', 'effect']
 
-    if (keyword.length >= 2) {
+    const normalizedKeyword = normalizeSearchText(keyword)
+
+    if (normalizedKeyword.length >= 2) {
       console.log(
-        `Searching for "${keyword}" with mode "${searchMode}" in ${allCards.length} items...`
+        `Searching for "${keyword}" (normalized: "${normalizedKeyword}") with mode "${searchMode}" in ${allCards.length} items...`
       )
       console.time('search time')
 
       // FlexSearch 搜索，傳遞 index 參數限制搜索欄位
-      const searchResults = searchIndex.search(keyword, {
+      const searchResults = searchIndex.search(normalizedKeyword, {
         limit: Infinity,
         index: effectiveTargets,
       })
@@ -365,26 +371,40 @@ const CardFilterService = {
       // precise 模式下用 includes 過濾
       let filteredResults = results
       if (searchMode === 'precise') {
-        const lowerKeyword = keyword.toLowerCase()
         const checkName = effectiveTargets.includes('name')
         const checkId = effectiveTargets.includes('id')
         const checkEffect = effectiveTargets.includes('effect')
 
         filteredResults = results.filter((card) => {
-          const inName = checkName && card.name && card.name.toLowerCase().includes(lowerKeyword)
-          const inId = checkId && card.id && card.id.toLowerCase().includes(lowerKeyword)
+          const inName =
+            checkName && card.name && normalizeSearchText(card.name).includes(normalizedKeyword)
+          const inId =
+            checkId && card.id && normalizeSearchText(card.id).includes(normalizedKeyword)
           const inEffect =
-            checkEffect && card.effect && card.effect.toLowerCase().includes(lowerKeyword)
+            checkEffect &&
+            card.effect &&
+            normalizeSearchText(card.effect).includes(normalizedKeyword)
           return inName || inId || inEffect
         })
       }
 
       // 精確匹配排前面
       filteredResults.sort((a, b) => {
+        const aName = normalizeSearchText(a.name)
+        const aId = normalizeSearchText(a.id)
+        const aEffect = normalizeSearchText(a.effect)
+        const bName = normalizeSearchText(b.name)
+        const bId = normalizeSearchText(b.id)
+        const bEffect = normalizeSearchText(b.effect)
+
         const aExact =
-          a.name === keyword || a.id === keyword || (a.effect && a.effect.includes(keyword))
+          aName === normalizedKeyword ||
+          aId === normalizedKeyword ||
+          (aEffect && aEffect.includes(normalizedKeyword))
         const bExact =
-          b.name === keyword || b.id === keyword || (b.effect && b.effect.includes(keyword))
+          bName === normalizedKeyword ||
+          bId === normalizedKeyword ||
+          (bEffect && bEffect.includes(normalizedKeyword))
         if (aExact && !bExact) return -1
         if (!aExact && bExact) return 1
         return 0
