@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "vite",
     "build": "npm run build:index && vite build",
+    "build:tauri": "npm run build:index && vite build --mode tauri",
     "build:index": "node scripts/build-card-index.js",
     "preview": "vite preview",
     "setup-img": "node scripts/setup-images.js",
