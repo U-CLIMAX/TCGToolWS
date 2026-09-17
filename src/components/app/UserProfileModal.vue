@@ -118,19 +118,6 @@
             网站设置
           </v-btn>
           <v-btn
-            v-if="userRole === 2"
-            variant="flat"
-            color="surface"
-            rounded="pill"
-            :elevation="0"
-            class="text-primary font-weight-bold text-body-2 px-5"
-            prepend-icon="i-mdi:chart-bar"
-            :href="umami_share_url"
-            target="_blank"
-          >
-            访问统计
-          </v-btn>
-          <v-btn
             variant="flat"
             color="surface"
             rounded="pill"
@@ -236,11 +223,9 @@ const handleLogout = () => {
 }
 
 const authStore = useAuthStore()
-const { userStatus, userRole } = storeToRefs(authStore)
+const { userStatus } = storeToRefs(authStore)
 const { triggerSnackbar } = useSnackbar()
 const isRefreshing = ref(false)
-
-const umami_share_url = import.meta.env.VITE_UMAMI_SHARE_URL
 
 const handleUpgradeClick = () => {
   isSponsorNoticeOpen.value = true
