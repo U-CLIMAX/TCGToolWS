@@ -102,10 +102,10 @@ export const usePriceStore = defineStore('price', () => {
     const fetchPromise = (async () => {
       // 3. Localforage cache check
       const seriesMeta = await priceCache.getItem(cacheKey)
+      const currentHash = await getBackendSeriesHash(seriesId)
       const checkNow = Date.now()
       if (seriesMeta && checkNow < seriesMeta.ttl) {
         // Compare with backend urlHash to detect if the series URL changed
-        const currentHash = await getBackendSeriesHash(seriesId)
         if (!currentHash || seriesMeta.urlHash === currentHash) {
           return {
             seriesId,
@@ -123,11 +123,12 @@ export const usePriceStore = defineStore('price', () => {
       const headers = {
         UA: navigator.userAgent,
       }
-      if (authStore.token) {
+      if (isPremium && authStore.token) {
         headers['Authorization'] = `Bearer ${authStore.token}`
       }
 
-      const res = await apiFetch(`/api/prices/${seriesId}`, { headers })
+      const query = currentHash ? `?v=${currentHash}` : ''
+      const res = await apiFetch(`/api/prices/${seriesId}${query}`, { headers })
       if (!res.ok) {
         throw new Error(`Failed to fetch prices for series ${seriesId}: ${res.statusText}`)
       }
