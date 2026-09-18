@@ -66,7 +66,7 @@ export const handleGetSeriesPrices = async (c) => {
       return c.body(EMPTY_GZIP_BUFFER, 200, {
         'Content-Type': 'application/octet-stream',
         'Content-Encoding': 'gzip',
-        'Cache-Control': 'public, max-age=86400, s-maxage=604800',
+        'Cache-Control': 'public, max-age=60, s-maxage=300, stale-while-revalidate=600',
         'X-URL-Hash': '',
       })
     }
