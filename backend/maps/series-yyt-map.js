@@ -212,7 +212,8 @@ export const seriesYytMap = {
     'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=sfn&vers[]=sfnre&vers[]=sfn2.0&rare=&type=&kizu=0',
   'mrp': 'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=mr&rare=&type=&kizu=0',
   'rkn': 'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=rkn&rare=&type=&kizu=0',
-  'nik': 'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=nik&rare=&type=&kizu=0',
+  'nik':
+    'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=nik&vers[]=nik2.0&rare=&type=&kizu=0',
   'ddd':
     'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=ddd&vers[]=ddd2.0&rare=&type=&kizu=0',
   'kj8': 'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=kj8&rare=&type=&kizu=0',
