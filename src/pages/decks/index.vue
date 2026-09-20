@@ -225,6 +225,17 @@
             <v-col
               v-for="item in displayedDecks"
               :key="item.key"
+              v-memo="[
+                item.key,
+                item.deck.updated_at,
+                item.isEditing,
+                item.deck.name,
+                item.deck.tags,
+                item.deck.isLocal,
+                isTouch,
+                smAndDown,
+                allAvailableTags,
+              ]"
               class="pa-2"
               cols="4"
               xs="6"
@@ -232,7 +243,7 @@
               md="2"
               xl="1"
             >
-              <LazyCardWrapper>
+              <LazyCardWrapper min-height="80px">
                 <DeckCard
                   :deck="item.deck"
                   :deckKey="item.key"

@@ -37,6 +37,18 @@
         <div
           v-for="card in displayedCards"
           :key="card.id"
+          v-memo="[
+            card.id,
+            cardCounts[card.id] || 0,
+            cardPrices[card.id] || null,
+            isTableMode,
+            isCompact,
+            isDeckFull,
+            uiStore.cardClickMode,
+            hasBackgroundImage,
+            isTouch,
+            smAndDown,
+          ]"
           class="d-flex justify-center"
           :data-card-id="card.id"
         >

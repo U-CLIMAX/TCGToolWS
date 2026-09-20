@@ -97,7 +97,7 @@
                 >
                   <v-icon size="24" icon="i-mdi:open-in-new" />
                 </v-btn>
-                <v-btn icon variant="text" density="compact" @click="$emit('close')">
+                <v-btn v-if="smAndUp" icon variant="text" density="compact" @click="$emit('close')">
                   <v-icon size="24" icon="i-mdi:arrow-collapse-right" />
                 </v-btn>
               </template>

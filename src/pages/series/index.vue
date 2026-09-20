@@ -103,7 +103,12 @@
         </div>
 
         <div class="series-grid-container">
-          <div v-for="item in displayedSeries" :key="item.id" class="d-flex justify-center">
+          <div
+            v-for="item in displayedSeries"
+            :key="item.id"
+            v-memo="[item.id, hasBackgroundImage]"
+            class="d-flex justify-center"
+          >
             <LazyCardWrapper>
               <SeriesCard :series-name="item.name.replace('[cn]', '')" :series-data="item" />
             </LazyCardWrapper>

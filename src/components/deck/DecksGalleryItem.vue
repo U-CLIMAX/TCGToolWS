@@ -45,7 +45,7 @@
                   icon="i-mdi:trash-can-outline"
                   size="small"
                   density="comfortable"
-                  @click.stop="confirmDelete"
+                  @click.stop="$emit('delete', deck.key)"
                 ></v-btn>
               </div>
               <div
@@ -120,26 +120,12 @@
           </div>
         </div>
       </div>
-
-      <v-dialog v-model="showDeleteDialog" max-width="320">
-        <v-card class="rounded-2lg pa-2">
-          <v-card-title>确认删除</v-card-title>
-          <v-card-text class="text-body-2 text-medium-emphasis">
-            确定要从广场移除此卡组吗？此操作无法撤销。
-          </v-card-text>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn variant="text" @click="showDeleteDialog = false">取消</v-btn>
-            <v-btn color="error" variant="tonal" @click="handleDelete" class="px-4">删除</v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
     </v-card>
   </v-hover>
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { seriesMap } from '@/maps/series-map'
 
 const props = defineProps({
@@ -162,8 +148,6 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['delete', 'select', 'edit'])
-
-const showDeleteDialog = ref(false)
 
 const isTopTier = computed(() => !!props.deck.tournament_type)
 
@@ -222,21 +206,12 @@ const timeAgo = computed(() => {
 const navigateToDeckDetail = () => {
   emit('select', props.deck.key)
 }
-
-const confirmDelete = () => {
-  showDeleteDialog.value = true
-}
-
-const handleDelete = () => {
-  emit('delete', props.deck.key)
-  showDeleteDialog.value = false
-}
 </script>
 
 <style scoped>
 .gallery-item-card {
   height: auto;
-  min-height: 150px;
+  min-height: 160px;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
   overflow: hidden;

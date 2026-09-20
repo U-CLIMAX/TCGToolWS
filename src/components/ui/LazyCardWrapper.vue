@@ -1,5 +1,9 @@
 <template>
-  <div ref="rootEl" class="lazy-card-wrapper" :style="{ height: wrapperHeight }">
+  <div
+    ref="rootEl"
+    class="lazy-card-wrapper"
+    :style="{ height: wrapperHeight, minHeight: minHeightStyle }"
+  >
     <div v-if="shouldRender" class="content-container">
       <slot></slot>
     </div>
@@ -27,7 +31,7 @@ const getOrCreateObserver = (root) => {
       },
       {
         root,
-        rootMargin: '150% 0px 150% 0px',
+        rootMargin: '30% 0px 30% 0px',
         threshold: 0,
       }
     )
@@ -61,21 +65,24 @@ const unobserveElement = (root, element) => {
 </script>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 
 const props = defineProps({
   minHeight: {
     type: [Number, String],
-    default: 320,
+    default: 100,
   },
   destroyDelay: {
     type: Number,
-    default: 2000,
+    default: 200,
   },
 })
 
 const rootEl = ref(null)
 const shouldRender = ref(false)
+const minHeightStyle = computed(() =>
+  typeof props.minHeight === 'number' ? `${props.minHeight}px` : props.minHeight
+)
 const wrapperHeight = ref(
   typeof props.minHeight === 'number' ? `${props.minHeight}px` : props.minHeight
 )

@@ -4,12 +4,12 @@
       v-model="drawer"
       location="right"
       temporary
-      eager
       :width="drawerWidth"
       :class="{
         'glass-sheet--low': hasBackgroundImage,
         'rounded-3md mt-7 mb-3 h-auto': smAndUp,
         'mr-4': drawer && smAndUp,
+        'mobile-drawer-fade': !smAndUp,
       }"
       :style="{
         top: smAndUp ? '50px' : '0px',
@@ -254,13 +254,26 @@
         </div>
 
         <div v-else class="gallery-grid-container">
-          <LazyCardWrapper v-for="item in galleryStore.decks" :key="item.key">
+          <LazyCardWrapper
+            v-for="item in galleryStore.decks"
+            :key="item.key"
+            v-memo="[
+              item.key,
+              item.updated_at,
+              item.rating_avg,
+              isTouch,
+              hasBackgroundImage,
+              galleryStore.filters.source === 'mine',
+              isDrawerCovering,
+            ]"
+          >
             <DecksGalleryItem
+              v-if="!isDrawerCovering"
               :deck="item"
               :is-touch="isTouch"
               :has-background-image="hasBackgroundImage"
               :is-mine="galleryStore.filters.source === 'mine'"
-              @delete="handleDelete"
+              @delete="openDeleteDialog"
               @select="handleSelectDeck"
               @edit="openEditDialog"
             />
@@ -268,6 +281,20 @@
         </div>
       </v-container>
     </v-infinite-scroll>
+
+    <v-dialog v-model="isDeleteDialogOpen" max-width="320">
+      <v-card class="rounded-2lg pa-2">
+        <v-card-title>确认删除</v-card-title>
+        <v-card-text class="text-body-2 text-medium-emphasis">
+          确定要从广场移除此卡组吗？此操作无法撤销。
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn variant="text" @click="isDeleteDialogOpen = false">取消</v-btn>
+          <v-btn color="error" variant="tonal" class="px-4" @click="confirmDelete">删除</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
 
     <ShareToGalleryDialog
       v-if="isEditDialogVisible"
@@ -317,6 +344,8 @@ const drawerWidth = computed(() => {
   if (!smAndUp.value) return width.value
   return Math.min(Math.max(width.value * 0.35, 500), 620)
 })
+
+const isDrawerCovering = computed(() => !smAndUp.value && drawer.value)
 
 const scrollStyle = computed(() => {
   const marginTop = smAndUp.value ? '50px' : '0'
@@ -491,12 +520,24 @@ const handleSelectDeck = (key) => {
   drawer.value = true
 }
 
-const handleDelete = async (key) => {
+const isDeleteDialogOpen = ref(false)
+const deletingDeckKey = ref(null)
+
+const openDeleteDialog = (key) => {
+  deletingDeckKey.value = key
+  isDeleteDialogOpen.value = true
+}
+
+const confirmDelete = async () => {
+  if (!deletingDeckKey.value) return
   try {
-    await galleryStore.deleteDeck(key)
+    await galleryStore.deleteDeck(deletingDeckKey.value)
     triggerSnackbar('已取消分享', 'success')
   } catch (error) {
     triggerSnackbar(error.message || '操作失败', 'error')
+  } finally {
+    isDeleteDialogOpen.value = false
+    deletingDeckKey.value = null
   }
 }
 
@@ -614,5 +655,23 @@ onUnmounted(() => {
 
 .border-top {
   border-top: 1px solid rgba(var(--v-border-color), 0.1);
+}
+
+:deep(.mobile-drawer-fade) {
+  transition: opacity 0.18s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+:deep(.mobile-drawer-fade.v-navigation-drawer--right) {
+  transform: none !important;
+}
+
+:deep(.mobile-drawer-fade:not(.v-navigation-drawer--active)) {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+
+:deep(.mobile-drawer-fade.v-navigation-drawer--active) {
+  opacity: 1 !important;
 }
 </style>

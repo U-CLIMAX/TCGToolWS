@@ -57,6 +57,17 @@
               <v-col
                 v-for="(item, itemIndex) in group"
                 :key="item.id"
+                v-memo="[
+                  item.id,
+                  item.quantity,
+                  item.diffStatus,
+                  getItemPrice(item),
+                  isTouch,
+                  smAndUp,
+                  authStore.isOnline,
+                  uiStore.showCardPrices,
+                  priceStore.isLoading,
+                ]"
                 cols="4"
                 sm="3"
                 :md="route.name !== 'DecksGallery' ? 2 : undefined"
