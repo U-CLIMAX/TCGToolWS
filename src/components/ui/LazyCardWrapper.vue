@@ -1,9 +1,5 @@
 <template>
-  <div
-    ref="rootEl"
-    class="lazy-card-wrapper"
-    :style="{ height: wrapperHeight, minHeight: minHeightStyle }"
-  >
+  <div ref="rootEl" class="lazy-card-wrapper" :style="wrapperStyle">
     <div v-if="shouldRender" class="content-container">
       <slot></slot>
     </div>
@@ -11,21 +7,66 @@
 </template>
 
 <script>
-// Module-level cache to share IntersectionObserver instances across all LazyCardWrapper components
+import { shallowRef } from 'vue'
+
+// ==========================================
+// Module-level cache & singleton IntersectionObserver
+// ==========================================
 const globalViewportKey = {}
 const observerCache = new WeakMap()
+
+/**
+ * Static intersection handler shared across all instances
+ * @param {IntersectionObserverEntry} entry
+ * @param {object} state
+ */
+const handleIntersection = (entry, state) => {
+  const measuredHeight = entry.boundingClientRect.height
+
+  if (entry.isIntersecting) {
+    if (state.destroyTimeout) {
+      clearTimeout(state.destroyTimeout)
+      state.destroyTimeout = null
+    }
+    state.shouldRender.value = true
+
+    if (measuredHeight > 20) {
+      state.exactHeight.value = measuredHeight
+      if (state.observerEntry) {
+        state.observerEntry.learnedHeight.value = measuredHeight
+      }
+    }
+  } else {
+    // Exiting viewport
+    if (state.shouldRender.value && !state.destroyTimeout) {
+      if (measuredHeight > 20) {
+        state.exactHeight.value = measuredHeight
+        if (state.observerEntry) {
+          state.observerEntry.learnedHeight.value = measuredHeight
+        }
+      }
+
+      state.destroyTimeout = setTimeout(() => {
+        state.shouldRender.value = false
+        state.destroyTimeout = null
+      }, state.destroyDelay)
+    }
+  }
+}
 
 const getOrCreateObserver = (root) => {
   const key = root || globalViewportKey
   let observerEntry = observerCache.get(key)
   if (!observerEntry) {
     const targets = new Map()
+    const learnedHeight = shallowRef(0)
     const observer = new IntersectionObserver(
       (entries) => {
-        for (const entry of entries) {
-          const callback = targets.get(entry.target)
-          if (callback) {
-            callback(entry)
+        for (let i = 0; i < entries.length; i++) {
+          const entry = entries[i]
+          const state = targets.get(entry.target)
+          if (state) {
+            handleIntersection(entry, state)
           }
         }
       },
@@ -35,17 +76,18 @@ const getOrCreateObserver = (root) => {
         threshold: 0,
       }
     )
-    observerEntry = { observer, targets }
+    observerEntry = { observer, targets, learnedHeight }
     observerCache.set(key, observerEntry)
   }
-
   return observerEntry
 }
 
-const observeElement = (root, element, callback) => {
-  const { observer, targets } = getOrCreateObserver(root)
-  targets.set(element, callback)
-  observer.observe(element)
+const observeElement = (root, element, state) => {
+  const entry = getOrCreateObserver(root)
+  state.observerEntry = entry
+  entry.targets.set(element, state)
+  entry.observer.observe(element)
+  return entry
 }
 
 const unobserveElement = (root, element) => {
@@ -65,12 +107,12 @@ const unobserveElement = (root, element) => {
 </script>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, shallowRef, computed, onMounted, onUnmounted } from 'vue'
 
 const props = defineProps({
   minHeight: {
     type: [Number, String],
-    default: 100,
+    default: 80,
   },
   destroyDelay: {
     type: Number,
@@ -80,12 +122,27 @@ const props = defineProps({
 
 const rootEl = ref(null)
 const shouldRender = ref(false)
-const minHeightStyle = computed(() =>
-  typeof props.minHeight === 'number' ? `${props.minHeight}px` : props.minHeight
-)
-const wrapperHeight = ref(
-  typeof props.minHeight === 'number' ? `${props.minHeight}px` : props.minHeight
-)
+const exactHeight = shallowRef(0)
+const observerEntryRef = shallowRef(null)
+
+const state = {
+  shouldRender,
+  destroyTimeout: null,
+  destroyDelay: props.destroyDelay,
+  exactHeight,
+  observerEntry: null,
+}
+
+let activeRoot = null
+
+const wrapperStyle = computed(() => {
+  const h = exactHeight.value || observerEntryRef.value?.learnedHeight.value || props.minHeight
+  const heightStr = typeof h === 'number' ? `${h}px` : h
+  return {
+    height: shouldRender.value ? 'auto' : heightStr,
+    minHeight: heightStr,
+  }
+})
 
 /**
  * Helper to find the nearest scrollable parent
@@ -95,7 +152,6 @@ const wrapperHeight = ref(
 const getScrollParent = (element) => {
   if (!element) return null
 
-  // Prioritize finding explicit infinite scroll or scrollbar containers
   const scrollContainer = element.closest('.v-infinite-scroll, .themed-scrollbar')
   if (scrollContainer) return scrollContainer
 
@@ -111,49 +167,21 @@ const getScrollParent = (element) => {
   return null
 }
 
-let activeRoot = null
-let observedElement = null
-let destroyTimeout = null
-
 onMounted(() => {
   if (!rootEl.value) return
 
   activeRoot = getScrollParent(rootEl.value)
-  observedElement = rootEl.value
-
-  observeElement(activeRoot, observedElement, (entry) => {
-    if (entry.isIntersecting) {
-      if (destroyTimeout) {
-        clearTimeout(destroyTimeout)
-        destroyTimeout = null
-      }
-      shouldRender.value = true
-      wrapperHeight.value = 'auto'
-    } else {
-      // Only hide if we were previously rendering (to capture height)
-      if (shouldRender.value && !destroyTimeout) {
-        // Capture the exact height before hiding to preserve scroll space
-        const currentHeight = entry.target.getBoundingClientRect().height
-        if (currentHeight > 10) {
-          wrapperHeight.value = `${currentHeight}px`
-        }
-
-        destroyTimeout = setTimeout(() => {
-          shouldRender.value = false
-          destroyTimeout = null
-        }, props.destroyDelay)
-      }
-    }
-  })
+  const entry = observeElement(activeRoot, rootEl.value, state)
+  observerEntryRef.value = entry
 })
 
 onUnmounted(() => {
-  if (destroyTimeout) {
-    clearTimeout(destroyTimeout)
-    destroyTimeout = null
+  if (state.destroyTimeout) {
+    clearTimeout(state.destroyTimeout)
+    state.destroyTimeout = null
   }
-  if (observedElement) {
-    unobserveElement(activeRoot, observedElement)
+  if (rootEl.value) {
+    unobserveElement(activeRoot, rootEl.value)
   }
 })
 </script>

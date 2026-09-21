@@ -243,7 +243,7 @@
               md="2"
               xl="1"
             >
-              <LazyCardWrapper min-height="80px">
+              <LazyCardWrapper>
                 <DeckCard
                   :deck="item.deck"
                   :deckKey="item.key"
