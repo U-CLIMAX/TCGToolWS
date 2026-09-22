@@ -17,14 +17,14 @@
           :class="{
             'glass-card': hasBackgroundImage,
             'pt-2 mb-2': !smAndDown,
-            'pr-2 mx-1': smAndDown,
+            'py-1.5 pr-2 pl-2 mx-1': smAndDown,
           }"
         >
           <div :class="smAndDown ? 'd-flex align-center overflow-hidden' : ''">
             <div
               :class="[
                 smAndDown
-                  ? 'd-flex flex-column align-center pr-0 pl-1 py-1'
+                  ? 'd-flex flex-column align-center justify-center pr-1 pl-0.5 py-1'
                   : 'd-flex align-center pl-2',
               ]"
             >
@@ -32,16 +32,18 @@
                 class="text-medium-emphasis"
                 :class="smAndDown ? 'mb-1' : 'mr-2'"
                 icon="i-mdi:history"
-                size="small"
+                :size="smAndDown ? 'x-small' : 'small'"
               />
               <div
-                class="text-subtitle-2 text-medium-emphasis font-weight-bold"
+                class="text-medium-emphasis font-weight-bold"
+                :class="smAndDown ? 'text-caption' : 'text-subtitle-2'"
                 :style="
                   smAndDown
                     ? {
                         writingMode: 'vertical-rl',
                         textOrientation: 'upright',
-                        letterSpacing: '2px',
+                        letterSpacing: '3px',
+                        fontSize: '0.75rem',
                       }
                     : {}
                 "
@@ -52,11 +54,14 @@
 
             <v-slide-group
               class="pa-2 flex-grow-1"
-              :class="{ 'py-0 pl-0': smAndDown }"
+              :class="{ 'py-0 pl-1': smAndDown }"
               :show-arrows="smAndDown ? false : true"
             >
               <v-slide-group-item v-for="item in recentlyViewed" :key="item.id">
-                <div class="ma-2" :style="{ width: smAndDown ? '100px' : '150px' }">
+                <div
+                  :class="smAndDown ? 'my-1 mx-2' : 'ma-2'"
+                  :style="{ width: smAndDown ? '95px' : '150px' }"
+                >
                   <SeriesCard :series-name="item.name" :series-data="item" :is-compact="true" />
                 </div>
               </v-slide-group-item>

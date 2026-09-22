@@ -1,73 +1,65 @@
 <template>
-  <v-hover v-slot:default="{ props }">
-    <v-card
-      v-bind="props"
-      class="series-card d-flex flex-column flex-grow-1 overflow-visible"
-      :class="[{ compact: isCompact }]"
-      :to="{ name: 'SeriesDetail', params: { seriesId: seriesData.id } }"
-      :ripple="false"
-      variant="text"
+  <RouterLink
+    :to="{ name: 'SeriesDetail', params: { seriesId: seriesData.id } }"
+    class="series-card d-flex flex-column flex-grow-1 overflow-visible"
+    :class="[{ compact: isCompact }]"
+  >
+    <div
+      class="image-wrapper position-relative"
+      :class="isCompact ? 'mb-1 rounded-2lg' : 'mb-2 rounded-xl'"
     >
-      <div
-        class="image-wrapper position-relative"
-        :class="isCompact ? 'mb-1 rounded-2lg' : 'mb-2 rounded-xl'"
-      >
-        <CardImage
-          :src="`/series-icons/original/${encodeURIComponent(seriesData.id)}.webp`"
-          :blur="`/series-icons/blur/${encodeURIComponent(seriesData.id)}.webp`"
-          aspect-ratio="1"
-          :rounded="isCompact ? '2lg' : 'xl'"
-          class="series-image preload-img"
-        />
+      <CardImage
+        :src="`/series-icons/original/${encodeURIComponent(seriesData.id)}.webp`"
+        :blur="`/series-icons/blur/${encodeURIComponent(seriesData.id)}.webp`"
+        aspect-ratio="1"
+        :rounded="isCompact ? '2lg' : 'xl'"
+        class="series-image preload-img"
+      />
 
-        <!-- Compact 模式下 Hover 時顯示的資訊覆蓋層 -->
-        <div v-if="isCompact" class="hover-overlay rounded-2lg d-flex align-end">
-          <div class="pa-2 w-100">
-            <div class="text-caption text-white text-truncate mb-1">
-              <v-icon size="x-small" class="mr-1" icon="i-mdi:layers-outline" />
-              {{ seriesData.prefixes.map((p) => p.replace('[cn]', '')).join(', ') }}
-            </div>
-            <div class="text-caption text-white">
-              {{ seriesData.latestReleaseDate }}
-            </div>
+      <!-- Compact 模式下 Hover 時顯示的資訊覆蓋層 -->
+      <div v-if="isCompact" class="hover-overlay rounded-2lg d-flex align-end">
+        <div class="pa-2 w-100">
+          <div class="text-caption text-white text-truncate mb-1">
+            <v-icon size="x-small" class="mr-1" icon="i-mdi:layers-outline" />
+            {{ seriesData.prefixes.map((p) => p.replace('[cn]', '')).join(', ') }}
           </div>
-        </div>
-      </div>
-
-      <!-- pill-content -->
-      <v-sheet
-        v-if="!isCompact"
-        class="pill-content d-flex flex-column px-6 py-1 mt-auto"
-        :class="{ 'glass-card': hasBackgroundImage }"
-        :color="hasBackgroundImage ? 'transparent' : 'surface'"
-        rounded="pill"
-        border
-      >
-        <div class="pill-sub-content d-flex align-center mb-1">
-          <div
-            class="d-flex align-center flex-grow-1 text-medium-emphasis overflow-hidden"
-            style="min-width: 0"
-          >
-            <v-icon size="x-small" class="mr-1 flex-shrink-0" icon="i-mdi:layers-outline" />
-            <div class="text-truncate pr-px font-DINCond font-weight-regular">
-              {{ seriesData.prefixes.map((p) => p.replace('[cn]', '')).join(', ') }}
-            </div>
-          </div>
-          <div class="text-medium-emphasis ml-2 flex-shrink-0 font-DINCond font-weight-regular">
+          <div class="text-caption text-white">
             {{ seriesData.latestReleaseDate }}
           </div>
         </div>
-        <div class="text-truncate font-weight-medium text-subtitle-2">
-          {{ seriesName }}
-        </div>
-      </v-sheet>
+      </div>
+    </div>
 
-      <!-- Compact 模式下的簡易名稱 -->
-      <div v-else class="text-truncate font-weight-medium text-body-2">
+    <!-- pill-content -->
+    <div
+      v-if="!isCompact"
+      class="pill-content d-flex flex-column px-6 py-1 mt-auto rounded-pill border"
+      :class="{ 'glass-card': hasBackgroundImage, 'bg-surface': !hasBackgroundImage }"
+    >
+      <div class="pill-sub-content d-flex align-center mb-1">
+        <div
+          class="d-flex align-center flex-grow-1 text-medium-emphasis overflow-hidden"
+          style="min-width: 0"
+        >
+          <v-icon size="x-small" class="mr-1 flex-shrink-0" icon="i-mdi:layers-outline" />
+          <div class="text-truncate pr-px font-DINCond font-weight-regular">
+            {{ seriesData.prefixes.map((p) => p.replace('[cn]', '')).join(', ') }}
+          </div>
+        </div>
+        <div class="text-medium-emphasis ml-2 flex-shrink-0 font-DINCond font-weight-regular">
+          {{ seriesData.latestReleaseDate }}
+        </div>
+      </div>
+      <div class="text-truncate font-weight-medium text-subtitle-2">
         {{ seriesName }}
       </div>
-    </v-card>
-  </v-hover>
+    </div>
+
+    <!-- Compact 模式下的簡易名稱 -->
+    <div v-else class="text-truncate font-weight-medium text-caption text-center px-0.5">
+      {{ seriesName }}
+    </div>
+  </RouterLink>
 </template>
 
 <script setup>
@@ -95,17 +87,18 @@ const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 <style scoped>
 .series-card {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 240px;
   width: 100%;
   min-width: 0;
+  text-decoration: none;
+  color: inherit;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-rendering: geometricPrecision;
   backface-visibility: hidden;
 }
 
-.series-card :deep(.v-card__overlay) {
-  background-color: transparent;
+.series-card:not(.compact) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 240px;
 }
 
 .image-wrapper {
