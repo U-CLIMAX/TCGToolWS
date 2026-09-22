@@ -1,7 +1,7 @@
 <template>
   <div
     class="detail-card d-flex flex-column w-100 rounded-2lg"
-    :class="{ 'glass-card': hasBackgroundImage }"
+    :class="{ 'glass-card': hasBackgroundImage, 'bg-surface': !hasBackgroundImage }"
     role="button"
     tabindex="0"
     @click="handleCardClick"
@@ -134,7 +134,6 @@ const handleCardClick = () => {
   content-visibility: auto;
   contain-intrinsic-size: auto 380px;
   position: relative;
-  background-color: rgb(var(--v-theme-surface));
   color: rgb(var(--v-theme-on-surface));
   transition:
     transform 0.2s ease-in-out,
