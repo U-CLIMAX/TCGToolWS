@@ -1,8 +1,6 @@
 <template>
-  <v-card
-    variant="tonal"
-    class="linked-card"
-    rounded="lg"
+  <div
+    class="linked-card rounded-lg"
     @click="handleCardClick"
     v-tooltip:top-center="{
       text: card.name,
@@ -24,7 +22,7 @@
         <span>{{ card.name }}</span>
       </div>
     </div>
-  </v-card>
+  </div>
 </template>
 
 <script setup>
@@ -49,11 +47,16 @@ const handleCardClick = () => {
 <style scoped>
 .linked-card {
   cursor: pointer;
-  transition: transform 0.2s ease-in-out;
+  background-color: rgba(var(--v-theme-on-surface), var(--v-activated-opacity, 0.12));
+  overflow: hidden;
+  transition:
+    transform 0.2s ease-in-out,
+    background-color 0.2s ease-in-out;
 }
 
 .linked-card:hover {
   transform: translateY(-4px);
+  background-color: rgba(var(--v-theme-on-surface), 0.18);
 }
 
 .rarity-label {
