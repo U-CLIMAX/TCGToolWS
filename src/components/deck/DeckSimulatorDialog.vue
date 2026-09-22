@@ -691,8 +691,10 @@
 
       <!-- 添加规则弹窗 -->
       <v-dialog v-model="showAddRuleModal" max-width="540" scrollable>
-        <v-card class="pa-2 rounded-2lg">
-          <v-card-title class="d-flex justify-space-between align-center px-4 pt-3 pb-2">
+        <v-card class="d-flex flex-column pa-2 rounded-2lg" max-height="88vh">
+          <v-card-title
+            class="d-flex justify-space-between align-center px-4 pt-3 pb-2 flex-shrink-0"
+          >
             <div class="d-flex align-center ga-2">
               <v-avatar color="primary" variant="tonal" size="32" class="rounded-lg">
                 <v-icon icon="i-mdi:tune" size="18" color="primary" />
@@ -708,9 +710,11 @@
             />
           </v-card-title>
 
-          <v-card-text class="px-4 py-2 d-flex flex-column ga-3">
+          <v-card-text
+            class="px-4 py-2 d-flex flex-column ga-3 overflow-y-auto themed-scrollbar flex-grow-1"
+          >
             <!-- 1. 触发前提 -->
-            <v-card variant="flat" class="sim-modal-section pa-3 rounded-lg">
+            <v-card variant="flat" class="sim-modal-section pa-3 rounded-lg flex-shrink-0">
               <div
                 class="text-caption font-weight-bold text-medium-emphasis mb-2 d-flex align-center ga-1"
               >
@@ -816,7 +820,7 @@
             </v-card>
 
             <!-- 2. 维度选择 -->
-            <v-card variant="flat" class="sim-modal-section pa-3 rounded-lg">
+            <v-card variant="flat" class="sim-modal-section pa-3 rounded-lg flex-shrink-0">
               <div
                 class="text-caption font-weight-bold text-medium-emphasis mb-2 d-flex align-center ga-1"
               >
@@ -949,7 +953,7 @@
             </v-card>
 
             <!-- 3. 保留策略 -->
-            <v-card variant="flat" class="sim-modal-section pa-3 rounded-lg">
+            <v-card variant="flat" class="sim-modal-section pa-3 rounded-lg flex-shrink-0">
               <div
                 class="text-caption font-weight-bold text-medium-emphasis mb-2 d-flex align-center ga-1"
               >
@@ -1056,7 +1060,7 @@
             </v-card>
           </v-card-text>
 
-          <v-card-actions class="px-4 py-3">
+          <v-card-actions class="px-4 py-3 flex-shrink-0">
             <v-spacer />
             <v-btn variant="text" @click="showAddRuleModal = false">取消</v-btn>
             <v-btn color="primary" variant="tonal" class="px-4" @click="submitAddRule"
@@ -1302,6 +1306,7 @@ const getProbBarColor = (prob) => {
 .sim-modal-section {
   background: rgba(var(--v-theme-on-surface), 0.035) !important;
   border: 1px solid rgba(var(--v-border-color), 0.08);
+  flex-shrink: 0;
 }
 
 .sim-stat-row {
