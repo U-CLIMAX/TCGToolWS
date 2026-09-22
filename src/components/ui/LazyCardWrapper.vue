@@ -136,10 +136,15 @@ const state = {
 let activeRoot = null
 
 const wrapperStyle = computed(() => {
+  if (shouldRender.value) {
+    return {
+      height: 'auto',
+    }
+  }
   const h = exactHeight.value || observerEntryRef.value?.learnedHeight.value || props.minHeight
   const heightStr = typeof h === 'number' ? `${h}px` : h
   return {
-    height: shouldRender.value ? 'auto' : heightStr,
+    height: heightStr,
     minHeight: heightStr,
   }
 })

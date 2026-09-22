@@ -42,7 +42,6 @@
             cardCounts[card.id] || 0,
             cardPrices[card.id] || null,
             isTableMode,
-            isCompact,
             isDeckFull,
             uiStore.cardClickMode,
             hasBackgroundImage,
@@ -59,7 +58,6 @@
               :card-count="cardCounts[card.id] || 0"
               :card-price="cardPrices[card.id] || null"
               :is-deck-full="isDeckFull"
-              :is-compact="isCompact"
               :card-click-mode="uiStore.cardClickMode"
               :has-background-image="hasBackgroundImage"
               :is-touch="isTouch"
@@ -163,10 +161,6 @@ const isDeckFull = computed(() => {
   return deckStore.totalCardCount >= 50 && userRole.value === 0
 })
 
-const isCompact = computed(() => {
-  return (uiStore.isFilterOpen && uiStore.isCardDeckOpen) || smAndDown.value
-})
-
 // Handle edge case: In xs layout, when the infinite scroll content is less than or equal to one row,
 // the load function won't be triggered automatically. Therefore, v-progress-circular must be manually hidden.
 const shouldHideLoader = computed(() => xs.value && props.cards.length <= 3)
@@ -185,7 +179,7 @@ watch(
       tableModeTimeout = setTimeout(() => {
         isTransitionDisabled.value = false
         tableModeTimeout = null
-      }, 150)
+      }, 350)
     })
   }
 )
