@@ -37,18 +37,6 @@
               >
                 <v-icon size="24" color="primary" icon="i-mdi:content-save-outline" />
               </v-btn>
-
-              <v-btn
-                v-if="deck?.article_link && embedded"
-                icon
-                variant="text"
-                density="compact"
-                color="cyan-lighten-1"
-                @click="copyArticleLink(deck.article_link)"
-                v-tooltip:bottom="{ text: '复制文章/视频链接', disabled: isTouch }"
-              >
-                <v-icon size="24" icon="i-mdi:newspaper-variant-outline" />
-              </v-btn>
             </div>
 
             <!-- 中間 -->
@@ -138,6 +126,20 @@
           }"
           style="position: relative"
         >
+          <div v-if="deck?.article_link && embedded" class="d-flex justify-center px-4 pt-1 pb-2">
+            <v-btn
+              color="primary"
+              variant="tonal"
+              rounded="pill"
+              size="small"
+              class="font-weight-medium text-none"
+              prepend-icon="i-mdi:newspaper-variant-outline"
+              @click="copyArticleLink(deck.article_link)"
+            >
+              复制文章 / 视频链接
+            </v-btn>
+          </div>
+
           <DeckCardList
             :display-grouped-cards="groupedCards"
             :stats-grouped-cards="groupedCards"
