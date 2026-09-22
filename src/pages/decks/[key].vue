@@ -541,7 +541,6 @@ import { usePriceStore } from '@/stores/price'
 import { useFilterStore } from '@/stores/filter'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import { useDevice } from '@/composables/useDevice'
-import { renderDeckToCanvas } from '@/utils/deckCanvasRenderer.js'
 import { useDeckHistory } from '@/composables/useDeckHistory'
 import { useDeckExport } from '@/composables/useDeckExport'
 
@@ -575,9 +574,7 @@ const {
 
 const {
   exportDialog,
-  imageExportMode,
   generatedImageResult,
-  isGenerationTriggered,
   isShareToGalleryDialogVisible,
   shareForm,
   handleShareCard: baseHandleShareCard,
@@ -1018,50 +1015,24 @@ const handleCardClick = (item) => {
   handleShowNewCard({ card: item })
 }
 
-const includeQrCodeInImage = ref(true)
-
 const openExportDialog = () => baseOpenExportDialog(deck.value)
 
 const handleGenerateDeckImage = (options) => {
-  const mode = typeof options === 'string' ? options : options.mode
-  includeQrCodeInImage.value = typeof options === 'object' ? options.includeQrCode : true
-  baseHandleGenerateDeckImage(deck.value, mode)
+  const mode = typeof options === 'string' ? options : options?.mode || 'u_climax'
+  const includeQrCode = typeof options === 'object' ? (options?.includeQrCode ?? true) : true
+  const isLocal = isLocalDeck.value || !!deckStore.localDecks[deckKey]
+  baseHandleGenerateDeckImage({
+    cards: cardsForStats.value,
+    deckName: deck.value?.name,
+    deckKey: isLocal ? '' : deckKey,
+    isLocal,
+    mode,
+    includeQrCode,
+  })
 }
 
 const handleDownloadDeckPDF = (language) =>
   baseHandleDownloadDeckPDF(cardsForStats.value, deck.value.name, language)
-
-watch(
-  () => isGenerationTriggered.value,
-  async (triggered) => {
-    if (triggered && deck.value) {
-      try {
-        isGenerationTriggered.value = false
-        if (generatedImageResult.value?.src) {
-          URL.revokeObjectURL(generatedImageResult.value.src)
-        }
-        const isLocal = isLocalDeck.value || !!deckStore.localDecks[deckKey]
-        const result = await renderDeckToCanvas({
-          cards: cardsForStats.value,
-          deckName: deck.value.name ? deck.value.name.trim() : 'deck',
-          deckKey: isLocal ? '' : deckKey,
-          mode: imageExportMode.value,
-          includeQrCode: includeQrCodeInImage.value && !isLocal,
-          scale: 2,
-        })
-        generatedImageResult.value = result
-      } catch (error) {
-        console.error('生成图片失败:', error)
-        triggerSnackbar('生成图片失败，请稍后再试。', 'error')
-      } finally {
-        uiStore.setLoading(false)
-      }
-    }
-  },
-  {
-    immediate: false,
-  }
-)
 
 const showBottomSheet = ref(false)
 const selectGroupBy = (value) => {

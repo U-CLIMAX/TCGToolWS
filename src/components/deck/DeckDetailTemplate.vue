@@ -413,7 +413,6 @@ import { useSnackbar } from '@/composables/useSnackbar'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import { useDeckStore } from '@/stores/deck'
 import { isTauri } from '@/utils/isTauri'
-import { renderDeckToCanvas } from '@/utils/deckCanvasRenderer.js'
 
 const props = defineProps({
   deck: {
@@ -451,9 +450,7 @@ const { triggerSnackbar } = useSnackbar()
 
 const {
   exportDialog,
-  imageExportMode,
   generatedImageResult,
-  isGenerationTriggered,
   openExportDialog: baseOpenExportDialog,
   handleGenerateDeckImage: baseHandleGenerateDeckImage,
   handleDownloadDeckPDF: baseHandleDownloadDeckPDF,
@@ -472,7 +469,6 @@ const isSaveDialogOpen = ref(false)
 const isSaveLocationDialogOpen = ref(false)
 const isSimulatorDialogVisible = ref(false)
 const showMoreActionsBottomSheet = ref(false)
-const includeQrCodeInImage = ref(true)
 
 const deckName = ref('')
 const deckTags = ref([])
@@ -564,49 +560,26 @@ const selectGroupBy = (value) => {
 const openExportDialog = () => baseOpenExportDialog(props.deck)
 
 const handleGenerateDeckImage = (options) => {
-  const mode = typeof options === 'string' ? options : options.mode
-  includeQrCodeInImage.value = typeof options === 'object' ? options.includeQrCode : true
-  baseHandleGenerateDeckImage(props.deck, mode)
+  const mode = typeof options === 'string' ? options : options?.mode || 'u_climax'
+  const includeQrCode = typeof options === 'object' ? (options?.includeQrCode ?? true) : true
+  const isLocal =
+    isGallery.value ||
+    !props.deckKey ||
+    props.deckKey === 'local' ||
+    !!deckStore.localDecks[props.deckKey]
+
+  baseHandleGenerateDeckImage({
+    cards: deckCards.value,
+    deckName: effectiveDeckName.value,
+    deckKey: props.deckKey,
+    isLocal,
+    mode,
+    includeQrCode,
+  })
 }
 
 const handleDownloadDeckPDF = (language) =>
   baseHandleDownloadDeckPDF(deckCards.value, effectiveDeckName.value, language)
-
-watch(
-  () => isGenerationTriggered.value,
-  async (triggered) => {
-    if (triggered && props.deck) {
-      try {
-        isGenerationTriggered.value = false
-        if (generatedImageResult.value?.src) {
-          URL.revokeObjectURL(generatedImageResult.value.src)
-        }
-        const isLocal =
-          isGallery.value ||
-          !props.deckKey ||
-          props.deckKey === 'local' ||
-          !!deckStore.localDecks[props.deckKey]
-        const result = await renderDeckToCanvas({
-          cards: deckCards.value,
-          deckName: effectiveDeckName.value ? effectiveDeckName.value.trim() : 'deck',
-          deckKey: isLocal ? '' : props.deckKey,
-          mode: imageExportMode.value,
-          includeQrCode: includeQrCodeInImage.value && !isLocal,
-          scale: 2,
-        })
-        generatedImageResult.value = result
-      } catch (error) {
-        console.error('生成图片失败:', error)
-        triggerSnackbar('生成图片失败，请稍后再试。', 'error')
-      } finally {
-        uiStore.setLoading(false)
-      }
-    }
-  },
-  {
-    immediate: false,
-  }
-)
 
 const handleSaveFromBottomSheet = () => {
   showMoreActionsBottomSheet.value = false

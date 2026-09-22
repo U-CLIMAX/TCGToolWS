@@ -1,4 +1,4 @@
-import { ref, computed, watch, nextTick } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { useUIStore } from '@/stores/ui'
 import { writeText } from '@/utils/clipboard'
 import { useDeckStore } from '@/stores/deck'
@@ -9,6 +9,7 @@ import { generateDeckKey } from '@/utils/nanoid'
 import { getCardUrls } from '@/utils/getCardImage'
 import { convertDeckToPDF } from '@/utils/domToPDF'
 import { getWebsiteUrl } from '@/utils/api'
+import { renderDeckToCanvas } from '@/utils/deckCanvasRenderer.js'
 
 /**
  * Composable for deck exporting, sharing, and image generation.
@@ -24,7 +25,6 @@ export const useDeckExport = () => {
   const exportDialog = ref(false)
   const imageExportMode = ref('u_climax')
   const generatedImageResult = ref(null)
-  const isGenerationTriggered = ref(false)
 
   // Gallery Sharing State
   const isShareToGalleryDialogVisible = ref(false)
@@ -168,21 +168,66 @@ export const useDeckExport = () => {
       triggerSnackbar('无法导出，卡组数据缺失。', 'error')
       return
     }
+    if (generatedImageResult.value?.src) {
+      URL.revokeObjectURL(generatedImageResult.value.src)
+    }
     generatedImageResult.value = null
     exportDialog.value = true
   }
 
-  const handleGenerateDeckImage = async (deck, mode = 'u_climax') => {
-    if (!deck) {
+  /**
+   * 渲染並生成卡組匯出圖片
+   * @param {Object} params
+   * @param {Object|Array} params.cards - 卡牌集合或列表
+   * @param {string} [params.deckName] - 卡組名稱
+   * @param {string} [params.deckKey] - 卡組代碼
+   * @param {boolean} [params.isLocal=false] - 是否為本地/廣場卡組
+   * @param {'u_climax'|'tts'} [params.mode='u_climax'] - 導出模式
+   * @param {boolean} [params.includeQrCode=true] - 是否生成二維碼
+   * @param {number} [params.scale=2] - 渲染倍率
+   * @returns {Promise<{ src: string, width: number, height: number, blob: Blob, format: 'png' }|null>}
+   */
+  const handleGenerateDeckImage = async ({
+    cards,
+    deckName = '',
+    deckKey = '',
+    isLocal = false,
+    mode = 'u_climax',
+    includeQrCode = true,
+    scale = 2,
+  }) => {
+    const rawCards = cards ? (Array.isArray(cards) ? cards : Object.values(cards)) : []
+    if (rawCards.length === 0) {
       triggerSnackbar('无法生成图片，卡组数据缺失。', 'error')
-      return
+      return null
     }
-    generatedImageResult.value = null
-    imageExportMode.value = mode
 
+    imageExportMode.value = mode
     uiStore.setLoading(true)
-    await nextTick()
-    isGenerationTriggered.value = true
+
+    try {
+      if (generatedImageResult.value?.src) {
+        URL.revokeObjectURL(generatedImageResult.value.src)
+      }
+
+      const result = await renderDeckToCanvas({
+        cards: rawCards,
+        deckName: deckName ? deckName.trim() : 'deck',
+        deckKey: isLocal ? '' : deckKey,
+        mode,
+        includeQrCode: Boolean(includeQrCode && !isLocal),
+        scale,
+      })
+
+      generatedImageResult.value = result
+      return result
+    } catch (error) {
+      console.error('生成图片失败:', error)
+      triggerSnackbar('生成图片失败，请稍后再试。', 'error')
+      return null
+    } finally {
+      uiStore.setLoading(false)
+    }
   }
 
   const handleDownloadDeckPDF = async (originalCards, deckName, language) => {
@@ -238,7 +283,6 @@ export const useDeckExport = () => {
     exportDialog,
     imageExportMode,
     generatedImageResult,
-    isGenerationTriggered,
     isShareToGalleryDialogVisible,
     shareForm,
     placementOptions,
