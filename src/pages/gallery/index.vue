@@ -254,27 +254,25 @@
         </div>
 
         <div v-else class="gallery-grid-container">
-          <template v-if="!isDrawerCovering">
-            <DecksGalleryItem
-              v-for="item in galleryStore.decks"
-              :key="item.key"
-              v-memo="[
-                item.key,
-                item.updated_at,
-                item.rating_avg,
-                isTouch,
-                hasBackgroundImage,
-                galleryStore.filters.source === 'mine',
-              ]"
-              :deck="item"
-              :is-touch="isTouch"
-              :has-background-image="hasBackgroundImage"
-              :is-mine="galleryStore.filters.source === 'mine'"
-              @delete="openDeleteDialog"
-              @select="handleSelectDeck"
-              @edit="openEditDialog"
-            />
-          </template>
+          <DecksGalleryItem
+            v-for="item in galleryStore.decks"
+            :key="item.key"
+            v-memo="[
+              item.key,
+              item.updated_at,
+              item.rating_avg,
+              isTouch,
+              hasBackgroundImage,
+              galleryStore.filters.source === 'mine',
+            ]"
+            :deck="item"
+            :is-touch="isTouch"
+            :has-background-image="hasBackgroundImage"
+            :is-mine="galleryStore.filters.source === 'mine'"
+            @delete="openDeleteDialog"
+            @select="handleSelectDeck"
+            @edit="openEditDialog"
+          />
         </div>
       </v-container>
     </v-infinite-scroll>
