@@ -107,11 +107,9 @@
             v-for="item in displayedSeries"
             :key="item.id"
             v-memo="[item.id, hasBackgroundImage]"
-            class="d-flex justify-center"
+            class="d-flex justify-center w-100"
           >
-            <LazyCardWrapper>
-              <SeriesCard :series-name="item.name.replace('[cn]', '')" :series-data="item" />
-            </LazyCardWrapper>
+            <SeriesCard :series-name="item.name.replace('[cn]', '')" :series-data="item" />
           </div>
         </div>
       </v-container>
@@ -127,7 +125,6 @@ import { useDisplay } from 'vuetify'
 import { storeToRefs } from 'pinia'
 import { useUIStore } from '@/stores/ui'
 import { useRecentStore } from '@/stores/recent'
-import { useInfiniteScrollState } from '@/composables/useInfiniteScrollState.js'
 import { seriesMap, GAME_TYPE_OPTIONS } from '@/maps/series-map.js'
 import collator from '@/utils/collator.js'
 
@@ -208,40 +205,13 @@ const load = async ({ done }) => {
   done('ok')
 }
 
+// 监听搜索或排序变更，清空当前展示并重置无限滚动
 watch([seriesSearchTerm, seriesSortBy, seriesSortAscending, selectedGameType], async () => {
   displayedSeries.value = []
   await nextTick()
   if (infiniteScrollRef.value) {
     infiniteScrollRef.value.reset()
   }
-})
-
-const storageKey = computed(() => 'seriesCardTableViewState')
-
-useInfiniteScrollState({
-  storageKey,
-  scrollRef: infiniteScrollRef,
-  onSave: () => {
-    const scrollableElement = infiniteScrollRef.value?.$el
-    if (scrollableElement) {
-      return {
-        itemCount: displayedSeries.value.length,
-        scrollPosition: scrollableElement.scrollTop,
-      }
-    }
-    return null
-  },
-  onRestore: (savedState) => {
-    if (savedState.itemCount > 0) {
-      displayedSeries.value = filteredSeries.value.slice(0, savedState.itemCount)
-    }
-    nextTick(() => {
-      const scrollableElement = infiniteScrollRef.value?.$el
-      if (scrollableElement) {
-        scrollableElement.scrollTop = savedState.scrollPosition
-      }
-    })
-  },
 })
 
 const scrollContainer = ref(null)
@@ -264,6 +234,10 @@ onMounted(() => {
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 24px;
   width: 100%;
+}
+
+.series-grid-container > * {
+  min-width: 0;
 }
 
 @media (max-width: 740px) {

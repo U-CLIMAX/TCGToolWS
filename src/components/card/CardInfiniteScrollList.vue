@@ -51,23 +51,21 @@
           class="d-flex justify-center"
           :data-card-id="card.id"
         >
-          <LazyCardWrapper>
-            <CardTemplate
-              :card="card"
-              :is-table-mode="isTableMode"
-              :card-count="cardCounts[card.id] || 0"
-              :card-price="cardPrices[card.id] || null"
-              :is-deck-full="isDeckFull"
-              :card-click-mode="uiStore.cardClickMode"
-              :has-background-image="hasBackgroundImage"
-              :is-touch="isTouch"
-              :sm-and-down="smAndDown"
-              @show-details="onShowDetails"
-              @add-card="deckStore.addCard"
-              @remove-card="deckStore.removeCard"
-              @deck-full="uiStore.cardClickMode = 'none'"
-            />
-          </LazyCardWrapper>
+          <CardTemplate
+            :card="card"
+            :is-table-mode="isTableMode"
+            :card-count="cardCounts[card.id] || 0"
+            :card-price="cardPrices[card.id] || null"
+            :is-deck-full="isDeckFull"
+            :card-click-mode="uiStore.cardClickMode"
+            :has-background-image="hasBackgroundImage"
+            :is-touch="isTouch"
+            :sm-and-down="smAndDown"
+            @show-details="onShowDetails"
+            @add-card="deckStore.addCard"
+            @remove-card="deckStore.removeCard"
+            @deck-full="uiStore.cardClickMode = 'none'"
+          />
         </div>
       </TransitionGroup>
     </div>
@@ -170,6 +168,7 @@ const selectedCardData = ref(null)
 const isTransitionDisabled = ref(false)
 let tableModeTimeout = null
 
+// 当表格模式切换时临时禁用过渡动效，防止网格列重构导致的大规模卡片错位动画
 watch(
   () => props.isTableModeActive,
   () => {
@@ -334,28 +333,8 @@ const reset = async () => {
   }
 }
 
-const getScrollState = () => {
-  return {
-    page: page.value,
-    scrollTop: infiniteScrollRef.value?.$el.scrollTop ?? 0,
-  }
-}
-
-const restoreScrollState = (state) => {
-  if (state) {
-    page.value = state.page
-    nextTick(() => {
-      if (infiniteScrollRef.value?.$el) {
-        infiniteScrollRef.value.$el.scrollTop = state.scrollTop
-      }
-    })
-  }
-}
-
 defineExpose({
   reset,
-  getScrollState,
-  restoreScrollState,
 })
 
 const scrollContainer = ref(null)

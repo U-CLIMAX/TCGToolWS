@@ -199,87 +199,85 @@
               :class="smAndDown ? 'py-1' : 'py-3'"
               class="d-flex"
             >
-              <LazyCardWrapper min-height="160">
-                <v-card
-                  height="160"
-                  class="position-relative overflow-hidden w-100"
-                  :class="{ 'glass-card': hasBackgroundImage }"
-                  rounded="xl"
-                  elevation="0"
-                >
-                  <v-icon
-                    :icon="getContactIcon(item.contactType)"
-                    class="bg-watermark-icon"
-                    :color="theme.global.current.value.dark ? 'grey-darken-1' : 'grey-lighten-1'"
-                  />
+              <v-card
+                height="160"
+                class="community-card position-relative overflow-hidden w-100"
+                :class="{ 'glass-card': hasBackgroundImage }"
+                rounded="xl"
+                elevation="0"
+              >
+                <v-icon
+                  :icon="getContactIcon(item.contactType)"
+                  class="bg-watermark-icon"
+                  :color="theme.global.current.value.dark ? 'grey-darken-1' : 'grey-lighten-1'"
+                />
 
-                  <v-card-text class="pa-4 d-flex flex-column h-100 position-relative z-1">
-                    <div class="d-flex ga-2 mb-2">
-                      <v-chip
-                        size="x-small"
-                        color="blue-lighten-5"
-                        class="text-primary font-weight-bold pa-2 bg-blue-grey-lighten-5"
-                        variant="flat"
-                        density="compact"
-                        rounded="pill"
-                      >
-                        {{ item.province }}
-                      </v-chip>
-                      <v-chip
-                        v-if="item.district"
-                        size="x-small"
-                        color="blue-lighten-5"
-                        class="text-primary font-weight-bold pa-2 bg-blue-grey-lighten-5"
-                        variant="flat"
-                        density="compact"
-                        rounded="pill"
-                      >
-                        {{ item.district }}
-                      </v-chip>
-                    </div>
-
-                    <div class="mb-6">
-                      <div
-                        class="text-subtitle-1 font-weight-bold text-medium-emphasis pr-4"
-                        style="line-height: 1.2"
-                      >
-                        {{ item.name }}
-                      </div>
-                    </div>
-
-                    <v-sheet
-                      rounded="2lg"
-                      class="pa-2 mt-auto d-flex align-center position-relative"
-                      style="
-                        background-color: rgba(var(--v-theme-surface), 0.3);
-                        backdrop-filter: blur(6px);
-                      "
+                <v-card-text class="pa-4 d-flex flex-column h-100 position-relative z-1">
+                  <div class="d-flex ga-2 mb-2">
+                    <v-chip
+                      size="x-small"
+                      color="blue-lighten-5"
+                      class="text-primary font-weight-bold pa-2 bg-blue-grey-lighten-5"
+                      variant="flat"
+                      density="compact"
+                      rounded="pill"
                     >
-                      <div class="flex-grow-1 overflow-hidden px-1">
-                        <div
-                          class="text-caption text-medium-emphasis"
-                          style="font-size: 10px !important"
-                        >
-                          {{ getContactLabel(item.contactType) }}
-                        </div>
-                        <div class="text-h6 text-truncate text-medium-emphasis font-DINCond">
-                          {{ item.contactInfo }}
-                        </div>
-                      </div>
-                      <v-btn
-                        icon
-                        color="primary"
-                        size="x-small"
-                        elevation="0"
-                        class="rounded-circle"
-                        @click="copyContact(item.contactInfo)"
+                      {{ item.province }}
+                    </v-chip>
+                    <v-chip
+                      v-if="item.district"
+                      size="x-small"
+                      color="blue-lighten-5"
+                      class="text-primary font-weight-bold pa-2 bg-blue-grey-lighten-5"
+                      variant="flat"
+                      density="compact"
+                      rounded="pill"
+                    >
+                      {{ item.district }}
+                    </v-chip>
+                  </div>
+
+                  <div class="mb-6">
+                    <div
+                      class="text-subtitle-1 font-weight-bold text-medium-emphasis pr-4"
+                      style="line-height: 1.2"
+                    >
+                      {{ item.name }}
+                    </div>
+                  </div>
+
+                  <v-sheet
+                    rounded="2lg"
+                    class="pa-2 mt-auto d-flex align-center position-relative"
+                    style="
+                      background-color: rgba(var(--v-theme-surface), 0.3);
+                      backdrop-filter: blur(6px);
+                    "
+                  >
+                    <div class="flex-grow-1 overflow-hidden px-1">
+                      <div
+                        class="text-caption text-medium-emphasis"
+                        style="font-size: 10px !important"
                       >
-                        <v-icon size="16" icon="i-mdi:content-copy" />
-                      </v-btn>
-                    </v-sheet>
-                  </v-card-text>
-                </v-card>
-              </LazyCardWrapper>
+                        {{ getContactLabel(item.contactType) }}
+                      </div>
+                      <div class="text-h6 text-truncate text-medium-emphasis font-DINCond">
+                        {{ item.contactInfo }}
+                      </div>
+                    </div>
+                    <v-btn
+                      icon
+                      color="primary"
+                      size="x-small"
+                      elevation="0"
+                      class="rounded-circle"
+                      @click="copyContact(item.contactInfo)"
+                    >
+                      <v-icon size="16" icon="i-mdi:content-copy" />
+                    </v-btn>
+                  </v-sheet>
+                </v-card-text>
+              </v-card>
             </v-col>
           </div>
         </v-row>
@@ -540,6 +538,11 @@ onMounted(() => {
     transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
   opacity: 1;
   transform: translateY(0);
+}
+
+.community-card {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 160px;
 }
 
 .filtering-fade > * {

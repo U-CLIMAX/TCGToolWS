@@ -198,7 +198,6 @@ import { useDisplay, useTheme } from 'vuetify'
 import { storeToRefs } from 'pinia'
 import { useGlobalSearchStore } from '@/stores/globalSearch'
 import { useUIStore } from '@/stores/ui'
-import { useInfiniteScrollState } from '@/composables/useInfiniteScrollState.js'
 import { useDevice } from '@/composables/useDevice'
 import { HalfCircleSpinner } from 'epic-spinners'
 import { GAME_TYPE_OPTIONS } from '@/maps/series-map'
@@ -271,15 +270,17 @@ const chipContent = computed(() => {
   return hasActiveFilters.value ? globalSearchStore.searchResults.length : 0
 })
 
-onMounted(() => {
+onMounted(async () => {
   uiStore.cardClickMode = 'none'
-  globalSearchStore.initialize(game.value)
+  await globalSearchStore.initialize(game.value)
 })
 
-watch(game, (newGame) => {
-  globalSearchStore.initialize(newGame)
+// 监听游戏切换，重新初始化全局搜索索引与状态
+watch(game, async (newGame) => {
+  await globalSearchStore.initialize(newGame)
 })
 
+// 监听搜索结果变化（用户输入或筛选条件变更），重置卡片无限滚动分页与滚动位置
 watch(searchResults, () => {
   cardListRef.value?.reset()
 })
@@ -287,18 +288,6 @@ watch(searchResults, () => {
 onUnmounted(() => {
   observer.disconnect()
   globalSearchStore.terminate()
-})
-
-const storageKey = computed(() => `globalSearchViewState_${game.value}`)
-
-useInfiniteScrollState({
-  storageKey,
-  scrollRef: cardListRef,
-  onSave: () => cardListRef.value?.getScrollState(),
-  onRestore: (savedState) => {
-    cardListRef.value?.restoreScrollState(savedState)
-  },
-  loadingRef: computed(() => globalSearchStore.isLoading),
 })
 </script>
 

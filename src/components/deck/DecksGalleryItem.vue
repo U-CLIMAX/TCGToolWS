@@ -210,6 +210,8 @@ const navigateToDeckDetail = () => {
 
 <style scoped>
 .gallery-item-card {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 160px;
   height: auto;
   min-height: 160px;
   transition: all 0.2s ease-in-out;

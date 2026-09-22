@@ -95,6 +95,10 @@ const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 <style scoped>
 .series-card {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 240px;
+  width: 100%;
+  min-width: 0;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-rendering: geometricPrecision;
   backface-visibility: hidden;
@@ -129,15 +133,17 @@ const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 }
 
 /* === Standard Mode Hover === */
+.series-card:not(.compact):hover {
+  transform: scale(1.04);
+}
+
 .series-card:not(.compact):hover .image-wrapper {
-  transform: scale(1.05);
   box-shadow:
     0 0 0 1px rgba(0, 0, 0, 0.1),
     0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
 .series-card:not(.compact):hover .pill-content {
-  transform: scale(1.05);
   box-shadow:
     0 0 0 1px rgba(0, 0, 0, 0.08),
     0 4px 12px rgba(0, 0, 0, 0.1);

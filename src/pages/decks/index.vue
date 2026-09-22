@@ -227,35 +227,32 @@
               :key="item.key"
               v-memo="[
                 item.key,
-                item.deck.updated_at,
                 item.isEditing,
                 item.deck.name,
+                item.deck.cards,
                 item.deck.tags,
                 item.deck.isLocal,
+                item.deck.coverCardId,
                 isTouch,
                 smAndDown,
-                allAvailableTags,
               ]"
-              class="pa-2"
               cols="4"
               xs="6"
               sm="3"
               md="2"
               xl="1"
             >
-              <LazyCardWrapper>
-                <DeckCard
-                  :deck="item.deck"
-                  :deckKey="item.key"
-                  :is-editing="item.isEditing"
-                  :is-touch="isTouch"
-                  :sm-and-down="smAndDown"
-                  :all-existing-tags="allAvailableTags"
-                  :on-delete="handleDeleteDeck"
-                  :on-save-tags="handleSaveTags"
-                  :on-upload-cloud="handleUploadCloud"
-                />
-              </LazyCardWrapper>
+              <DeckCard
+                :deck="item.deck"
+                :deckKey="item.key"
+                :is-editing="item.isEditing"
+                :is-touch="isTouch"
+                :sm-and-down="smAndDown"
+                :all-existing-tags="allAvailableTags"
+                :on-delete="handleDeleteDeck"
+                :on-save-tags="handleSaveTags"
+                :on-upload-cloud="handleUploadCloud"
+              />
             </v-col>
           </div>
           <div v-else-if="!deckStore.isLoading" class="text-center text-medium-emphasis mt-10">
@@ -279,7 +276,6 @@ import { useUIStore } from '@/stores/ui'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useDevice } from '@/composables/useDevice'
 import { debounceRef } from '@/composables/useDebounceRef'
-import { useInfiniteScrollState } from '@/composables/useInfiniteScrollState.js'
 import { seriesMap, GAME_TYPE_OPTIONS } from '@/maps/series-map'
 import { isTauri } from '@/utils/isTauri'
 
@@ -412,16 +408,12 @@ const initialLoadingComplete = ref(!deckStore.shouldResetView && deckStore.decks
 const showDeckCodeDialog = ref(false)
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
-const storageKey = computed(() => 'decksViewState')
-
 const handleSearch = async () => {
   localBatchLimit.value = 24
   deckStore.filters.search = deckNameSearchTerm.value
   deckStore.filters.gameType = selectedGameType.value
   deckStore.filters.series = selectedSeries.value
   deckStore.filters.tags = selectedTags.value
-
-  sessionStorage.removeItem(storageKey.value)
 
   if (deckSourceMode.value === 'cloud' && authStore.isAuthenticated && authStore.isOnline) {
     try {
@@ -681,7 +673,6 @@ watch(deckSourceMode, async (newMode) => {
 const resetViewAndFetch = async () => {
   isResetting = true
   deckStore.shouldResetView = false
-  sessionStorage.removeItem(storageKey.value)
 
   deckNameSearchTerm.value = ''
   selectedSeries.value = null
@@ -727,30 +718,6 @@ watch(
     }
   }
 )
-
-useInfiniteScrollState({
-  storageKey,
-  scrollRef: infiniteScrollRef,
-  onSave: () => {
-    const scrollableElement = infiniteScrollRef.value?.$el
-    if (scrollableElement) {
-      return {
-        itemCount: displayedDecks.value.length,
-        scrollPosition: scrollableElement.scrollTop,
-      }
-    }
-    return null
-  },
-  onRestore: (savedState) => {
-    if (deckStore.shouldResetView) return
-    nextTick(() => {
-      const scrollableElement = infiniteScrollRef.value?.$el
-      if (scrollableElement && savedState.scrollPosition) {
-        scrollableElement.scrollTop = savedState.scrollPosition
-      }
-    })
-  },
-})
 
 onMounted(async () => {
   const canFetchCloud = authStore.isAuthenticated && authStore.isOnline

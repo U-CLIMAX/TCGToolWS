@@ -254,21 +254,18 @@
         </div>
 
         <div v-else class="gallery-grid-container">
-          <LazyCardWrapper
-            v-for="item in galleryStore.decks"
-            :key="item.key"
-            v-memo="[
-              item.key,
-              item.updated_at,
-              item.rating_avg,
-              isTouch,
-              hasBackgroundImage,
-              galleryStore.filters.source === 'mine',
-              isDrawerCovering,
-            ]"
-          >
+          <template v-if="!isDrawerCovering">
             <DecksGalleryItem
-              v-if="!isDrawerCovering"
+              v-for="item in galleryStore.decks"
+              :key="item.key"
+              v-memo="[
+                item.key,
+                item.updated_at,
+                item.rating_avg,
+                isTouch,
+                hasBackgroundImage,
+                galleryStore.filters.source === 'mine',
+              ]"
               :deck="item"
               :is-touch="isTouch"
               :has-background-image="hasBackgroundImage"
@@ -277,7 +274,7 @@
               @select="handleSelectDeck"
               @edit="openEditDialog"
             />
-          </LazyCardWrapper>
+          </template>
         </div>
       </v-container>
     </v-infinite-scroll>

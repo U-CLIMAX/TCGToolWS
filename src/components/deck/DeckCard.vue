@@ -413,6 +413,8 @@ const handleActionMenuDelete = () => {
 
 <style scoped>
 .deck-card {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 240px;
   transition: transform 0.2s ease-in-out;
   overflow: hidden;
   -webkit-touch-callout: none;

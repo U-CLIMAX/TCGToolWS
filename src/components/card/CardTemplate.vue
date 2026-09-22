@@ -131,6 +131,8 @@ const handleCardClick = () => {
 
 <style scoped>
 .detail-card {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 380px;
   position: relative;
   background-color: rgb(var(--v-theme-surface));
   color: rgb(var(--v-theme-on-surface));

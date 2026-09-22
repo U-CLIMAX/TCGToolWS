@@ -225,7 +225,6 @@ import { useUIStore } from '@/stores/ui'
 import { useAuthStore } from '@/stores/auth'
 import { useRecentStore } from '@/stores/recent'
 import { usePriceStore } from '@/stores/price'
-import { useInfiniteScrollState } from '@/composables/useInfiniteScrollState.js'
 import { useDevice } from '@/composables/useDevice'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { getCardSeriesId } from '@/utils/card'
@@ -315,6 +314,7 @@ const getShortHash = (str) => {
   return (h >>> 0).toString(36)
 }
 
+// 监听系列前缀变化，初始化该系列的卡片与筛选数据
 watch(
   prefixes,
   async (newPrefixes) => {
@@ -364,6 +364,7 @@ watch(
   }
 )
 
+// 监听卡片筛选结果变化，重置列表滚动条与分页状态
 watch([() => filterStore.filteredCards], () => {
   if (listRef.value) {
     listRef.value.reset()
@@ -418,18 +419,6 @@ onUnmounted(() => {
   observer.disconnect()
   filterStore.reset()
   uiStore.cardClickMode = 'none'
-})
-
-const storageKey = computed(() => `seriesDetailViewState_${props.seriesId}`)
-
-useInfiniteScrollState({
-  storageKey,
-  scrollRef: listRef,
-  onSave: () => listRef.value?.getScrollState(),
-  onRestore: (savedState) => {
-    listRef.value?.restoreScrollState(savedState)
-  },
-  loadingRef: computed(() => filterStore.isLoading),
 })
 </script>
 

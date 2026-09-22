@@ -38,7 +38,6 @@ declare module 'vue' {
     ImageCropperModal: typeof import('./../components/ui/ImageCropperModal.vue')['default']
     ImageZoomViewer: typeof import('./../components/ui/ImageZoomViewer.vue')['default']
     InsetTabs: typeof import('./../components/ui/InsetTabs.vue')['default']
-    LazyCardWrapper: typeof import('./../components/ui/LazyCardWrapper.vue')['default']
     LinkedCard: typeof import('./../components/card/LinkedCard.vue')['default']
     LocalImageSyncSettings: typeof import('./../components/app/LocalImageSyncSettings.vue')['default']
     NoticeDialog: typeof import('./../components/app/NoticeDialog.vue')['default']

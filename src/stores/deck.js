@@ -409,9 +409,6 @@ export const useDeckStore = defineStore(
 
         shouldResetView.value = true
         pendingGameType.value = game_type
-        if (typeof sessionStorage !== 'undefined') {
-          sessionStorage.removeItem('decksViewState')
-        }
       }
     }
 
@@ -496,9 +493,6 @@ export const useDeckStore = defineStore(
 
       shouldResetView.value = true
       pendingGameType.value = game_type
-      if (typeof sessionStorage !== 'undefined') {
-        sessionStorage.removeItem('decksViewState')
-      }
     }
 
     /**
