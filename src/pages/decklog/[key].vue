@@ -3,12 +3,13 @@
     :deck="deck"
     :cards="cards"
     :deck-title="deck ? deck.title : deckKey"
+    :deck-key="deckKey"
     @save="handleSaveDeck"
   />
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, shallowRef, onMounted, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useDeckEncoder } from '@/composables/useDeckEncoder'
 import { fetchCardByIdAndPrefix } from '@/utils/card'
@@ -38,7 +39,7 @@ const { triggerSnackbar } = useSnackbar()
 
 const deckKey = route.params.key
 const deck = ref(null)
-const cards = ref({})
+const cards = shallowRef({})
 const filterStore = useFilterStore()
 
 onUnmounted(() => {

@@ -28,15 +28,49 @@
                 'elevation-0': !smAndUp || embedded,
               }"
             >
-              <v-btn
-                icon
-                :variant="smAndUp || isGallery ? 'text' : 'elevated'"
-                :density="smAndUp ? 'compact' : 'default'"
-                @click="openSaveDialog"
-                :disabled="!deck"
-              >
-                <v-icon size="24" color="primary" icon="i-mdi:content-save-outline" />
-              </v-btn>
+              <template v-if="embedded">
+                <v-btn
+                  icon
+                  :variant="smAndUp || isGallery ? 'text' : 'elevated'"
+                  :density="smAndUp ? 'compact' : 'default'"
+                  @click="openSaveDialog"
+                  :disabled="!deck"
+                >
+                  <v-icon size="24" color="primary" icon="i-mdi:content-save-outline" />
+                </v-btn>
+              </template>
+              <template v-else-if="smAndUp">
+                <v-btn
+                  icon="i-mdi:content-save-outline"
+                  variant="text"
+                  density="compact"
+                  :disabled="!deck"
+                  @click="openSaveDialog"
+                  v-tooltip:bottom="{ text: '储存卡组', disabled: isTouch }"
+                ></v-btn>
+                <v-btn
+                  icon="i-mdi:export-variant"
+                  variant="text"
+                  density="compact"
+                  :disabled="!deck"
+                  @click="openExportDialog"
+                  v-tooltip:bottom="{ text: '汇出卡组', disabled: isTouch }"
+                ></v-btn>
+                <v-btn
+                  v-if="userRole !== 0"
+                  icon="i-mdi:dice-multiple"
+                  variant="text"
+                  density="compact"
+                  :disabled="!deck"
+                  @click="isSimulatorDialogVisible = true"
+                  v-tooltip:bottom="{ text: '起手模拟', disabled: isTouch }"
+                ></v-btn>
+              </template>
+              <template v-else>
+                <v-btn icon elevation="1" @click="showMoreActionsBottomSheet = true">
+                  <v-icon size="24" icon="i-mdi:dots-vertical" />
+                </v-btn>
+              </template>
             </div>
 
             <!-- 中間 -->
@@ -270,6 +304,49 @@
       </v-list>
     </v-bottom-sheet>
 
+    <v-bottom-sheet v-model="showMoreActionsBottomSheet">
+      <v-list :class="{ 'glass-sheet': hasBackgroundImage }" rounded="t-xl">
+        <v-list-subheader>更多操作</v-list-subheader>
+        <v-list-item :disabled="!deck" @click="handleSaveFromBottomSheet">
+          <template #prepend>
+            <v-icon icon="i-mdi:content-save-outline" />
+          </template>
+          <v-list-item-title>储存卡组</v-list-item-title>
+        </v-list-item>
+        <v-list-item
+          v-if="userRole !== 0"
+          :disabled="!deck"
+          @click="handleSimulatorFromBottomSheet"
+        >
+          <template #prepend>
+            <v-icon icon="i-mdi:dice-multiple" />
+          </template>
+          <v-list-item-title>起手模拟</v-list-item-title>
+        </v-list-item>
+        <v-list-item :disabled="!deck" @click="handleExportFromBottomSheet">
+          <template #prepend>
+            <v-icon icon="i-mdi:export-variant" />
+          </template>
+          <v-list-item-title>汇出卡组</v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-bottom-sheet>
+
+    <DeckExportDialog
+      v-model="exportDialog"
+      :cards="deckCards"
+      :deck-name="effectiveDeckName"
+      :generated-image-result="generatedImageResult"
+      @generate-image="handleGenerateDeckImage"
+      @download-pdf="handleDownloadDeckPDF"
+    />
+
+    <DeckSimulatorDialog
+      v-model="isSimulatorDialogVisible"
+      :cards="deckCards"
+      :deck-name="effectiveDeckName"
+    />
+
     <!-- Save Location Choice Dialog (Tauri only) -->
     <v-dialog v-if="isTauri" v-model="isSaveLocationDialogOpen" max-width="360" persistent>
       <v-card class="rounded-2lg pa-3">
@@ -324,6 +401,7 @@
 import { computed, ref, onUnmounted, onMounted, watch, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import { useDisplay } from 'vuetify'
+import { storeToRefs } from 'pinia'
 import { useDeckGrouping } from '@/composables/useDeckGrouping'
 import { getCardSeriesId } from '@/utils/card'
 import { useAuthStore } from '@/stores/auth'
@@ -335,6 +413,7 @@ import { useSnackbar } from '@/composables/useSnackbar'
 import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import { useDeckStore } from '@/stores/deck'
 import { isTauri } from '@/utils/isTauri'
+import { renderDeckToCanvas } from '@/utils/deckCanvasRenderer.js'
 
 const props = defineProps({
   deck: {
@@ -364,11 +443,22 @@ const emit = defineEmits(['save', 'close'])
 const route = useRoute()
 const { smAndUp } = useDisplay()
 const authStore = useAuthStore()
+const { userRole } = storeToRefs(authStore)
 const uiStore = useUIStore()
 const priceStore = usePriceStore()
-const { copyArticleLink } = useDeckExport()
 const { isTouch } = useDevice()
 const { triggerSnackbar } = useSnackbar()
+
+const {
+  exportDialog,
+  imageExportMode,
+  generatedImageResult,
+  isGenerationTriggered,
+  openExportDialog: baseOpenExportDialog,
+  handleGenerateDeckImage: baseHandleGenerateDeckImage,
+  handleDownloadDeckPDF: baseHandleDownloadDeckPDF,
+  copyArticleLink,
+} = useDeckExport()
 
 const isGallery = computed(() => route.name === 'DecksGallery' || route.path.startsWith('/gallery'))
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
@@ -380,12 +470,20 @@ const isAuthAlertOpen = ref(false)
 const deckStore = useDeckStore()
 const isSaveDialogOpen = ref(false)
 const isSaveLocationDialogOpen = ref(false)
+const isSimulatorDialogVisible = ref(false)
+const showMoreActionsBottomSheet = ref(false)
+const includeQrCodeInImage = ref(true)
+
 const deckName = ref('')
 const deckTags = ref([])
 const selectedCoverCardId = ref(null)
 const canSaveToCloud = computed(() => authStore.isAuthenticated && authStore.isOnline)
 
 const allExistingTags = computed(() => deckStore.meta.allTags || [])
+
+const effectiveDeckName = computed(
+  () => props.deck?.deck_name || props.deck?.name || props.deck?.title || props.deckTitle || '卡组'
+)
 
 const openSaveDialog = () => {
   if (!authStore.isAuthenticated && !isTauri) {
@@ -445,7 +543,12 @@ const groupByOptions = [
   { title: '费用', value: 'cost' },
 ]
 
-const deckCards = computed(() => Object.values(props.cards))
+const deckCards = computed(() =>
+  Object.values(props.cards).map((card) => ({
+    ...card,
+    baseId: card.baseId || (card.id ? card.id.replace(/\D+$/, '') : ''),
+  }))
+)
 const { groupedCards } = useDeckGrouping(deckCards, groupBy)
 
 const flattenedDisplayCards = computed(() => {
@@ -457,6 +560,69 @@ const selectGroupBy = (value) => {
   groupBy.value = value
   showBottomSheet.value = false
 }
+
+const openExportDialog = () => baseOpenExportDialog(props.deck)
+
+const handleGenerateDeckImage = (options) => {
+  const mode = typeof options === 'string' ? options : options.mode
+  includeQrCodeInImage.value = typeof options === 'object' ? options.includeQrCode : true
+  baseHandleGenerateDeckImage(props.deck, mode)
+}
+
+const handleDownloadDeckPDF = (language) =>
+  baseHandleDownloadDeckPDF(deckCards.value, effectiveDeckName.value, language)
+
+watch(
+  () => isGenerationTriggered.value,
+  async (triggered) => {
+    if (triggered && props.deck) {
+      try {
+        isGenerationTriggered.value = false
+        if (generatedImageResult.value?.src) {
+          URL.revokeObjectURL(generatedImageResult.value.src)
+        }
+        const isLocal =
+          isGallery.value ||
+          !props.deckKey ||
+          props.deckKey === 'local' ||
+          !!deckStore.localDecks[props.deckKey]
+        const result = await renderDeckToCanvas({
+          cards: deckCards.value,
+          deckName: effectiveDeckName.value ? effectiveDeckName.value.trim() : 'deck',
+          deckKey: isLocal ? '' : props.deckKey,
+          mode: imageExportMode.value,
+          includeQrCode: includeQrCodeInImage.value && !isLocal,
+          scale: 2,
+        })
+        generatedImageResult.value = result
+      } catch (error) {
+        console.error('生成图片失败:', error)
+        triggerSnackbar('生成图片失败，请稍后再试。', 'error')
+      } finally {
+        uiStore.setLoading(false)
+      }
+    }
+  },
+  {
+    immediate: false,
+  }
+)
+
+const handleSaveFromBottomSheet = () => {
+  showMoreActionsBottomSheet.value = false
+  openSaveDialog()
+}
+
+const handleSimulatorFromBottomSheet = () => {
+  showMoreActionsBottomSheet.value = false
+  isSimulatorDialogVisible.value = true
+}
+
+const handleExportFromBottomSheet = () => {
+  showMoreActionsBottomSheet.value = false
+  openExportDialog()
+}
+
 // Header Height Calculation
 const headerRef = ref(null)
 const headerOffsetHeight = ref(0)
@@ -511,6 +677,9 @@ watch(
 onUnmounted(() => {
   if (observer) {
     observer.disconnect()
+  }
+  if (generatedImageResult.value?.src) {
+    URL.revokeObjectURL(generatedImageResult.value.src)
   }
 })
 

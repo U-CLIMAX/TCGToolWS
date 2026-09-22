@@ -29,7 +29,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, toRaw, watch } from 'vue'
+import { ref, shallowRef, onMounted, onUnmounted, toRaw, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useDeckEncoder } from '@/composables/useDeckEncoder'
 import { fetchCardByIdAndPrefix } from '@/utils/card'
@@ -62,7 +62,7 @@ const deckStore = useDeckStore()
 const { triggerSnackbar } = useSnackbar()
 
 const deck = ref(null)
-const cards = ref({})
+const cards = shallowRef({})
 const isLoading = ref(false)
 
 /**
