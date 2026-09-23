@@ -1,14 +1,13 @@
 <template>
-  <v-card
+  <div
     id="card-detail"
     ref="cardModalRef"
-    :ripple="false"
     v-touch="{
       left: handleSwipeLeft,
       right: handleSwipeRight,
     }"
     @click="handleModalClick"
-    class="d-flex flex-column w-100 cursor-default"
+    class="v-card d-flex flex-column w-100 cursor-default"
     style="position: relative"
     :class="{
       'overflow-y-auto themed-scrollbar': !$vuetify.display.mdAndUp,
@@ -24,55 +23,42 @@
       @click="emit('close')"
     ></v-btn>
 
-    <v-card-text class="pa-0 d-flex flex-column flex-md-row">
+    <div class="v-card-text pa-0 d-flex flex-column flex-md-row">
       <div class="image-container flex-shrink-0 d-flex flex-column justify-center">
-        <v-hover v-slot="{ isHovering, props: hoverProps }">
-          <div
-            v-bind="hoverProps"
-            class="image-wrapper"
-            :class="{ 'light-mode-glowing-border': isLightMode }"
-          >
-            <CardImage
-              :key="card?.id"
-              :card="card"
-              rounded="5md"
-              class="card-image preload-img w-100"
-              :class="{ 'hover-scale': isHovering }"
-            />
-            <v-fade-transition>
-              <v-btn
-                v-if="isHovering || isTouch"
-                icon="i-mdi:file-document-arrow-right"
-                variant="tonal"
-                size="small"
-                class="download-text-button"
-                @click="handleDownloadText"
-              ></v-btn>
-            </v-fade-transition>
-            <v-fade-transition>
-              <v-btn
-                v-if="isHovering || isTouch"
-                icon="i-mdi:content-copy"
-                variant="tonal"
-                size="small"
-                class="copy-card-button"
-                @click="isCopyCardDialogOpen = true"
-              ></v-btn>
-            </v-fade-transition>
-            <v-fade-transition>
-              <v-btn
-                v-if="isHovering || isTouch"
-                icon="i-mdi:download"
-                variant="tonal"
-                size="small"
-                class="download-card-button"
-                @click="isDownloadCardDialogOpen = true"
-              ></v-btn>
-            </v-fade-transition>
-          </div>
-        </v-hover>
+        <div class="image-wrapper" :class="{ 'light-mode-glowing-border': isLightMode }">
+          <CardImage
+            :key="card?.id"
+            :card="card"
+            rounded="5md"
+            class="card-image preload-img w-100"
+          />
+          <v-btn
+            icon="i-mdi:file-document-arrow-right"
+            variant="tonal"
+            size="small"
+            class="download-text-button"
+            @click="handleDownloadText"
+          ></v-btn>
+          <v-btn
+            icon="i-mdi:content-copy"
+            variant="tonal"
+            size="small"
+            class="copy-card-button"
+            @click="isCopyCardDialogOpen = true"
+          ></v-btn>
+          <v-btn
+            icon="i-mdi:download"
+            variant="tonal"
+            size="small"
+            class="download-card-button"
+            @click="isDownloadCardDialogOpen = true"
+          ></v-btn>
+        </div>
         <div>
-          <v-card-actions v-if="showActions" class="d-flex justify-center align-center pa-0 pt-4">
+          <div
+            v-if="showActions"
+            class="v-card-actions d-flex justify-center align-center pa-0 pt-4"
+          >
             <v-btn
               icon
               size="small"
@@ -94,7 +80,7 @@
               @click="card?.id && deckStore.addCard(card)"
               :disabled="deckStore.totalCardCount >= 50 && userRole === 0"
             ></v-btn>
-          </v-card-actions>
+          </div>
         </div>
       </div>
 
@@ -113,18 +99,18 @@
           :style="{ overflowY: $vuetify.display.mdAndUp ? undefined : 'visible' }"
         >
           <div class="pa-4 pl-md-0">
-            <v-card-subtitle class="pb-1 text-body-2 pa-0 pr-8">
+            <div class="v-card-subtitle pb-1 text-body-2 pa-0 pr-8">
               <v-icon size="18" class="mr-1" icon="i-mdi:cube-outline" />
               {{ card?.product_name || '' }}
-            </v-card-subtitle>
+            </div>
 
-            <v-card-title class="pt-0 text-h5 text-wrap pa-0">
+            <div class="v-card-title pt-0 text-h5 text-wrap pa-0">
               {{ card?.name || '' }}
-            </v-card-title>
+            </div>
 
-            <v-card-subtitle class="pt-0 text-body-2 pa-0 mb-4">
+            <div class="v-card-subtitle pt-0 text-body-2 pa-0 mb-4">
               {{ card?.id || '' }}
-            </v-card-subtitle>
+            </div>
 
             <div v-if="price != null && route.meta.showCardPrice" class="mb-4 d-flex align-center">
               <span class="d-flex align-center text-currency">
@@ -167,25 +153,25 @@
               </span>
             </div>
 
-            <v-row dense class="my-4 text-center">
-              <v-col>
+            <div class="stat-grid my-4 text-center">
+              <div>
                 <div class="text-body-2 text-grey">等级</div>
                 <div class="font-wenkai font-weight-bold text-body-1">{{ card?.level ?? '' }}</div>
-              </v-col>
-              <v-col>
+              </div>
+              <div>
                 <div class="text-body-2 text-grey">费用</div>
                 <div class="font-wenkai font-weight-bold text-body-1">{{ card?.cost ?? '' }}</div>
-              </v-col>
-              <v-col>
+              </div>
+              <div>
                 <div class="text-body-2 text-grey">战斗力</div>
                 <div class="font-wenkai font-weight-bold text-body-1">{{ card?.power ?? '' }}</div>
-              </v-col>
-              <v-col>
+              </div>
+              <div>
                 <div class="text-body-2 text-grey">灵魂值</div>
                 <div class="font-wenkai font-weight-bold text-body-1">{{ card?.soul ?? '' }}</div>
-              </v-col>
-            </v-row>
-            <v-divider class="mb-4"></v-divider>
+              </div>
+            </div>
+            <hr class="v-divider mb-4" />
             <div>
               <div class="text-body-2 mb-2 text-grey d-flex align-center">
                 <v-icon size="18" class="mr-1" icon="i-mdi:information-outline" />
@@ -240,70 +226,39 @@
                 </v-tooltip>
               </v-chip>
             </div>
-            <div
-              v-if="card?.link && card.link.length > 0"
-              :key="`${card?.id || ''}-links`"
-              class="mt-4"
-            >
+            <div v-if="linkedCards.length > 0" class="mt-4">
               <div class="text-body-2 mb-2 text-grey">
                 <v-icon size="18" class="mr-1" icon="i-mdi:link-variant" />
                 关联卡片
               </div>
-              <v-slide-y-reverse-transition mode="out-in">
-                <div :key="isLoadingLinks ? 'loading' : 'content'">
-                  <!-- Loading -->
-                  <div v-if="isLoadingLinks" class="d-flex justify-center align-center pa-4 mx-4">
-                    <v-progress-linear indeterminate color="primary" />
-                  </div>
-
-                  <!-- Linked cards -->
-                  <div v-else class="linked-cards-grid">
-                    <LinkedCard
-                      v-for="linkedCard in linkedCards"
-                      :key="linkedCard.id"
-                      :card="linkedCard"
-                      @show-details="handleShowNewCard"
-                    />
-                  </div>
-                </div>
-              </v-slide-y-reverse-transition>
+              <div class="linked-cards-grid">
+                <LinkedCard
+                  v-for="linkedCard in linkedCards"
+                  :key="linkedCard.id"
+                  :card="linkedCard"
+                  @show-details="handleShowNewCard"
+                />
+              </div>
             </div>
 
-            <div
-              v-if="card?.parallelCards && card.parallelCards.length > 0"
-              :key="`${card?.id || ''}-parallels`"
-              class="mt-4"
-            >
+            <div v-if="parallelCards.length > 0" class="mt-4">
               <div class="text-body-2 mb-2 text-grey">
                 <v-icon size="18" class="mr-1" icon="i-mdi:star-four-points-outline" />
                 {{ card?.isLowestRarity ? '高罕卡片' : '低罕卡片' }}
               </div>
-              <v-slide-y-reverse-transition mode="out-in">
-                <div :key="isLoadingParallels ? 'loading' : 'content'">
-                  <!-- Loading -->
-                  <div
-                    v-if="isLoadingParallels"
-                    class="d-flex justify-center align-center pa-4 mx-4"
-                  >
-                    <v-progress-linear indeterminate color="primary" />
-                  </div>
-
-                  <!-- Parallel cards -->
-                  <div v-else class="linked-cards-grid">
-                    <LinkedCard
-                      v-for="parallelCard in parallelCards"
-                      :key="parallelCard.id"
-                      :card="parallelCard"
-                      @show-details="handleShowNewCard"
-                    />
-                  </div>
-                </div>
-              </v-slide-y-reverse-transition>
+              <div class="linked-cards-grid">
+                <LinkedCard
+                  v-for="parallelCard in parallelCards"
+                  :key="parallelCard.id"
+                  :card="parallelCard"
+                  @show-details="handleShowNewCard"
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </v-card-text>
+    </div>
     <v-btn
       icon="i-mdi:chevron-left"
       variant="tonal"
@@ -406,11 +361,11 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </v-card>
+  </div>
 </template>
 
 <script setup>
-import { computed, ref, onUnmounted, onMounted, watch, nextTick } from 'vue'
+import { computed, ref, onUnmounted, onMounted, watch } from 'vue'
 import { useDisplay } from 'vuetify'
 import { storeToRefs } from 'pinia'
 import LinkedCard from './LinkedCard.vue'
@@ -514,7 +469,7 @@ const handleTraitClick = (trait) => {
 
 const isModalActive = () => {
   if (!props.card?.id) return false
-  const el = cardModalRef.value?.$el || cardModalRef.value
+  const el = cardModalRef.value
   if (!el) return false
   const overlay = el.closest('.v-overlay')
   if (overlay && !overlay.classList.contains('v-overlay--active')) {
@@ -562,9 +517,7 @@ const handleKeydown = (e) => {
 // 弹窗自主管理关联卡与平行卡数据，等待进场动画完成后异步加载以确保 60fps 流畅体验
 
 const linkedCards = ref([])
-const isLoadingLinks = ref(false)
 const parallelCards = ref([])
-const isLoadingParallels = ref(false)
 
 /**
  * 获取指定卡牌的当前市场价格。
@@ -619,13 +572,8 @@ const loadSecondaryCards = async (targetCard) => {
 
   // 若明确两者均为空数组，无需触发任何后续请求
   if (linkIds.length === 0 && parallelIds.length === 0) {
-    isLoadingLinks.value = false
-    isLoadingParallels.value = false
     return
   }
-
-  isLoadingLinks.value = linkIds.length > 0
-  isLoadingParallels.value = parallelIds.length > 0
 
   try {
     const cardPrefix = targetCard.cardIdPrefix
@@ -642,11 +590,6 @@ const loadSecondaryCards = async (targetCard) => {
     }
   } catch (err) {
     console.error('Failed to fetch secondary cards in modal:', err)
-  } finally {
-    if (requestId === currentCardRequestId) {
-      isLoadingLinks.value = false
-      isLoadingParallels.value = false
-    }
   }
 }
 
@@ -654,27 +597,25 @@ const loadSecondaryCards = async (targetCard) => {
  * 将卡片详情弹窗的滚动条重置回最顶端。
  */
 const scrollToTop = () => {
-  if (detailsContainerRef.value) detailsContainerRef.value.scrollTop = 0
-  const cardEl = cardModalRef.value?.$el || cardModalRef.value
-  if (cardEl) cardEl.scrollTop = 0
-
-  setTimeout(() => {
-    if (detailsContainerRef.value) detailsContainerRef.value.scrollTop = 0
-    const el = cardModalRef.value?.$el || cardModalRef.value
-    if (el) el.scrollTop = 0
-  }, 60)
+  if (detailsContainerRef.value && detailsContainerRef.value.scrollTop !== 0) {
+    detailsContainerRef.value.scrollTop = 0
+  }
+  if (cardModalRef.value && cardModalRef.value.scrollTop !== 0) {
+    cardModalRef.value.scrollTop = 0
+  }
 }
 
-// 监听卡牌切换（如下一张/上一张/关联卡跳转/重新打开），自动重置滚动条并重新加载对应的关联数据
+let overlayObserver = null
+
+// 监听卡牌切换（如下一张/上一张/关联卡跳转），自动重置滚动条并重新加载对应的关联数据
 watch(
   () => props.card,
   (newCard, oldCard) => {
     scrollToTop()
-    if (newCard?.id !== oldCard?.id) {
-      if (newCard?.id) {
-        loadSecondaryCards(newCard)
-      }
-    } else if (newCard?.id && (newCard?.link?.length || newCard?.parallelCards?.length)) {
+    if (
+      newCard?.id &&
+      (newCard.id !== oldCard?.id || newCard.link?.length || newCard.parallelCards?.length)
+    ) {
       loadSecondaryCards(newCard)
     }
   }
@@ -686,6 +627,20 @@ onMounted(() => {
   if (props.card?.id) {
     loadSecondaryCards(props.card)
   }
+
+  // 监听外层 v-overlay 显示状态变化（支持关闭后重新打开同卡或不同卡时重置滚动位置）
+  const overlay = cardModalRef.value?.closest('.v-overlay')
+  if (overlay && typeof window.MutationObserver !== 'undefined') {
+    let wasActive = overlay.classList.contains('v-overlay--active')
+    overlayObserver = new MutationObserver(() => {
+      const isActive = overlay.classList.contains('v-overlay--active')
+      if (isActive && !wasActive) {
+        scrollToTop()
+      }
+      wasActive = isActive
+    })
+    overlayObserver.observe(overlay, { attributes: true, attributeFilter: ['class'] })
+  }
 })
 
 onUnmounted(() => {
@@ -693,6 +648,10 @@ onUnmounted(() => {
   window.removeEventListener('keydown', handleKeydown)
   if (hideTimeout) {
     clearTimeout(hideTimeout)
+  }
+  if (overlayObserver) {
+    overlayObserver.disconnect()
+    overlayObserver = null
   }
 })
 
@@ -874,8 +833,17 @@ const submitReport = async () => {
 </script>
 
 <style scoped>
-#card-detail :deep(.v-card__overlay) {
-  display: none !important;
+#card-detail {
+  background-color: rgb(var(--v-theme-surface));
+  color: rgba(var(--v-theme-on-surface), var(--v-high-emphasis-opacity));
+  -webkit-overflow-scrolling: touch;
+  transform: translateZ(0);
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
 }
 
 .v-card-title.text-wrap {
@@ -898,6 +866,7 @@ const submitReport = async () => {
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.6) !important;
   color: white !important;
+  transition: opacity 0.2s ease-out;
 }
 
 .copy-card-button {
@@ -907,6 +876,7 @@ const submitReport = async () => {
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.6) !important;
   color: white !important;
+  transition: opacity 0.2s ease-out;
 }
 
 .download-card-button {
@@ -916,6 +886,7 @@ const submitReport = async () => {
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.6) !important;
   color: white !important;
+  transition: opacity 0.2s ease-out;
 }
 
 .nav-button-left,
@@ -971,42 +942,58 @@ const submitReport = async () => {
   }
 }
 
-.nav-button-sm {
-  background-color: rgba(0, 0, 0, 0.6) !important;
-  color: white !important;
-}
-
 .image-wrapper {
   position: relative;
   overflow: visible;
-  isolation: isolate;
   border-radius: 20px;
 }
 
-.image-wrapper::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 20px;
-  opacity: 0;
-  z-index: -1;
-  box-shadow: 0 0 16px 4px rgba(255, 255, 255, 0.7);
-  transform: translateZ(0);
-  transition: opacity 0.3s ease-out;
-  pointer-events: none;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
+@media (hover: hover) and (pointer: fine) {
+  .image-wrapper {
+    isolation: isolate;
+  }
 
-.image-wrapper.light-mode-glowing-border::after {
-  box-shadow: 0 0 16px 4px rgba(0, 0, 0, 0.4);
-}
+  .image-wrapper .download-text-button,
+  .image-wrapper .copy-card-button,
+  .image-wrapper .download-card-button {
+    opacity: 0;
+  }
 
-.image-wrapper:hover::after {
-  opacity: 0.8;
+  .image-wrapper:hover .download-text-button,
+  .image-wrapper:hover .copy-card-button,
+  .image-wrapper:hover .download-card-button {
+    opacity: 1;
+  }
+
+  .image-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    opacity: 0;
+    z-index: -1;
+    box-shadow: 0 0 16px 4px rgba(255, 255, 255, 0.7);
+    transform: translateZ(0);
+    transition: opacity 0.3s ease-out;
+    pointer-events: none;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  .image-wrapper.light-mode-glowing-border::after {
+    box-shadow: 0 0 16px 4px rgba(0, 0, 0, 0.4);
+  }
+
+  .image-wrapper:hover::after {
+    opacity: 0.8;
+  }
+
+  .image-wrapper:hover .card-image {
+    transform: scale(1.02);
+  }
 }
 
 .card-image {
@@ -1017,10 +1004,6 @@ const submitReport = async () => {
 .card-image :deep(img) {
   transform: scale(1.005);
   transform-origin: center;
-}
-
-.card-image.hover-scale {
-  transform: scale(1.02);
 }
 
 .image-container {
