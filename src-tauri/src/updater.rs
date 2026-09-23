@@ -103,6 +103,35 @@ pub async fn download_and_install_update(
         use std::os::unix::fs::PermissionsExt;
         std::fs::set_permissions(&dest_path, std::fs::Permissions::from_mode(0o755))
             .map_err(|e| format!("Failed to set permissions: {}", e))?;
+
+        // Check if running inside an AppImage environment
+        if let Ok(appimage_env) = std::env::var("APPIMAGE") {
+            let target_appimage = std::path::PathBuf::from(&appimage_env);
+            if target_appimage.exists() && target_appimage != dest_path {
+                let backup_path = target_appimage.with_extension("AppImage.old");
+                let _ = std::fs::remove_file(&backup_path);
+
+                if std::fs::rename(&target_appimage, &backup_path).is_ok() {
+                    if std::fs::copy(&dest_path, &target_appimage).is_ok() {
+                        let _ = std::fs::set_permissions(
+                            &target_appimage,
+                            std::fs::Permissions::from_mode(0o755),
+                        );
+                        let _ = std::fs::remove_file(&backup_path);
+                        let _ = std::fs::remove_file(&dest_path);
+
+                        std::process::Command::new(&target_appimage)
+                            .spawn()
+                            .map_err(|e| format!("Failed to run updated AppImage: {}", e))?;
+                        app_handle.exit(0);
+                    } else {
+                        // Rollback on copy failure
+                        let _ = std::fs::rename(&backup_path, &target_appimage);
+                    }
+                }
+            }
+        }
+
         std::process::Command::new(&dest_path)
             .spawn()
             .map_err(|e| format!("Failed to run AppImage: {}", e))?;

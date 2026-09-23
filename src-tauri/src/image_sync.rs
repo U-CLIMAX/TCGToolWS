@@ -5,6 +5,46 @@ use std::io::Write;
 use std::path::{Path, PathBuf};
 use tauri::{Emitter, Manager};
 
+const SYNC_META_FILENAME: &str = ".card_images_sync_meta.json";
+
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+pub struct PackageSyncRecord {
+    pub sha256: String,
+    pub updated_at: u64,
+    pub synced_at: u64,
+}
+
+#[derive(Clone, Debug, Default, Serialize, Deserialize)]
+pub struct DiskSyncManifest {
+    pub version: u32,
+    pub packages: std::collections::HashMap<String, PackageSyncRecord>,
+}
+
+fn read_disk_sync_manifest(target_dir: &Path) -> DiskSyncManifest {
+    let meta_file = target_dir.join(SYNC_META_FILENAME);
+    if meta_file.exists() {
+        if let Ok(content) = std::fs::read_to_string(&meta_file) {
+            if let Ok(manifest) = serde_json::from_str::<DiskSyncManifest>(&content) {
+                return manifest;
+            }
+        }
+    }
+    DiskSyncManifest {
+        version: 1,
+        packages: std::collections::HashMap::new(),
+    }
+}
+
+fn write_disk_sync_manifest(target_dir: &Path, manifest: &DiskSyncManifest) -> std::io::Result<()> {
+    if !target_dir.exists() {
+        std::fs::create_dir_all(target_dir)?;
+    }
+    let meta_file = target_dir.join(SYNC_META_FILENAME);
+    let json_str = serde_json::to_string_pretty(manifest)
+        .map_err(|e| std::io::Error::new(std::io::ErrorKind::Other, e))?;
+    std::fs::write(meta_file, json_str)
+}
+
 #[derive(Deserialize)]
 struct TeraCloudShareResponse {
     location: Option<String>,
@@ -174,6 +214,51 @@ pub async fn get_local_image_folders(target_dir: String) -> Result<Vec<String>, 
     }
     folders.sort();
     Ok(folders)
+}
+
+/// Retrieves the disk sync metadata for all packages in target_dir
+#[tauri::command]
+pub async fn get_local_sync_metadata(
+    target_dir: String,
+) -> Result<std::collections::HashMap<String, PackageSyncRecord>, String> {
+    let clean = target_dir.trim();
+    if clean.is_empty() {
+        return Ok(std::collections::HashMap::new());
+    }
+    let path = PathBuf::from(clean);
+    let manifest = read_disk_sync_manifest(&path);
+    Ok(manifest.packages)
+}
+
+/// Saves or updates the disk sync metadata for a single package in target_dir
+#[tauri::command]
+pub async fn save_local_package_meta(
+    target_dir: String,
+    folder: String,
+    sha256: String,
+    updated_at: u64,
+    synced_at: u64,
+) -> Result<(), String> {
+    let clean = target_dir.trim();
+    if clean.is_empty() {
+        return Err("Target directory is empty".to_string());
+    }
+    let clean_folder = folder.trim().to_string();
+    if clean_folder.is_empty() {
+        return Err("Folder name is empty".to_string());
+    }
+    let path = PathBuf::from(clean);
+    let mut manifest = read_disk_sync_manifest(&path);
+    manifest.packages.insert(
+        clean_folder,
+        PackageSyncRecord {
+            sha256,
+            updated_at,
+            synced_at,
+        },
+    );
+    write_disk_sync_manifest(&path, &manifest).map_err(|e| e.to_string())?;
+    Ok(())
 }
 
 use std::sync::atomic::{AtomicBool, Ordering};
@@ -766,5 +851,63 @@ mod tests {
             is_cs,
             "Newly created empty directory should have case sensitivity enabled"
         );
+    }
+
+    #[test]
+    fn test_disk_sync_manifest_crud() {
+        tauri::async_runtime::block_on(async {
+            let test_dir = std::env::temp_dir().join(format!(
+                "tcgtoolws_test_meta_dir_{}",
+                std::time::SystemTime::now()
+                    .duration_since(std::time::UNIX_EPOCH)
+                    .unwrap()
+                    .as_nanos()
+            ));
+            std::fs::create_dir_all(&test_dir).unwrap();
+            let test_dir_str = test_dir.to_string_lossy().to_string();
+
+            // 1. Initial metadata should be empty
+            let meta1 = get_local_sync_metadata(test_dir_str.clone()).await.unwrap();
+            assert!(meta1.is_empty());
+
+            // 2. Save a package metadata
+            save_local_package_meta(
+                test_dir_str.clone(),
+                "series-xyz".to_string(),
+                "hash123456".to_string(),
+                1700000000,
+                1700001000,
+            )
+            .await
+            .unwrap();
+
+            // 3. Retrieve metadata and verify contents
+            let meta2 = get_local_sync_metadata(test_dir_str.clone()).await.unwrap();
+            assert_eq!(meta2.len(), 1);
+            let pkg = meta2.get("series-xyz").unwrap();
+            assert_eq!(pkg.sha256, "hash123456");
+            assert_eq!(pkg.updated_at, 1700000000);
+            assert_eq!(pkg.synced_at, 1700001000);
+
+            // 4. Update another package
+            save_local_package_meta(
+                test_dir_str.clone(),
+                "series-abc".to_string(),
+                "hash789012".to_string(),
+                1700002000,
+                1700003000,
+            )
+            .await
+            .unwrap();
+
+            let meta3 = get_local_sync_metadata(test_dir_str.clone()).await.unwrap();
+            assert_eq!(meta3.len(), 2);
+            assert!(meta3.contains_key("series-xyz"));
+            assert!(meta3.contains_key("series-abc"));
+
+            // Cleanup
+            let _ = delete_card_image_dir(test_dir_str).await;
+            assert!(!test_dir.exists());
+        });
     }
 }

@@ -166,6 +166,42 @@ const saveSyncMetadata = (data) => {
 }
 
 /**
+ * Retrieves disk sync metadata from Rust backend with fallback to localStorage and auto-migration
+ * @param {string} targetDir
+ * @returns {Promise<Record<string, { sha256: string, updated_at?: number, synced_at?: number }>>}
+ */
+export const fetchDiskSyncMetadata = async (targetDir) => {
+  if (!isTauri || !targetDir) return getSyncMetadata()
+  try {
+    const diskMeta = await invoke('get_local_sync_metadata', { targetDir })
+    if (diskMeta && typeof diskMeta === 'object' && Object.keys(diskMeta).length > 0) {
+      saveSyncMetadata(diskMeta)
+      return diskMeta
+    }
+
+    // Auto-migrate legacy localStorage metadata to disk on first run of new version
+    const legacyMeta = getSyncMetadata()
+    if (legacyMeta && typeof legacyMeta === 'object' && Object.keys(legacyMeta).length > 0) {
+      for (const [folder, data] of Object.entries(legacyMeta)) {
+        if (data && data.sha256) {
+          invoke('save_local_package_meta', {
+            targetDir,
+            folder,
+            sha256: data.sha256,
+            updatedAt: data.updated_at || 0,
+            syncedAt: data.synced_at || 0,
+          }).catch(() => {})
+        }
+      }
+      return legacyMeta
+    }
+  } catch (err) {
+    console.warn('Failed to read disk sync metadata:', err)
+  }
+  return getSyncMetadata()
+}
+
+/**
  * Resolves and ensures the default card image directory
  * @returns {Promise<string>}
  */
@@ -260,7 +296,7 @@ const inspectPackages = async () => {
   }
 
   const localFolderSet = new Set(localFolders.map((f) => f.toLowerCase()))
-  const syncMeta = getSyncMetadata()
+  const syncMeta = await fetchDiskSyncMetadata(targetDir)
 
   const packagesToSync = []
   let availableOnCloud = 0
@@ -301,7 +337,7 @@ const inspectPackages = async () => {
         card_count: pkg.card_count || 0,
         reason: 'missing',
       })
-    } else if (meta && pkg.sha256 && meta.sha256 !== pkg.sha256) {
+    } else if (!meta || !meta.sha256 || (pkg.sha256 && meta.sha256 !== pkg.sha256)) {
       outdated++
       totalSizeToDownload += pkg.size || 0
       packagesToSync.push({
@@ -311,7 +347,7 @@ const inspectPackages = async () => {
         sha256: pkg.sha256 || '',
         updated_at: pkg.updated_at || 0,
         card_count: pkg.card_count || 0,
-        reason: 'outdated',
+        reason: !meta || !meta.sha256 ? 'unverified' : 'outdated',
       })
     } else {
       upToDate++
@@ -503,11 +539,24 @@ export const startAutoSync = async () => {
           targetDir,
         })
 
-        // Update local metadata record upon package success
+        // Update disk metadata and local metadata record upon package success
+        const nowSec = Math.floor(Date.now() / 1000)
+        try {
+          await invoke('save_local_package_meta', {
+            targetDir,
+            folder: pkg.folder,
+            sha256: pkg.sha256,
+            updatedAt: pkg.updated_at || 0,
+            syncedAt: nowSec,
+          })
+        } catch (diskErr) {
+          console.warn(`Failed to save disk metadata for ${pkg.folder}:`, diskErr)
+        }
+
         syncMeta[pkg.folder] = {
           sha256: pkg.sha256,
           updated_at: pkg.updated_at,
-          synced_at: Math.floor(Date.now() / 1000),
+          synced_at: nowSec,
         }
         saveSyncMetadata(syncMeta)
 
