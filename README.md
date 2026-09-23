@@ -146,29 +146,6 @@ VITE_BLUR_IMAGE_BASE_URL=ws-blur-image-data
   curl "http://localhost:5173/cdn-cgi/handler/scheduled?cron=0+0+*+*+7"
   ```
 
-## AI Agents 与自动化测试
-
-本专案深度整合了 Antigravity AI 代理架构与多个自动化脚本，以加速本地开发与测试体验。
-
-### 1. 多代理协作开发模式 (Multi-Agent)
-
-如果您使用支持 Antigravity 的 AI 助手，专案中已内建了 `ucx-workspace` 插件，提供了完整的角色分工：
-
-- **`ucx_architect`**: 主架构师，负责分析需求并派发任务。
-- **`ucx_frontend_expert`**: 前端专家，精通 Vue 3、Vuetify 与 Composables 规范。
-- **`ucx_backend_expert`**: 后端专家，精通 Hono、Cloudflare D1 与 Webhook 机制。
-
-**如何使用？**
-只需在与 AI 助手的对话中自然提出需求，或主动提示：“请使用 `ucx-multi-agent-dev` 技能帮我开发...”，AI 就会自动读取 `.agents/rules` 下的所有设计规范，并唤醒对应的专家进行无缝协作。
-
-### 2. 本地测试与工具脚本
-
-- **创建测试账号 (`npm run db:seed`)**
-  交互式界面，输入邮箱、密码和权限等级，即可安全地生成加盐加密 (Scrypt) 后的测试账号。
-- **测试爱发电 Webhook (`npm run test:afdian`)**
-  在本地服务器启动 (`npm run dev`) 的前提下，执行此脚本可自动模拟：`登录 -> 发起订单 -> 获取订单 UUID -> 触发 Webhook 支付成功回调`。
-  _(注意：需确保您的 `.env.dev` 中已配置 `AFDIAN_WEBHOOK_BYPASS_TOKEN=dev_sign_bypass_123`，该安全后门在正式环境会被 Vite 自动剔除)_
-
 ## 开发规范
 
 - **组件风格**: 统一使用 `<script setup>` 与 Composition API。
