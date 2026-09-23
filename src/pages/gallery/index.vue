@@ -261,12 +261,10 @@
               item.key,
               item.updated_at,
               item.rating_avg,
-              isTouch,
               hasBackgroundImage,
               galleryStore.filters.source === 'mine',
             ]"
             :deck="item"
-            :is-touch="isTouch"
             :has-background-image="hasBackgroundImage"
             :is-mine="galleryStore.filters.source === 'mine'"
             @delete="openDeleteDialog"
