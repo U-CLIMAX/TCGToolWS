@@ -1,9 +1,9 @@
 {
-  "version": "2026.09.15",
-  "generated_at": 1789463350,
+  "version": "2026.09.23",
+  "generated_at": 1790181970,
   "total_packages": 1501,
-  "total_images": 149924,
-  "total_size": 4440088658,
+  "total_images": 149926,
+  "total_size": 4440140200,
   "packages": {
     "[cn]bd-wz01": {
       "share_id": "1191fc00c2d1f3a7",
@@ -15,11 +15,11 @@
     },
     "[cn]bd-wz01-pr": {
       "share_id": "11910f74e85259c6",
-      "size": 2055426,
-      "sha256": "2799e902680ca7d3a1b372daf539e917afc99444bee1c67f294a5c897184bbf0",
-      "source_hash": "1d37a0c7064008a4b4045abcc8709cb73e27e28f5b67d6e0df0982dadc6e4484",
-      "card_count": 40,
-      "updated_at": 1788826855
+      "size": 2106968,
+      "sha256": "3c8fd978b0c8a42aebe4fd92669aa8c928533747749180e8b76e3be32066ed35",
+      "source_hash": "7a505794672441342689584b8594ab976ac008e1103b1c9eabcb002bd88361c5",
+      "card_count": 41,
+      "updated_at": 1790181970
     },
     "[cn]bd-wz01-td": {
       "share_id": "119112cfaf084c14",
