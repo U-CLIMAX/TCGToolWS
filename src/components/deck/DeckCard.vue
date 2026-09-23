@@ -1,205 +1,203 @@
 <template>
-  <v-hover v-slot="{ isHovering, props }">
+  <div
+    class="position-relative"
+    @touchstart="handleTouchStart"
+    @touchmove="handleTouchMove"
+    @touchend="handleTouchEnd"
+    @touchcancel="handleTouchCancel"
+    @contextmenu="handleContextMenu"
+    @click.capture="handleCardClickCapture"
+    @mouseenter="isHovering = true"
+    @mouseleave="isHovering = false"
+  >
     <div
-      v-bind="props"
-      class="position-relative"
-      @touchstart="handleTouchStart"
-      @touchmove="handleTouchMove"
-      @touchend="handleTouchEnd"
-      @touchcancel="handleTouchCancel"
-      @contextmenu="handleContextMenu"
-      @click.capture="handleCardClickCapture"
+      class="deck-card rounded-3md"
+      :class="{ 'is-lifted': isHovering && !isTouch }"
+      role="button"
+      tabindex="0"
+      @click="handleNavigate"
+      @keydown.enter="handleNavigate"
     >
-      <v-card
-        variant="flat"
+      <CardImage
+        :src="imageUrl"
+        :blur="blurUrl"
+        aspect-ratio="1"
+        position="top"
         rounded="3md"
-        class="deck-card"
-        :class="{ 'is-lifted': isHovering && !isTouch }"
-        @click="handleNavigate"
+        class="align-end preload-img"
       >
-        <CardImage
-          :src="imageUrl"
-          :blur="blurUrl"
-          aspect-ratio="1"
-          position="top"
-          class="align-end preload-img"
-        >
-          <div
-            v-if="imageUrl"
-            class="action-background"
-            :class="{ 'action-background-visible': isHovering && !isTouch }"
-          ></div>
-          <div :class="{ 'title-background': !isEditing, 'full-mask': isEditing }"></div>
-          <div v-if="isEditing" class="editing-text">编辑中</div>
-          <v-card-text class="deck-title">
-            <div v-if="deck.tags && deck.tags.length > 0" class="d-flex flex-wrap ga-1 mb-1">
-              <v-chip
-                v-for="tag in deck.tags"
-                :key="tag"
-                :size="smAndDown ? 'x-small' : 'small'"
-                color="primary"
-                variant="elevated"
-                density="compact"
-              >
-                {{ tag }}
-              </v-chip>
-            </div>
-            {{ deck.name }}
-          </v-card-text>
-        </CardImage>
-      </v-card>
-
-      <v-scale-transition>
-        <div v-show="isHovering && !isTouch && imageUrl" class="action-btn-container">
-          <v-btn
-            v-if="deckKey !== 'local' && deck.isLocal && onUploadCloud"
-            variant="tonal"
-            icon
-            density="compact"
-            :size="smAndDown ? 'x-small' : 'large'"
-            class="mr-2"
-            @click.prevent="handleUploadCloud"
-          >
-            <v-icon color="cyan-accent-2" icon="i-mdi:cloud-upload-outline" />
-          </v-btn>
-          <v-btn
-            v-if="deckKey !== 'local'"
-            variant="tonal"
-            icon
-            density="compact"
-            :size="smAndDown ? 'x-small' : 'large'"
-            class="mr-2"
-            @click.prevent="handleEditTags"
-          >
-            <v-icon color="teal-accent-3" icon="i-mdi:tag-edit" />
-          </v-btn>
-          <v-btn
-            icon
-            variant="tonal"
-            density="compact"
-            :size="smAndDown ? 'x-small' : 'large'"
-            @click.prevent="handleDeleteDeck"
-          >
-            <v-icon color="red-accent-3" icon="i-mdi:trash-can-outline" />
-          </v-btn>
-        </div>
-      </v-scale-transition>
-
-      <v-menu
-        v-if="isTouch"
-        v-model="isActionMenuOpen"
-        target="parent"
-        location="bottom center"
-        origin="auto"
-        offset="6"
-        min-width="140"
-        :scrim="true"
-        :open-on-click="false"
-        :open-on-hover="false"
-        :close-on-content-click="false"
-      >
-        <v-list rounded="3md" elevation="6" density="compact" class="pa-1">
-          <v-list-item
-            v-if="deckKey !== 'local' && deck.isLocal && onUploadCloud"
-            rounded="md"
-            density="compact"
-            class="px-2"
-            @click="handleActionMenuUploadCloud"
-          >
-            <div class="d-flex align-center ga-2">
-              <v-icon color="cyan-accent-2" icon="i-mdi:cloud-upload-outline" size="18" />
-              <span class="text-caption font-weight-medium">上传云端</span>
-            </div>
-          </v-list-item>
-
-          <v-list-item
-            v-if="deckKey !== 'local'"
-            rounded="md"
-            density="compact"
-            class="px-2"
-            @click="handleActionMenuEditTags"
-          >
-            <div class="d-flex align-center ga-2">
-              <v-icon color="teal-accent-3" icon="i-mdi:tag-edit" size="18" />
-              <span class="text-caption font-weight-medium">编辑标签</span>
-            </div>
-          </v-list-item>
-
-          <v-list-item rounded="md" density="compact" class="px-2" @click="handleActionMenuDelete">
-            <div class="d-flex align-center ga-2">
-              <v-icon color="red-accent-3" icon="i-mdi:trash-can-outline" size="18" />
-              <span class="text-caption font-weight-medium">删除卡组</span>
-            </div>
-          </v-list-item>
-        </v-list>
-      </v-menu>
-
-      <v-dialog v-model="isDeleteDialogOpen" max-width="400">
-        <v-card class="rounded-2lg pa-2">
-          <v-card-title>删除卡组</v-card-title>
-          <v-card-text class="text-body-2 text-medium-emphasis"
-            >确定要删除卡组 "{{ deck.name }}" 吗？此操作无法撤销。
-          </v-card-text>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn text="取消" @click="isDeleteDialogOpen = false"></v-btn>
-            <v-btn
-              color="pink-accent-3"
-              variant="tonal"
-              text="删除"
-              @click="confirmDeleteDeck"
-            ></v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
-
-      <v-dialog v-model="isTagsDialogOpen" max-width="450">
-        <v-card class="rounded-2lg pa-3">
-          <v-card-title class="d-flex align-center">
-            <v-icon icon="i-mdi:tag-multiple" class="mr-2" color="primary" />
-            编辑卡组标签
-          </v-card-title>
-          <v-card-text class="pt-2">
-            <div class="text-caption text-medium-emphasis mb-3">
-              输入标签名称按回车添加，或从已有标签中选择。
-            </div>
-            <v-combobox
-              v-model="editTags"
-              :items="allExistingTags"
-              label="卡组标签"
-              multiple
-              chips
-              closable-chips
-              variant="outlined"
-              density="comfortable"
-              placeholder="添加标签"
-              :rules="[
-                (v) => !v || v.length <= 2 || '最多只能选择 2 个标签',
-                (v) => !v || v.every((tag) => tag.length <= 5) || '每个标签最多 5 个字',
-              ]"
-              hide-details="auto"
-              :menu-props="{ contentClass: 'themed-scrollbar scrollbar-gutter-auto' }"
-            />
-          </v-card-text>
-          <v-card-actions class="px-6 pb-2">
-            <v-spacer />
-            <v-btn variant="text" @click="isTagsDialogOpen = false">取消</v-btn>
-            <v-btn
-              color="primary"
-              variant="tonal"
-              :loading="isSavingTags"
-              :disabled="
-                editTags && (editTags.length > 2 || editTags.some((tag) => tag.length > 5))
-              "
-              @click="saveTags"
+        <div
+          v-if="imageUrl"
+          class="action-background"
+          :class="{ 'action-background-visible': isHovering && !isTouch }"
+        ></div>
+        <div :class="{ 'title-background': !isEditing, 'full-mask': isEditing }"></div>
+        <div v-if="isEditing" class="editing-text">编辑中</div>
+        <div class="deck-title">
+          <div v-if="deck.tags && deck.tags.length > 0" class="d-flex flex-wrap ga-1 mb-1">
+            <span
+              v-for="tag in deck.tags"
+              :key="tag"
+              class="deck-tag"
+              :class="{ 'deck-tag-xs': smAndDown }"
             >
-              保存
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
+              {{ tag }}
+            </span>
+          </div>
+          <span class="deck-name-text">{{ deck.name }}</span>
+        </div>
+      </CardImage>
     </div>
-  </v-hover>
+
+    <Transition name="scale">
+      <div v-show="isHovering && !isTouch && imageUrl" class="action-btn-container">
+        <button
+          v-if="deckKey !== 'local' && deck.isLocal && onUploadCloud"
+          type="button"
+          class="deck-action-btn mr-2"
+          :class="{ 'deck-action-btn-xs': smAndDown }"
+          title="上传云端"
+          aria-label="上传云端"
+          @click.prevent="handleUploadCloud"
+        >
+          <i class="i-mdi:cloud-upload-outline text-cyan-accent-2" />
+        </button>
+        <button
+          v-if="deckKey !== 'local'"
+          type="button"
+          class="deck-action-btn mr-2"
+          :class="{ 'deck-action-btn-xs': smAndDown }"
+          title="编辑标签"
+          aria-label="编辑标签"
+          @click.prevent="handleEditTags"
+        >
+          <i class="i-mdi:tag-edit text-teal-accent-3" />
+        </button>
+        <button
+          type="button"
+          class="deck-action-btn"
+          :class="{ 'deck-action-btn-xs': smAndDown }"
+          title="删除卡组"
+          aria-label="删除卡组"
+          @click.prevent="handleDeleteDeck"
+        >
+          <i class="i-mdi:trash-can-outline text-red-accent-3" />
+        </button>
+      </div>
+    </Transition>
+
+    <v-menu
+      v-if="isTouch"
+      v-model="isActionMenuOpen"
+      target="parent"
+      location="bottom center"
+      origin="auto"
+      offset="6"
+      min-width="140"
+      :scrim="true"
+      :open-on-click="false"
+      :open-on-hover="false"
+      :close-on-content-click="false"
+    >
+      <v-list rounded="3md" elevation="6" density="compact" class="pa-1">
+        <v-list-item
+          v-if="deckKey !== 'local' && deck.isLocal && onUploadCloud"
+          rounded="md"
+          density="compact"
+          class="px-2"
+          @click="handleActionMenuUploadCloud"
+        >
+          <div class="d-flex align-center ga-2">
+            <v-icon color="cyan-accent-2" icon="i-mdi:cloud-upload-outline" size="18" />
+            <span class="text-caption font-weight-medium">上传云端</span>
+          </div>
+        </v-list-item>
+
+        <v-list-item
+          v-if="deckKey !== 'local'"
+          rounded="md"
+          density="compact"
+          class="px-2"
+          @click="handleActionMenuEditTags"
+        >
+          <div class="d-flex align-center ga-2">
+            <v-icon color="teal-accent-3" icon="i-mdi:tag-edit" size="18" />
+            <span class="text-caption font-weight-medium">编辑标签</span>
+          </div>
+        </v-list-item>
+
+        <v-list-item rounded="md" density="compact" class="px-2" @click="handleActionMenuDelete">
+          <div class="d-flex align-center ga-2">
+            <v-icon color="red-accent-3" icon="i-mdi:trash-can-outline" size="18" />
+            <span class="text-caption font-weight-medium">删除卡组</span>
+          </div>
+        </v-list-item>
+      </v-list>
+    </v-menu>
+
+    <v-dialog v-if="isDeleteDialogOpen" v-model="isDeleteDialogOpen" max-width="400">
+      <v-card class="rounded-2lg pa-2">
+        <v-card-title>删除卡组</v-card-title>
+        <v-card-text class="text-body-2 text-medium-emphasis"
+          >确定要删除卡组 "{{ deck.name }}" 吗？此操作无法撤销。
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn text="取消" @click="isDeleteDialogOpen = false"></v-btn>
+          <v-btn
+            color="pink-accent-3"
+            variant="tonal"
+            text="删除"
+            @click="confirmDeleteDeck"
+          ></v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+    <v-dialog v-if="isTagsDialogOpen" v-model="isTagsDialogOpen" max-width="450">
+      <v-card class="rounded-2lg pa-3">
+        <v-card-title class="d-flex align-center">
+          <v-icon icon="i-mdi:tag-multiple" class="mr-2" color="primary" />
+          编辑卡组标签
+        </v-card-title>
+        <v-card-text class="pt-2">
+          <div class="text-caption text-medium-emphasis mb-3">
+            输入标签名称按回车添加，或从已有标签中选择。
+          </div>
+          <v-combobox
+            v-model="editTags"
+            :items="allExistingTags"
+            label="卡组标签"
+            multiple
+            chips
+            closable-chips
+            variant="outlined"
+            density="comfortable"
+            placeholder="添加标签"
+            :rules="[
+              (v) => !v || v.length <= 2 || '最多只能选择 2 个标签',
+              (v) => !v || v.every((tag) => tag.length <= 5) || '每个标签最多 5 个字',
+            ]"
+            hide-details="auto"
+            :menu-props="{ contentClass: 'themed-scrollbar scrollbar-gutter-auto' }"
+          />
+        </v-card-text>
+        <v-card-actions class="px-6 pb-2">
+          <v-spacer />
+          <v-btn variant="text" @click="isTagsDialogOpen = false">取消</v-btn>
+          <v-btn
+            color="primary"
+            variant="tonal"
+            :loading="isSavingTags"
+            :disabled="editTags && (editTags.length > 2 || editTags.some((tag) => tag.length > 5))"
+            @click="saveTags"
+          >
+            保存
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </div>
 </template>
 
 <script setup>
@@ -248,6 +246,7 @@ const props = defineProps({
 
 const router = useRouter()
 
+const isHovering = ref(false)
 const isActionMenuOpen = ref(false)
 const isDeleteDialogOpen = ref(false)
 const isTagsDialogOpen = ref(false)
@@ -413,6 +412,8 @@ const handleActionMenuDelete = () => {
 
 <style scoped>
 .deck-card {
+  position: relative;
+  cursor: pointer;
   content-visibility: auto;
   contain-intrinsic-size: auto 240px;
   transition: transform 0.2s ease-in-out;
@@ -426,11 +427,87 @@ const handleActionMenuDelete = () => {
   transform: translateY(-6px);
 }
 
+.deck-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  background-color: rgb(var(--v-theme-primary));
+  color: rgb(var(--v-theme-on-primary, 255, 255, 255));
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+}
+
+.deck-tag.deck-tag-xs {
+  padding: 1px 6px;
+  font-size: 0.65rem;
+}
+
+.deck-name-text {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .action-btn-container {
   position: absolute;
-  top: -2px;
-  right: 4px;
+  top: 4px;
+  right: 6px;
   z-index: 2;
+  display: flex;
+  align-items: center;
+}
+
+.deck-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition:
+    transform 0.15s ease-in-out,
+    background-color 0.15s ease-in-out;
+  font-size: 20px;
+  outline: none;
+}
+
+.deck-action-btn:hover {
+  background: rgba(0, 0, 0, 0.7);
+  transform: scale(1.1);
+}
+
+.deck-action-btn:active {
+  transform: scale(0.95);
+}
+
+.deck-action-btn.deck-action-btn-xs {
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
+}
+
+.scale-enter-active,
+.scale-leave-active {
+  transition:
+    transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1),
+    opacity 0.2s ease-in-out;
+}
+
+.scale-enter-from,
+.scale-leave-to {
+  opacity: 0;
+  transform: scale(0.7);
 }
 
 .action-background {

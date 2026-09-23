@@ -221,8 +221,8 @@
             <v-icon icon="i-mdi:gesture-tap-hold" size="14" />
             <span>提示：长按卡组可开启管理功能</span>
           </div>
-          <div v-if="displayedDecks.length > 0" class="v-row ma-1 mt-0">
-            <v-col
+          <div v-if="displayedDecks.length > 0" class="deck-cards-grid">
+            <DeckCard
               v-for="item in displayedDecks"
               :key="item.key"
               v-memo="[
@@ -236,24 +236,16 @@
                 isTouch,
                 smAndDown,
               ]"
-              cols="4"
-              xs="6"
-              sm="3"
-              md="2"
-              xl="1"
-            >
-              <DeckCard
-                :deck="item.deck"
-                :deckKey="item.key"
-                :is-editing="item.isEditing"
-                :is-touch="isTouch"
-                :sm-and-down="smAndDown"
-                :all-existing-tags="allAvailableTags"
-                :on-delete="handleDeleteDeck"
-                :on-save-tags="handleSaveTags"
-                :on-upload-cloud="handleUploadCloud"
-              />
-            </v-col>
+              :deck="item.deck"
+              :deckKey="item.key"
+              :is-editing="item.isEditing"
+              :is-touch="isTouch"
+              :sm-and-down="smAndDown"
+              :all-existing-tags="allAvailableTags"
+              :on-delete="handleDeleteDeck"
+              :on-save-tags="handleSaveTags"
+              :on-upload-cloud="handleUploadCloud"
+            />
           </div>
           <div v-else-if="!deckStore.isLoading" class="text-center text-medium-emphasis mt-10">
             暂无卡组
@@ -791,5 +783,67 @@ onMounted(async () => {
   border: 1px solid rgba(var(--v-border-color), var(--v-border-opacity));
   color: rgb(var(--v-theme-on-surface));
   font-size: 0.875rem;
+}
+
+.deck-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  padding: 4px 8px 24px;
+}
+
+.deck-cards-grid > * {
+  min-width: 0;
+}
+
+@media (min-width: 480px) {
+  .deck-cards-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    padding: 6px 10px 24px;
+  }
+}
+
+@media (min-width: 600px) {
+  .deck-cards-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    padding: 8px 12px 24px;
+  }
+}
+
+@media (min-width: 800px) {
+  .deck-cards-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+  }
+}
+
+@media (min-width: 1080px) {
+  .deck-cards-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 12px;
+  }
+}
+
+@media (min-width: 1360px) {
+  .deck-cards-grid {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 14px;
+  }
+}
+
+@media (min-width: 1680px) {
+  .deck-cards-grid {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    gap: 14px;
+  }
+}
+
+@media (min-width: 2000px) {
+  .deck-cards-grid {
+    grid-template-columns: repeat(10, minmax(0, 1fr));
+    gap: 16px;
+  }
 }
 </style>
