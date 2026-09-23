@@ -21,7 +21,8 @@
   >
     <div v-if="isListVisible">
       <TransitionGroup
-        :name="isTransitionDisabled ? '' : 'card-transition'"
+        :name="isTransitionActive ? 'card-transition' : ''"
+        :css="isTransitionActive"
         tag="div"
         class="card-grid-container"
         :class="{
@@ -167,6 +168,9 @@ const isModalVisible = ref(false)
 const selectedCardData = ref(null)
 const isTransitionDisabled = ref(false)
 let tableModeTimeout = null
+
+// 当处于移动端 (!smAndUp) 或表格模式切换时禁用过渡动效，避免高频 FLIP 布局重排与缩放动画开销
+const isTransitionActive = computed(() => smAndUp.value && !isTransitionDisabled.value)
 
 // 当表格模式切换时临时禁用过渡动效，防止网格列重构导致的大规模卡片错位动画
 watch(
