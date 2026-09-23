@@ -199,42 +199,24 @@
               :class="smAndDown ? 'py-1' : 'py-3'"
               class="d-flex"
             >
-              <v-card
-                height="160"
-                class="community-card position-relative overflow-hidden w-100"
+              <div
+                class="community-card bg-surface position-relative overflow-hidden w-100 rounded-xl"
                 :class="{ 'glass-card': hasBackgroundImage }"
-                rounded="xl"
-                elevation="0"
+                style="height: 160px"
               >
-                <v-icon
-                  :icon="getContactIcon(item.contactType)"
-                  class="bg-watermark-icon"
-                  :color="theme.global.current.value.dark ? 'grey-darken-1' : 'grey-lighten-1'"
+                <i
+                  :class="[
+                    getContactIcon(item.contactType),
+                    'bg-watermark-icon',
+                    theme.global.current.value.dark ? 'text-grey-darken-1' : 'text-grey-lighten-1',
+                  ]"
+                  aria-hidden="true"
                 />
 
-                <v-card-text class="pa-4 d-flex flex-column h-100 position-relative z-1">
+                <div class="pa-4 d-flex flex-column h-100 position-relative z-1">
                   <div class="d-flex ga-2 mb-2">
-                    <v-chip
-                      size="x-small"
-                      color="blue-lighten-5"
-                      class="text-primary font-weight-bold pa-2 bg-blue-grey-lighten-5"
-                      variant="flat"
-                      density="compact"
-                      rounded="pill"
-                    >
-                      {{ item.province }}
-                    </v-chip>
-                    <v-chip
-                      v-if="item.district"
-                      size="x-small"
-                      color="blue-lighten-5"
-                      class="text-primary font-weight-bold pa-2 bg-blue-grey-lighten-5"
-                      variant="flat"
-                      density="compact"
-                      rounded="pill"
-                    >
-                      {{ item.district }}
-                    </v-chip>
+                    <span class="community-chip">{{ item.province }}</span>
+                    <span v-if="item.district" class="community-chip">{{ item.district }}</span>
                   </div>
 
                   <div class="mb-6">
@@ -246,13 +228,8 @@
                     </div>
                   </div>
 
-                  <v-sheet
-                    rounded="2lg"
-                    class="pa-2 mt-auto d-flex align-center position-relative"
-                    style="
-                      background-color: rgba(var(--v-theme-surface), 0.3);
-                      backdrop-filter: blur(6px);
-                    "
+                  <div
+                    class="rounded-lg pa-2 mt-auto d-flex align-center position-relative community-contact-bar"
                   >
                     <div class="flex-grow-1 overflow-hidden px-1">
                       <div
@@ -265,19 +242,18 @@
                         {{ item.contactInfo }}
                       </div>
                     </div>
-                    <v-btn
-                      icon
-                      color="primary"
-                      size="x-small"
-                      elevation="0"
-                      class="rounded-circle"
+                    <button
+                      type="button"
+                      class="community-copy-btn"
+                      title="复制联系方式"
+                      aria-label="复制联系方式"
                       @click="copyContact(item.contactInfo)"
                     >
-                      <v-icon size="16" icon="i-mdi:content-copy" />
-                    </v-btn>
-                  </v-sheet>
-                </v-card-text>
-              </v-card>
+                      <i class="i-mdi:content-copy" style="font-size: 16px" />
+                    </button>
+                  </div>
+                </div>
+              </div>
             </v-col>
           </div>
         </v-row>
@@ -524,10 +500,6 @@ onMounted(() => {
     0 1px 4px rgba(0, 0, 0, 0.2) !important;
 }
 
-.d-contents {
-  display: contents;
-}
-
 .cards-grid-container {
   display: contents;
 }
@@ -543,6 +515,52 @@ onMounted(() => {
 .community-card {
   content-visibility: auto;
   contain-intrinsic-size: auto 160px;
+}
+
+.community-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 9999px;
+  background-color: #eceff1;
+  color: rgb(var(--v-theme-primary));
+  line-height: 1.2;
+}
+
+.v-theme--dark .community-chip {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.community-contact-bar {
+  background-color: rgba(var(--v-theme-surface), 0.3);
+  backdrop-filter: blur(6px);
+}
+
+.community-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgb(var(--v-theme-primary));
+  color: #ffffff;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    opacity 0.2s ease,
+    transform 0.1s ease;
+}
+
+.community-copy-btn:hover {
+  opacity: 0.85;
+}
+
+.community-copy-btn:active {
+  transform: scale(0.92);
 }
 
 .filtering-fade > * {
