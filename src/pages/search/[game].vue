@@ -75,7 +75,10 @@
         :class="{ 'performance-mode': isPerformanceMode.sideBarAnimSimp }"
       >
         <template v-if="smAndUp">
-          <div class="sidebar-container" :class="{ 'left-sidebar-open': isFilterOpen }">
+          <div
+            class="sidebar-container left-sidebar"
+            :class="{ 'left-sidebar-open': isFilterOpen }"
+          >
             <FilterSidebar
               class="fill-height pl-4 pb-4"
               :header-offset-height="headerOffsetHeight"
@@ -299,6 +302,20 @@ onUnmounted(() => {
   flex-shrink: 0;
 }
 
+.left-sidebar {
+  --sidebar-width: 250px;
+}
+
+.left-sidebar.left-sidebar-open {
+  width: var(--sidebar-width);
+}
+
+.left-sidebar > :deep(*) {
+  width: var(--sidebar-width);
+  min-width: var(--sidebar-width);
+  max-width: var(--sidebar-width);
+}
+
 .performance-mode > .sidebar-container {
   opacity: 0;
   pointer-events: none;
@@ -321,46 +338,10 @@ onUnmounted(() => {
   transition: opacity 0.2s ease-in-out;
 }
 
-/* Small tablet (sm) */
-@media (min-width: 600px) and (max-width: 959.98px) {
-  .sidebar-container.left-sidebar-open {
-    width: 51%;
-  }
-}
-
-/* Medium tablet (md) */
-@media (min-width: 960px) and (max-width: 1279.98px) {
-  .sidebar-container.left-sidebar-open {
-    width: 35%;
-  }
-}
-
-/* Desktop (lg, xl) */
-@media (min-width: 1280px) {
-  .sidebar-container.left-sidebar-open {
-    width: 15%;
-  }
-}
-
 .fab-bottom-left-container {
   position: fixed;
   bottom: 16px;
   left: 16px;
   z-index: 10;
-}
-
-@media (max-width: 599.98px) {
-  .sidebar-container {
-    position: absolute;
-    z-index: 10;
-    background: rgb(var(--v-theme-surface));
-    height: 100%;
-    top: 0;
-    right: 0;
-  }
-
-  .sidebar-container.left-sidebar-open {
-    width: 100%;
-  }
 }
 </style>
