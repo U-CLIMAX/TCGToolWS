@@ -22,6 +22,7 @@
     <v-infinite-scroll
       ref="infiniteScrollRef"
       class="themed-scrollbar py-4"
+      :class="{ 'gallery-content--hidden': isDrawerCovering }"
       :style="scrollStyle"
       :onLoad="loadMore"
       :empty-text="''"
@@ -666,5 +667,10 @@ onUnmounted(() => {
 
 :deep(.mobile-drawer-fade.v-navigation-drawer--active) {
   opacity: 1 !important;
+}
+
+.gallery-content--hidden {
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 </style>
