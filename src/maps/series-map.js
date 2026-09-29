@@ -42,7 +42,7 @@ const wsSeriesMap = {
   'anm': {
     name: 'anemoi',
     prefixes: ['ANM'],
-    latestReleaseDate: '2026-05-01',
+    latestReleaseDate: '2026-10-02',
   },
   'vrg': {
     name: 'VIRTUAL GIRL',
