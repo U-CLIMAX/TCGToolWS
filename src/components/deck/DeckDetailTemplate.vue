@@ -12,7 +12,10 @@
     </transition>
 
     <v-container fluid class="h-100 pa-0">
-      <div class="d-flex flex-column h-100 overflow-hidden">
+      <div
+        class="d-flex flex-column h-100 overflow-hidden"
+        :class="{ 'gallery-content--hidden': !smAndUp && isModalVisible }"
+      >
         <div
           ref="headerRef"
           class="overlay-header py-1"
@@ -154,6 +157,7 @@
 
         <div
           class="h-100 overflow-y-auto themed-scrollbar"
+          :class="{ 'gallery-content--hidden': !smAndUp && isModalVisible }"
           :style="{
             'paddingTop': `${headerOffsetHeight}px`,
             '--sb-margin-top': `${headerOffsetHeight - 18}px`,
@@ -657,10 +661,7 @@ onUnmounted(() => {
 })
 
 // Card Navigation & Details Modal
-const isModalVisible = computed({
-  get: () => uiStore.isCardDetailModalOpen,
-  set: (val) => (uiStore.isCardDetailModalOpen = val),
-})
+const isModalVisible = defineModel('isModalVisible', { default: false })
 const selectedCardData = ref(null)
 const selectedCardPrice = ref(null)
 const selectedCardPriceUpdateTimes = ref(null)

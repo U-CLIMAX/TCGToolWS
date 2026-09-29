@@ -17,6 +17,7 @@
       :deck-title="deck ? deck.deck_name : deckKey"
       :embedded="embedded"
       :deck-key="deckKey"
+      v-model:is-modal-visible="isModalVisible"
       :style="{
         opacity: embedded && isLoading ? 0 : 1,
         pointerEvents: embedded && isLoading ? 'none' : 'auto',
@@ -51,6 +52,8 @@ const props = defineProps({
     default: false,
   },
 })
+
+const isModalVisible = defineModel('isModalVisible', { default: false })
 
 defineEmits(['close'])
 

@@ -2,6 +2,7 @@
   <aside
     v-bind="$attrs"
     class="d-flex flex-column flex-shrink-0"
+    :class="{ 'gallery-content--hidden': !smAndUp && isModalVisible }"
     :style="{
       paddingTop: `${smAndUp ? headerOffsetHeight + 18 : 0}px`,
       height: containerHeight ? `${containerHeight}px` : 'auto',

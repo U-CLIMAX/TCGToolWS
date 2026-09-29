@@ -10,3 +10,9 @@
   transform: translateZ(0);
   backface-visibility: hidden;
 }
+
+/* 移動端彈窗/抽屜開啟時暫時隱藏底層內容，消除渲染與 Overdraw 開銷 */
+.gallery-content--hidden {
+  visibility: hidden !important;
+  pointer-events: none !important;
+}

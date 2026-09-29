@@ -242,6 +242,7 @@
 
         <div
           class="h-100 overflow-y-auto themed-scrollbar"
+          :class="{ 'gallery-content--hidden': !smAndUp && isModalVisible }"
           :style="{
             'paddingTop': `${headerOffsetHeight}px`,
             '--sb-margin-top': `${headerOffsetHeight - 18}px`,
@@ -526,7 +527,7 @@
 </template>
 
 <script setup>
-import { computed, ref, shallowRef, onUnmounted, onMounted, nextTick, watch, toRaw } from 'vue'
+import { computed, ref, shallowRef, onUnmounted, onMounted, nextTick, toRaw } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useDeckEncoder } from '@/composables/useDeckEncoder'
 import { useDisplay } from 'vuetify'

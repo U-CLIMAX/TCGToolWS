@@ -13,7 +13,10 @@
     v-else
     ref="infiniteScrollRef"
     class="overflow-x-hidden py-4"
-    :class="{ 'hide-loader': shouldHideLoader }"
+    :class="{
+      'hide-loader': shouldHideLoader,
+      'gallery-content--hidden': !smAndUp && isModalVisible,
+    }"
     @load="load"
     empty-text=""
     :margin="margin"

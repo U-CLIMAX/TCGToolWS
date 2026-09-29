@@ -1,6 +1,12 @@
 <template>
   <div>
-    <div class="px-4 pb-4 w-100 h-100 centered-content" :class="{ 'mb-15': !smAndUp && !embed }">
+    <div
+      class="px-4 pb-4 w-100 h-100 centered-content"
+      :class="{
+        'mb-15': !smAndUp && !embed,
+        'gallery-content--hidden': !smAndUp && isModalVisible,
+      }"
+    >
       <v-fab-transition>
         <DeckStatsDashboard
           v-if="
@@ -140,7 +146,7 @@
       :fullscreen="!smAndUp"
       :max-width="!smAndUp ? undefined : smAndDown ? '85%' : '1050px'"
       :max-height="!smAndUp ? undefined : '95%'"
-      :close-on-back="!smAndUp ? true : false"
+      :close-on-back="!smAndUp && !embed ? true : false"
     >
       <CardDetailModal
         :card="selectedCard || {}"

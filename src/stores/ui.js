@@ -19,7 +19,6 @@ export const useUIStore = defineStore(
     const imageSource = ref('remote') // 'remote' | 'local'
     const isFilterOpen = ref(false)
     const isCardDeckOpen = ref(false)
-    const isCardDetailModalOpen = ref(false)
     const cardClickMode = ref('none')
     const isLoading = ref(false)
     const isTableModeActive = ref(false)
@@ -170,7 +169,6 @@ export const useUIStore = defineStore(
       imageSource,
       isFilterOpen,
       isCardDeckOpen,
-      isCardDetailModalOpen,
       cardClickMode,
       isLoading,
       setLoading,
@@ -202,7 +200,7 @@ export const useUIStore = defineStore(
   {
     persist: {
       storage: localStorage,
-      omit: ['seriesSearchTerm', 'isCardDetailModalOpen', 'backgroundImage'],
+      omit: ['seriesSearchTerm', 'backgroundImage'],
     },
   }
 )

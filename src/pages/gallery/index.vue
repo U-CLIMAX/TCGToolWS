@@ -15,8 +15,15 @@
         top: smAndUp ? '50px' : '0px',
       }"
       touchless
+      :close-on-back="false"
+      :disable-route-watcher="true"
     >
-      <ShareDeckDetail :deck-key="selectedDeckKey || ''" :embedded="true" @close="drawer = false" />
+      <ShareDeckDetail
+        :deck-key="selectedDeckKey || ''"
+        :embedded="true"
+        v-model:is-modal-visible="isCardDetailOpen"
+        @close="drawer = false"
+      />
     </v-navigation-drawer>
 
     <v-infinite-scroll
@@ -333,6 +340,7 @@ const infiniteScrollRef = ref(null)
 const scrollContainer = ref(null)
 const drawer = ref(false)
 const selectedDeckKey = ref(null)
+const isCardDetailOpen = ref(false)
 
 const drawerWidth = computed(() => {
   if (!smAndUp.value) return width.value
@@ -567,8 +575,8 @@ onBeforeRouteLeave((to) => {
       isEditDialogVisible.value = false
       return false
     }
-    if (uiStore.isCardDetailModalOpen) {
-      uiStore.isCardDetailModalOpen = false
+    if (isCardDetailOpen.value) {
+      isCardDetailOpen.value = false
       return false
     }
     if (drawer.value) {
@@ -578,7 +586,7 @@ onBeforeRouteLeave((to) => {
   }
 
   // 主动跳转（如点击前往卡组详情/分享页面按钮）或弹窗已全部关闭时的正常离开
-  uiStore.isCardDetailModalOpen = false
+  isCardDetailOpen.value = false
   drawer.value = false
   return true
 })
@@ -667,10 +675,5 @@ onUnmounted(() => {
 
 :deep(.mobile-drawer-fade.v-navigation-drawer--active) {
   opacity: 1 !important;
-}
-
-.gallery-content--hidden {
-  visibility: hidden !important;
-  pointer-events: none !important;
 }
 </style>
