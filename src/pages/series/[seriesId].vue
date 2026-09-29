@@ -150,6 +150,7 @@
           :cards="filterStore.filteredCards"
           :header-offset-height="headerOffsetHeight"
           :is-table-mode-active="isTableModeActive"
+          :is-external-modal-visible="isDeckModalVisible"
           margin="300"
           class="flex-grow-1 themed-scrollbar px-4"
           :style="{ '--sb-margin-top': `${headerOffsetHeight + 20}px` }"
@@ -159,7 +160,11 @@
             class="sidebar-container right-sidebar"
             :class="{ 'right-sidebar-open': isCardDeckOpen }"
           >
-            <DeckSidebar class="fill-height pr-4 pb-4" :header-offset-height="headerOffsetHeight" />
+            <DeckSidebar
+              v-model:is-modal-visible="isDeckModalVisible"
+              class="fill-height pr-4 pb-4"
+              :header-offset-height="headerOffsetHeight"
+            />
           </div>
         </template>
       </div>
@@ -209,6 +214,7 @@
           />
           <DeckSidebar
             v-if="content === 'deck'"
+            v-model:is-modal-visible="isDeckModalVisible"
             :header-offset-height="0"
             :container-height="contentHeight"
             transparent
@@ -273,6 +279,7 @@ const filterIcon = computed(() => (isFilterOpen.value ? 'i-mdi:filter-off' : 'i-
 const headerOffsetHeight = computed(() => rawHeaderHeight.value)
 const listRef = ref(null)
 const sheetContent = ref(null)
+const isDeckModalVisible = ref(false)
 
 const observer = new ResizeObserver(([entry]) => {
   if (entry && entry.target) {

@@ -857,7 +857,7 @@ const getGroupName = (groupName) => {
 }
 
 // UI State
-const isModalVisible = ref(false)
+const isModalVisible = defineModel('isModalVisible', { default: false })
 
 // Card Data for Modal
 const selectedCardData = ref(null)

@@ -15,7 +15,7 @@
     class="overflow-x-hidden py-4"
     :class="{
       'hide-loader': shouldHideLoader,
-      'gallery-content--hidden': !smAndUp && isModalVisible,
+      'gallery-content--hidden': !smAndUp && (isModalVisible || isExternalModalVisible),
     }"
     @load="load"
     empty-text=""
@@ -136,6 +136,10 @@ const props = defineProps({
     default: 0,
   },
   isTableModeActive: {
+    type: Boolean,
+    default: false,
+  },
+  isExternalModalVisible: {
     type: Boolean,
     default: false,
   },
