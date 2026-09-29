@@ -91,9 +91,10 @@ const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
   min-width: 0;
   text-decoration: none;
   color: inherit;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   text-rendering: geometricPrecision;
   backface-visibility: hidden;
+  box-shadow: none !important;
 }
 
 .series-card:not(.compact) {
@@ -104,55 +105,38 @@ const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 .image-wrapper {
   flex: 0 0 auto;
   aspect-ratio: 1;
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.05),
-    0 0 4px rgba(0, 0, 0, 0.08);
-  /* In standard mode, setting the outer card to hidden prevents the image from overflowing when zoomed in, but setting it to visible prevents shadows from being clipped. */
   overflow: hidden;
   will-change: transform;
+  box-shadow: none !important;
 }
 
 .pill-content {
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.03),
-    0 0 4px rgba(0, 0, 0, 0.05);
   will-change: transform;
+  box-shadow: none !important;
 }
 
 .series-image {
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* === Standard Mode Hover === */
-.series-card:not(.compact):hover {
-  transform: scale(1.04);
-}
+@media (hover: hover) {
+  .series-card:not(.compact):hover {
+    transform: translateY(-4px);
+  }
 
-.series-card:not(.compact):hover .image-wrapper {
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.1),
-    0 8px 16px rgba(0, 0, 0, 0.15);
-}
+  /* === Compact Mode Hover === */
+  .series-card.compact:hover {
+    transform: translateY(-4px);
+  }
 
-.series-card:not(.compact):hover .pill-content {
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.08),
-    0 4px 12px rgba(0, 0, 0, 0.1);
-}
+  .series-card.compact:hover .series-image {
+    transform: scale(1.06);
+  }
 
-/* === Compact Mode Hover === */
-.series-card.compact:hover {
-  transform: translateY(-4px);
-}
-
-.series-card.compact:hover .series-image {
-  transform: scale(1.08);
-}
-
-.series-card.compact .image-wrapper {
-  overflow: hidden; /* Ensure the enlarged image is cropped within the container */
+  .series-card.compact:hover .hover-overlay {
+    opacity: 1;
+  }
 }
 
 .hover-overlay {
@@ -163,7 +147,7 @@ const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
   bottom: 0;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 100%);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.25s ease;
   z-index: 2;
 }
 
