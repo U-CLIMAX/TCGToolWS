@@ -1,7 +1,13 @@
 import { verify } from 'hono/jwt'
 import { createErrorResponse } from './utils.js'
 import { seriesYytMap } from '../maps/series-yyt-map.js'
-import { parseTokens, fetchPageWithFallback } from '../services/scraper.js'
+import {
+  parseTokens,
+  fetchPageWithFallback,
+  createBrowserHeaders,
+  extractCookies,
+  sleep,
+} from '../services/scraper.js'
 
 /**
  * Fast non-cryptographic string hash (32-bit FNV-1a)
@@ -116,32 +122,40 @@ export const handleGetSeriesPrices = async (c) => {
       })
     }
 
-    const userAgent =
-      c.req.header('UA') ||
-      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+    const clientUa = c.req.header('UA') || c.req.header('User-Agent') || ''
 
-    const headers = {
-      'User-Agent': userAgent,
-      'Accept':
-        'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-      'Accept-Language': 'ja-JP,ja;q=0.9,en-US;q=0.8,en;q=0.7',
-      'Referer': yytUrl,
-      'Upgrade-Insecure-Requests': '1',
-      'Sec-Fetch-Dest': 'document',
-      'Sec-Fetch-Mode': 'navigate',
-      'Sec-Fetch-Site': 'same-origin',
-      'Sec-Fetch-User': '?1',
-    }
+    const firstPageHeaders = createBrowserHeaders(
+      {
+        Referer: 'https://yuyu-tei.jp/',
+      },
+      '',
+      clientUa
+    )
 
     const scraperApiTokens = parseTokens(c.env.SCRAPER_API_KEY)
 
     // 2. Fetch the first page to get pagination info
     const isProd = import.meta.env.PROD
-    const firstPageRes = await fetchPageWithFallback(yytUrl, { headers }, scraperApiTokens, isProd)
+    const firstPageRes = await fetchPageWithFallback(
+      yytUrl,
+      {
+        headers: firstPageHeaders,
+        cf: { cacheEverything: true, cacheTtl: 300 },
+      },
+      scraperApiTokens,
+      isProd
+    )
     if (!firstPageRes.ok) {
       return createErrorResponse(c, 502, '无法从 Yuyu-tei 获取数据')
     }
     const firstPageHtml = await firstPageRes.text()
+
+    // Extract cookies to maintain stateful browser session across pagination requests
+    const setCookieHeader =
+      typeof firstPageRes.headers.getSetCookie === 'function'
+        ? firstPageRes.headers.getSetCookie()
+        : firstPageRes.headers.get('set-cookie')
+    const sessionCookie = extractCookies(setCookieHeader)
 
     // Find max page from pagination
     const pageMatches = firstPageHtml.match(/page=(\d+)/g)
@@ -154,18 +168,44 @@ export const handleGetSeriesPrices = async (c) => {
     const htmls = new Array(maxPage)
     htmls[0] = firstPageHtml
 
-    // 3. Fetch subsequent pages
+    // 3. Fetch subsequent pages with controlled batch concurrency (2) and jitter delay
     if (maxPage > 1) {
-      const pagePromises = Array.from({ length: maxPage - 1 }, async (_, i) => {
-        const page = i + 2
-        const pageUrl = `${yytUrl}&page=${page}`
-        const res = await fetchPageWithFallback(pageUrl, { headers }, scraperApiTokens, isProd)
-        if (res.ok) {
-          const html = await res.text()
-          htmls[page - 1] = html
+      const subsequentHeaders = createBrowserHeaders(
+        {
+          Referer: yytUrl,
+        },
+        sessionCookie,
+        clientUa
+      )
+
+      const remainingPages = Array.from({ length: maxPage - 1 }, (_, i) => i + 2)
+      const CONCURRENCY = 2
+
+      for (let i = 0; i < remainingPages.length; i += CONCURRENCY) {
+        const batch = remainingPages.slice(i, i + CONCURRENCY)
+        const batchPromises = batch.map(async (page) => {
+          const pageUrl = `${yytUrl}&page=${page}`
+          const res = await fetchPageWithFallback(
+            pageUrl,
+            {
+              headers: subsequentHeaders,
+              cf: { cacheEverything: true, cacheTtl: 300 },
+            },
+            scraperApiTokens,
+            isProd
+          )
+          if (res.ok) {
+            htmls[page - 1] = await res.text()
+          }
+        })
+
+        await Promise.all(batchPromises)
+
+        // Add slight jitter delay between batches (100ms~180ms) to prevent burst rate limits
+        if (i + CONCURRENCY < remainingPages.length) {
+          await sleep(100 + Math.floor(Math.random() * 80))
         }
-      })
-      await Promise.all(pagePromises)
+      }
 
       for (let i = 1; i < maxPage; i++) {
         if (!htmls[i]) return createErrorResponse(c, 502, '无法从 Yuyu-tei 获取数据')
