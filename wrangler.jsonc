@@ -41,7 +41,7 @@
   "migrations": [
     {
       "tag": "v1",
-      "new_classes": ["ScraperPool"],
+      "new_sqlite_classes": ["ScraperPool"],
     },
   ],
   "triggers": {
