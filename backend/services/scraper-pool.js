@@ -63,21 +63,14 @@ export class ScraperPool extends DurableObject {
         try {
           const res = await fetch(`https://api.scraperapi.com/account?api_key=${k}`)
           if (!res.ok) {
-            const cur = this.#pool.get(k) || { max: 5, active: 0, ok: false }
-            this.#pool.set(k, { ...cur, ok: false })
+            this.#pool.set(k, { max: 5, active: 0, ok: false })
             return
           }
-          /** @type {{ concurrencyLimit?: number, creditsLeft?: number, requestLimit?: number, requestCount?: number }} */
           const d = await res.json()
-          const credits =
-            typeof d.creditsLeft === 'number'
-              ? d.creditsLeft
-              : (d.requestLimit || 0) - (d.requestCount || 0)
-          const cur = this.#pool.get(k) || { max: 5, active: 0, ok: true }
           this.#pool.set(k, {
-            ...cur,
             max: d.concurrencyLimit || 5,
-            ok: credits > 0,
+            active: 0,
+            ok: d.creditsLeft > 0,
           })
         } catch (err) {
           console.warn('[ScraperPool] Failed to sync account:', err)
