@@ -3,11 +3,12 @@ import { fetchPageWithFallback } from './scraper.js'
 /**
  * 從 Decklog 官方 API 獲取指定 Key 的 JSON 資料
  * @param {string} key - Decklog 的牌組代碼 (例如: 4K40E)
- * @param {string[]} scraperApiTokens - ScraperAPI tokens for fallback
- * @param {boolean} isProd - Environment mode
+ * @param {Env|null} [env=null] - Cloudflare Env
+ * @param {boolean} [isProd=true] - Environment mode
+ * @param {ExecutionContext|null} [ctx=null] - Optional ExecutionContext
  * @returns {Promise<object>} - 官方 API 回傳的 JSON 物件
  */
-export const fetchDecklogData = async (key, scraperApiTokens = [], isProd = true) => {
+export const fetchDecklogData = async (key, env = null, isProd = true, ctx = null) => {
   const url = `https://decklog.bushiroad.com/system/app/api/view/${key}`
 
   const options = {
@@ -22,7 +23,7 @@ export const fetchDecklogData = async (key, scraperApiTokens = [], isProd = true
     },
   }
 
-  const response = await fetchPageWithFallback(url, options, scraperApiTokens, isProd)
+  const response = await fetchPageWithFallback(url, options, env, isProd, 2, ctx)
 
   if (!response.ok) {
     throw new Error(`Decklog API request failed with status: ${response.status}`)

@@ -2,7 +2,6 @@ import { verify } from 'hono/jwt'
 import { createErrorResponse } from './utils.js'
 import { seriesYytMap } from '../maps/series-yyt-map.js'
 import {
-  parseTokens,
   fetchPageWithFallback,
   createBrowserHeaders,
   extractCookies,
@@ -132,8 +131,6 @@ export const handleGetSeriesPrices = async (c) => {
       clientUa
     )
 
-    const scraperApiTokens = parseTokens(c.env.SCRAPER_API_KEY)
-
     // 2. Fetch the first page to get pagination info
     const isProd = import.meta.env.PROD
     const firstPageRes = await fetchPageWithFallback(
@@ -142,8 +139,10 @@ export const handleGetSeriesPrices = async (c) => {
         headers: firstPageHeaders,
         cf: { cacheEverything: true, cacheTtl: 300 },
       },
-      scraperApiTokens,
-      isProd
+      c.env,
+      isProd,
+      2,
+      c.executionCtx
     )
     if (!firstPageRes.ok) {
       return createErrorResponse(c, 502, '无法从 Yuyu-tei 获取数据')
@@ -191,8 +190,10 @@ export const handleGetSeriesPrices = async (c) => {
               headers: subsequentHeaders,
               cf: { cacheEverything: true, cacheTtl: 300 },
             },
-            scraperApiTokens,
-            isProd
+            c.env,
+            isProd,
+            2,
+            c.executionCtx
           )
           if (res.ok) {
             htmls[page - 1] = await res.text()

@@ -1,6 +1,5 @@
 import { createErrorResponse } from './utils.js'
 import { fetchDecklogData } from '../services/decklog.js'
-import { parseTokens } from '../services/scraper.js'
 
 /**
  * Creates a new deck entry in the database.
@@ -470,9 +469,8 @@ export const handleGetDecklogData = async (c) => {
     const { key } = c.req.param()
     if (!key) return createErrorResponse(c, 400, '缺少 Decklog Key')
 
-    const scraperApiTokens = parseTokens(c.env.SCRAPER_API_KEY)
     const isProd = import.meta.env.PROD
-    const deckData = await fetchDecklogData(key, scraperApiTokens, isProd)
+    const deckData = await fetchDecklogData(key, c.env, isProd, c.executionCtx)
     if (!deckData || !deckData.list || !deckData.title) {
       return createErrorResponse(c, 500, '无法获取 Decklog 资料，请确认代码是否正确')
     }

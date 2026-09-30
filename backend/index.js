@@ -41,6 +41,8 @@ import { handleInitiatePayment } from './lib/payments.js'
 import { handleGetSeriesPrices, handleGetSeriesHashes } from './lib/prices.js'
 import { handleCreateTranslationReport } from './lib/reports.js'
 import { cleanupDatabase } from './services/db-cleanup.js'
+import { ScraperPool, getScraperPool } from './services/scraper-pool.js'
+import { parseTokens } from './services/scraper.js'
 import { publicCache } from './lib/utils.js'
 
 /** @type {AppInstance} */
@@ -233,6 +235,8 @@ app.route('/webhooks', webhookRoutes)
 app.route('/payments', paymentRoutes)
 app.route('/reports', reportRoutes)
 
+export { ScraperPool }
+
 export default {
   fetch: app.fetch,
   /**
@@ -247,6 +251,12 @@ export default {
   scheduled: async (event, env, ctx) => {
     if (event.cron === '0 0 * * 7') {
       ctx.waitUntil(cleanupDatabase(env))
+    } else {
+      const pool = getScraperPool(env)
+      const keys = parseTokens(env.SCRAPER_API_KEY)
+      if (pool && keys.length > 0) {
+        ctx.waitUntil(pool.sync(keys))
+      }
     }
   },
 }

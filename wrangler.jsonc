@@ -30,8 +30,22 @@
       "id": "5e530c71611b4393a478b31cb27b6ca3",
     },
   ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "SCRAPER_POOL",
+        "class_name": "ScraperPool",
+      },
+    ],
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_classes": ["ScraperPool"],
+    },
+  ],
   "triggers": {
-    "crons": ["0 0 * * 7"],
+    "crons": ["0 0 * * 7", "*/10 * * * *"],
   },
   "ratelimits": [
     {

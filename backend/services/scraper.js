@@ -1,3 +1,5 @@
+import { getScraperPool } from './scraper-pool.js'
+
 /**
  * Non-blocking delay utility. Suspends V8 execution without consuming CPU time in Cloudflare Workers.
  * @param {number} ms - Milliseconds to sleep.
@@ -82,30 +84,55 @@ export const extractCookies = (setCookieHeader) => {
 }
 
 /**
- * Fetch via ScraperAPI, trying each token until one succeeds.
+ * Fetch via ScraperAPI using Durable Object pool concurrency management.
  * @param {string} url
- * @param {string[]} tokens
+ * @param {Env} env - Cloudflare Env containing SCRAPER_POOL and SCRAPER_API_KEY.
  * @param {RequestInit} [options={}] - Fetch options (method, headers, body, etc.)
+ * @param {ExecutionContext|null} [ctx=null] - Optional ExecutionContext for non-blocking key release.
  * @returns {Promise<Response|null>} null if all tokens failed
  */
-export const fetchWithScraperApi = async (url, tokens, options = {}) => {
+export const fetchWithScraperApi = async (url, env, options = {}, ctx = null) => {
+  const pool = getScraperPool(env)
+  if (!pool) return null
+
+  const tokens = parseTokens(env?.SCRAPER_API_KEY)
+  if (tokens.length === 0) return null
+
   const countries = ['jp', 'hk', 'tw', 'sg']
+  const countryCode = countries[Math.floor(Math.random() * countries.length)]
   const hasHeaders = options.headers && Object.keys(options.headers).length > 0
 
-  for (const token of tokens) {
-    const countryCode = countries[Math.floor(Math.random() * countries.length)]
-    let scraperUrl = `https://api.scraperapi.com/?api_key=${token}&url=${encodeURIComponent(url)}&country_code=${countryCode}`
-
-    if (hasHeaders) {
-      scraperUrl += '&keep_headers=true'
-    }
-
+  for (let attempt = 0; attempt < tokens.length; attempt++) {
+    let key = null
+    let status = 500
     try {
+      key = await pool.acquire(tokens, 30000)
+      let scraperUrl = `https://api.scraperapi.com/?api_key=${key}&url=${encodeURIComponent(url)}&country_code=${countryCode}`
+      if (hasHeaders) scraperUrl += '&keep_headers=true'
       const res = await fetch(scraperUrl, options)
-      if (res.ok) return res
-      console.warn(`ScraperAPI token failed (${res.status}), trying next...`)
+      status = res.status
+
+      // If key failed with 401 or 403, immediately mark it dead and failover to next key
+      if (res.status === 401 || res.status === 403) {
+        console.warn(
+          `[ScraperPool] Key returned ${res.status}, failing over to next available key...`
+        )
+        await pool.release(key, status)
+        key = null
+        continue
+      }
+
+      return res
     } catch (err) {
-      console.warn(`ScraperAPI token error:`, err)
+      console.warn('[ScraperPool] Request attempt error:', err)
+    } finally {
+      if (key) {
+        if (ctx?.waitUntil) {
+          ctx.waitUntil(pool.release(key, status))
+        } else {
+          await pool.release(key, status)
+        }
+      }
     }
   }
   return null
@@ -115,17 +142,19 @@ export const fetchWithScraperApi = async (url, tokens, options = {}) => {
  * Fetch a page with smart direct retry and fallback chain: direct (with retry) → ScraperAPI
  * @param {string} url
  * @param {RequestInit} [options={}] - Fetch options (method, headers, body, etc.)
- * @param {string[]} [scraperApiTokens=[]] - ScraperAPI tokens for fallback
+ * @param {Env|null} [env=null] - Cloudflare Env for ScraperAPI fallback
  * @param {boolean} [isProd=true] - Production environment flag
  * @param {number} [maxDirectRetries=2] - Maximum number of direct retries on rate limit (429) or transient 5xx errors
+ * @param {ExecutionContext|null} [ctx=null] - Optional ExecutionContext
  * @returns {Promise<Response>}
  */
 export const fetchPageWithFallback = async (
   url,
   options = {},
-  scraperApiTokens = [],
+  env = null,
   isProd = true,
-  maxDirectRetries = 2
+  maxDirectRetries = 2,
+  ctx = null
 ) => {
   let lastResponse = null
   let lastError = null
@@ -179,11 +208,11 @@ export const fetchPageWithFallback = async (
   }
 
   // 2. Try ScraperAPI fallback
-  if (scraperApiTokens.length > 0) {
-    const scraperApiRes = await fetchWithScraperApi(url, scraperApiTokens, options)
+  if (env) {
+    const scraperApiRes = await fetchWithScraperApi(url, env, options, ctx)
     if (scraperApiRes) return scraperApiRes
-    console.warn('All ScraperAPI tokens failed.')
   }
+  console.warn('All ScraperAPI attempts failed.')
 
   // 3. All attempts failed, return last response or throw
   if (lastResponse) return lastResponse
