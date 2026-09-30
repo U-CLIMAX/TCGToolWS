@@ -106,7 +106,7 @@ export const fetchWithScraperApi = async (url, env, options = {}, ctx = null) =>
     let key = null
     let status = 500
     try {
-      key = await pool.acquire(tokens, 30000)
+      key = await pool.acquire(30000)
       let scraperUrl = `https://api.scraperapi.com/?api_key=${key}&url=${encodeURIComponent(url)}&country_code=${countryCode}`
       if (hasHeaders) scraperUrl += '&keep_headers=true'
       const res = await fetch(scraperUrl, options)

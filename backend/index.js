@@ -235,6 +235,16 @@ app.route('/webhooks', webhookRoutes)
 app.route('/payments', paymentRoutes)
 app.route('/reports', reportRoutes)
 
+// === 系統預熱路由 ===
+app.get('/warmup', publicReadLimiter, async (c) => {
+  const pool = getScraperPool(c.env)
+  const keys = parseTokens(c.env.SCRAPER_API_KEY)
+  if (pool && keys.length > 0) {
+    await pool.sync(keys)
+  }
+  return c.json({ success: true, message: 'ScraperPool warmed up' })
+})
+
 export { ScraperPool }
 
 export default {

@@ -1,4 +1,5 @@
 import { DurableObject } from 'cloudflare:workers'
+import { parseTokens } from './scraper.js'
 
 /**
  * @typedef {Object} AccountState
@@ -8,7 +9,7 @@ import { DurableObject } from 'cloudflare:workers'
  */
 
 /**
- * High-performance, zero-storage Durable Object coordinating multi-account ScraperAPI pools.
+ * High-performance, SQLite-backed Durable Object coordinating multi-account ScraperAPI pools.
  */
 export class ScraperPool extends DurableObject {
   /** @type {Map<string, AccountState>} */
@@ -17,8 +18,31 @@ export class ScraperPool extends DurableObject {
   /** @type {Array<(key: string) => void>} */
   #queue = []
 
-  /** @type {Promise<void>|null} */
-  #initPromise = null
+  /**
+   * @param {DurableObjectState} ctx - Durable Object State.
+   * @param {Env} env - Environment bindings.
+   */
+  constructor(ctx, env) {
+    super(ctx, env)
+    ctx.storage.sql.exec(`
+      CREATE TABLE IF NOT EXISTS accounts (
+        key TEXT PRIMARY KEY,
+        max INTEGER NOT NULL,
+        ok INTEGER NOT NULL
+      )
+    `)
+    const keys = parseTokens(env?.SCRAPER_API_KEY)
+    if (keys.length > 0) {
+      const rows = [...ctx.storage.sql.exec('SELECT key, max, ok FROM accounts')]
+      if (rows.length === keys.length && keys.every((k) => rows.some((r) => r.key === k))) {
+        this.#pool = new Map(
+          rows.map((r) => [r.key, { max: Number(r.max), active: 0, ok: Boolean(r.ok) }])
+        )
+      } else {
+        ctx.blockConcurrencyWhile(() => this.sync(keys))
+      }
+    }
+  }
 
   /**
    * Synchronizes quota and concurrency limits with ScraperAPI accounts via /account endpoint.
@@ -28,7 +52,10 @@ export class ScraperPool extends DurableObject {
   async sync(keys) {
     const keySet = new Set(keys)
     for (const k of this.#pool.keys()) {
-      if (!keySet.has(k)) this.#pool.delete(k)
+      if (!keySet.has(k)) {
+        this.#pool.delete(k)
+        this.ctx.storage.sql.exec('DELETE FROM accounts WHERE key = ?', k)
+      }
     }
 
     await Promise.all(
@@ -58,45 +85,60 @@ export class ScraperPool extends DurableObject {
       })
     )
     this.#drain()
-  }
 
-  /**
-   * Ensures the pool is initialized on cold start before acquiring keys.
-   * @param {string[]} [keys=[]]
-   * @returns {Promise<void>}
-   */
-  async #ensureInit(keys = []) {
-    if (this.#pool.size === 0 && keys.length > 0) {
-      if (!this.#initPromise) {
-        this.#initPromise = this.sync(keys).finally(() => {
-          this.#initPromise = null
-        })
+    try {
+      for (const [k, v] of this.#pool) {
+        this.ctx.storage.sql.exec(
+          'INSERT OR REPLACE INTO accounts (key, max, ok) VALUES (?, ?, ?)',
+          k,
+          v.max,
+          v.ok ? 1 : 0
+        )
       }
-      await this.#initPromise
+    } catch (err) {
+      console.warn('[ScraperPool] Storage persist failed:', err)
     }
   }
 
   /**
+   * Finds the healthiest key with the lowest active connections.
+   * @returns {string|null}
+   */
+  #findAvailableKey() {
+    let bestKey = null
+    let minActive = Infinity
+    for (const [k, a] of this.#pool) {
+      if (a.ok && a.active < a.max && a.active < minActive) {
+        minActive = a.active
+        bestKey = k
+      }
+    }
+    return bestKey
+  }
+
+  /**
    * Acquires an available API key from the pool, queueing if currently at capacity.
-   * @param {string[]} [keys=[]] - Fallback/initial keys list for lazy cold-start initialization.
    * @param {number} [timeout=30000] - Queue timeout in milliseconds.
    * @returns {Promise<string>}
    */
-  async acquire(keys = [], timeout = 30000) {
-    // 首次冷啟動或池為空時，自動先執行一次 sync 初始化
-    await this.#ensureInit(keys)
+  async acquire(timeout = 30000) {
+    const key = this.#findAvailableKey()
+    if (key) {
+      const acc = this.#pool.get(key)
+      if (acc) acc.active++
+      return key
+    }
 
-    for (const [k, a] of this.#pool) {
-      if (a.ok && a.active < a.max) {
-        a.active++
-        return k
-      }
+    const hasHealthyAccount = [...this.#pool.values()].some((a) => a.ok)
+    if (!hasHealthyAccount && this.#pool.size > 0) {
+      throw new Error('ScraperPool: all accounts disabled or exhausted')
     }
 
     return new Promise((resolve, reject) => {
       /** @type {ReturnType<typeof setTimeout>} */
       const timer = setTimeout(() => {
-        this.#queue = this.#queue.filter((q) => q !== run)
+        const idx = this.#queue.indexOf(run)
+        if (idx !== -1) this.#queue.splice(idx, 1)
         reject(new Error('ScraperPool timeout: concurrency limit reached'))
       }, timeout)
 
@@ -120,6 +162,11 @@ export class ScraperPool extends DurableObject {
       // If the scrape request returned 401 (invalid key) or 403 (credits exhausted), disable it immediately
       if (status === 401 || status === 403) {
         a.ok = false
+        try {
+          this.ctx.storage.sql.exec('UPDATE accounts SET ok = 0 WHERE key = ?', k)
+        } catch {
+          // Ignore write error on shutdown/disconnect
+        }
       }
       if (a.active > 0) {
         a.active--
@@ -133,11 +180,12 @@ export class ScraperPool extends DurableObject {
    */
   #drain() {
     while (this.#queue.length > 0) {
-      const entry = [...this.#pool.entries()].find(([, a]) => a.ok && a.active < a.max)
-      if (!entry) break
-      entry[1].active++
+      const key = this.#findAvailableKey()
+      if (!key) break
+      const acc = this.#pool.get(key)
+      if (acc) acc.active++
       const resolveNext = this.#queue.shift()
-      if (resolveNext) resolveNext(entry[0])
+      if (resolveNext) resolveNext(key)
     }
   }
 }

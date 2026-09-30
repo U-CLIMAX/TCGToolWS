@@ -8,6 +8,8 @@
   },
   "scripts": {
     "dev": "vite",
+    "deploy": "npm run build && npx wrangler deploy && node scripts/warmup-worker.js",
+    "warmup": "node scripts/warmup-worker.js",
     "build": "npm run build:index && vite build",
     "build:tauri": "npm run build:index && vite build --mode tauri",
     "build:index": "node scripts/build-card-index.js",
