@@ -1,7 +1,7 @@
 import { scrypt, randomBytes } from 'node:crypto'
 import { promisify } from 'node:util'
 import * as readline from 'node:readline'
-import { exec } from 'node:child_process'
+import { execFile } from 'node:child_process'
 
 const scryptAsync = promisify(scrypt)
 const SCRYPT_PREFIX = '$scrypt$v1$'
@@ -23,7 +23,7 @@ const hashPassword = async (password, salt) => {
   return SCRYPT_PREFIX + derivedKey.toString('hex')
 }
 
-const execPromise = promisify(exec)
+const execFilePromise = promisify(execFile)
 
 async function main() {
   console.log('=== TCGToolWS 测试账号创建工具 ===')
@@ -57,14 +57,17 @@ async function main() {
   const hashedPassword = await hashPassword(password, salt)
   const id = crypto.randomUUID()
 
-  const sql = `INSERT OR IGNORE INTO users (id, email, hashed_password, salt, role) VALUES ('${id}', '${email}', '${hashedPassword}', '${salt}', ${role});`
+  const sql = `INSERT INTO users (id, email, hashed_password, salt, role) VALUES ('${id}', '${email}', '${hashedPassword}', '${salt}', ${role}) ON CONFLICT(email) DO UPDATE SET hashed_password = excluded.hashed_password, salt = excluded.salt, role = excluded.role;`
 
   console.log('正在写入本地 D1 数据库...')
 
   try {
+    const npxCmd = process.platform === 'win32' ? 'npx.cmd' : 'npx'
     // oxlint-disable-next-line no-unused-vars
-    const { stdout, stderr } = await execPromise(
-      `npx wrangler d1 execute ws-account-db --local --command="${sql}"`
+    const { stdout, stderr } = await execFilePromise(
+      npxCmd,
+      ['wrangler', 'd1', 'execute', 'ws-account-db', '--local', `--command=${sql}`],
+      { shell: process.platform === 'win32' }
     )
 
     if (stderr && !stderr.includes('Executing on local database')) {
