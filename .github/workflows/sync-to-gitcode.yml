@@ -35,6 +35,5 @@ jobs:
           REMOTE_URL="https://zhuang39:${GITCODE_TOKEN}@gitcode.com/zhuang39/TCGToolWS.git"
           git remote add gitcode "$REMOTE_URL"
 
-          git lfs fetch --all origin || true
           git lfs push gitcode main
           git push gitcode main --tags --force
