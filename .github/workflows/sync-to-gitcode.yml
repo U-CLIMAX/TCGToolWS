@@ -33,7 +33,6 @@ jobs:
           git config lfs.locksverify false
 
           REMOTE_URL="https://zhuang39:${GITCODE_TOKEN}@gitcode.com/zhuang39/TCGToolWS.git"
-          git remote remove gitcode 2>/dev/null || true
           git remote add gitcode "$REMOTE_URL"
 
           git lfs fetch --all origin || true
