@@ -1,0 +1,38 @@
+name: Sync to GitCode
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Install Git LFS
+        run: |
+          git lfs install
+
+      - name: Push to GitCode
+        env:
+          GITCODE_TOKEN: ${{ secrets.GITCODE_TOKEN }}
+        run: |
+          git config --global credential.helper store
+          echo "https://zhuang39:${GITCODE_TOKEN}@gitcode.com" > ~/.git-credentials
+
+          REMOTE_URL="https://zhuang39:${GITCODE_TOKEN}@gitcode.com/zhuang39/TCGToolWS.git"
+          git remote remove gitcode 2>/dev/null || true
+          git remote add gitcode "$REMOTE_URL"
+
+          git lfs push gitcode main
+          git push gitcode main --tags --force
