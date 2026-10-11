@@ -22,9 +22,6 @@
                     客户端下载
                   </h1>
                   <div class="text-caption text-medium-emphasis mt-n1">跨平台桌面与移动端体验</div>
-                  <div class="text-caption text-medium-emphasis" style="opacity: 0.8">
-                    适用于 Windows、Android 与 Linux (amd64) 平台
-                  </div>
                 </div>
               </div>
 
@@ -121,13 +118,6 @@
                         <strong>Android 端</strong>：下载
                         <code>.apk</code>
                         文件后在手机上打开，如提示未知来源应用安装权限，请在系统设置中允许安装。
-                      </v-list-item-title>
-                    </v-list-item>
-                    <v-list-item class="px-0 py-1">
-                      <v-list-item-title class="text-body-2 text-wrap">
-                        <strong>Linux (amd64) 端</strong>：支持
-                        <code>.AppImage</code> 文件，下载后赋予执行权限 (<code>chmod +x</code>)
-                        即可直接运行。
                       </v-list-item-title>
                     </v-list-item>
                     <v-list-item class="px-0 py-1">
@@ -266,12 +256,6 @@ const platforms = [
     icon: 'i-mdi:android',
     color: 'green-darken-1',
   },
-  {
-    name: 'Linux',
-    desc: 'Linux amd64 · AppImage',
-    icon: 'i-mdi:linux',
-    color: 'orange-darken-2',
-  },
 ]
 
 const features = [
@@ -289,7 +273,7 @@ const features = [
   },
   {
     title: '跨平台与移动端适配',
-    desc: '不仅支持 Windows 与 Linux 桌面端，还专为 Android 移动设备深度适配，对局现场、通勤途中皆可随时查卡组卡。',
+    desc: '不仅支持 Windows 桌面端，还专为 Android 移动设备深度适配，对局现场、通勤途中皆可随时查卡组卡。',
     icon: 'i-mdi:devices',
     color: 'amber-darken-2',
   },

@@ -83,8 +83,6 @@ const matchPlatformAsset = (assets) => {
 
   if (ua.includes('windows')) {
     return assets.find((a) => a.name?.toLowerCase().endsWith('.exe'))
-  } else if (ua.includes('linux') && !ua.includes('android')) {
-    return assets.find((a) => a.name?.toLowerCase().endsWith('.appimage'))
   } else if (ua.includes('android')) {
     return assets.find((a) => a.name?.toLowerCase().endsWith('.apk'))
   }
