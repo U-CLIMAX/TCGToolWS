@@ -939,7 +939,7 @@
     "trait": ["Anniversary", "音楽", "Poppin'Party"],
     "color": "红色",
     "soul": 2,
-    "effect": "【永】 你的《Anniversary》或《Poppin'Party》的角色有4个以上的话，你手牌的此卡的等级－1。<br>【永】 你的回合中，你有其他《Anniversary》或《Poppin'Party》的角色的话，此卡的战斗力＋2500，此卡获得以下能力。『【自】 此卡的战斗对手【倒置】时，你可以将那个角色思出。",
+    "effect": "【永】你《Anniversary》或《Poppin'Party》的角色有4个以上的话，你手牌中此卡的等级－1。<br>【永】你的回合中，你有其他《Anniversary》或《Poppin'Party》的角色的话，此卡的战斗力＋2500，此卡获得以下能力。『【自】此卡的战斗对手【倒置】时，你可以将那个角色思出。』<br>【自】[1张手牌放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你将自己时计区顶1张卡放置到库存区。",
     "all_cards": [
       {
         "id": "BD/WE49-35",
