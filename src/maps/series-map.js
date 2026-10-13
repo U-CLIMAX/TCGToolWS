@@ -1,4 +1,9 @@
 const wsSeriesMap = {
+  'sts': {
+    name: '星塔旅人',
+    prefixes: ['STS'],
+    latestReleaseDate: '2026-10-16',
+  },
   'brd': {
     name: '棕色尘埃2',
     prefixes: ['BRD'],
