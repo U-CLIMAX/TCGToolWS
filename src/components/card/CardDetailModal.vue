@@ -196,36 +196,40 @@
                 <v-icon size="18" class="mr-1" icon="i-mdi:feather" />
                 特征
               </div>
-              <v-chip
-                v-for="r in card.trait"
-                :key="r"
-                class="font-wenkai mr-2 mb-2"
-                label
-                rounded="pill"
-                :link="isFilterable"
-                @click="isFilterable ? handleTraitClick(r) : undefined"
-                :color="
-                  isFilterable && activeFilterStore.selectedTraits.includes(r)
-                    ? isLightMode
-                      ? 'indigo-darken-3'
-                      : 'indigo-lighten-3'
-                    : undefined
-                "
-              >
-                {{ r }}
-                <v-tooltip
-                  v-if="isFilterable"
-                  activator="parent"
-                  location="top"
-                  :disabled="isTouch"
+              <div class="native-chip-group">
+                <component
+                  :is="isFilterable ? 'button' : 'span'"
+                  v-for="r in card.trait"
+                  :key="r"
+                  :type="isFilterable ? 'button' : undefined"
+                  class="native-chip font-wenkai"
+                  :class="{
+                    'native-chip--static': !isFilterable,
+                    'native-chip--selected':
+                      isFilterable && activeFilterStore.selectedTraits.includes(r),
+                    [isLightMode ? 'text-indigo-darken-1' : 'text-indigo-lighten-2']:
+                      isFilterable && activeFilterStore.selectedTraits.includes(r),
+                  }"
+                  :aria-pressed="
+                    isFilterable ? activeFilterStore.selectedTraits.includes(r) : undefined
+                  "
+                  @click="isFilterable ? handleTraitClick(r) : undefined"
                 >
-                  {{
-                    activeFilterStore.selectedTraits.includes(r)
-                      ? '移除此特征筛选'
-                      : '添加此特征筛选'
-                  }}
-                </v-tooltip>
-              </v-chip>
+                  {{ r }}
+                  <v-tooltip
+                    v-if="isFilterable"
+                    activator="parent"
+                    location="top"
+                    :disabled="isTouch"
+                  >
+                    {{
+                      activeFilterStore.selectedTraits.includes(r)
+                        ? '移除此特征筛选'
+                        : '添加此特征筛选'
+                    }}
+                  </v-tooltip>
+                </component>
+              </div>
             </div>
             <div v-if="linkedCards.length > 0" class="mt-4">
               <div class="text-body-2 mb-2 text-grey">
@@ -1057,5 +1061,77 @@ const submitReport = async () => {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 6px;
   }
+}
+
+.native-chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.native-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  box-sizing: border-box;
+  height: 28px;
+  padding: 0 12px 0 10px;
+  border: 1px solid rgba(var(--v-theme-on-surface), 0.2);
+  border-radius: 9999px;
+  font-size: 14px;
+  line-height: 1;
+  user-select: none;
+  cursor: pointer;
+  background-color: transparent;
+  color: rgba(var(--v-theme-on-surface), 0.7);
+  contain: layout paint style;
+  transition:
+    border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.1s ease;
+  vertical-align: middle;
+}
+
+.native-chip:not(.native-chip--static):hover {
+  border-color: rgba(var(--v-theme-on-surface), 0.45);
+  color: rgba(var(--v-theme-on-surface), 0.87);
+}
+
+.native-chip:not(.native-chip--static):active {
+  transform: scale(0.96);
+}
+
+.native-chip--selected,
+.native-chip--selected:not(.native-chip--static):hover {
+  border-color: currentColor;
+}
+
+.native-chip::before {
+  content: '';
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+  opacity: 0.4;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.native-chip--selected::before {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+.native-chip--static {
+  cursor: default;
+}
+
+.native-chip:focus-visible {
+  outline: 2px solid rgb(var(--v-theme-primary));
+  outline-offset: 1px;
 }
 </style>
