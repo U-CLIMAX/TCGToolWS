@@ -69,7 +69,7 @@ export const useFilterStore = defineStore('filter', () => {
   const souls = shallowRef([])
   const levels = shallowRef([])
   const costs = shallowRef([])
-  const powerRange = shallowRef({ min: 0, max: 0 })
+  const powers = shallowRef([])
 
   // Use the composable for filtering logic
   const {
@@ -84,7 +84,7 @@ export const useFilterStore = defineStore('filter', () => {
     selectedCosts,
     selectedRarities,
     showUniqueCards,
-    selectedPowerRange,
+    selectedPowers,
     showTriggerSoul,
     selectedSoul,
     resetFilters,
@@ -92,7 +92,7 @@ export const useFilterStore = defineStore('filter', () => {
     terminateWorker,
     initializeWorker,
     processRawDataInWorker,
-  } = useCardFiltering(powerRange)
+  } = useCardFiltering()
 
   // --- Actions ---
 
@@ -164,7 +164,7 @@ export const useFilterStore = defineStore('filter', () => {
         souls: [],
         levels: [],
         costs: [],
-        powerRange: { min: 0, max: 0 },
+        powers: [],
       }
     }
 
@@ -217,7 +217,7 @@ export const useFilterStore = defineStore('filter', () => {
           souls: [],
           levels: [],
           costs: [],
-          powerRange: { min: 0, max: 0 },
+          powers: [],
         }
       }
 
@@ -233,7 +233,7 @@ export const useFilterStore = defineStore('filter', () => {
         souls: [],
         levels: [],
         costs: [],
-        powerRange: { min: 0, max: 0 },
+        powers: [],
       }
     }
   }
@@ -255,7 +255,7 @@ export const useFilterStore = defineStore('filter', () => {
       souls.value = result.souls
       levels.value = result.levels
       costs.value = result.costs
-      powerRange.value = result.powerRange
+      powers.value = result.powers || []
 
       resetFilters()
       await initializeWorker(result.allCards)
@@ -279,7 +279,7 @@ export const useFilterStore = defineStore('filter', () => {
     souls.value = []
     levels.value = []
     costs.value = []
-    powerRange.value = { min: 0, max: 0 }
+    powers.value = []
     fetchProgress.value = { current: 0, total: 0 }
     error.value = null
     resetFilters()
@@ -297,7 +297,7 @@ export const useFilterStore = defineStore('filter', () => {
     souls,
     levels,
     costs,
-    powerRange,
+    powers,
     keyword,
     searchMode,
     searchTargets,
@@ -309,7 +309,7 @@ export const useFilterStore = defineStore('filter', () => {
     selectedCosts,
     selectedRarities,
     showUniqueCards,
-    selectedPowerRange,
+    selectedPowers,
     showTriggerSoul,
     selectedSoul,
     // Computed

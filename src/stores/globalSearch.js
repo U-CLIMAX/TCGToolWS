@@ -27,7 +27,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
   const souls = shallowRef([])
   const levels = shallowRef([])
   const costs = shallowRef([])
-  const powerRange = shallowRef({ min: 0, max: 0 })
+  const powers = shallowRef([])
 
   // Use the composable for filtering logic
   const {
@@ -42,7 +42,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     selectedCosts,
     selectedRarities,
     showUniqueCards,
-    selectedPowerRange,
+    selectedPowers,
     showTriggerSoul,
     selectedSoul,
     resetFilters,
@@ -50,7 +50,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     initializeWorker,
     terminateWorker,
     getCardById,
-  } = useCardFiltering(powerRange)
+  } = useCardFiltering()
 
   // --- Results ---
   // Use shallowRef for performance optimization when handling large lists
@@ -77,8 +77,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
       selectedLevels.value.length > 0,
       selectedCosts.value.length > 0,
       selectedRarities.value.length > 0,
-      selectedPowerRange.value[0] !== powerRange.value.min ||
-        selectedPowerRange.value[1] !== powerRange.value.max,
+      selectedPowers.value.length > 0,
       showTriggerSoul.value,
       selectedSoul.value.length > 0,
     ].some(Boolean)
@@ -102,7 +101,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     souls.value = data.filterOptions.souls
     levels.value = data.filterOptions.levels
     costs.value = data.filterOptions.costs
-    powerRange.value = data.filterOptions.powerRange
+    powers.value = data.filterOptions.powers
 
     const cardCount = data.cards?.length || 0
     resetFilters()
@@ -149,7 +148,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
         product_name: prodIdx >= 0 ? productNames[prodIdx] || '' : '',
         type: typeIdx >= 0 ? typeMap[typeIdx] || '' : '',
         level: cols.level[i] !== null ? cols.level[i] : '-',
-        power: cols.power[i] !== null ? cols.power[i] * 500 : '-',
+        power: cols.power[i] !== null ? Math.round(cols.power[i] * 500) : '-',
         cost: cols.cost[i] !== null ? cols.cost[i] : '-',
         trait: Array.isArray(traitIndices)
           ? traitIndices.map((t) => traits[t]).filter(Boolean)
@@ -399,7 +398,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     souls,
     levels,
     costs,
-    powerRange,
+    powers,
     // Selected Filters
     keyword,
     searchMode,
@@ -412,7 +411,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     selectedCosts,
     selectedRarities,
     showUniqueCards,
-    selectedPowerRange,
+    selectedPowers,
     showTriggerSoul,
     selectedSoul,
     // Results

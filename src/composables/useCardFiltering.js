@@ -3,7 +3,7 @@ import { wrap } from 'comlink'
 import FilterWorker from '@/workers/filter.worker.js?worker'
 import { debounceRef } from '@/composables/useDebounceRef'
 
-export const useCardFiltering = (powerRangeRef) => {
+export const useCardFiltering = () => {
   // --- State ---
   const keyword = debounceRef(null, 300)
   const searchMode = ref('precise') // 'precise' or 'fuzzy'
@@ -16,7 +16,7 @@ export const useCardFiltering = (powerRangeRef) => {
   const selectedRarities = ref([])
   const showUniqueCards = ref(false)
   const selectedCosts = ref([])
-  const selectedPowerRange = ref([0, 0])
+  const selectedPowers = ref([])
   const showTriggerSoul = ref(false)
   const selectedSoul = ref([])
 
@@ -90,7 +90,7 @@ export const useCardFiltering = (powerRangeRef) => {
       selectedRarities: toRaw(selectedRarities.value),
       showUniqueCards: toRaw(showUniqueCards.value),
       selectedCosts: toRaw(selectedCosts.value),
-      selectedPowerRange: toRaw(selectedPowerRange.value),
+      selectedPowers: toRaw(selectedPowers.value),
       showTriggerSoul: toRaw(showTriggerSoul.value),
       selectedSoul: toRaw(selectedSoul.value),
     }
@@ -129,7 +129,7 @@ export const useCardFiltering = (powerRangeRef) => {
         selectedRarities: toRaw(selectedRarities.value),
         showUniqueCards: toRaw(showUniqueCards.value),
         selectedCosts: toRaw(selectedCosts.value),
-        selectedPowerRange: toRaw(selectedPowerRange.value),
+        selectedPowers: toRaw(selectedPowers.value),
         showTriggerSoul: toRaw(showTriggerSoul.value),
         selectedSoul: toRaw(selectedSoul.value),
       })
@@ -183,7 +183,7 @@ export const useCardFiltering = (powerRangeRef) => {
       selectedCosts,
       selectedRarities,
       showUniqueCards,
-      selectedPowerRange,
+      selectedPowers,
       showTriggerSoul,
       selectedSoul,
     ],
@@ -207,7 +207,7 @@ export const useCardFiltering = (powerRangeRef) => {
     selectedCosts.value = []
     selectedRarities.value = []
     showUniqueCards.value = false
-    selectedPowerRange.value = [powerRangeRef.value.min, powerRangeRef.value.max]
+    selectedPowers.value = []
     showTriggerSoul.value = false
     selectedSoul.value = []
   }
@@ -241,7 +241,7 @@ export const useCardFiltering = (powerRangeRef) => {
     selectedCosts,
     selectedRarities,
     showUniqueCards,
-    selectedPowerRange,
+    selectedPowers,
     showTriggerSoul,
     selectedSoul,
     // Getters

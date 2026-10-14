@@ -117,8 +117,7 @@ const processRawCardData = (rawFiles) => {
   const soulsSet = new Set()
   const levelsSet = new Set()
   const costsSet = new Set()
-  let minPower = Infinity,
-    maxPower = -Infinity
+  const powersSet = new Set()
 
   // 1. 建立基礎索引 (名稱 -> baseIds, baseId -> 所有 card.id)
   const nameToBaseIds = new Map()
@@ -187,8 +186,7 @@ const processRawCardData = (rawFiles) => {
       costsSet.add(costValue)
     }
     if (typeof cardData.power === 'number') {
-      minPower = Math.min(minPower, cardData.power)
-      maxPower = Math.max(maxPower, cardData.power)
+      powersSet.add(cardData.power)
     }
     const soulValue = cardData.soul === '-' ? 0 : cardData.soul
     if (typeof soulValue === 'number') {
@@ -242,10 +240,7 @@ const processRawCardData = (rawFiles) => {
     souls: [...soulsSet].sort((a, b) => a - b),
     levels: [...levelsSet].sort((a, b) => a - b),
     costs: [...costsSet].sort((a, b) => a - b),
-    powerRange: {
-      min: minPower === Infinity ? 0 : Math.floor(minPower / 500) * 500,
-      max: maxPower === -Infinity ? 0 : maxPower,
-    },
+    powers: [...powersSet].sort((a, b) => a - b),
   }
 
   return { cards: fetchedCards, filterOptions }

@@ -118,38 +118,44 @@
           </div>
         </div>
 
-        <v-switch
-          label="高罕过滤"
-          hide-details
-          v-model="filterStore.showUniqueCards"
-          color="primary"
-          density="compact"
-          :disabled="isSwitchDisabled"
-        ></v-switch>
+        <div class="d-flex flex-column ga-2">
+          <label class="native-switch" :class="{ 'native-switch--disabled': isSwitchDisabled }">
+            <input
+              type="checkbox"
+              v-model="filterStore.showUniqueCards"
+              :disabled="isSwitchDisabled"
+              class="native-switch__input"
+            />
+            <span class="native-switch__track">
+              <span class="native-switch__thumb" />
+            </span>
+            <span class="native-switch__label">高罕过滤</span>
+          </label>
 
-        <v-switch
-          label="魂标筛选"
-          hide-details
-          v-model="filterStore.showTriggerSoul"
-          color="primary"
-          density="compact"
-          :disabled="isSwitchDisabled"
-        >
-          <template v-slot:label>
-            <div class="d-flex align-center">
-              <span class="mr-2">魂标筛选</span>
+          <label class="native-switch" :class="{ 'native-switch--disabled': isSwitchDisabled }">
+            <input
+              type="checkbox"
+              v-model="filterStore.showTriggerSoul"
+              :disabled="isSwitchDisabled"
+              class="native-switch__input"
+            />
+            <span class="native-switch__track">
+              <span class="native-switch__thumb" />
+            </span>
+            <span class="native-switch__label d-flex align-center">
+              <span class="mr-1.5">魂标筛选</span>
               <img
                 :src="WsIcon"
-                width="16"
-                height="16"
+                width="15"
+                height="15"
                 :style="{
                   filter: theme.global.name.value === 'dark' ? 'none' : 'invert(1)',
                   opacity: 0.7,
                 }"
               />
-            </div>
-          </template>
-        </v-switch>
+            </span>
+          </label>
+        </div>
 
         <v-divider></v-divider>
 
@@ -159,17 +165,17 @@
           <div class="native-chip-group">
             <button
               v-for="type in CARD_TYPE_OPTIONS"
-              :key="type"
+              :key="type.value"
               type="button"
               class="native-chip font-weight-medium"
               :class="{
-                'native-chip--selected text-primary': isSelected('selectedCardTypes', type),
+                'native-chip--selected text-primary': isSelected('selectedCardTypes', type.value),
               }"
               :disabled="props.disabled"
-              :aria-pressed="isSelected('selectedCardTypes', type)"
-              @click="toggleFilterItem('selectedCardTypes', type)"
+              :aria-pressed="isSelected('selectedCardTypes', type.value)"
+              @click="toggleFilterItem('selectedCardTypes', type.value)"
             >
-              {{ type }}
+              {{ type.label }}
             </button>
           </div>
         </div>
@@ -256,6 +262,37 @@
           </div>
         </div>
 
+        <!-- 战斗力 -->
+        <div v-if="filterStore.powers?.length">
+          <div class="d-flex justify-space-between align-center mb-1">
+            <div class="text-caption font-weight-light text-disabled">战斗力</div>
+            <button
+              v-if="filterStore.powers.length > 8"
+              type="button"
+              class="toggle-expand-btn text-caption text-primary font-weight-medium"
+              @click="isPowerExpanded = !isPowerExpanded"
+            >
+              {{ isPowerExpanded ? '收起 ▴' : '展开全部▾' }}
+            </button>
+          </div>
+          <div class="power-grid">
+            <button
+              v-for="p in visiblePowers"
+              :key="p"
+              type="button"
+              class="native-chip native-chip--power font-weight-medium"
+              :class="{
+                'native-chip--selected text-primary': isSelected('selectedPowers', p),
+              }"
+              :disabled="props.disabled"
+              :aria-pressed="isSelected('selectedPowers', p)"
+              @click="toggleFilterItem('selectedPowers', p)"
+            >
+              {{ p }}
+            </button>
+          </div>
+        </div>
+
         <!-- 产品 -->
         <div>
           <div class="text-caption font-weight-light text-disabled mb-1">产品</div>
@@ -314,28 +351,6 @@
             :menu-props="uiStore.menuProps"
             :disabled="props.disabled"
           ></v-select>
-        </div>
-
-        <div>
-          <div class="text-caption font-weight-light text-disabled">
-            战斗力
-            <span class="pa-1 px-2 rounded-pill border-md">
-              {{ powerRangeText }}
-            </span>
-          </div>
-          <v-range-slider
-            hide-details
-            :thumb-label="true"
-            :min="Math.floor(filterStore.powerRange.min / 500) * 500"
-            :max="filterStore.powerRange.max"
-            step="500"
-            :model-value="isDraggingPower ? localPower : filterStore.selectedPowerRange"
-            @start="onPowerStart"
-            @update:model-value="localPower = $event"
-            @end="onPowerEnd"
-            :disabled="props.disabled"
-            thumb-size="15"
-          ></v-range-slider>
         </div>
       </div>
     </v-sheet>
@@ -427,7 +442,11 @@ const SEARCH_TARGET_OPTIONS = Object.freeze([
   { value: 'effect', label: '效果' },
 ])
 
-const CARD_TYPE_OPTIONS = Object.freeze(['角色卡', '事件卡', '高潮卡'])
+const CARD_TYPE_OPTIONS = Object.freeze([
+  { key: '角色', value: '角色卡', label: '角色' },
+  { key: '事件', value: '事件卡', label: '事件' },
+  { key: '高潮', value: '高潮卡', label: '高潮' },
+])
 
 const COLOR_OPTIONS = Object.freeze([
   { value: '黄色', label: '黄', activeClass: 'native-chip--selected text-amber-darken-3' },
@@ -459,25 +478,17 @@ const toggleFilterItem = (field, value) => {
     : [...current, value]
 }
 
-// Local state for sliders to prevent frequent store updates
-const isDraggingPower = ref(false)
-const localPower = ref(filterStore.selectedPowerRange)
+const isPowerExpanded = ref(false)
 
-const powerRangeText = computed(() => {
-  const [min, max] = isDraggingPower.value ? localPower.value : filterStore.selectedPowerRange
-  if (min === max) return min
-  return `${min} – ${max}`
+const visiblePowers = computed(() => {
+  const all = filterStore.powers || []
+  if (isPowerExpanded.value || all.length <= 8) return all
+  const selected = filterStore.selectedPowers || []
+  const initial = all.slice(0, 8)
+  const extraSelected = selected.filter((p) => all.indexOf(p) >= 8)
+  if (extraSelected.length === 0) return initial
+  return [...new Set([...initial, ...extraSelected])].sort((a, b) => a - b)
 })
-
-const onPowerStart = () => {
-  localPower.value = filterStore.selectedPowerRange
-  isDraggingPower.value = true
-}
-
-const onPowerEnd = () => {
-  filterStore.selectedPowerRange = localPower.value
-  isDraggingPower.value = false
-}
 
 const addKeywordDialog = ref(false)
 const newKeyword = ref('')
@@ -522,17 +533,17 @@ const toggleSearchMode = () => {
   box-sizing: border-box;
   height: 28px;
   padding: 0 12px;
-  border: none;
+  border: 1px solid rgba(var(--v-theme-on-surface), 0.2);
   border-radius: 9999px;
   font-size: 14px;
   line-height: 1;
   user-select: none;
   cursor: pointer;
-  background-color: rgba(var(--v-theme-on-surface), 0.08);
-  color: rgba(var(--v-theme-on-surface), 0.87);
+  background-color: transparent;
+  color: rgba(var(--v-theme-on-surface), 0.7);
   contain: layout paint style;
   transition:
-    background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
     color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
     transform 0.1s ease;
   vertical-align: middle;
@@ -544,20 +555,116 @@ const toggleSearchMode = () => {
   font-size: 12px;
 }
 
+.power-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.native-chip--power {
+  height: 26px;
+  padding: 0 2px;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  width: 100%;
+  justify-content: center;
+}
+
+.toggle-expand-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  user-select: none;
+  line-height: 1;
+  transition: opacity 0.2s ease;
+}
+
+.toggle-expand-btn:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.native-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 14px;
+}
+
+.native-switch--disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.native-switch__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  pointer-events: none;
+}
+
+.native-switch__track {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 36px;
+  height: 20px;
+  border-radius: 9999px;
+  background-color: rgba(var(--v-theme-on-surface), 0.24);
+  transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+
+.native-switch__thumb {
+  position: absolute;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: rgb(var(--v-theme-surface));
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  transition:
+    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.2s ease;
+}
+
+.native-switch__input:checked + .native-switch__track {
+  background-color: rgb(var(--v-theme-primary));
+}
+
+.native-switch__input:checked + .native-switch__track .native-switch__thumb {
+  transform: translateX(16px);
+  background-color: #fff;
+}
+
+.native-switch__input:focus-visible + .native-switch__track {
+  outline: 2px solid rgb(var(--v-theme-primary));
+  outline-offset: 2px;
+}
+
+.native-switch__label {
+  color: rgba(var(--v-theme-on-surface), 0.87);
+  line-height: 1;
+}
+
 .native-chip:hover:not(:disabled) {
-  background-color: rgba(var(--v-theme-on-surface), 0.14);
+  border-color: rgba(var(--v-theme-on-surface), 0.45);
+  color: rgba(var(--v-theme-on-surface), 0.87);
 }
 
 .native-chip:active:not(:disabled) {
   transform: scale(0.96);
 }
 
-.native-chip--selected {
-  background-color: color-mix(in srgb, currentColor 15%, transparent);
-}
-
+.native-chip--selected,
 .native-chip--selected:hover:not(:disabled) {
-  background-color: color-mix(in srgb, currentColor 22%, transparent);
+  border-color: currentColor;
 }
 
 .native-chip:disabled {
