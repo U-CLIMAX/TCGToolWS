@@ -242,7 +242,7 @@
 
         <div
           class="h-100 overflow-y-auto themed-scrollbar"
-          :class="{ 'gallery-content--hidden': !smAndUp && isModalVisible }"
+          :class="{ 'gallery-content--hidden': isTauri && !smAndUp && isModalVisible }"
           :style="{
             'paddingTop': `${headerOffsetHeight}px`,
             '--sb-margin-top': `${headerOffsetHeight - 18}px`,
@@ -544,6 +544,7 @@ import { useCardNavigation } from '@/composables/useCardNavigation.js'
 import { useDevice } from '@/composables/useDevice'
 import { useDeckHistory } from '@/composables/useDeckHistory'
 import { useDeckExport } from '@/composables/useDeckExport'
+import { isTauri } from '@/utils/isTauri'
 
 definePage({
   name: 'DeckDetail',

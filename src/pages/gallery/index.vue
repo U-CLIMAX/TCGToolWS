@@ -13,6 +13,7 @@
       }"
       :style="{
         top: smAndUp ? '50px' : '0px',
+        transition: isTauri && !smAndUp ? 'none !important' : undefined,
       }"
       touchless
       :close-on-back="false"
@@ -29,7 +30,7 @@
     <v-infinite-scroll
       ref="infiniteScrollRef"
       class="themed-scrollbar py-4"
-      :class="{ 'gallery-content--hidden': isDrawerCovering }"
+      :class="{ 'gallery-content--hidden': isTauri && !smAndUp && drawer }"
       :style="scrollStyle"
       :onLoad="loadMore"
       :empty-text="''"
@@ -320,6 +321,7 @@ import { useDeckExport } from '@/composables/useDeckExport'
 import { useDevice } from '@/composables/useDevice'
 import { useDisplay } from 'vuetify'
 import { GAME_TYPE_OPTIONS } from '@/maps/series-map'
+import { isTauri } from '@/utils/isTauri'
 
 import DeckGalleryIcon from '@/assets/ui/deck-gallery.svg'
 
@@ -346,8 +348,6 @@ const drawerWidth = computed(() => {
   if (!smAndUp.value) return width.value
   return Math.min(Math.max(width.value * 0.35, 500), 620)
 })
-
-const isDrawerCovering = computed(() => !smAndUp.value && drawer.value)
 
 const scrollStyle = computed(() => {
   const marginTop = smAndUp.value ? '50px' : '0'

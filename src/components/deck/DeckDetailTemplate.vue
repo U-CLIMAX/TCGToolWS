@@ -14,7 +14,7 @@
     <v-container fluid class="h-100 pa-0">
       <div
         class="d-flex flex-column h-100 overflow-hidden"
-        :class="{ 'gallery-content--hidden': !smAndUp && isModalVisible }"
+        :class="{ 'gallery-content--hidden': isTauri && !smAndUp && isModalVisible }"
       >
         <div
           ref="headerRef"
@@ -157,7 +157,7 @@
 
         <div
           class="h-100 overflow-y-auto themed-scrollbar"
-          :class="{ 'gallery-content--hidden': !smAndUp && isModalVisible }"
+          :class="{ 'gallery-content--hidden': isTauri && !smAndUp && isModalVisible }"
           :style="{
             'paddingTop': `${headerOffsetHeight}px`,
             '--sb-margin-top': `${headerOffsetHeight - 18}px`,

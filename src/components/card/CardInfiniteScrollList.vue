@@ -15,7 +15,7 @@
     class="overflow-x-hidden py-4"
     :class="{
       'hide-loader': shouldHideLoader,
-      'gallery-content--hidden': !smAndUp && (isModalVisible || isExternalModalVisible),
+      'gallery-content--hidden': isTauri && !smAndUp && (isModalVisible || isExternalModalVisible),
     }"
     @load="load"
     empty-text=""
@@ -77,7 +77,7 @@
 
   <v-dialog
     v-model="isModalVisible"
-    transition="fade-transition"
+    :transition="isTauri && !smAndUp ? false : 'fade-transition'"
     eager
     :fullscreen="!smAndUp"
     :max-width="!smAndUp ? undefined : smAndDown ? '85%' : '1050px'"
@@ -112,6 +112,7 @@ import { usePriceStore } from '@/stores/price'
 import { useDeckStore } from '@/stores/deck'
 import { useAuthStore } from '@/stores/auth'
 import { useDevice } from '@/composables/useDevice'
+import { isTauri } from '@/utils/isTauri'
 import { storeToRefs } from 'pinia'
 
 const props = defineProps({

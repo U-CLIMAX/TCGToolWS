@@ -2,7 +2,7 @@
   <aside
     v-bind="$attrs"
     class="d-flex flex-column flex-shrink-0"
-    :class="{ 'gallery-content--hidden': !smAndUp && isModalVisible }"
+    :class="{ 'gallery-content--hidden': isTauri && !smAndUp && isModalVisible }"
     :style="{
       paddingTop: `${smAndUp ? headerOffsetHeight + 18 : 0}px`,
       height: containerHeight ? `${containerHeight}px` : 'auto',
@@ -166,7 +166,7 @@
   <!-- Card Detail Modal -->
   <v-dialog
     v-model="isModalVisible"
-    transition="fade-transition"
+    :transition="isTauri && !smAndUp ? false : 'fade-transition'"
     eager
     :fullscreen="!smAndUp"
     :max-width="!smAndUp ? undefined : smAndDown ? '85%' : '1050px'"

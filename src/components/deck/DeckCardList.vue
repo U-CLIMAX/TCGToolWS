@@ -4,7 +4,7 @@
       class="px-4 pb-4 w-100 h-100 centered-content"
       :class="{
         'mb-15': !smAndUp && !embed,
-        'gallery-content--hidden': !smAndUp && isModalVisible,
+        'gallery-content--hidden': isTauri && !smAndUp && isModalVisible,
       }"
     >
       <v-fab-transition>
@@ -141,7 +141,7 @@
     <v-dialog
       :model-value="isModalVisible"
       @update:model-value="$emit('update:isModalVisible', $event)"
-      transition="fade-transition"
+      :transition="isTauri && !smAndUp ? false : 'fade-transition'"
       eager
       :fullscreen="!smAndUp"
       :max-width="!smAndUp ? undefined : smAndDown ? '85%' : '1050px'"
@@ -175,6 +175,7 @@ import { useAuthStore } from '@/stores/auth'
 import { getCardSeriesId } from '@/utils/card'
 import WsIcon from '@/assets/ui/ws-icon.svg?url'
 import { useUIStore } from '@/stores/ui'
+import { isTauri } from '@/utils/isTauri'
 
 const props = defineProps({
   displayGroupedCards: {
