@@ -26,7 +26,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
   const rarities = shallowRef([])
   const souls = shallowRef([])
   const levels = shallowRef([])
-  const costRange = shallowRef({ min: 0, max: 0 })
+  const costs = shallowRef([])
   const powerRange = shallowRef({ min: 0, max: 0 })
 
   // Use the composable for filtering logic
@@ -39,9 +39,9 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     selectedProductName,
     selectedTraits,
     selectedLevels,
+    selectedCosts,
     selectedRarities,
     showUniqueCards,
-    selectedCostRange,
     selectedPowerRange,
     showTriggerSoul,
     selectedSoul,
@@ -50,7 +50,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     initializeWorker,
     terminateWorker,
     getCardById,
-  } = useCardFiltering(productNames, traits, rarities, costRange, powerRange)
+  } = useCardFiltering(powerRange)
 
   // --- Results ---
   // Use shallowRef for performance optimization when handling large lists
@@ -75,9 +75,8 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
       selectedProductName.value,
       selectedTraits.value.length > 0,
       selectedLevels.value.length > 0,
+      selectedCosts.value.length > 0,
       selectedRarities.value.length > 0,
-      selectedCostRange.value[0] !== costRange.value.min ||
-        selectedCostRange.value[1] !== costRange.value.max,
       selectedPowerRange.value[0] !== powerRange.value.min ||
         selectedPowerRange.value[1] !== powerRange.value.max,
       showTriggerSoul.value,
@@ -102,7 +101,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     rarities.value = data.filterOptions.rarities
     souls.value = data.filterOptions.souls
     levels.value = data.filterOptions.levels
-    costRange.value = data.filterOptions.costRange
+    costs.value = data.filterOptions.costs
     powerRange.value = data.filterOptions.powerRange
 
     const cardCount = data.cards?.length || 0
@@ -399,7 +398,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     rarities,
     souls,
     levels,
-    costRange,
+    costs,
     powerRange,
     // Selected Filters
     keyword,
@@ -410,9 +409,9 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     selectedProductName,
     selectedTraits,
     selectedLevels,
+    selectedCosts,
     selectedRarities,
     showUniqueCards,
-    selectedCostRange,
     selectedPowerRange,
     showTriggerSoul,
     selectedSoul,

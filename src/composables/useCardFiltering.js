@@ -3,13 +3,7 @@ import { wrap } from 'comlink'
 import FilterWorker from '@/workers/filter.worker.js?worker'
 import { debounceRef } from '@/composables/useDebounceRef'
 
-export const useCardFiltering = (
-  productNamesRef,
-  traitsRef,
-  raritiesRef,
-  costRangeRef,
-  powerRangeRef
-) => {
+export const useCardFiltering = (powerRangeRef) => {
   // --- State ---
   const keyword = debounceRef(null, 300)
   const searchMode = ref('precise') // 'precise' or 'fuzzy'
@@ -21,7 +15,7 @@ export const useCardFiltering = (
   const selectedLevels = ref([])
   const selectedRarities = ref([])
   const showUniqueCards = ref(false)
-  const selectedCostRange = ref([0, 0])
+  const selectedCosts = ref([])
   const selectedPowerRange = ref([0, 0])
   const showTriggerSoul = ref(false)
   const selectedSoul = ref([])
@@ -95,7 +89,7 @@ export const useCardFiltering = (
       selectedLevels: toRaw(selectedLevels.value),
       selectedRarities: toRaw(selectedRarities.value),
       showUniqueCards: toRaw(showUniqueCards.value),
-      selectedCostRange: toRaw(selectedCostRange.value),
+      selectedCosts: toRaw(selectedCosts.value),
       selectedPowerRange: toRaw(selectedPowerRange.value),
       showTriggerSoul: toRaw(showTriggerSoul.value),
       selectedSoul: toRaw(selectedSoul.value),
@@ -134,7 +128,7 @@ export const useCardFiltering = (
         selectedLevels: toRaw(selectedLevels.value),
         selectedRarities: toRaw(selectedRarities.value),
         showUniqueCards: toRaw(showUniqueCards.value),
-        selectedCostRange: toRaw(selectedCostRange.value),
+        selectedCosts: toRaw(selectedCosts.value),
         selectedPowerRange: toRaw(selectedPowerRange.value),
         showTriggerSoul: toRaw(showTriggerSoul.value),
         selectedSoul: toRaw(selectedSoul.value),
@@ -186,9 +180,9 @@ export const useCardFiltering = (
       selectedProductName,
       selectedTraits,
       selectedLevels,
+      selectedCosts,
       selectedRarities,
       showUniqueCards,
-      selectedCostRange,
       selectedPowerRange,
       showTriggerSoul,
       selectedSoul,
@@ -210,9 +204,9 @@ export const useCardFiltering = (
     selectedProductName.value = null
     selectedTraits.value = []
     selectedLevels.value = []
+    selectedCosts.value = []
     selectedRarities.value = []
     showUniqueCards.value = false
-    selectedCostRange.value = [costRangeRef.value.min, costRangeRef.value.max]
     selectedPowerRange.value = [powerRangeRef.value.min, powerRangeRef.value.max]
     showTriggerSoul.value = false
     selectedSoul.value = []
@@ -244,9 +238,9 @@ export const useCardFiltering = (
     selectedProductName,
     selectedTraits,
     selectedLevels,
+    selectedCosts,
     selectedRarities,
     showUniqueCards,
-    selectedCostRange,
     selectedPowerRange,
     showTriggerSoul,
     selectedSoul,

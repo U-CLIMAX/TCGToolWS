@@ -53,9 +53,8 @@ const CardFilterService = {
     const raritiesSet = new Set()
     const soulsSet = new Set()
     const levelsSet = new Set()
-    let minCost = Infinity,
-      maxCost = -Infinity,
-      minPower = Infinity,
+    const costsSet = new Set()
+    let minPower = Infinity,
       maxPower = -Infinity
 
     if (!rawFiles || rawFiles.length === 0) {
@@ -67,7 +66,7 @@ const CardFilterService = {
         rarities: [],
         souls: [],
         levels: [],
-        costRange: { min: 0, max: 0 },
+        costs: [],
         powerRange: { min: 0, max: 0 },
       }
     }
@@ -157,9 +156,9 @@ const CardFilterService = {
         levelsSet.add(levelValue)
       }
 
-      if (typeof cardData.cost === 'number') {
-        if (cardData.cost < minCost) minCost = cardData.cost
-        if (cardData.cost > maxCost) maxCost = cardData.cost
+      const costValue = cardData.cost === '-' ? 0 : cardData.cost
+      if (typeof costValue === 'number') {
+        costsSet.add(costValue)
       }
       if (typeof cardData.power === 'number') {
         if (cardData.power < minPower) minPower = cardData.power
@@ -250,10 +249,7 @@ const CardFilterService = {
       rarities: [...raritiesSet].sort(),
       souls: [...soulsSet].sort((a, b) => a - b),
       levels: [...levelsSet].sort((a, b) => a - b),
-      costRange: {
-        min: minCost === Infinity ? 0 : minCost,
-        max: maxCost === -Infinity ? 0 : maxCost,
-      },
+      costs: [...costsSet].sort((a, b) => a - b),
       powerRange: {
         min: minPower === Infinity ? 0 : minPower,
         max: maxPower === -Infinity ? 0 : maxPower,
@@ -434,9 +430,9 @@ const CardFilterService = {
       selectedProductName,
       selectedTraits = [],
       selectedLevels = [],
+      selectedCosts = [],
       selectedRarities = [],
       showUniqueCards,
-      selectedCostRange,
       selectedPowerRange,
       showTriggerSoul,
       selectedSoul = [],
@@ -451,14 +447,13 @@ const CardFilterService = {
     const hasTraits = selectedTraits.length > 0
 
     const mappedLevels = selectedLevels.length > 0 ? new Set(selectedLevels.map(toZero)) : null
+    const mappedCosts = selectedCosts.length > 0 ? new Set(selectedCosts.map(toZero)) : null
 
     const hasRarities = selectedRarities.length > 0
     const raritiesSet = hasRarities ? new Set(selectedRarities) : null
 
     const mappedSoul = selectedSoul.length > 0 ? new Set(selectedSoul.map(toZero)) : null
 
-    const minCost = selectedCostRange ? selectedCostRange[0] : -Infinity
-    const maxCost = selectedCostRange ? selectedCostRange[1] : Infinity
     const minPower = selectedPowerRange ? selectedPowerRange[0] : -Infinity
     const maxPower = selectedPowerRange ? selectedPowerRange[1] : Infinity
 
@@ -483,10 +478,8 @@ const CardFilterService = {
         return false
       }
       if (mappedLevels && !mappedLevels.has(toZero(card.level))) return false
+      if (mappedCosts && !mappedCosts.has(toZero(card.cost))) return false
       if (hasRarities && !raritiesSet.has(card.rarity)) return false
-
-      const cardCost = card.cost === '-' ? 0 : Number(card.cost)
-      if (cardCost < minCost || cardCost > maxCost) return false
       if (card.power < minPower || card.power > maxPower) return false
 
       if (showTriggerSoul && (!card.trigger_soul_count || card.trigger_soul_count < 1)) {

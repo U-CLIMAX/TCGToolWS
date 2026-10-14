@@ -193,6 +193,23 @@
           </v-chip-group>
         </div>
 
+        <!-- 费用 -->
+        <div v-if="filterStore.costs?.length">
+          <div class="text-caption font-weight-light text-disabled mb-1">费用</div>
+          <v-chip-group v-model="filterStore.selectedCosts" multiple column color="primary">
+            <v-chip
+              v-for="c in filterStore.costs"
+              :key="c"
+              :value="c"
+              density="comfortable"
+              :disabled="props.disabled"
+              class="font-weight-medium"
+            >
+              {{ c }}
+            </v-chip>
+          </v-chip-group>
+        </div>
+
         <!-- 魂伤 -->
         <div v-if="filterStore.souls?.length">
           <div class="text-caption font-weight-light text-disabled mb-1">魂伤</div>
@@ -323,30 +340,6 @@
         </div>
 
         <div>
-          <div class="d-flex justify-space-between align-center mb-1">
-            <div class="text-caption font-weight-light text-disabled">
-              费用
-              <span class="pa-1 px-2 rounded-pill border-md">
-                {{ costRangeText }}
-              </span>
-            </div>
-          </div>
-          <v-range-slider
-            hide-details
-            :thumb-label="true"
-            :min="filterStore.costRange.min"
-            :max="filterStore.costRange.max"
-            step="1"
-            :model-value="isDraggingCost ? localCost : filterStore.selectedCostRange"
-            @start="onCostStart"
-            @update:model-value="localCost = $event"
-            @end="onCostEnd"
-            :disabled="props.disabled"
-            thumb-size="15"
-          ></v-range-slider>
-        </div>
-
-        <div>
           <div class="text-caption font-weight-light text-disabled">
             战斗力
             <span class="pa-1 px-2 rounded-pill border-md">
@@ -452,33 +445,14 @@ const allKeywords = computed(() => {
 })
 
 // Local state for sliders to prevent frequent store updates
-const isDraggingCost = ref(false)
-const localCost = ref(filterStore.selectedCostRange)
-
 const isDraggingPower = ref(false)
 const localPower = ref(filterStore.selectedPowerRange)
-
-const costRangeText = computed(() => {
-  const [min, max] = isDraggingCost.value ? localCost.value : filterStore.selectedCostRange
-  if (min === max) return min
-  return `${min} – ${max}`
-})
 
 const powerRangeText = computed(() => {
   const [min, max] = isDraggingPower.value ? localPower.value : filterStore.selectedPowerRange
   if (min === max) return min
   return `${min} – ${max}`
 })
-
-const onCostStart = () => {
-  localCost.value = filterStore.selectedCostRange
-  isDraggingCost.value = true
-}
-
-const onCostEnd = () => {
-  filterStore.selectedCostRange = localCost.value
-  isDraggingCost.value = false
-}
 
 const onPowerStart = () => {
   localPower.value = filterStore.selectedPowerRange

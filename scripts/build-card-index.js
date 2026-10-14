@@ -14,7 +14,7 @@ const CARD_DATA_DIR = path.join(__dirname, '../src/assets/card-data')
 const OUTPUT_DIR = path.join(__dirname, '../public')
 
 // 腳本邏輯版本
-const BUILD_LOGIC_VERSION = 'v5'
+const BUILD_LOGIC_VERSION = 'v6'
 
 console.log('🔍 Starting to build card index...')
 
@@ -116,9 +116,8 @@ const processRawCardData = (rawFiles) => {
   const raritiesSet = new Set()
   const soulsSet = new Set()
   const levelsSet = new Set()
-  let minCost = Infinity,
-    maxCost = -Infinity,
-    minPower = Infinity,
+  const costsSet = new Set()
+  let minPower = Infinity,
     maxPower = -Infinity
 
   // 1. 建立基礎索引 (名稱 -> baseIds, baseId -> 所有 card.id)
@@ -183,9 +182,9 @@ const processRawCardData = (rawFiles) => {
       levelsSet.add(levelValue)
     }
 
-    if (typeof cardData.cost === 'number') {
-      minCost = Math.min(minCost, cardData.cost)
-      maxCost = Math.max(maxCost, cardData.cost)
+    const costValue = cardData.cost === '-' ? 0 : cardData.cost
+    if (typeof costValue === 'number') {
+      costsSet.add(costValue)
     }
     if (typeof cardData.power === 'number') {
       minPower = Math.min(minPower, cardData.power)
@@ -242,10 +241,7 @@ const processRawCardData = (rawFiles) => {
     rarities: [...raritiesSet].sort(),
     souls: [...soulsSet].sort((a, b) => a - b),
     levels: [...levelsSet].sort((a, b) => a - b),
-    costRange: {
-      min: minCost === Infinity ? 0 : minCost,
-      max: maxCost === -Infinity ? 0 : maxCost,
-    },
+    costs: [...costsSet].sort((a, b) => a - b),
     powerRange: {
       min: minPower === Infinity ? 0 : Math.floor(minPower / 500) * 500,
       max: maxPower === -Infinity ? 0 : maxPower,

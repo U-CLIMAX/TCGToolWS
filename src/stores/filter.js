@@ -68,7 +68,7 @@ export const useFilterStore = defineStore('filter', () => {
   const rarities = shallowRef([])
   const souls = shallowRef([])
   const levels = shallowRef([])
-  const costRange = shallowRef({ min: 0, max: 0 })
+  const costs = shallowRef([])
   const powerRange = shallowRef({ min: 0, max: 0 })
 
   // Use the composable for filtering logic
@@ -81,9 +81,9 @@ export const useFilterStore = defineStore('filter', () => {
     selectedProductName,
     selectedTraits,
     selectedLevels,
+    selectedCosts,
     selectedRarities,
     showUniqueCards,
-    selectedCostRange,
     selectedPowerRange,
     showTriggerSoul,
     selectedSoul,
@@ -92,7 +92,7 @@ export const useFilterStore = defineStore('filter', () => {
     terminateWorker,
     initializeWorker,
     processRawDataInWorker,
-  } = useCardFiltering(productNames, traits, rarities, costRange, powerRange)
+  } = useCardFiltering(powerRange)
 
   // --- Actions ---
 
@@ -163,7 +163,7 @@ export const useFilterStore = defineStore('filter', () => {
         rarities: [],
         souls: [],
         levels: [],
-        costRange: { min: 0, max: 0 },
+        costs: [],
         powerRange: { min: 0, max: 0 },
       }
     }
@@ -216,7 +216,7 @@ export const useFilterStore = defineStore('filter', () => {
           rarities: [],
           souls: [],
           levels: [],
-          costRange: { min: 0, max: 0 },
+          costs: [],
           powerRange: { min: 0, max: 0 },
         }
       }
@@ -232,7 +232,7 @@ export const useFilterStore = defineStore('filter', () => {
         rarities: [],
         souls: [],
         levels: [],
-        costRange: { min: 0, max: 0 },
+        costs: [],
         powerRange: { min: 0, max: 0 },
       }
     }
@@ -254,7 +254,7 @@ export const useFilterStore = defineStore('filter', () => {
       rarities.value = result.rarities
       souls.value = result.souls
       levels.value = result.levels
-      costRange.value = result.costRange
+      costs.value = result.costs
       powerRange.value = result.powerRange
 
       resetFilters()
@@ -278,7 +278,7 @@ export const useFilterStore = defineStore('filter', () => {
     rarities.value = []
     souls.value = []
     levels.value = []
-    costRange.value = { min: 0, max: 0 }
+    costs.value = []
     powerRange.value = { min: 0, max: 0 }
     fetchProgress.value = { current: 0, total: 0 }
     error.value = null
@@ -296,7 +296,7 @@ export const useFilterStore = defineStore('filter', () => {
     rarities,
     souls,
     levels,
-    costRange,
+    costs,
     powerRange,
     keyword,
     searchMode,
@@ -306,9 +306,9 @@ export const useFilterStore = defineStore('filter', () => {
     selectedProductName,
     selectedTraits,
     selectedLevels,
+    selectedCosts,
     selectedRarities,
     showUniqueCards,
-    selectedCostRange,
     selectedPowerRange,
     showTriggerSoul,
     selectedSoul,
