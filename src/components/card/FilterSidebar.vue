@@ -39,7 +39,7 @@
             v-model="filterStore.keyword"
             variant="underlined"
             density="compact"
-            :rules="[(v) => !v || v.length >= 2 || '关键字至少输入2个字符']"
+            :rules="KEYWORD_RULES"
             :disabled="props.disabled"
             hide-no-data
             :return-object="false"
@@ -100,17 +100,22 @@
         </div>
 
         <div class="mt-n3 d-flex align-center">
-          <v-chip-group v-model="filterStore.searchTargets" multiple color="primary" column>
-            <v-chip value="id" size="small" variant="tonal" :disabled="props.disabled">
-              卡号
-            </v-chip>
-            <v-chip value="name" size="small" variant="tonal" :disabled="props.disabled">
-              卡名
-            </v-chip>
-            <v-chip value="effect" size="small" variant="tonal" :disabled="props.disabled">
-              效果
-            </v-chip>
-          </v-chip-group>
+          <div class="native-chip-group">
+            <button
+              v-for="target in SEARCH_TARGET_OPTIONS"
+              :key="target.value"
+              type="button"
+              class="native-chip native-chip--small font-weight-regular"
+              :class="{
+                'native-chip--selected text-primary': isSelected('searchTargets', target.value),
+              }"
+              :disabled="props.disabled"
+              :aria-pressed="isSelected('searchTargets', target.value)"
+              @click="toggleFilterItem('searchTargets', target.value)"
+            >
+              {{ target.label }}
+            </button>
+          </div>
         </div>
 
         <v-switch
@@ -119,7 +124,7 @@
           v-model="filterStore.showUniqueCards"
           color="primary"
           density="compact"
-          :disabled="props.disabled || (!filterStore.hasActiveFilters && globalFilter)"
+          :disabled="isSwitchDisabled"
         ></v-switch>
 
         <v-switch
@@ -128,7 +133,7 @@
           v-model="filterStore.showTriggerSoul"
           color="primary"
           density="compact"
-          :disabled="props.disabled || (!filterStore.hasActiveFilters && globalFilter)"
+          :disabled="isSwitchDisabled"
         >
           <template v-slot:label>
             <div class="d-flex align-center">
@@ -151,132 +156,104 @@
         <!-- 种类 -->
         <div>
           <div class="text-caption font-weight-light text-disabled mb-1">种类</div>
-          <v-chip-group v-model="filterStore.selectedCardTypes" multiple column color="primary">
-            <v-chip
-              class="font-weight-medium"
-              value="角色卡"
-              density="comfortable"
+          <div class="native-chip-group">
+            <button
+              v-for="type in CARD_TYPE_OPTIONS"
+              :key="type"
+              type="button"
+              class="native-chip font-weight-medium"
+              :class="{
+                'native-chip--selected text-primary': isSelected('selectedCardTypes', type),
+              }"
               :disabled="props.disabled"
-              >角色卡</v-chip
+              :aria-pressed="isSelected('selectedCardTypes', type)"
+              @click="toggleFilterItem('selectedCardTypes', type)"
             >
-            <v-chip
-              class="font-weight-medium"
-              value="事件卡"
-              density="comfortable"
-              :disabled="props.disabled"
-              >事件卡</v-chip
-            >
-            <v-chip
-              class="font-weight-medium"
-              value="高潮卡"
-              density="comfortable"
-              :disabled="props.disabled"
-              >高潮卡</v-chip
-            >
-          </v-chip-group>
+              {{ type }}
+            </button>
+          </div>
         </div>
 
         <!-- 等级 -->
         <div>
           <div class="text-caption font-weight-light text-disabled mb-1">等级</div>
-          <v-chip-group v-model="filterStore.selectedLevels" multiple column color="primary">
-            <v-chip
+          <div class="native-chip-group">
+            <button
               v-for="lvl in filterStore.levels"
               :key="lvl"
-              :value="lvl"
-              density="comfortable"
+              type="button"
+              class="native-chip font-weight-medium"
+              :class="{
+                'native-chip--selected text-primary': isSelected('selectedLevels', lvl),
+              }"
               :disabled="props.disabled"
-              class="font-weight-medium"
+              :aria-pressed="isSelected('selectedLevels', lvl)"
+              @click="toggleFilterItem('selectedLevels', lvl)"
             >
               {{ lvl }}
-            </v-chip>
-          </v-chip-group>
+            </button>
+          </div>
         </div>
 
         <!-- 费用 -->
         <div v-if="filterStore.costs?.length">
           <div class="text-caption font-weight-light text-disabled mb-1">费用</div>
-          <v-chip-group v-model="filterStore.selectedCosts" multiple column color="primary">
-            <v-chip
+          <div class="native-chip-group">
+            <button
               v-for="c in filterStore.costs"
               :key="c"
-              :value="c"
-              density="comfortable"
+              type="button"
+              class="native-chip font-weight-medium"
+              :class="{
+                'native-chip--selected text-primary': isSelected('selectedCosts', c),
+              }"
               :disabled="props.disabled"
-              class="font-weight-medium"
+              :aria-pressed="isSelected('selectedCosts', c)"
+              @click="toggleFilterItem('selectedCosts', c)"
             >
               {{ c }}
-            </v-chip>
-          </v-chip-group>
+            </button>
+          </div>
         </div>
 
         <!-- 魂伤 -->
         <div v-if="filterStore.souls?.length">
           <div class="text-caption font-weight-light text-disabled mb-1">魂伤</div>
-          <v-chip-group v-model="filterStore.selectedSoul" multiple column color="primary">
-            <v-chip
+          <div class="native-chip-group">
+            <button
               v-for="s in filterStore.souls"
               :key="s"
-              :value="s"
-              density="comfortable"
+              type="button"
+              class="native-chip font-weight-medium"
+              :class="{
+                'native-chip--selected text-primary': isSelected('selectedSoul', s),
+              }"
               :disabled="props.disabled"
-              class="font-weight-medium"
+              :aria-pressed="isSelected('selectedSoul', s)"
+              @click="toggleFilterItem('selectedSoul', s)"
             >
               {{ s }}
-            </v-chip>
-          </v-chip-group>
+            </button>
+          </div>
         </div>
 
         <!-- 颜色 -->
         <div>
           <div class="text-caption font-weight-light text-disabled mb-1">颜色</div>
-          <v-chip-group v-model="filterStore.selectedColors" multiple column>
-            <v-chip
-              value="黄色"
-              density="comfortable"
-              color="amber-darken-3"
+          <div class="native-chip-group">
+            <button
+              v-for="color in COLOR_OPTIONS"
+              :key="color.value"
+              type="button"
+              class="native-chip font-weight-medium"
+              :class="isSelected('selectedColors', color.value) && color.activeClass"
               :disabled="props.disabled"
-              class="font-weight-medium"
+              :aria-pressed="isSelected('selectedColors', color.value)"
+              @click="toggleFilterItem('selectedColors', color.value)"
             >
-              黄
-            </v-chip>
-            <v-chip
-              value="绿色"
-              density="comfortable"
-              color="green-darken-1"
-              :disabled="props.disabled"
-              class="font-weight-medium"
-            >
-              绿
-            </v-chip>
-            <v-chip
-              value="红色"
-              density="comfortable"
-              color="red-darken-1"
-              :disabled="props.disabled"
-              class="font-weight-medium"
-            >
-              红
-            </v-chip>
-            <v-chip
-              value="蓝色"
-              density="comfortable"
-              color="blue-darken-1"
-              :disabled="props.disabled"
-              class="font-weight-medium"
-            >
-              蓝
-            </v-chip>
-            <v-chip
-              value="紫色"
-              density="comfortable"
-              color="purple-darken-1"
-              :disabled="props.disabled"
-              class="font-weight-medium"
-            >
-              紫
-            </v-chip>
-          </v-chip-group>
+              {{ color.label }}
+            </button>
+          </div>
         </div>
 
         <!-- 产品 -->
@@ -371,7 +348,7 @@
             v-model="newKeyword"
             label="关键字"
             :counter="10"
-            :rules="[(v) => (v && v.length >= 1 && v.length <= 10) || '长度需在1-10之間']"
+            :rules="NEW_KEYWORD_RULES"
             @keydown.enter="saveNewKeyword"
             autofocus
             variant="underlined"
@@ -426,8 +403,12 @@ const { smAndUp } = useDisplay()
 const uiStore = useUIStore()
 const theme = useTheme()
 
-const filterStore = props.globalFilter ? useGlobalSearchStore() : useFilterStore()
-const defaultKeywords = [
+const KEYWORD_RULES = Object.freeze([(v) => !v || v.length >= 2 || '关键字至少输入2个字符'])
+const NEW_KEYWORD_RULES = Object.freeze([
+  (v) => (v && v.length >= 1 && v.length <= 10) || '长度需在1-10之間',
+])
+
+const DEFAULT_KEYWORDS = Object.freeze([
   'CX联动',
   '警铃',
   'shift',
@@ -438,11 +419,45 @@ const defaultKeywords = [
   '应援',
   'LINK',
   'replay',
-]
+])
+
+const SEARCH_TARGET_OPTIONS = Object.freeze([
+  { value: 'id', label: '卡号' },
+  { value: 'name', label: '卡名' },
+  { value: 'effect', label: '效果' },
+])
+
+const CARD_TYPE_OPTIONS = Object.freeze(['角色卡', '事件卡', '高潮卡'])
+
+const COLOR_OPTIONS = Object.freeze([
+  { value: '黄色', label: '黄', activeClass: 'native-chip--selected text-amber-darken-3' },
+  { value: '绿色', label: '绿', activeClass: 'native-chip--selected text-green-darken-1' },
+  { value: '红色', label: '红', activeClass: 'native-chip--selected text-red-darken-1' },
+  { value: '蓝色', label: '蓝', activeClass: 'native-chip--selected text-blue-darken-1' },
+  { value: '紫色', label: '紫', activeClass: 'native-chip--selected text-purple-darken-1' },
+])
+
+const filterStore = props.globalFilter ? useGlobalSearchStore() : useFilterStore()
 
 const allKeywords = computed(() => {
-  return [...uiStore.customKeywords, ...defaultKeywords]
+  return [...uiStore.customKeywords, ...DEFAULT_KEYWORDS]
 })
+
+const isSwitchDisabled = computed(
+  () => props.disabled || (!filterStore.hasActiveFilters && props.globalFilter)
+)
+
+const isSelected = (field, value) => {
+  return Boolean(filterStore[field]?.includes(value))
+}
+
+const toggleFilterItem = (field, value) => {
+  if (props.disabled) return
+  const current = filterStore[field] || []
+  filterStore[field] = current.includes(value)
+    ? current.filter((item) => item !== value)
+    : [...current, value]
+}
 
 // Local state for sliders to prevent frequent store updates
 const isDraggingPower = ref(false)
@@ -491,5 +506,68 @@ const toggleSearchMode = () => {
 <style scoped>
 .v-select {
   flex: none !important;
+}
+
+.native-chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.native-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 28px;
+  padding: 0 12px;
+  border: none;
+  border-radius: 9999px;
+  font-size: 14px;
+  line-height: 1;
+  user-select: none;
+  cursor: pointer;
+  background-color: rgba(var(--v-theme-on-surface), 0.08);
+  color: rgba(var(--v-theme-on-surface), 0.87);
+  contain: layout paint style;
+  transition:
+    background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.1s ease;
+  vertical-align: middle;
+}
+
+.native-chip--small {
+  height: 26px;
+  padding: 0 10px;
+  font-size: 12px;
+}
+
+.native-chip:hover:not(:disabled) {
+  background-color: rgba(var(--v-theme-on-surface), 0.14);
+}
+
+.native-chip:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.native-chip--selected {
+  background-color: color-mix(in srgb, currentColor 15%, transparent);
+}
+
+.native-chip--selected:hover:not(:disabled) {
+  background-color: color-mix(in srgb, currentColor 22%, transparent);
+}
+
+.native-chip:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.native-chip:focus-visible {
+  outline: 2px solid rgb(var(--v-theme-primary));
+  outline-offset: 1px;
 }
 </style>
