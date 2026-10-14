@@ -6,13 +6,14 @@
       left: handleSwipeLeft,
       right: handleSwipeRight,
     }"
-    @click="handleModalClick"
+    @click="flashNav"
     class="v-card d-flex flex-column w-100 cursor-default"
     style="position: relative"
     :class="{
       'overflow-y-auto themed-scrollbar': !$vuetify.display.mdAndUp,
       'overflow-visible': $vuetify.display.mdAndUp,
       'rounded-2lg': $vuetify.display.smAndUp,
+      'show-nav': showNav,
     }"
   >
     <v-btn
@@ -263,7 +264,6 @@
       icon="i-mdi:chevron-left"
       variant="tonal"
       class="nav-button-left"
-      :class="{ 'button-hidden': !navButtonsVisible }"
       @click="emit('prev-card')"
       :disabled="cardIndex === 0"
     ></v-btn>
@@ -271,7 +271,6 @@
       icon="i-mdi:chevron-right"
       variant="tonal"
       class="nav-button-right"
-      :class="{ 'button-hidden': !navButtonsVisible }"
       @click="handleNextCard"
       :disabled="cardIndex === totalCards - 1"
     ></v-btn>
@@ -434,23 +433,18 @@ const isReportDialogOpen = ref(false)
 const reportReason = ref('')
 const isSubmittingReport = ref(false)
 
-const showOnTap = ref(false)
-let hideTimeout = null
+const showNav = ref(false)
+let hideTimer = null
 
-const navButtonsVisible = computed(() => {
-  return smAndUp.value || showOnTap.value
-})
-
-const handleModalClick = () => {
-  if (isTouch.value || !smAndUp.value) {
-    showOnTap.value = true
-    if (hideTimeout) {
-      clearTimeout(hideTimeout)
-    }
-    hideTimeout = setTimeout(() => {
-      showOnTap.value = false
-    }, 1000)
-  }
+/**
+ * 移动端/触摸端：点击弹窗时短暂唤出左右导航按钮，1 秒后自动淡出
+ */
+const flashNav = () => {
+  showNav.value = true
+  clearTimeout(hideTimer)
+  hideTimer = setTimeout(() => {
+    showNav.value = false
+  }, 1000)
 }
 
 const handleTraitClick = (trait) => {
@@ -646,9 +640,7 @@ onMounted(() => {
 onUnmounted(() => {
   currentCardRequestId++
   window.removeEventListener('keydown', handleKeydown)
-  if (hideTimeout) {
-    clearTimeout(hideTimeout)
-  }
+  clearTimeout(hideTimer)
   if (overlayObserver) {
     overlayObserver.disconnect()
     overlayObserver = null
@@ -837,7 +829,12 @@ const submitReport = async () => {
   background-color: rgb(var(--v-theme-surface));
   color: rgba(var(--v-theme-on-surface), var(--v-high-emphasis-opacity));
   -webkit-overflow-scrolling: touch;
-  transform: translateZ(0);
+}
+
+@media (min-width: 960px) {
+  #card-detail {
+    transform: translateZ(0);
+  }
 }
 
 .stat-grid {
@@ -897,12 +894,15 @@ const submitReport = async () => {
   background-color: rgba(0, 0, 0, 0.6) !important;
   color: white !important;
   z-index: 15;
+  opacity: 0;
+  pointer-events: none;
   transition: opacity 0.3s ease-out;
 }
 
-.button-hidden {
-  opacity: 0 !important;
-  pointer-events: none;
+.show-nav .nav-button-left,
+.show-nav .nav-button-right {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .nav-button-left {
@@ -919,6 +919,14 @@ const submitReport = async () => {
   cursor: default;
 }
 
+@media (max-width: 959px) {
+  .nav-button-left,
+  .nav-button-right {
+    top: min(calc(16px + (min(100vw, 400px) - 32px) * 559 / 400 + 24px), calc(100% - 56px));
+    bottom: auto;
+  }
+}
+
 @media (min-width: 960px) {
   .close-button {
     position: absolute;
@@ -929,6 +937,8 @@ const submitReport = async () => {
   .nav-button-left,
   .nav-button-right {
     position: absolute;
+    top: 50%;
+    bottom: auto;
   }
 }
 
@@ -949,6 +959,12 @@ const submitReport = async () => {
 }
 
 @media (hover: hover) and (pointer: fine) {
+  .nav-button-left,
+  .nav-button-right {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
   .image-wrapper {
     isolation: isolate;
   }
