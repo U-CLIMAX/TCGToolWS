@@ -265,9 +265,18 @@
         <!-- 战斗力 -->
         <div v-if="filterStore.powers?.length">
           <div class="d-flex justify-space-between align-center mb-1">
-            <div class="text-caption font-weight-light text-disabled">战斗力</div>
+            <div class="d-flex align-center ga-1">
+              <span class="text-caption font-weight-light text-disabled">战斗力</span>
+              <button
+                type="button"
+                class="power-toggle-btn i-mdi:swap-horizontal"
+                :title="isPowerRangeMode ? '切换为按钮布局' : '切换为范围输入'"
+                :disabled="props.disabled"
+                @click="togglePowerMode"
+              />
+            </div>
             <button
-              v-if="filterStore.powers.length > 8"
+              v-if="!isPowerRangeMode && filterStore.powers.length > 8"
               type="button"
               class="toggle-expand-btn text-caption text-primary font-weight-medium"
               @click="isPowerExpanded = !isPowerExpanded"
@@ -275,7 +284,21 @@
               {{ isPowerExpanded ? '收起 ▴' : '展开全部▾' }}
             </button>
           </div>
-          <div class="power-grid">
+          <div v-if="isPowerRangeMode" class="d-flex align-center ga-2">
+            <template v-for="(limit, i) in powerLimits" :key="i">
+              <span v-if="i" class="text-disabled">~</span>
+              <input
+                type="text"
+                inputmode="numeric"
+                class="power-range-input"
+                :value="filterStore.powerRange[i] ?? ''"
+                :placeholder="limit"
+                :disabled="props.disabled"
+                @change="setPowerRange(i, $event)"
+              />
+            </template>
+          </div>
+          <div v-else class="power-grid">
             <button
               v-for="p in visiblePowers"
               :key="p"
@@ -478,6 +501,31 @@ const toggleFilterItem = (field, value) => {
     : [...current, value]
 }
 
+const isPowerRangeMode = ref(true)
+
+const powerLimits = computed(() => {
+  const p = filterStore.powers || []
+  return [p[0], p.at(-1)]
+})
+
+// 失焦/Enter 时提交：夹在列表最小~最大值之间，并保证 min <= max
+const setPowerRange = (i, e) => {
+  const [lo, hi] = powerLimits.value
+  const raw = e.target.value.trim()
+  const num = raw === '' || isNaN(raw) ? null : Math.min(Math.max(Number(raw), lo), hi)
+  const range = [...filterStore.powerRange]
+  range[i] = num
+  if (range[0] !== null && range[1] !== null && range[0] > range[1]) range[1 - i] = num
+  filterStore.powerRange = range
+  e.target.value = num ?? ''
+}
+
+const togglePowerMode = () => {
+  filterStore.selectedPowers = []
+  filterStore.powerRange = [null, null]
+  isPowerRangeMode.value = !isPowerRangeMode.value
+}
+
 const isPowerExpanded = ref(false)
 
 const visiblePowers = computed(() => {
@@ -553,6 +601,40 @@ const toggleSearchMode = () => {
   height: 26px;
   padding: 0 10px;
   font-size: 12px;
+}
+
+.power-toggle-btn {
+  font-size: 14px;
+  color: rgba(var(--v-theme-on-surface), 0.5);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.power-toggle-btn:hover:not(:disabled) {
+  color: rgb(var(--v-theme-primary));
+}
+
+.power-toggle-btn:disabled,
+.power-range-input:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+.power-range-input {
+  flex: 1;
+  min-width: 0;
+  height: 28px;
+  padding: 0 10px;
+  border: 1px solid rgba(var(--v-theme-on-surface), 0.2);
+  border-radius: 9999px;
+  color: inherit;
+  font-size: 13px;
+  text-align: center;
+  outline: none;
+}
+
+.power-range-input::placeholder {
+  color: rgba(var(--v-theme-on-surface), 0.38);
 }
 
 .power-grid {

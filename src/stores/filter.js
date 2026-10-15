@@ -85,6 +85,7 @@ export const useFilterStore = defineStore('filter', () => {
     selectedRarities,
     showUniqueCards,
     selectedPowers,
+    powerRange,
     showTriggerSoul,
     selectedSoul,
     resetFilters,
@@ -310,6 +311,7 @@ export const useFilterStore = defineStore('filter', () => {
     selectedRarities,
     showUniqueCards,
     selectedPowers,
+    powerRange,
     showTriggerSoul,
     selectedSoul,
     // Computed

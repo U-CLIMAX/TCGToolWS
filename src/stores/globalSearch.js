@@ -43,6 +43,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     selectedRarities,
     showUniqueCards,
     selectedPowers,
+    powerRange,
     showTriggerSoul,
     selectedSoul,
     resetFilters,
@@ -78,6 +79,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
       selectedCosts.value.length > 0,
       selectedRarities.value.length > 0,
       selectedPowers.value.length > 0,
+      powerRange.value.some((v) => v !== null),
       showTriggerSoul.value,
       selectedSoul.value.length > 0,
     ].some(Boolean)
@@ -412,6 +414,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     selectedRarities,
     showUniqueCards,
     selectedPowers,
+    powerRange,
     showTriggerSoul,
     selectedSoul,
     // Results

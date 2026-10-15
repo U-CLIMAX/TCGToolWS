@@ -17,6 +17,7 @@ export const useCardFiltering = () => {
   const showUniqueCards = ref(false)
   const selectedCosts = ref([])
   const selectedPowers = ref([])
+  const powerRange = ref([null, null])
   const showTriggerSoul = ref(false)
   const selectedSoul = ref([])
 
@@ -91,6 +92,7 @@ export const useCardFiltering = () => {
       showUniqueCards: toRaw(showUniqueCards.value),
       selectedCosts: toRaw(selectedCosts.value),
       selectedPowers: toRaw(selectedPowers.value),
+      powerRange: toRaw(powerRange.value),
       showTriggerSoul: toRaw(showTriggerSoul.value),
       selectedSoul: toRaw(selectedSoul.value),
     }
@@ -130,6 +132,7 @@ export const useCardFiltering = () => {
         showUniqueCards: toRaw(showUniqueCards.value),
         selectedCosts: toRaw(selectedCosts.value),
         selectedPowers: toRaw(selectedPowers.value),
+        powerRange: toRaw(powerRange.value),
         showTriggerSoul: toRaw(showTriggerSoul.value),
         selectedSoul: toRaw(selectedSoul.value),
       })
@@ -173,6 +176,7 @@ export const useCardFiltering = () => {
     applyKeywordSearchAndFilter()
   })
 
+  // Watch for any filter change and execute attribute filter worker task
   watch(
     [
       selectedCardTypes,
@@ -184,6 +188,7 @@ export const useCardFiltering = () => {
       selectedRarities,
       showUniqueCards,
       selectedPowers,
+      powerRange,
       showTriggerSoul,
       selectedSoul,
     ],
@@ -208,6 +213,7 @@ export const useCardFiltering = () => {
     selectedRarities.value = []
     showUniqueCards.value = false
     selectedPowers.value = []
+    powerRange.value = [null, null]
     showTriggerSoul.value = false
     selectedSoul.value = []
   }
@@ -242,6 +248,7 @@ export const useCardFiltering = () => {
     selectedRarities,
     showUniqueCards,
     selectedPowers,
+    powerRange,
     showTriggerSoul,
     selectedSoul,
     // Getters

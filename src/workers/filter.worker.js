@@ -429,6 +429,7 @@ const CardFilterService = {
       selectedRarities = [],
       showUniqueCards,
       selectedPowers = [],
+      powerRange = [],
       showTriggerSoul,
       selectedSoul = [],
     } = filters || {}
@@ -448,6 +449,11 @@ const CardFilterService = {
     const raritiesSet = hasRarities ? new Set(selectedRarities) : null
 
     const mappedPowers = selectedPowers.length > 0 ? new Set(selectedPowers.map(toZero)) : null
+
+    const [pMin = null, pMax = null] = powerRange
+    const hasPowerRange = pMin !== null || pMax !== null
+    const minPowerVal = pMin ?? -Infinity
+    const maxPowerVal = pMax ?? Infinity
 
     const mappedSoul = selectedSoul.length > 0 ? new Set(selectedSoul.map(toZero)) : null
 
@@ -475,6 +481,12 @@ const CardFilterService = {
       if (mappedCosts && !mappedCosts.has(toZero(card.cost))) return false
       if (hasRarities && !raritiesSet.has(card.rarity)) return false
       if (mappedPowers && !mappedPowers.has(toZero(card.power))) return false
+      if (
+        hasPowerRange &&
+        (typeof card.power !== 'number' || card.power < minPowerVal || card.power > maxPowerVal)
+      ) {
+        return false
+      }
 
       if (showTriggerSoul && (!card.trigger_soul_count || card.trigger_soul_count < 1)) {
         return false
