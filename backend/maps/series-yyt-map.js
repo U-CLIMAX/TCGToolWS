@@ -3,6 +3,7 @@
  * @type {Record<string, string>}
  */
 export const seriesYytMap = {
+  'sts': 'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=sts&rare=&type=&kizu=0',
   'brd': 'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=brd&rare=&type=&kizu=0',
   'gbf': 'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=gbf&rare=&type=&kizu=0',
   'ga': 'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=ga&rare=&type=&kizu=0',
