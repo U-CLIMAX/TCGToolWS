@@ -10,6 +10,22 @@ export const createErrorResponse = (c, status, message) => {
 }
 
 /**
+ * 愛發電 JSON 回應（帶 Content-Length 與 no-transform 避免 chunk 讀取異常）
+ * @param {AppContext} c
+ * @param {object} data
+ * @param {number} [status=200]
+ * @returns {Response}
+ */
+export const createAfdianResponse = (c, data, status = 200) => {
+  const body = JSON.stringify(data)
+  return c.newResponse(body, status, {
+    'Content-Type': 'application/json; charset=utf-8',
+    'Content-Length': String(new TextEncoder().encode(body).byteLength),
+    'Cache-Control': 'no-store, no-transform',
+  })
+}
+
+/**
  * Middleware: Set public caching headers with SWR support for anonymous read-only endpoints.
  * @param {object} [options]
  * @param {number} [options.maxAge=60] - Browser cache max age in seconds

@@ -1,6 +1,8 @@
 import { processAfdianOrder } from '../lib/payments.js'
+import { createAfdianResponse } from '../lib/utils.js'
 
 const AFDIAN_TEST_USER_ID = 'adf397fe8374811eaacee52540025c377'
+const AFDIAN_TEST_ORDER_NO = '202106232138371083454010626'
 
 /**
  * Base64 轉 ArrayBuffer
@@ -55,41 +57,52 @@ export const verifyAfdianSignature = async (publicKeyPem, payload, sign) => {
 }
 
 /**
- * 愛發電 Webhook 接收端
- * 規範：返回 JSON 最少包含 {"ec": 200}，官方規範範例為 {"ec": 200, "em": ""}
+ * 愛發電 Webhook
  * @type {AppHandler}
  */
 export const handleAfdianWebhook = async (c) => {
+  let rawBody = ''
   let payload
   try {
-    payload = await c.req.json()
-  } catch {
-    return c.json({ ec: 400, em: 'Invalid JSON' })
+    rawBody = await c.req.text()
+    payload = JSON.parse(rawBody)
+  } catch (err) {
+    console.error('Afdian Webhook: Invalid JSON', err?.message)
+    return createAfdianResponse(c, { ec: 400, em: 'Invalid JSON' })
   }
 
   const order = payload?.data?.order
+  const sign = payload?.data?.sign
 
-  // 1. 愛發電後台「點擊發送測試」的官方請求（無 sign 簽名，直接回傳 ec: 200）
-  if (order?.user_id === AFDIAN_TEST_USER_ID) {
-    return c.json({ ec: 200, em: '' })
+  console.log(
+    `[Afdian Webhook] user: ${order?.user_id}, trade: ${order?.out_trade_no}, hasSign: ${Boolean(sign)}`
+  )
+
+  // 官方測試請求直接回傳 200
+  if (
+    order?.user_id === AFDIAN_TEST_USER_ID ||
+    order?.out_trade_no === AFDIAN_TEST_ORDER_NO ||
+    (!sign && order?.out_trade_no?.startsWith('20210623'))
+  ) {
+    console.log('[Afdian Webhook] Test ping OK')
+    return createAfdianResponse(c, { ec: 200, em: '' })
   }
 
-  // 2. 簽名驗證
-  const sign = payload.data.sign
-
+  // 簽名驗證
   const isBypassed = c.env.AFDIAN_WEBHOOK_BYPASS_TOKEN && sign === c.env.AFDIAN_WEBHOOK_BYPASS_TOKEN
   const isSignatureValid =
     c.env.AFDIAN_PUBLIC_KEY && (await verifyAfdianSignature(c.env.AFDIAN_PUBLIC_KEY, payload, sign))
 
   if (!isBypassed && !isSignatureValid) {
-    return c.json({ ec: 403, em: 'Invalid signature' })
+    console.warn('[Afdian Webhook] Invalid signature')
+    return createAfdianResponse(c, { ec: 403, em: 'Invalid signature' })
   }
 
-  // 3. 僅處理成功的 order 類型事件
+  // 僅處理已付款的訂單
   if (payload?.ec !== 200 || payload?.data?.type !== 'order' || order?.status !== 2) {
-    return c.json({ ec: 200, em: 'Ignored non-order or unpaid' })
+    return createAfdianResponse(c, { ec: 200, em: 'Ignored non-order or unpaid' })
   }
 
-  // 4. 加值會員時數與訂單記錄
+  // 處理會員儲值與訂單記錄
   return processAfdianOrder(c, c.env.DB, payload)
 }
