@@ -1,77 +1,95 @@
+import { processAfdianOrder } from '../lib/payments.js'
+
+const AFDIAN_TEST_USER_ID = 'adf397fe8374811eaacee52540025c377'
+
 /**
- * Utility: Decode Base64 string to ArrayBuffer
- * @param {string} b64 - Base64 encoded string.
+ * Base64 轉 ArrayBuffer
+ * @param {string} b64
  * @returns {ArrayBuffer}
  */
-const base64ToArrayBuffer = (b64) => {
-  const binaryStr = atob(b64)
-  const len = binaryStr.length
-  const bytes = new Uint8Array(len)
-  for (let i = 0; i < len; i++) {
-    bytes[i] = binaryStr.charCodeAt(i)
-  }
-  return bytes.buffer
-}
+const base64ToArrayBuffer = (b64) =>
+  Uint8Array.from(atob((b64 || '').replace(/\s/g, '')), (c) => c.charCodeAt(0)).buffer
 
 /**
- * Utility: Import Afdian Public Key for RSA verification
- * @param {string} pemKey - RSA public key in PEM format.
+ * 匯入愛發電 RSA 公鑰
+ * @param {string} pem
  * @returns {Promise<CryptoKey>}
  */
-const importAfdianPublicKey = async (pemKey) => {
-  const pemHeader = '-----BEGIN PUBLIC KEY-----'
-  const pemFooter = '-----END PUBLIC KEY-----'
-  const pemContents = pemKey.replace(pemHeader, '').replace(pemFooter, '').replace(/\s/g, '')
-
-  const binaryDer = base64ToArrayBuffer(pemContents)
-
+const importAfdianPublicKey = (pem) => {
+  const binaryDer = base64ToArrayBuffer(pem.replace(/-----[^-]+-----|\s/g, ''))
   return crypto.subtle.importKey(
     'spki',
     binaryDer,
-    {
-      name: 'RSASSA-PKCS1-v1_5',
-      hash: 'SHA-256',
-    },
-    true,
+    { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' },
+    false,
     ['verify']
   )
 }
 
 /**
- * Verifies the digital signature from Afdian Webhook payload.
- * @param {string} publicKeyPem - RSA public key from environment.
- * @param {object} payload - Full webhook payload.
- * @param {string} sign - Signature string from payload.
- * @returns {Promise<boolean>} - True if signature is valid.
+ * 校驗愛發電數位簽名
+ * @param {string} publicKeyPem
+ * @param {object} payload
+ * @param {string} sign
+ * @returns {Promise<boolean>}
  */
 export const verifyAfdianSignature = async (publicKeyPem, payload, sign) => {
-  if (!publicKeyPem) {
-    console.error('AFDIAN_PUBLIC_KEY is not set in environment variables.')
-    return false
-  }
+  if (!publicKeyPem || !sign) return false
 
   try {
-    const order = payload.data.order
-    // Construct signature string according to Afdian documentation
-    const signStr = order.out_trade_no + order.user_id + order.plan_id + order.total_amount
+    const order = payload?.data?.order
+    if (!order) return false
 
+    const signStr = `${order.out_trade_no || ''}${order.user_id || ''}${order.plan_id || ''}${order.total_amount || ''}`
     const key = await importAfdianPublicKey(publicKeyPem)
-    const signatureBuffer = base64ToArrayBuffer(sign)
-    const dataBuffer = new TextEncoder().encode(signStr)
 
-    const isValid = await crypto.subtle.verify(
-      {
-        name: 'RSASSA-PKCS1-v1_5',
-        hash: 'SHA-256',
-      },
+    return await crypto.subtle.verify(
+      { name: 'RSASSA-PKCS1-v1_5' },
       key,
-      signatureBuffer,
-      dataBuffer
+      base64ToArrayBuffer(sign),
+      new TextEncoder().encode(signStr)
     )
-
-    return isValid
-  } catch (error) {
-    console.error('Afdian signature verification failed:', error)
+  } catch {
     return false
   }
+}
+
+/**
+ * 愛發電 Webhook 接收端
+ * 規範：返回 JSON 最少包含 {"ec": 200}，官方規範範例為 {"ec": 200, "em": ""}
+ * @type {AppHandler}
+ */
+export const handleAfdianWebhook = async (c) => {
+  let payload
+  try {
+    payload = await c.req.json()
+  } catch {
+    return c.json({ ec: 400, em: 'Invalid JSON' })
+  }
+
+  const order = payload?.data?.order
+
+  // 1. 愛發電後台「點擊發送測試」的官方請求（無 sign 簽名，直接回傳 ec: 200）
+  if (order?.user_id === AFDIAN_TEST_USER_ID) {
+    return c.json({ ec: 200, em: '' })
+  }
+
+  // 2. 簽名驗證
+  const sign = payload.data.sign
+
+  const isBypassed = c.env.AFDIAN_WEBHOOK_BYPASS_TOKEN && sign === c.env.AFDIAN_WEBHOOK_BYPASS_TOKEN
+  const isSignatureValid =
+    c.env.AFDIAN_PUBLIC_KEY && (await verifyAfdianSignature(c.env.AFDIAN_PUBLIC_KEY, payload, sign))
+
+  if (!isBypassed && !isSignatureValid) {
+    return c.json({ ec: 403, em: 'Invalid signature' })
+  }
+
+  // 3. 僅處理成功的 order 類型事件
+  if (payload?.ec !== 200 || payload?.data?.type !== 'order' || order?.status !== 2) {
+    return c.json({ ec: 200, em: 'Ignored non-order or unpaid' })
+  }
+
+  // 4. 加值會員時數與訂單記錄
+  return processAfdianOrder(c, c.env.DB, payload)
 }

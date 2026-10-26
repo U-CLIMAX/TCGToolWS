@@ -9,8 +9,8 @@ import {
   handleForgotPasswordRequest,
   handleResetPassword,
   authMiddleware,
-  handleAfdianWebhook,
 } from './lib/auth.js'
+import { handleAfdianWebhook } from './services/afdian.js'
 import {
   handleCreateDeck,
   handleGetDecks,

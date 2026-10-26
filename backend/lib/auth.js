@@ -2,8 +2,6 @@ import { sign, verify } from 'hono/jwt'
 import { scrypt, randomBytes } from 'node:crypto'
 import { promisify } from 'node:util'
 import { sendVerificationEmail, sendPasswordResetEmail } from '../services/brevo.js'
-import { verifyAfdianSignature } from '../services/afdian.js'
-import { processAfdianOrder } from './payments.js'
 import { createErrorResponse } from './utils.js'
 
 const scryptAsync = promisify(scrypt)
@@ -315,64 +313,6 @@ export const handleResetPassword = async (c) => {
     console.error('Reset password error:', error)
     return createErrorResponse(c, 500, '服务器内部错误，请稍后重试')
   }
-}
-
-/**
- * Handler: Afdian Webhook (Donation/Payment)
- * @type {AppHandler}
- */
-export const handleAfdianWebhook = async (c) => {
-  const db = c.env.DB
-  let payload
-
-  try {
-    payload = await c.req.json()
-  } catch (error) {
-    console.error('Afdian Webhook: Failed to parse JSON body', error)
-    return c.json({ ec: 400, em: 'Invalid JSON' })
-  }
-
-  const signStr = payload.data.sign
-  let isVerified = false
-
-  // 使用 Vite 提供的环境变量判断是否为开发环境
-  if (
-    import.meta.env.DEV &&
-    c.env.AFDIAN_WEBHOOK_BYPASS_TOKEN &&
-    signStr === c.env.AFDIAN_WEBHOOK_BYPASS_TOKEN
-  ) {
-    console.warn('⚠️ Webhook verification bypassed using local dev token.')
-    isVerified = true
-  } else {
-    isVerified = await verifyAfdianSignature(c.env.AFDIAN_PUBLIC_KEY, payload, signStr, c.env)
-  }
-
-  if (!isVerified) {
-    console.warn('Afdian Webhook: Invalid signature.')
-    return c.json({ ec: 403, em: 'Invalid signature' })
-  }
-
-  const AFDIAN_TEST_USER_ID = 'adf397fe8374811eaacee52540025c377'
-  if (
-    payload &&
-    payload.data &&
-    payload.data.order &&
-    payload.data.order.user_id === AFDIAN_TEST_USER_ID
-  ) {
-    console.warn('Afdian official test webhook received.')
-    return c.json({ ec: 200, em: 'Test Request Received OK' })
-  }
-
-  if (payload.ec !== 200 || !payload.data || payload.data.type !== 'order') {
-    return c.json({ ec: 200, em: 'Payload not an order' })
-  }
-
-  const order = payload.data.order
-  if (order.status !== 2) {
-    return c.json({ ec: 200, em: 'Order not successful' })
-  }
-
-  return processAfdianOrder(c, db, payload)
 }
 
 /**

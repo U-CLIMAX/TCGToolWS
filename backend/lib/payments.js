@@ -2,7 +2,7 @@ import { createErrorResponse } from './utils.js'
 
 /**
  * Processes a successful order notification from Afdian.
- * This is called internally by handleAfdianWebhook in auth.js.
+ * This is called internally by handleAfdianWebhook in services/afdian.js.
  * @param {AppContext} c - Hono context object.
  * @param {D1Database} db - D1 database instance.
  * @param {object} payload - Afdian webhook payload.
