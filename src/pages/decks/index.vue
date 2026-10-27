@@ -515,7 +515,7 @@ const currentGameTypeCounts = computed(() => {
 
 const maxDecks = computed(() => {
   if (isLocalMode.value) return Infinity
-  return authStore.userRole === 0 ? 15 : Infinity
+  return authStore.userRole === 0 ? 20 : Infinity
 })
 
 const navigateToSharedDeck = () => {

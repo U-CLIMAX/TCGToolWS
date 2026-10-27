@@ -45,7 +45,7 @@ export const handleCreateDeck = async (c) => {
       .bind(user.id)
       .first()
 
-    const MAX_DECKS_PER_USER = 15
+    const MAX_DECKS_PER_USER = 20
     if (count >= MAX_DECKS_PER_USER && user.role === 0) {
       const msg = isDeckGallery ? '分享' : '存储'
       return createErrorResponse(c, 403, `最多只能${msg} ${MAX_DECKS_PER_USER} 副卡组`)

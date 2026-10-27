@@ -358,7 +358,7 @@ const scrollStyle = computed(() => {
   }
 })
 
-const maxDecks = computed(() => (authStore.userRole === 0 ? 15 : Infinity))
+const maxDecks = computed(() => (authStore.userRole === 0 ? 20 : Infinity))
 
 const sourceOptions = computed(() => {
   const options = [{ title: '全部卡组', value: 'all' }]
