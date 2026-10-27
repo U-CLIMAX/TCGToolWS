@@ -1,4 +1,5 @@
 const wsSeriesMap = {
+  'gup': { name: '少女与战车', prefixes: ['GUP'], latestReleaseDate: '2026-10-30' },
   'sts': {
     name: '星塔旅人',
     prefixes: ['STS'],
@@ -987,6 +988,11 @@ const wsSeriesMap = {
 }
 
 const wsrSeriesMap = {
+  os13: {
+    name: 'AUGUST',
+    prefixes: ['OS13'],
+    latestReleaseDate: '2026-10-23',
+  },
   os12: {
     name: '拔作岛 THE ANIMATION',
     prefixes: ['OS12'],

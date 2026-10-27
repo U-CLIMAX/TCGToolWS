@@ -220,6 +220,7 @@ export const seriesYytMap = {
   'kj8': 'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=kj8&rare=&type=&kizu=0',
   'kms': 'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=kms&rare=&type=&kizu=0',
   'ws': 'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=promo&rare=&type=&kizu=0',
+  'os13': 'https://yuyu-tei.jp/sell/wsr/s/search?search_word=&vers[]=os13&rare=&type=&kizu=0',
   'os12': 'https://yuyu-tei.jp/sell/wsr/s/search?search_word=&vers[]=os12&rare=&type=&kizu=0',
   'os11': 'https://yuyu-tei.jp/sell/wsr/s/search?search_word=&vers[]=os11&rare=&type=&kizu=0',
   'os10': 'https://yuyu-tei.jp/sell/wsr/s/search?search_word=&vers[]=os10&rare=&type=&kizu=0',

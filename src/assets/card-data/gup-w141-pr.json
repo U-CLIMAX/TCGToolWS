@@ -1,0 +1,602 @@
+{
+  "GUP/W141-003": {
+    "name": "ダージリン＆Mk.Ⅳ歩兵戦車チャーチルMk.Ⅶ",
+    "product_name": "PRカード【Wサイド】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["戦車道", "聖グロリアーナ女学院"],
+    "color": "黄色",
+    "effect": "【自】此卡从手牌放置到舞台时，你将自己时计区顶至多1张卡放置到休息室，那个回合中，此卡的战斗力＋3000。<br>【自】【CX联动】你的「聖グロリアーナの戦車道」放置到高潮区时，前列有此卡，你全部的角色是《戦車道》的话，给对手造成1点伤害，那个回合中，此卡获得以下能力。『【自】[(1) 1张手牌放置到休息室] 此卡的战斗对手【倒置】时，此卡下方不同的卡名的指示物有2个以上的话，你可以支付费用。如果这么做的话，给对手造成2点伤害。』（发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "GUP/W141-003PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "GUP/W141-004": {
+    "name": "島田愛里寿＆巡航戦車A41センチュリオン",
+    "product_name": "PRカード【Wサイド】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["戦車道", "大学選抜チーム"],
+    "color": "黄色",
+    "effect": "【自】【CX联动】此卡从手牌放置到舞台时，你可以从自己的休息室选择1张「おいらボコだぜ!」返回手牌或放置到库存区。<br>【自】【CX联动】此卡攻击时，高潮区有「おいらボコだぜ!」的话，你从以下2个效果中选择1个执行。『你看自己卡组顶至多3张卡，以喜欢的顺序放置到卡组顶，对手将自己的费用全部放置到休息室，从自己的卡组顶将相同张数的卡放置到库存区。』『[(1) 1张手牌放置到休息室] 你可以支付费用。如果这么做的话，给对手造成3点伤害。』（发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "GUP/W141-004PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "GUP/W141-002": {
+    "name": "次期隊長 オレンジペコ",
+    "product_name": "PRカード【Wサイド】",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["戦車道", "聖グロリアーナ女学院"],
+    "color": "黄色",
+    "effect": "【永】你的回合中，你全部的角色是《戦車道》的话，此卡的战斗力＋4000。<br>【自】【CX联动】你的「ペコの進言」放置到高潮区时，前列有此卡，你全部的角色是《戦車道》的话，你看自己卡组顶至多4张卡，选择至多1张《戦車道》的角色卡展示给对手后加入手牌，其余的卡放置到休息室，那个回合中，此卡获得以下能力。『【自】此卡的战斗对手【倒置】时，你看自己卡组顶至多3张卡，按喜欢的顺序放置到卡组顶。』",
+    "all_cards": [
+      {
+        "id": "GUP/W141-002PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "GUP/W141-025": {
+    "name": "ペコの進言",
+    "product_name": "PRカード【Wサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "all_cards": [
+      {
+        "id": "GUP/W141-025P",
+        "rarity": "PR"
+      },
+      {
+        "id": "GUP/W141-025PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "GUP/W141-001": {
+    "name": "隊長 島田愛里寿",
+    "product_name": "PRカード【Wサイド】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["戦車道", "大学選抜チーム"],
+    "color": "黄色",
+    "effect": "【永】你的回合中，你其他的角色有2个以上的话，此卡的战斗力＋3000。<br>【自】[(1) 你卡组顶1张卡放置到时计区] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你从自己的卡组找至多1张等级1以下的角色卡展示给对手后加入手牌，卡组洗切。",
+    "all_cards": [
+      {
+        "id": "GUP/W141-001PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "GUP/W141-026": {
+    "name": "聖グロリアーナの戦車道",
+    "product_name": "PRカード【Wサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "all_cards": [
+      {
+        "id": "GUP/W141-026PS",
+        "rarity": "PR"
+      },
+      {
+        "id": "GUP/W141-026P",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "GUP/W141-028": {
+    "name": "バミューダアタック",
+    "product_name": "PRカード【Wサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "all_cards": [
+      {
+        "id": "GUP/W141-028P",
+        "rarity": "PR"
+      },
+      {
+        "id": "GUP/W141-028PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "GUP/W141-027": {
+    "name": "おいらボコだぜ!",
+    "product_name": "PRカード【Wサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "all_cards": [
+      {
+        "id": "GUP/W141-027P",
+        "rarity": "PR"
+      },
+      {
+        "id": "GUP/W141-027PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "GUP/W141-029": {
+    "name": "アンチョビ＆CV33快速戦車（L3/33）",
+    "product_name": "PRカード【Wサイド】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["戦車道", "アンツィオ高校"],
+    "color": "绿色",
+    "effect": "【自】此卡从手牌放置到舞台或攻击时，你选择自己1个《戦車道》的角色，那个回合中，战斗力＋1500。<br>【自】此卡的战斗对手【倒置】时，你选择自己其他1个《戦車道》的角色，【横置】，移动到后列没有角色的位置。",
+    "all_cards": [
+      {
+        "id": "GUP/W141-029PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "GUP/W141-030": {
+    "name": "操縦手 冷泉麻子",
+    "product_name": "PRカード【Wサイド】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["戦車道", "大洗女子学園"],
+    "color": "绿色",
+    "effect": "【自】你的高潮阶段开始时，你选择自己1个《戦車道》的角色，那个回合中，战斗力＋500。<br>【起】集中 [(1) 此卡【横置】] 你将自己卡组顶4张卡放置到休息室。那些卡中每有1张高潮卡，你从自己的休息室选择至多1张《戦車道》的角色卡返回手牌。<br>【起】搭乘 [此卡正面朝上作为你其他「西住みほ＆Ⅳ号戦車H型（D型改）」的标记] 你抽至多2张卡，选择自己相同张数的手牌放置到休息室，选择自己的1个角色，那个回合中，战斗力＋3000。",
+    "all_cards": [
+      {
+        "id": "GUP/W141-030PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "GUP/W141-031": {
+    "name": "西住みほ＆Ⅳ号戦車H型（D型改）",
+    "product_name": "PRカード【Wサイド】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 11000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["戦車道", "大洗女子学園"],
+    "color": "绿色",
+    "effect": "【自】【CX联动】[手牌中2张「西住みほ＆Ⅳ号戦車H型（D型改）」放置到休息室，1张手牌放置到休息室，你高潮区的1张「中央広場の決戦」放置到休息室] 你的攻击阶段开始时，你前列没有其他角色的话，你可以支付费用。如果这么做的话，你从对手的休息室选择至多X张卡返回卡组，对手将卡组洗切，你给对手造成5次2点伤害。X是此卡下方不同卡名的指示物的数量＋1。（发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "GUP/W141-031PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "GUP/W141-052": {
+    "name": "中央広場の決戦",
+    "product_name": "PRカード【Wサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/treasure.webp\">:此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
+    "all_cards": [
+      {
+        "id": "GUP/W141-052PS",
+        "rarity": "PR"
+      },
+      {
+        "id": "GUP/W141-052P",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "GUP/W141-053": {
+    "name": "マカロニ作戦",
+    "product_name": "PRカード【Wサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/treasure.webp\">:此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
+    "all_cards": [
+      {
+        "id": "GUP/W141-053P",
+        "rarity": "PR"
+      },
+      {
+        "id": "GUP/W141-053PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "GUP/W141-054": {
+    "name": "ミフネ作戦",
+    "product_name": "PRカード【Wサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/treasure.webp\">:此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
+    "all_cards": [
+      {
+        "id": "GUP/W141-054P",
+        "rarity": "PR"
+      },
+      {
+        "id": "GUP/W141-054PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "GUP/W141-055": {
+    "name": "装填手 秋山優花里",
+    "product_name": "PRカード【Wサイド】",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["戦車道", "大洗女子学園"],
+    "color": "红色",
+    "effect": "【永】你其他《戦車道》的角色有2个以上的话，此卡的战斗力＋4000。<br>【自】【CX联动】此卡攻击时，高潮区有「優花里の偵察」的话，你看自己卡组顶1张卡，放置到卡组顶或卡组底或休息室，从自己的休息室选择至多1张《戦車道》的角色卡返回手牌。<br>【起】搭乘 [此卡正面朝上作为你其他「西住みほ＆Ⅳ号戦車H型（D型改）」的标记] 你抽至多1张卡或选择对手的至多1个角色返回手牌。",
+    "all_cards": [
+      {
+        "id": "GUP/W141-055PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "GUP/W141-057": {
+    "name": "西住まほ＆ティーガーⅠ",
+    "product_name": "PRカード【Wサイド】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["戦車道", "黒森峰女学園"],
+    "color": "红色",
+    "effect": "【永】你全部的角色是《戦車道》的话，此卡的战斗力＋2000。<br>【自】[1张手牌放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你将自己时计区顶1张卡放置到库存区。<br>【自】【CX联动】你的「王者の戦い」放置到高潮区时，前列有此卡，你全部的角色是《戦車道》的话，你从自己的休息室选择至多2张《戦車道》的角色卡返回手牌，选择自己的至多2张手牌，按喜欢的顺序放置到库存区。",
+    "all_cards": [
+      {
+        "id": "GUP/W141-057PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "GUP/W141-056": {
+    "name": "ケイ＆M4シャーマン 75mm砲搭載型",
+    "product_name": "PRカード【Wサイド】",
+    "type": "角色卡",
+    "level": 2,
+    "power": 3500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["戦車道", "サンダース大学付属高校"],
+    "color": "红色",
+    "effect": "【永】你全部的角色是《戦車道》的话，此卡的战斗力＋5500，此卡获得以下2个能力。『【永】你的回合中，此卡的战斗力＋4000。』『【自】再演 [手牌中1张《戦車道》的角色卡放置到休息室]』<br>【自】[(2)或手牌中1张「ケイ＆M4シャーマン 75mm砲搭載型」放置到休息室] 此卡的战斗对手【倒置】时，你可以支付费用。如果这么做的话，你将对手卡组底5张卡放置到休息室。那些卡中有高潮卡的话，给对手造成1点伤害。（发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "GUP/W141-056PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "GUP/W141-080": {
+    "name": "優花里の偵察",
+    "product_name": "PRカード【Wサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "GUP/W141-080P",
+        "rarity": "PR"
+      },
+      {
+        "id": "GUP/W141-080PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "GUP/W141-081": {
+    "name": "王者の戦い",
+    "product_name": "PRカード【Wサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "GUP/W141-081PS",
+        "rarity": "PR"
+      },
+      {
+        "id": "GUP/W141-081P",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "GUP/W141-082": {
+    "name": "私だけの戦車道",
+    "product_name": "PRカード【Wサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "GUP/W141-082PS",
+        "rarity": "PR"
+      },
+      {
+        "id": "GUP/W141-082P",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "GUP/W141-083": {
+    "name": "物量と火力",
+    "product_name": "PRカード【Wサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "GUP/W141-083PS",
+        "rarity": "PR"
+      },
+      {
+        "id": "GUP/W141-083P",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "GUP/W141-084": {
+    "name": "カチューシャ＆T-34/85",
+    "product_name": "PRカード【Wサイド】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["戦車道", "プラウダ高校"],
+    "color": "蓝色",
+    "effect": "【自】此卡从手牌放置到舞台时，你选择自己1个《戦車道》的角色，那个回合中，战斗力＋1500。<br>【自】[1张手牌放置到休息室] 此卡从舞台放置到休息室时，你可以支付费用。如果这么做的话，你看自己卡组顶至多4张卡，选择至多1张《戦車道》的角色卡展示给对手后加入手牌，其余的卡放置到休息室。",
+    "all_cards": [
+      {
+        "id": "GUP/W141-084PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "GUP/W141-085": {
+    "name": "ミカ＆BT-42突撃砲",
+    "product_name": "PRカード【Wサイド】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10500,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["戦車道", "継続高校"],
+    "color": "蓝色",
+    "effect": "【自】此卡从手牌放置到舞台时，你抽至多2张卡，选择自己的2张手牌放置到休息室，将自己卡组顶至多1张卡放置到库存区。<br>【自】【CX联动】[(2) 1张手牌放置到休息室] 此卡攻击时，高潮区有「Säkkijärven polkka」的话，你可以支付费用。如果这么做的话，给对手造成X点伤害，你看对手卡组顶至多X张卡，选择至多X张卡，以喜欢的顺序放置到卡组顶，其余的卡放置到休息室。X是此卡下方不同的卡名标记在1个以下的话是1，2个以上的话是2。（发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "GUP/W141-085PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "GUP/W141-111": {
+    "name": "Säkkijärven polkka",
+    "product_name": "PRカード【Wサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "GUP/W141-111P",
+        "rarity": "PR"
+      },
+      {
+        "id": "GUP/W141-111PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "GUP/W141-112": {
+    "name": "冬ごもりの準備",
+    "product_name": "PRカード【Wサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "GUP/W141-112P",
+        "rarity": "PR"
+      },
+      {
+        "id": "GUP/W141-112PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "GUP/W141-113": {
+    "name": "遅滞戦術",
+    "product_name": "PRカード【Wサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【自】此卡从手牌放置到高潮区时，你抽至多1张卡，选择自己至多2个角色，那个回合中，灵魂值＋1。<br>（<img src=\"/effect-icons/draw.webp\">:此卡被触发时，你可以抽1张卡）",
+    "all_cards": [
+      {
+        "id": "GUP/W141-113P",
+        "rarity": "PR"
+      },
+      {
+        "id": "GUP/W141-113PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "GUP/W141-114": {
+    "name": "吹雪と包囲網",
+    "product_name": "PRカード【Wサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【自】此卡从手牌放置到高潮区时，你抽至多1张卡，选择自己至多2个角色，那个回合中，灵魂值＋1。<br>（<img src=\"/effect-icons/draw.webp\">:此卡被触发时，你可以抽1张卡）",
+    "all_cards": [
+      {
+        "id": "GUP/W141-114P",
+        "rarity": "PR"
+      },
+      {
+        "id": "GUP/W141-114PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "GUP/W141-P01": {
+    "name": "天才少女 島田愛里寿",
+    "product_name": "PRカード【Wサイド】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["戦車道", "大学選抜チーム"],
+    "color": "黄色",
+    "effect": "【自】此卡从手牌放置到舞台时，你选择对手前列的1个角色，那个回合中，战斗力－1000。<br>【自】此卡从舞台放置到休息室时，你看自己卡组顶至多3张卡，选择至多1张高潮卡展示给对手后加入手牌，其余的卡放置到休息室。加入了手牌的话，你选择自己的1张手牌放置到休息室。",
+    "all_cards": [
+      {
+        "id": "GUP/W141-P01",
+        "rarity": "PR"
+      },
+      {
+        "id": "GUP/W141-P01EX",
+        "rarity": "PR+"
+      },
+      {
+        "id": "GUP/W141-P01S",
+        "rarity": "PR"
+      }
+    ]
+  }
+}

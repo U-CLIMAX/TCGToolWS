@@ -1,0 +1,158 @@
+{
+  "OS13/R13-P06": {
+    "name": "憧れの同棲 佳奈",
+    "product_name": "PRカード",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["オーガスト", "ウェイトレス"],
+    "color": "黄色",
+    "effect": "【自】此卡从手牌登场时，你可以将自己时计区顶1张卡放置到休息室。<br>【自】[(1) 1张手牌放置到休息室] 此卡的战斗对手【倒置】时，你可以支付费用。如果这么做的话，给对手造成1点伤害。",
+    "all_cards": [
+      {
+        "id": "OS13/R13-P06",
+        "rarity": "PR"
+      },
+      {
+        "id": "OS13/R13-P06S",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "OS13/R13-P07": {
+    "name": "ビーチで遊ぼう！",
+    "product_name": "PRカード",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 0,
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "你抽至多2张卡，选择自己的2张手牌放置到卡组顶。",
+    "all_cards": [
+      {
+        "id": "OS13/R13-P07EX",
+        "rarity": "PR+"
+      }
+    ]
+  },
+  "OS13/R13-P09": {
+    "name": "溢れ出る魅力 つぐみ＆凪",
+    "product_name": "PRカード",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["料理", "本"],
+    "color": "红色",
+    "effect": "【自】你使用此卡的『助太刀』时，你有〈同OS〉的角色的话，你选择自己战斗中的1个角色，那个回合中，战斗力＋1000。<br>【起】【反击】助太刀1000 等级1 [手牌中此卡放置到休息室]",
+    "all_cards": [
+      {
+        "id": "OS13/R13-P09",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "OS13/R13-P01": {
+    "name": "甘えたいお年頃",
+    "product_name": "PRカード",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡被触发时，你休息室触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡1张，可以返回手牌或放置到库存区）",
+    "all_cards": [
+      {
+        "id": "OS13/R13-P01S",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "OS13/R13-P02": {
+    "name": "縮まる距離",
+    "product_name": "PRカード",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/treasure.webp\">:此卡被触发时，此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
+    "all_cards": [
+      {
+        "id": "OS13/R13-P02S",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "OS13/R13-P03": {
+    "name": "歴史の果てまで、貫く忠義。",
+    "product_name": "PRカード",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "OS13/R13-P03S",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "OS13/R13-P04": {
+    "name": "Eternal Destiny",
+    "product_name": "PRカード",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "OS13/R13-P04S",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "OS13/R13-P05": {
+    "name": "桃花染の舞 朱璃",
+    "product_name": "PRカード",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["オーガスト", "皇族"],
+    "color": "红色",
+    "effect": "【自】此卡从手牌登场时，你从自己的手牌中选择至多1张自己等级以下的角色卡，放置到舞台任意位置，那个回合中，那个角色的战斗力＋2000。<br>【自】[②] 此卡从手牌登场时，你可以支付费用。如果这么做的话，对手将自己的费用全部返回卡组，卡组洗切，从自己的卡组顶将相同张数的卡放置到库存区。",
+    "all_cards": [
+      {
+        "id": "OS13/R13-P05",
+        "rarity": "PR"
+      }
+    ]
+  }
+}
