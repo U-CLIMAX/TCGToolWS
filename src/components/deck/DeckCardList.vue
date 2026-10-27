@@ -93,7 +93,9 @@
                       :class="{ 'text-h6': smAndUp }"
                     >
                       <template v-if="getItemPrice(item)">
-                        <v-icon size="12" class="mr-1" icon="i-mdi:currency-jpy" />
+                        <span class="price-icon d-inline-flex mr-1">
+                          <v-icon size="12" icon="i-mdi:currency-jpy" />
+                        </span>
                         {{ getItemPrice(item) }}
                       </template>
                     </div>
@@ -490,6 +492,14 @@ const groupHasPriceMap = computed(() => {
 .price-container {
   min-height: 32px;
   width: 100%;
+  --price-outline: color-mix(in srgb, rgb(var(--v-theme-currency)) 75%, black);
+  -webkit-text-stroke: 2px var(--price-outline);
+  paint-order: stroke fill;
+}
+
+.price-icon {
+  filter: drop-shadow(1px 0 0 var(--price-outline)) drop-shadow(-1px 0 0 var(--price-outline))
+    drop-shadow(0 1px 0 var(--price-outline)) drop-shadow(0 -1px 0 var(--price-outline));
 }
 
 @media (min-width: 600px) {
