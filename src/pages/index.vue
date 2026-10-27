@@ -198,7 +198,11 @@
                 class="mb-3"
                 icon="i-mdi:heart-circle"
               />
-              <div class="text-h5 font-weight-bold text-white mb-2">替网站充电</div>
+              <div class="text-h5 font-weight-bold text-white mb-2">成为赞助者</div>
+              <div class="d-flex align-baseline mb-4">
+                <span class="text-h3 font-weight-bold text-green-lighten-1">¥5</span>
+                <span class="text-body-1 text-white ml-1">/月</span>
+              </div>
               <v-btn
                 color="orange-darken-1"
                 size="large"
