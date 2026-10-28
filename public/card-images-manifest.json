@@ -1,9 +1,9 @@
 {
-  "version": "2026.10.13",
-  "generated_at": 1791901373,
-  "total_packages": 1505,
-  "total_images": 151022,
-  "total_size": 4467983471,
+  "version": "2026.10.28",
+  "generated_at": 1793185764,
+  "total_packages": 1510,
+  "total_images": 152366,
+  "total_size": 4502091970,
   "packages": {
     "[cn]bd-wz01": {
       "share_id": "1191fc00c2d1f3a7",
@@ -8623,11 +8623,11 @@
     },
     "os09-r09-pr": {
       "share_id": "119154110f12d5e8",
-      "size": 614394,
-      "sha256": "43149f43671fdea9e0499ccce9ff8b4d4ae31360676e7fa6a75b883c2a97edd0",
-      "source_hash": "3c9c6f186764da25066bc0d94f33056fe9ad928f6609c3d14fc8025d02641871",
-      "card_count": 12,
-      "updated_at": 1788861134
+      "size": 716172,
+      "sha256": "c9a48a482097e0540a9d8d4583e27345fee7fcae270becbf9852e6b18da4f532",
+      "source_hash": "8bbe9ffc1e8dcb4e6bd4a5a76f84e996028542bf16fd1750391d56b4332f2f0b",
+      "card_count": 14,
+      "updated_at": 1793185755
     },
     "os10-r10": {
       "share_id": "1191057001ef5421",
@@ -8639,11 +8639,11 @@
     },
     "os10-r10-pr": {
       "share_id": "11918e8c5b057014",
-      "size": 622738,
-      "sha256": "0b4205286a391819948841c5a1640e4ceeb095d2a2d432bb652bb3dc118c7b6c",
-      "source_hash": "bb38aa18395aa1b50f3c9399e1161e8619bc4a9cdb4a0bd6a9861afaef7f2c39",
-      "card_count": 12,
-      "updated_at": 1788861137
+      "size": 878770,
+      "sha256": "0e56ba77b76ccf42ae059037a55d616bbc5e08de7838f3c411b6c26ee2ef2f98",
+      "source_hash": "da19bbbd668291096317c5e01a096a72843835f1cb5300cb8657fac5090bd0df",
+      "card_count": 17,
+      "updated_at": 1793185756
     },
     "os11-r11": {
       "share_id": "119102bb5a3f2544",
@@ -8655,11 +8655,11 @@
     },
     "os11-r11-pr": {
       "share_id": "119115460e0373a4",
-      "size": 253008,
-      "sha256": "57b7e6f5811af36a399c7963ef323ea61d8a2a52fd56303aa00a42c83eb9cc17",
-      "source_hash": "be2d882ebd0dceded6e734157b8fc5597db0453e44a68c2c9f599d96d0651bd8",
-      "card_count": 5,
-      "updated_at": 1788861141
+      "size": 601641,
+      "sha256": "5104e109f4e16fa0fe279b2e50292ef79e8b9bf3a440422debaa7b363f30aa45",
+      "source_hash": "9a3974592bca78df3d9642c3ae0cede78539f27b12a79885ee31565342dc52e7",
+      "card_count": 12,
+      "updated_at": 1793185758
     },
     "os12-r12": {
       "share_id": "1191c90481861e12",
@@ -8671,11 +8671,11 @@
     },
     "os12-r12-pr": {
       "share_id": "1191059930230f98",
-      "size": 103875,
-      "sha256": "f29343573c0533aebab5f7170b0774ca6c368a77a2c0c99a5a66970988c409f0",
-      "source_hash": "8ec2bf214a7ea312faf6194f0698a8ad2ed636ad7dee046d957623fe78c34950",
-      "card_count": 2,
-      "updated_at": 1788861145
+      "size": 309331,
+      "sha256": "3f76d07872c8074a5e828d6fb6dae7b6b89de499a895b18675ef9d650df7b710",
+      "source_hash": "bfbf3d2c63b9bc374e6f7178ec02cc6744beb8d93f7aea450302de5b4cf2babc",
+      "card_count": 6,
+      "updated_at": 1793185759
     },
     "osk-s107": {
       "share_id": "11910e4f6330b3c4",
@@ -12007,11 +12007,11 @@
     },
     "nik-s135-pr": {
       "share_id": "1191172094c85699",
-      "size": 256046,
-      "sha256": "253aa054ab5b86880afa8f7846c0fa0ecd9d909b18de11bed9780e1fedb0a15b",
-      "source_hash": "3a625b7b7f3a67ed6142019177f250a306e12186e9e2c94e496fd4aef5e3e70d",
-      "card_count": 5,
-      "updated_at": 1791901300
+      "size": 2175848,
+      "sha256": "b6f6e67590d0af8e76468ddd966dcd5f5b20b2b5f1fc9dc41b40f529e4a4622a",
+      "source_hash": "811389294dcf696a5202731b86eb6d412657a75785b253c6b16ad78f1ff97795",
+      "card_count": 43,
+      "updated_at": 1793185754
     },
     "anm-w138": {
       "share_id": "11919cff980bc662",
@@ -12031,11 +12031,11 @@
     },
     "sts-w140-pr": {
       "share_id": "1191fb662ad5cfd3",
-      "size": 1362864,
-      "sha256": "7e652d05ed3b9b280789f34e03891020fabe2bc6825d2feacc8b87aac1f74873",
-      "source_hash": "f3688338a275518ff69fd317c0f25fd13a785da2cb8747c4e734c9bbeea5584e",
-      "card_count": 27,
-      "updated_at": 1791899677
+      "size": 1973492,
+      "sha256": "52725b8326d0f2c15d591087c5d16bf8f685489e6c249ee56df9af7c2536f30f",
+      "source_hash": "4588da1180817930f1f9ccc6633d8c723251407a9c49d9653291a8383f975d2b",
+      "card_count": 39,
+      "updated_at": 1793185764
     },
     "sts-w140-td": {
       "share_id": "11916fab1e30aed5",
@@ -12044,6 +12044,46 @@
       "source_hash": "62ff8a4d94d3e745703f6783fcbddf22f4563f067119232dd556d4305efe728c",
       "card_count": 43,
       "updated_at": 1791899679
+    },
+    "gup-w141": {
+      "share_id": "11913d768046b473",
+      "size": 12403668,
+      "sha256": "9fa03059d0ada68da2fe4fcaa0fd894f4af3206a78a2efe38988320e82d8e6ea",
+      "source_hash": "d144ce9b9998c802c19f5e17a8ca1f7a5163a22e7d211dfcfb52027d88045e7c",
+      "card_count": 246,
+      "updated_at": 1793185748
+    },
+    "gup-w141-pr": {
+      "share_id": "119134dfb3654299",
+      "size": 2297001,
+      "sha256": "bed12281d8c11d80a4803be81174e72aa56e1520e2e0b9344b11de075626578d",
+      "source_hash": "fbed2abd523700e7933e46c35d9b7759a785cee67c3e9ab0392055d461bc4e6a",
+      "card_count": 45,
+      "updated_at": 1793185750
+    },
+    "gup-w141-td": {
+      "share_id": "11915cb7716f2c54",
+      "size": 4288108,
+      "sha256": "811dd2d1e6ad9f27f1e0b58240c57973670f136e35a9dee466cdbe4d94fee1c8",
+      "source_hash": "736e95d5a9c022f08ff166d8bb1e4a65a75ae18a83dc19819a1b59977b892d16",
+      "card_count": 84,
+      "updated_at": 1793185752
+    },
+    "os13-r13": {
+      "share_id": "11913b5db25e8399",
+      "size": 11236204,
+      "sha256": "d4d29afa6ec028c88c7ec0a52bbd440a0e56a5f58d1cfb661b5800b2cc5605fb",
+      "source_hash": "a5c8a60e79483392d70c520a0ce03815f0c4f66a8a6d0e41fee8d2422ea6c55f",
+      "card_count": 220,
+      "updated_at": 1793185761
+    },
+    "os13-r13-pr": {
+      "share_id": "1191543f00627603",
+      "size": 441189,
+      "sha256": "03b546b796c20b2c251e62096a74f9dfa6564b01e927a809d81323ba5cccb4d4",
+      "source_hash": "d9f5deb3baebbabe7d68b7d85976cc3ab0596f90befd6ea1c22603df088c040f",
+      "card_count": 9,
+      "updated_at": 1793185763
     }
   }
 }
