@@ -45,9 +45,9 @@ const filterStore = useFilterStore()
 const siteUrl = getWebsiteUrl()
 
 useSeoMeta({
-  title: computed(() => `${deckKey} | U-CLIMAX`),
+  title: computed(() => `${deckKey} | DeckLog | U-CLIMAX`),
   description: computed(() => `查看 DeckLog 卡组：${deckKey}`),
-  ogTitle: computed(() => `${deckKey} | U-CLIMAX`),
+  ogTitle: computed(() => `${deckKey} | DeckLog | U-CLIMAX`),
 })
 
 useHead({

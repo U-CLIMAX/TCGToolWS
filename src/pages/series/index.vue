@@ -145,9 +145,9 @@ definePage({
 const siteUrl = getWebsiteUrl()
 
 useSeoMeta({
-  title: '系列一览 | U-CLIMAX',
+  title: '系列卡表 | U-CLIMAX',
   description: '浏览所有收录的 Weiβ Schwarz 系列作品，包含 WS、WSC、WSR 各系列卡片数据库与卡表。',
-  ogTitle: '系列一览 | U-CLIMAX',
+  ogTitle: '系列卡表 | U-CLIMAX',
   ogDescription: '浏览所有收录的 Weiβ Schwarz 系列作品，包含 WS、WSC、WSR 各系列卡片数据库与卡表。',
 })
 

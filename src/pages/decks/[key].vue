@@ -573,10 +573,10 @@ const { smAndUp } = useDisplay()
 const siteUrl = getWebsiteUrl()
 
 useSeoMeta({
-  title: `${route.params.key} | U-CLIMAX`,
+  title: `${route.params.key} | 我的卡组 | U-CLIMAX`,
   description: '编辑与构筑您的个人 Weiβ Schwarz 卡组。',
   robots: 'noindex, nofollow',
-  ogTitle: `${route.params.key} | U-CLIMAX`,
+  ogTitle: `${route.params.key} | 我的卡组 | U-CLIMAX`,
 })
 
 useHead({

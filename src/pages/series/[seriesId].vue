@@ -319,11 +319,11 @@ const seriesName = computed(() => {
 })
 
 useSeoMeta({
-  title: computed(() => `${seriesName.value} | U-CLIMAX`),
+  title: computed(() => `${seriesName.value} | 系列卡表 | U-CLIMAX`),
   description: computed(
     () => `查看 ${seriesName.value} 系列的完整卡表、卡片效果、罕贵度与卡组构建参考。`
   ),
-  ogTitle: computed(() => `${seriesName.value} | U-CLIMAX`),
+  ogTitle: computed(() => `${seriesName.value} | 系列卡表 | U-CLIMAX`),
   ogDescription: computed(
     () => `查看 ${seriesName.value} 系列的完整卡表、卡片效果、罕贵度与卡组构建参考。`
   ),

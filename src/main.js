@@ -10,6 +10,7 @@ import { registerSW } from 'virtual:pwa-register'
 import App from './App.vue'
 import router from './router'
 import { piniaVersioningPlugin } from '@/plugins/pinia-versioning.js'
+import { preserveTitlePlugin } from '@/plugins/unhead-preserve-title.js'
 import { useUIStore } from '@/stores/ui'
 import { isTauri } from '@/utils/isTauri'
 
@@ -43,7 +44,9 @@ const bootstrap = async () => {
 
   // 1. 初始化 Vue 應用與外掛實例
   const app = createApp(App)
-  const head = createHead()
+  const head = createHead({
+    plugins: [preserveTitlePlugin],
+  })
   const pinia = createPinia()
 
   // 2. 配置 Pinia 外掛
