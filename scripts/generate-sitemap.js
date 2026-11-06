@@ -43,26 +43,29 @@ const escapeXml = (str) => {
 
 // 核心靜態頁面清單
 const staticRoutes = [
-  { path: '/', priority: '1.0', changefreq: 'daily' },
-  { path: '/search/ws', priority: '0.9', changefreq: 'daily' },
-  { path: '/search/wsc', priority: '0.8', changefreq: 'weekly' },
-  { path: '/search/wsr', priority: '0.8', changefreq: 'weekly' },
-  { path: '/series', priority: '0.8', changefreq: 'weekly' },
-  { path: '/gallery', priority: '0.7', changefreq: 'daily' },
-  { path: '/banlist', priority: '0.7', changefreq: 'monthly' },
-  { path: '/download', priority: '0.6', changefreq: 'monthly' },
-  { path: '/community', priority: '0.5', changefreq: 'monthly' },
+  { path: '/' },
+  { path: '/search/ws' },
+  { path: '/search/wsc' },
+  { path: '/search/wsr' },
+  { path: '/series' },
+  { path: '/gallery' },
+  { path: '/banlist' },
+  { path: '/download' },
+  { path: '/community' },
 ]
 
 // 動態系列頁面
 const seriesRoutes = Object.entries(seriesMap)
   .filter(([id]) => !['ws', 'wsr', 'wsc'].includes(id))
-  .map(([id, info]) => ({
-    path: `/series/${encodeURIComponent(id)}`,
-    priority: '0.6',
-    changefreq: 'monthly',
-    lastmod: info.latestReleaseDate || TODAY,
-  }))
+  .map(([id, info]) => {
+    const isIsoDate =
+      typeof info.latestReleaseDate === 'string' &&
+      /^\d{4}-\d{2}-\d{2}$/.test(info.latestReleaseDate)
+    return {
+      path: `/series/${encodeURIComponent(id)}`,
+      lastmod: isIsoDate ? info.latestReleaseDate : TODAY,
+    }
+  })
 
 const allRoutes = [...staticRoutes.map((r) => ({ ...r, lastmod: TODAY })), ...seriesRoutes]
 
@@ -72,8 +75,6 @@ const xmlUrls = allRoutes
     (r) => `  <url>
     <loc>${escapeXml(`${BASE_URL}${r.path}`)}</loc>
     <lastmod>${r.lastmod}</lastmod>
-    <changefreq>${r.changefreq}</changefreq>
-    <priority>${r.priority}</priority>
   </url>`
   )
   .join('\n')
