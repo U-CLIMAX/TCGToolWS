@@ -429,8 +429,8 @@
     </v-card>
   </v-dialog>
 
-  <!-- Save Location Choice Dialog (Tauri only) -->
-  <v-dialog v-if="isTauri" v-model="isSaveLocationDialogOpen" max-width="360" persistent>
+  <!-- Save Location Choice Dialog -->
+  <v-dialog v-model="isSaveLocationDialogOpen" max-width="360" persistent>
     <v-card class="rounded-2lg pa-3">
       <v-card-title class="text-subtitle-1 font-weight-bold d-flex align-center ga-2">
         <v-icon icon="i-mdi:content-save-outline" color="primary" />
@@ -584,9 +584,7 @@ const flattenedDisplayCards = computed(() => {
 })
 
 const openSaveDialog = () => {
-  if (!authStore.isAuthenticated && !isTauri) {
-    isAuthAlertOpen.value = true
-  } else if (deckCards.value.length > 0) {
+  if (deckCards.value.length > 0) {
     if (
       (!deckStore.meta.allTags || deckStore.meta.allTags.length === 0) &&
       authStore.isAuthenticated
@@ -644,11 +642,7 @@ const navigateToDeckDetail = () => {
 }
 
 const handleCreateDeck = () => {
-  if (isTauri) {
-    isSaveLocationDialogOpen.value = true
-  } else {
-    executeCreateDeck('cloud')
-  }
+  isSaveLocationDialogOpen.value = true
 }
 
 const executeCreateDeck = async (target = 'cloud') => {
@@ -659,9 +653,7 @@ const executeCreateDeck = async (target = 'cloud') => {
     const compressedDeckData = await encodeData(toRaw(deckStore.cardsInDeck))
     const gameType = seriesMap[deckStore.seriesId]?.game || 'ws'
 
-    const isSaveToCloud = !isTauri
-      ? authStore.isAuthenticated && authStore.isOnline
-      : target === 'cloud' && authStore.isAuthenticated && authStore.isOnline
+    const isSaveToCloud = target === 'cloud' && authStore.isAuthenticated && authStore.isOnline
 
     if (isSaveToCloud) {
       await deckStore.saveEncodedDeck(key, compressedDeckData, {
@@ -785,10 +777,9 @@ const handleUpdateDeck = async (historyText = '', diff = []) => {
     const gameType = seriesMap[deckStore.seriesId]?.game || 'ws'
 
     const isLocal =
-      isTauri &&
-      (!!deckStore.localDecks[deckStore.editingDeckKey] ||
-        !authStore.isAuthenticated ||
-        !authStore.isOnline)
+      !!deckStore.localDecks[deckStore.editingDeckKey] ||
+      !authStore.isAuthenticated ||
+      !authStore.isOnline
 
     if (isLocal) {
       deckStore.saveLocalDeck(deckStore.editingDeckKey, compressedDeckData, {

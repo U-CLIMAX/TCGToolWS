@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { routes, handleHotUpdate } from 'vue-router/auto-routes'
 import { useAuthStore } from '@/stores/auth'
 import { useUIStore } from '@/stores/ui'
-import { isTauri } from '@/utils/isTauri'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
@@ -42,14 +41,13 @@ router.beforeEach(async (to, from) => {
   }
 
   const isAuthenticated = authStore.isAuthenticated
-  const isTauriDecksRoute =
-    isTauri && (to.meta.group === 'decks' || (to.path && to.path.startsWith('/decks')))
+  const isDecksRoute = to.meta.group === 'decks' || (to.path && to.path.startsWith('/decks'))
 
   if (to.name === 'DecksGallery' && !authStore.isOnline) {
     return { name: 'Home' }
   }
 
-  if (requiresAuth && !isAuthenticated && !isTauriDecksRoute) {
+  if (requiresAuth && !isAuthenticated && !isDecksRoute) {
     return { name: 'Home' }
   } else if (requiresGuest && isAuthenticated) {
     return { name: 'Home' }

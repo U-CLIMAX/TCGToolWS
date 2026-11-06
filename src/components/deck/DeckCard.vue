@@ -154,6 +154,20 @@
       </v-card>
     </v-dialog>
 
+    <v-dialog v-if="isUploadDialogOpen" v-model="isUploadDialogOpen" max-width="400">
+      <v-card class="rounded-2lg pa-2">
+        <v-card-title>上传至云端</v-card-title>
+        <v-card-text class="text-body-2 text-medium-emphasis"
+          >确定要将卡组 "{{ deck.name }}" 上传至云端吗？上传后卡组将同步至云端并从本地移除。
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn text="取消" @click="isUploadDialogOpen = false"></v-btn>
+          <v-btn color="primary" variant="tonal" text="上传" @click="confirmUploadDeck"></v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
     <v-dialog v-if="isTagsDialogOpen" v-model="isTagsDialogOpen" max-width="450">
       <v-card class="rounded-2lg pa-3">
         <v-card-title class="d-flex align-center">
@@ -249,6 +263,7 @@ const router = useRouter()
 const isHovering = ref(false)
 const isActionMenuOpen = ref(false)
 const isDeleteDialogOpen = ref(false)
+const isUploadDialogOpen = ref(false)
 const isTagsDialogOpen = ref(false)
 const editTags = ref([])
 const isSavingTags = ref(false)
@@ -358,9 +373,18 @@ onUnmounted(() => {
   clearLongPressResetTimer()
 })
 
-const handleUploadCloud = async () => {
-  if (props.onUploadCloud) {
-    await props.onUploadCloud(props.deckKey)
+const handleUploadCloud = () => {
+  isUploadDialogOpen.value = true
+}
+
+const confirmUploadDeck = async () => {
+  try {
+    if (props.onUploadCloud) {
+      await props.onUploadCloud(props.deckKey)
+    }
+    isUploadDialogOpen.value = false
+  } catch (error) {
+    console.error(error)
   }
 }
 

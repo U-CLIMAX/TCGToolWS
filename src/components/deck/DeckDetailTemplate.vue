@@ -351,8 +351,8 @@
       :deck-name="effectiveDeckName"
     />
 
-    <!-- Save Location Choice Dialog (Tauri only) -->
-    <v-dialog v-if="isTauri" v-model="isSaveLocationDialogOpen" max-width="360" persistent>
+    <!-- Save Location Choice Dialog -->
+    <v-dialog v-model="isSaveLocationDialogOpen" max-width="360" persistent>
       <v-card class="rounded-2lg pa-3">
         <v-card-title class="text-subtitle-1 font-weight-bold d-flex align-center ga-2">
           <v-icon icon="i-mdi:content-save-outline" color="primary" />
@@ -486,9 +486,7 @@ const effectiveDeckName = computed(
 )
 
 const openSaveDialog = () => {
-  if (!authStore.isAuthenticated && !isTauri) {
-    isAuthAlertOpen.value = true
-  } else if (props.deck) {
+  if (props.deck) {
     if (
       (!deckStore.meta.allTags || deckStore.meta.allTags.length === 0) &&
       authStore.isAuthenticated
@@ -513,11 +511,7 @@ const closeSaveDialog = () => {
 }
 
 const handleSaveClick = () => {
-  if (isTauri) {
-    isSaveLocationDialogOpen.value = true
-  } else {
-    confirmSaveWithTarget('cloud')
-  }
+  isSaveLocationDialogOpen.value = true
 }
 
 const confirmSaveWithTarget = (target) => {

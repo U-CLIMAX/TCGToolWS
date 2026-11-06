@@ -36,11 +36,7 @@
               :active="item.group && $route.meta.group === item.group"
               :active-color="isHomeRoute ? 'cyan-accent-2' : undefined"
               :color="isHomeRoute ? 'white' : undefined"
-              :disabled="
-                item.requiresAuth &&
-                !authStore.isAuthenticated &&
-                !(isTauri && item.group === 'decks')
-              "
+              :disabled="item.requiresAuth && !authStore.isAuthenticated"
             >
               <template #prepend>
                 <v-icon :icon="item.icon" size="24" />
@@ -230,9 +226,7 @@
           :active-color="isHomeRoute ? 'cyan-accent-2' : undefined"
           :color="isHomeRoute ? 'white' : undefined"
           class="rounded-pill mx-1"
-          :disabled="
-            item.requiresAuth && !authStore.isAuthenticated && !(isTauri && item.group === 'decks')
-          "
+          :disabled="item.requiresAuth && !authStore.isAuthenticated"
         >
           <v-icon :icon="item.icon" size="32" />
         </v-btn>
@@ -429,7 +423,12 @@
 
     <!-- Global Loading Overlay -->
     <v-overlay v-model="uiStore.isLoading" class="d-flex align-center justify-center" persistent>
-      <half-circle-spinner :animation-duration="1000" :size="64" :color="spinnerColor" />
+      <half-circle-spinner
+        v-if="uiStore.isLoading"
+        :animation-duration="1000"
+        :size="64"
+        :color="spinnerColor"
+      />
     </v-overlay>
   </v-app>
 </template>
@@ -630,7 +629,7 @@ const navItems = [
     icon: seriesCardTableIcon,
     group: 'series',
   },
-  { text: '我的卡组', name: 'Decks', requiresAuth: true, icon: deckIcon, group: 'decks' },
+  { text: '我的卡组', name: 'Decks', requiresAuth: false, icon: deckIcon, group: 'decks' },
 ]
 
 const toolboxItems = [

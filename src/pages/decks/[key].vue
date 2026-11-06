@@ -55,7 +55,7 @@
                       prepend-icon="i-mdi:view-grid-plus"
                       slim
                       class="rounded-3md"
-                      :disabled="!authStore.isOnline"
+                      :disabled="isLocalDeck || !authStore.isOnline"
                     >
                     </v-list-item>
                   </v-list>
@@ -65,7 +65,6 @@
                   icon="i-mdi:cloud-upload-outline"
                   variant="text"
                   density="compact"
-                  color="cyan-accent-2"
                   @click="handleUploadToCloud"
                   v-tooltip:bottom="{ text: '上传至云端', disabled: isTouch }"
                 ></v-btn>
@@ -390,6 +389,20 @@
       </v-card>
     </v-dialog>
 
+    <v-dialog v-model="isUploadDialogOpen" max-width="400">
+      <v-card class="rounded-2lg pa-2">
+        <v-card-title>上传至云端</v-card-title>
+        <v-card-text class="text-body-2 text-medium-emphasis">
+          确定要将卡组 "{{ deck?.name }}" 上传至云端吗？上传后卡组将同步至云端并从本地移除。
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn text="取消" @click="isUploadDialogOpen = false"></v-btn>
+          <v-btn color="primary" variant="tonal" text="上传" @click="confirmUploadToCloud"></v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
     <DeckExportDialog
       v-model="exportDialog"
       :cards="cardsForStats"
@@ -551,7 +564,7 @@ import { isTauri } from '@/utils/isTauri'
 definePage({
   name: 'DeckDetail',
   props: true,
-  meta: { requiresAuth: true, group: 'decks', showCardPrice: true },
+  meta: { requiresAuth: false, group: 'decks', showCardPrice: true },
 })
 
 const route = useRoute()
@@ -608,6 +621,7 @@ const deck = ref(null)
 const cardMap = ref({})
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 const isConfirmEditDialogVisible = ref(false)
+const isUploadDialogOpen = ref(false)
 const isGoToGalleryDialogVisible = ref(false)
 const isTextModalVisible = ref(false)
 const isSimulatorDialogVisible = ref(false)
@@ -671,7 +685,7 @@ const confirmShareToDeckGallery = async (formData) => {
 }
 const handleCopyDeckKey = () => baseHandleCopyDeckKey(deckKey, isLocalDeck.value)
 
-const handleUploadToCloud = async () => {
+const handleUploadToCloud = () => {
   if (!authStore.isOnline) {
     triggerSnackbar('网络连接不可用，请检查网络状态', 'warning')
     return
@@ -680,6 +694,11 @@ const handleUploadToCloud = async () => {
     triggerSnackbar('请先登录后再上传至云端', 'warning')
     return
   }
+  isUploadDialogOpen.value = true
+}
+
+const confirmUploadToCloud = async () => {
+  isUploadDialogOpen.value = false
   uiStore.setLoading(true)
   try {
     await deckStore.uploadLocalDeckToCloud(deckKey)

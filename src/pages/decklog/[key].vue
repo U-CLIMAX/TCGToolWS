@@ -23,7 +23,6 @@ import { useSnackbar } from '@/composables/useSnackbar'
 import { findDeckSeriesId } from '@/utils/findDeckSeriesId'
 import { seriesMap } from '@/maps/series-map'
 import { generateDeckKey } from '@/utils/nanoid'
-import { isTauri } from '@/utils/isTauri'
 
 definePage({
   name: 'DeckLog',
@@ -83,9 +82,7 @@ const handleSaveDeck = async ({ name, coverCardId, closeDialog, tags, saveTarget
     const compressedData = await encodeData(cardsToEncode)
     const gameType = seriesMap[deckSeriesId]?.game || 'ws'
 
-    const isSaveToCloud = !isTauri
-      ? authStore.isAuthenticated && authStore.isOnline
-      : saveTarget === 'cloud' && authStore.isAuthenticated && authStore.isOnline
+    const isSaveToCloud = saveTarget === 'cloud' && authStore.isAuthenticated && authStore.isOnline
 
     if (isSaveToCloud) {
       await deckStore.saveEncodedDeck(key, compressedData, {

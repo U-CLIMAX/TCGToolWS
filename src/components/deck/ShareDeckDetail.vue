@@ -40,7 +40,6 @@ import { useSnackbar } from '@/composables/useSnackbar'
 import { useDeckStore } from '@/stores/deck'
 import { generateDeckKey } from '@/utils/nanoid'
 import { seriesMap } from '@/maps/series-map'
-import { isTauri } from '@/utils/isTauri'
 
 const props = defineProps({
   deckKey: {
@@ -101,9 +100,7 @@ const handleSaveDeck = async ({ name, coverCardId, closeDialog, tags, saveTarget
 
     const gameType = seriesMap[deck.value.series_id]?.game || 'ws'
 
-    const isSaveToCloud = !isTauri
-      ? authStore.isAuthenticated && authStore.isOnline
-      : saveTarget === 'cloud' && authStore.isAuthenticated && authStore.isOnline
+    const isSaveToCloud = saveTarget === 'cloud' && authStore.isAuthenticated && authStore.isOnline
 
     if (isSaveToCloud) {
       await deckStore.saveEncodedDeck(key, compressedData, {

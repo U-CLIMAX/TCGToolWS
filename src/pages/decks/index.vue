@@ -24,9 +24,17 @@
                 <v-icon :icon="DeckIcon" color="primary" size="32" />
                 <div>
                   <div class="d-flex align-center ga-2" style="line-height: 1.2">
-                    <span class="text-h6 font-weight-bold">我的卡组</span>
+                    <span class="text-h6 font-weight-bold">
+                      我的卡组
+                      <span
+                        v-if="!authStore.isAuthenticated || !authStore.isOnline"
+                        class="text-subtitle-1 font-weight-medium text-medium-emphasis"
+                      >
+                        （本地卡组）
+                      </span>
+                    </span>
                     <v-chip
-                      v-if="isTauri && !authStore.isOnline"
+                      v-if="!authStore.isOnline"
                       size="x-small"
                       color="warning"
                       variant="tonal"
@@ -41,9 +49,9 @@
                 </div>
               </div>
 
-              <!-- 卡組來源切換 (Tauri 客戶端在線且已登入時提供切換) -->
+              <!-- 卡組來源切換 (在線且已登入時提供切換) -->
               <div
-                v-if="isTauri && authStore.isAuthenticated && authStore.isOnline"
+                v-if="authStore.isAuthenticated && authStore.isOnline"
                 class="d-flex ga-2 align-center flex-sm-grow-0 flex-grow-1 w-100 w-sm-auto"
               >
                 <InsetTabs v-model="deckSourceMode" :options="deckSourceOptions">
@@ -127,7 +135,7 @@
             </v-row>
 
             <v-btn
-              v-if="!isTauri || authStore.isOnline"
+              v-if="authStore.isOnline"
               block
               variant="flat"
               rounded="pill"
@@ -271,7 +279,6 @@ import { useSnackbar } from '@/composables/useSnackbar'
 import { useDevice } from '@/composables/useDevice'
 import { debounceRef } from '@/composables/useDebounceRef'
 import { seriesMap, GAME_TYPE_OPTIONS } from '@/maps/series-map'
-import { isTauri } from '@/utils/isTauri'
 
 import DeckIcon from '@/assets/ui/deck.svg'
 
@@ -314,10 +321,8 @@ const scrollStyle = computed(() => {
 })
 
 const localBatchLimit = ref(24)
-const deckSourceMode = ref(
-  !isTauri ? 'cloud' : authStore.isAuthenticated && authStore.isOnline ? 'cloud' : 'local'
-)
-const isLocalMode = computed(() => isTauri && deckSourceMode.value === 'local')
+const deckSourceMode = ref(authStore.isAuthenticated && authStore.isOnline ? 'cloud' : 'local')
+const isLocalMode = computed(() => deckSourceMode.value === 'local')
 
 const deckSourceOptions = computed(() => [
   {
@@ -330,13 +335,10 @@ const deckSourceOptions = computed(() => [
   },
 ])
 
+// 監聽登入與連線狀態：未登入或離線時自動切換至本地卡組
 watch([() => authStore.isAuthenticated, () => authStore.isOnline], ([isAuth, isOnline]) => {
-  if (isTauri) {
-    if (!isAuth || !isOnline) {
-      deckSourceMode.value = 'local'
-    }
-  } else {
-    deckSourceMode.value = 'cloud'
+  if (!isAuth || !isOnline) {
+    deckSourceMode.value = 'local'
   }
 })
 
@@ -752,9 +754,7 @@ onMounted(async () => {
       }
     }
   } else {
-    if (isTauri) {
-      deckSourceMode.value = 'local'
-    }
+    deckSourceMode.value = 'local'
     initialLoadingComplete.value = true
   }
 
