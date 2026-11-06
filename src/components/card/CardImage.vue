@@ -1,7 +1,7 @@
 <template>
   <div class="card-img-box" :class="roundedClass" :style="boxStyle">
     <img
-      v-if="resolvedUrls.blur"
+      v-if="showBlur && resolvedUrls.blur"
       :src="resolvedUrls.blur"
       class="card-img-blur"
       :style="imgStyle"
@@ -18,14 +18,15 @@
       :style="imgStyle"
       decoding="async"
       draggable="false"
-      @load="isLoaded = true"
+      @load="handleLoad"
+      @transitionend="handleTransitionEnd"
     />
     <slot />
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { getCardUrls } from '@/utils/getCardImage'
 
 const props = defineProps({
@@ -44,7 +45,34 @@ const props = defineProps({
 })
 
 const isLoaded = ref(false)
+const showBlur = ref(true)
 const imgRef = ref(null)
+let timer = null
+
+const clearTimer = () => {
+  if (timer) {
+    clearTimeout(timer)
+    timer = null
+  }
+}
+
+const removeBlur = () => {
+  showBlur.value = false
+  clearTimer()
+}
+
+const handleLoad = () => {
+  isLoaded.value = true
+  clearTimer()
+  // 防範無動畫、後台標籤頁或 transitionend 未觸發情境
+  timer = setTimeout(removeBlur, 250)
+}
+
+const handleTransitionEnd = (event) => {
+  if (event.propertyName === 'opacity') {
+    removeBlur()
+  }
+}
 
 let base = props.src || null
 let blur = props.blur || null
@@ -96,8 +124,12 @@ if (props.position) {
 
 onMounted(() => {
   if (imgRef.value?.complete && imgRef.value?.naturalWidth) {
-    isLoaded.value = true
+    handleLoad()
   }
+})
+
+onUnmounted(() => {
+  clearTimer()
 })
 </script>
 
