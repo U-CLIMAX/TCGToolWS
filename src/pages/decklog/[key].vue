@@ -9,8 +9,10 @@
 </template>
 
 <script setup>
-import { ref, shallowRef, onMounted, onUnmounted } from 'vue'
+import { ref, shallowRef, computed, onMounted, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useSeoMeta, useHead } from '@unhead/vue'
+import { getWebsiteUrl } from '@/utils/api'
 import { useDeckEncoder } from '@/composables/useDeckEncoder'
 import { fetchCardByIdAndPrefix } from '@/utils/card'
 import { useUIStore } from '@/stores/ui'
@@ -41,6 +43,17 @@ const deckKey = route.params.key
 const deck = ref(null)
 const cards = shallowRef({})
 const filterStore = useFilterStore()
+const siteUrl = getWebsiteUrl()
+
+useSeoMeta({
+  title: computed(() => `${deckKey} | U-CLIMAX`),
+  description: computed(() => `查看 DeckLog 卡组：${deckKey}`),
+  ogTitle: computed(() => `${deckKey} | U-CLIMAX`),
+})
+
+useHead({
+  link: [{ rel: 'canonical', href: computed(() => `${siteUrl}/decklog/${deckKey}`) }],
+})
 
 onUnmounted(() => {
   filterStore.reset()

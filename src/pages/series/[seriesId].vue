@@ -229,6 +229,8 @@
 import { ref, computed, watchEffect, onMounted, onUnmounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useDisplay } from 'vuetify'
+import { useSeoMeta, useHead } from '@unhead/vue'
+import { getWebsiteUrl } from '@/utils/api'
 import { storeToRefs } from 'pinia'
 import { seriesMap } from '@/maps/series-map.js'
 import { useDeckStore } from '@/stores/deck'
@@ -314,6 +316,28 @@ watch(lgAndUp, (isDesktop) => {
 
 const seriesName = computed(() => {
   return seriesMap[props.seriesId]?.name || '未知系列'
+})
+
+useSeoMeta({
+  title: computed(() => `${seriesName.value} | U-CLIMAX`),
+  description: computed(
+    () => `查看 ${seriesName.value} 系列的完整卡表、卡片效果、罕贵度与卡组构建参考。`
+  ),
+  ogTitle: computed(() => `${seriesName.value} | U-CLIMAX`),
+  ogDescription: computed(
+    () => `查看 ${seriesName.value} 系列的完整卡表、卡片效果、罕贵度与卡组构建参考。`
+  ),
+})
+
+const siteUrl = getWebsiteUrl()
+
+useHead({
+  link: [
+    {
+      rel: 'canonical',
+      href: computed(() => `${siteUrl}/series/${props.seriesId}`),
+    },
+  ],
 })
 const prefixes = computed(() => seriesMap[props.seriesId]?.prefixes ?? [])
 

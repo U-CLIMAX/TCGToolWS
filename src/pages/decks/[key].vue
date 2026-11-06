@@ -529,6 +529,8 @@
 <script setup>
 import { computed, ref, shallowRef, onUnmounted, onMounted, nextTick, toRaw } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useSeoMeta, useHead } from '@unhead/vue'
+import { getWebsiteUrl } from '@/utils/api'
 import { useDeckEncoder } from '@/composables/useDeckEncoder'
 import { useDisplay } from 'vuetify'
 import { storeToRefs } from 'pinia'
@@ -552,9 +554,21 @@ definePage({
   meta: { requiresAuth: true, group: 'decks', showCardPrice: true },
 })
 
-const { smAndUp } = useDisplay()
 const route = useRoute()
 const router = useRouter()
+const { smAndUp } = useDisplay()
+const siteUrl = getWebsiteUrl()
+
+useSeoMeta({
+  title: `${route.params.key} | U-CLIMAX`,
+  description: '编辑与构筑您的个人 Weiβ Schwarz 卡组。',
+  robots: 'noindex, nofollow',
+  ogTitle: `${route.params.key} | U-CLIMAX`,
+})
+
+useHead({
+  link: [{ rel: 'canonical', href: computed(() => `${siteUrl}/decks/${route.params.key}`) }],
+})
 const { decodeData } = useDeckEncoder()
 const { triggerSnackbar } = useSnackbar()
 const uiStore = useUIStore()

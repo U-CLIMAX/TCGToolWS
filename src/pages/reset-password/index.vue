@@ -65,6 +65,8 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useSeoMeta, useHead } from '@unhead/vue'
+import { getWebsiteUrl } from '@/utils/api'
 import { useAuthStore } from '@/stores/auth'
 import { useRouter } from 'vue-router'
 import { useSnackbar } from '@/composables/useSnackbar'
@@ -73,6 +75,19 @@ definePage({
   name: 'ResetPassword',
   props: (route) => ({ token: route.query.token }),
   meta: { requiresGuest: true },
+})
+
+const siteUrl = getWebsiteUrl()
+
+useSeoMeta({
+  title: '重置密码 | U-CLIMAX',
+  description: '重置您的 U-CLIMAX 账户密码。',
+  robots: 'noindex, nofollow',
+  ogTitle: '重置密码 | U-CLIMAX',
+})
+
+useHead({
+  link: [{ rel: 'canonical', href: `${siteUrl}/reset-password` }],
 })
 
 const props = defineProps({

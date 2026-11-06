@@ -313,6 +313,8 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
 import { onBeforeRouteLeave } from 'vue-router'
+import { useSeoMeta, useHead } from '@unhead/vue'
+import { getWebsiteUrl } from '@/utils/api'
 import { useDecksGalleryStore } from '@/stores/decksGallery'
 import { useUIStore } from '@/stores/ui'
 import { useAuthStore } from '@/stores/auth'
@@ -328,6 +330,19 @@ import DeckGalleryIcon from '@/assets/ui/deck-gallery.svg'
 definePage({
   name: 'DecksGallery',
   meta: { group: 'toolbox' },
+})
+
+useSeoMeta({
+  title: '卡组广场 | U-CLIMAX',
+  description: '浏览 Weiβ Schwarz (WS) 玩家公开分享的卡组构筑。',
+  ogTitle: '卡组广场 | U-CLIMAX',
+  ogDescription: '浏览 Weiβ Schwarz (WS) 玩家公开分享的卡组构筑。',
+})
+
+const siteUrl = getWebsiteUrl()
+
+useHead({
+  link: [{ rel: 'canonical', href: `${siteUrl}/gallery` }],
 })
 
 const { triggerSnackbar } = useSnackbar()

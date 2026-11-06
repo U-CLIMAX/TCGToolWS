@@ -49,12 +49,27 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useSeoMeta, useHead } from '@unhead/vue'
+import { getWebsiteUrl } from '@/utils/api'
 import { useAuthStore } from '@/stores/auth'
 import { useCooldown } from '@/composables/useCooldown'
 
 definePage({
   name: 'ForgotPassword',
   meta: { requiresGuest: true },
+})
+
+const siteUrl = getWebsiteUrl()
+
+useSeoMeta({
+  title: '忘记密码 | U-CLIMAX',
+  description: '重置您的 U-CLIMAX 账户密码。',
+  robots: 'noindex, nofollow',
+  ogTitle: '忘记密码 | U-CLIMAX',
+})
+
+useHead({
+  link: [{ rel: 'canonical', href: `${siteUrl}/forgot-password` }],
 })
 
 const { isCoolingDown, cooldownText, startCooldown } = useCooldown()

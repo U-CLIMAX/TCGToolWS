@@ -221,6 +221,8 @@
 <script setup>
 import { computed } from 'vue'
 import { useDisplay, useTheme } from 'vuetify'
+import { useSeoMeta, useHead } from '@unhead/vue'
+import { getWebsiteUrl } from '@/utils/api'
 import { useUIStore } from '@/stores/ui'
 import gitcodeIcon from '@/assets/ui/gitcode.svg'
 
@@ -228,8 +230,20 @@ definePage({
   name: 'Download',
 })
 
+useSeoMeta({
+  title: '客户端下载 | U-CLIMAX',
+  description: '下载 U-CLIMAX 客户端，支持 Android APK、Windows 桌面端。',
+  ogTitle: '客户端下载 | U-CLIMAX',
+  ogDescription: '下载 U-CLIMAX 客户端，支持 Android APK、Windows 桌面端。',
+})
+
+const siteUrl = getWebsiteUrl()
+
+useHead({
+  link: [{ rel: 'canonical', href: `${siteUrl}/download` }],
+})
+
 const { smAndUp } = useDisplay()
-const theme = useTheme()
 const uiStore = useUIStore()
 
 const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)

@@ -365,6 +365,8 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useDisplay } from 'vuetify'
+import { useSeoMeta, useHead } from '@unhead/vue'
+import { getWebsiteUrl } from '@/utils/api'
 import { useIntersectionObserver } from '@/composables/useIntersectionObserver'
 
 // 使用 ?lqip 後綴，插件返回 Object：{ lqip, src, width, height }
@@ -382,12 +384,52 @@ definePage({
   alias: '/home',
 })
 
+const siteUrl = getWebsiteUrl()
+
+useSeoMeta({
+  title: '首页 | U-CLIMAX',
+  description:
+    'U-CLIMAX 专为 Weiβ Schwarz (WS/WSC/WSR) 玩家打造，提供方便的 WS卡查、简中与日版卡表查询、卡片效果过滤、卡组构筑与 DeckLog 导入分享体验。',
+  ogTitle: '首页 | U-CLIMAX',
+  ogDescription:
+    '专为 Weiβ Schwarz (WS) 玩家打造的现代化卡片浏览与卡组管理工具，提供快速检索、效果筛选与流畅的构筑体验。',
+  ogType: 'website',
+  ogUrl: siteUrl,
+})
+
+useHead({
+  link: [{ rel: 'canonical', href: siteUrl }],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebApplication',
+        'name': 'U-CLIMAX',
+        'alternateName': 'WS卡查工具',
+        'url': siteUrl,
+        'applicationCategory': 'GameApplication',
+        'operatingSystem': 'Windows, macOS, Linux, Android, iOS',
+        'description': '专为 Weiβ Schwarz 打造的现代化卡片浏览与卡组管理工具。',
+      }),
+    },
+  ],
+})
+
 const { smAndDown } = useDisplay()
 
 const isSponsorNoticeOpen = ref(false)
 
+// --- Crawler detection to bypass splash overlay for SEO crawlers ---
+const isCrawler = () => {
+  if (typeof navigator === 'undefined') return false
+  return /bot|crawler|spider|crawling|google|baidu|bing|msn|teoma|slurp|yandex/i.test(
+    navigator.userAgent || ''
+  )
+}
+
 // --- Splash Animation State ---
-const splashStatus = ref('active') // 'active', 'animating-out', 'finished'
+const splashStatus = ref(isCrawler() ? 'finished' : 'active') // 'active', 'animating-out', 'finished'
 
 const handleSplashExit = () => {
   splashStatus.value = 'animating-out'
@@ -552,8 +594,8 @@ const handleTitleClick = () => {
 }
 
 onMounted(() => {
-  // One-time splash animation logic
-  if (typeof window !== 'undefined' && sessionStorage.getItem('splashShown')) {
+  // One-time splash animation or crawler bypass logic
+  if (isCrawler() || (typeof window !== 'undefined' && sessionStorage.getItem('splashShown'))) {
     splashStatus.value = 'finished'
     startAutoScroll()
   }

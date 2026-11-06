@@ -271,6 +271,8 @@
 <script setup>
 import { ref, computed, onMounted, nextTick } from 'vue'
 import { useDisplay, useTheme } from 'vuetify'
+import { useSeoMeta, useHead } from '@unhead/vue'
+import { getWebsiteUrl } from '@/utils/api'
 import { useUIStore } from '@/stores/ui'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { writeText } from '@/utils/clipboard'
@@ -281,6 +283,19 @@ import crowdIcon from '@/assets/ui/crowd.svg'
 definePage({
   name: 'Community',
   meta: { group: 'toolbox' },
+})
+
+useSeoMeta({
+  title: '玩家社群 | U-CLIMAX',
+  description: '加入 Weiβ Schwarz 玩家社群与各地卡牌交流群，交流构筑心得。',
+  ogTitle: '玩家社群 | U-CLIMAX',
+  ogDescription: '加入 Weiβ Schwarz 玩家社群与各地卡牌交流群，交流构筑心得。',
+})
+
+const siteUrl = getWebsiteUrl()
+
+useHead({
+  link: [{ rel: 'canonical', href: `${siteUrl}/community` }],
 })
 
 const uiStore = useUIStore()

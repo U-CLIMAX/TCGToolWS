@@ -165,6 +165,8 @@
 
 <script setup>
 import { computed, ref, onMounted, nextTick } from 'vue'
+import { useSeoMeta, useHead } from '@unhead/vue'
+import { getWebsiteUrl } from '@/utils/api'
 import banListIcon from '@/assets/ui/banlist.svg'
 import { useDisplay, useTheme } from 'vuetify'
 import { deckRestrictionsLastUpdated, deckRestrictions } from '@/maps/deck-restrictions'
@@ -175,6 +177,19 @@ import { useUIStore } from '@/stores/ui'
 definePage({
   name: 'BanList',
   meta: { group: 'toolbox' },
+})
+
+useSeoMeta({
+  title: '限制卡表 | U-CLIMAX',
+  description: '最新 Weiβ Schwarz (WS/WSC/WSR) 限制卡表与选拔卡表查询。',
+  ogTitle: '限制卡表 | U-CLIMAX',
+  ogDescription: '最新 Weiβ Schwarz (WS/WSC/WSR) 限制卡表与选拔卡表查询。',
+})
+
+const siteUrl = getWebsiteUrl()
+
+useHead({
+  link: [{ rel: 'canonical', href: `${siteUrl}/banlist` }],
 })
 
 const { smAndUp } = useDisplay()

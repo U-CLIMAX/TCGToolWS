@@ -127,6 +127,8 @@
 <script setup>
 import { ref, computed, watch, nextTick, onMounted } from 'vue'
 import { useDisplay } from 'vuetify'
+import { useSeoMeta, useHead } from '@unhead/vue'
+import { getWebsiteUrl } from '@/utils/api'
 import { storeToRefs } from 'pinia'
 import { useUIStore } from '@/stores/ui'
 import { useRecentStore } from '@/stores/recent'
@@ -138,6 +140,19 @@ definePage({
   meta: {
     group: 'series',
   },
+})
+
+const siteUrl = getWebsiteUrl()
+
+useSeoMeta({
+  title: '系列一览 | U-CLIMAX',
+  description: '浏览所有收录的 Weiβ Schwarz 系列作品，包含 WS、WSC、WSR 各系列卡片数据库与卡表。',
+  ogTitle: '系列一览 | U-CLIMAX',
+  ogDescription: '浏览所有收录的 Weiβ Schwarz 系列作品，包含 WS、WSC、WSR 各系列卡片数据库与卡表。',
+})
+
+useHead({
+  link: [{ rel: 'canonical', href: `${siteUrl}/series` }],
 })
 
 const itemsPerLoad = 24

@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="/uclimax.ico" />
-    <title>U CLIMAX</title>
+    <title>U-CLIMAX</title>
     <meta
       name="keywords"
-      content="Weiβ Schwarz, Weiβ Schwarz Rose, WS, WSR, 简中卡查, 牌组构筑, 卡表, TCG, U CLIMAX, 黑白双翼"
+      content="WS卡查, Weiβ Schwarz, Weiβ Schwarz Rose, WS, WSR, 简中卡查, 牌组构筑, 卡表, TCG, U CLIMAX, 黑白双翼"
     />
     <meta
       name="description"
-      content="U CLIMAX 致力于让 Weiβ Schwarz 简中卡查更快速，让构筑与分享卡组更直观高效，为玩家带来流畅的构筑体验。"
+      content="U-CLIMAX 专为 Weiβ Schwarz (WS/WSC/WSR) 玩家打造，提供方便的 WS卡查、简中与日版卡表查询、卡片效果过滤、卡组构筑与 DeckLog 导入分享体验。"
     />
     <meta name="app-version" content="%APP_VERSION%" />
 
@@ -26,10 +26,10 @@
     <!-- Open Graph Tag -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="%VITE_WEBSITE_URL%" />
-    <meta property="og:title" content="U CLIMAX" />
+    <meta property="og:title" content="U-CLIMAX | WS卡查" />
     <meta
       property="og:description"
-      content="U CLIMAX 致力于让 Weiβ Schwarz 简中卡查更快速，让构筑与分享卡组更直观高效，为玩家带来流畅的构筑体验。"
+      content="专为 Weiβ Schwarz (WS) 玩家打造的现代化卡片浏览与卡组管理工具，提供快速检索、效果筛选与流畅的构筑体验。"
     />
     <meta property="og:image" content="%VITE_WEBSITE_URL%/og-image.png" />
     <meta property="og:image:width" content="2110" />
@@ -39,7 +39,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <div style="display: none">
+        <h1>U-CLIMAX - 专为 Weiss Schwarz 打造的现代化 WS卡查 与 卡组管理工具</h1>
+        <p>
+          提供 Weiβ Schwarz (WS) 毫秒级跨系列关键词检索、效果筛选、卡组构筑、DeckLog
+          导入与分享等功能。
+        </p>
+      </div>
+    </div>
     <script type="module" src="/src/main.js"></script>
     <script>
       if ('%MODE%' === 'production' && '%VITE_UMAMI_SCRIPT_URL%' && '%VITE_UMAMI_ID%') {

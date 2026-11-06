@@ -262,6 +262,8 @@
 import { ref, onMounted, computed, watch, nextTick } from 'vue'
 import { useDisplay } from 'vuetify'
 import { useRouter } from 'vue-router'
+import { useSeoMeta, useHead } from '@unhead/vue'
+import { getWebsiteUrl } from '@/utils/api'
 import { useDeckStore } from '@/stores/deck'
 import { useAuthStore } from '@/stores/auth'
 import { useUIStore } from '@/stores/ui'
@@ -276,6 +278,19 @@ import DeckIcon from '@/assets/ui/deck.svg'
 definePage({
   name: 'Decks',
   meta: { group: 'decks' },
+})
+
+const siteUrl = getWebsiteUrl()
+
+useSeoMeta({
+  title: '我的卡组 | U-CLIMAX',
+  description: '管理与构筑您的个人 Weiβ Schwarz 卡组。',
+  robots: 'noindex, nofollow',
+  ogTitle: '我的卡组 | U-CLIMAX',
+})
+
+useHead({
+  link: [{ rel: 'canonical', href: `${siteUrl}/decks` }],
 })
 
 const router = useRouter()

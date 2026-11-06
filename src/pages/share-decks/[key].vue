@@ -3,7 +3,10 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
+import { useSeoMeta, useHead } from '@unhead/vue'
+import { getWebsiteUrl } from '@/utils/api'
 
 definePage({
   name: 'ShareDeckDetail',
@@ -12,4 +15,15 @@ definePage({
 })
 
 const route = useRoute()
+const siteUrl = getWebsiteUrl()
+
+useSeoMeta({
+  title: `${route.params.key} | U-CLIMAX`,
+  description: '查看玩家分享的 Weiβ Schwarz 牌组。',
+  ogTitle: `${route.params.key} | U-CLIMAX`,
+})
+
+useHead({
+  link: [{ rel: 'canonical', href: computed(() => `${siteUrl}/share-decks/${route.params.key}`) }],
+})
 </script>

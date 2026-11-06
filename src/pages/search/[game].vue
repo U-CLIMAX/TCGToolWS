@@ -198,6 +198,8 @@
 import { onMounted, ref, watch, computed, watchEffect, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useDisplay, useTheme } from 'vuetify'
+import { useSeoMeta, useHead } from '@unhead/vue'
+import { getWebsiteUrl } from '@/utils/api'
 import { storeToRefs } from 'pinia'
 import { useGlobalSearchStore } from '@/stores/globalSearch'
 import { useUIStore } from '@/stores/ui'
@@ -215,6 +217,28 @@ const route = useRoute()
 const theme = useTheme()
 const { isTouch } = useDevice()
 const game = computed(() => route.params.game || 'ws')
+const gameUpper = computed(() => (game.value || 'ws').toUpperCase())
+const siteUrl = getWebsiteUrl()
+
+useSeoMeta({
+  title: computed(() => `${gameUpper.value}卡查 | U-CLIMAX`),
+  description: computed(
+    () => `U-CLIMAX ${gameUpper.value} 卡查工具，提供毫秒级全文检索、效果筛选、特征与等级过滤。`
+  ),
+  ogTitle: computed(() => `${gameUpper.value}卡查 | U-CLIMAX`),
+  ogDescription: computed(
+    () => `U-CLIMAX ${gameUpper.value} 卡查工具，提供毫秒级全文检索、效果筛选、特征与等级过滤。`
+  ),
+})
+
+useHead({
+  link: [
+    {
+      rel: 'canonical',
+      href: computed(() => `${siteUrl}/search/${game.value}`),
+    },
+  ],
+})
 const spinnerColor = computed(() => {
   return globalSearchStore.isInitialSetup ? '#82B1FF' : theme.global.current.value.colors.primary
 })
