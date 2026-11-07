@@ -46,6 +46,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     powerRange,
     showTriggerSoul,
     selectedSoul,
+    selectedSlang,
     resetFilters,
     filteredCards,
     initializeWorker,
@@ -82,6 +83,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
       powerRange.value.some((v) => v !== null),
       showTriggerSoul.value,
       selectedSoul.value.length > 0,
+      Boolean(selectedSlang.value),
     ].some(Boolean)
 
     hasActiveFilters.value = hasAnyActiveFilters
@@ -417,6 +419,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     powerRange,
     showTriggerSoul,
     selectedSoul,
+    selectedSlang,
     // Results
     searchResults,
     searchCountDetails,

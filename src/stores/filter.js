@@ -88,6 +88,7 @@ export const useFilterStore = defineStore('filter', () => {
     powerRange,
     showTriggerSoul,
     selectedSoul,
+    selectedSlang,
     resetFilters,
     filteredCards,
     terminateWorker,
@@ -314,6 +315,7 @@ export const useFilterStore = defineStore('filter', () => {
     powerRange,
     showTriggerSoul,
     selectedSoul,
+    selectedSlang,
     // Computed
     filteredCards,
     // Actions
