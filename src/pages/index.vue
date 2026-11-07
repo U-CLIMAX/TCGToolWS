@@ -277,7 +277,7 @@
             Bushiroad 并无任何官方合作或授权关系。
           </div>
           <div class="mt-1">
-            © {{ new Date().getFullYear() }} U-CLIMAX. All rights reserved.&nbsp;|&nbsp;
+            © 2025-{{ new Date().getFullYear() }} U-CLIMAX. All rights reserved.&nbsp;|&nbsp;
             <a href="mailto:issues@uclimax.cn" class="text-grey-darken-1 text-decoration-underline">
               问题反馈
             </a>
