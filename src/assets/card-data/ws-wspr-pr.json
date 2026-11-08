@@ -602,5 +602,81 @@
         "rarity": "PR"
       }
     ]
+  },
+  "WS/WSPR-P32": {
+    "name": "レッツ！ヴァイスシュヴァルツ!! 各務華梨",
+    "product_name": "PRカード【WSサイド】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 3000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["声優", "カードゲーム"],
+    "color": "黄色",
+    "effect": "",
+    "all_cards": [
+      {
+        "id": "WS/WSPR-P32",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "WS/WSPR-P33": {
+    "name": "レッツ！ヴァイスシュヴァルツ!! 佐々木 未来",
+    "product_name": "PRカード【WSサイド】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 3000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["声優", "カードゲーム"],
+    "color": "绿色",
+    "effect": "",
+    "all_cards": [
+      {
+        "id": "WS/WSPR-P33",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "WS/WSPR-P34": {
+    "name": "キャンセルです‼",
+    "product_name": "PRカード【WSサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "WS/WSPR-P34",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "WS/WSPR-P35": {
+    "name": "キャンセルなのだ‼",
+    "product_name": "PRカード【WSサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/treasure.webp\">:此卡被触发时，你将此卡返回手牌。你可以将自己卡组顶1张卡放置到库存区）",
+    "all_cards": [
+      {
+        "id": "WS/WSPR-P35",
+        "rarity": "PR"
+      }
+    ]
   }
 }

@@ -1404,5 +1404,100 @@
         "rarity": "PR"
       }
     ]
+  },
+  "PJS/S91-P70": {
+    "name": "約束のPasserelle",
+    "product_name": "PRカード【Sサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/draw.webp\">:此卡被触发时，你可以抽1张卡）",
+    "all_cards": [
+      {
+        "id": "PJS/S91-P70",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "PJS/S91-P71": {
+    "name": "Great Yell for Dreamers！",
+    "product_name": "PRカード【Sサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "all_cards": [
+      {
+        "id": "PJS/S91-P71",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "PJS/S91-P72": {
+    "name": "Into the New Light",
+    "product_name": "PRカード【Sサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/draw.webp\">:此卡被触发时，你可以抽1张卡）",
+    "all_cards": [
+      {
+        "id": "PJS/S91-P72",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "PJS/S91-P73": {
+    "name": "君の隣、君と見る明日",
+    "product_name": "PRカード【Sサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "PJS/S91-P73",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "PJS/S91-P74": {
+    "name": "Again And Again Ambition！",
+    "product_name": "PRカード【Sサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "PJS/S91-P74",
+        "rarity": "PR"
+      }
+    ]
   }
 }

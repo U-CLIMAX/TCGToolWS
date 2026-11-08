@@ -13,6 +13,7 @@ const ICON_MAP = {
   '【时计区】': 'alarm',
   '【LINK】': 'link',
   '【replay】': 'replay',
+  '【game1】': 'game1',
 }
 const ICON_REGEX = new RegExp(Object.keys(ICON_MAP).join('|'), 'g')
 
@@ -33,23 +34,26 @@ const escapeRegExp = (string) => {
 
 const extractReplayName = (prefix, replayContent) => {
   const cleanPrefix = prefix.replace(/<[^>]+>/g, '')
-  const cleanReplayContent = replayContent.replace(/<[^>]+>/g, '').trim()
+  const cleanContent = replayContent
+    .replace(/<[^>]+>/g, '')
+    .trim()
+    .replace(/^(?:\s*【[^】]+】)*\s*/, '')
 
-  const tokens = cleanReplayContent.split(/\s+/)
-  if (tokens.length === 0 || !tokens[0]) return null
+  const tokens = cleanContent.split(/\s+/)
+  if (!tokens[0] || !cleanPrefix.includes(tokens[0])) return null
 
-  let bestCandidate = tokens[0]
-  let currentCandidate = tokens[0]
+  let best = tokens[0]
+  let cur = tokens[0]
 
   for (let i = 1; i < tokens.length; i++) {
-    currentCandidate += ' ' + tokens[i]
-    if (cleanPrefix.includes(currentCandidate)) {
-      bestCandidate = currentCandidate
+    cur += ' ' + tokens[i]
+    if (cleanPrefix.includes(cur)) {
+      best = cur
     } else {
       break
     }
   }
-  return bestCandidate
+  return best
 }
 
 /**
@@ -65,9 +69,8 @@ export const formatEffectToHtml = (rawEffect, cardW = 400) => {
   const matchReplay = effect.match(/(<br\s*\/?>)【replay】/i)
 
   if (matchReplay) {
-    const fullTag = matchReplay[0]
     const brTag = matchReplay[1]
-    const replayIndex = effect.indexOf(fullTag)
+    const replayIndex = matchReplay.index
 
     let prefix = effect.substring(0, replayIndex)
     const replayBlockRaw = effect.substring(replayIndex + brTag.length) // starts with 【replay】
@@ -81,43 +84,31 @@ export const formatEffectToHtml = (rawEffect, cardW = 400) => {
     for (const segment of segments) {
       // Check if this segment starts with <br> tag
       const brMatch = segment.match(/^(<br\s*\/?>)/i)
-      let brPrefix = ''
-      let cleanSeg = segment
+      const brPrefix = brMatch ? brMatch[1] : ''
+      const cleanSeg = brMatch ? segment.substring(brPrefix.length) : segment
 
-      if (brMatch) {
-        brPrefix = brMatch[1]
-        cleanSeg = segment.substring(brPrefix.length)
-      }
-
-      // cleanSeg starts with 【replay】
-      const postTagText = cleanSeg.substring('【replay】'.length)
+      const postTagText = cleanSeg.replace(/^【replay】/i, '')
       const replayName = extractReplayName(prefix, postTagText)
 
       if (replayName) {
         replayNames.push(replayName)
         const escapedName = escapeRegExp(replayName)
         const stripRegex = new RegExp(
-          `<font\\s+color=["\\\\']*red["\\\\']*>\\s*${escapedName}\\s*</font>`,
+          `<font\\s+color=["']?red["']?>\\s*${escapedName}\\s*</font>`,
           'gi'
         )
-
-        // Strip font wrapper inside the segment first
         const strippedSeg = cleanSeg.replace(stripRegex, replayName)
+        const match = strippedSeg.match(
+          new RegExp(`^(【replay】(?:\\s*【[^】]+】)*\\s*)(${escapedName})([\\s\\S]*)`, 'i')
+        )
 
-        // Split strippedSeg into header (【replay】 + name) and body
-        const headerRegex = new RegExp(`^(${escapeRegExp('【replay】')}\\s*${escapedName})`, 'i')
-        const headerMatch = strippedSeg.match(headerRegex)
-
-        if (headerMatch) {
-          const headerRaw = headerMatch[1]
-          const bodyRaw = strippedSeg.substring(headerRaw.length)
-
-          let header = replaceIcons(headerRaw)
-          const wrapRegex = new RegExp(`${escapedName}(?![^<>]*>)`, 'g')
-          header = header.replace(wrapRegex, `<font color="red">${replayName}</font>`)
-
-          const body = replaceIcons(bodyRaw)
-          processedSegments.push(brPrefix + header + body)
+        if (match) {
+          processedSegments.push(
+            brPrefix +
+              replaceIcons(match[1]) +
+              `<font color="red">${replayName}</font>` +
+              replaceIcons(match[3])
+          )
         } else {
           processedSegments.push(brPrefix + replaceIcons(cleanSeg))
         }
@@ -127,10 +118,11 @@ export const formatEffectToHtml = (rawEffect, cardW = 400) => {
     }
 
     // Now process the prefix: format all occurrences of the found replayNames in red
-    for (const replayName of replayNames) {
+    const uniqueNames = Array.from(new Set(replayNames)).sort((a, b) => b.length - a.length)
+    for (const replayName of uniqueNames) {
       const escapedName = escapeRegExp(replayName)
       const stripRegex = new RegExp(
-        `<font\\s+color=["\\\\']*red["\\\\']*>\\s*${escapedName}\\s*</font>`,
+        `<font\\s+color=["']?red["']?>\\s*${escapedName}\\s*</font>`,
         'gi'
       )
       prefix = prefix.replace(stripRegex, replayName)

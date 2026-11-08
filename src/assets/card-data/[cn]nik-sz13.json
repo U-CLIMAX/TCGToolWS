@@ -1,0 +1,2762 @@
+{
+  "NIK/SZ13-001": {
+    "name": "伊莱格：BOOM与惊吓",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["NIKKE", "电力冲击"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】 你的高潮阶段开始之际，你选择1张自己的持有《NIKKE》特征的角色卡，该回合中，力量＋1500。<br>【自】【CX联动】 「BOOM！THE GHOST！」被放置入你的高潮区时，若存在大于等于3张其他的你的持有《NIKKE》特征的角色卡，则你选择1张自己的角色卡，该回合中，赋予其以下能力。『【自】 此卡的战斗对手【倒置】时，你检视自己卡组顶的1张卡，放置入卡组顶或休息室，选择至多1张自己休息室的角色卡，返回手牌。』",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-001",
+        "rarity": "RR"
+      },
+      {
+        "id": "NIK/SZ13-001S",
+        "rarity": "SR⁂"
+      },
+      {
+        "id": "NIK/SZ13-001SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "NIK/SZ13-001SEC",
+        "rarity": "SEC"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-002": {
+    "name": "“苦行”娜由塔",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 7500,
+    "cost": 2,
+    "trait": ["NIKKE", "开拓者部队"],
+    "color": "黄色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你选择至多1张自己计时区的角色卡，放置入回忆区，该回合中，此卡的力量＋4500。<br>【自】【CX联动】 记忆 此卡攻击时，若高潮区存在「GODDESS FALL」，且你的手牌小于等于5张，则你从以下2个效果中选择1个执行。『给予对方1点伤害。』『［② 将3张手牌放置入休息室］ 你可以支付费用。若如此做，则你将所有自己回忆区的「二千个分身 娜由塔」作为标识物按任意顺序表侧表示放置于此卡下方，给予对方Ｘ次2点伤害。若此卡下方的标识物张数小于等于3则Ｘ为1，若为4张或5张则为2，若大于等于6张则为3。』（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-002",
+        "rarity": "RR"
+      },
+      {
+        "id": "NIK/SZ13-002S",
+        "rarity": "SR⁂"
+      },
+      {
+        "id": "NIK/SZ13-002SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-003": {
+    "name": "守护你的希望 拉普拉斯",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["NIKKE", "墨提斯部队"],
+    "color": "黄色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你可以执行以下效果。『对方将所有自己库存区的卡，返回卡组，将卡组洗切，从自己卡组顶将相同张数的卡放置入库存区，你抽至多1张卡。若抽了1张卡，则你选择1张自己的手牌，放置入休息室。』<br>【自】 此卡被从手牌放置入舞台时，若存在大于等于4张其他的你的持有《NIKKE》特征的角色卡，则你可以选择1张自己休息室的持有《NIKKE》特征的角色卡，放置入库存区。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-003",
+        "rarity": "RR"
+      },
+      {
+        "id": "NIK/SZ13-003S",
+        "rarity": "SR⁂"
+      },
+      {
+        "id": "NIK/SZ13-003S",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-004": {
+    "name": "娜嘉 - 最后的少女时代",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["NIKKE", "耀眼珍珠"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若存在其他的你的持有《NIKKE》特征的角色卡，则此卡的力量＋3000。<br>【自】 此卡【倒置】时，若对方的高潮区存在高潮卡，则你公开自己卡组顶的1张卡。若该卡的等级大于等于1，则你可以将此卡返回手牌或放置入库存区。（高潮卡视作等级为0的卡片。公开的卡片放回原处）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-004",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/SZ13-004S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/SZ13-004SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-005": {
+    "name": "马斯特：浪漫的女仆",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["NIKKE", "宙斯盾部队"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】 你的高潮卡被放置入高潮区时，你选择1张自己的角色卡，该回合中，魂＋1。<br>【自】【CX联动】 「ROMANTIC VALENTINE」被放置入你的高潮区时，若存在大于等于2张其他的你的持有《NIKKE》特征的角色卡，则你选择1张其他的自己的角色卡，该回合中，赋予其以下能力。『【自】【一回合1次】 此卡给予的伤害被取消时，你检视自己卡组顶的至多4张卡，选择至多2张持有《NIKKE》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室。』",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-005",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/SZ13-005S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/SZ13-005SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-006": {
+    "name": "蒂亚 - 甜美主厨",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["NIKKE", "耀眼珍珠"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，此卡的力量＋5000。<br>【自】［① 将1张手牌的持有《NIKKE》特征的角色卡放置入休息室，【横置】1张其他的你的处于【竖置】状态的持有《NIKKE》特征的角色卡］ 此卡被从手牌放置入舞台的回合中，此卡的战斗对手【倒置】时，若你的手牌小于等于5张，则你可以支付费用。若如此做，则你检视自己的卡组并选择至多2张持有《NIKKE》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-006",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/SZ13-006S",
+        "rarity": "SR ⁑ "
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-007": {
+    "name": "赤红之力的解放 拉毗",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 0,
+    "trait": ["NIKKE", "反击部队"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，此卡的力量＋4000。<br>【自】【CX联动】［①］ 此卡的战斗对手【倒置】时，若你的高潮区存在「CODENAME - RED HOOD -」，且存在其他的你的持有《NIKKE》特征的角色卡，则你可以支付费用。若如此做，则你检视自己的卡组并选择至多2张持有《NIKKE》特征的角色卡或「染上色彩的世界」，将其公开，将1张加入手牌，其余的卡片放置入库存区下方，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-007",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/SZ13-007S",
+        "rarity": "SR ⁑ "
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-008": {
+    "name": "安克：天真的女仆",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["NIKKE", "宙斯盾部队"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的等级小于等于0的持有《NIKKE》特征的角色卡，放置入舞台的任意格子。<br>【自】 你的高潮卡被放置入高潮区时，你选择至多2张自己的持有《NIKKE》特征的角色卡，该回合中，力量＋1500。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-008",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/SZ13-008S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/SZ13-008SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-009": {
+    "name": "“宙斯盾加农炮”海伦",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2000,
+    "cost": 1,
+    "trait": ["NIKKE", "宙斯盾部队"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 若存在你的「安克：天真的女仆」与「马斯特：浪漫的女仆」，则你手牌中的此卡的等级－1。<br>【永】 若前列中央的格子中存在此卡，则此卡的力量＋8000，魂＋1。<br>【自】【一回合1次】 此卡给予的伤害被取消时，若你的高潮区存在高潮卡，则你可以选择1张对方后列的等级小于等于2的角色卡，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-009",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/SZ13-009S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/SZ13-009SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-010": {
+    "name": "毒蛇 - 爱情光芒",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10500,
+    "cost": 2,
+    "trait": ["NIKKE", "外来者部队"],
+    "color": "黄色",
+    "soul": 2,
+    "effect": "【永】 若休息室中存在此卡，且你的等级大于等于3，且所有你的角色卡均持有《NIKKE》特征，则此卡获得以下能力。『【起】［① 将2张手牌放置入休息室］ 你将休息室的此卡放置入舞台的不存在角色卡的格子。』<br>【自】［①］ 此卡被从手牌放置入舞台时或因「毒蛇 - 爱情光芒」的【起】的效果被放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的高潮卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-010",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/SZ13-010S",
+        "rarity": "SR ⁑ "
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-011": {
+    "name": "BOOM安装 尼恩",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["NIKKE", "反击部队"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】【CX联动】［将1张手牌的「CODENAME - RED HOOD -」或「FOOTSTEP, WALK, RUN」放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的「CODENAME - RED HOOD -」或「FOOTSTEP, WALK, RUN」，返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-011",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/SZ13-011S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-012": {
+    "name": "二千个分身 娜由塔",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["NIKKE", "开拓者部队"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 卡组中可以放入与此卡同卡名的卡片任意张数。<br>【永】 记忆 你的回合中，每存在1张你回忆区的「二千个分身 娜由塔」，此卡的力量＋2000。<br>【自】［① 将1张手牌的持有《NIKKE》特征的角色卡放置入休息室，将此卡放置入回忆区］ 此卡【倒置】时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多1张持有《NIKKE》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-012",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/SZ13-012S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-013": {
+    "name": "外缘区的毒蛇 毒蛇",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["NIKKE", "外来者部队"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你公开自己卡组顶的1张卡。若该卡为持有《NIKKE》特征的角色卡，则你可以选择1张对方前列的等级小于等于0的角色卡，放置入休息室。（公开的卡片放回原处）<br>【自】［① 将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时或被从舞台放置入休息室时，你可以支付费用。若如此做，则你选择1张自己休息室的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-013",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/SZ13-013S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-014": {
+    "name": "T.T.STAR时代 阿妮斯",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 500,
+    "cost": 1,
+    "trait": ["NIKKE", "反击部队"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】［② 将1张手牌中的持有《NIKKE》特征的角色卡放置入休息室］ 你使用此卡的『助太刀』时，若存在你的「拉毗：小红帽」，则你可以支付费用。若如此做，则你选择1张对方的角色卡，该回合中，魂－3。<br>【起】【反击】 助太刀2500 等级2 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2500）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-014",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/SZ13-014S",
+        "rarity": "SR"
+      },
+      {
+        "id": "NIK/SZ13-014SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-015": {
+    "name": "“怀中的秘密”索拉",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2000,
+    "cost": 1,
+    "trait": ["NIKKE", "超地平线"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。<br>【起】［③ 【横置】此卡］ 你选择至多2张自己计时区的持有《NIKKE》特征的角色卡，返回卡组，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-015",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/SZ13-015S",
+        "rarity": "SR"
+      },
+      {
+        "id": "NIK/SZ13-015SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-016": {
+    "name": "麦斯威尔 - 机械白",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["NIKKE", "墨提斯部队"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】 羁绊／「守护你的希望 拉普拉斯」「最强反派 德雷克」 ［将1张手牌放置入休息室］ （此卡，被从手牌放置入舞台或因被使用而放置入舞台时，你可以支付费用。若如此做，则你选择1张自己的休息室的「守护你的希望 拉普拉斯」或「最强反派 德雷克」，返回手牌）<br>【起】［将此卡放置入计时区］ 你检视自己卡组顶的至多3张卡，选择至多1张持有《NIKKE》特征的角色卡或事件卡展示给对手，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-016",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/SZ13-016S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-017": {
+    "name": "“巨型T.Rony”特罗尼",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["NIKKE", "电力冲击"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 若你的高潮区存在触发标记为<img src=\"/effect-icons/choice.webp\">的高潮卡，则存在于所有区域的此卡的触发标记获得<img src=\"/effect-icons/choice.webp\">。<br>【自】 若休息室中存在此卡，则你的第1回合开始之际，你可以将此卡放置入库存区。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-017",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/SZ13-017S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-018": {
+    "name": "“弱者的生存法”莫莉",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["NIKKE", "孵化器部队"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】【CX联动】 此卡被从手牌放置入舞台时，你可以执行以下行动。『你检视自己的卡组并选择至多1张「UNBREAKABLE SPHERE」或「OLD TALES」公开，选择至多1张自己手牌的「UNBREAKABLE SPHERE」或「OLD TALES」并公开，将那些高潮卡互换位置，将卡组洗切。』",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-018",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/SZ13-018S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-019": {
+    "name": "最强反派 德雷克",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 500,
+    "cost": 0,
+    "trait": ["NIKKE", "墨提斯部队"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】 此卡攻击时，该回合中，此卡的力量＋Ｘ。Ｘ为对方的角色卡的张数×2000。<br>【自】 此卡或此卡的战斗对手【倒置】时，该回合中，该角色卡无法使用『【自】 再演』。（规则赋予的『【自】 再演 ［③］』也无法使用）<br>【自】 此卡被从舞台放置入休息室时，你将自己卡组顶的2张卡，放置入休息室。若那些卡片中存在高潮卡，则你可以将此卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-019",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/SZ13-019S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-020": {
+    "name": "丽塔 - 菲什加德",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["NIKKE", "非凡工具部队"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】［① 将1张你的舞台的角色卡放置入休息室］ 你使用此卡的『助太刀』时，你可以支付费用。若如此做，则给予对方1点伤害。（会发生伤害取消）<br>【起】【反击】 助太刀2500 等级2 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2500）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-020",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/SZ13-020S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-021": {
+    "name": "桑迪 - 海洋维修",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 3000,
+    "cost": 1,
+    "trait": ["NIKKE", "非凡工具部队"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 此卡的战斗中，所有玩家无法从手牌使用『助太刀』。<br>【永】 你的回合中，此卡的力量＋10000。<br>【自】 你的回合中，此卡的战斗对手为等级大于等于2的角色卡且【倒置】时，你公开自己卡组顶的1张卡。若该卡为持有《NIKKE》特征的角色卡，则你可以选择1张对方的角色卡，返回手牌。（公开的卡片放回原处）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-021",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/SZ13-021S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-022": {
+    "name": "米西利斯工业CEO 舒恩",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 0,
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "［将1张你的舞台的角色卡放置入休息室］ 你可以支付费用。若如此做，则你检视自己卡组顶的至多4张卡，选择至多2张等级大于等于1的卡片展示给对手，将1张加入手牌，将1张放置入库存区，其余的卡片放置入休息室，选择1张自己的角色卡，该回合中，力量＋1000。（高潮卡视作等级为0的卡片）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-022",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/SZ13-022S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-023": {
+    "name": "SUPER HERO",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "你检视自己的卡组并选择至多2张持有《NIKKE》特征的角色卡展示给对手，加入手牌，选择1张自己的手牌，放置入休息室，将卡组洗切。<br>［② 你分别选择1张手牌的「守护你的希望 拉普拉斯」与1张「麦斯威尔 - 机械白」与1张「最强反派 德雷克」放置入休息室］ 你可以支付费用。若如此做，则对方将自己卡组顶的12张卡，放置入休息室，你给予对方4点伤害。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-023",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/SZ13-023S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-024": {
+    "name": "BOOM！THE GHOST！",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你可以选择1张自己休息室的触发标记中有<img src=\"/effect-icons/soul.webp\">的角色卡，返回手牌或放置入库存区）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-024",
+        "rarity": "CR"
+      },
+      {
+        "id": "NIK/SZ13-024R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-025": {
+    "name": "GODDESS FALL",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你可以选择1张自己休息室的触发标记中有<img src=\"/effect-icons/soul.webp\">的角色卡，返回手牌或放置入库存区）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-025",
+        "rarity": "CR"
+      },
+      {
+        "id": "NIK/SZ13-025R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-026": {
+    "name": "CODENAME - RED HOOD -",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/shot.webp\">：此回合中，触发此卡的攻击角色下次给予的伤害被取消时，给予对方1点伤害）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-026",
+        "rarity": "CR"
+      },
+      {
+        "id": "NIK/SZ13-026R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-027": {
+    "name": "ROMANTIC VALENTINE",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你可以选择1张自己休息室的触发标记中有<img src=\"/effect-icons/soul.webp\">的角色卡，返回手牌或放置入库存区）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-027",
+        "rarity": "CR"
+      },
+      {
+        "id": "NIK/SZ13-027R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-028": {
+    "name": "“撰写者的剧透”格拉维",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["NIKKE", "远古故事"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 若所有你的角色卡均持有《NIKKE》特征，则此卡的力量＋3000，此卡获得以下能力。『【自】 此卡攻击时，你检视自己卡组顶的1张卡，放置入卡组顶或卡组底或休息室。』<br>【自】 此卡【倒置】时，若所有你的角色卡均持有《NIKKE》特征，则你公开自己卡组顶的1张卡。若该卡的等级大于等于1，则你可以将此卡返回手牌。（高潮卡视作等级为0的卡片。公开的卡片放回原处）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-028",
+        "rarity": "RR"
+      },
+      {
+        "id": "NIK/SZ13-028S",
+        "rarity": "SR⁂"
+      },
+      {
+        "id": "NIK/SZ13-028SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-029": {
+    "name": "“解决目标”D：杀手妻子",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["NIKKE", "危险席部队"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】［① 将你卡组顶的1张卡放置入计时区］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多1张等级小于等于1的角色卡展示给对手，加入手牌，将卡组洗切。<br>【自】 此卡攻击时，你选择1张其他的自己的持有《NIKKE》特征的角色卡，直到下一个对方回合的结束之际为止，力量＋500，赋予其『【自】 再演 ［将1张手牌的角色卡放置入休息室］』。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-029",
+        "rarity": "RR"
+      },
+      {
+        "id": "NIK/SZ13-029S",
+        "rarity": "SR⁂"
+      },
+      {
+        "id": "NIK/SZ13-029SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "NIK/SZ13-029SEC",
+        "rarity": "SEC"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-030": {
+    "name": "“水晶鞋·完全连接”灰姑娘",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["NIKKE", "远古故事"],
+    "color": "绿色",
+    "soul": 2,
+    "effect": "【永】 你的回合中，此卡的力量＋2000。<br>【自】【CX联动】 此卡攻击时，若高潮区存在「OLD TALES」，则你选择至多2张自己休息室的角色卡或「纯洁的银白」，将1张返回手牌，其余的卡片放置入库存区，直到下一个对方回合的结束之际为止，此卡获得以下能力。『【自】 此卡正面的角色卡攻击时，你检视自己卡组顶至多2张卡，选择至多1张卡，作为标识物里侧表示放置于此卡下方，其余的卡片分别按任意顺序放置入卡组顶或休息室。』",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-030",
+        "rarity": "RR"
+      },
+      {
+        "id": "NIK/SZ13-030S",
+        "rarity": "SR⁂"
+      },
+      {
+        "id": "NIK/SZ13-030SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "NIK/SZ13-030SEC",
+        "rarity": "SEC"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-031": {
+    "name": "“超载公式”茨瓦伊",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["NIKKE", "校园社团"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时或攻击时，你选择1张自己的持有《NIKKE》特征的角色卡，该回合中，力量＋1500。<br>【自】［① 将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你将所有自己休息室的卡片，返回卡组，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-031",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/SZ13-031S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/SZ13-031SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-032": {
+    "name": "吉萝婷：寒冬杀手",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["NIKKE", "外界部队"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 经验 每存在1张你的等级区的持有《NIKKE》特征的角色卡，此卡的力量＋2500。<br>【自】【CX联动】［将1张手牌放置入休息室，将1张你的高潮区的「ICE DRAGON SAGA」放置入休息室］ 此卡的战斗对手【倒置】时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多2张持有《NIKKE》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-032",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/SZ13-032S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/SZ13-032SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-033": {
+    "name": "背负棺材者 格拉维",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 3500,
+    "cost": 1,
+    "trait": ["NIKKE", "远古故事"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。<br>【自】［①］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己的休息室的「“水晶鞋·完全连接”灰姑娘」，作为标识物表侧表示放置入此卡下方。<br>【自】【CX联动】 你的高潮阶段中，「OLD TALES」被放置入高潮区时，若此卡处于【竖置】状态，则你可以执行以下行动。『你选择1张自己的手牌中或此卡下方的标识物中的「“水晶鞋·完全连接”灰姑娘」，放置入舞台的任意格子，将此卡放置入休息室。』",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-033",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/SZ13-033S",
+        "rarity": "SR ⁑ "
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-034": {
+    "name": "米哈拉：羁绊锁链",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9000,
+    "cost": 2,
+    "trait": ["NIKKE", "警备卫士部队"],
+    "color": "绿色",
+    "soul": 2,
+    "effect": "【永】 若存在对方的等级大于等于3的角色卡，则你手牌中的此卡的等级－1。<br>【自】 此卡被从手牌放置入舞台时，你公开自己卡组顶的1张卡。若该卡为持有《NIKKE》特征的角色卡或事件卡，则你可以将对方卡组顶的1张卡，放置入休息室。若如此做，则你选择1张对方的前列的等级小于等于3的角色卡，放置于卡组顶。（公开的卡片放回原处）<br>【自】 此卡直接攻击时，你可以选择1张自己休息室的持有《NIKKE》特征的角色卡，放置入库存区。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-034",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/SZ13-034S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/SZ13-034SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-035": {
+    "name": "“全域羽翼攻击”爱因",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["NIKKE", "校园社团"],
+    "color": "绿色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你从以下2个效果中选择1个执行。『你可以将自己的计时区上方的1张卡片，放置入休息室。』『对方将所有自己库存区的卡，返回卡组，将卡组洗切，从自己的卡组顶将相同张数的卡放置入库存区，你选择1张其他的自己的角色卡，该回合中，魂＋1。』",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-035",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/SZ13-035S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/SZ13-035SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-036": {
+    "name": "米尔克：花漾兔女郎",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["NIKKE", "咖啡厅甜心部队"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌放置入休息室］ 你的「泰特拉CEO 马士丁」或触发标记为<img src=\"/effect-icons/treasure.webp\">的高潮卡触发时，你可以支付费用。若如此做，则你检视自己卡组顶至多2张卡，将其按任意顺序放置于卡组顶，抽至多1张卡。<br>【起】［【横置】此卡］ 你选择1张自己的持有《NIKKE》特征的角色卡，该回合中，力量＋1000。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-036",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/SZ13-036S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-037": {
+    "name": "再次开始的物语 灰姑娘",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["NIKKE", "远古故事"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的等级小于等于Ｘ的持有《NIKKE》特征的角色卡，返回手牌。Ｘ为你休息室中的「背负棺材者 格拉维」的张数。<br>【起】［② 将此卡放置入休息室］ 若你的等级大于等于3，则你选择1张自己的休息室的「“水晶鞋·完全连接”灰姑娘」，放置入此卡曾经存在的格子。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-037",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/SZ13-037S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-038": {
+    "name": "梅登：冰玫瑰",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["NIKKE", "外界部队"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 所有其他的你的「吉萝婷：寒冬杀手」，赋予其以下能力。『【自】 此卡攻击时，若此卡正面的角色卡的等级大于等于2，则该回合中，此卡的力量＋3000。』<br>【自】 你的高潮阶段开始之际，你选择1张自己的持有《NIKKE》特征的角色卡，该回合中，力量＋2000。<br>【起】［将1张手牌放置入休息室，【横置】此卡］ 你选择1张自己的休息室的「吉萝婷：寒冬杀手」，返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-038",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/SZ13-038S",
+        "rarity": "SR"
+      },
+      {
+        "id": "NIK/SZ13-038SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-039": {
+    "name": "玛律恰那 - 学生时代",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["NIKKE", "学术界"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【起】［【横置】此卡］ 你检视自己卡组顶的1张卡，放置入卡组顶或卡组底或休息室，选择1张自己的角色卡，该回合中，力量＋2000。<br>【起】［将1张手牌放置入休息室，将此卡放置入休息室］ 你选择2张对方的角色卡，分别【竖置】并互换位置。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-039",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/SZ13-039S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-040": {
+    "name": "露菲 - 奢侈兔",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["NIKKE", "达兰特部队"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】 此卡攻击时，若存在其他的你的持有《NIKKE》特征的角色卡，则该回合中，此卡的力量＋3000。<br>【自】［将2张手牌放置入休息室］ 此卡的战斗对手【倒置】时，若你的高潮区存在触发标记为<img src=\"/effect-icons/treasure.webp\">的高潮卡，则你可以支付费用。若如此做，则你选择至多2张自己休息室的持有《NIKKE》特征的角色卡，返回手牌，抽至多1张卡。若抽了1张卡，则你选择1张自己的手牌，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-040",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/SZ13-040S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-041": {
+    "name": "“母性之森”特蕾娜",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["NIKKE", "植物园"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的角色卡，力量＋1000。<br>【自】［将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的等级大于等于2的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-041",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/SZ13-041S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-042": {
+    "name": "尤妮 - 可爱粉色",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 3000,
+    "cost": 1,
+    "trait": ["NIKKE", "警备卫士部队"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌放置入休息室，将1张你的舞台的角色卡放置入休息室］ 你使用此卡的『助太刀』时，你可以支付费用。若如此做，则你选择1张对方的等级高于对方的等级的角色卡，返回手牌。<br>【起】【反击】 助太刀2500 等级2 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2500）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-042",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/SZ13-042S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-043": {
+    "name": "佩珀 - 海洋维他命",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["NIKKE", "六翼天使部队"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】 此卡【倒置】时，若此卡的战斗对手的等级小于等于0，则你可以将对方计时区上方的1张卡，放置入休息室。若如此做，则你将该角色卡放置入计时区。<br>【起】［① 将此卡放置入休息室］ 你检视自己卡组顶的至多5张卡，选择至多1张等级大于等于1的卡片展示给对手，加入手牌，其余的卡片放置入休息室。（高潮卡视作等级为0的卡片）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-043",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/SZ13-043S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-044": {
+    "name": "“正义的手段”K",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["NIKKE", "危险席部队"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】 此卡攻击时，若你的手牌大于等于4张，则该回合中，此卡的力量＋3000。<br>【自】 此卡的战斗对手【倒置】时，你按任意顺序分别执行以下2个效果各1次。『可以将对方计时区上方的1张卡，放置入休息室。若如此做，则你将该战斗对手放置入计时区。』『选择1张自己休息室的持有《NIKKE》特征的角色卡，返回手牌，选择1张自己的手牌，放置入休息室。』",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-044",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/SZ13-044S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-045": {
+    "name": "“游戏荷官”露姬",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["NIKKE", "777部队"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你可以分别选择1张自己等级区的卡片与1张休息室的卡片，互换位置。<br>【起】［将1张手牌放置入休息室，将此卡放置入休息室］ 你选择1张自己休息室的持有《NIKKE》特征的角色卡或「泰特拉CEO 马士丁」，返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-045",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/SZ13-045S",
+        "rarity": "SR"
+      },
+      {
+        "id": "NIK/SZ13-045SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-046": {
+    "name": "梅里 - 医疗兔",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["NIKKE", "六翼天使部队"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若存在其他的你的持有《NIKKE》特征的角色卡，则此卡的力量＋3000。<br>【自】 此卡的战斗对手【倒置】时，若你的高潮区存在触发标记为<img src=\"/effect-icons/treasure.webp\">的高潮卡，则你选择1张自己休息室的等级小于等于0的角色卡，以【横置】状态放置入舞台的任意格子。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-046",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/SZ13-046S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-047": {
+    "name": "朵拉 - 黑玫瑰",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "trait": ["NIKKE", "达兰特部队"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你选择1张自己的持有《NIKKE》特征的角色卡，该回合中，力量＋1500。<br>【自】 你的高潮阶段开始之际，若前列存在此卡，则你选择至多2张自己的角色卡，该回合中，赋予其以下能力。『【自】 此卡攻击时，该攻击中，你在触发步骤进行2次触发判定。若进行了2次，则你将1张自己的库存区上方的卡片，放置入休息室。』",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-047",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/SZ13-047S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-048": {
+    "name": "“秘密花园”芙罗拉",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["NIKKE", "植物园"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】 此卡攻击时，你选择1张其他的自己的持有《NIKKE》特征的角色卡，该回合中，力量＋Ｘ。Ｘ为其他的你的持有《NIKKE》特征的角色卡的张数×500。<br>【自】 此卡攻击时，所有你的角色卡，该回合中，赋予其以下能力。『【自】［①］ 此卡的触发判定中判出高潮卡时，你可以支付费用。若如此做，则你将自己卡组顶的1张卡，放置入库存区，选择1张自己的角色卡，该回合中，力量＋2000。』",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-048",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/SZ13-048S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-049": {
+    "name": "吉尔提 - 多疑浪潮",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 1500,
+    "cost": 1,
+    "trait": ["NIKKE", "真善美部队"],
+    "color": "绿色",
+    "soul": 2,
+    "effect": "【自】［将1张手牌中持有《NIKKE》特征的角色卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择2张对方前列的等级小于等于2的角色卡。若选择了2张，则你从以下2个效果中选择1个执行。『你选择1张那些角色卡中力量最低的角色卡，放置入休息室。』『若所有那些角色卡的力量相同，则你将所有那些角色卡，放置入休息室。』",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-049",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/SZ13-049S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-050": {
+    "name": "杨 - 黎明超市",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 1,
+    "trait": ["NIKKE", "达兰特部队"],
+    "color": "绿色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，该回合中，此卡的力量＋Ｘ。Ｘ为对方的角色卡的张数×1000。<br>【自】 此卡的战斗对手为等级大于等于2的角色卡且【倒置】时，若你的高潮区存在高潮卡，则你可以选择1张自己的计时区的持有《NIKKE》特征的角色卡，放置入卡组底。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-050",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/SZ13-050S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-051": {
+    "name": "纯洁的银白",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 0,
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【CX联动】 若你的等级小于等于2，则你选择1张自己休息室的等级小于等于Ｘ的持有《NIKKE》特征的角色卡，返回手牌。Ｘ为你休息室中的「OLD TALES」的张数。<br>［②］ 若你的等级大于等于3，且存在你的持有标识物的「“水晶鞋·完全连接”灰姑娘」，则你可以支付费用。若如此做，则你给予对方2点伤害或4点伤害。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-051",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/SZ13-051S",
+        "rarity": "SR ⁑ "
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-052": {
+    "name": "泰特拉CEO 马士丁",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 0,
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "若你的持有《NIKKE》特征的角色卡小于等于2张，则此卡无法从手牌被使用。你选择1张自己休息室的持有《NIKKE》特征的角色卡，返回手牌。<br>［将1张你的等级区的持有《NIKKE》特征的角色卡放置入休息室］ 你可以支付费用。若如此做，则将此卡放置入等级区。<br>【永】 若你的高潮区存在触发标记为<img src=\"/effect-icons/treasure.webp\">的高潮卡，则存在于所有区域的此卡的触发标记获得<img src=\"/effect-icons/treasure.webp\">。<br>【永】 经验 若等级区存在此卡，且存在其他的你的等级区的「泰特拉CEO 马士丁」，则所有你手牌的持有《NIKKE》特征的角色卡，赋予其以下能力。『【永】 从手牌使用此卡时可以不满足颜色条件。』",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-052",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/SZ13-052S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-053": {
+    "name": "OLD TALES",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-053",
+        "rarity": "CR"
+      },
+      {
+        "id": "NIK/SZ13-053R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "NIK/SZ13-053A",
+        "rarity": "AGR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-054": {
+    "name": "ICE DRAGON SAGA",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-054",
+        "rarity": "CR"
+      },
+      {
+        "id": "NIK/SZ13-054R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-055": {
+    "name": "GOLDEN COIN RUSH",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "绿色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/treasure.webp\">：此卡触发时，你将此卡返回手牌。你可以将自己卡组顶的1张卡，放置入库存区）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-055",
+        "rarity": "CR"
+      },
+      {
+        "id": "NIK/SZ13-055R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-056": {
+    "name": "“命运的束缚”阿尔卡娜",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["NIKKE", "热销如潮"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你选择1张自己的角色卡，该回合中，力量＋2000。<br>【起】［将处于【竖置】状态的此卡放置入卡组底］ 你选择1张自己的角色卡，该回合中，赋予其以下能力。『【自】 此卡的战斗对手【倒置】时，你可以选择1张自己休息室的持有《NIKKE》特征的角色卡，返回手牌。』",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-056",
+        "rarity": "RR"
+      },
+      {
+        "id": "NIK/SZ13-056S",
+        "rarity": "SR⁂"
+      },
+      {
+        "id": "NIK/SZ13-056SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-057": {
+    "name": "守护王国的高贵之王 皇冠",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 4000,
+    "cost": 1,
+    "trait": ["NIKKE", "白骑士"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 若存在大于等于2张其他的你的持有《NIKKE》特征的角色卡，则此卡的力量＋6000。<br>【自】 此卡被从手牌放置入舞台时，你检视自己卡组顶至多3张卡，选择至多1张事件卡或高潮卡展示给对手，加入手牌，其余的卡片放置入休息室。若加入了手牌，则你选择1张自己的手牌，放置入休息室。<br>【自】 此卡被从手牌放置入舞台时，若存在大于等于4张其他的你的持有《NIKKE》特征的角色卡，则你可以选择1张自己休息室的持有《NIKKE》特征的角色卡，放置入库存区。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-057",
+        "rarity": "RR"
+      },
+      {
+        "id": "NIK/SZ13-057S",
+        "rarity": "SR⁂"
+      },
+      {
+        "id": "NIK/SZ13-057SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-058": {
+    "name": "拉毗：小红帽",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 8000,
+    "cost": 2,
+    "trait": ["NIKKE", "反击部队"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【永】 若所有你的角色卡均持有《NIKKE》特征，则此卡的力量＋3000。<br>【自】 此卡被从手牌放置入舞台时，你可以将自己的计时区上方的1张卡片，放置入休息室。<br>【自】【CX联动】【一回合1次】 此卡给予的伤害被取消时，若你的高潮区存在「FOOTSTEP, WALK, RUN」，则你公开自己卡组顶的4张卡，将卡组洗切，给予对方Ｘ次4点伤害。Ｘ为那些卡片中高潮卡的张数。（公开的卡片放回原处。会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-058",
+        "rarity": "RR"
+      },
+      {
+        "id": "NIK/SZ13-058S",
+        "rarity": "SR⁂"
+      },
+      {
+        "id": "NIK/SZ13-058SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "NIK/SZ13-058SEC",
+        "rarity": "SEC"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-059": {
+    "name": "“为了国王”钟鸣",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["NIKKE", "白骑士"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你可以选择1张自己计时区的卡片，返回手牌。若如此做，则你选择1张自己的手牌，放置入计时区。<br>【起】［将1张手牌放置入休息室，将此卡放置入休息室］ 你选择1张自己休息室的持有《NIKKE》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-059",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/SZ13-059S",
+        "rarity": "SR ⁑ "
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-060": {
+    "name": "神罚 - 第二种情感",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["NIKKE", "异端者"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你公开自己卡组顶的1张卡。若该卡为持有《NIKKE》特征的角色卡或「瞳中映照的光」，则你选择1张自己的持有《NIKKE》特征的角色卡，该回合中，力量＋1500。（公开的卡片放回原处）<br>【自】 此卡被从手牌放置入舞台时，你选择1张自己的角色卡，该回合中，赋予其以下能力。『【自】 此卡的战斗对手【倒置】时，你选择1张其他的自己的角色卡，【横置】，移动至后列的不存在角色卡的格子。』",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-060",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/SZ13-060S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/SZ13-060SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-061": {
+    "name": "罗珊娜：高雅海洋",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["NIKKE", "黑道女王部队"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［将此卡返回手牌］ 你的高潮卡被放置入高潮区时，你可以支付费用。若如此做，则你选择1张自己的角色卡，该回合中，力量＋2000。<br>【自】【CX联动】［①］ 「BEAUTY FULL SHOT」被放置入你的高潮区时，你可以支付费用。若如此做，则你选择1张其他的自己的「樱花：夏日绽放」或「牡丹 - 休假女王」，【竖置】。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-061",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/SZ13-061S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/SZ13-061SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-062": {
+    "name": "艾玛：战术升级",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "trait": ["NIKKE", "特种部队"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】【CX联动】 「ABSOLUTE」被放置入你的高潮区时，若你的等级大于等于3，且前列存在此卡，且存在其他的你的前列的「银华：战术升级」与「贝斯蒂：战术升级」，则你检视对方卡组顶至多4张卡，选择至多4张卡，放置入休息室，其余的卡片返回卡组，对方将卡组洗切。<br>【起】 集中 ［① 【横置】此卡］ 你翻出自己卡组顶的5张卡，放置入休息室。若那些卡片中存在高潮卡，则你检视自己卡组顶1张卡，放置入卡组顶或卡组底或休息室，选择至多1张自己休息室的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-062",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/SZ13-062S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/SZ13-062SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-063": {
+    "name": "银华：战术升级",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 3000,
+    "cost": 1,
+    "trait": ["NIKKE", "特种部队"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，所有其他的你的持有《NIKKE》特征的角色卡，力量＋2000。<br>【自】【CX联动】 「ABSOLUTE」被放置入你的高潮区时，若你的等级大于等于3，且前列存在此卡，且存在其他的你的前列的「贝斯蒂：战术升级」与「艾玛：战术升级」，则你将自己卡组顶的至多4张卡，放置入库存区，执行以下行动。『你可以将对方卡组顶的10张卡，放置入休息室。』<br>【起】［【横置】此卡］ 你抽1张卡，选择1张自己的手牌，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-063",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/SZ13-063S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/SZ13-063SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-064": {
+    "name": "小红帽 - 荒诞红",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9000,
+    "cost": 2,
+    "trait": ["NIKKE", "女神部队"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【永】 若存在你的「小红帽 - 怀旧时光」与「拉毗：小红帽 - 红色风情」，则你手牌中的此卡的等级－1。<br>【自】 此卡被从手牌放置入舞台时，你从以下2个效果中选择1个执行。『你可以选择1张自己休息室的持有《NIKKE》特征的角色卡，返回手牌。』『直到下一个对方回合的结束之际为止，此卡的力量＋4000，此卡获得以下能力。『【永】 此卡不会被对方的效果选择。』』<br>【自】 此卡的战斗对手【倒置】时，你可以将该角色卡放置入回忆区。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-064",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/SZ13-064S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/SZ13-064SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-065": {
+    "name": "贝斯蒂：战术升级",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10500,
+    "cost": 2,
+    "trait": ["NIKKE", "特种部队"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【自】【CX联动】 此卡被从手牌放置入舞台时，你可以选择1张自己的休息室的「ABSOLUTE」，返回手牌或放置入库存区。<br>【自】【CX联动】［⑩ 将5张手牌放置入休息室，【横置】此卡］ 「ABSOLUTE」被放置入你的高潮区时，若前列存在此卡，且存在其他的你的前列的「银华：战术升级」与「艾玛：战术升级」，则你可以支付费用。若如此做，则执行3次以下行动。『你选择至多1张对方的前列的等级小于等于3的角色卡，放置于卡组顶，给予对方4点伤害。』（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-065",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/SZ13-065S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/SZ13-065SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-066": {
+    "name": "“首胜者”贝伊",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["NIKKE", "倒带"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 应援 你的回合中，所有此卡前面的你的等级大于等于1的角色卡，力量＋500。<br>【起】 集中 ［① 【横置】此卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，执行以下行动。『你检视自己卡组顶至多3张卡，选择至多1张卡，加入手牌，其余的卡片放置入休息室。』",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-066",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/SZ13-066S",
+        "rarity": "SR"
+      },
+      {
+        "id": "NIK/SZ13-066SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-067": {
+    "name": "“沉没的世界”莉贝雷利奥",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["NIKKE", "异端者"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，此卡的力量＋2000。<br>【自】［① 将1张其他的你的舞台的处于【竖置】状态的持有《NIKKE》特征的角色卡放置入回忆区］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多1张持有《NIKKE》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-067",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/SZ13-067S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-068": {
+    "name": "德尔塔：怪盗忍者",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["NIKKE", "侦察者部队"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［① 将2张手牌放置入休息室］ 此卡被从手牌放置入舞台的回合中，此卡攻击时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多2张持有《NIKKE》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-068",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/SZ13-068S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-069": {
+    "name": "小红帽 - 怀旧时光",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["NIKKE", "女神部队"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】【CX联动】 若你的高潮区存在高潮卡，且不存在其他的你的「小红帽 - 怀旧时光」，则赋予所有你的区域的「CODENAME - RED HOOD -」的触发标记<img src=\"/effect-icons/salvage.webp\">。<br>【起】【CX联动】 集中 ［① 【横置】此卡］ 你翻出自己卡组顶的5张卡，放置入休息室。那些卡片中每存在1张「CODENAME - RED HOOD -」或「FOOTSTEP, WALK, RUN」，你选择至多1张自己休息室的持有《NIKKE》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-069",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/SZ13-069S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-070": {
+    "name": "拉毗：小红帽 - 红色风情",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 1,
+    "trait": ["NIKKE", "反击部队"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 若存在其他的你的「小红帽 - 怀旧时光」，且此回合中，你未使用「染上色彩的世界」，则你手牌中的「染上色彩的世界」的费用－1。<br>【永】【CX联动】 若你的高潮区存在高潮卡，且不存在其他的你的「拉毗：小红帽 - 红色风情」，则赋予所有你的区域的「FOOTSTEP, WALK, RUN」的触发标记<img src=\"/effect-icons/shot.webp\">。<br>【永】 应援 所有此卡前面的你的持有《NIKKE》特征的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-070",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/SZ13-070S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-071": {
+    "name": "“GO！GO！VICTORY！克雷伊",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["NIKKE", "倒带"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 应援 你的回合中，若存在其他的你的「“首胜者”贝伊」，则所有此卡前面的你的持有《NIKKE》特征的角色卡，力量＋1500。<br>【起】［① 将1张手牌放置入休息室，【横置】此卡］ 你选择1张自己休息室的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-071",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/SZ13-071S",
+        "rarity": "SR"
+      },
+      {
+        "id": "NIK/SZ13-071SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-072": {
+    "name": "“神秘怪盗横行”潘托姆",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["NIKKE", "热销如潮"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若存在大于等于2张其他的你的持有《NIKKE》特征的角色卡，则此卡的力量＋4000，此卡获得以下能力。『【自】 此卡攻击时，若此卡正面的角色卡的等级为2，则该回合中，此卡的力量＋6000。』<br>【自】 此卡【倒置】时，若此卡的战斗对手的等级小于等于1，则你可以将该角色卡【倒置】。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-072",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/SZ13-072S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-073": {
+    "name": "坎西：逃生女王",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 1000,
+    "cost": 1,
+    "trait": ["NIKKE", "真善美部队"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 你使用此卡的『助太刀』时，若存在你的持有《NIKKE》特征的角色卡，则你将自己或对方卡组顶的3张卡放置入休息室。<br>【起】【反击】 助太刀2000 等级1 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2000）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-073",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/SZ13-073S",
+        "rarity": "SR"
+      },
+      {
+        "id": "NIK/SZ13-073SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-074": {
+    "name": "牡丹 - 休假女王",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5500,
+    "cost": 1,
+    "trait": ["NIKKE", "黑道女王部队"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 若存在大于等于2张其他的你的持有《NIKKE》特征的角色卡，则此卡的力量＋1500，此卡获得『【自】 再演 ［将1张手牌的角色卡放置入休息室］』。<br>【自】 此卡攻击时，该攻击中，你在触发步骤进行2次触发判定。若进行了2次，则你将1张自己的库存区上方的卡片，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-074",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/SZ13-074S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-075": {
+    "name": "爱丽丝：仙境免女郎",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6000,
+    "cost": 1,
+    "trait": ["NIKKE", "无极限部队"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若存在其他的你的持有《NIKKE》特征的角色卡，则此卡的力量＋6000。<br>【自】【CX联动】 「GOLDEN COIN RUSH」被放置入你的高潮区时，若前列存在此卡，且存在大于等于4张其他的你的持有《NIKKE》特征的角色卡，则你检视自己的卡组并选择至多1张持有《NIKKE》特征的角色卡展示给对手，加入手牌，将卡组洗切，选择至多1张自己休息室的持有《NIKKE》特征的角色卡，放置入库存区。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-075",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/SZ13-075S",
+        "rarity": "SR"
+      },
+      {
+        "id": "NIK/SZ13-075SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-076": {
+    "name": "樱花：夏日绽放",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 2,
+    "trait": ["NIKKE", "黑道女王部队"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【永】 你的回合中，若存在大于等于2张其他的你的持有《NIKKE》特征的角色卡，则此卡的力量＋5000，此卡获得以下能力。『【自】 此卡攻击时，你检视自己卡组顶的1张卡，放置入卡组顶或休息室。』<br>【自】 再演 ［将1张手牌中持有《NIKKE》特征的角色卡放置入休息室］ （此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则将此卡以【横置】状态放置入此卡曾经存在的格子）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-076",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/SZ13-076S",
+        "rarity": "SR"
+      },
+      {
+        "id": "NIK/SZ13-076SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-077": {
+    "name": "染上色彩的世界",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "你选择1张自己休息室的卡名含有「拉毗」或「小红帽」的角色卡，返回手牌。将此卡放置入回忆区。<br>【自】 记忆 若回忆区存在此卡，则你的高潮阶段开始之际，你可以选择1张自己的不持有标识物的「拉毗：小红帽」，将此卡作为标识物表侧表示放置于该角色卡下方。若如此做，则该回合中，该角色卡的力量＋3000，赋予该角色卡以下能力。『【自】［① 将2张手牌放置入休息室］ 此卡的攻击结束之际，你可以支付费用。若如此做，则给予对方2点伤害。』（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-077",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/SZ13-077S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-078": {
+    "name": "极乐净土CEO 英格丽",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 0,
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "你选择1张自己的角色卡，该回合中，赋予其以下能力。『【自】 此卡的战斗对手【倒置】时，你可以选择1张自己休息室的持有《NIKKE》特征的角色卡，返回手牌。』<br>将此卡放置入库存区。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-078",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/SZ13-078S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-079": {
+    "name": "GO！ NINJA THIEF！",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "事件卡",
+    "level": 3,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "若不存在你的持有《NIKKE》特征的角色卡，则此卡无法从手牌被使用。<br>你选择1张对方的等级小于等于3的角色卡，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-079",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/SZ13-079S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-080": {
+    "name": "FOOTSTEP, WALK, RUN",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-080",
+        "rarity": "CR"
+      },
+      {
+        "id": "NIK/SZ13-080R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-081": {
+    "name": "BEAUTY FULL SHOT",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【自】 此卡被从手牌放置入高潮区时，执行<img src=\"/effect-icons/standby.webp\">的效果。<br>（<img src=\"/effect-icons/standby.webp\">：此卡触发时，你可以选择1张自己休息室的等级小于等于自己的等级＋1的角色卡，以【横置】状态放置入舞台的任意格子）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-081",
+        "rarity": "CR"
+      },
+      {
+        "id": "NIK/SZ13-081R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-082": {
+    "name": "ABSOLUTE",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-082",
+        "rarity": "CR"
+      },
+      {
+        "id": "NIK/SZ13-082R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-083": {
+    "name": "普丽瓦蒂 - 宴会公主",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["NIKKE", "三角部队"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己卡组顶至多4张卡，选择至多1张「普丽瓦蒂 - 宴会公主」或等级大于等于1的卡片展示给对手，加入手牌，其余的卡片放置入休息室。（高潮卡视作等级为0的卡片）<br>【自】 此卡攻击时，你选择1张自己的持有《NIKKE》特征的角色卡，该回合中，力量＋1500。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-083",
+        "rarity": "RR"
+      },
+      {
+        "id": "NIK/SZ13-083S",
+        "rarity": "SR⁂"
+      },
+      {
+        "id": "NIK/SZ13-083SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-084": {
+    "name": "“赛莲之歌”小美人鱼",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 0,
+    "trait": ["NIKKE", "远古故事"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若存在其他的你的持有《NIKKE》特征的角色卡，则此卡的力量＋4500。<br>【自】【CX联动】 此卡攻击时，若高潮区存在「UNBREAKABLE SPHERE」，则你检视自己卡组顶至多5张卡，选择至多2张持有《NIKKE》特征的角色卡或事件卡展示给对手，将1张加入手牌，将1张放置入库存区，其余的卡片放置入休息室。若将1张放置入库存区，则你选择1张自己的手牌，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-084",
+        "rarity": "RR"
+      },
+      {
+        "id": "NIK/SZ13-084S",
+        "rarity": "SR⁂"
+      },
+      {
+        "id": "NIK/SZ13-084SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "NIK/SZ13-084SEC",
+        "rarity": "SEC"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-085": {
+    "name": "迪塞尔：冬日甜心",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6000,
+    "cost": 1,
+    "trait": ["NIKKE", "无限轨道部队"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 若存在大于等于2张其他的你的持有《NIKKE》特征的角色卡，则此卡的力量＋4000。<br>【自】【CX联动】 「TERMINUS TICKET」被放置入你的高潮区时，若你的手牌小于等于5张，且存在大于等于4张其他的你的持有《NIKKE》特征的角色卡，则该回合中，此卡获得以下2个能力。『【自】 此卡攻击时，你检视对方卡组顶至多2张卡，选择至多2张卡，将其按任意顺序放置于卡组顶，其余的卡片放置入休息室。』『【自】 此卡的战斗对手【倒置】时，你公开自己卡组顶的1张卡。若该卡为等级小于等于2的角色卡则将其加入手牌。』（若非如此则放回原处）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-085",
+        "rarity": "RR"
+      },
+      {
+        "id": "NIK/SZ13-085S",
+        "rarity": "SR⁂"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-086": {
+    "name": "红莲：暗影 - 莲花",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["NIKKE", "女神部队"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 若你的手牌大于等于5张，则此卡的力量＋3000，此卡获得以下能力。『【永】 此卡正面的角色卡无法移动至其他格子，无法放置入回忆区。』<br>【自】 对方的攻击阶段开始之际，你可以将此卡移动至前列的不存在角色卡的，且正面存在对方的角色卡的格子。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-086",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/SZ13-086S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/SZ13-086SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-087": {
+    "name": "运载幸福的AZX 迪塞尔",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["NIKKE", "无限轨道部队"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 你的高潮卡被放置入高潮区时，你可以选择1张自己计时区的卡片，返回手牌。若如此做，则你选择1张自己的手牌，放置入计时区。<br>【起】 集中 ［① 【横置】此卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你选择至多1张自己休息室的持有《NIKKE》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-087",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/SZ13-087S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/SZ13-087SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-088": {
+    "name": "“新口味”布蕾德",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["NIKKE", "食用油"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】【CX联动】［将1张你的高潮区的「NEW FLAVOR」放置入休息室］ 你的再演步骤开始之际，若存在其他的你的持有《NIKKE》特征的角色卡，则你可以支付费用。若如此做，则你将自己卡组顶的至多2张卡，放置入库存区。<br>【起】［① 【横置】此卡］ 你选择1张自己的角色卡，该回合中，赋予其以下能力。『【自】 此卡的战斗对手【倒置】时，你检视自己卡组顶至多3张卡，选择至多1张持有《NIKKE》特征的角色卡或事件卡展示给对手，加入手牌，其余的卡片放置入休息室。』",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-088",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/SZ13-088S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/SZ13-088SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-089": {
+    "name": "小美人鱼 - 深渊之花",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["NIKKE", "远古故事"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 其他的你的前列中央格子的「“赛莲之歌”小美人鱼」或「“水晶鞋·完全连接”灰姑娘」，力量＋500，赋予其以下能力。『【永】 此卡不会被对方的效果选择。』<br>【起】【CX联动】 集中 ［① 【横置】此卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张「UNBREAKABLE SPHERE」或「OLD TALES」，你选择至多1张自己休息室的角色卡，返回手牌，选择1张自己的角色卡，直到下一个对方回合的结束之际为止，赋予其以下能力。『【永】 对方的回合中，此卡不会被对方的效果选择。』",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-089",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/SZ13-089S",
+        "rarity": "SR ⁑ "
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-090": {
+    "name": "长发公主：纯洁恩典",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "trait": ["NIKKE", "女神部队"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你公开自己卡组顶的1张卡，选择1张自己休息室的等级小于等于Ｘ的持有《NIKKE》特征的角色卡，返回手牌。X为被公开的卡片的等级。（高潮卡视作等级为0的卡片。公开的卡片放回原处）<br>【自】 此卡攻击时，若存在大于等于2张其他的你的持有《NIKKE》特征的角色卡，则你选择1张自己的角色卡，直到下一个对方回合的结束之际为止，力量＋1000。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-090",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/SZ13-090S",
+        "rarity": "SR ⁑ "
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-091": {
+    "name": "桃乐丝：机缘巧遇",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 8000,
+    "cost": 2,
+    "trait": ["NIKKE", "继承者部队"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【永】 若你的休息室中存在小于等于2张高潮卡，则你手牌的此卡的等级－1。<br>【自】［将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，该回合中，此卡的力量＋4500，你可以支付费用。若如此做，则你将自己计时区下方的1张卡，放置入库存区。<br>【自】 此卡的战斗对手为等级大于等于2的角色卡且【倒置】时，你公开自己卡组顶的1张卡。若该卡为持有《NIKKE》特征的角色卡，则你可以选择1张自己休息室的持有《NIKKE》特征的角色卡，返回手牌。（公开的卡片放回原处）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-091",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/SZ13-091S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/SZ13-091SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-092": {
+    "name": "索达：闪亮兔女郎",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["NIKKE", "专属女仆部队"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【永】 若你的休息室存在大于等于3张触发标记为<img src=\"/effect-icons/treasure.webp\">的高潮卡，则你手牌中的此卡的等级－1。<br>【自】 此卡被从手牌放置入舞台的回合中，此卡攻击时，所有你的角色卡，该回合中，力量＋1000，赋予其以下能力。『【自】 此卡的战斗对手【倒置】时，你可以将该角色卡放置入卡组底。』",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-092",
+        "rarity": "R"
+      },
+      {
+        "id": "NIK/SZ13-092S",
+        "rarity": "SR ⁑ "
+      },
+      {
+        "id": "NIK/SZ13-092SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-093": {
+    "name": "“真正的味道”克劳斯特",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["NIKKE", "食用油"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌中的高潮卡放置入休息室，将1张其他的你的舞台的角色卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的高潮卡，返回手牌。<br>【自】［将1张手牌的高潮卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的持有《NIKKE》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-093",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/SZ13-093S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-094": {
+    "name": "黄金色的光 长发公主",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 500,
+    "cost": 1,
+    "trait": ["NIKKE", "开拓者部队"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 若你的等级为大于等于2，则所有其他的你的「二千个分身 娜由塔」，魂＋1。<br>【永】 你的回合中，所有其他的你的角色卡，力量＋Ｘ。Ｘ为该角色卡的魂×1000。<br>【起】［【横置】此卡］ 若你的回忆区存在的卡片小于等于5张，则你选择1张自己休息室的「二千个分身 娜由塔」，放置入回忆区。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-094",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/SZ13-094S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-095": {
+    "name": "布丽德：静默轨道",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 0,
+    "trait": ["NIKKE", "无限轨道部队"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 若存在大于等于2张其他的你的持有《NIKKE》特征的角色卡，则此卡的力量＋3000，此卡获得以下能力。『【自】［①］ 此卡攻击时，你可以支付费用。若如此做，则该攻击中，你在触发步骤进行2次触发判定。』<br>【自】［将1张手牌中持有《NIKKE》特征的角色卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多1张「迪塞尔：冬日甜心」展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-095",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/SZ13-095S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-096": {
+    "name": "哈兰 - 宴会的魔女",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 0,
+    "trait": ["NIKKE", "继承者部队"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，此卡的力量＋4000。<br>【自】［将1张手牌的高潮卡放置入休息室，将此卡放置入休息室］ 其他的你的持有《NIKKE》特征的角色卡被正面攻击时，若存在大于等于2张其他的你的角色卡，则你可以支付费用。若如此做，则该回合中，该角色卡不会【倒置】。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-096",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/SZ13-096S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-097": {
+    "name": "伊莎贝尔 - 蜜月派对",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 4500,
+    "cost": 1,
+    "trait": ["NIKKE", "继承者部队"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你选择至多2张自己的角色卡，该回合中，赋予其以下能力。『【自】 此卡【倒置】时，若此卡的战斗对手的等级高于对方的等级，则你可以将该角色卡放置入卡组底。』",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-097",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/SZ13-097S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-098": {
+    "name": "爱德：特工兔女郎",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 5500,
+    "cost": 1,
+    "trait": ["NIKKE", "专属女仆部队"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【自】［① 将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则对方选择1张自己休息室的高潮卡，将该卡以外的所有休息室的卡片返回卡组，将卡组洗切。<br>【自】 此卡攻击时，若你的休息室存在大于等于2张触发标记为<img src=\"/effect-icons/treasure.webp\">的高潮卡，则你选择1张其他的自己的持有《NIKKE》特征的角色卡，该回合中，力量＋3000。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-098",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/SZ13-098S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-099": {
+    "name": "米兰达 - 正义怪盗",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["NIKKE", "A.C.P.U."],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你检视自己卡组顶的1张卡，放置入卡组顶或卡组底。<br>【自】 此卡被从手牌放置入舞台时，所有玩家将自己卡组顶的1张卡，放置入休息室。若你的因此效果被放置入休息室的卡片的等级高于对方的因此效果被放置入休息室的卡片的等级，则你可以抽1张卡。（高潮卡视作等级为0的卡片）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-099",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/SZ13-099S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-100": {
+    "name": "“致命错误！”玛娜",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["NIKKE", "M.M.R."],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［将此卡放置入卡组底］ 其他的你的持有《NIKKE》特征的角色卡【倒置】时，若后列存在此卡，则你可以支付费用。若如此做，则你将该角色卡返回手牌。<br>【起】［【横置】此卡］ 你选择1张对方的角色卡，直到下一个对方回合的结束之际为止，赋予其以下能力。『【永】 此卡无法移动至其他的格子。』",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-100",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/SZ13-100S",
+        "rarity": "SR"
+      },
+      {
+        "id": "NIK/SZ13-100SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-101": {
+    "name": "“万能肌肉”鲁玛妮",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["NIKKE", "生命补药部队"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【起】［将此卡放置入计时区］ 你抽至多2张卡，选择1张自己的手牌，放置入休息室。<br>【起】［【横置】此卡］ 你选择1张自己的角色卡，该回合中，力量＋Ｘ。Ｘ为你的等级×1500。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-101",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/SZ13-101S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-102": {
+    "name": "索林：霜之旅票",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 1000,
+    "cost": 1,
+    "trait": ["NIKKE", "无限轨道部队"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 其他的你的前列中央的格子的持有《无限轨道部队》特征的角色卡，力量＋500，赋予其『【自】 再演 ［将1张手牌的角色卡放置入休息室］』。<br>【永】 应援 所有此卡前面的你的持有《NIKKE》特征的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。<br>【自】【时计区】 闹铃 若此卡存在于计时区的最上方，且存在大于等于3张你的持有《无限轨道部队》特征的角色卡，则你的攻击阶段开始之际，你可以将自己卡组顶的1张卡，放置入库存区。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-102",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/SZ13-102S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-103": {
+    "name": "“指定优先顺序”吉洛",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 1,
+    "trait": ["NIKKE", "克重部队"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 你的高潮卡被放置入高潮区时，该回合中，此卡的力量＋6000，此卡获得以下能力。『【自】 此卡的战斗对手【倒置】时，你可以将该角色卡放置入卡组底。』<br>【自】 再演 ［将1张手牌的角色卡放置入休息室］ （此卡被从舞台放置入休息室时，你可以支付费用。若如此做，则将此卡以【横置】状态放置入此卡曾经存在的格子）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-103",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/SZ13-103S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-104": {
+    "name": "红莲 - 狂飙车手",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 1,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["NIKKE", "开拓者部队"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 你可以因<img src=\"/effect-icons/choice.webp\">或<img src=\"/effect-icons/gate.webp\">的效果选择自己休息室的「二千个分身 娜由塔」。<br>【自】 此卡攻击时，该回合中，此卡的力量＋Ｘ。Ｘ为其他的你的持有《NIKKE》特征的角色卡的张数×1500。<br>【起】【一回合1次】 集中 ［① 【横置】2张你的角色卡］ 你翻出自己卡组顶的5张卡，放置入休息室。那些卡片中每存在1张高潮卡，你选择至多2张自己休息室的「二千个分身 娜由塔」，返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-104",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/SZ13-104S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-105": {
+    "name": "森 - 后街的梦想",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 1500,
+    "cost": 1,
+    "trait": ["NIKKE", "真善美部队"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［将1张你的舞台的角色卡放置入休息室］ 你使用此卡的『助太刀』时，你可以支付费用。若如此做，则你选择1张自己的休息室的「森 - 后街的梦想」，返回手牌。<br>【起】【反击】 助太刀2500 等级2 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2500）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-105",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/SZ13-105S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-106": {
+    "name": "富克旺 - 湿润兔",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 1,
+    "trait": ["NIKKE", "生命补药部队"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，若你的休息室存在大于等于4张触发标记为<img src=\"/effect-icons/treasure.webp\">的高潮卡，则你可以支付费用。若如此做，则你将自己的计时区上方的1张卡片，放置入休息室。<br>【起】［将处于【竖置】状态的此卡放置入休息室］ 你选择1张对方的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-106",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/SZ13-106S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-107": {
+    "name": "方舟的精英警察官 波莉",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["NIKKE", "A.C.P.U."],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，执行2次以下行动。『你可以选择1张对方的等级大于等于1的角色卡。若如此做，则对方选择1张自己休息室的等级小于等于Ｘ的角色卡，互换位置。Ｘ为你选择的角色卡的等级－1。』<br>【自】 对方使用【起】时，该回合中，此卡的力量＋1500。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-107",
+        "rarity": "C"
+      },
+      {
+        "id": "NIK/SZ13-107S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-108": {
+    "name": "覆于白色之上的纯白余韵",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "若存在你的持有《NIKKE》特征的角色卡，则你检视自己的卡组并选择至多1张等级大于等于2的持有《NIKKE》特征的角色卡展示给对手，加入手牌，将卡组洗切。将此卡放置入回忆区。<br>【自】 记忆 ［将1张手牌放置入休息室］ 若回忆区存在此卡，则你的高潮卡触发时，你可以支付费用。若如此做，则你选择1张自己休息室的持有《NIKKE》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-108",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/SZ13-108S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-109": {
+    "name": "WISDOM SPRING",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【反击】［将1张手牌的高潮卡放置入休息室］ 若存在大于等于3张你的持有《NIKKE》特征的角色卡，则你可以支付费用。若如此做，则你将自己的计时区上方的至多2张卡片，放置入休息室。将此卡放置入回忆区。",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-109",
+        "rarity": "U"
+      },
+      {
+        "id": "NIK/SZ13-109S",
+        "rarity": "SR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "NIK/SZ13-110": {
+    "name": "UNBREAKABLE SPHERE",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-110",
+        "rarity": "CR"
+      },
+      {
+        "id": "NIK/SZ13-110R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-111": {
+    "name": "TERMINUS TICKET",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-111",
+        "rarity": "CR"
+      },
+      {
+        "id": "NIK/SZ13-111R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "NIK/SZ13-112": {
+    "name": "NEW FLAVOR",
+    "product_name": "「GODDESS OF VICTORY: NIKKE Vol.2」",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "NIK/SZ13-112",
+        "rarity": "CR"
+      },
+      {
+        "id": "NIK/SZ13-112R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 1
+  }
+}

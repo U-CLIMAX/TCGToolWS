@@ -170,6 +170,10 @@
       {
         "id": "WS/SPR-P07b",
         "rarity": "PR"
+      },
+      {
+        "id": "WS/SPR-P07c",
+        "rarity": "PR"
       }
     ],
     "trigger_soul_count": 0
@@ -193,6 +197,10 @@
       {
         "id": "WS/SPR-P08b",
         "rarity": "PR"
+      },
+      {
+        "id": "WS/SPR-P08c",
+        "rarity": "PR"
       }
     ],
     "trigger_soul_count": 0
@@ -215,6 +223,10 @@
       },
       {
         "id": "WS/SPR-P09b",
+        "rarity": "PR"
+      },
+      {
+        "id": "WS/SPR-P09c",
         "rarity": "PR"
       }
     ],

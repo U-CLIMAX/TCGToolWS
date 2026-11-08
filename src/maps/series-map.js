@@ -37,6 +37,7 @@ const wsSeriesMap = {
       'GA17',
       'GA18',
       'GA19',
+      'GA20',
     ],
     latestReleaseDate: '2026-06-12',
   },
@@ -144,7 +145,7 @@ const wsSeriesMap = {
   'bd': {
     name: 'BanG Dream!',
     prefixes: ['BD', 'BDY'],
-    latestReleaseDate: '2026-03-06',
+    latestReleaseDate: '2026-11-13',
   },
   'amg': {
     name: '缘结甘神家',
@@ -1021,7 +1022,7 @@ const wsrSeriesMap = {
   os05: {
     name: 'sprite',
     prefixes: ['OS05'],
-    latestReleaseDate: '2025-10-31',
+    latestReleaseDate: '2026-10-30',
   },
   os04: {
     name: '异种族风俗娘',
@@ -1036,7 +1037,7 @@ const wsrSeriesMap = {
   os01: {
     name: '柚子社',
     prefixes: ['OS01'],
-    latestReleaseDate: '2025-04-25',
+    latestReleaseDate: '2026-10-30',
   },
   os02: {
     name: '梦想成为魔法少女',
@@ -1175,7 +1176,7 @@ const wscSeriesMap = {
   '[cn]nik': {
     name: '[cn]胜利女神：妮姬',
     prefixes: ['[cn]NIK'],
-    latestReleaseDate: '2025-07-25',
+    latestReleaseDate: '2026-09-19',
   },
   '[cn]smp': {
     name: '[cn]Summer Pockets',
