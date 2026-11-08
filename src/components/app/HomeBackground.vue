@@ -122,9 +122,20 @@
       </svg>
     </div>
     <div class="glass-layer"></div>
-    <div class="texture-layer"></div>
+    <img
+      :src="bgUrl"
+      class="texture-layer"
+      fetchpriority="high"
+      decoding="async"
+      alt=""
+      aria-hidden="true"
+    />
   </div>
 </template>
+
+<script setup>
+import bgUrl from '@/assets/ui/bg.svg?url'
+</script>
 
 <style scoped>
 /* --- Base & Background --- */
@@ -182,19 +193,21 @@
 .texture-layer {
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
+  right: 0;
+  width: auto;
   height: 100%;
-  background-image: url('@/assets/ui/bg.svg');
-  background-repeat: no-repeat;
-  background-position: right center;
-  background-size: auto 100%;
+  object-fit: contain;
+  object-position: right center;
+  pointer-events: none;
+  user-select: none;
 }
 
 @media (max-width: 600px) {
   .texture-layer {
-    background-size: auto 75%;
-    background-position: right -70px center;
+    height: 75%;
+    right: -70px;
+    top: 50%;
+    transform: translateY(-50%);
   }
 }
 </style>

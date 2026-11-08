@@ -314,8 +314,6 @@ const hasBackgroundImage = computed(() => !!uiStore.backgroundImage)
 
 const infiniteScrollRef = ref(null)
 const scrollContainer = ref(null)
-const allItems = ref([])
-const displayItems = ref([])
 const page = ref(1)
 const pageSize = 20
 
@@ -345,8 +343,12 @@ const parseCSV = () => {
       contactInfo: values[5],
     })
   }
-  allItems.value = items
+  return items
 }
+
+const initialItems = parseCSV()
+const allItems = ref(initialItems)
+const displayItems = ref(initialItems.slice(0, pageSize))
 
 const provinces = computed(() => {
   const set = new Set(allItems.value.map((item) => item.province).filter(Boolean))
@@ -469,8 +471,6 @@ const copyContact = async (info) => {
 }
 
 onMounted(() => {
-  parseCSV()
-  handleSearch()
   nextTick(() => {
     scrollContainer.value = infiniteScrollRef.value?.$el
   })
