@@ -37,13 +37,14 @@ async function syncReleaseToGitCode() {
     console.log(`[gitcode] Release '${tag}' exists.`)
   } else {
     console.log(`[gitcode] Creating release '${tag}' (${releaseStatus})...`)
+    const body = process.env.RELEASE_BODY?.trim() || `Release ${tag}`
     const createRes = await fetch(`${baseUrl}?access_token=${token}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         tag_name: tag,
         name: tag,
-        body: '',
+        body,
         target_commitish: 'main',
         release_status: releaseStatus,
       }),
