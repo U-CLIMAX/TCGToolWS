@@ -1,9 +1,9 @@
 {
-  "version": "2026.10.28",
-  "generated_at": 1793185764,
-  "total_packages": 1510,
-  "total_images": 152366,
-  "total_size": 4502091970,
+  "version": "2026.11.10",
+  "generated_at": 1794312576,
+  "total_packages": 1514,
+  "total_images": 153576,
+  "total_size": 4532593609,
   "packages": {
     "[cn]bd-wz01": {
       "share_id": "1191fc00c2d1f3a7",
@@ -1663,11 +1663,11 @@
     },
     "bdy-w135-pr": {
       "share_id": "1191b0d810dcb669",
-      "size": 368925,
-      "sha256": "baa20ba5afcfa72bc237b5051954f451cf2bea1b8b9f63726166f53011c3ee97",
-      "source_hash": "0b69b94721ba9a3c16b655a7cf35a9c769675e7f8a0b838c3fc066d0c7f3db79",
-      "card_count": 7,
-      "updated_at": 1791901298
+      "size": 2099814,
+      "sha256": "4c933c3852e7feaaf7e63cd254c73437dff21b380e392f3bb408d2e75fafccae",
+      "source_hash": "00ff70a19e257329fdde920855026856b79201d0e129eb4c58aa3f9095eed4b7",
+      "card_count": 41,
+      "updated_at": 1794312565
     },
     "bdy-w135-td": {
       "share_id": "119160be5997f4d3",
@@ -8479,11 +8479,11 @@
     },
     "os01-r01-pr": {
       "share_id": "1191d26f525690e1",
-      "size": 2993422,
-      "sha256": "4acfac3fc8442fc1419d8a793ced16d6b9effb8e6bf4a84884853857d35e6218",
-      "source_hash": "dc154b00f4116bf021f0036b98b52d04de304aaa17d9e987bb3d6eb575215360",
-      "card_count": 47,
-      "updated_at": 1788861102
+      "size": 3249979,
+      "sha256": "954c11bb86ffddabe2d3eb4cc53a53da054f2e9db9e93d0d25b4b579f63e5e84",
+      "source_hash": "3782c7214d34773d24be876ece574db7b4adf758cb624c464f49079cfc65a15f",
+      "card_count": 52,
+      "updated_at": 1794312568
     },
     "os01-r01-td": {
       "share_id": "11915f0c1f543c24",
@@ -8559,11 +8559,11 @@
     },
     "os05-r05-pr": {
       "share_id": "11918b93d835c447",
-      "size": 782299,
-      "sha256": "df9bc1930974db9d5f79b067dd87208a1c055d020aac72a393768489c827ad30",
-      "source_hash": "af288f3548481a1b986c5ef113bacf1c817b012ea3cfce413e8025ded2557ef6",
-      "card_count": 12,
-      "updated_at": 1788861121
+      "size": 1037064,
+      "sha256": "287800975d8693213c77a029cf17bbf6cb741a52f7f13a8470cea398eab0a43a",
+      "source_hash": "d15705a7c0d789edfec879fec0cf97847c2864dbff46dd222d5d17636535ef38",
+      "card_count": 17,
+      "updated_at": 1794312569
     },
     "os06-r06": {
       "share_id": "1191f9fe735bfa58",
@@ -9143,11 +9143,11 @@
     },
     "pjs-s91-pr": {
       "share_id": "1191314ed1a433c1",
-      "size": 5648677,
-      "sha256": "95cce424158d9939a0608b0ba5e15468c8d00c0e1f8da9191576d300b1db6281",
-      "source_hash": "f3d87701de37654856a61eb73c70889c40a9e6ff02176a1e95995e91298cdc08",
-      "card_count": 74,
-      "updated_at": 1788861251
+      "size": 5900611,
+      "sha256": "286d217a1f33247480f7711f4c2af28b4109503273651a43a87a627d2d8f9243",
+      "source_hash": "af6ac7153ad7928c28d297eff91279eb1935cfab265a9bf8a288118c52b188a9",
+      "card_count": 79,
+      "updated_at": 1794312570
     },
     "pjs-s91-td": {
       "share_id": "119137d2c72e9141",
@@ -11711,11 +11711,11 @@
     },
     "vrg-we52-pr": {
       "share_id": "11912f533f86aa85",
-      "size": 313965,
-      "sha256": "17dcfac7e0ad25913ff8fa2957bba925fdba28abf74409698fae238b027b3863",
-      "source_hash": "7b2fffabab460fe387f996a41e4232f580b2771d83dc97394a0e8beceab634b7",
-      "card_count": 6,
-      "updated_at": 1788861830
+      "size": 618614,
+      "sha256": "a11e73f378d3b8c7dc8e2d0ad715bf98165a21835a1fe671c8de6240cb53c1ab",
+      "source_hash": "0c73de5f0c186c7d776420fae4ad0d8fdb8b496b0864aad77df215ffa1d0ba06",
+      "card_count": 12,
+      "updated_at": 1794312572
     },
     "vs-w50": {
       "share_id": "11918dbf17d4e307",
@@ -11791,11 +11791,11 @@
     },
     "ws-spr-pr": {
       "share_id": "1191c20e504b0ef4",
-      "size": 760216,
-      "sha256": "3bf49a1c1925fd4a325bcf8cec13ddb1057391214c713ad72d27722a45451d8e",
-      "source_hash": "cb10313140c906c6d6f00f07875026ad36f5339e80fedb4265c8747a2dfa1236",
-      "card_count": 14,
-      "updated_at": 1788861849
+      "size": 913892,
+      "sha256": "2e2d9272942006d153e64f282c333668cd095c5c519ae0625529323cfcde0e86",
+      "source_hash": "9c8f06ce1cffba49ad845ea122f87a552ba85727b66476b31100f4fe5dc5cdd7",
+      "card_count": 17,
+      "updated_at": 1794312573
     },
     "ws-tbs-pr": {
       "share_id": "11917a3ebc361476",
@@ -11807,19 +11807,19 @@
     },
     "ws-wpr-pr": {
       "share_id": "1191ec74d90c33a3",
-      "size": 621846,
-      "sha256": "58c5d8b334170d209a9261cda71fd5d3d95379b18c832fcd21db426f719cd769",
-      "source_hash": "10f0b423e95f4ab2cc5fc9be82c6ec0e8cf88fd86eb56464bc08953f04f31043",
-      "card_count": 12,
-      "updated_at": 1788861853
+      "size": 724124,
+      "sha256": "4d505ef9ce94a3fc956e037e81b602cad3318cc06c23d2b10a82ff5a4f6d7207",
+      "source_hash": "0de05c5a93f866c1599f162100bd37887038d640d8a04cd55002b6e8ed213169",
+      "card_count": 14,
+      "updated_at": 1794312574
     },
     "ws-wspr-pr": {
       "share_id": "11912f7a36ab4c37",
-      "size": 3000461,
-      "sha256": "27e9342d09d3c690cc585e253c04872ff1d9df89f52ef5fae58591fcb832280a",
-      "source_hash": "457dfc52d15530559f47948fa5b1196e2bbd82f1e18e421c230d274ad0e9fac5",
-      "card_count": 46,
-      "updated_at": 1788861855
+      "size": 3203940,
+      "sha256": "3e79469ab086e7db8e4362c8ad68d6ab1b3cb40fea57a1184a244cc3ff63235b",
+      "source_hash": "69fddc85678c907d1c34b31fbfb33365eb25698c18bad72bbe8825a4ff8c9883",
+      "card_count": 50,
+      "updated_at": 1794312576
     },
     "wsr-rpr-pr": {
       "share_id": "1191e67120686262",
@@ -12084,6 +12084,38 @@
       "source_hash": "d9f5deb3baebbabe7d68b7d85976cc3ab0596f90befd6ea1c22603df088c040f",
       "card_count": 9,
       "updated_at": 1793185763
+    },
+    "[cn]nik-sz13-pr": {
+      "share_id": "1191451584337008",
+      "size": 2521855,
+      "sha256": "e94c5e3dcfc3f6dd016eaec4ba5968cd1ec111a087d19904d245b8d9b33b5810",
+      "source_hash": "0c1a88229e3e29be1e6157992c35ef57b051bc8b1de8391f3816fd93bde23ecb",
+      "card_count": 50,
+      "updated_at": 1794312562
+    },
+    "[cn]nik-sz13": {
+      "share_id": "1191597aa552b2d2",
+      "size": 13553047,
+      "sha256": "f478cf550f9b61bca158397f9ff2a9fb44d24d4f96db682cb8dee278a278ac16",
+      "source_hash": "3490b462a7e3d4674f5f4e79bf9c2f61123c6701233bc1ffefbae47b572a494a",
+      "card_count": 269,
+      "updated_at": 1794312560
+    },
+    "bdy-w135": {
+      "share_id": "1191b0a30c830e56",
+      "size": 11113249,
+      "sha256": "618d6799e4e71e0a09833e17728c27399fc9843684119eeb69d0695b766a817f",
+      "source_hash": "9e9d1e1370addf4b47551b992f46f3ee5fca279fc0eac328f6f5dd07134bf4c7",
+      "card_count": 221,
+      "updated_at": 1794312564
+    },
+    "ga20-s131-pr": {
+      "share_id": "119187a4fee377d6",
+      "size": 55261,
+      "sha256": "92706a718f65baaa1d84d9b817815f96c68f2e2f0ecb3e847a10c2886a5c725e",
+      "source_hash": "8c7695fa7b7f7de16c22cad3e22e77be8cd3bed91a1e89860c0dc3fc97f920d9",
+      "card_count": 1,
+      "updated_at": 1794312566
     }
   }
 }

@@ -121,19 +121,16 @@ const calculateSourceFingerprint = (files) => {
 }
 
 /**
- * Creates a ZIP archive using native OS tar / PowerShell in local OS temp directory,
+ * Creates a ZIP archive using native OS tar in local OS temp directory,
  * then transfers the final zip to the target destination (e.g. WebDAV network drive).
  * @param {string} sourceBaseDir - Base source directory (e.g. E:\CF_R2)
  * @param {string} targetZipPath - Final output zip file path on destination (e.g. Z:\5hy-w101.zip)
- * @param {Array<{ zipRelativePath: string, sourcePath: string }>} files - Files to include
  * @param {string} folderName - Current subfolder name
  * @returns {Promise<{ size: number, sha256: string }>}
  */
-const createZipArchive = async (sourceBaseDir, targetZipPath, files, folderName) => {
+const createZipArchive = async (sourceBaseDir, targetZipPath, folderName) => {
   const tempDir = os.tmpdir()
   const safeId = folderName.replace(/[^a-zA-Z0-9_-]/g, '_')
-  const listFileName = `tcgtoolws_tar_${safeId}_${Date.now()}_${Math.random().toString(36).slice(2, 8)}.txt`
-  const listFilePath = path.join(tempDir, listFileName)
   const localTempZip = path.join(
     tempDir,
     `tcgtoolws_pkg_${safeId}_${Date.now()}_${Math.random().toString(36).slice(2, 8)}.zip`
@@ -144,43 +141,26 @@ const createZipArchive = async (sourceBaseDir, targetZipPath, files, folderName)
   }
 
   try {
-    // Write relative file paths (with forward slashes) to temporary file list
-    const fileLines = files.map((f) => f.zipRelativePath.replace(/\\/g, '/')).join('\n')
-    fs.writeFileSync(listFilePath, fileLines, 'utf-8')
-
-    let archiveSuccess = false
-    try {
-      const tarCmd = process.platform === 'win32' ? 'tar.exe' : 'tar'
-      execSync(`${tarCmd} -a -c -f "${localTempZip}" -T "${listFilePath}"`, {
-        cwd: sourceBaseDir,
-        stdio: 'pipe',
-      })
-      archiveSuccess = true
-    } catch (tarErr) {
-      console.warn(
-        `⚠️ tar 打包失敗 (${tarErr.message})，嘗試降級使用 PowerShell Compress-Archive...`
-      )
+    const targetDirs = []
+    const mainRelDir = `ws-image-data/${folderName}`
+    if (fs.existsSync(path.join(sourceBaseDir, mainRelDir))) {
+      targetDirs.push(mainRelDir)
+    }
+    const blurRelDir = `ws-blur-image-data/${folderName}`
+    if (fs.existsSync(path.join(sourceBaseDir, blurRelDir))) {
+      targetDirs.push(blurRelDir)
     }
 
-    if (!archiveSuccess) {
-      const stagingDir = path.join(tempDir, `tcgtoolws_stage_${safeId}_${Date.now()}`)
-      fs.mkdirSync(stagingDir, { recursive: true })
-      try {
-        for (const item of files) {
-          const dest = path.join(stagingDir, item.zipRelativePath)
-          fs.mkdirSync(path.dirname(dest), { recursive: true })
-          fs.copyFileSync(item.sourcePath, dest)
-        }
-        execSync(
-          `powershell -NoProfile -Command "Compress-Archive -Path '${stagingDir}\\*' -DestinationPath '${localTempZip}' -Force"`,
-          { stdio: 'pipe' }
-        )
-      } finally {
-        if (fs.existsSync(stagingDir)) {
-          fs.rmSync(stagingDir, { recursive: true, force: true })
-        }
-      }
+    if (targetDirs.length === 0) {
+      throw new Error(`找不到目錄: ${folderName} 在 ws-image-data 或 ws-blur-image-data 中皆不存在`)
     }
+
+    const tarCmd = process.platform === 'win32' ? 'tar.exe' : 'tar'
+    const quotedDirs = targetDirs.map((d) => `"${d}"`).join(' ')
+    execSync(`${tarCmd} -a -c -f "${localTempZip}" ${quotedDirs}`, {
+      cwd: sourceBaseDir,
+      stdio: 'pipe',
+    })
 
     if (!fs.existsSync(localTempZip)) {
       throw new Error(`壓縮包生成失敗: ${localTempZip} 不存在`)
@@ -198,13 +178,6 @@ const createZipArchive = async (sourceBaseDir, targetZipPath, files, folderName)
 
     return { size: stats.size, sha256 }
   } finally {
-    if (fs.existsSync(listFilePath)) {
-      try {
-        fs.rmSync(listFilePath, { force: true })
-      } catch {
-        // ignore
-      }
-    }
     if (fs.existsSync(localTempZip)) {
       try {
         fs.rmSync(localTempZip, { force: true })
@@ -456,7 +429,6 @@ const run = async () => {
     const { size: zipSize, sha256: zipSha256 } = await createZipArchive(
       absoluteSource,
       outputZipPath,
-      files,
       folder
     )
     const elapsedSec = ((Date.now() - startTime) / 1000).toFixed(1)
