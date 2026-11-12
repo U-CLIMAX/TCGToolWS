@@ -200,15 +200,3 @@ jobs:
           draft: ${{ inputs.draft }}
           prerelease: ${{ inputs.prerelease }}
           files: release-files/*
-
-      - name: Sync Release to GitCode
-        if: ${{ !inputs.draft }}
-        env:
-          GITCODE_TOKEN: ${{ secrets.GITCODE_TOKEN }}
-          GITCODE_OWNER: 'zhuang39'
-          GITCODE_REPO: 'TCGToolWS'
-          TAG_NAME: ${{ steps.get_tag.outputs.tag }}
-          IS_PRERELEASE: ${{ inputs.prerelease }}
-          IS_DRAFT: ${{ inputs.draft }}
-          RELEASE_DIR: 'release-files'
-        run: node scripts/sync-release-gitcode.js
