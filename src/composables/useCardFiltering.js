@@ -20,7 +20,6 @@ export const useCardFiltering = () => {
   const powerRange = ref([null, null])
   const showTriggerSoul = ref(false)
   const selectedSoul = ref([])
-  const selectedSlang = ref(null)
 
   const workerResults = shallowRef([])
   const filteredCards = computed(() => workerResults.value)
@@ -75,22 +74,6 @@ export const useCardFiltering = () => {
     }
   }
 
-  const getAttributeFilters = () => ({
-    selectedCardTypes: toRaw(selectedCardTypes.value),
-    selectedColors: toRaw(selectedColors.value),
-    selectedProductName: toRaw(selectedProductName.value),
-    selectedTraits: toRaw(selectedTraits.value),
-    selectedLevels: toRaw(selectedLevels.value),
-    selectedRarities: toRaw(selectedRarities.value),
-    showUniqueCards: toRaw(showUniqueCards.value),
-    selectedCosts: toRaw(selectedCosts.value),
-    selectedPowers: toRaw(selectedPowers.value),
-    powerRange: toRaw(powerRange.value),
-    showTriggerSoul: toRaw(showTriggerSoul.value),
-    selectedSoul: toRaw(selectedSoul.value),
-    selectedSlang: toRaw(selectedSlang.value),
-  })
-
   /**
    * Applies attribute filters to the current search results
    */
@@ -99,7 +82,20 @@ export const useCardFiltering = () => {
     if (!workerApiInstance) return
 
     const requestId = ++lastRequestId
-    const attributeFilters = getAttributeFilters()
+    const attributeFilters = {
+      selectedCardTypes: toRaw(selectedCardTypes.value),
+      selectedColors: toRaw(selectedColors.value),
+      selectedProductName: toRaw(selectedProductName.value),
+      selectedTraits: toRaw(selectedTraits.value),
+      selectedLevels: toRaw(selectedLevels.value),
+      selectedRarities: toRaw(selectedRarities.value),
+      showUniqueCards: toRaw(showUniqueCards.value),
+      selectedCosts: toRaw(selectedCosts.value),
+      selectedPowers: toRaw(selectedPowers.value),
+      powerRange: toRaw(powerRange.value),
+      showTriggerSoul: toRaw(showTriggerSoul.value),
+      selectedSoul: toRaw(selectedSoul.value),
+    }
 
     try {
       const results = await workerApiInstance.filterByAttributes(attributeFilters)
@@ -126,7 +122,20 @@ export const useCardFiltering = () => {
         toRaw(searchMode.value),
         toRaw(searchTargets.value)
       )
-      const results = await workerApiInstance.filterByAttributes(getAttributeFilters())
+      const results = await workerApiInstance.filterByAttributes({
+        selectedCardTypes: toRaw(selectedCardTypes.value),
+        selectedColors: toRaw(selectedColors.value),
+        selectedProductName: toRaw(selectedProductName.value),
+        selectedTraits: toRaw(selectedTraits.value),
+        selectedLevels: toRaw(selectedLevels.value),
+        selectedRarities: toRaw(selectedRarities.value),
+        showUniqueCards: toRaw(showUniqueCards.value),
+        selectedCosts: toRaw(selectedCosts.value),
+        selectedPowers: toRaw(selectedPowers.value),
+        powerRange: toRaw(powerRange.value),
+        showTriggerSoul: toRaw(showTriggerSoul.value),
+        selectedSoul: toRaw(selectedSoul.value),
+      })
 
       // Only update if this is still the latest request
       if (requestId === lastRequestId) {
@@ -182,7 +191,6 @@ export const useCardFiltering = () => {
       powerRange,
       showTriggerSoul,
       selectedSoul,
-      selectedSlang,
     ],
     () => {
       applyAttributeFilters()
@@ -208,7 +216,6 @@ export const useCardFiltering = () => {
     powerRange.value = [null, null]
     showTriggerSoul.value = false
     selectedSoul.value = []
-    selectedSlang.value = null
   }
 
   /**
@@ -244,7 +251,6 @@ export const useCardFiltering = () => {
     powerRange,
     showTriggerSoul,
     selectedSoul,
-    selectedSlang,
     // Getters
     filteredCards,
     // Actions

@@ -316,35 +316,6 @@
           </div>
         </div>
 
-        <!-- 效果俗称 -->
-        <div>
-          <div class="text-caption font-weight-light text-disabled mb-1">效果俗称</div>
-          <v-select
-            label="效果俗称"
-            :items="WS_SLANG_OPTIONS"
-            item-title="title"
-            item-value="value"
-            hide-details
-            clearable
-            v-model="filterStore.selectedSlang"
-            variant="outlined"
-            rounded="pill"
-            :menu-props="uiStore.menuProps"
-            :disabled="props.disabled"
-          >
-            <template v-slot:item="{ props: itemProps, item }">
-              <v-list-item v-bind="itemProps" :title="null">
-                <v-list-item-title class="font-weight-medium">
-                  {{ item.raw.title }}
-                </v-list-item-title>
-                <v-list-item-subtitle class="text-caption text-disabled text-wrap">
-                  {{ item.raw.desc }}
-                </v-list-item-subtitle>
-              </v-list-item>
-            </template>
-          </v-select>
-        </div>
-
         <!-- 产品 -->
         <div>
           <div class="text-caption font-weight-light text-disabled mb-1">产品</div>
@@ -438,7 +409,6 @@ import { useTheme } from 'vuetify'
 import { useUIStore } from '@/stores/ui'
 import { useFilterStore } from '@/stores/filter'
 import { useGlobalSearchStore } from '@/stores/globalSearch'
-import { WS_SLANG_OPTIONS } from '@/maps/card-slang-rules.js'
 import WsIcon from '@/assets/ui/ws-icon.svg?url'
 
 import preciseIcon from '@/assets/ui/precise.svg'

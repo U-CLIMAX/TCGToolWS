@@ -33,7 +33,6 @@
     "fmt:all:check": "oxfmt --check && cargo fmt --manifest-path src-tauri/Cargo.toml -- --check && node scripts/ktlint.js check",
     "db:init": "npx wrangler d1 execute ws-account-db --local --file=./schema.sql",
     "db:seed": "node scripts/create-test-user.js",
-    "test:slangs": "node tests/verify-card-slangs.js",
     "test:afdian": "node tests/webhook-afdian.js",
     "tauri": "tauri",
     "tauri:dev": "tauri dev",

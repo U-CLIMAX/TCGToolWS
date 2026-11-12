@@ -1,7 +1,6 @@
 import { Document } from 'flexsearch'
 import { expose } from 'comlink'
 import { normalizeSearchText } from '@/utils/searchNormalize.js'
-import { extractCardSlangs } from '@/maps/card-slang-rules.js'
 
 const toZero = (val) => (val === '-' ? 0 : +val)
 
@@ -215,7 +214,6 @@ const CardFilterService = {
         }
 
         const { all_cards: _all_cards, ...baseCardData } = cardData
-        const cardSlangs = extractCardSlangs(baseCardData.effect, baseCardData)
 
         for (let i = 0; i < cardVersions.length; i++) {
           const cardVersion = cardVersions[i]
@@ -230,7 +228,6 @@ const CardFilterService = {
             isLowestRarity: isLowest,
             link: fullLinkedIds,
             parallelCards: isLowest ? highRarityCardIds : lowestRarityCardIds,
-            slangs: cardSlangs,
           }
 
           fetchedCards.push(card)
@@ -267,22 +264,10 @@ const CardFilterService = {
     const { version, game, indexFiles } = options
     allCards = cards || []
     idToCardMap.clear()
-    const slangCache = new Map()
     for (let i = 0; i < allCards.length; i++) {
       const card = allCards[i]
-      if (card) {
-        if (card.id) {
-          idToCardMap.set(card.id, card)
-        }
-        if (!card.slangs && card.effect) {
-          const cacheKey = `${card.type || ''}_${card.level ?? ''}_${card.cost ?? ''}_${card.effect}`
-          let s = slangCache.get(cacheKey)
-          if (!s) {
-            s = extractCardSlangs(card.effect, card)
-            slangCache.set(cacheKey, s)
-          }
-          card.slangs = s
-        }
+      if (card && card.id) {
+        idToCardMap.set(card.id, card)
       }
     }
     keywordResultsCache = null
@@ -447,7 +432,6 @@ const CardFilterService = {
       powerRange = [],
       showTriggerSoul,
       selectedSoul = [],
-      selectedSlang = null,
     } = filters || {}
 
     const hasCardTypes = selectedCardTypes.length > 0
@@ -491,9 +475,6 @@ const CardFilterService = {
         hasTraits &&
         (!card.trait || !selectedTraits.some((trait) => card.trait.includes(trait)))
       ) {
-        return false
-      }
-      if (selectedSlang && (!card.slangs || !card.slangs.includes(selectedSlang))) {
         return false
       }
       if (mappedLevels && !mappedLevels.has(toZero(card.level))) return false
