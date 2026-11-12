@@ -1,0 +1,2386 @@
+{
+  "BDY/WZ14-001": {
+    "name": "梦限的宇宙进行中 仲町阿拉蕾",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你检视自己卡组顶的至多2张卡，选择至多2张卡，将其按任意顺序放置于卡组顶，其余的卡片放置入休息室。<br>【自】［① 你将自己卡组顶的1张卡放置入计时区］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多2张持有《梦限大MewType》特征的角色卡展示给对手。那之后，对方从那些卡片中选择1张角色卡，放置入休息室，将其余的卡片加入你的手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-001",
+        "rarity": "RR"
+      },
+      {
+        "id": "BDY/WZ14-001S",
+        "rarity": "SR3"
+      },
+      {
+        "id": "BDY/WZ14-001SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-002": {
+    "name": "无数次追梦 仲町阿拉蕾",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 12000,
+    "cost": 2,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "黄色",
+    "soul": 3,
+    "effect": "【自】【CX联动】［② 将1张手牌的「无数次追梦 仲町阿拉蕾」放置入休息室］ 你的攻击阶段开始之际，若高潮区存在「爱是冲动」，且前列存在此卡，且所有你的角色卡均持有《梦限大MewType》特征，且不存在其他的你的前列的角色卡，则你可以支付费用。若如此做，则你从以下2个效果中选择1个执行。『你将自己卡组顶的18张卡，放置入休息室，给予对方Ｘ次2点伤害。Ｘ为那些卡片中的高潮卡的张数。』『发动梦想无限大！。』（会发生伤害取消）<br>【replay】【game1】 梦想无限大！ 你选择1张自己的等级区的卡片，放置入休息室，将4张自己卡组顶的卡放置入计时区，给予对方5次1点伤害。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-002",
+        "rarity": "RR"
+      },
+      {
+        "id": "BDY/WZ14-002S",
+        "rarity": "SR3"
+      },
+      {
+        "id": "BDY/WZ14-002SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-003": {
+    "name": "无数次追梦 峰月律",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 12000,
+    "cost": 2,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "黄色",
+    "soul": 2,
+    "effect": "【永】 若存在大于等于4张你的持有《音乐》特征的角色卡，则你手牌中的此卡的等级－1。<br>【自】［将1张其他的你的舞台的持有《梦限大MewType》特征的角色卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你从以下2个效果中选择1个执行。『你抽至多2张卡。』『你选择1张自己计时区的持有《梦限大MewType》特征的角色卡，返回手牌。』<br>【自】 你的再演步骤开始之际，将此卡放置入库存区。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-003",
+        "rarity": "RR"
+      },
+      {
+        "id": "BDY/WZ14-003S",
+        "rarity": "SR3"
+      },
+      {
+        "id": "BDY/WZ14-003SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-004": {
+    "name": "“Progress Sign”仲町阿拉蕾",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 500,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你公开自己卡组顶的1张卡，选择1张自己休息室的等级小于等于Ｘ的角色卡，返回手牌。X为被公开的卡片的等级。（高潮卡视作等级为0的卡片。公开的卡片放回原处）<br>【自】 此卡【倒置】时，若此卡的战斗对手的费用小于等于0，则你可以将该角色卡放置入库存区。若如此做，则你将对方的库存区最下方的1张卡，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-004",
+        "rarity": "R"
+      },
+      {
+        "id": "BDY/WZ14-004S",
+        "rarity": "SR2"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-005": {
+    "name": "大声宣战 仲町阿拉蕾",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若存在其他的你的持有《音乐》特征的角色卡，则此卡的力量＋6000。<br>【自】【CX联动】 此卡攻击时，若高潮区存在「Kohaku」，则该攻击中，你在触发步骤进行2次触发判定，该回合中，此卡获得以下能力。『【自】［①］ 此卡的战斗对手【倒置】时，你可以支付费用。若如此做，则你选择1张自己休息室的角色卡，返回手牌。』",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-005",
+        "rarity": "R"
+      },
+      {
+        "id": "BDY/WZ14-005S",
+        "rarity": "SR2"
+      },
+      {
+        "id": "BDY/WZ14-005SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-006": {
+    "name": "“新宿着陆计划”峰月律",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 其他的你的前列中央的格子的角色卡，力量＋1000。<br>【起】 集中 ［① 【横置】此卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你选择至多1张自己休息室的持有《音乐》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-006",
+        "rarity": "R"
+      },
+      {
+        "id": "BDY/WZ14-006S",
+        "rarity": "SR2"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-007": {
+    "name": "“新宿着陆计划”千石由乃",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌中持有《梦限大MewType》特征的角色卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张对方的角色卡，放置入回忆区，再演步骤开始之际，对方将自己回忆区的该角色卡，放置入舞台的任意格子。<br>【自】［将1张手牌的《梦限大MewType》特征的角色卡放置入休息室，将1张你等级区的表侧表示的卡片变更为里侧表示］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的持有《梦限大MewType》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-007",
+        "rarity": "R"
+      },
+      {
+        "id": "BDY/WZ14-007S",
+        "rarity": "SR2"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-008": {
+    "name": "“这是我们的生存梗概”仲町阿拉蕾",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9000,
+    "cost": 2,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "黄色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你可以选择1张自己的休息室的「无数次追梦 仲町阿拉蕾」，放置入回忆区。<br>【自】［将2张其他的你的舞台的持有《梦限大MewType》特征的角色卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你抽至多3张卡，选择1张自己的手牌，放置入休息室。<br>【自】 记忆 ［将此卡返回手牌］ 你的高潮阶段开始之际，你可以支付费用。若如此做，则你选择1张自己回忆区的「无数次追梦 仲町阿拉蕾」，放置入此卡曾经存在的格子。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-008",
+        "rarity": "R"
+      },
+      {
+        "id": "BDY/WZ14-008S",
+        "rarity": "SR2"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-009": {
+    "name": "“in my words”仲町阿拉蕾",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】【CX联动】 「爱是冲动」被放置入你的高潮区时，直到下一个对方回合的结束之际为止，此卡获得以下能力。『【永】 你不会因对方的角色卡的【自】的效果受到小于等于1的伤害。』<br>【起】 集中 ［①］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，执行以下行动。『你选择1张自己休息室的角色卡，返回手牌，选择1张自己的手牌，放置入休息室。』",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-009",
+        "rarity": "U"
+      },
+      {
+        "id": "BDY/WZ14-009S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-010": {
+    "name": "“UNLOCK the FUTURE”仲町阿拉蕾",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，此卡的力量＋2000。<br>【自】［将1张手牌的「无数次追梦 仲町阿拉蕾」或「“这是我们的生存梗概”仲町阿拉蕾」放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多1张持有《音乐》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-010",
+        "rarity": "U"
+      },
+      {
+        "id": "BDY/WZ14-010S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-011": {
+    "name": "“UNLOCK the FUTURE”宫永野乃花",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【起】［② 【横置】此卡］ 你选择自己的计时区上方的1张卡片，放置入休息室。<br>【起】 集中 ［① 【横置】此卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你选择至多1张自己休息室的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-011",
+        "rarity": "U"
+      },
+      {
+        "id": "BDY/WZ14-011S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-012": {
+    "name": "“UNLOCK the FUTURE”千石由乃",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你可以分别选择1张自己等级区的卡片与1张休息室的卡片，互换位置。<br>【起】［① 将1张手牌的持有《音乐》特征的角色卡放置入休息室，将处于【竖置】状态的此卡放置入休息室］ 你检视自己卡组顶的至多5张卡，选择至多1张卡，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-012",
+        "rarity": "U"
+      },
+      {
+        "id": "BDY/WZ14-012S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-013": {
+    "name": "“UNLOCK the FUTURE”峰月律",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】【CX联动】［将1张手牌的「爱是冲动」或「TearJerker」放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的「爱是冲动」或「TearJerker」，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-013",
+        "rarity": "U"
+      },
+      {
+        "id": "BDY/WZ14-013S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-014": {
+    "name": "YM∞MT 仲町阿拉蕾",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 1,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 若前列中央的格子中存在此卡，则此卡的力量＋4500，此卡获得『【自】 再演 ［将1张手牌的角色卡放置入休息室］』。<br>【自】［将1张你的高潮区的触发标记为<img src=\"/effect-icons/choice.webp\">的高潮卡放置入休息室］ 此卡的攻击结束之际，若存在其他的你的持有《音乐》特征的角色卡，则你可以支付费用。若如此做，则你检视自己卡组顶的至多3张卡，选择至多1张持有《音乐》特征的角色卡展示给对手，加入手牌或放置入库存区，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-014",
+        "rarity": "U"
+      },
+      {
+        "id": "BDY/WZ14-014S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-015": {
+    "name": "Nice Bulk 仲町阿拉蕾",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6000,
+    "cost": 1,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 若存在其他的你的前列的「Nice Bulk 峰月律」，则此卡的力量＋4000。<br>【自】［将1张手牌中持有《音乐》特征的角色卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己的休息室的「Nice Bulk 峰月律」，放置入舞台的任意格子。<br>【自】【CX联动】 此卡攻击时，若高潮区存在「梦想即力量！」，且存在其他的你的前列的「Nice Bulk 峰月律」，则直到下一个对方回合的结束之际为止，此卡的力量＋5000。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-015",
+        "rarity": "U"
+      },
+      {
+        "id": "BDY/WZ14-015S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-016": {
+    "name": "Nice Bulk 峰月律",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6000,
+    "cost": 1,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 若存在其他的你的前列的「Nice Bulk 仲町阿拉蕾」，则此卡的力量＋4000。<br>【自】［将1张手牌中持有《音乐》特征的角色卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己的休息室的「Nice Bulk 仲町阿拉蕾」，放置入舞台的任意格子。<br>【自】【CX联动】 此卡攻击时，若高潮区存在「梦想即力量！」，且存在其他的你的前列的「Nice Bulk 仲町阿拉蕾」，则直到下一个对方回合的结束之际为止，此卡的力量＋5000。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-016",
+        "rarity": "U"
+      },
+      {
+        "id": "BDY/WZ14-016S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-017": {
+    "name": "今天休假 仲町阿拉蕾",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【起】［将此卡放置入休息室］ 若你的等级大于等于3，则你选择至多1张自己手牌中的「“梦现妄想世界”仲町阿拉蕾」，放置入此卡曾经存在的格子。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-017",
+        "rarity": "C"
+      },
+      {
+        "id": "BDY/WZ14-017S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-018": {
+    "name": "组成乐队 仲町阿拉蕾",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若所有你的角色卡均持有《音乐》特征，则此卡的力量＋2000。<br>【自】【CX联动】【一回合1次】 此卡给予的伤害被取消时，若你的高潮区存在「Tuning」，且存在大于等于2张其他的你的持有《音乐》特征的角色卡，则你检视自己卡组顶的至多3张卡，选择至多2张持有《音乐》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室，该回合中，此卡的力量＋2000。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-018",
+        "rarity": "C"
+      },
+      {
+        "id": "BDY/WZ14-018S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-019": {
+    "name": "天真烂漫的吉他担当 宫永野乃花",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5500,
+    "cost": 1,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，若存在大于等于4张其他的你的持有《音乐》特征的角色卡，则你可以选择1张自己休息室的持有《音乐》特征的角色卡，放置入库存区。<br>【自】 此卡攻击时，若此卡正面的角色卡的等级为2，则该回合中，此卡的力量＋6000。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-019",
+        "rarity": "C"
+      },
+      {
+        "id": "BDY/WZ14-019S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-020": {
+    "name": "心头好 千石由乃",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6500,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【自】［① 将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择至多1张对方的，前列的费用小于等于0的角色卡与至多1张后列的费用小于等于0的角色卡，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-020",
+        "rarity": "C"
+      },
+      {
+        "id": "BDY/WZ14-020S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-021": {
+    "name": "Happy Birthday 仲町阿拉蕾",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 1000,
+    "cost": 1,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "黄色",
+    "soul": 1,
+    "effect": "【起】［将此卡放置入休息室］ 你选择1张对方的角色卡，【竖置】，将其移动至对方舞台的不存在角色卡的其他格子，或选择1张其他的对方的角色卡，分别【竖置】并互换位置。<br>【起】【反击】 助太刀2500 等级2 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2500）",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-021",
+        "rarity": "C"
+      },
+      {
+        "id": "BDY/WZ14-021S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-022": {
+    "name": "用吉他治愈 宫永野乃花",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 4500,
+    "cost": 1,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "黄色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你选择至多2张自己的角色卡，该回合中，赋予其以下能力。『【自】 此卡【倒置】时，若此卡的战斗对手的等级高于对方的等级，则你可以将该角色卡放置入库存区。若如此做，则你将对方的库存区最下方的1张卡，放置入休息室。』",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-022",
+        "rarity": "C"
+      },
+      {
+        "id": "BDY/WZ14-022S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-023": {
+    "name": "食兔者 宫永野乃花",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 8000,
+    "cost": 2,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "黄色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你检视自己卡组顶的至多Ｘ张卡，选择至多1张卡，加入手牌，其余的卡片放置入休息室。Ｘ为你的持有《音乐》特征的角色卡的张数。<br>【自】 此卡【倒置】时，若存在大于等于2张其他的你的持有《音乐》特征的角色卡，且此卡的战斗对手的等级小于等于3，则你可以将该战斗对手放置入库存区。若如此做，则你将对方的库存区最下方的1张卡，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-023",
+        "rarity": "C"
+      },
+      {
+        "id": "BDY/WZ14-023S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-024": {
+    "name": "组成乐队 千石由乃",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10500,
+    "cost": 2,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "黄色",
+    "soul": 2,
+    "effect": "【永】 此卡的攻击中，你在触发步骤进行2次触发判定。<br>【自】［② 将1张手牌放置入休息室］ 此卡的触发判定中判出高潮卡时，你可以支付费用。若如此做，则给予对方2点伤害，该回合中，此卡的力量＋1000。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-024",
+        "rarity": "C"
+      },
+      {
+        "id": "BDY/WZ14-024S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-025": {
+    "name": "梦限大MewType",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 0,
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "［【横置】1张你的处于【竖置】状态的持有《音乐》特征的角色卡］ 你可以支付费用。若如此做，则你检视自己的卡组并选择至多2张持有《音乐》特征的角色卡展示给对手。那之后，对方从那些卡片中选择1张角色卡，放置入休息室，将其余的卡片加入你的手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-025",
+        "rarity": "R"
+      },
+      {
+        "id": "BDY/WZ14-025S",
+        "rarity": "SR2"
+      },
+      {
+        "id": "BDY/WZ14-025EX",
+        "rarity": "SEC"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-026": {
+    "name": "爱是冲动",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你可以选择1张自己休息室的触发标记中有<img src=\"/effect-icons/soul.webp\">的角色卡，返回手牌或放置入库存区）",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-026",
+        "rarity": "CR"
+      },
+      {
+        "id": "BDY/WZ14-026R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BDY/WZ14-026A",
+        "rarity": "AGR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-027": {
+    "name": "Kohaku",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/choice.webp\">：此卡触发时，你可以选择1张自己休息室的触发标记中有<img src=\"/effect-icons/soul.webp\">的角色卡，返回手牌或放置入库存区）",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-027",
+        "rarity": "CR"
+      },
+      {
+        "id": "BDY/WZ14-027R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-028": {
+    "name": "梦想即力量！",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "黄色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/shot.webp\">：此回合中，触发此卡的攻击角色下次给予的伤害被取消时，给予对方1点伤害）",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-028",
+        "rarity": "CR"
+      },
+      {
+        "id": "BDY/WZ14-028R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-029": {
+    "name": "无数次追梦 千石由乃",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌放置入休息室］ 你的高潮卡被放置入高潮区时，你可以支付费用。若如此做，则你公开自己卡组顶的1张卡，选择1张自己休息室的等级小于等于Ｘ的角色卡，返回手牌。X为被公开的卡片的等级。（高潮卡视作等级为0的卡片。公开的卡片放回原处）<br>【起】 集中 ［① 【横置】此卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，执行以下行动。『你检视自己卡组顶的至多3张卡，选择至多1张卡，加入手牌，其余的卡片放置入休息室。』",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-029",
+        "rarity": "RR"
+      },
+      {
+        "id": "BDY/WZ14-029S",
+        "rarity": "SR3"
+      },
+      {
+        "id": "BDY/WZ14-029SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-030": {
+    "name": "无数次追梦 宫永野乃花",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你公开自己卡组顶的1张卡。若该卡为持有《梦限大MewType》特征的角色卡，则你选择1张自己的角色卡，该回合中，力量＋2000。（公开的卡片放回原处）<br>【自】［将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你将自己卡组顶的2张卡，放置入休息室，选择1张自己休息室的等级小于等于Ｘ的持有《梦限大MewType》特征的角色卡，返回手牌。X为那些卡片的合计等级。（高潮卡视作等级为0的卡片）",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-030",
+        "rarity": "RR"
+      },
+      {
+        "id": "BDY/WZ14-030S",
+        "rarity": "SR3"
+      },
+      {
+        "id": "BDY/WZ14-030SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-031": {
+    "name": "梦限的宇宙进行中 千石由乃",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若存在大于等于2张其他的你的持有《音乐》特征的角色卡，则此卡的力量＋3000，此卡的战斗中，对方无法从手牌使用『助太刀』。<br>【自】【CX联动】 此卡攻击时，若高潮区存在「TearJerker」，且存在其他的你的角色卡，则你检视自己卡组顶的至多4张卡，选择至多1张持有《音乐》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室。若存在因此效果被放置入休息室的高潮卡，则你检视自己卡组顶的至多3张卡，选择至多3张卡，将其按任意顺序放置于卡组顶，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-031",
+        "rarity": "RR"
+      },
+      {
+        "id": "BDY/WZ14-031S",
+        "rarity": "SR3"
+      },
+      {
+        "id": "BDY/WZ14-031SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-032": {
+    "name": "梦限的宇宙进行中 宫永野乃花",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10500,
+    "cost": 2,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌或回忆区放置入舞台时，你可以将自己的计时区上方的1张卡片，放置入休息室。<br>【自】【CX联动】 此卡攻击时，若高潮区存在「想做的事」，则你从以下2个效果中选择1个执行。『你选择至多2张自己休息室的角色卡，1张返回手牌，其余的卡片放置入库存区下方，该回合中，此卡的力量＋1000。』『［① 将1张手牌放置入休息室］ 你可以支付费用。若如此做，则给予对方3点伤害。』（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-032",
+        "rarity": "RR"
+      },
+      {
+        "id": "BDY/WZ14-032S",
+        "rarity": "SR3"
+      },
+      {
+        "id": "BDY/WZ14-032SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-033": {
+    "name": "“这是我们的生存梗概”藤都子",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你公开自己卡组顶的1张卡。若该卡为持有《音乐》特征的角色卡，则你选择1张自己的角色卡，该回合中，力量＋2000。（公开的卡片放回原处）<br>【起】［将1张手牌放置入休息室，将此卡放置入休息室］ 你选择1张自己休息室的持有《音乐》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-033",
+        "rarity": "R"
+      },
+      {
+        "id": "BDY/WZ14-033S",
+        "rarity": "SR2"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-034": {
+    "name": "“这是我们的生存梗概”千石由乃",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［①］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己的休息室的「梦限的宇宙进行中 千石由乃」，放置入回忆区。<br>【自】【CX联动】 记忆 ［将此卡放置入库存区的下方］ 你的高潮阶段中，「TearJerker」被放置入高潮区时，若你的等级大于等于1，则你可以支付费用。若如此做，则你选择1张自己回忆区的「梦限的宇宙进行中 千石由乃」，放置入此卡曾经存在的格子，直到下一个对方回合的结束之际为止，该角色卡的力量＋1500。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-034",
+        "rarity": "R"
+      },
+      {
+        "id": "BDY/WZ14-034S",
+        "rarity": "SR2"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-035": {
+    "name": "大声宣战 宫永野乃花",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌放置入计时区］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多1张持有《梦限大MewType》特征的角色卡展示给对手，加入手牌，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-035",
+        "rarity": "R"
+      },
+      {
+        "id": "BDY/WZ14-035S",
+        "rarity": "SR2"
+      },
+      {
+        "id": "BDY/WZ14-035SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-036": {
+    "name": "“新宿着陆计划”藤都子",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若存在其他的你的「无数次追梦 千石由乃」，则所有其他的你的持有《梦限大MewType》特征的角色卡，力量＋1000。<br>【起】【CX联动】 集中 ［① 【横置】此卡］ 你翻出自己卡组顶的5张卡，放置入休息室。那些卡片中每存在1张「爱是冲动」或「TearJerker」，你选择至多1张自己休息室的持有《梦限大MewType》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-036",
+        "rarity": "R"
+      },
+      {
+        "id": "BDY/WZ14-036S",
+        "rarity": "SR2"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-037": {
+    "name": "“Progress Sign”千石由乃",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 6000,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 此卡在你的竖置阶段不会【竖置】。<br>【自】［将1张手牌的「“Progress Sign”千石由乃」放置入休息室，将2张手牌放置入休息室］ 你使用此卡的『助太刀』时，你可以支付费用。若如此做，则你选择1张战斗中的角色卡，该回合中，赋予其以下能力。『【永】 此卡无法赋予玩家伤害。』<br>【起】【反击】 助太刀0 等级1 ［将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋0）",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-037",
+        "rarity": "R"
+      },
+      {
+        "id": "BDY/WZ14-037S",
+        "rarity": "SR2"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-038": {
+    "name": "“这是我们的生存梗概”宫永野乃花",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 1,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 应援 所有此卡前面的你的持有《梦限大MewType》特征的角色卡，力量＋Ｘ。Ｘ为该角色卡的等级×500。<br>【起】 集中 ［① 【横置】此卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你选择至多1张自己休息室的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-038",
+        "rarity": "R"
+      },
+      {
+        "id": "BDY/WZ14-038S",
+        "rarity": "SR2"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-039": {
+    "name": "“Progress Sign”宫永野乃花",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 5000,
+    "cost": 1,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己休息室的持有《音乐》特征的角色卡，返回手牌。<br>【起】［将此卡放置入休息室］ 你将所有自己休息室的卡片，返回卡组，将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-039",
+        "rarity": "R"
+      },
+      {
+        "id": "BDY/WZ14-039S",
+        "rarity": "SR2"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-040": {
+    "name": "“新宿着陆计划”宫永野乃花",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 6500,
+    "cost": 2,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【永】 若存在大于等于4张你的持有《音乐》特征的角色卡，则你手牌中的此卡的等级－1。<br>【永】 所有其他的你的持有《音乐》特征的角色卡，力量＋1500。<br>【自】［将1张其他的你的舞台的持有《音乐》特征的角色卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择自己的计时区上方的1张卡片，放置入库存区。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-040",
+        "rarity": "R"
+      },
+      {
+        "id": "BDY/WZ14-040S",
+        "rarity": "SR2"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-041": {
+    "name": "大声宣战 藤都子",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10500,
+    "cost": 2,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【自】［① 将1张手牌的持有《音乐》特征的角色卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多1张高潮卡展示给对手，加入手牌，将卡组洗切，给予对方1点伤害。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-041",
+        "rarity": "R"
+      },
+      {
+        "id": "BDY/WZ14-041S",
+        "rarity": "SR2"
+      },
+      {
+        "id": "BDY/WZ14-041SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-042": {
+    "name": "大声宣战 千石由乃",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 13000,
+    "cost": 2,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 此卡攻击时，若前列中央的格子中存在此卡，则该攻击中，你在触发步骤进行2次触发判定。<br>【自】【CX联动】［① 将1张手牌放置入休息室，将此卡下方的1张标识物放置入休息室］ 此卡攻击时，若高潮区存在「BIG MOUTH」，且存在其他的你的持有《音乐》特征的角色卡，则给予对方1点伤害，你可以支付费用。若支付了费用，则给予对方1点伤害。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-042",
+        "rarity": "R"
+      },
+      {
+        "id": "BDY/WZ14-042S",
+        "rarity": "SR2"
+      },
+      {
+        "id": "BDY/WZ14-042SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-043": {
+    "name": "Happy Birthday 宫永野乃花",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】  此卡被从手牌放置入舞台时或攻击时，你选择1张自己的持有《音乐》特征的角色卡，该回合中，力量＋1500。<br>【自】【CX联动】 此卡攻击时，若高潮区存在「✞动物派对✞正在举行✞」，且存在大于等于2张其他的你的持有《音乐》特征的角色卡，则你将自己卡组顶的至多3张卡，放置入休息室，选择至多1张自己休息室的等级小于等于X的持有《音乐》特征的角色卡，返回手牌。Ｘ为因此效果被放置入休息室的持有《音乐》特征的角色卡的张数。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-043",
+        "rarity": "U"
+      },
+      {
+        "id": "BDY/WZ14-043S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-044": {
+    "name": "Happy Birthday 藤都子",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你选择1张对方的等级高于对方的等级的角色卡。该卡在下一个对方的竖置阶段不会【竖置】。<br>【起】［① 将处于【竖置】状态的此卡放置入计时区］ 你检视自己卡组顶的至多4张卡，选择至多1张卡，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-044",
+        "rarity": "U"
+      },
+      {
+        "id": "BDY/WZ14-044S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-045": {
+    "name": "YM∞MT 千石由乃",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［① 将1张手牌放置入休息室］ 此卡触发时，你可以支付费用。若如此做，则你选择自己的计时区上方的1张卡片，放置入休息室。<br>【自】 此卡【倒置】时，若此卡的战斗对手的等级小于等于0，则你可以将该角色卡【倒置】。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-045",
+        "rarity": "U"
+      },
+      {
+        "id": "BDY/WZ14-045S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-046": {
+    "name": "“in my words”宫永野乃花",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［①］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多1张高潮卡公开，选择至多1张自己手牌中的高潮卡公开，将那些高潮卡互换位置，将卡组洗切。<br>【自】 对方的高潮卡被放置入高潮区时，你可以将此卡放置入库存区。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-046",
+        "rarity": "U"
+      },
+      {
+        "id": "BDY/WZ14-046S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-047": {
+    "name": "YM∞MT 藤都子",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若所有你的角色卡均持有《音乐》特征，则此卡的力量＋8000。<br>【自】 此卡【倒置】时，你将自己卡组顶的1张卡，放置入计时区，【横置】此卡。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-047",
+        "rarity": "U"
+      },
+      {
+        "id": "BDY/WZ14-047S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-048": {
+    "name": "一针见血的建议 千石由乃",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 1,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 你的触发标记为<img src=\"/effect-icons/salvage.webp\">的高潮卡被放置入高潮区时，你选择至多2张自己的角色卡，该回合中，力量＋500，赋予其以下能力。『【自】［①］ 此卡攻击时，你可以支付费用。若如此做，则该攻击中，你在触发步骤进行2次触发判定。』<br>【自】［【横置】处于【竖置】状态的此卡］ 其他的你的角色卡攻击时，则你可以支付费用。若如此做，则该回合中，该角色卡的力量＋3000。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-048",
+        "rarity": "U"
+      },
+      {
+        "id": "BDY/WZ14-048S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-049": {
+    "name": "心情很好的直播 宫永野乃花",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 1,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，所有其他的你的持有《音乐》特征的角色卡，力量＋1000。<br>【自】【CX联动】 记忆 ［① 将此卡放置入休息室］ 你的高潮阶段中，「想做的事」被放置入高潮区时，若你的等级大于等于2，则你可以支付费用。若如此做，则你选择1张自己回忆区的「梦限的宇宙进行中 宫永野乃花」，放置入此卡曾经存在的格子。<br>【起】［【横置】此卡］ 你选择1张自己的休息室的「梦限的宇宙进行中 宫永野乃花」，放置入回忆区。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-049",
+        "rarity": "U"
+      },
+      {
+        "id": "BDY/WZ14-049S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-050": {
+    "name": "“UNLOCK the FUTURE”藤都子",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6500,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若所有你的角色卡均持有《梦限大MewType》特征，则此卡的力量＋2000。<br>【自】［将1张手牌中持有《梦限大MewType》特征的角色卡放置入休息室］ 此卡被从手牌放置入舞台的回合中，此卡的战斗对手【倒置】时，你可以支付费用。若如此做，则你选择自己的计时区上方的1张卡片，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-050",
+        "rarity": "U"
+      },
+      {
+        "id": "BDY/WZ14-050S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-051": {
+    "name": "YM∞MT 宫永野乃花",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［① 将1张手牌中持有《音乐》特征的角色卡放置入休息室］ 你使用此卡的『助太刀』时，你可以支付费用。若如此做，则你选择自己的计时区上方的1张卡片，放置入休息室。<br>【起】【反击】 助太刀2500 等级2 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋2500）",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-051",
+        "rarity": "U"
+      },
+      {
+        "id": "BDY/WZ14-051S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-052": {
+    "name": "Happy Birthday 千石由乃",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 3500,
+    "cost": 1,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌中持有《梦限大MewType》特征的角色卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你抽1张卡。<br>【起】［将1张你的舞台的「无数次追梦 千石由乃」作为标识物表侧表示放置于此卡下方］ 若你的等级大于等于2，则你选择1张自己的休息室的「大声宣战 千石由乃」，放置入此卡存在的格子，将所有此卡下方的标识物与此卡作为该「大声宣战 千石由乃」下方的标识物按任意顺序表侧表示放置。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-052",
+        "rarity": "U"
+      },
+      {
+        "id": "BDY/WZ14-052S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-053": {
+    "name": "“in my words ”千石由乃",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你可以将自己的计时区上方的1张卡片，放置入休息室。<br>【自】【一回合1次】［① 将1张手牌放置入休息室，将3张你等级区的表侧表示的卡片变更为里侧表示］ 此卡的攻击结束之际，若存在大于等于2张其他的你的持有《音乐》特征的角色卡，则你可以支付费用。若如此做，则你公开自己卡组顶的1张卡。若该卡为持有《音乐》特征的角色卡，则【竖置】此卡。（公开的卡片放回原处）",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-053",
+        "rarity": "U"
+      },
+      {
+        "id": "BDY/WZ14-053S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-054": {
+    "name": "带骨肉的人 千石由乃",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 此卡的攻击结束之际，若前列中央的格子中存在此卡，则你公开自己卡组顶的1张卡。若该卡为持有《音乐》特征的角色卡，则你可以将此卡移动至后列的不存在角色卡的格子。（公开的卡片放回原处）<br>【自】［【横置】处于【竖置】状态的此卡］ 其他的你的持有《音乐》特征的角色卡攻击时，你可以支付费用。若如此做，则该回合中，该角色卡的力量＋1000。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-054",
+        "rarity": "C"
+      },
+      {
+        "id": "BDY/WZ14-054S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-055": {
+    "name": "令人怀念的话题 千石由乃",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，该回合中，此卡的力量＋3000。<br>【自】［① 将1张手牌中持有《音乐》特征的角色卡放置入休息室］ 此卡触发时，你可以支付费用。若如此做，则给予对方1点伤害。（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-055",
+        "rarity": "C"
+      },
+      {
+        "id": "BDY/WZ14-055S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-056": {
+    "name": "小金枪鱼 宫永野乃花",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，若存在大于等于2张其他的你的持有《梦限大MewType》特征的角色卡，则你选择1张对方的角色卡，直到下一个对方回合的结束之际为止，赋予其以下能力。『【永】 此卡无法移动至其他的格子。』<br>【起】［① 将此卡放置入休息室］ 若你的等级大于等于2，则你选择1张对方的角色卡，返回手牌，选择1张自己的角色卡，该回合中，力量＋1000。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-056",
+        "rarity": "C"
+      },
+      {
+        "id": "BDY/WZ14-056S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-057": {
+    "name": "发了很多的照片 宫永野乃花",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【自】［① 将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择自己的计时区上方的1张卡片，放置入休息室。<br>【自】 其他的你的持有《音乐》特征的角色卡攻击时，该回合中，此卡的力量＋2000。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-057",
+        "rarity": "C"
+      },
+      {
+        "id": "BDY/WZ14-057S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-058": {
+    "name": "应付不来的东西 藤都子",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，每存在1张此卡下方的标识物，此卡的力量＋3000。<br>【自】 此卡的战斗对手【倒置】时，你可以选择1张自己休息室的持有《音乐》特征的角色卡，将其作为标识物表侧表示放置于此卡下方。<br>【自】［①］ 再演步骤开始之际，若不存在其他的你的前列的处于【横置】状态的角色卡，则你可以支付费用。若如此做，则【横置】此卡。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-058",
+        "rarity": "C"
+      },
+      {
+        "id": "BDY/WZ14-058S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-059": {
+    "name": "作为作家的坚持 藤都子",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 4000,
+    "cost": 1,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，此卡的力量＋6000。<br>【自】【时计区】 闹铃 ［将1张手牌放置入休息室］ 若此卡存在于计时区的最上方，则你的高潮阶段开始之际，你可以支付费用。若如此做，则你选择1张对方的等级大于等于1的角色卡，对方选择1张自己休息室的等级小于等于X的角色卡，与其互换位置。Ｘ为你选择的角色卡的等级－1。<br>【自】【时计区】 切换 等级0 （你的主要阶段开始之际，你可以选择1张自己手牌中的红色的卡片与计时区的此卡，互换位置）",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-059",
+        "rarity": "C"
+      },
+      {
+        "id": "BDY/WZ14-059S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-060": {
+    "name": "冷酷的作曲家 千石由乃",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 9000,
+    "cost": 1,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "红色",
+    "soul": 1,
+    "effect": "【永】 赋予所有对方的角色卡，『【自】 再演 ［②］』。<br>【自】［将此卡放置入休息室］ 其他的你的前列中央的格子的持有《音乐》特征的角色卡被正面攻击时，你可以支付费用。若如此做，则你选择1张自己的战斗中的角色卡，该回合中，力量＋5000。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-060",
+        "rarity": "C"
+      },
+      {
+        "id": "BDY/WZ14-060S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-061": {
+    "name": "糖果诱导大作战",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "［将1张你的舞台的持有《梦限大MewType》特征的角色卡放置入休息室］ 你可以支付费用。若如此做，则你从以下2个效果中选择1个执行。<br>『你选择至多2张自己休息室的角色卡，返回手牌。』<br>『你选择至多2张对方的角色卡，返回手牌。』",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-061",
+        "rarity": "U"
+      },
+      {
+        "id": "BDY/WZ14-061S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-062": {
+    "name": "TearJerker",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-062",
+        "rarity": "CR"
+      },
+      {
+        "id": "BDY/WZ14-062R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BDY/WZ14-062A",
+        "rarity": "AGR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-063": {
+    "name": "想做的事",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-063",
+        "rarity": "CR"
+      },
+      {
+        "id": "BDY/WZ14-063R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BDY/WZ14-063A",
+        "rarity": "AGR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-064": {
+    "name": "✞动物派对✞正在举行✞",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【自】 此卡被从手牌放置入高潮区时，你选择至多1张自己休息室的等级小于等于1的角色卡，放置入库存区，所有自己的角色卡，该回合中，魂＋1。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-064",
+        "rarity": "CR"
+      },
+      {
+        "id": "BDY/WZ14-064R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 2
+  },
+  "BDY/WZ14-065": {
+    "name": "BIG MOUTH",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "红色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/salvage.webp\">：此卡触发时，你可以选择1张自己休息室的角色卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-065",
+        "rarity": "CR"
+      },
+      {
+        "id": "BDY/WZ14-065R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-066": {
+    "name": "无数次追梦 藤都子",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 若所有你的角色卡均持有《梦限大MewType》特征，则此卡的力量＋3000。<br>【自】 你的回合中，此卡的战斗对手【倒置】时，若所有你的角色卡均持有《梦限大MewType》特征，则你公开自己卡组顶的1张卡。若该卡为等级小于等于2的角色卡则加入手牌。（若非如此则放回原处）",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-066",
+        "rarity": "RR"
+      },
+      {
+        "id": "BDY/WZ14-066S",
+        "rarity": "SR3"
+      },
+      {
+        "id": "BDY/WZ14-066SSP",
+        "rarity": "SSP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-067": {
+    "name": "梦限的宇宙进行中 峰月律",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若存在大于等于2张其他的你的持有《音乐》特征的角色卡，则此卡的力量＋2000。<br>【自】【CX联动】［将1张手牌放置入休息室］ 此卡攻击时，若高潮区存在「10磅的奖励」，且存在大于等于2张其他的你的持有《音乐》特征的角色卡，则你可以支付费用。若如此做，则你检视自己卡组顶的至多3张卡，选择至多3张持有《音乐》特征的角色卡或「丸君」展示给对手，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-067",
+        "rarity": "RR"
+      },
+      {
+        "id": "BDY/WZ14-067S",
+        "rarity": "SR3"
+      },
+      {
+        "id": "BDY/WZ14-067SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-068": {
+    "name": "梦限的宇宙进行中 藤都子",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10500,
+    "cost": 2,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌或回忆区放置入舞台时，你从以下2个效果中选择1个执行。『你可以将自己的计时区上方的1张卡片，放置入休息室。』『你选择1张自己回忆区的「梦限的宇宙进行中 藤都子」，放置入舞台的任意格子，该回合中，此卡的力量＋2000。』<br>【自】【CX联动】 「临兵斗者！皆阵烈在前～」被放置入你的高潮区时，该回合中，此卡获得以下能力。『【自】［① 将3张手牌放置入休息室，将此卡放置入回忆区］ 此卡的攻击结束之际，你可以支付费用。若如此做，则你选择1张自己休息室的持有《梦限大MewType》特征的角色卡，放置入此卡曾经存在的格子。』",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-068",
+        "rarity": "RR"
+      },
+      {
+        "id": "BDY/WZ14-068S",
+        "rarity": "SR3"
+      },
+      {
+        "id": "BDY/WZ14-068SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-069": {
+    "name": "“这是我们的生存梗概”峰月律",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 你的高潮阶段开始之际，你选择1张自己的持有《音乐》特征的角色卡，该回合中，力量＋1000。<br>【起】［① 【横置】2张你的角色卡］ 你将自己卡组顶的2张卡，放置入休息室，选择1张自己休息室的等级小于等于Ｘ的持有《音乐》特征的角色卡，返回手牌。X为那些卡片的合计等级。（高潮卡视作等级为0的卡片）",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-069",
+        "rarity": "R"
+      },
+      {
+        "id": "BDY/WZ14-069S",
+        "rarity": "SR2"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-070": {
+    "name": "“新宿着陆计划”仲町阿拉蕾",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你可以选择1张自己的手牌，放置入库存区。<br>【起】［① 将此卡放置入休息室］ 你检视自己卡组顶的至多4张卡，选择至多1张持有《音乐》特征的角色卡展示给对手，加入手牌，其余的卡片放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-070",
+        "rarity": "R"
+      },
+      {
+        "id": "BDY/WZ14-070S",
+        "rarity": "SR2"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-071": {
+    "name": "“Progress Sign”峰月律",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡从舞台被放置入休息室时，你可以公开自己卡组顶的至多3张卡。若公开了大于等于1张卡，则你选择至多1张那些卡片中的持有《音乐》特征的角色卡或「丸君」，加入手牌，其余的卡片放置入休息室，选择1张自己的手牌，放置入休息室。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-071",
+        "rarity": "R"
+      },
+      {
+        "id": "BDY/WZ14-071S",
+        "rarity": "SR2"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-072": {
+    "name": "“妖精花束”薇欧拉",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 0,
+    "trait": ["音乐", "妖精花束"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 若所有你的角色卡均持有《音乐》特征，则此卡的力量＋3000。<br>【自】【CX联动】［将1张其他的你的舞台的持有《音乐》特征的角色卡放置入休息室］ 你的再演步骤开始之际，若高潮区存在「打磨极致的恶意」，且前列存在此卡，则你可以支付费用。若如此做，则你选择1张自己休息室的角色卡，返回手牌，直到下一个对方回合的结束之际为止，此卡的力量＋4000。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-072",
+        "rarity": "R"
+      },
+      {
+        "id": "BDY/WZ14-072S",
+        "rarity": "SR2"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-073": {
+    "name": "“Progress Sign”藤都子",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［将1张手牌放置入休息室，将1张你的高潮区的蓝色的高潮卡放置入休息室］ 你的再演步骤开始之际，若存在其他的你的角色卡，则你可以支付费用。若如此做，则你选择1张自己休息室的角色卡，返回手牌。<br>【起】 集中 ［① 【横置】此卡］ 你翻出自己卡组顶的4张卡，放置入休息室。那些卡片中每存在1张高潮卡，你选择至多1张自己休息室的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-073",
+        "rarity": "R"
+      },
+      {
+        "id": "BDY/WZ14-073S",
+        "rarity": "SR2"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-074": {
+    "name": "大声宣战 峰月律",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你可以将自己的计时区上方的1张卡片，放置入休息室。<br>【自】【CX联动】 此卡的攻击结束之际，若高潮区存在「Empty puppet」，且存在大于等于2张其他的你的持有《音乐》特征的角色卡，则以下2个效果各执行1次。『你给予对方1点伤害，或将自己计时区上方的1张卡，放置入休息室。』『直到下一个对方回合的结束之际为止，此卡获得以下能力。『【永】 此卡的正面的角色卡无法进行侧面攻击，此卡的战斗中，你不会因对方的角色卡的【自】的效果受到伤害。』』（会发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-074",
+        "rarity": "R"
+      },
+      {
+        "id": "BDY/WZ14-074S",
+        "rarity": "SR2"
+      },
+      {
+        "id": "BDY/WZ14-074SP",
+        "rarity": "SP"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-075": {
+    "name": "“in my words”峰月律",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若存在其他的你的持有《音乐》特征的角色卡，则此卡的力量＋3000。<br>【自】［①］ 此卡攻击时，你可以支付费用。若如此做，则该攻击中，你在触发步骤进行2次触发判定。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-075",
+        "rarity": "U"
+      },
+      {
+        "id": "BDY/WZ14-075S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-076": {
+    "name": "“in my words ”藤都子",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你检视自己卡组顶的至多2张卡，选择至多2张卡，将其按任意顺序放置于卡组顶，其余的卡片放置入休息室。<br>【自】【CX联动】［将此卡返回手牌］ 「限界现实Survive天使」被放置入你的高潮区时，若存在其他的你的持有《音乐》特征的角色卡，则你可以支付费用。若如此做，则你选择1张自己休息室的等级小于等于0的持有《音乐》特征的角色卡，放置入舞台的任意格子。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-076",
+        "rarity": "U"
+      },
+      {
+        "id": "BDY/WZ14-076S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-077": {
+    "name": "Happy Birthday 峰月律",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你检视自己卡组顶的1张卡，放置入卡组顶或卡组底。<br>【自】［将1张手牌放置入休息室，将1张其他的你的舞台的角色卡放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己卡组顶的至多2张卡，将其按任意顺序放置于卡组顶，选择1张自己休息室的持有《音乐》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-077",
+        "rarity": "U"
+      },
+      {
+        "id": "BDY/WZ14-077S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-078": {
+    "name": "与亲友的再会 峰月律",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［①］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张自己的休息室的「梦限的宇宙进行中 峰月律」，放置入回忆区。<br>【自】【CX联动】 记忆 ［将此卡放置入库存区的下方］ 你的高潮阶段中，若高潮区存在「10磅的奖励」，你可以支付费用。若如此做，则你选择1张自己回忆区的「梦限的宇宙进行中 峰月律」，放置入此卡曾经存在的格子，直到下一个对方回合的结束之际为止，该角色卡的力量＋1500。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-078",
+        "rarity": "U"
+      },
+      {
+        "id": "BDY/WZ14-078S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-079": {
+    "name": "偶然的相遇  薇欧拉",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 0,
+    "trait": ["音乐", "妖精花束"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】【CX联动】［①］ 你的攻击阶段开始之际，若高潮区存在「打磨极致的恶意」，则且前列存在此卡，若存在大于等于2张其他的你的持有《音乐》特征的角色卡，则你可以支付费用。若如此做，则你执行至多2次以下行动。『你选择1张对方的角色卡，【竖置】，将其移动至对方舞台的不存在角色卡的其他格子，或选择1张其他的对方的角色卡，分别【竖置】并互换位置。』",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-079",
+        "rarity": "U"
+      },
+      {
+        "id": "BDY/WZ14-079S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-080": {
+    "name": "YM∞MT 峰月律",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【永】 若你的休息室中存在的高潮卡小于等于2张或大于等于6张，则你手牌中的此卡的等级－1。<br>【自】［将1张手牌放置入休息室］ 此卡攻击时，若存在大于等于4张其他的你的持有《梦限大MewType》特征的角色卡，则你可以支付费用。若如此做，则你从以下2个效果中选择1个执行。『你选择自己的计时区上方的至多1张卡片，放置入休息室，该回合中，此卡的力量＋2000。』『对方公开自己卡组顶的3张卡，将卡组洗切，对方将自己卡组顶的Ｘ张卡，放置入计时区。Ｘ为那些卡片中的高潮卡的张数。』",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-080",
+        "rarity": "U"
+      },
+      {
+        "id": "BDY/WZ14-080S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-081": {
+    "name": "偶然的相遇 藤都子",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "蓝色",
+    "soul": 3,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你检视自己的卡组并选择至多1张持有《梦限大MewType》特征的角色卡，放置入休息室，将卡组洗切，选择至多2张自己休息室的「梦限的宇宙进行中 藤都子」，将至多2张按任意顺序放置入库存区，将其余的卡片放置入回忆区。<br>【自】 记忆 ［将此卡返回手牌］ 你的高潮阶段开始之际，你可以支付费用。若如此做，则你选择1张自己回忆区的「梦限的宇宙进行中 藤都子」，放置入此卡曾经存在的格子。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-081",
+        "rarity": "U"
+      },
+      {
+        "id": "BDY/WZ14-081S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-082": {
+    "name": "并非孤身一人 峰月律",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你将自己的库存区的下方的至多2张卡，返回手牌，选择相同张数的自己的手牌，其余的卡片按任意顺序放置入库存区下方。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-082",
+        "rarity": "C"
+      },
+      {
+        "id": "BDY/WZ14-082S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-083": {
+    "name": "“妖精花束”蓓儿",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "trait": ["音乐", "妖精花束"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】  此卡被从手牌放置入舞台时或攻击时，你选择1张对方的角色卡，直到下一个对方回合的结束之际为止，赋予其以下能力。『【永】 此卡无法移动至其他的格子。』",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-083",
+        "rarity": "C"
+      },
+      {
+        "id": "BDY/WZ14-083S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-084": {
+    "name": "赎罪的百次参拜 藤都子",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你选择1张自己的持有《音乐》特征的角色卡，该回合中，力量＋1500。<br>【自】［① 将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你检视自己的卡组并选择至多2张持有《音乐》特征的角色卡展示给对手。那之后，对方从那些卡片中选择1张角色卡，放置入休息室，其余的卡片加入你的手牌，将卡组洗切，你检视自己卡组顶的至多2张卡，将其以任意顺序放置于卡组顶。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-084",
+        "rarity": "C"
+      },
+      {
+        "id": "BDY/WZ14-084S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-085": {
+    "name": "“妖精花束”波波",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音乐", "妖精花束"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡被从手牌放置入舞台时，若存在其他的你的持有《音乐》特征的角色卡，则该回合中，此卡的力量＋2000。<br>【自】［将1张手牌放置入休息室］ 此卡被从手牌放置入舞台时，你可以支付费用。若如此做，则你选择1张对方的等级大于等于1的角色卡，对方选择1张自己休息室的等级小于等于Ｘ的角色卡，互换位置。Ｘ为你选择的角色卡的等级－1。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-085",
+        "rarity": "C"
+      },
+      {
+        "id": "BDY/WZ14-085S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-086": {
+    "name": "转校生 峰月律",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 1500,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】［将2张手牌放置入休息室］ 你使用此卡的『助太刀』时，你可以支付费用。若如此做，则你选择1张对方的等级高于对方的等级的角色卡，放置入休息室。<br>【起】【反击】 助太刀1000 等级1 ［将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋1000）",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-086",
+        "rarity": "C"
+      },
+      {
+        "id": "BDY/WZ14-086S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-087": {
+    "name": "“最棒的起点”仲町阿拉蕾",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2000,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若存在大于等于2张其他的你的持有《音乐》特征的角色卡，则此卡的力量＋4000。<br>【自】 此卡【倒置】时，若此卡的战斗对手的费用小于等于0，则你可以将该角色卡放置入卡组底。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-087",
+        "rarity": "C"
+      },
+      {
+        "id": "BDY/WZ14-087S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-088": {
+    "name": "LIVE的成就感 藤都子",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 0,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 你的回合中，若存在大于等于2张其他的你的持有《音乐》特征的角色卡，则此卡的力量＋2000。<br>【自】［① 将1张手牌放置入休息室，【横置】1张其他的你的处于【竖置】状态的持有《音乐》特征的角色卡］ 此卡被从手牌放置入舞台的回合中，此卡的战斗对手【倒置】时，你可以支付费用。若如此做，则你选择至多2张自己休息室的持有《音乐》特征的角色卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-088",
+        "rarity": "C"
+      },
+      {
+        "id": "BDY/WZ14-088S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-089": {
+    "name": "白熊眼 藤都子",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 1000,
+    "cost": 1,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【起】［① 此卡放置入卡组底］ 你选择至多2张自己休息室的持有《梦限大MewType》特征的角色卡，返回手牌。<br>【起】【反击】 助太刀3000 等级2 ［① 将手牌的此卡放置入休息室］ （你选择1张自己的正被正面攻击的角色卡，该回合中，力量＋3000）",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-089",
+        "rarity": "C"
+      },
+      {
+        "id": "BDY/WZ14-089S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-090": {
+    "name": "捜索中？ 峰月律",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 3000,
+    "cost": 1,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【永】 所有其他的你的「梦限的宇宙进行中 峰月律」，赋予其以下能力。『【自】 此卡的战斗对手【倒置】时，你检视自己卡组顶的至多3张卡，将其以任意顺序放置于卡组顶。』<br>【自】 你的高潮卡被放置入高潮区时，你选择至多2张自己的角色卡，直到下一个对方回合的结束之际为止，力量＋2500。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-090",
+        "rarity": "C"
+      },
+      {
+        "id": "BDY/WZ14-090S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-091": {
+    "name": "新成员 峰月律",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 4500,
+    "cost": 1,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你选择1张其他的自己的持有《音乐》特征的角色卡，该回合中，赋予其以下能力。『【自】 此卡攻击时，若此卡正面的角色卡的等级大于等于2，则该回合中，此卡的力量＋6000。』<br>【自】 此卡【倒置】时，若此卡的战斗对手的等级高于对方的等级，则你可以将该角色卡放置入卡组底。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-091",
+        "rarity": "C"
+      },
+      {
+        "id": "BDY/WZ14-091S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-092": {
+    "name": "搜索中？ 仲町阿拉蕾",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 1,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "蓝色",
+    "soul": 1,
+    "effect": "【自】 此卡攻击时，若此卡正面的角色卡的等级大于等于3，则该回合中，此卡的力量＋6000。<br>【起】［将1张其他的你的舞台的持有《梦限大MewType》特征的角色卡放置入休息室，将处于【竖置】状态的此卡放置入休息室］ 你选择1张自己休息室的高潮卡，返回手牌。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-092",
+        "rarity": "C"
+      },
+      {
+        "id": "BDY/WZ14-092S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-093": {
+    "name": "事前的确认 仲町阿拉蕾",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 8500,
+    "cost": 2,
+    "trait": ["音乐", "梦限大MewType"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【永】 若存在对方的等级大于等于3的角色卡，则你手牌中的此卡的等级－1。<br>【自】 此卡被从手牌放置入舞台时，你选择自己的计时区上方的至多1张卡片，放置入休息室，该回合中，此卡的力量＋3000。<br>【自】 对方的高潮卡被放置入高潮区时，你可以将此卡放置入库存区。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-093",
+        "rarity": "C"
+      },
+      {
+        "id": "BDY/WZ14-093S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-094": {
+    "name": "冒牌货的做法  薇欧拉",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "trait": ["音乐", "妖精花束"],
+    "color": "蓝色",
+    "soul": 2,
+    "effect": "【自】 此卡被从手牌放置入舞台时，你检视自己卡组顶的至多3张卡，将其按任意顺序放置于卡组顶，选择至多1张对方的角色卡，返回手牌。<br>【自】［①］ 此卡攻击时，你可以支付费用。若如此做，则你选择1张对方休息室的卡片，放置于卡组顶。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-094",
+        "rarity": "C"
+      },
+      {
+        "id": "BDY/WZ14-094S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-095": {
+    "name": "丸君",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "若不存在你的持有《梦限大MewType》特征的角色卡，则此卡无法从手牌被使用。你检视自己卡组顶的至多2张卡，选择至多2张持有《梦限大MewType》特征的角色卡或「丸君」展示给对手，加入手牌，其余的卡片放置入休息室。<br>［将此卡放置入等级区］ 你可以支付费用。若如此做，则你选择1张自己等级区的卡片，放置入休息室。<br>【永】 经验 若你的等级区存在此卡，且不存在其他的你的等级区的「丸君」，则你手牌的张数上限＋1。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-095",
+        "rarity": "U"
+      },
+      {
+        "id": "BDY/WZ14-095S",
+        "rarity": "SR1"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-096": {
+    "name": "10磅的奖励",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-096",
+        "rarity": "CR"
+      },
+      {
+        "id": "BDY/WZ14-096R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BDY/WZ14-096A",
+        "rarity": "AGR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-097": {
+    "name": "临兵斗者！皆阵烈在前～",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【自】 此卡被从手牌放置入高潮区时，你抽至多1张卡，选择至多2张自己的角色卡，该回合中，魂＋1。<br>（<img src=\"/effect-icons/draw.webp\">：此卡触发时，你可以抽1张卡）",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-097",
+        "rarity": "CR"
+      },
+      {
+        "id": "BDY/WZ14-097R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "BDY/WZ14-097A",
+        "rarity": "AGR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-098": {
+    "name": "Empty puppet",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，力量＋1000，魂＋1。<br>（<img src=\"/effect-icons/gate.webp\">：此卡触发时，你可以选择1张自己休息室的高潮卡，返回手牌）",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-098",
+        "rarity": "CR"
+      },
+      {
+        "id": "BDY/WZ14-098R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 1
+  },
+  "BDY/WZ14-099": {
+    "name": "限界现实Survive天使",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【自】 此卡被从手牌放置入高潮区时，你抽至多1张卡，选择至多2张自己的角色卡，该回合中，魂＋1。<br>（<img src=\"/effect-icons/draw.webp\">：此卡触发时，你可以抽1张卡）",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-099",
+        "rarity": "CR"
+      },
+      {
+        "id": "BDY/WZ14-099R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 0
+  },
+  "BDY/WZ14-100": {
+    "name": "打磨极致的恶意",
+    "product_name": "【BanG Dream! 梦限大 MewType】- 补充包",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "trait": "-",
+    "color": "蓝色",
+    "soul": "-",
+    "effect": "【永】 所有你的角色卡，魂＋2。",
+    "all_cards": [
+      {
+        "id": "BDY/WZ14-100",
+        "rarity": "CR"
+      },
+      {
+        "id": "BDY/WZ14-100R",
+        "rarity": "RRR"
+      }
+    ],
+    "trigger_soul_count": 2
+  }
+}

@@ -1161,7 +1161,7 @@ const wscSeriesMap = {
   '[cn]bd': {
     name: '[cn]BanG Dream!',
     prefixes: ['[cn]BD', '[cn]BDY'],
-    latestReleaseDate: '2025-10-10',
+    latestReleaseDate: '2026-11-13',
   },
   '[cn]dal': {
     name: '[cn]约会大作战',
