@@ -95,6 +95,7 @@
   "overrides": {
     "sharp": "^0.35.5",
     "file-type": "^22.0.2",
-    "undici": "^7.30.1"
+    "undici": "^7.30.1",
+    "glob": "^14.0.5"
   }
 }
