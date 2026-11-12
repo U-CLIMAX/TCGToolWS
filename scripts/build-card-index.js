@@ -14,7 +14,41 @@ const CARD_DATA_DIR = path.join(__dirname, '../src/assets/card-data')
 const OUTPUT_DIR = path.join(__dirname, '../public')
 
 // 腳本邏輯版本
-const BUILD_LOGIC_VERSION = 'v6'
+const BUILD_LOGIC_VERSION = 'v7'
+const CHUNK_SIZE = 512 * 1024 // 512 KB
+const NON_LOWEST_RARITIES = new Set(['AGR'])
+
+const COLOR_MAP = ['紫色', '红色', '绿色', '蓝色', '黄色']
+const TYPE_MAP = ['事件卡', '角色卡', '高潮卡']
+const COLOR_INDEX_MAP = new Map(COLOR_MAP.map((c, i) => [c, i]))
+const TYPE_INDEX_MAP = new Map(TYPE_MAP.map((t, i) => [t, i]))
+
+const createIndexMap = (arr) => new Map(arr.map((item, idx) => [item, idx]))
+const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+
+/**
+ * 判斷是否為最低罕貴度版本
+ */
+const isLowestRarityCard = (cardVersion, minIdLength) => {
+  if (NON_LOWEST_RARITIES.has(cardVersion.rarity)) return false
+  const id = cardVersion.id || ''
+  const lastChar = id.slice(-1)
+  if (lastChar >= 'A' && lastChar <= 'Z') return false
+  return id.length === minIdLength
+}
+
+/**
+ * 在 Map 中建立雙向無向邊關聯
+ */
+const addBidirectionalLink = (map, a, b) => {
+  let sa = map.get(a)
+  if (!sa) map.set(a, (sa = new Set()))
+  sa.add(b)
+
+  let sb = map.get(b)
+  if (!sb) map.set(b, (sb = new Set()))
+  sb.add(a)
+}
 
 console.log('🔍 Starting to build card index...')
 
@@ -33,7 +67,7 @@ const createIndexConfig = () => ({
 
 /**
  * 建立並儲存 FlexSearch 索引檔案
- * @param {string} game - 遊戲代號 (ws/wsr)
+ * @param {string} game - 遊戲代號 (ws/wsr/wsc)
  * @param {Array} cards - 卡片資料陣列
  * @param {string} hash - 資料版本 hash
  * @returns {Promise<Object>} - 回傳索引檔案對照表 { field: filename }
@@ -42,14 +76,15 @@ const buildAndSaveSearchIndex = async (game, cards, hash) => {
   console.log(`     - Building FlexSearch index for ${cards.length} cards...`)
   const index = new Document(createIndexConfig())
 
-  cards.forEach((card, idx) => {
+  for (let idx = 0; idx < cards.length; idx++) {
+    const card = cards[idx]
     index.add({
       index: idx,
       name: card.name || '',
       effect: card.effect || '',
       id: card.id || '',
     })
-  })
+  }
 
   const indexFiles = {}
 
@@ -68,15 +103,15 @@ const buildAndSaveSearchIndex = async (game, cards, hash) => {
   return indexFiles
 }
 
-// Build prefix map
+// 建立 prefix -> game 對應表
 const prefixToGameMap = new Map()
-Object.values(seriesMap).forEach((series) => {
-  if (series.prefixes && Array.isArray(series.prefixes)) {
-    series.prefixes.forEach((prefix) => {
+for (const series of Object.values(seriesMap)) {
+  if (Array.isArray(series.prefixes)) {
+    for (const prefix of series.prefixes) {
       prefixToGameMap.set(prefix.toLowerCase(), series.game)
-    })
+    }
   }
-})
+}
 
 // 讀取所有 JSON 檔案並依遊戲分組
 const files = fs.readdirSync(CARD_DATA_DIR).filter((f) => f.endsWith('.json'))
@@ -88,7 +123,7 @@ const rawFilesByGame = {
   wsc: [],
 }
 
-files.forEach((filename) => {
+for (const filename of files) {
   const filePath = path.join(CARD_DATA_DIR, filename)
   const content = JSON.parse(fs.readFileSync(filePath, 'utf-8'))
   const cardIdPrefix = filename.replace('.json', '')
@@ -99,17 +134,16 @@ files.forEach((filename) => {
     rawFilesByGame[game] = []
   }
 
-  rawFilesByGame[game].push({ content, cardIdPrefix })
-})
-
-const NON_LOWEST_RARITIES = ['AGR']
+  rawFilesByGame[game].push({ content, cardIdPrefix, prefix })
+}
 
 /**
  * 處理單一遊戲的 rawFiles（建立連結、平行卡、統計篩選選項並展開卡片）
- * @param {Array<{content: Object, cardIdPrefix: string}>} rawFiles
+ * @param {Array<{content: Object, cardIdPrefix: string, prefix: string}>} rawFiles
+ * @param {string} game
  * @returns {{ cards: Array<Object>, filterOptions: Object }}
  */
-const processRawCardData = (rawFiles) => {
+const processRawCardData = (rawFiles, game) => {
   const fetchedCards = []
   const productNamesSet = new Set()
   const traitsSet = new Set()
@@ -119,10 +153,10 @@ const processRawCardData = (rawFiles) => {
   const costsSet = new Set()
   const powersSet = new Set()
 
-  // 1. 建立基礎索引 (名稱 -> baseIds, baseId -> 所有 card.id)
-  const nameToBaseIds = new Map()
+  // 1. 建立基礎索引 (baseId -> 所有 card.id, prefix -> baseCards)
   const baseIdToAllIds = new Map()
   const baseCards = []
+  const prefixToBaseCards = new Map()
 
   for (const file of rawFiles) {
     for (const baseId in file.content) {
@@ -131,38 +165,51 @@ const processRawCardData = (rawFiles) => {
       const ids = allCards.map((c) => c.id)
 
       baseIdToAllIds.set(baseId, ids)
-      if (cardData.name) {
-        if (!nameToBaseIds.has(cardData.name)) {
-          nameToBaseIds.set(cardData.name, new Set())
-        }
-        nameToBaseIds.get(cardData.name).add(baseId)
-      }
+      const baseCard = { baseId, cardData, cardIdPrefix: file.cardIdPrefix }
+      baseCards.push(baseCard)
 
-      baseCards.push({ baseId, cardData, cardIdPrefix: file.cardIdPrefix })
+      let pList = prefixToBaseCards.get(file.prefix)
+      if (!pList) prefixToBaseCards.set(file.prefix, (pList = []))
+      pList.push(baseCard)
     }
   }
 
-  // 2. 在 Base Card 層級建立雙向連結
+  // 2. 根據 seriesMap 各系列 prefixes 在系列內建立雙向連結
   const baseLinks = new Map()
-  if (nameToBaseIds.size > 0) {
-    const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-    const allNamesPattern = [...nameToBaseIds.keys()].map(escapeRegex).join('|')
-    const nameMatcherRegex = new RegExp(`[「｢](${allNamesPattern})[」｣]`, 'g')
+  const targetSeriesList = Object.values(seriesMap).filter(
+    (s) => s.game === game && Array.isArray(s.prefixes)
+  )
 
-    for (const { baseId, cardData } of baseCards) {
+  for (const series of targetSeriesList) {
+    const seriesBaseCards = series.prefixes.flatMap(
+      (p) => prefixToBaseCards.get(p.toLowerCase()) || []
+    )
+    if (seriesBaseCards.length === 0) continue
+
+    const seriesNameToBaseIds = new Map()
+    for (const { baseId, cardData } of seriesBaseCards) {
+      if (cardData.name) {
+        let s = seriesNameToBaseIds.get(cardData.name)
+        if (!s) seriesNameToBaseIds.set(cardData.name, (s = new Set()))
+        s.add(baseId)
+      }
+    }
+    if (seriesNameToBaseIds.size === 0) continue
+
+    const namesPattern = [...seriesNameToBaseIds.keys()].map(escapeRegex).join('|')
+    const nameMatcherRegex = new RegExp(`[「｢](${namesPattern})[」｣]`, 'g')
+
+    for (const { baseId, cardData } of seriesBaseCards) {
       const effectText = cardData.effect || ''
       if (!effectText) continue
 
       const matches = effectText.matchAll(nameMatcherRegex)
       for (const match of matches) {
         const foundName = match[1]
-        const sourceBaseIds = nameToBaseIds.get(foundName)
+        const sourceBaseIds = seriesNameToBaseIds.get(foundName)
         if (sourceBaseIds) {
           for (const sourceBaseId of sourceBaseIds) {
-            if (!baseLinks.has(baseId)) baseLinks.set(baseId, new Set())
-            if (!baseLinks.has(sourceBaseId)) baseLinks.set(sourceBaseId, new Set())
-            baseLinks.get(baseId).add(sourceBaseId)
-            baseLinks.get(sourceBaseId).add(baseId)
+            addBidirectionalLink(baseLinks, baseId, sourceBaseId)
           }
         }
       }
@@ -172,53 +219,56 @@ const processRawCardData = (rawFiles) => {
   // 3. 展開卡片版本並直接注入 link 與 parallelCards
   for (const { baseId, cardData, cardIdPrefix } of baseCards) {
     if (cardData.product_name) productNamesSet.add(cardData.product_name)
-    if (cardData.trait && Array.isArray(cardData.trait)) {
-      cardData.trait.forEach((t) => traitsSet.add(t))
+    if (Array.isArray(cardData.trait)) {
+      for (const t of cardData.trait) traitsSet.add(t)
     }
 
     const levelValue = cardData.level === '-' ? 0 : cardData.level
-    if (typeof levelValue === 'number') {
-      levelsSet.add(levelValue)
-    }
+    if (typeof levelValue === 'number') levelsSet.add(levelValue)
 
     const costValue = cardData.cost === '-' ? 0 : cardData.cost
-    if (typeof costValue === 'number') {
-      costsSet.add(costValue)
-    }
-    if (typeof cardData.power === 'number') {
-      powersSet.add(cardData.power)
-    }
+    if (typeof costValue === 'number') costsSet.add(costValue)
+
+    if (typeof cardData.power === 'number') powersSet.add(cardData.power)
+
     const soulValue = cardData.soul === '-' ? 0 : cardData.soul
-    if (typeof soulValue === 'number') {
-      soulsSet.add(soulValue)
-    }
+    if (typeof soulValue === 'number') soulsSet.add(soulValue)
 
-    const { all_cards, ...baseCardData } = cardData
-    if (all_cards && Array.isArray(all_cards)) {
-      const minIdLength = all_cards.length > 0 ? Math.min(...all_cards.map((c) => c.id.length)) : 0
-
-      const isLowestFn = (cardVersion) => {
-        const lastChar = cardVersion.id.slice(-1)
-        const isLastCharUpper = lastChar >= 'A' && lastChar <= 'Z'
-        const isShortestLength = cardVersion.id.length === minIdLength
-        return NON_LOWEST_RARITIES.includes(cardVersion.rarity)
-          ? false
-          : isLastCharUpper
-            ? false
-            : isShortestLength
+    const allCards = cardData.all_cards
+    if (Array.isArray(allCards) && allCards.length > 0) {
+      let minIdLength = Infinity
+      for (let i = 0; i < allCards.length; i++) {
+        const len = allCards[i].id ? allCards[i].id.length : 0
+        if (len < minIdLength) minIdLength = len
       }
+      if (minIdLength === Infinity) minIdLength = 0
 
-      const highRarityCardIds = all_cards.filter((c) => !isLowestFn(c)).map((c) => c.id)
-      const lowestRarityCardIds = all_cards.filter((c) => isLowestFn(c)).map((c) => c.id)
+      const isLowestList = new Array(allCards.length)
+      const highRarityCardIds = []
+      const lowestRarityCardIds = []
+
+      for (let i = 0; i < allCards.length; i++) {
+        const cv = allCards[i]
+        const isLowest = isLowestRarityCard(cv, minIdLength)
+        isLowestList[i] = isLowest
+        if (isLowest) {
+          lowestRarityCardIds.push(cv.id)
+        } else {
+          highRarityCardIds.push(cv.id)
+        }
+      }
 
       const linkedBaseIds = baseLinks.get(baseId)
       const fullLinkedIds = linkedBaseIds
         ? [...linkedBaseIds].flatMap((bId) => baseIdToAllIds.get(bId) || [])
         : []
 
-      all_cards.forEach((cardVersion) => {
+      const { all_cards: _ignored, ...baseCardData } = cardData
+
+      for (let i = 0; i < allCards.length; i++) {
+        const cardVersion = allCards[i]
         if (cardVersion.rarity) raritiesSet.add(cardVersion.rarity)
-        const isLowest = isLowestFn(cardVersion)
+        const isLowest = isLowestList[i]
 
         fetchedCards.push({
           ...baseCardData,
@@ -229,7 +279,7 @@ const processRawCardData = (rawFiles) => {
           link: fullLinkedIds,
           parallelCards: isLowest ? highRarityCardIds : lowestRarityCardIds,
         })
-      })
+      }
     }
   }
 
@@ -252,16 +302,20 @@ const processRawCardData = (rawFiles) => {
  * @returns {Object} valueMaps
  */
 const buildValueMaps = (cards) => {
-  const colorMap = ['紫色', '红色', '绿色', '蓝色', '黄色']
-  const typeMap = ['事件卡', '角色卡', '高潮卡']
-  const prefixes = [...new Set(cards.map((c) => c.cardIdPrefix).filter(Boolean))].sort()
-  const effects = [...new Set(cards.map((c) => c.effect || ''))]
+  const prefixSet = new Set()
+  const effectSet = new Set()
+
+  for (let i = 0; i < cards.length; i++) {
+    const c = cards[i]
+    if (c.cardIdPrefix) prefixSet.add(c.cardIdPrefix)
+    effectSet.add(c.effect || '')
+  }
 
   return {
-    colorMap,
-    typeMap,
-    prefixes,
-    effects,
+    colorMap: COLOR_MAP,
+    typeMap: TYPE_MAP,
+    prefixes: [...prefixSet].sort(),
+    effects: [...effectSet],
   }
 }
 
@@ -273,23 +327,14 @@ const buildValueMaps = (cards) => {
  * @returns {Object} cols
  */
 const transformToColumnarStructure = (cards, valueMaps, filterOptions) => {
-  const { colorMap, typeMap, prefixes, effects } = valueMaps
+  const { prefixes, effects } = valueMaps
   const { productNames, traits, rarities } = filterOptions
 
-  const prefixIndexMap = new Map()
-  prefixes.forEach((p, i) => prefixIndexMap.set(p, i))
-
-  const effectIndexMap = new Map()
-  effects.forEach((e, i) => effectIndexMap.set(e, i))
-
-  const prodIndexMap = new Map()
-  productNames.forEach((p, i) => prodIndexMap.set(p, i))
-
-  const traitIndexMap = new Map()
-  traits.forEach((t, i) => traitIndexMap.set(t, i))
-
-  const rarityIndexMap = new Map()
-  rarities.forEach((r, i) => rarityIndexMap.set(r, i))
+  const prefixIndexMap = createIndexMap(prefixes)
+  const effectIndexMap = createIndexMap(effects)
+  const prodIndexMap = createIndexMap(productNames)
+  const traitIndexMap = createIndexMap(traits)
+  const rarityIndexMap = createIndexMap(rarities)
 
   const cols = {
     id: [],
@@ -312,13 +357,12 @@ const transformToColumnarStructure = (cards, valueMaps, filterOptions) => {
     parallel: [],
   }
 
-  cards.forEach((c) => {
+  for (let i = 0; i < cards.length; i++) {
+    const c = cards[i]
     cols.id.push(c.id || '')
     cols.name.push(c.name || '')
-    cols.prod.push(
-      c.product_name && prodIndexMap.has(c.product_name) ? prodIndexMap.get(c.product_name) : -1
-    )
-    cols.type.push(c.type && typeMap.indexOf(c.type) >= 0 ? typeMap.indexOf(c.type) : -1)
+    cols.prod.push(prodIndexMap.get(c.product_name) ?? -1)
+    cols.type.push(TYPE_INDEX_MAP.get(c.type) ?? -1)
     cols.level.push(typeof c.level === 'number' ? c.level : null)
     cols.power.push(typeof c.power === 'number' ? c.power / 500 : null)
     cols.cost.push(typeof c.cost === 'number' ? c.cost : null)
@@ -327,19 +371,17 @@ const transformToColumnarStructure = (cards, valueMaps, filterOptions) => {
         ? c.trait.map((t) => traitIndexMap.get(t)).filter((idx) => idx !== undefined)
         : null
     )
-    cols.color.push(c.color ? colorMap.indexOf(c.color) : -1)
+    cols.color.push(COLOR_INDEX_MAP.get(c.color) ?? -1)
     cols.soul.push(typeof c.soul === 'number' ? c.soul : null)
-    cols.effect.push(effectIndexMap.has(c.effect || '') ? effectIndexMap.get(c.effect || '') : -1)
+    cols.effect.push(effectIndexMap.get(c.effect || '') ?? -1)
     cols.tsc.push(c.trigger_soul_count || 0)
-    cols.rarity.push(c.rarity && rarityIndexMap.has(c.rarity) ? rarityIndexMap.get(c.rarity) : -1)
+    cols.rarity.push(rarityIndexMap.get(c.rarity) ?? -1)
     cols.baseId.push(c.baseId === c.id ? '' : c.baseId || '')
-    cols.prefix.push(
-      c.cardIdPrefix && prefixIndexMap.has(c.cardIdPrefix) ? prefixIndexMap.get(c.cardIdPrefix) : -1
-    )
+    cols.prefix.push(prefixIndexMap.get(c.cardIdPrefix) ?? -1)
     cols.isLowest.push(c.isLowestRarity ? 1 : 0)
     cols.link.push(c.link && c.link.length > 0 ? c.link : null)
     cols.parallel.push(c.parallelCards && c.parallelCards.length > 0 ? c.parallelCards : null)
-  })
+  }
 
   return cols
 }
@@ -348,7 +390,7 @@ const processGameData = async (game, rawFiles) => {
   console.log(`\n🚀 Processing ${game.toUpperCase()} data...`)
   const manifestFile = path.join(OUTPUT_DIR, `card-db-manifest-${game}.json`)
 
-  const { cards, filterOptions } = processRawCardData(rawFiles)
+  const { cards, filterOptions } = processRawCardData(rawFiles, game)
   console.log(`     - Processed a total of ${cards.length} cards.`)
 
   // 計算卡片資料的 hash
@@ -399,7 +441,6 @@ const processGameData = async (game, rawFiles) => {
   const totalSizeMB = (zippedContent.length / 1024 / 1024).toFixed(2)
 
   // --- 分片邏輯 ---
-  const CHUNK_SIZE = 512 * 1024 // 512 KB
   const chunkCount = Math.ceil(zippedContent.length / CHUNK_SIZE)
   const chunkFiles = []
   let singleFileName = null
@@ -443,7 +484,7 @@ const processGameData = async (game, rawFiles) => {
     chunked: chunkCount > 1,
     totalSize: `${totalSizeMB} MB`,
     cardCount: cards.length,
-    indexFiles: indexFiles,
+    indexFiles,
   }
 
   if (chunkCount > 1) {
