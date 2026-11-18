@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { ref, watch, nextTick, shallowRef } from 'vue'
 import { useCardFiltering } from '@/composables/useCardFiltering.js'
 import { openDB, saveData, loadData } from '@/utils/db.js'
+import { fetchAndDecompressBrotliText } from '@/utils/brotliStream.js'
 
 const dbName = 'CardDataDB'
 const storeName = 'cardStore'
@@ -175,83 +176,22 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
    * @param {Object} manifest
    */
   const fetchAndStoreData = async (manifest) => {
-    const brotliModule = await import('brotli-wasm')
-    const brotli = await brotliModule.default
-
     isLoading.value = true
     error.value = null
     let db
     try {
       const { version, chunked, chunks, fileName, indexFiles } = manifest
-
-      const fileStream = new ReadableStream({
-        async start(controller) {
-          if (chunked) {
-            downloadProgress.value.total = chunks.length
-            console.log(`📥 Streaming ${chunks.length} chunks...`)
-            for (let i = 0; i < chunks.length; i++) {
-              const chunkFile = chunks[i]
-              downloadProgress.value.current = i + 1
-              const response = await fetch(`/${chunkFile}`)
-              if (!response.ok) throw new Error(`Fetch error: ${chunkFile}`)
-
-              const reader = response.body.getReader()
-              while (true) {
-                const { done, value } = await reader.read()
-                if (done) break
-                controller.enqueue(value)
-              }
-            }
-          } else {
-            downloadProgress.value.total = 1
-            downloadProgress.value.current = 1
-            const response = await fetch(`/${fileName}`)
-            const reader = response.body.getReader()
-            while (true) {
-              const { done, value } = await reader.read()
-              if (done) break
-              controller.enqueue(value)
-            }
-          }
-          controller.close()
-        },
-      })
-
-      const decompressStream = new brotli.DecompressStream()
-      const decompressionTransformer = new TransformStream({
-        transform(chunk, controller) {
-          let resultCode
-          let inputOffset = 0
-          const chunkSize = 4096
-
-          do {
-            const input = chunk.slice(inputOffset)
-            const result = decompressStream.decompress(input, chunkSize)
-            controller.enqueue(result.buf)
-            resultCode = result.code
-            inputOffset += result.input_offset
-          } while (resultCode === brotli.BrotliStreamResultCode.NeedsMoreOutput)
-
-          if (
-            resultCode !== brotli.BrotliStreamResultCode.NeedsMoreInput &&
-            resultCode !== brotli.BrotliStreamResultCode.ResultSuccess
-          ) {
-            controller.error(`Decompression failed with code ${resultCode}`)
-          }
-        },
-      })
-
-      const jsonStream = fileStream
-        .pipeThrough(decompressionTransformer)
-        .pipeThrough(new TextDecoderStream())
-
-      const reader = jsonStream.getReader()
-      let jsonString = ''
-      while (true) {
-        const { done, value } = await reader.read()
-        if (done) break
-        jsonString += value
+      const targetFiles = chunked ? chunks : [fileName]
+      if (chunked) {
+        console.log(`📥 Streaming ${chunks.length} chunks...`)
       }
+
+      const jsonString = await fetchAndDecompressBrotliText(targetFiles, {
+        onProgress: (current, total) => {
+          downloadProgress.value.total = total
+          downloadProgress.value.current = current
+        },
+      })
 
       console.log('Hz Decoding complete, parsing JSON...')
       const rawPayload = JSON.parse(jsonString)

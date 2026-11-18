@@ -14,7 +14,7 @@ const CARD_DATA_DIR = path.join(__dirname, '../src/assets/card-data')
 const OUTPUT_DIR = path.join(__dirname, '../public')
 
 // 腳本邏輯版本
-const BUILD_LOGIC_VERSION = 'v7'
+const BUILD_LOGIC_VERSION = 'v8'
 const CHUNK_SIZE = 512 * 1024 // 512 KB
 const NON_LOWEST_RARITIES = new Set(['AGR'])
 
@@ -66,11 +66,47 @@ const createIndexConfig = () => ({
 })
 
 /**
- * 建立並儲存 FlexSearch 索引檔案
+ * 將內容以 Brotli 最高品質壓縮並依 CHUNK_SIZE 自動切分寫入 OUTPUT_DIR
+ * @param {string} baseName - 輸出檔名前綴（不含 hash 與副檔名）
+ * @param {string} hash - 資料版本 hash
+ * @param {string | Buffer} data - 原始資料內容
+ * @returns {{ chunked: boolean, files: string[], totalBytes: number }}
+ */
+const writeBrotliChunkedAsset = (baseName, hash, data) => {
+  const rawBuffer = Buffer.isBuffer(data) ? data : Buffer.from(data, 'utf-8')
+  const zippedContent = zlib.brotliCompressSync(rawBuffer, {
+    params: {
+      [zlib.constants.BROTLI_PARAM_QUALITY]: zlib.constants.BROTLI_MAX_QUALITY,
+      [zlib.constants.BROTLI_PARAM_MODE]: zlib.constants.BROTLI_MODE_TEXT,
+      [zlib.constants.BROTLI_PARAM_LGWIN]: zlib.constants.BROTLI_MAX_WINDOW_BITS,
+      [zlib.constants.BROTLI_PARAM_SIZE_HINT]: rawBuffer.length,
+    },
+  })
+
+  const chunkCount = Math.ceil(zippedContent.length / CHUNK_SIZE)
+  if (chunkCount <= 1) {
+    const fileName = `${baseName}.${hash}.bin`
+    fs.writeFileSync(path.join(OUTPUT_DIR, fileName), zippedContent)
+    return { chunked: false, files: [fileName], totalBytes: zippedContent.length }
+  }
+
+  const files = []
+  for (let i = 0; i < chunkCount; i++) {
+    const chunk = zippedContent.subarray(i * CHUNK_SIZE, (i + 1) * CHUNK_SIZE)
+    const chunkFileName = `${baseName}.${hash}.part${i + 1}.bin`
+    fs.writeFileSync(path.join(OUTPUT_DIR, chunkFileName), chunk)
+    files.push(chunkFileName)
+  }
+
+  return { chunked: true, files, totalBytes: zippedContent.length }
+}
+
+/**
+ * 建立並儲存 FlexSearch 索引檔案（Brotli 壓縮並依上限分片）
  * @param {string} game - 遊戲代號 (ws/wsr/wsc)
  * @param {Array} cards - 卡片資料陣列
  * @param {string} hash - 資料版本 hash
- * @returns {Promise<Object>} - 回傳索引檔案對照表 { field: filename }
+ * @returns {Promise<Object>} - 回傳索引檔案對照表 { field: filename | filename[] }
  */
 const buildAndSaveSearchIndex = async (game, cards, hash) => {
   console.log(`     - Building FlexSearch index for ${cards.length} cards...`)
@@ -90,11 +126,16 @@ const buildAndSaveSearchIndex = async (game, cards, hash) => {
 
   await new Promise((resolve) => {
     index.export((key, data) => {
-      const filename = `${game}_index_${key}.${hash}.json`
-      const filePath = path.join(OUTPUT_DIR, filename)
-
-      fs.writeFileSync(filePath, data || '')
-      indexFiles[key] = filename
+      if (!data) return
+      const { chunked, files, totalBytes } = writeBrotliChunkedAsset(
+        `${game}_index_${key}`,
+        hash,
+        data
+      )
+      indexFiles[key] = chunked ? files : files[0]
+      console.log(
+        `       • ${key}: ${(totalBytes / 1024).toFixed(1)} KB (${chunked ? `${files.length} chunks` : '1 file'})`
+      )
     })
     resolve()
   })
@@ -425,55 +466,18 @@ const processGameData = async (game, rawFiles) => {
     version,
   }
 
-  // 將最終 output 物件轉換為 JSON 字串以供壓縮
+  // 將最終 output 物件轉換為 JSON 字串以供 Brotli 壓縮與分片
   const content = JSON.stringify(output)
+  const dbResult = writeBrotliChunkedAsset(`${game}_cards_db`, hash, content)
+  const totalSizeMB = (dbResult.totalBytes / 1024 / 1024).toFixed(2)
 
-  // 進行 brotli 壓縮
-  const brotliOptions = {
-    params: {
-      [zlib.constants.BROTLI_PARAM_QUALITY]: zlib.constants.BROTLI_MAX_QUALITY,
-      [zlib.constants.BROTLI_PARAM_MODE]: zlib.constants.BROTLI_MODE_TEXT,
-      [zlib.constants.BROTLI_PARAM_LGWIN]: zlib.constants.BROTLI_MAX_WINDOW_BITS,
-      [zlib.constants.BROTLI_PARAM_SIZE_HINT]: Buffer.byteLength(content),
-    },
-  }
-  const zippedContent = zlib.brotliCompressSync(content, brotliOptions)
-  const totalSizeMB = (zippedContent.length / 1024 / 1024).toFixed(2)
-
-  // --- 分片邏輯 ---
-  const chunkCount = Math.ceil(zippedContent.length / CHUNK_SIZE)
-  const chunkFiles = []
-  let singleFileName = null
-
-  if (chunkCount <= 1) {
-    // 單一檔案模式
-    singleFileName = `${game}_cards_db.${hash}.bin`
-    const singleFilePath = path.join(OUTPUT_DIR, singleFileName)
-    fs.writeFileSync(singleFilePath, zippedContent)
+  if (!dbResult.chunked) {
     console.log(`📦 Total size: ${totalSizeMB} MB, no splitting needed.`)
-    console.log(`     - Created file: ${singleFileName}`)
+    console.log(`     - Created file: ${dbResult.files[0]}`)
   } else {
-    // 分片模式
     console.log(
-      `📦 Total size: ${totalSizeMB} MB, splitting into ${chunkCount} chunks of ~512 KB...`
+      `📦 Total size: ${totalSizeMB} MB, split into ${dbResult.files.length} chunks of <=512 KB.`
     )
-
-    for (let i = 0; i < chunkCount; i++) {
-      const start = i * CHUNK_SIZE
-      const end = start + CHUNK_SIZE
-      const chunk = zippedContent.subarray(start, end)
-
-      const chunkFileName = `${game}_cards_db.${hash}.part${i + 1}.bin`
-      const chunkFilePath = path.join(OUTPUT_DIR, chunkFileName)
-
-      fs.writeFileSync(chunkFilePath, chunk)
-      chunkFiles.push(chunkFileName)
-      console.log(
-        `     - Created chunk ${i + 1}/${chunkCount}: ${chunkFileName} (${(
-          chunk.length / 1024
-        ).toFixed(2)} KB)`
-      )
-    }
     console.log('💾 Index chunks created.')
   }
 
@@ -481,29 +485,29 @@ const processGameData = async (game, rawFiles) => {
   const manifest = {
     version,
     hash,
-    chunked: chunkCount > 1,
+    chunked: dbResult.chunked,
     totalSize: `${totalSizeMB} MB`,
     cardCount: cards.length,
     indexFiles,
   }
 
-  if (chunkCount > 1) {
-    manifest.chunks = chunkFiles
+  if (dbResult.chunked) {
+    manifest.chunks = dbResult.files
   } else {
-    manifest.fileName = singleFileName
+    manifest.fileName = dbResult.files[0]
   }
 
   fs.writeFileSync(manifestFile, JSON.stringify(manifest, null, 2))
   console.log(`     - Manifest file created: ${manifestFile}`)
 
   // 清理舊的帶 hash 的檔案（包括舊的單體檔案、舊分片、以及舊的索引檔）
-  const currentFiles = chunkCount > 1 ? chunkFiles : [singleFileName]
-  const currentIndexFiles = Object.values(indexFiles)
-  const allCurrentFiles = [...currentFiles, ...currentIndexFiles]
+  const currentIndexFiles = Object.values(indexFiles).flat()
+  const allCurrentFiles = [...dbResult.files, ...currentIndexFiles]
 
   const oldFiles = fs.readdirSync(OUTPUT_DIR).filter((f) => {
     const isGameDb = f.startsWith(`${game}_cards_db.`) && f.endsWith('.bin')
-    const isGameIndex = f.startsWith(`${game}_index_`) && f.endsWith('.json')
+    const isGameIndex =
+      f.startsWith(`${game}_index_`) && (f.endsWith('.json') || f.endsWith('.bin'))
     return (isGameDb || isGameIndex) && !allCurrentFiles.includes(f)
   })
 

@@ -1,6 +1,7 @@
 import { Document } from 'flexsearch'
 import { expose } from 'comlink'
 import { normalizeSearchText } from '@/utils/searchNormalize.js'
+import { fetchAndDecompressBrotliText } from '@/utils/brotliStream.js'
 
 const toZero = (val) => (val === '-' ? 0 : +val)
 
@@ -258,7 +259,7 @@ const CardFilterService = {
    * @param {object} options - 初始化選項
    * @param {string} options.version - 版本號
    * @param {string} options.game - 遊戲類型 (ws/wsr)
-   * @param {object} options.indexFiles - 預先建立的索引檔案對照表 { name: 'file.json', ... }
+   * @param {object} options.indexFiles - 預先建立的索引檔案對照表 { key: 'file.bin' | ['part1.bin', ...] }
    */
   init: async (cards, options = {}) => {
     const { version, game, indexFiles } = options
@@ -279,15 +280,12 @@ const CardFilterService = {
       console.time('Index Loading')
 
       try {
-        const loadPromises = Object.entries(indexFiles).map(async ([key, filename]) => {
-          const res = await fetch(`/${filename}`)
-          if (!res.ok) throw new Error(`Failed to fetch index file: ${filename}`)
-
-          const data = await res.json()
-          searchIndex.import(key, data)
-        })
-
-        await Promise.all(loadPromises)
+        await Promise.all(
+          Object.entries(indexFiles).map(async ([key, fileOrChunks]) => {
+            const jsonText = await fetchAndDecompressBrotliText(fileOrChunks)
+            searchIndex.import(key, JSON.parse(jsonText))
+          })
+        )
         console.timeEnd('Index Loading')
         console.log(`✅ FlexSearch is ready for ${allCards.length} cards (Loaded from Pre-built).`)
         return
