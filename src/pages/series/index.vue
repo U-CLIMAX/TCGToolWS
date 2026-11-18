@@ -260,9 +260,16 @@ onMounted(() => {
   min-width: 0;
 }
 
-@media (max-width: 740px) {
+@media (max-width: 599.98px) {
   .series-grid-container {
-    grid-template-columns: repeat(auto-fill, minmax(46%, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+}
+
+@media (max-width: 479.98px) {
+  .series-grid-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;
   }
 }
