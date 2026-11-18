@@ -5,6 +5,7 @@ export const openDB = (dbName, storeName, keyPath = 'key', version = 1) => {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open(dbName, version)
     request.onerror = () => reject(new Error(`Failed to open IndexedDB: ${dbName}`))
+    request.onblocked = () => reject(new Error(`IndexedDB blocked: ${dbName}`))
     request.onsuccess = () => resolve(request.result)
     request.onupgradeneeded = (event) => {
       const db = event.target.result
@@ -24,6 +25,8 @@ export const saveData = (db, storeName, data) => {
       const transaction = db.transaction([storeName], 'readwrite')
       const request = transaction.objectStore(storeName).put(data)
       request.onerror = () => reject(new Error(`Failed to save to ${storeName}`))
+      transaction.onabort = () =>
+        reject(transaction.error || new Error(`Aborted save to ${storeName}`))
       request.onsuccess = () => resolve(request.result)
     } catch (error) {
       reject(error)

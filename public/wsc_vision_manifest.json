@@ -1,0 +1,11 @@
+{
+  "version": "vf4a64ad4",
+  "hash": "f4a64ad4",
+  "game": "wsc",
+  "count": 6750,
+  "dims": 128,
+  "int8Scale": 0.4415072202682495,
+  "int8Bytes": 864000,
+  "embeddingsFile": "wsc_embeddings.f4a64ad4.bin",
+  "cardIdsFile": "wsc_card_ids.f4a64ad4.json"
+}

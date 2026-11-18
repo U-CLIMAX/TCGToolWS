@@ -18,6 +18,7 @@ declare module 'vue' {
     CardImage: typeof import('./../components/card/CardImage.vue')['default']
     CardImageUpdatePromptModal: typeof import('./../components/app/CardImageUpdatePromptModal.vue')['default']
     CardInfiniteScrollList: typeof import('./../components/card/CardInfiniteScrollList.vue')['default']
+    CardScannerDialog: typeof import('./../components/card/CardScannerDialog.vue')['default']
     CardTemplate: typeof import('./../components/card/CardTemplate.vue')['default']
     ClientUpdateDialog: typeof import('./../components/app/ClientUpdateDialog.vue')['default']
     DeckCard: typeof import('./../components/deck/DeckCard.vue')['default']

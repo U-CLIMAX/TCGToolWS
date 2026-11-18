@@ -13,6 +13,7 @@
     "build": "npm run build:index && npm run build:sitemap && vite build",
     "build:tauri": "npm run build:index && vite build --mode tauri",
     "build:index": "node scripts/build-card-index.js",
+    "build:vision": "node scripts/build-card-embeddings.js",
     "build:sitemap": "node scripts/generate-sitemap.js",
     "preview": "vite preview",
     "setup-img": "node scripts/setup-images.js",
@@ -38,7 +39,7 @@
     "tauri:dev": "tauri dev",
     "tauri:build": "tauri build",
     "tauri:android:init": "tauri android init",
-    "tauri:android:build": "tauri android build --apk",
+    "tauri:android:build": "tauri android build --apk --target aarch64",
     "version": "node scripts/sync-version.js"
   },
   "dependencies": {

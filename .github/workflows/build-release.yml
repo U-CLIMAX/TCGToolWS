@@ -85,10 +85,10 @@ jobs:
           retention-days: 30
 
   # ==========================================
-  # 2. Android 构建 (Universal .apk)
+  # 2. Android 构建 (ARM64 .apk)
   # ==========================================
   build-android:
-    name: Build Android (.apk)
+    name: Build Android (arm64 .apk)
     if: ${{ inputs.platform == 'all' || inputs.platform == 'android' }}
     runs-on: ubuntu-latest
     steps:
@@ -118,7 +118,7 @@ jobs:
       - name: Setup Rust toolchain & Android targets
         uses: dtolnay/rust-toolchain@stable
         with:
-          targets: aarch64-linux-android,armv7-linux-androideabi,i686-linux-android,x86_64-linux-android
+          targets: aarch64-linux-android
 
       - name: Rust Cache
         uses: swatinem/rust-cache@v2
@@ -144,14 +144,14 @@ jobs:
             echo "Warning: ANDROID_KEYSTORE_BASE64 or ANDROID_KEYSTORE_PASSWORD secret not found. APK will be unsigned/debug fallback."
           fi
 
-      - name: Build Android Universal APK
+      - name: Build Android ARM64 APK
         run: npm run tauri:android:build
 
       - name: Upload Android Artifact
         uses: actions/upload-artifact@v7
         with:
           name: U-CLIMAX-Android
-          path: src-tauri/gen/android/app/build/outputs/apk/universal/release/*.apk
+          path: src-tauri/gen/android/app/build/outputs/apk/**/release/*.apk
           if-no-files-found: error
           retention-days: 30
 

@@ -19,6 +19,15 @@
               :disabled="globalSearchStore.isLoading"
               v-tooltip:bottom="{ text: isFilterOpen ? '关闭搜索' : '开启搜索', disabled: isTouch }"
             ></v-btn>
+            <v-btn
+              v-if="smAndUp"
+              icon="i-mdi:camera-outline"
+              density="compact"
+              variant="text"
+              @click="isScannerOpen = true"
+              :disabled="globalSearchStore.isLoading"
+              v-tooltip:bottom="{ text: '扫卡识别', disabled: isTouch }"
+            ></v-btn>
           </div>
 
           <div class="header-center d-flex align-center">
@@ -171,6 +180,15 @@
             @click="sheetContent = 'filter'"
             :disabled="globalSearchStore.isLoading"
           ></v-btn>
+          <v-btn
+            icon="i-mdi:camera-outline"
+            size="default"
+            color="primary"
+            class="opacity-90"
+            :class="{ 'mb-15': smAndDown }"
+            @click="isScannerOpen = true"
+            :disabled="globalSearchStore.isLoading"
+          ></v-btn>
         </div>
       </div>
 
@@ -190,6 +208,8 @@
           />
         </template>
       </DraggableBottomSheet>
+
+      <CardScannerDialog v-model="isScannerOpen" :game="game" @select="handleScanSelect" />
     </div>
   </v-container>
 </template>
@@ -258,7 +278,17 @@ const { searchCountDetails, hasActiveFilters, searchResults } = storeToRefs(glob
 const rawHeaderHeight = ref(0)
 
 const sheetContent = ref(null)
+const isScannerOpen = ref(false)
 const { smAndUp, smAndDown } = useDisplay()
+
+const handleScanSelect = ({ cardId }) => {
+  globalSearchStore.searchMode = 'precise'
+  const targets = globalSearchStore.searchTargets
+  if (Array.isArray(targets) && targets.length > 0 && !targets.includes('id')) {
+    globalSearchStore.searchTargets = [...targets, 'id']
+  }
+  globalSearchStore.keyword = cardId
+}
 
 const searchIcon = computed(() =>
   isFilterOpen.value ? 'i-mdi:layers-search' : 'i-mdi:layers-search-outline'

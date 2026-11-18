@@ -1,0 +1,11 @@
+{
+  "version": "vba20fb78",
+  "hash": "ba20fb78",
+  "game": "wsr",
+  "count": 2632,
+  "dims": 128,
+  "int8Scale": 0.3814694881439209,
+  "int8Bytes": 336896,
+  "embeddingsFile": "wsr_embeddings.ba20fb78.bin",
+  "cardIdsFile": "wsr_card_ids.ba20fb78.json"
+}

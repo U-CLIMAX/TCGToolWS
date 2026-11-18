@@ -3,3 +3,64 @@
   color: var(--counter-chip-text) !important;
   transition: background-color 0.2s ease-in-out;
 }
+
+.native-chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.native-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 28px;
+  padding: 0 12px;
+  border: 1px solid rgba(var(--v-theme-on-surface), 0.2);
+  border-radius: 9999px;
+  font-size: 14px;
+  line-height: 1;
+  user-select: none;
+  cursor: pointer;
+  background-color: transparent;
+  color: rgba(var(--v-theme-on-surface), 0.7);
+  contain: layout paint style;
+  transition:
+    border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.1s ease;
+  vertical-align: middle;
+}
+
+.native-chip--small {
+  height: 26px;
+  padding: 0 10px;
+  font-size: 12px;
+}
+
+.native-chip:hover:not(:disabled) {
+  border-color: rgba(var(--v-theme-on-surface), 0.45);
+  color: rgba(var(--v-theme-on-surface), 0.87);
+}
+
+.native-chip:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.native-chip--selected,
+.native-chip--selected:hover:not(:disabled) {
+  border-color: currentColor;
+}
+
+.native-chip:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.native-chip:focus-visible {
+  outline: 2px solid rgb(var(--v-theme-primary));
+  outline-offset: 1px;
+}

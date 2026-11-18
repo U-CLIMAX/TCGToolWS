@@ -17,7 +17,13 @@
     "sampleRate": "readonly",
     "WorkletGlobalScope": "readonly"
   },
-  "ignorePatterns": ["**/dist/**", "**/dist-ssr/**", "**/coverage/**"],
+  "ignorePatterns": [
+    "**/dist/**",
+    "**/dist-ssr/**",
+    "**/coverage/**",
+    "public/vision/**",
+    "src/assets/ort/**"
+  ],
   "rules": {
     "constructor-super": "error",
     "for-direction": "error",
@@ -92,7 +98,7 @@
   },
   "overrides": [
     {
-      "files": ["scripts/build-card-index.js"],
+      "files": ["scripts/build-card-index.js", "scripts/build-card-embeddings.js"],
       "globals": {
         "__dirname": "readonly",
         "__filename": "readonly",

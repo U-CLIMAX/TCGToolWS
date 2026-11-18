@@ -1,0 +1,11 @@
+{
+  "version": "v17e7b2d9",
+  "hash": "17e7b2d9",
+  "game": "ws",
+  "count": 63651,
+  "dims": 128,
+  "int8Scale": 0.5020150542259216,
+  "int8Bytes": 8147328,
+  "embeddingsFile": "ws_embeddings.17e7b2d9.bin",
+  "cardIdsFile": "ws_card_ids.17e7b2d9.json"
+}

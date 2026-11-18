@@ -18,6 +18,8 @@
     ".env",
     ".env.*",
     "*.min.js",
+    "public/vision/",
+    "src/assets/ort/",
     "*.svg",
     "*.png",
     "*.jpg",
