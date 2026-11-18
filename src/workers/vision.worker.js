@@ -23,7 +23,7 @@ import {
   fetchAndDecompressBrotliText,
 } from '@/utils/brotliStream.js'
 
-const VISION_CACHE_NAME = 'tcg-vision-assets-v1'
+const VISION_CACHE_NAME = 'tcg-vision-assets'
 const DETECTOR_SIZE = 384
 const MILO_SIZE = 448
 const BOX_SHARPNESS_THRESHOLD = 0.02
@@ -112,6 +112,48 @@ const withTimeout = (promise, ms, label) => {
       timer = setTimeout(() => reject(new Error(`${label} timed out after ${ms}ms`)), ms)
     }),
   ])
+}
+
+const pruneStaleVisionCache = async (cache, game, manifest) => {
+  if (!cache) return
+  const toUrl = (p) => new URL(p, self.location.origin).href
+  const activeOrtUrls = new Set([ortWasmGzUrl, detectorModelUrl, miloModelUrl].map(toUrl))
+  const activeDatasetUrls = manifest
+    ? new Set(
+        [manifest.embeddingsFile, manifest.cardIdsFile]
+          .flat()
+          .filter(Boolean)
+          .map((f) => toUrl(`/vision/${f}`))
+      )
+    : null
+
+  const requests = await cache.keys()
+  const deletions = []
+  for (const req of requests) {
+    const { pathname } = new URL(req.url)
+    const isOrtAsset =
+      (pathname.startsWith('/assets/detector.') && pathname.endsWith('.onnx')) ||
+      (pathname.startsWith('/assets/milo.') && pathname.endsWith('.onnx')) ||
+      (pathname.startsWith('/assets/ort-wasm-simd-threaded.asyncify.wasm.') &&
+        pathname.endsWith('.gz'))
+
+    if (isOrtAsset && !activeOrtUrls.has(req.url)) {
+      deletions.push(cache.delete(req))
+      continue
+    }
+
+    if (activeDatasetUrls) {
+      const isCurrentGameDataset =
+        pathname.startsWith(`/vision/${game}_embeddings.`) ||
+        pathname.startsWith(`/vision/${game}_card_ids.`) ||
+        pathname.startsWith(`/vision/datasets/${game}_`)
+      if (isCurrentGameDataset && !activeDatasetUrls.has(req.url)) {
+        deletions.push(cache.delete(req))
+      }
+    }
+  }
+
+  if (deletions.length > 0) await Promise.all(deletions)
 }
 
 const openVisionCacheSafe = () => {
@@ -416,6 +458,9 @@ const initializeAssets = async (game) => {
   }
 
   await Promise.all(tasks)
+  void pruneStaleVisionCache(cache, game, manifest).catch((err) => {
+    console.warn('[VisionWorker] Cache prune failed:', err)
+  })
 
   if (needOrt) {
     if (wasmBuf) ortModule.env.wasm.wasmBinary = wasmBuf
