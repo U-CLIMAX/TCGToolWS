@@ -6,6 +6,8 @@
   "dims": 128,
   "int8Scale": 0.4415072202682495,
   "int8Bytes": 864000,
-  "embeddingsFile": "wsc_embeddings.f4a64ad4.bin",
-  "cardIdsFile": "wsc_card_ids.f4a64ad4.json"
+  "embeddingsFile": ["wsc_embeddings.f4a64ad4.part1.bin", "wsc_embeddings.f4a64ad4.part2.bin"],
+  "embeddingsCompressedBytes": 727504,
+  "cardIdsFile": "wsc_card_ids.f4a64ad4.bin",
+  "cardIdsCompressedBytes": 4672
 }

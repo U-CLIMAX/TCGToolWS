@@ -1,10 +1,12 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import crypto from 'node:crypto'
+import zlib from 'node:zlib'
 import { spawnSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
 import { seriesMap } from '../src/maps/series-map.js'
 import { packDatasetBinary, searchCatalog } from '../src/utils/visionSearch.js'
+import { writeBrotliChunkedAsset } from './lib/brotliChunkedAsset.js'
 
 const DIMS = 128
 
@@ -82,7 +84,7 @@ const CARD_DATA_DIR = path.join(__dirname, '../src/assets/card-data')
 const IMAGE_DATA_DIR = process.env.WS_IMAGE_DATA_DIR || 'E:/CF_R2/ws-image-data'
 const MODEL_PATH = path.join(__dirname, '../src/assets/vision/milo.onnx')
 const MANIFEST_OUTPUT_DIR = path.join(__dirname, '../public')
-const OUTPUT_DIR = path.join(__dirname, '../public/vision/datasets')
+const OUTPUT_DIR = path.join(__dirname, '../public/vision')
 const CACHE_DIR = path.join(__dirname, '../temp_build/vision-cache')
 const GPU_WORKER_SCRIPT = path.join(__dirname, './gpu-embed-worker.py')
 const DEDUP_THRESHOLD = 0.97
@@ -92,16 +94,14 @@ const VALID_GAMES = new Set(['ws', 'wsr', 'wsc'])
  * Removes superseded embeddings/card_ids files for a game while keeping the current hash outputs.
  * @param {string} dir
  * @param {string} game
- * @param {string} keepEmbeddingsFile
- * @param {string} keepCardIdsFile
+ * @param {Set<string>} keepFiles
  */
-const pruneStaleDatasetFiles = (dir, game, keepEmbeddingsFile, keepCardIdsFile) => {
+const pruneStaleDatasetFiles = (dir, game, keepFiles) => {
   if (!fs.existsSync(dir)) return
   for (const f of fs.readdirSync(dir)) {
     if (
       (f.startsWith(`${game}_embeddings.`) || f.startsWith(`${game}_card_ids.`)) &&
-      f !== keepEmbeddingsFile &&
-      f !== keepCardIdsFile
+      !keepFiles.has(f)
     ) {
       fs.unlinkSync(path.join(dir, f))
     }
@@ -346,14 +346,24 @@ const buildMain = async () => {
       .digest('hex')
       .slice(0, 8)
 
-    const embeddingsFile = `${game}_embeddings.${hash}.bin`
-    const cardIdsFile = `${game}_card_ids.${hash}.json`
     const manifestFile = `${game}_vision_manifest.json`
     const cardIdsJson = JSON.stringify(cardIds)
 
-    pruneStaleDatasetFiles(OUTPUT_DIR, game, embeddingsFile, cardIdsFile)
-    fs.writeFileSync(path.join(OUTPUT_DIR, embeddingsFile), packed.buffer)
-    fs.writeFileSync(path.join(OUTPUT_DIR, cardIdsFile), cardIdsJson)
+    const embResult = writeBrotliChunkedAsset(
+      OUTPUT_DIR,
+      `${game}_embeddings`,
+      hash,
+      packed.buffer,
+      zlib.constants.BROTLI_MODE_GENERIC
+    )
+    const idsResult = writeBrotliChunkedAsset(
+      OUTPUT_DIR,
+      `${game}_card_ids`,
+      hash,
+      cardIdsJson,
+      zlib.constants.BROTLI_MODE_TEXT
+    )
+    pruneStaleDatasetFiles(OUTPUT_DIR, game, new Set([...embResult.files, ...idsResult.files]))
 
     const manifest = {
       version: `v${hash}`,
@@ -363,8 +373,10 @@ const buildMain = async () => {
       dims: DIMS,
       int8Scale: maxAbs,
       int8Bytes: packed.int8Bytes,
-      embeddingsFile,
-      cardIdsFile,
+      embeddingsFile: embResult.chunked ? embResult.files : embResult.files[0],
+      embeddingsCompressedBytes: embResult.totalBytes,
+      cardIdsFile: idsResult.chunked ? idsResult.files : idsResult.files[0],
+      cardIdsCompressedBytes: idsResult.totalBytes,
     }
     fs.writeFileSync(
       path.join(MANIFEST_OUTPUT_DIR, manifestFile),

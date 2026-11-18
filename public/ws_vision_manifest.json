@@ -6,6 +6,22 @@
   "dims": 128,
   "int8Scale": 0.5020150542259216,
   "int8Bytes": 8147328,
-  "embeddingsFile": "ws_embeddings.17e7b2d9.bin",
-  "cardIdsFile": "ws_card_ids.17e7b2d9.json"
+  "embeddingsFile": [
+    "ws_embeddings.17e7b2d9.part1.bin",
+    "ws_embeddings.17e7b2d9.part2.bin",
+    "ws_embeddings.17e7b2d9.part3.bin",
+    "ws_embeddings.17e7b2d9.part4.bin",
+    "ws_embeddings.17e7b2d9.part5.bin",
+    "ws_embeddings.17e7b2d9.part6.bin",
+    "ws_embeddings.17e7b2d9.part7.bin",
+    "ws_embeddings.17e7b2d9.part8.bin",
+    "ws_embeddings.17e7b2d9.part9.bin",
+    "ws_embeddings.17e7b2d9.part10.bin",
+    "ws_embeddings.17e7b2d9.part11.bin",
+    "ws_embeddings.17e7b2d9.part12.bin",
+    "ws_embeddings.17e7b2d9.part13.bin"
+  ],
+  "embeddingsCompressedBytes": 6664035,
+  "cardIdsFile": "ws_card_ids.17e7b2d9.bin",
+  "cardIdsCompressedBytes": 46581
 }

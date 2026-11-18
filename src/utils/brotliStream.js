@@ -10,39 +10,39 @@ const getBrotli = () => {
 const DEFAULT_CONCURRENCY = 4
 const DEFAULT_OUTPUT_BUFFER_SIZE = 64 * 1024
 
+const defaultFetchResource = async (url) => {
+  const res = await fetch(url)
+  if (!res.ok) throw new Error(`Fetch error (${res.status}): ${url}`)
+  return res
+}
+
 /**
- * Fetches one or more Brotli-compressed files with bounded prefetch concurrency,
- * decompressing them in order into UTF-8 text.
- * @param {string | string[]} files - Public filename(s) to fetch in order
- * @param {object} [options]
- * @param {(current: number, total: number) => void} [options.onProgress] - Progress callback per file
- * @param {number} [options.concurrency] - Max concurrent fetch requests
- * @param {number} [options.outputBufferSize] - Brotli decompression buffer size in bytes
- * @returns {Promise<string>}
+ * Streams one or more Brotli-compressed files with bounded prefetch concurrency,
+ * invoking onChunk(Uint8Array) sequentially in file order.
+ * @param {string | string[]} files
+ * @param {object} options
+ * @param {(chunk: Uint8Array) => void} onChunk
  */
-export const fetchAndDecompressBrotliText = async (files, options = {}) => {
+const streamBrotliDecompress = async (files, options, onChunk) => {
   const fileList = Array.isArray(files) ? files : [files]
-  if (fileList.length === 0) return ''
+  if (fileList.length === 0) return
 
   const {
+    basePath = '/',
     onProgress,
+    fetchResource = defaultFetchResource,
     concurrency = DEFAULT_CONCURRENCY,
     outputBufferSize = DEFAULT_OUTPUT_BUFFER_SIZE,
   } = options
 
   const brotli = await getBrotli()
   const decompressStream = new brotli.DecompressStream()
-  const textDecoder = new TextDecoder()
-  const textChunks = []
   const pendingFetches = new Array(fileList.length)
 
   const prefetch = (idx) => {
     if (idx >= fileList.length || pendingFetches[idx]) return
-    const filename = fileList[idx]
-    pendingFetches[idx] = fetch(`/${filename}`).then((res) => {
-      if (!res.ok) throw new Error(`Fetch error (${res.status}): ${filename}`)
-      return res
-    })
+    const url = `${basePath}${fileList[idx]}`
+    pendingFetches[idx] = Promise.resolve().then(() => fetchResource(url, idx, fileList.length))
   }
 
   const decompressChunk = (chunk) => {
@@ -54,9 +54,7 @@ export const fetchAndDecompressBrotliText = async (files, options = {}) => {
       const result = decompressStream.decompress(input, outputBufferSize)
       try {
         const outBuf = result.buf
-        if (outBuf.length > 0) {
-          textChunks.push(textDecoder.decode(outBuf, { stream: true }))
-        }
+        if (outBuf.length > 0) onChunk(outBuf)
         resultCode = result.code
         inputOffset += result.input_offset
       } finally {
@@ -80,29 +78,75 @@ export const fetchAndDecompressBrotliText = async (files, options = {}) => {
       prefetch(i + concurrency)
       if (onProgress) onProgress(i + 1, fileList.length)
 
-      const response = await pendingFetches[i]
-      if (!response.body) {
-        const buf = new Uint8Array(await response.arrayBuffer())
+      const resource = await pendingFetches[i]
+      if (resource instanceof ArrayBuffer) {
+        if (resource.byteLength > 0) decompressChunk(new Uint8Array(resource))
+        continue
+      }
+      if (ArrayBuffer.isView(resource)) {
+        if (resource.byteLength > 0) {
+          decompressChunk(new Uint8Array(resource.buffer, resource.byteOffset, resource.byteLength))
+        }
+        continue
+      }
+      if (!resource.body) {
+        const buf = new Uint8Array(await resource.arrayBuffer())
         if (buf.length > 0) decompressChunk(buf)
         continue
       }
 
-      const reader = response.body.getReader()
+      const reader = resource.body.getReader()
       while (true) {
         const { done, value } = await reader.read()
         if (done) break
         if (value && value.length > 0) decompressChunk(value)
       }
     }
-
-    const tail = textDecoder.decode()
-    if (tail) textChunks.push(tail)
-    return textChunks.join('')
   } finally {
-    // Suppress unhandled rejections on in-flight prefetches if an earlier chunk threw
     for (let i = 0; i < pendingFetches.length; i++) {
       pendingFetches[i]?.catch(() => {})
     }
     decompressStream.free()
   }
+}
+
+/**
+ * Fetches and decompresses Brotli-compressed file(s) into a single Uint8Array.
+ * @param {string | string[]} files
+ * @param {object} [options]
+ * @returns {Promise<Uint8Array>}
+ */
+export const fetchAndDecompressBrotliBytes = async (files, options = {}) => {
+  const chunks = []
+  let totalLength = 0
+  await streamBrotliDecompress(files, options, (outBuf) => {
+    chunks.push(outBuf)
+    totalLength += outBuf.byteLength
+  })
+  if (chunks.length === 1) return chunks[0]
+
+  const merged = new Uint8Array(totalLength)
+  let offset = 0
+  for (let i = 0; i < chunks.length; i++) {
+    merged.set(chunks[i], offset)
+    offset += chunks[i].byteLength
+  }
+  return merged
+}
+
+/**
+ * Fetches and decompresses Brotli-compressed file(s) into a UTF-8 string.
+ * @param {string | string[]} files
+ * @param {object} [options]
+ * @returns {Promise<string>}
+ */
+export const fetchAndDecompressBrotliText = async (files, options = {}) => {
+  const textDecoder = new TextDecoder()
+  const textChunks = []
+  await streamBrotliDecompress(files, options, (outBuf) => {
+    textChunks.push(textDecoder.decode(outBuf, { stream: true }))
+  })
+  const tail = textDecoder.decode()
+  if (tail) textChunks.push(tail)
+  return textChunks.join('')
 }

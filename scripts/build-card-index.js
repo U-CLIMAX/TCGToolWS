@@ -2,10 +2,10 @@ import fs from 'fs'
 import path from 'path'
 import crypto from 'crypto'
 import { fileURLToPath } from 'url'
-import zlib from 'zlib'
 import { Document } from 'flexsearch'
 import { seriesMap } from '../src/maps/series-map.js'
 import { normalizeSearchText } from '../src/utils/searchNormalize.js'
+import { writeBrotliChunkedAsset } from './lib/brotliChunkedAsset.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -15,7 +15,6 @@ const OUTPUT_DIR = path.join(__dirname, '../public')
 
 // 腳本邏輯版本
 const BUILD_LOGIC_VERSION = 'v8'
-const CHUNK_SIZE = 512 * 1024 // 512 KB
 const NON_LOWEST_RARITIES = new Set(['AGR'])
 
 const COLOR_MAP = ['紫色', '红色', '绿色', '蓝色', '黄色']
@@ -66,42 +65,6 @@ const createIndexConfig = () => ({
 })
 
 /**
- * 將內容以 Brotli 最高品質壓縮並依 CHUNK_SIZE 自動切分寫入 OUTPUT_DIR
- * @param {string} baseName - 輸出檔名前綴（不含 hash 與副檔名）
- * @param {string} hash - 資料版本 hash
- * @param {string | Buffer} data - 原始資料內容
- * @returns {{ chunked: boolean, files: string[], totalBytes: number }}
- */
-const writeBrotliChunkedAsset = (baseName, hash, data) => {
-  const rawBuffer = Buffer.isBuffer(data) ? data : Buffer.from(data, 'utf-8')
-  const zippedContent = zlib.brotliCompressSync(rawBuffer, {
-    params: {
-      [zlib.constants.BROTLI_PARAM_QUALITY]: zlib.constants.BROTLI_MAX_QUALITY,
-      [zlib.constants.BROTLI_PARAM_MODE]: zlib.constants.BROTLI_MODE_TEXT,
-      [zlib.constants.BROTLI_PARAM_LGWIN]: zlib.constants.BROTLI_MAX_WINDOW_BITS,
-      [zlib.constants.BROTLI_PARAM_SIZE_HINT]: rawBuffer.length,
-    },
-  })
-
-  const chunkCount = Math.ceil(zippedContent.length / CHUNK_SIZE)
-  if (chunkCount <= 1) {
-    const fileName = `${baseName}.${hash}.bin`
-    fs.writeFileSync(path.join(OUTPUT_DIR, fileName), zippedContent)
-    return { chunked: false, files: [fileName], totalBytes: zippedContent.length }
-  }
-
-  const files = []
-  for (let i = 0; i < chunkCount; i++) {
-    const chunk = zippedContent.subarray(i * CHUNK_SIZE, (i + 1) * CHUNK_SIZE)
-    const chunkFileName = `${baseName}.${hash}.part${i + 1}.bin`
-    fs.writeFileSync(path.join(OUTPUT_DIR, chunkFileName), chunk)
-    files.push(chunkFileName)
-  }
-
-  return { chunked: true, files, totalBytes: zippedContent.length }
-}
-
-/**
  * 建立並儲存 FlexSearch 索引檔案（Brotli 壓縮並依上限分片）
  * @param {string} game - 遊戲代號 (ws/wsr/wsc)
  * @param {Array} cards - 卡片資料陣列
@@ -128,6 +91,7 @@ const buildAndSaveSearchIndex = async (game, cards, hash) => {
     index.export((key, data) => {
       if (!data) return
       const { chunked, files, totalBytes } = writeBrotliChunkedAsset(
+        OUTPUT_DIR,
         `${game}_index_${key}`,
         hash,
         data
@@ -468,7 +432,7 @@ const processGameData = async (game, rawFiles) => {
 
   // 將最終 output 物件轉換為 JSON 字串以供 Brotli 壓縮與分片
   const content = JSON.stringify(output)
-  const dbResult = writeBrotliChunkedAsset(`${game}_cards_db`, hash, content)
+  const dbResult = writeBrotliChunkedAsset(OUTPUT_DIR, `${game}_cards_db`, hash, content)
   const totalSizeMB = (dbResult.totalBytes / 1024 / 1024).toFixed(2)
 
   if (!dbResult.chunked) {

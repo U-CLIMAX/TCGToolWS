@@ -7,5 +7,7 @@
   "int8Scale": 0.3814694881439209,
   "int8Bytes": 336896,
   "embeddingsFile": "wsr_embeddings.ba20fb78.bin",
-  "cardIdsFile": "wsr_card_ids.ba20fb78.json"
+  "embeddingsCompressedBytes": 293016,
+  "cardIdsFile": "wsr_card_ids.ba20fb78.bin",
+  "cardIdsCompressedBytes": 1795
 }

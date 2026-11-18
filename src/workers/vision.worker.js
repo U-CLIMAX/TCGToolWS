@@ -18,6 +18,10 @@ import {
   l2Normalize,
   searchCatalog,
 } from '@/utils/visionSearch.js'
+import {
+  fetchAndDecompressBrotliBytes,
+  fetchAndDecompressBrotliText,
+} from '@/utils/brotliStream.js'
 
 const VISION_CACHE_NAME = 'tcg-vision-assets-v1'
 const DETECTOR_SIZE = 384
@@ -368,18 +372,45 @@ const initializeAssets = async (game) => {
   }
 
   if (needDataset && manifest) {
+    const loadVisionDatasetFile = (fileOrChunks, { totalFallback, taskKey, asText = false }) => {
+      const list = Array.isArray(fileOrChunks) ? fileOrChunks : [fileOrChunks]
+      const chunkFallback = Math.max(1, Math.ceil(totalFallback / Math.max(1, list.length)))
+      const chunkStats = list.map(() => ({ loaded: 0, total: chunkFallback }))
+
+      const fetchResource = (url, idx) =>
+        fetchCachedAsset(cache, url, {
+          fallbackTotal: chunkFallback,
+          onBytes: (loaded, total) => {
+            chunkStats[idx] = { loaded, total: Math.max(1, total) }
+            let sumLoaded = 0
+            let sumTotal = 0
+            for (const s of chunkStats) {
+              sumLoaded += s.loaded
+              sumTotal += s.total
+            }
+            reportDownloads(taskKey, sumLoaded, Math.max(totalFallback, sumTotal))
+          },
+        })
+
+      const opts = { basePath: '/vision/', fetchResource }
+      return asText
+        ? fetchAndDecompressBrotliText(list, opts)
+        : fetchAndDecompressBrotliBytes(list, opts)
+    }
+
     tasks.push(
-      fetchCachedAsset(cache, `/vision/datasets/${manifest.embeddingsFile}`, {
-        fallbackTotal: 2_000_000,
-        onBytes: (l, t) => reportDownloads('emb', l, t),
+      loadVisionDatasetFile(manifest.embeddingsFile, {
+        totalFallback: manifest.embeddingsCompressedBytes || 2_000_000,
+        taskKey: 'emb',
       }).then((b) => {
         embBuf = b
       }),
-      fetchCachedAsset(cache, `/vision/datasets/${manifest.cardIdsFile}`, {
-        fallbackTotal: 200_000,
-        onBytes: (l, t) => reportDownloads('ids', l, t),
-      }).then((b) => {
-        cardIds = JSON.parse(new TextDecoder().decode(b))
+      loadVisionDatasetFile(manifest.cardIdsFile, {
+        totalFallback: manifest.cardIdsCompressedBytes || 50_000,
+        taskKey: 'ids',
+        asText: true,
+      }).then((jsonText) => {
+        cardIds = JSON.parse(jsonText)
       })
     )
   }
@@ -428,7 +459,11 @@ const initializeAssets = async (game) => {
 
   if (needDataset && manifest) {
     emitProgress('dataset', 0.94)
-    const int8Data = new Int8Array(embBuf, manifest.int8Offset || 0, manifest.int8Bytes)
+    const int8Data = new Int8Array(
+      embBuf.buffer,
+      embBuf.byteOffset + (manifest.int8Offset || 0),
+      manifest.int8Bytes
+    )
 
     datasetState = {
       count: manifest.count,
