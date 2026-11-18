@@ -70,3 +70,6 @@ docs/superpowers/
 *.jks
 *.keystore
 keystore.properties
+
+# Git worktrees
+.worktrees/
