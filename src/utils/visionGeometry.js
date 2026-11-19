@@ -497,10 +497,10 @@ export const computeCoverCropRect = (videoW, videoH, viewW, viewH) => {
  * preserving 1:1 native video pixels up to maxEdge.
  * @param {{ sx: number, sy: number, sw: number, sh: number }} crop
  * @param {ArrayLike<number>} corners
- * @param {number} [maxEdge=1280]
+ * @param {number} [maxEdge=640]
  * @param {number} [pad=0.12]
  */
-export const computeRoiCaptureRect = (crop, corners, maxEdge = 1280, pad = 0.12) => {
+export const computeRoiCaptureRect = (crop, corners, maxEdge = 640, pad = 0.12) => {
   if (!crop || !corners || corners.length < 8 || !crop.sw || !crop.sh) return null
   let minX = 1
   let minY = 1

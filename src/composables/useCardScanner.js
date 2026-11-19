@@ -11,9 +11,9 @@ import { isDecisiveCandidate } from '@/utils/visionSearch'
 
 const PERMISSION_ERRORS = new Set(['NotAllowedError', 'PermissionDeniedError', 'SecurityError'])
 const DETECTOR_CAPTURE_SIZE = 384
-const MAX_ROI_CAPTURE_EDGE = 1280
+const MAX_ROI_CAPTURE_EDGE = 640
 const MAX_STATIC_IMAGE_EDGE = 960
-const CAMERA_FRAME_INTERVAL_MS = 100
+const CAMERA_FRAME_INTERVAL_MS = 150
 const CAMERA_WIDTH = 1280
 const CAMERA_HEIGHT = 720
 const CAMERA_INSTANT_LOCK = 0.84
@@ -46,7 +46,7 @@ const createSoftwareCanvasSlot = () => {
 }
 
 const managedVisionWorker = createManagedWorker(() => new VisionWorker(), {
-  idleTimeout: 120_000,
+  idleTimeout: 30_000,
 })
 let activeScannerInstances = 0
 
