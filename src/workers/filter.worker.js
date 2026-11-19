@@ -37,6 +37,19 @@ const addAllToIndex = (cards, index) => {
   }
 }
 
+const importPrebuiltBuffers = (buffers) => {
+  const entries = buffers ? Object.entries(buffers) : []
+  if (entries.length === 0) return false
+  const textDecoder = new TextDecoder()
+  for (const [key, bytes] of entries) {
+    if (!bytes) continue
+    const jsonText = textDecoder.decode(bytes)
+    buffers[key] = null
+    searchIndex.import(key, JSON.parse(jsonText))
+  }
+  return true
+}
+
 const NON_LOWEST_RARITIES = new Set(['AGR'])
 
 const CardFilterService = {
@@ -274,21 +287,15 @@ const CardFilterService = {
     searchIndex = createNewIndex()
 
     // 載入預先建立的索引
-    const prebuiltEntries = prebuiltIndexBuffers ? Object.entries(prebuiltIndexBuffers) : []
-    if (prebuiltEntries.length > 0) {
+    if (prebuiltIndexBuffers && Object.keys(prebuiltIndexBuffers).length > 0) {
       console.log(`Initializing FlexSearch for ${game} (v${version}) with pre-built indexes...`)
       console.time('Index Loading')
 
       try {
-        const textDecoder = new TextDecoder()
-        for (const [key, bytes] of prebuiltEntries) {
-          const jsonText = textDecoder.decode(bytes)
-          prebuiltIndexBuffers[key] = null
-          searchIndex.import(key, JSON.parse(jsonText))
-        }
+        importPrebuiltBuffers(prebuiltIndexBuffers)
         console.timeEnd('Index Loading')
         console.log(`✅ FlexSearch is ready for ${allCards.length} cards (Loaded from Pre-built).`)
-        return
+        return true
       } catch (e) {
         console.error(
           '❌ Error loading pre-built indexes, falling back to client-side indexing:',
@@ -302,6 +309,33 @@ const CardFilterService = {
     addAllToIndex(allCards, searchIndex)
     console.timeEnd('Client-side Index Creation')
     console.log(`FlexSearch is ready for ${allCards.length} cards (Client-side built).`)
+    return false
+  },
+
+  /**
+   * 按需匯入延遲載入的預先建立索引緩衝區（例如 effect.1.map）
+   * @param {Record<string, Uint8Array>} buffers
+   * @returns {boolean}
+   */
+  importIndexBuffers: (buffers) => {
+    if (!searchIndex) return false
+    try {
+      console.time('Deferred Index Loading')
+      const imported = importPrebuiltBuffers(buffers)
+      console.timeEnd('Deferred Index Loading')
+      return imported
+    } catch (e) {
+      console.error('❌ Error importing deferred pre-built index:', e)
+      return false
+    }
+  },
+
+  /**
+   * 當延遲載入預建索引失敗時，在客戶端重建完整索引作為回退
+   */
+  rebuildClientIndex: () => {
+    searchIndex = createNewIndex()
+    addAllToIndex(allCards, searchIndex)
   },
 
   /**

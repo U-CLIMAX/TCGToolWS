@@ -53,6 +53,26 @@ export const useCardFiltering = ({ requireActiveFilter = false, maxResults = Inf
   let lastRequestId = 0
   // Tracks the last keyword query synced into the worker's keywordResultsCache
   let syncedKeywordKey = ''
+  // Deferred effect index files (lazy-loaded only when a keyword search targets 'effect')
+  let deferredEffectIndexFiles = null
+  let effectIndexLoadPromise = null
+
+  const splitIndexFiles = (indexFiles) => {
+    if (!indexFiles) return { eagerIndexFiles: null, effectIndexFiles: null }
+    const eagerIndexFiles = {}
+    const effectIndexFiles = {}
+    for (const [key, val] of Object.entries(indexFiles)) {
+      if (key.startsWith('effect.')) {
+        effectIndexFiles[key] = val
+      } else {
+        eagerIndexFiles[key] = val
+      }
+    }
+    return {
+      eagerIndexFiles: Object.keys(eagerIndexFiles).length > 0 ? eagerIndexFiles : null,
+      effectIndexFiles: Object.keys(effectIndexFiles).length > 0 ? effectIndexFiles : null,
+    }
+  }
 
   const getKeywordQueryKey = () => {
     const kw = keyword.value
@@ -113,6 +133,8 @@ export const useCardFiltering = ({ requireActiveFilter = false, maxResults = Inf
   const initializeWorker = async (cards, options) => {
     const api = ensureWorker()
     finishWorkerReady()
+    deferredEffectIndexFiles = null
+    effectIndexLoadPromise = null
     const readyPromise = new Promise((resolve) => {
       resolveWorkerReady = resolve
     })
@@ -122,8 +144,8 @@ export const useCardFiltering = ({ requireActiveFilter = false, maxResults = Inf
     try {
       if (cards && cards.length > 0) {
         const rawOptions = toRaw(options) || {}
-        const rawIndexFiles = toRaw(rawOptions.indexFiles)
-        const prebuiltIndexBuffers = await preloadIndexBuffers(rawIndexFiles)
+        const { eagerIndexFiles, effectIndexFiles } = splitIndexFiles(toRaw(rawOptions.indexFiles))
+        const prebuiltIndexBuffers = await preloadIndexBuffers(eagerIndexFiles)
         // Abort stale init if terminateWorker() or another init ran while decompressing
         if (!isCurrentInit()) return
 
@@ -138,10 +160,11 @@ export const useCardFiltering = ({ requireActiveFilter = false, maxResults = Inf
         const payload =
           transferables.length > 0 ? transfer(workerOptions, transferables) : workerOptions
 
-        await api.init(toRaw(cards), payload)
+        const usedPrebuilt = await api.init(toRaw(cards), payload)
         cards = null
         if (!isCurrentInit()) return
 
+        deferredEffectIndexFiles = usedPrebuilt ? effectIndexFiles : null
         syncedKeywordKey = ''
         finishWorkerReady()
         // Trigger initial filtering after worker is ready (skip if active filter is required)
@@ -189,6 +212,39 @@ export const useCardFiltering = ({ requireActiveFilter = false, maxResults = Inf
     }
   }
 
+  const ensureEffectIndexLoaded = async (api) => {
+    if (!deferredEffectIndexFiles) return
+    if (!effectIndexLoadPromise) {
+      const filesToLoad = deferredEffectIndexFiles
+      const run = (async () => {
+        const buffers = await preloadIndexBuffers(filesToLoad)
+        if (workerApiInstance !== api) return
+        const transferables = buffers
+          ? [...new Set(Object.values(buffers).map((bytes) => bytes.buffer))]
+          : []
+        const imported =
+          buffers && Object.keys(buffers).length > 0
+            ? await api.importIndexBuffers(
+                transferables.length > 0 ? transfer(buffers, transferables) : buffers
+              )
+            : false
+        if (workerApiInstance !== api) return
+        if (!imported) {
+          await api.rebuildClientIndex()
+        }
+        if (workerApiInstance === api) {
+          deferredEffectIndexFiles = null
+        }
+      })().finally(() => {
+        if (effectIndexLoadPromise === run) {
+          effectIndexLoadPromise = null
+        }
+      })
+      effectIndexLoadPromise = run
+    }
+    await effectIndexLoadPromise
+  }
+
   /**
    * Syncs keyword query into the worker whenever it differs from the worker's cache,
    * then runs attribute filtering.
@@ -208,11 +264,15 @@ export const useCardFiltering = ({ requireActiveFilter = false, maxResults = Inf
       const targetKeywordKey = getKeywordQueryKey()
       if (targetKeywordKey !== syncedKeywordKey) {
         const kw = toRaw(keyword.value)
-        await api.searchByKeyword(
-          kw && kw.length >= 2 ? kw : null,
-          toRaw(searchMode.value),
-          toRaw(searchTargets.value)
-        )
+        const activeKw = kw && kw.length >= 2 ? kw : null
+        const targets = toRaw(searchTargets.value)
+        const needsEffectIndex =
+          Boolean(activeKw) && (targets.length === 0 || targets.includes('effect'))
+        if (needsEffectIndex && deferredEffectIndexFiles) {
+          await ensureEffectIndexLoaded(api)
+          if (workerApiInstance !== api || requestId !== lastRequestId) return
+        }
+        await api.searchByKeyword(activeKw, toRaw(searchMode.value), targets)
         if (workerApiInstance !== api) return
         syncedKeywordKey = targetKeywordKey
         if (requestId !== lastRequestId) return
@@ -232,6 +292,8 @@ export const useCardFiltering = ({ requireActiveFilter = false, maxResults = Inf
   const terminateWorker = () => {
     finishWorkerReady()
     syncedKeywordKey = ''
+    deferredEffectIndexFiles = null
+    effectIndexLoadPromise = null
     if (workerInstance) {
       workerInstance.terminate()
       workerInstance = null
