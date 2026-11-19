@@ -11,7 +11,7 @@ import { isDecisiveCandidate } from '@/utils/visionSearch'
 
 const PERMISSION_ERRORS = new Set(['NotAllowedError', 'PermissionDeniedError', 'SecurityError'])
 const DETECTOR_CAPTURE_SIZE = 384
-const MAX_ROI_CAPTURE_EDGE = 640
+const MAX_ROI_CAPTURE_EDGE = 1280
 const MAX_STATIC_IMAGE_EDGE = 960
 const CAMERA_FRAME_INTERVAL_MS = 150
 const CAMERA_WIDTH = 1280
