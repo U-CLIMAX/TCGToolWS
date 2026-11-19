@@ -51,6 +51,14 @@ export const useCardFiltering = ({ requireActiveFilter = false, maxResults = Inf
 
   // Used to track the latest request and ignore stale results
   let lastRequestId = 0
+  // Tracks the last keyword query synced into the worker's keywordResultsCache
+  let syncedKeywordKey = ''
+
+  const getKeywordQueryKey = () => {
+    const kw = keyword.value
+    if (!kw || kw.length < 2) return ''
+    return `${kw}\0${searchMode.value}\0${searchTargets.value.join(',')}`
+  }
 
   const clearResults = () => {
     totalMatchedCount.value = 0
@@ -134,10 +142,11 @@ export const useCardFiltering = ({ requireActiveFilter = false, maxResults = Inf
         cards = null
         if (!isCurrentInit()) return
 
+        syncedKeywordKey = ''
         finishWorkerReady()
         // Trigger initial filtering after worker is ready (skip if active filter is required)
         if (!requireActiveFilter || hasActiveFilters.value) {
-          await runFilterQuery(true)
+          await runFilterQuery()
         } else {
           lastRequestId++
           clearResults()
@@ -181,33 +190,35 @@ export const useCardFiltering = ({ requireActiveFilter = false, maxResults = Inf
   }
 
   /**
-   * Executes keyword search (when needed) and attribute filtering in the worker.
-   * @param {boolean} [withKeywordSearch=false]
+   * Syncs keyword query into the worker whenever it differs from the worker's cache,
+   * then runs attribute filtering.
    */
-  const runFilterQuery = async (withKeywordSearch = false) => {
+  const runFilterQuery = async () => {
     const requestId = ++lastRequestId
     if (requireActiveFilter && !hasActiveFilters.value) {
       clearResults()
       return
     }
     if (workerReadyPromise) await workerReadyPromise
-    if (!workerApiInstance || requestId !== lastRequestId) return
+    const api = workerApiInstance
+    if (!api || requestId !== lastRequestId) return
 
     const limitArg = Number.isFinite(maxResults) ? maxResults : undefined
     try {
-      if (withKeywordSearch) {
-        await workerApiInstance.searchByKeyword(
-          toRaw(keyword.value),
+      const targetKeywordKey = getKeywordQueryKey()
+      if (targetKeywordKey !== syncedKeywordKey) {
+        const kw = toRaw(keyword.value)
+        await api.searchByKeyword(
+          kw && kw.length >= 2 ? kw : null,
           toRaw(searchMode.value),
           toRaw(searchTargets.value)
         )
-        if (!workerApiInstance || requestId !== lastRequestId) return
+        if (workerApiInstance !== api) return
+        syncedKeywordKey = targetKeywordKey
+        if (requestId !== lastRequestId) return
       }
-      const results = await workerApiInstance.filterByAttributes(
-        getAttributeFiltersPayload(),
-        limitArg
-      )
-      if (requestId === lastRequestId) {
+      const results = await api.filterByAttributes(getAttributeFiltersPayload(), limitArg)
+      if (workerApiInstance === api && requestId === lastRequestId) {
         applyWorkerFilterResult(results)
       }
     } catch (error) {
@@ -220,6 +231,7 @@ export const useCardFiltering = ({ requireActiveFilter = false, maxResults = Inf
    */
   const terminateWorker = () => {
     finishWorkerReady()
+    syncedKeywordKey = ''
     if (workerInstance) {
       workerInstance.terminate()
       workerInstance = null
@@ -232,16 +244,16 @@ export const useCardFiltering = ({ requireActiveFilter = false, maxResults = Inf
   // --- Watchers ---
   // 监听关键字变更：重新执行 FlexSearch 关键字搜索并叠加属性筛选
   watch(keyword, () => {
-    runFilterQuery(true)
+    runFilterQuery()
   })
 
   // 监听搜索模式与搜索字段切换：仅当关键字达到最小有效长度时重新执行关键字搜索
   watch([searchMode, searchTargets], () => {
     if ((keyword.value || '').length < 2) return
-    runFilterQuery(true)
+    runFilterQuery()
   })
 
-  // 监听所有属性筛选条件变更：在既有关键字缓存之上直接重算属性筛选结果
+  // 监听所有属性筛选条件变更：按需同步关键字缓存并重算属性筛选结果
   watch(
     [
       selectedCardTypes,
@@ -258,7 +270,7 @@ export const useCardFiltering = ({ requireActiveFilter = false, maxResults = Inf
       selectedSoul,
     ],
     () => {
-      runFilterQuery(false)
+      runFilterQuery()
     }
   )
 

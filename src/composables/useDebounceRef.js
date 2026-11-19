@@ -9,6 +9,13 @@ export const debounceRef = (val, delay = 1000) => {
     },
     set(newVal) {
       clearTimeout(timer)
+      if (newVal === null || newVal === '') {
+        if (val !== newVal) {
+          val = newVal
+          trigger()
+        }
+        return
+      }
       timer = setTimeout(() => {
         val = newVal
         trigger()

@@ -152,7 +152,6 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
    * @param {Object} manifest
    */
   const fetchAndStoreData = async (manifest) => {
-    isLoading.value = true
     error.value = null
     let db
     try {
@@ -195,7 +194,6 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
       throw e
     } finally {
       if (db) db.close()
-      isLoading.value = false
     }
   }
 
@@ -205,7 +203,6 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
    * @param {Object} indexFiles
    */
   const loadDataFromLocal = async (version, indexFiles) => {
-    isLoading.value = true
     let db
     try {
       db = await openDB(dbName, storeName, 'key')
@@ -221,7 +218,6 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
       throw e
     } finally {
       if (db) db.close()
-      isLoading.value = false
     }
   }
 
