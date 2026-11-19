@@ -278,7 +278,7 @@ const releaseCameraView = () => {
 const drawOverlay = (corners, locked) => {
   const canvas = canvasRef.value
   const video = videoRef.value
-  if (!canvas || !video) return
+  if (mode.value !== 'camera' || !canvas || !video) return
 
   const cssW = video.clientWidth || stageRef.value?.clientWidth || 0
   const cssH = video.clientHeight || stageRef.value?.clientHeight || 0
@@ -335,6 +335,7 @@ const handleClose = (val) => {
 }
 
 const switchMode = (nextMode) => {
+  if (mode.value === nextMode) return
   mode.value = nextMode
   clearPreview()
   resetResult()

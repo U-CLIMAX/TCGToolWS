@@ -1,5 +1,9 @@
-const IMAGENET_MEAN = [0.485, 0.456, 0.406]
-const IMAGENET_STD = [0.229, 0.224, 0.225]
+const IMAGENET_SCALE_R = 1 / (255 * 0.229)
+const IMAGENET_SCALE_G = 1 / (255 * 0.224)
+const IMAGENET_SCALE_B = 1 / (255 * 0.225)
+const IMAGENET_BIAS_R = -0.485 / 0.229
+const IMAGENET_BIAS_G = -0.456 / 0.224
+const IMAGENET_BIAS_B = -0.406 / 0.225
 
 /**
  * Rotates CW corners cyclically so edge 0->1 is the physically shortest edge (portrait top edge).
@@ -374,70 +378,44 @@ export const rotateRgba = (rgba, size, angleDeg, outBuf) => {
   return out
 }
 
-const computeNchwAffine = (normalizeImageNet) => {
-  const inv255 = 1 / 255
-  return {
-    s0: normalizeImageNet ? inv255 / IMAGENET_STD[0] : inv255,
-    s1: normalizeImageNet ? inv255 / IMAGENET_STD[1] : inv255,
-    s2: normalizeImageNet ? inv255 / IMAGENET_STD[2] : inv255,
-    b0: normalizeImageNet ? -IMAGENET_MEAN[0] / IMAGENET_STD[0] : 0,
-    b1: normalizeImageNet ? -IMAGENET_MEAN[1] / IMAGENET_STD[1] : 0,
-    b2: normalizeImageNet ? -IMAGENET_MEAN[2] / IMAGENET_STD[2] : 0,
-  }
-}
-
 /**
- * Converts square RGBA buffer to NCHW [1, 3, size, size] Float32Array.
- * When normalizeImageNet is true, applies ImageNet mean/std normalization;
- * otherwise outputs [0..1] RGB.
+ * Converts square RGBA buffer to ImageNet-normalized NCHW [1, 3, size, size] Float32Array.
  * @param {Uint8ClampedArray} rgba
  * @param {number} size
  * @param {Float32Array} [outBuf]
- * @param {boolean} [normalizeImageNet=true]
  * @returns {Float32Array}
  */
-export const rgbaToNchw = (rgba, size, outBuf, normalizeImageNet = true) => {
+export const rgbaToNchw = (rgba, size, outBuf) => {
   const plane = size * size
   const neededLen = 3 * plane
   const out = outBuf && outBuf.length === neededLen ? outBuf : new Float32Array(neededLen)
-  const { s0, s1, s2, b0, b1, b2 } = computeNchwAffine(normalizeImageNet)
   for (let i = 0; i < plane; i++) {
     const p = i * 4
-    out[i] = rgba[p] * s0 + b0
-    out[plane + i] = rgba[p + 1] * s1 + b1
-    out[2 * plane + i] = rgba[p + 2] * s2 + b2
+    out[i] = rgba[p] * IMAGENET_SCALE_R + IMAGENET_BIAS_R
+    out[plane + i] = rgba[p + 1] * IMAGENET_SCALE_G + IMAGENET_BIAS_G
+    out[2 * plane + i] = rgba[p + 2] * IMAGENET_SCALE_B + IMAGENET_BIAS_B
   }
   return out
 }
 
 /**
- * Bilinearly resizes an RGBA image to dstSize x dstSize and writes NCHW [1, 3, dstSize, dstSize].
- * Used for camera frames so VisionWorker avoids OffscreenCanvas / ImageBitmap GPU transfers.
+ * Bilinearly resizes an RGBA image to dstSize x dstSize and writes ImageNet-normalized NCHW.
  * @param {Uint8ClampedArray} srcRgba
  * @param {number} srcW
  * @param {number} srcH
  * @param {number} dstSize
  * @param {Float32Array} [outBuf]
- * @param {boolean} [normalizeImageNet=true]
  * @returns {Float32Array}
  */
-export const rgbaResizeToNchw = (
-  srcRgba,
-  srcW,
-  srcH,
-  dstSize,
-  outBuf,
-  normalizeImageNet = true
-) => {
+export const rgbaResizeToNchw = (srcRgba, srcW, srcH, dstSize, outBuf) => {
   const plane = dstSize * dstSize
   const neededLen = 3 * plane
   const out = outBuf && outBuf.length === neededLen ? outBuf : new Float32Array(neededLen)
   if (!srcW || !srcH || srcRgba.length < srcW * srcH * 4) return out
   if (srcW === dstSize && srcH === dstSize) {
-    return rgbaToNchw(srcRgba, dstSize, out, normalizeImageNet)
+    return rgbaToNchw(srcRgba, dstSize, out)
   }
 
-  const { s0, s1, s2, b0, b1, b2 } = computeNchwAffine(normalizeImageNet)
   const scaleX = srcW / dstSize
   const scaleY = srcH / dstSize
   const maxX = srcW - 1
@@ -481,9 +459,9 @@ export const rgbaResizeToNchw = (
         srcRgba[i11 + 2] * w11
 
       const dstIdx = rowOffset + dx
-      out[dstIdx] = r * s0 + b0
-      out[plane + dstIdx] = g * s1 + b1
-      out[2 * plane + dstIdx] = b * s2 + b2
+      out[dstIdx] = r * IMAGENET_SCALE_R + IMAGENET_BIAS_R
+      out[plane + dstIdx] = g * IMAGENET_SCALE_G + IMAGENET_BIAS_G
+      out[2 * plane + dstIdx] = b * IMAGENET_SCALE_B + IMAGENET_BIAS_B
     }
   }
   return out

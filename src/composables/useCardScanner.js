@@ -7,12 +7,16 @@ import {
   computeRoiCaptureRect,
   mapRoiCornersToParent,
 } from '@/utils/visionGeometry'
-import { isDecisiveCandidate, SCAN_THRESHOLDS } from '@/utils/visionSearch'
+import { isDecisiveCandidate } from '@/utils/visionSearch'
 
 const PERMISSION_ERRORS = new Set(['NotAllowedError', 'PermissionDeniedError', 'SecurityError'])
 const DETECTOR_CAPTURE_SIZE = 384
 const MAX_ROI_CAPTURE_EDGE = 1280
+const MAX_STATIC_IMAGE_EDGE = 960
 const CAMERA_FRAME_INTERVAL_MS = 100
+const CAMERA_WIDTH = 1280
+const CAMERA_HEIGHT = 720
+const CAMERA_INSTANT_LOCK = 0.84
 
 const createSoftwareCanvasSlot = () => {
   let canvas = null
@@ -49,7 +53,7 @@ let activeScannerInstances = 0
 const createLockTracker = ({
   windowSize = 3,
   requiredHits = 2,
-  instantThreshold = SCAN_THRESHOLDS.INSTANT_LOCK,
+  instantThreshold = CAMERA_INSTANT_LOCK,
 } = {}) => {
   const history = []
   return {
@@ -89,7 +93,6 @@ const createInitCoordinator = ({
   stallTimeoutMs = 25000,
 }) => {
   let loadedGame = null
-  let cachedInfo = null
   let inFlightGame = null
   let inFlightPromise = null
   let activeClearStall = null
@@ -104,9 +107,8 @@ const createInitCoordinator = ({
   const ensureReady = async (game, { force = false } = {}) => {
     if (force || !isWorkerRunning()) {
       loadedGame = null
-      cachedInfo = null
     }
-    if (!force && loadedGame === game && cachedInfo && !inFlightPromise) return cachedInfo
+    if (!force && loadedGame === game && !inFlightPromise) return
     if (inFlightPromise && inFlightGame === game) {
       emitState({ initializing: true, progress: state.progress })
       return inFlightPromise
@@ -114,8 +116,8 @@ const createInitCoordinator = ({
 
     if (inFlightPromise) {
       await inFlightPromise.catch(() => {})
-      if (!force && loadedGame === game && cachedInfo && isWorkerRunning() && !inFlightPromise) {
-        return cachedInfo
+      if (!force && loadedGame === game && isWorkerRunning() && !inFlightPromise) {
+        return
       }
       if (inFlightPromise && inFlightGame === game) {
         emitState({ initializing: true, progress: state.progress })
@@ -152,7 +154,7 @@ const createInitCoordinator = ({
       refreshStallTimer()
 
       try {
-        const info = await Promise.race([
+        await Promise.race([
           runWorkerInit(game, (ratio) => {
             if (currentEpoch === epoch) {
               refreshStallTimer()
@@ -163,14 +165,11 @@ const createInitCoordinator = ({
         ])
         if (currentEpoch === epoch) {
           loadedGame = game
-          cachedInfo = info
           emitState({ initializing: false, progress: 100 })
         }
-        return info
       } catch (err) {
         if (currentEpoch === epoch) {
           loadedGame = null
-          cachedInfo = null
           emitState({ initializing: false })
         }
         throw err
@@ -200,20 +199,15 @@ const createInitCoordinator = ({
   return { ensureReady, dispose }
 }
 
-const openCameraStream = async ({
-  mediaDevices,
-  width = 1280,
-  height = 720,
-  shouldAbort = () => false,
-}) => {
+const openCameraStream = async ({ mediaDevices, shouldAbort = () => false }) => {
   const attempts = [
     {
       facingMode: 'environment',
-      width: { ideal: width, max: 1280 },
-      height: { ideal: height, max: 1280 },
+      width: { ideal: CAMERA_WIDTH, max: CAMERA_WIDTH },
+      height: { ideal: CAMERA_HEIGHT, max: CAMERA_WIDTH },
     },
-    { facingMode: 'environment', width: { ideal: width }, height: { ideal: height } },
-    { width: { ideal: width }, height: { ideal: height } },
+    { facingMode: 'environment', width: { ideal: CAMERA_WIDTH }, height: { ideal: CAMERA_HEIGHT } },
+    { width: { ideal: CAMERA_WIDTH }, height: { ideal: CAMERA_HEIGHT } },
   ]
 
   let lastError = null
@@ -270,11 +264,7 @@ export const useCardScanner = (gameRef) => {
   let activeFrameMeta = null
   let consecutiveFrameErrors = 0
   let recoveredUninit = false
-  const lockTracker = createLockTracker({
-    windowSize: 3,
-    requiredHits: 2,
-    instantThreshold: 0.84,
-  })
+  const lockTracker = createLockTracker()
 
   const stopOverlayListener = managedVisionWorker.onMessage((data) => {
     if (data?.type !== 'vision:corners') return
@@ -340,7 +330,10 @@ export const useCardScanner = (gameRef) => {
       lastStreamStoppedAt = performance.now()
     }
     if (videoElRef) {
+      videoElRef.pause?.()
       videoElRef.srcObject = null
+      videoElRef.removeAttribute?.('src')
+      videoElRef.load?.()
     }
     cameraActive = false
     isStartingCamera.value = false
@@ -572,8 +565,6 @@ export const useCardScanner = (gameRef) => {
 
       const stream = await openCameraStream({
         mediaDevices: navigator.mediaDevices,
-        width: 1280,
-        height: 720,
         shouldAbort: () => token !== sessionToken,
       })
       if (!stream) return false
@@ -646,17 +637,20 @@ export const useCardScanner = (gameRef) => {
       if (token !== sessionToken) return
       bitmap = await createImageBitmap(blob)
       if (token !== sessionToken) return
-      const res = await managedVisionWorker.run((api) => {
-        const transferred = bitmap
-        bitmap = null
-        return api.scanStaticImage(transfer(transferred, [transferred]))
-      })
+      const scale = Math.min(1, MAX_STATIC_IMAGE_EDGE / Math.max(1, bitmap.width, bitmap.height))
+      const outW = Math.max(1, Math.round(bitmap.width * scale))
+      const outH = Math.max(1, Math.round(bitmap.height * scale))
+      const rgba = captureCanvasSlot.capture(bitmap, 0, 0, bitmap.width, bitmap.height, outW, outH)
+      bitmap.close?.()
+      bitmap = null
+      if (!rgba || token !== sessionToken) return
+      const res = await managedVisionWorker.run((api) =>
+        api.scanStaticImage(transfer(rgba, [rgba.buffer]), outW, outH)
+      )
       if (token !== sessionToken) return
-      overlayCorners.value = res.corners
       candidates.value = res.candidates || []
       hasStaticResult.value = true
       if (res.status === 'matched' && res.candidates[0]) {
-        overlayLocked.value = true
         lockedCardId.value = res.candidates[0].cardId
       }
     } catch (err) {
@@ -666,6 +660,7 @@ export const useCardScanner = (gameRef) => {
       }
     } finally {
       bitmap?.close?.()
+      captureCanvasSlot.release()
       if (token === sessionToken) {
         isScanning.value = false
       }

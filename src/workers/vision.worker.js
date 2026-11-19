@@ -1,7 +1,7 @@
 import { expose } from 'comlink'
-import ortWebgpuUrl from '@/assets/ort/ort.webgpu.min.mjs?url&no-inline'
-import ortWasmMjsUrl from '@/assets/ort/ort-wasm-simd-threaded.asyncify.mjs?url&no-inline'
-import ortWasmGzUrl from '@/assets/ort/ort-wasm-simd-threaded.asyncify.wasm.gz?url&no-inline'
+import ortWasmBundleUrl from '@/assets/ort/ort.wasm.min.mjs?url&no-inline'
+import ortWasmMjsUrl from '@/assets/ort/ort-wasm-simd-threaded.mjs?url&no-inline'
+import ortWasmGzUrl from '@/assets/ort/ort-wasm-simd-threaded.wasm.gz?url&no-inline'
 import detectorModelUrl from '@/assets/vision/detector.onnx?url&no-inline'
 import miloModelUrl from '@/assets/vision/milo.onnx?url&no-inline'
 import {
@@ -16,7 +16,6 @@ import {
 import {
   classifyMatchCandidates,
   isDecisiveCandidate,
-  l2Normalize,
   searchCatalog,
 } from '@/utils/visionSearch.js'
 import {
@@ -32,8 +31,9 @@ const BOX_SHARPNESS_THRESHOLD = 0.02
 const SHARPNESS_THRESHOLD = 0.024
 const MIN_AREA_RATIO = 0.015
 const MOTION_STABLE_RATIO = 0.07
-const MAX_SHARED_WASM_PAGES = 8192 // 512 MiB (models peak ~87 MiB); avoids WebKit 4 GiB shared reservation OOM
-const FALLBACK_SHARED_WASM_PAGES = 4096 // 256 MiB fallback under tight virtual address space
+const MAX_SHARED_WASM_PAGES = 3072 // 192 MiB (models peak ~87 MiB); avoids WebKit 4 GiB shared reservation OOM
+const FALLBACK_SHARED_WASM_PAGES = 2048 // 128 MiB fallback under tight virtual address space
+const FULL_IMAGE_CORNERS = [0, 0, 1, 0, 1, 1, 0, 1]
 
 const isInvalidPayload = (buf) => {
   if (!buf || buf.byteLength === 0) return true
@@ -69,7 +69,6 @@ const gunzipIfNeeded = async (buf) => {
 let ortModule = null
 let detectorSession = null
 let miloSession = null
-let activeBackend = 'wasm'
 
 let currentGame = null
 let datasetState = null
@@ -79,32 +78,8 @@ let preferredCameraAngle = 0
 let cameraAngleIdx = 0
 let lastCameraCorners = null
 
-const emitProgress = (stage, ratio) => {
-  self.postMessage({ type: 'vision:progress', stage, ratio })
-}
-
-// Lazily initialized scratch canvases & buffers for static image uploads (camera path uses pure CPU RGBA)
-let scratchDetectorCanvas = null
-let scratchDetectorCtx = null
-let scratchCropCanvas = null
-let scratchCropCtx = null
-let scratchWorkCanvas = null
-let scratchWorkCtx = null
-
-const ensureScratchResources = () => {
-  if (scratchDetectorCtx && scratchCropCtx && scratchWorkCtx) return
-  if (typeof OffscreenCanvas === 'undefined') {
-    throw new Error('当前浏览器不支持 OffscreenCanvas，无法运行视觉识别')
-  }
-  scratchDetectorCanvas = new OffscreenCanvas(DETECTOR_SIZE, DETECTOR_SIZE)
-  scratchDetectorCtx = scratchDetectorCanvas.getContext('2d', { willReadFrequently: true })
-  scratchCropCanvas = new OffscreenCanvas(MILO_SIZE, MILO_SIZE)
-  scratchCropCtx = scratchCropCanvas.getContext('2d', { willReadFrequently: true })
-  scratchWorkCanvas = new OffscreenCanvas(640, 480)
-  scratchWorkCtx = scratchWorkCanvas.getContext('2d', { willReadFrequently: true })
-  if (!scratchDetectorCtx || !scratchCropCtx || !scratchWorkCtx) {
-    throw new Error('无法初始化 OffscreenCanvas 2D 上下文，请检查浏览器隐私限制或扩展')
-  }
+const emitProgress = (ratio) => {
+  self.postMessage({ type: 'vision:progress', ratio })
 }
 
 const detectorNchwBuf = new Float32Array(3 * DETECTOR_SIZE * DETECTOR_SIZE)
@@ -144,8 +119,7 @@ const pruneStaleVisionCache = async (cache, game, manifest) => {
     const isOrtAsset =
       (pathname.startsWith('/assets/detector.') && pathname.endsWith('.onnx')) ||
       (pathname.startsWith('/assets/milo.') && pathname.endsWith('.onnx')) ||
-      (pathname.startsWith('/assets/ort-wasm-simd-threaded.asyncify.wasm.') &&
-        pathname.endsWith('.gz'))
+      (pathname.startsWith('/assets/ort-wasm-simd-threaded.wasm.') && pathname.endsWith('.gz'))
 
     if (isOrtAsset && !activeOrtUrls.has(req.url)) {
       deletions.push(cache.delete(req))
@@ -155,8 +129,7 @@ const pruneStaleVisionCache = async (cache, game, manifest) => {
     if (activeDatasetUrls) {
       const isCurrentGameDataset =
         pathname.startsWith(`/vision/${game}_embeddings.`) ||
-        pathname.startsWith(`/vision/${game}_card_ids.`) ||
-        pathname.startsWith(`/vision/datasets/${game}_`)
+        pathname.startsWith(`/vision/${game}_card_ids.`)
       if (isCurrentGameDataset && !activeDatasetUrls.has(req.url)) {
         deletions.push(cache.delete(req))
       }
@@ -289,12 +262,8 @@ const fetchCachedAsset = async (
     }
   }
 
-  if (cache) {
-    if (pendingCacheWrites) {
-      pendingCacheWrites.push([assetUrl, rawForCache])
-    } else {
-      await writeVisionCache(cache, assetUrl, rawForCache)
-    }
+  if (cache && pendingCacheWrites) {
+    pendingCacheWrites.push([assetUrl, rawForCache])
   }
   return data
 }
@@ -310,41 +279,43 @@ const warmupSingleSession = async (session, backingBuf, dims) => {
   }
 }
 
-const createSessionWithTimeout = async (detBuf, miloBuf, eps, stepTimeoutMs) => {
+const createSessionsWithTimeout = async (detBuf, miloBuf) => {
   let det = null
   let milo = null
-  const label = `ORT(${eps[0]})`
+  const stepTimeoutMs = 15000
+  const sessionOptions = {
+    executionProviders: ['wasm'],
+    executionMode: 'sequential',
+    graphOptimizationLevel: 'basic',
+    enableCpuMemArena: false,
+    enableMemPattern: false,
+    logSeverityLevel: 3,
+  }
   try {
     det = await withTimeout(
-      ortModule.InferenceSession.create(detBuf, {
-        executionProviders: eps,
-        logSeverityLevel: 3,
-      }),
+      ortModule.InferenceSession.create(detBuf, sessionOptions),
       stepTimeoutMs,
-      `${label} detector create`
+      'ORT(wasm) detector create'
     )
-    emitProgress('models', 0.72)
+    emitProgress(0.72)
     await withTimeout(
       warmupSingleSession(det, detectorNchwBuf, [1, 3, DETECTOR_SIZE, DETECTOR_SIZE]),
       stepTimeoutMs,
-      `${label} detector warmup`
+      'ORT(wasm) detector warmup'
     )
-    emitProgress('models', 0.78)
+    emitProgress(0.78)
     milo = await withTimeout(
-      ortModule.InferenceSession.create(miloBuf, {
-        executionProviders: eps,
-        logSeverityLevel: 3,
-      }),
+      ortModule.InferenceSession.create(miloBuf, sessionOptions),
       stepTimeoutMs,
-      `${label} milo create`
+      'ORT(wasm) milo create'
     )
-    emitProgress('models', 0.85)
+    emitProgress(0.85)
     await withTimeout(
       warmupSingleSession(milo, miloNchwBuf, [1, 3, MILO_SIZE, MILO_SIZE]),
       stepTimeoutMs,
-      `${label} milo warmup`
+      'ORT(wasm) milo warmup'
     )
-    emitProgress('models', 0.92)
+    emitProgress(0.92)
     return { det, milo }
   } catch (err) {
     await det?.release?.().catch(() => {})
@@ -383,40 +354,18 @@ const withCappedSharedWasmMemory = async (fn) => {
   }
 }
 
-const createSessionsWithFallback = async (detBuf, miloBuf, eps) =>
-  withCappedSharedWasmMemory(async () => {
-    try {
-      const stepTimeoutMs = eps[0] === 'webgpu' ? 12000 : 15000
-      const created = await createSessionWithTimeout(detBuf, miloBuf, eps, stepTimeoutMs)
-      return { ...created, backend: eps[0] }
-    } catch (err) {
-      if (eps[0] === 'wasm') throw err
-      console.warn(`[VisionWorker] Session init with ${eps[0]} failed, falling back to WASM:`, err)
-      ortModule.env.webgpu.adapter = undefined
-      try {
-        const createdWasm = await createSessionWithTimeout(detBuf, miloBuf, ['wasm'], 15000)
-        return { ...createdWasm, backend: 'wasm' }
-      } catch (wasmErr) {
-        if (wasmErr?.message?.includes("previous call to 'initWasm()' failed")) {
-          throw err
-        }
-        throw new Error(`${err?.message || err} | fallback: ${wasmErr?.message || wasmErr}`)
-      }
-    }
-  })
-
 const initializeAssets = async (game) => {
   const needOrt = !ortModule || !detectorSession || !miloSession
   const needDataset = currentGame !== game || !datasetState
   if (!needOrt && !needDataset) {
-    emitProgress('ready', 0.98)
+    emitProgress(0.98)
     return
   }
 
   const useCache = import.meta.env.PROD && import.meta.env.MODE !== 'tauri'
-  emitProgress('ort', 0.05)
+  emitProgress(0.05)
 
-  const ortUrl = new URL(ortWebgpuUrl, self.location.origin).href
+  const ortUrl = new URL(ortWasmBundleUrl, self.location.origin).href
   const [cache, loadedOrt, manifestRes] = await Promise.all([
     useCache ? openVisionCacheSafe() : Promise.resolve(null),
     ortModule
@@ -437,12 +386,11 @@ const initializeAssets = async (game) => {
   if (!ortModule) {
     ortModule = loadedOrt
     ortModule.env.logLevel = 'error'
+    ortModule.env.wasm.proxy = false
+    ortModule.env.wasm.numThreads = 1
     ortModule.env.wasm.wasmPaths = {
       mjs: new URL(ortWasmMjsUrl, self.location.origin).href,
     }
-    ortModule.env.wasm.numThreads = self.crossOriginIsolated
-      ? Math.min(4, navigator.hardwareConcurrency || 2)
-      : 1
   }
 
   if (needDataset) {
@@ -457,7 +405,6 @@ const initializeAssets = async (game) => {
 
   // Aggregate byte-level download progress across the active stage window
   const progressByTask = new Map()
-  let progressStage = 'models'
   let progressBase = 0.1
   let progressSpan = 0.5
   const reportDownloads = (id, loaded, total) => {
@@ -469,7 +416,7 @@ const initializeAssets = async (game) => {
       sumTotal += item.total
     }
     const ratio = sumTotal > 0 ? Math.min(1, sumLoaded / sumTotal) : 1
-    emitProgress(progressStage, progressBase + ratio * progressSpan)
+    emitProgress(progressBase + ratio * progressSpan)
   }
 
   // Initialize ORT before loading brotli-wasm datasets so Safari/WebKit reserves ORT's shared Wasm memory first
@@ -478,7 +425,7 @@ const initializeAssets = async (game) => {
     try {
       await Promise.all([
         fetchCachedAsset(cache, ortWasmGzUrl, {
-          fallbackTotal: 6_400_000,
+          fallbackTotal: 3_200_000,
           gunzip: true,
           pendingCacheWrites: pendingOrtCache,
           onBytes: (l, t) => reportDownloads('wasm', l, t),
@@ -501,27 +448,14 @@ const initializeAssets = async (game) => {
         }),
       ])
 
-      if (wasmBuf) ortModule.env.wasm.wasmBinary = wasmBuf
-      emitProgress('models', 0.62)
+      ortModule.env.wasm.wasmBinary = wasmBuf
+      emitProgress(0.62)
 
-      const gpuAdapter =
-        typeof navigator !== 'undefined' && navigator.gpu
-          ? await withTimeout(
-              navigator.gpu.requestAdapter({ powerPreference: 'high-performance' }),
-              2000,
-              'WebGPU adapter'
-            ).catch((err) => {
-              console.warn('[VisionWorker] WebGPU adapter unavailable, using WASM:', err)
-              return null
-            })
-          : null
-      if (gpuAdapter) ortModule.env.webgpu.adapter = gpuAdapter
-      const eps = gpuAdapter ? ['webgpu'] : ['wasm']
-
-      const created = await createSessionsWithFallback(detBuf, miloBuf, eps)
+      const created = await withCappedSharedWasmMemory(() =>
+        createSessionsWithTimeout(detBuf, miloBuf)
+      )
       detectorSession = created.det
       miloSession = created.milo
-      activeBackend = created.backend
 
       // Persist ORT runtime & models to CacheStorage only after session creation & warmup succeed
       await commitPendingCache(cache, pendingOrtCache)
@@ -534,13 +468,12 @@ const initializeAssets = async (game) => {
     }
   }
 
-  if (needDataset && manifest) {
+  if (needDataset) {
     progressByTask.clear()
-    progressStage = 'dataset'
     progressBase = needOrt ? 0.92 : 0.1
     progressSpan = needOrt ? 0.05 : 0.85
 
-    const expectedEmbBytes = (manifest.int8Offset || 0) + (manifest.int8Bytes || 0)
+    const expectedEmbBytes = manifest.int8Bytes || 0
     const pendingDatasetCache = []
     const loadVisionDatasetFile = (
       fileOrChunks,
@@ -598,12 +531,8 @@ const initializeAssets = async (game) => {
       pendingDatasetCache.length = 0
     }
 
-    emitProgress('dataset', 0.97)
-    const int8Data = new Int8Array(
-      embBuf.buffer,
-      embBuf.byteOffset + (manifest.int8Offset || 0),
-      manifest.int8Bytes
-    )
+    emitProgress(0.97)
+    const int8Data = new Int8Array(embBuf.buffer, embBuf.byteOffset, manifest.int8Bytes)
 
     datasetState = {
       count: manifest.count,
@@ -619,7 +548,7 @@ const initializeAssets = async (game) => {
     console.warn('[VisionWorker] Cache prune failed:', err)
   })
 
-  emitProgress('ready', 0.98)
+  emitProgress(0.98)
 }
 
 const mergeCandidateMatches = (items, topK = 3) => {
@@ -635,7 +564,7 @@ const mergeCandidateMatches = (items, topK = 3) => {
 }
 
 const embedAndSearch = async (rgba448) => {
-  rgbaToNchw(rgba448, MILO_SIZE, miloNchwBuf, true)
+  rgbaToNchw(rgba448, MILO_SIZE, miloNchwBuf)
   const inputName = miloSession.inputNames[0]
   const outputName = miloSession.outputNames[0]
   const tensor = new ortModule.Tensor('float32', miloNchwBuf, [1, 3, MILO_SIZE, MILO_SIZE])
@@ -643,7 +572,7 @@ const embedAndSearch = async (rgba448) => {
   let vec = null
   try {
     out = await miloSession.run({ [inputName]: tensor })
-    vec = l2Normalize(out[outputName].data)
+    vec = new Float32Array(out[outputName].data)
   } finally {
     tensor.dispose?.()
     out?.[outputName]?.dispose?.()
@@ -679,7 +608,7 @@ const hasCornerShift = (prev, next, width, height) => {
   return false
 }
 
-const matchWithOrientations = async (baseRgba448, isStatic, includeQuarterTurns = false) => {
+const matchWithOrientations = async (baseRgba448, isStatic) => {
   if (!isStatic) {
     const order = preferredCameraAngle === 180 ? [180, 0] : [0, 180]
     const angle = order[cameraAngleIdx % order.length]
@@ -701,20 +630,11 @@ const matchWithOrientations = async (baseRgba448, isStatic, includeQuarterTurns 
   let collected = [...initial]
 
   if (!isDecisiveCandidate(initial)) {
-    const extraAngles = includeQuarterTurns ? [180, 90, 270] : [180]
-    for (const angle of extraAngles) {
+    for (const angle of [180, 90, 270]) {
       const rotated = rotateRgba(baseRgba448, MILO_SIZE, angle, rotateCropBuf)
       const res = await embedAndSearch(rotated)
       collected = collected.concat(res)
       if (isDecisiveCandidate(res)) break
-    }
-    if (!includeQuarterTurns && !isDecisiveCandidate(collected)) {
-      for (const angle of [90, 270]) {
-        const rotated = rotateRgba(baseRgba448, MILO_SIZE, angle, rotateCropBuf)
-        const res = await embedAndSearch(rotated)
-        collected = collected.concat(res)
-        if (isDecisiveCandidate(res)) break
-      }
     }
   }
 
@@ -754,25 +674,12 @@ const runDetectorOnNchw = async (srcW, srcH) => {
     isValidCardQuad(corners, MIN_AREA_RATIO)
   const showBox = hasQuad && sharpness >= BOX_SHARPNESS_THRESHOLD
   const validForMatch = hasQuad && sharpness >= SHARPNESS_THRESHOLD
-  return { valid: validForMatch, corners: showBox ? corners : null, sharpness }
+  return { valid: validForMatch, corners: showBox ? corners : null }
 }
 
-const detectCard = async (source) => {
-  const srcW = source.width
-  const srcH = source.height
-  const logicalW = source.logicalWidth || srcW
-  const logicalH = source.logicalHeight || srcH
-  if (source.rgba) {
-    rgbaResizeToNchw(source.rgba, srcW, srcH, DETECTOR_SIZE, detectorNchwBuf, true)
-  } else {
-    ensureScratchResources()
-    scratchDetectorCtx.fillStyle = '#000'
-    scratchDetectorCtx.fillRect(0, 0, DETECTOR_SIZE, DETECTOR_SIZE)
-    scratchDetectorCtx.drawImage(source, 0, 0, DETECTOR_SIZE, DETECTOR_SIZE)
-    const imgData = scratchDetectorCtx.getImageData(0, 0, DETECTOR_SIZE, DETECTOR_SIZE)
-    rgbaToNchw(imgData.data, DETECTOR_SIZE, detectorNchwBuf, true)
-  }
-  return await runDetectorOnNchw(logicalW, logicalH)
+const detectCard = async (rgba, width, height, logicalWidth = width, logicalHeight = height) => {
+  rgbaResizeToNchw(rgba, width, height, DETECTOR_SIZE, detectorNchwBuf)
+  return await runDetectorOnNchw(logicalWidth, logicalHeight)
 }
 
 const assertWorkerReady = () => {
@@ -783,13 +690,7 @@ const assertWorkerReady = () => {
 
 const detectCameraStage = async (rgba, width, height, logicalWidth, logicalHeight) => {
   assertWorkerReady()
-  const { valid, corners, sharpness } = await detectCard({
-    rgba,
-    width,
-    height,
-    logicalWidth,
-    logicalHeight,
-  })
+  const { valid, corners } = await detectCard(rgba, width, height, logicalWidth, logicalHeight)
   self.postMessage({ type: 'vision:corners', corners })
 
   if (!valid || !corners) {
@@ -798,7 +699,7 @@ const detectCameraStage = async (rgba, width, height, logicalWidth, logicalHeigh
       preferredCameraAngle = 0
       cameraAngleIdx = 0
     }
-    return { status: 'no_card', corners, sharpness, candidates: [] }
+    return { status: 'no_card', corners, candidates: [] }
   }
   // Skip Stage 2 high-res ROI capture while card is moving rapidly so green-box tracking stays responsive
   if (hasCornerShift(lastCameraCorners, corners, logicalWidth, logicalHeight)) {
@@ -807,89 +708,64 @@ const detectCameraStage = async (rgba, width, height, logicalWidth, logicalHeigh
       status: 'no_card',
       skipped: true,
       corners,
-      sharpness,
       candidates: [],
     }
   }
   lastCameraCorners = corners
-  return { status: 'need_crop', corners, sharpness }
+  return { status: 'need_crop', corners }
 }
 
 const matchCardCropRgba = async (rgba, width, height) => {
   assertWorkerReady()
-  const { corners, sharpness } = await detectCard({ rgba, width, height })
+  const { corners } = await detectCard(rgba, width, height)
   if (!corners) {
-    return { status: 'no_card', corners: null, sharpness, candidates: [] }
+    return { status: 'no_card', corners: null, candidates: [] }
   }
   const crop = dewarpRgba(rgba, width, height, corners, MILO_SIZE, dewarpCropBuf)
   if (!crop) {
-    return { status: 'no_card', corners: null, sharpness, candidates: [] }
+    return { status: 'no_card', corners: null, candidates: [] }
   }
-  const cropRes = await matchWithOrientations(crop, false, false)
+  const cropRes = await matchWithOrientations(crop, false)
   return {
     status: cropRes.status,
     corners,
-    sharpness,
     candidates: cropRes.candidates,
   }
 }
 
-const processStaticImage = async (bitmap) => {
-  try {
-    ensureScratchResources()
-    assertWorkerReady()
-    const { valid, corners, sharpness } = await detectCard(bitmap)
+const processStaticImage = async (rgba, width, height) => {
+  assertWorkerReady()
+  const { valid, corners } = await detectCard(rgba, width, height)
 
-    let cropRes = null
-    if (valid && corners) {
-      const srcW = Math.min(bitmap.width, 960)
-      const srcH = Math.max(1, Math.round((bitmap.height / Math.max(1, bitmap.width)) * srcW))
-      if (scratchWorkCanvas.width !== srcW || scratchWorkCanvas.height !== srcH) {
-        scratchWorkCanvas.width = srcW
-        scratchWorkCanvas.height = srcH
-      } else {
-        scratchWorkCtx.clearRect(0, 0, srcW, srcH)
-      }
-      scratchWorkCtx.drawImage(bitmap, 0, 0, srcW, srcH)
-      const srcRgba = scratchWorkCtx.getImageData(0, 0, srcW, srcH).data
-      const crop = dewarpRgba(srcRgba, srcW, srcH, corners, MILO_SIZE, dewarpCropBuf)
-
-      if (crop) {
-        cropRes = await matchWithOrientations(crop, true, false)
-        if (cropRes.status === 'matched') {
-          return {
-            status: cropRes.status,
-            corners,
-            sharpness,
-            candidates: cropRes.candidates,
-          }
+  let cropRes = null
+  if (valid && corners) {
+    const crop = dewarpRgba(rgba, width, height, corners, MILO_SIZE, dewarpCropBuf)
+    if (crop) {
+      cropRes = await matchWithOrientations(crop, true)
+      if (cropRes.status === 'matched') {
+        return {
+          status: cropRes.status,
+          candidates: cropRes.candidates,
         }
       }
     }
+  }
 
-    scratchCropCtx.fillStyle = '#000'
-    scratchCropCtx.fillRect(0, 0, MILO_SIZE, MILO_SIZE)
-    scratchCropCtx.drawImage(bitmap, 0, 0, MILO_SIZE, MILO_SIZE)
-    const fullRgba = scratchCropCtx.getImageData(0, 0, MILO_SIZE, MILO_SIZE).data
-    const fullRes = await matchWithOrientations(fullRgba, true, true)
-    if (fullRes.status === 'matched') {
-      return {
-        status: 'matched',
-        corners: null,
-        sharpness,
-        candidates: fullRes.candidates,
-      }
-    }
-
-    const merged = mergeCandidateMatches([...(cropRes?.candidates || []), ...fullRes.candidates], 3)
+  const fullRgba = dewarpRgba(rgba, width, height, FULL_IMAGE_CORNERS, MILO_SIZE, dewarpCropBuf)
+  const fullRes = fullRgba
+    ? await matchWithOrientations(fullRgba, true)
+    : { status: 'no_card', candidates: [] }
+  if (fullRes.status === 'matched') {
     return {
-      status: classifyMatchCandidates(merged),
-      corners,
-      sharpness,
-      candidates: merged,
+      status: 'matched',
+      candidates: fullRes.candidates,
     }
-  } finally {
-    bitmap?.close?.()
+  }
+
+  const merged = mergeCandidateMatches([...(cropRes?.candidates || []), ...fullRes.candidates], 3)
+  return {
+    status: classifyMatchCandidates(merged),
+    candidates: merged,
   }
 }
 
@@ -908,10 +784,8 @@ const VisionService = {
         await initializeAssets(game)
         console.info('[VisionWorker] Ready:', {
           game,
-          backend: activeBackend,
           count: datasetState?.count ?? 0,
         })
-        return { backend: activeBackend, count: datasetState.count }
       })
       .catch((err) => {
         console.error('[VisionWorker] Init failed:', err)
@@ -931,7 +805,7 @@ const VisionService = {
   scanFrame: async (rgba, width, height, logicalWidth = width, logicalHeight = height) =>
     detectCameraStage(rgba, width, height, logicalWidth, logicalHeight),
   matchCardCrop: async (rgba, width, height) => matchCardCropRgba(rgba, width, height),
-  scanStaticImage: async (bitmap) => processStaticImage(bitmap),
+  scanStaticImage: async (rgba, width, height) => processStaticImage(rgba, width, height),
 }
 
 expose(VisionService)

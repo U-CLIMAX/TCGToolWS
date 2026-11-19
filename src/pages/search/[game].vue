@@ -283,10 +283,7 @@ const { smAndUp, smAndDown } = useDisplay()
 
 const handleScanSelect = ({ cardId }) => {
   globalSearchStore.searchMode = 'precise'
-  const targets = globalSearchStore.searchTargets
-  if (Array.isArray(targets) && targets.length > 0 && !targets.includes('id')) {
-    globalSearchStore.searchTargets = [...targets, 'id']
-  }
+  globalSearchStore.searchTargets = ['id']
   globalSearchStore.keyword = cardId
 }
 

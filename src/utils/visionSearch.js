@@ -1,9 +1,4 @@
-/**
- * L2-normalizes a float vector in a new Float32Array; returns zero vector if norm is 0.
- * @param {Float32Array} vec
- * @returns {Float32Array}
- */
-export const l2Normalize = (vec) => {
+const l2Normalize = (vec) => {
   const out = new Float32Array(vec.length)
   let sumSq = 0
   for (let i = 0; i < vec.length; i++) {
@@ -19,13 +14,7 @@ export const l2Normalize = (vec) => {
   return out
 }
 
-/**
- * Quantizes a float vector into Int8Array using global scale factor.
- * @param {Float32Array} vec
- * @param {number} scale
- * @returns {Int8Array}
- */
-export const quantizeVectorInt8 = (vec, scale) => {
+const quantizeVectorInt8 = (vec, scale) => {
   const out = new Int8Array(vec.length)
   if (!scale || scale <= 0) return out
   const invScale = 127 / scale
@@ -56,15 +45,14 @@ export const packDatasetBinary = (vectors, scale) => {
   return { buffer, int8Bytes }
 }
 
-export const SCAN_THRESHOLDS = {
-  INSTANT_LOCK: 0.78,
+const SCAN_THRESHOLDS = {
   HIGH_CONFIDENCE: 0.68,
   MARGIN_SCORE: 0.55,
   MIN_MARGIN: 0.04,
   LOW_CONFIDENCE: 0.48,
 }
 
-export const computeCandidateMargin = (candidates) => {
+const computeCandidateMargin = (candidates) => {
   if (!candidates?.length) return 0
   const top = candidates[0]
   for (let i = 1; i < candidates.length; i++) {
