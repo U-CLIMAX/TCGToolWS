@@ -8,7 +8,7 @@ import { isDecisiveCandidate, SCAN_THRESHOLDS } from '@/utils/visionSearch'
 const PERMISSION_ERRORS = new Set(['NotAllowedError', 'PermissionDeniedError', 'SecurityError'])
 
 const managedVisionWorker = createManagedWorker(() => new VisionWorker(), {
-  idleTimeout: 600_000,
+  idleTimeout: 120_000,
 })
 
 const createLockTracker = ({

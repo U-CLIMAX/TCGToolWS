@@ -19,6 +19,7 @@ import {
   searchCatalog,
 } from '@/utils/visionSearch.js'
 import {
+  createByteAccumulator,
   fetchAndDecompressBrotliBytes,
   fetchAndDecompressBrotliText,
 } from '@/utils/brotliStream.js'
@@ -30,6 +31,8 @@ const BOX_SHARPNESS_THRESHOLD = 0.02
 const SHARPNESS_THRESHOLD = 0.024
 const MIN_AREA_RATIO = 0.015
 const MOTION_STABLE_RATIO = 0.07
+const MAX_SHARED_WASM_PAGES = 8192 // 512 MiB (models peak ~87 MiB); avoids WebKit 4 GiB shared reservation OOM
+const FALLBACK_SHARED_WASM_PAGES = 4096 // 256 MiB fallback under tight virtual address space
 
 const isInvalidPayload = (buf) => {
   if (!buf || buf.byteLength === 0) return true
@@ -44,6 +47,12 @@ const isInvalidPayload = (buf) => {
   if (i >= head.length || head[i] !== 0x3c) return false
   const prefix = new TextDecoder().decode(head.subarray(i, i + 16)).toLowerCase()
   return prefix.startsWith('<!doctype') || prefix.startsWith('<html')
+}
+
+const isValidWasmMagic = (buf) => {
+  if (!buf || buf.byteLength < 8) return false
+  const b = new Uint8Array(buf, 0, 4)
+  return b[0] === 0x00 && b[1] === 0x61 && b[2] === 0x73 && b[3] === 0x6d
 }
 
 const gunzipIfNeeded = async (buf) => {
@@ -193,24 +202,26 @@ const fetchBytesWithProgress = async (url, fallbackTotal, onBytes, stallTimeoutM
     }
 
     const reader = res.body.getReader()
-    const chunks = []
+    const canPrealloc = headerLen > 0 && !res.headers.get('content-encoding')
+    const accumulator = createByteAccumulator(canPrealloc ? headerLen : 0)
     let received = 0
     while (true) {
       refreshStallTimer()
       const { done, value } = await reader.read()
       if (done) break
-      chunks.push(value)
+      accumulator.push(value)
       received += value.byteLength
       onBytes?.(received, Math.max(total, received))
     }
 
-    const merged = new Uint8Array(received)
-    let offset = 0
-    for (const chunk of chunks) {
-      merged.set(chunk, offset)
-      offset += chunk.byteLength
+    if (canPrealloc && received !== headerLen) {
+      throw new Error(`Incomplete vision payload from ${url}: ${received}/${headerLen}`)
     }
-    const resultBuf = merged.buffer
+    const view = accumulator.finish()
+    const resultBuf =
+      view.byteOffset === 0 && view.byteLength === view.buffer.byteLength
+        ? view.buffer
+        : view.slice().buffer
     if (isInvalidPayload(resultBuf)) {
       throw new Error(`Invalid vision payload from ${url}`)
     }
@@ -221,10 +232,30 @@ const fetchBytesWithProgress = async (url, fallbackTotal, onBytes, stallTimeoutM
   }
 }
 
+const writeVisionCache = async (cache, assetUrl, data) => {
+  if (!cache || !data) return
+  try {
+    await cache.put(
+      assetUrl,
+      new Response(data, {
+        headers: { 'Content-Type': 'application/octet-stream' },
+      })
+    )
+  } catch (err) {
+    console.warn('[VisionWorker] Cache write failed:', assetUrl, err)
+  }
+}
+
+const commitPendingCache = async (cache, entries) => {
+  if (!cache || !entries?.length) return
+  await Promise.all(entries.map(([assetUrl, data]) => writeVisionCache(cache, assetUrl, data)))
+  entries.length = 0
+}
+
 const fetchCachedAsset = async (
   cache,
   url,
-  { fallbackTotal = 1_000_000, onBytes = null, gunzip = false } = {}
+  { fallbackTotal = 1_000_000, onBytes = null, gunzip = false, pendingCacheWrites = null } = {}
 ) => {
   const assetUrl = new URL(url, self.location.origin).href
   if (cache) {
@@ -236,34 +267,32 @@ const fetchCachedAsset = async (
         if (gunzip) {
           buf = await gunzipIfNeeded(buf)
         }
-        if (!isInvalidPayload(buf)) {
+        if (!isInvalidPayload(buf) && (!gunzip || isValidWasmMagic(buf))) {
           return buf
         }
+        await cache.delete(assetUrl).catch(() => {})
       }
     } catch (err) {
       console.warn('[VisionWorker] Cache read failed:', assetUrl, err)
+      await cache.delete(assetUrl).catch(() => {})
     }
   }
 
   let data = await fetchBytesWithProgress(assetUrl, fallbackTotal, onBytes)
-  // Cache raw bytes (including compressed .wasm.gz) before gunzipping and without cloning via .slice(0)
-  if (cache) {
-    try {
-      await cache.put(
-        assetUrl,
-        new Response(data, {
-          headers: { 'Content-Type': 'application/octet-stream' },
-        })
-      )
-    } catch (err) {
-      console.warn('[VisionWorker] Cache write failed:', assetUrl, err)
+  const rawForCache = data
+
+  if (gunzip) {
+    data = await gunzipIfNeeded(rawForCache)
+    if (isInvalidPayload(data) || !isValidWasmMagic(data)) {
+      throw new Error(`Invalid decompressed vision payload from ${assetUrl}`)
     }
   }
 
-  if (gunzip) {
-    data = await gunzipIfNeeded(data)
-    if (isInvalidPayload(data)) {
-      throw new Error(`Invalid decompressed vision payload from ${assetUrl}`)
+  if (cache) {
+    if (pendingCacheWrites) {
+      pendingCacheWrites.push([assetUrl, rawForCache])
+    } else {
+      await writeVisionCache(cache, assetUrl, rawForCache)
     }
   }
   return data
@@ -323,6 +352,58 @@ const createSessionWithTimeout = async (detBuf, miloBuf, eps, stepTimeoutMs) => 
   }
 }
 
+/**
+ * Caps ORT's 4 GiB shared WebAssembly.Memory reservation during initialization so WebKit/Safari
+ * does not throw RangeError: Out of memory when another Wasm module (e.g. brotli-wasm) is loaded.
+ */
+const withCappedSharedWasmMemory = async (fn) => {
+  const OrigMemory = WebAssembly.Memory
+  WebAssembly.Memory = new Proxy(OrigMemory, {
+    construct(Target, args, newTarget) {
+      const [desc, ...rest] = args
+      if (!desc?.shared || !(desc.maximum > MAX_SHARED_WASM_PAGES)) {
+        return Reflect.construct(Target, args, newTarget)
+      }
+      const minPages = Math.max(1, desc.initial || 0)
+      const primaryMax = Math.max(minPages, MAX_SHARED_WASM_PAGES)
+      try {
+        return Reflect.construct(Target, [{ ...desc, maximum: primaryMax }, ...rest], newTarget)
+      } catch (err) {
+        const fallbackMax = Math.max(minPages, FALLBACK_SHARED_WASM_PAGES)
+        if (!(err instanceof RangeError) || fallbackMax >= primaryMax) throw err
+        return Reflect.construct(Target, [{ ...desc, maximum: fallbackMax }, ...rest], newTarget)
+      }
+    },
+  })
+  try {
+    return await fn()
+  } finally {
+    WebAssembly.Memory = OrigMemory
+  }
+}
+
+const createSessionsWithFallback = async (detBuf, miloBuf, eps) =>
+  withCappedSharedWasmMemory(async () => {
+    try {
+      const stepTimeoutMs = eps[0] === 'webgpu' ? 12000 : 15000
+      const created = await createSessionWithTimeout(detBuf, miloBuf, eps, stepTimeoutMs)
+      return { ...created, backend: eps[0] }
+    } catch (err) {
+      if (eps[0] === 'wasm') throw err
+      console.warn(`[VisionWorker] Session init with ${eps[0]} failed, falling back to WASM:`, err)
+      ortModule.env.webgpu.adapter = undefined
+      try {
+        const createdWasm = await createSessionWithTimeout(detBuf, miloBuf, ['wasm'], 15000)
+        return { ...createdWasm, backend: 'wasm' }
+      } catch (wasmErr) {
+        if (wasmErr?.message?.includes("previous call to 'initWasm()' failed")) {
+          throw err
+        }
+        throw new Error(`${err?.message || err} | fallback: ${wasmErr?.message || wasmErr}`)
+      }
+    }
+  })
+
 const initializeAssets = async (game) => {
   ensureScratchResources()
   const needOrt = !ortModule || !detectorSession || !miloSession
@@ -374,8 +455,11 @@ const initializeAssets = async (game) => {
     manifest = await manifestRes.json()
   }
 
-  // Aggregate byte-level download progress smoothly across [0.10 .. 0.60]
+  // Aggregate byte-level download progress across the active stage window
   const progressByTask = new Map()
+  let progressStage = 'models'
+  let progressBase = 0.1
+  let progressSpan = 0.5
   const reportDownloads = (id, loaded, total) => {
     progressByTask.set(id, { loaded, total: Math.max(1, total) })
     let sumLoaded = 0
@@ -385,36 +469,83 @@ const initializeAssets = async (game) => {
       sumTotal += item.total
     }
     const ratio = sumTotal > 0 ? Math.min(1, sumLoaded / sumTotal) : 1
-    emitProgress('models', 0.1 + ratio * 0.5)
+    emitProgress(progressStage, progressBase + ratio * progressSpan)
   }
 
-  const tasks = []
+  // Initialize ORT before loading brotli-wasm datasets so Safari/WebKit reserves ORT's shared Wasm memory first
   if (needOrt) {
-    tasks.push(
-      fetchCachedAsset(cache, ortWasmGzUrl, {
-        fallbackTotal: 6_400_000,
-        gunzip: true,
-        onBytes: (l, t) => reportDownloads('wasm', l, t),
-      }).then((b) => {
-        wasmBuf = b
-      }),
-      fetchCachedAsset(cache, detectorModelUrl, {
-        fallbackTotal: 3_200_000,
-        onBytes: (l, t) => reportDownloads('det', l, t),
-      }).then((b) => {
-        detBuf = b
-      }),
-      fetchCachedAsset(cache, miloModelUrl, {
-        fallbackTotal: 5_200_000,
-        onBytes: (l, t) => reportDownloads('milo', l, t),
-      }).then((b) => {
-        miloBuf = b
-      })
-    )
+    const pendingOrtCache = []
+    try {
+      await Promise.all([
+        fetchCachedAsset(cache, ortWasmGzUrl, {
+          fallbackTotal: 6_400_000,
+          gunzip: true,
+          pendingCacheWrites: pendingOrtCache,
+          onBytes: (l, t) => reportDownloads('wasm', l, t),
+        }).then((b) => {
+          wasmBuf = b
+        }),
+        fetchCachedAsset(cache, detectorModelUrl, {
+          fallbackTotal: 3_200_000,
+          pendingCacheWrites: pendingOrtCache,
+          onBytes: (l, t) => reportDownloads('det', l, t),
+        }).then((b) => {
+          detBuf = b
+        }),
+        fetchCachedAsset(cache, miloModelUrl, {
+          fallbackTotal: 5_200_000,
+          pendingCacheWrites: pendingOrtCache,
+          onBytes: (l, t) => reportDownloads('milo', l, t),
+        }).then((b) => {
+          miloBuf = b
+        }),
+      ])
+
+      if (wasmBuf) ortModule.env.wasm.wasmBinary = wasmBuf
+      emitProgress('models', 0.62)
+
+      const gpuAdapter =
+        typeof navigator !== 'undefined' && navigator.gpu
+          ? await withTimeout(
+              navigator.gpu.requestAdapter({ powerPreference: 'high-performance' }),
+              2000,
+              'WebGPU adapter'
+            ).catch((err) => {
+              console.warn('[VisionWorker] WebGPU adapter unavailable, using WASM:', err)
+              return null
+            })
+          : null
+      if (gpuAdapter) ortModule.env.webgpu.adapter = gpuAdapter
+      const eps = gpuAdapter ? ['webgpu'] : ['wasm']
+
+      const created = await createSessionsWithFallback(detBuf, miloBuf, eps)
+      detectorSession = created.det
+      miloSession = created.milo
+      activeBackend = created.backend
+
+      // Persist ORT runtime & models to CacheStorage only after session creation & warmup succeed
+      await commitPendingCache(cache, pendingOrtCache)
+    } finally {
+      pendingOrtCache.length = 0
+      detBuf = null
+      miloBuf = null
+      wasmBuf = null
+      ortModule.env.wasm.wasmBinary = undefined
+    }
   }
 
   if (needDataset && manifest) {
-    const loadVisionDatasetFile = (fileOrChunks, { totalFallback, taskKey, asText = false }) => {
+    progressByTask.clear()
+    progressStage = 'dataset'
+    progressBase = needOrt ? 0.92 : 0.1
+    progressSpan = needOrt ? 0.05 : 0.85
+
+    const expectedEmbBytes = (manifest.int8Offset || 0) + (manifest.int8Bytes || 0)
+    const pendingDatasetCache = []
+    const loadVisionDatasetFile = (
+      fileOrChunks,
+      { totalFallback, taskKey, asText = false, expectedBytes = 0 }
+    ) => {
       const list = Array.isArray(fileOrChunks) ? fileOrChunks : [fileOrChunks]
       const chunkFallback = Math.max(1, Math.ceil(totalFallback / Math.max(1, list.length)))
       const chunkStats = list.map(() => ({ loaded: 0, total: chunkFallback }))
@@ -422,6 +553,7 @@ const initializeAssets = async (game) => {
       const fetchResource = (url, idx) =>
         fetchCachedAsset(cache, url, {
           fallbackTotal: chunkFallback,
+          pendingCacheWrites: pendingDatasetCache,
           onBytes: (loaded, total) => {
             chunkStats[idx] = { loaded, total: Math.max(1, total) }
             let sumLoaded = 0
@@ -434,76 +566,39 @@ const initializeAssets = async (game) => {
           },
         })
 
-      const opts = { basePath: '/vision/', fetchResource }
+      const opts = { basePath: '/vision/', fetchResource, expectedBytes }
       return asText
         ? fetchAndDecompressBrotliText(list, opts)
         : fetchAndDecompressBrotliBytes(list, opts)
     }
 
-    tasks.push(
-      loadVisionDatasetFile(manifest.embeddingsFile, {
-        totalFallback: manifest.embeddingsCompressedBytes || 2_000_000,
-        taskKey: 'emb',
-      }).then((b) => {
-        embBuf = b
-      }),
-      loadVisionDatasetFile(manifest.cardIdsFile, {
-        totalFallback: manifest.cardIdsCompressedBytes || 50_000,
-        taskKey: 'ids',
-        asText: true,
-      }).then((jsonText) => {
-        cardIds = JSON.parse(jsonText)
-      })
-    )
-  }
-
-  await Promise.all(tasks)
-  void pruneStaleVisionCache(cache, game, manifest).catch((err) => {
-    console.warn('[VisionWorker] Cache prune failed:', err)
-  })
-
-  if (needOrt) {
-    if (wasmBuf) ortModule.env.wasm.wasmBinary = wasmBuf
-    emitProgress('models', 0.62)
-
-    const gpuAdapter =
-      typeof navigator !== 'undefined' && navigator.gpu
-        ? await withTimeout(
-            navigator.gpu.requestAdapter({ powerPreference: 'high-performance' }),
-            2000,
-            'WebGPU adapter'
-          ).catch((err) => {
-            console.warn('[VisionWorker] WebGPU adapter unavailable, using WASM:', err)
-            return null
-          })
-        : null
-    if (gpuAdapter) ortModule.env.webgpu.adapter = gpuAdapter
-    const eps = gpuAdapter ? ['webgpu'] : ['wasm']
-
     try {
-      const stepTimeoutMs = eps[0] === 'webgpu' ? 12000 : 15000
-      const created = await createSessionWithTimeout(detBuf, miloBuf, eps, stepTimeoutMs)
-      detectorSession = created.det
-      miloSession = created.milo
-      activeBackend = eps[0]
-    } catch (err) {
-      if (eps[0] === 'wasm') throw err
-      console.warn(`[VisionWorker] Session init with ${eps[0]} failed, falling back to WASM:`, err)
-      ortModule.env.webgpu.adapter = undefined
-      const createdWasm = await createSessionWithTimeout(detBuf, miloBuf, ['wasm'], 15000)
-      detectorSession = createdWasm.det
-      miloSession = createdWasm.milo
-      activeBackend = 'wasm'
-    } finally {
-      detBuf = null
-      miloBuf = null
-      wasmBuf = null
-      ortModule.env.wasm.wasmBinary = undefined
-    }
-  }
+      await Promise.all([
+        loadVisionDatasetFile(manifest.embeddingsFile, {
+          totalFallback: manifest.embeddingsCompressedBytes || 2_000_000,
+          taskKey: 'emb',
+          expectedBytes: expectedEmbBytes,
+        }).then((b) => {
+          embBuf = b
+        }),
+        loadVisionDatasetFile(manifest.cardIdsFile, {
+          totalFallback: manifest.cardIdsCompressedBytes || 50_000,
+          taskKey: 'ids',
+          asText: true,
+        }).then((jsonText) => {
+          cardIds = JSON.parse(jsonText)
+        }),
+      ])
 
-  if (needDataset && manifest) {
-    emitProgress('dataset', 0.94)
+      if (embBuf.byteLength < expectedEmbBytes || !Array.isArray(cardIds)) {
+        throw new Error(`Invalid vision dataset payload for ${game}`)
+      }
+      await commitPendingCache(cache, pendingDatasetCache)
+    } finally {
+      pendingDatasetCache.length = 0
+    }
+
+    emitProgress('dataset', 0.97)
     const int8Data = new Int8Array(
       embBuf.buffer,
       embBuf.byteOffset + (manifest.int8Offset || 0),
@@ -519,6 +614,10 @@ const initializeAssets = async (game) => {
     }
     currentGame = game
   }
+
+  void pruneStaleVisionCache(cache, game, manifest).catch((err) => {
+    console.warn('[VisionWorker] Cache prune failed:', err)
+  })
 
   emitProgress('ready', 0.98)
 }

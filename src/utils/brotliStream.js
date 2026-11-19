@@ -111,27 +111,61 @@ const streamBrotliDecompress = async (files, options, onChunk) => {
 }
 
 /**
+ * Collects Uint8Array chunks into a single contiguous buffer without 2x merge allocation
+ * when expectedBytes is known, falling back seamlessly to chunk merging on overflow.
+ * @param {number} [expectedBytes=0]
+ * @returns {{ push: (chunk: Uint8Array) => void, finish: () => Uint8Array }}
+ */
+export const createByteAccumulator = (expectedBytes = 0) => {
+  let target = expectedBytes > 0 ? new Uint8Array(expectedBytes) : null
+  let offset = 0
+  const chunks = []
+
+  const push = (chunk) => {
+    if (!chunk?.byteLength) return
+    if (target) {
+      if (offset + chunk.byteLength <= target.byteLength) {
+        target.set(chunk, offset)
+        offset += chunk.byteLength
+        return
+      }
+      if (offset > 0) chunks.push(target.subarray(0, offset))
+      target = null
+    }
+    chunks.push(chunk)
+    offset += chunk.byteLength
+  }
+
+  const finish = () => {
+    if (target) {
+      return offset === target.byteLength ? target : target.subarray(0, offset)
+    }
+    if (chunks.length === 1) return chunks[0]
+    const merged = new Uint8Array(offset)
+    let pos = 0
+    for (let i = 0; i < chunks.length; i++) {
+      merged.set(chunks[i], pos)
+      pos += chunks[i].byteLength
+    }
+    return merged
+  }
+
+  return { push, finish }
+}
+
+/**
  * Fetches and decompresses Brotli-compressed file(s) into a single Uint8Array.
  * @param {string | string[]} files
  * @param {object} [options]
+ * @param {number} [options.expectedBytes] - Optional exact decompressed size to avoid 2x buffer merge copy
  * @returns {Promise<Uint8Array>}
  */
 export const fetchAndDecompressBrotliBytes = async (files, options = {}) => {
-  const chunks = []
-  let totalLength = 0
+  const accumulator = createByteAccumulator(options.expectedBytes || 0)
   await streamBrotliDecompress(files, options, (outBuf) => {
-    chunks.push(outBuf)
-    totalLength += outBuf.byteLength
+    accumulator.push(outBuf)
   })
-  if (chunks.length === 1) return chunks[0]
-
-  const merged = new Uint8Array(totalLength)
-  let offset = 0
-  for (let i = 0; i < chunks.length; i++) {
-    merged.set(chunks[i], offset)
-    offset += chunks[i].byteLength
-  }
-  return merged
+  return accumulator.finish()
 }
 
 /**
