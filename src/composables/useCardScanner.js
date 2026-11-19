@@ -241,7 +241,7 @@ const openCameraStream = async ({
  */
 export const useCardScanner = (gameRef) => {
   activeScannerInstances++
-  const mode = ref('camera') // 'camera' | 'image'
+  const mode = ref(null) // null | 'camera' | 'image'
   const isInitializing = ref(false)
   const isStartingCamera = ref(false)
   const isScanning = ref(false)
@@ -676,6 +676,7 @@ export const useCardScanner = (gameRef) => {
   watch(gameRef, (nextGame, prevGame) => {
     if (prevGame && nextGame !== prevGame) {
       stopCamera()
+      mode.value = null
       initCoordinator.dispose()
       managedVisionWorker.terminate()
     }

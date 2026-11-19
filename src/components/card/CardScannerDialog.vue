@@ -1,6 +1,45 @@
 <template>
+  <!-- 识别方式选择弹窗（桌面端） -->
   <v-dialog
-    :model-value="modelValue"
+    v-if="smAndUp"
+    :model-value="isModePickerOpen"
+    @update:model-value="handlePickerModelUpdate"
+    max-width="300"
+  >
+    <v-card class="rounded-2lg pa-2">
+      <v-card-title class="text-subtitle-1 font-weight-bold">选择识别方式</v-card-title>
+      <v-list nav density="compact">
+        <v-list-item
+          v-for="option in modeOptions"
+          :key="option.value"
+          :prepend-icon="option.icon"
+          :title="option.title"
+          @click="mode = option.value"
+        ></v-list-item>
+      </v-list>
+    </v-card>
+  </v-dialog>
+
+  <!-- 识别方式选择抽屉（移动端） -->
+  <v-bottom-sheet
+    v-else
+    :model-value="isModePickerOpen"
+    @update:model-value="handlePickerModelUpdate"
+  >
+    <v-list rounded="t-xl">
+      <v-list-subheader>选择识别方式</v-list-subheader>
+      <v-list-item v-for="option in modeOptions" :key="option.value" @click="mode = option.value">
+        <template #prepend>
+          <v-icon :icon="option.icon" />
+        </template>
+        <v-list-item-title>{{ option.title }}</v-list-item-title>
+      </v-list-item>
+    </v-list>
+  </v-bottom-sheet>
+
+  <!-- 扫卡识别主弹窗 -->
+  <v-dialog
+    :model-value="isScannerDialogOpen"
     @update:model-value="handleClose"
     :fullscreen="!smAndUp"
     max-width="560"
@@ -166,7 +205,7 @@
 </template>
 
 <script setup>
-import { ref, toRef, watch, onUnmounted } from 'vue'
+import { computed, ref, toRef, watch, onUnmounted } from 'vue'
 import { useDisplay } from 'vuetify'
 import { useCardScanner } from '@/composables/useCardScanner'
 import { mapCoverCorners } from '@/utils/visionGeometry'
@@ -180,6 +219,11 @@ const emit = defineEmits(['update:modelValue', 'select'])
 
 const { smAndUp } = useDisplay()
 const gameRef = toRef(props, 'game')
+
+const modeOptions = [
+  { value: 'camera', title: '镜头', icon: 'i-mdi:camera-outline' },
+  { value: 'image', title: '图片', icon: 'i-mdi:image-outline' },
+]
 
 const stageRef = ref(null)
 const videoRef = ref(null)
@@ -208,6 +252,9 @@ const {
   scanImageBlob,
   resetResult,
 } = useCardScanner(gameRef)
+
+const isModePickerOpen = computed(() => props.modelValue && !mode.value)
+const isScannerDialogOpen = computed(() => props.modelValue && Boolean(mode.value))
 
 const clearPreview = () => {
   if (previewUrl.value) {
@@ -276,6 +323,12 @@ const confirmSelection = (cardId) => {
   handleClose(false)
 }
 
+const handlePickerModelUpdate = (val) => {
+  if (!val && !mode.value) {
+    emit('update:modelValue', false)
+  }
+}
+
 const handleClose = (val) => {
   if (!val) releaseCameraView()
   emit('update:modelValue', val)
@@ -321,7 +374,7 @@ const handleDrop = async (e) => {
 }
 
 const handlePaste = async (e) => {
-  if (!props.modelValue) return
+  if (!isScannerDialogOpen.value) return
   const item = Array.from(e.clipboardData?.items || []).find((i) => i.type.startsWith('image/'))
   const fileFromFiles = Array.from(e.clipboardData?.files || []).find((f) => isImageFile(f))
   const blob = item?.getAsFile() || fileFromFiles
@@ -332,29 +385,25 @@ const handlePaste = async (e) => {
   }
 }
 
-// 监听对话框开关：开启时重回默认镜头模式、重置识别状态并绑定剪贴簿监听；关闭时释放硬件与预览资源
-watch(
-  () => props.modelValue,
-  (open) => {
-    isVideoReady.value = false
-    if (open) {
-      mode.value = 'camera'
-      clearPreview()
-      resetResult()
-      cameraError.value = null
-      window.addEventListener('paste', handlePaste)
-    } else {
-      window.removeEventListener('paste', handlePaste)
-      releaseCameraView()
-      clearPreview()
-      resetResult()
-    }
+// 监听扫描主弹窗开关：开启时重置识别与预览状态并绑定剪贴簿监听；关闭时释放硬件与预览资源
+watch(isScannerDialogOpen, (open) => {
+  isVideoReady.value = false
+  if (open) {
+    clearPreview()
+    resetResult()
+    cameraError.value = null
+    window.addEventListener('paste', handlePaste)
+  } else {
+    window.removeEventListener('paste', handlePaste)
+    releaseCameraView()
+    clearPreview()
+    resetResult()
   }
-)
+})
 
-// 监听弹窗开启状态、识别模式与 <video> 挂载状态：确保弹窗过渡挂载完成后可靠启动摄像头，避免快速开关丢失 DOM 引用
+// 监听扫描主弹窗开启状态、识别模式与 <video> 挂载状态：确保弹窗过渡挂载完成后可靠启动摄像头，避免快速开关丢失 DOM 引用
 watch(
-  [() => props.modelValue, mode, videoRef],
+  [isScannerDialogOpen, mode, videoRef],
   ([open, currentMode, videoEl]) => {
     if (open && currentMode === 'camera' && videoEl) {
       startCamera(videoEl)
