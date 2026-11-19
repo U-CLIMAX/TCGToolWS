@@ -1,11 +1,12 @@
 import { defineStore } from 'pinia'
-import { ref, watch, nextTick, shallowRef } from 'vue'
+import { ref, computed, nextTick, shallowRef } from 'vue'
 import { useCardFiltering } from '@/composables/useCardFiltering.js'
 import { openDB, saveData, loadData } from '@/utils/db.js'
 import { decompressBrotliTextInWorker } from '@/utils/brotliClient.js'
 
 const dbName = 'CardDataDB'
 const storeName = 'cardStore'
+const MAX_DISPLAY_RESULTS = 1000
 
 export const useGlobalSearchStore = defineStore('globalSearch', () => {
   // --- State ---
@@ -49,44 +50,18 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     selectedSoul,
     resetFilters,
     filteredCards,
+    totalMatchedCount,
+    hasActiveFilters,
     initializeWorker,
     terminateWorker,
     getCardById,
-  } = useCardFiltering()
+  } = useCardFiltering({ requireActiveFilter: true, maxResults: MAX_DISPLAY_RESULTS })
 
   // --- Results ---
-  // Use shallowRef for performance optimization when handling large lists
-  const searchResults = shallowRef([])
-  const searchCountDetails = ref({
-    isCountOverThreshold: false,
-    actualResultCount: 0,
-  })
-  const hasActiveFilters = ref(false)
-
-  // Watch for changes in filteredCards from the composable and update the store's state
-  watch(filteredCards, (newResult) => {
-    searchCountDetails.value.actualResultCount = newResult.length
-    searchCountDetails.value.isCountOverThreshold = newResult.length > 1000
-    searchResults.value = newResult.slice(0, 1000)
-
-    // Update hasActiveFilters based on whether there are any active filter criteria
-    const hasAnyActiveFilters = [
-      keyword.value && keyword.value.length >= 2,
-      selectedCardTypes.value.length > 0,
-      selectedColors.value.length > 0,
-      selectedProductName.value,
-      selectedTraits.value.length > 0,
-      selectedLevels.value.length > 0,
-      selectedCosts.value.length > 0,
-      selectedRarities.value.length > 0,
-      selectedPowers.value.length > 0,
-      powerRange.value.some((v) => v !== null),
-      showTriggerSoul.value,
-      selectedSoul.value.length > 0,
-    ].some(Boolean)
-
-    hasActiveFilters.value = hasAnyActiveFilters
-  })
+  const searchCountDetails = computed(() => ({
+    isCountOverThreshold: totalMatchedCount.value > MAX_DISPLAY_RESULTS,
+    actualResultCount: totalMatchedCount.value,
+  }))
 
   // --- Data Loading Logic ---
 
@@ -106,15 +81,16 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     costs.value = data.filterOptions.costs
     powers.value = data.filterOptions.powers
 
-    const cardCount = data.cards?.length || 0
+    const cards = data.cards
+    const cardCount = cards?.length || 0
+    data.cards = null
     resetFilters()
-    await initializeWorker(data.cards, {
+    await initializeWorker(cards, {
       game: currentGame.value,
       version,
       indexFiles,
     })
     console.log(`✅ Successfully loaded ${cardCount} cards from ${source}`)
-    data.cards = null
   }
 
   /**
@@ -320,8 +296,6 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
   const terminate = () => {
     terminateWorker()
     isReady.value = false
-    searchResults.value = []
-    hasActiveFilters.value = false
     resetFilters()
   }
 
@@ -358,7 +332,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
     showTriggerSoul,
     selectedSoul,
     // Results
-    searchResults,
+    searchResults: filteredCards,
     searchCountDetails,
     hasActiveFilters,
     // Actions

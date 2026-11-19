@@ -374,10 +374,22 @@ export const rotateRgba = (rgba, size, angleDeg, outBuf) => {
   return out
 }
 
+const computeNchwAffine = (normalizeImageNet) => {
+  const inv255 = 1 / 255
+  return {
+    s0: normalizeImageNet ? inv255 / IMAGENET_STD[0] : inv255,
+    s1: normalizeImageNet ? inv255 / IMAGENET_STD[1] : inv255,
+    s2: normalizeImageNet ? inv255 / IMAGENET_STD[2] : inv255,
+    b0: normalizeImageNet ? -IMAGENET_MEAN[0] / IMAGENET_STD[0] : 0,
+    b1: normalizeImageNet ? -IMAGENET_MEAN[1] / IMAGENET_STD[1] : 0,
+    b2: normalizeImageNet ? -IMAGENET_MEAN[2] / IMAGENET_STD[2] : 0,
+  }
+}
+
 /**
  * Converts square RGBA buffer to NCHW [1, 3, size, size] Float32Array.
- * When normalizeImageNet is true (for milo.onnx), applies ImageNet mean/std normalization;
- * otherwise outputs [0..1] RGB (for detector.onnx).
+ * When normalizeImageNet is true, applies ImageNet mean/std normalization;
+ * otherwise outputs [0..1] RGB.
  * @param {Uint8ClampedArray} rgba
  * @param {number} size
  * @param {Float32Array} [outBuf]
@@ -388,18 +400,91 @@ export const rgbaToNchw = (rgba, size, outBuf, normalizeImageNet = true) => {
   const plane = size * size
   const neededLen = 3 * plane
   const out = outBuf && outBuf.length === neededLen ? outBuf : new Float32Array(neededLen)
-  const inv255 = 1 / 255
-  const s0 = normalizeImageNet ? inv255 / IMAGENET_STD[0] : inv255
-  const s1 = normalizeImageNet ? inv255 / IMAGENET_STD[1] : inv255
-  const s2 = normalizeImageNet ? inv255 / IMAGENET_STD[2] : inv255
-  const b0 = normalizeImageNet ? -IMAGENET_MEAN[0] / IMAGENET_STD[0] : 0
-  const b1 = normalizeImageNet ? -IMAGENET_MEAN[1] / IMAGENET_STD[1] : 0
-  const b2 = normalizeImageNet ? -IMAGENET_MEAN[2] / IMAGENET_STD[2] : 0
+  const { s0, s1, s2, b0, b1, b2 } = computeNchwAffine(normalizeImageNet)
   for (let i = 0; i < plane; i++) {
     const p = i * 4
     out[i] = rgba[p] * s0 + b0
     out[plane + i] = rgba[p + 1] * s1 + b1
     out[2 * plane + i] = rgba[p + 2] * s2 + b2
+  }
+  return out
+}
+
+/**
+ * Bilinearly resizes an RGBA image to dstSize x dstSize and writes NCHW [1, 3, dstSize, dstSize].
+ * Used for camera frames so VisionWorker avoids OffscreenCanvas / ImageBitmap GPU transfers.
+ * @param {Uint8ClampedArray} srcRgba
+ * @param {number} srcW
+ * @param {number} srcH
+ * @param {number} dstSize
+ * @param {Float32Array} [outBuf]
+ * @param {boolean} [normalizeImageNet=true]
+ * @returns {Float32Array}
+ */
+export const rgbaResizeToNchw = (
+  srcRgba,
+  srcW,
+  srcH,
+  dstSize,
+  outBuf,
+  normalizeImageNet = true
+) => {
+  const plane = dstSize * dstSize
+  const neededLen = 3 * plane
+  const out = outBuf && outBuf.length === neededLen ? outBuf : new Float32Array(neededLen)
+  if (!srcW || !srcH || srcRgba.length < srcW * srcH * 4) return out
+  if (srcW === dstSize && srcH === dstSize) {
+    return rgbaToNchw(srcRgba, dstSize, out, normalizeImageNet)
+  }
+
+  const { s0, s1, s2, b0, b1, b2 } = computeNchwAffine(normalizeImageNet)
+  const scaleX = srcW / dstSize
+  const scaleY = srcH / dstSize
+  const maxX = srcW - 1
+  const maxY = srcH - 1
+
+  for (let dy = 0; dy < dstSize; dy++) {
+    const sy = Math.min(maxY, Math.max(0, (dy + 0.5) * scaleY - 0.5))
+    const y0 = Math.floor(sy)
+    const y1 = y0 < maxY ? y0 + 1 : maxY
+    const fy = sy - y0
+    const oneMinusFy = 1 - fy
+    const rowOffset = dy * dstSize
+
+    for (let dx = 0; dx < dstSize; dx++) {
+      const sx = Math.min(maxX, Math.max(0, (dx + 0.5) * scaleX - 0.5))
+      const x0 = Math.floor(sx)
+      const x1 = x0 < maxX ? x0 + 1 : maxX
+      const fx = sx - x0
+      const oneMinusFx = 1 - fx
+
+      const w00 = oneMinusFx * oneMinusFy
+      const w10 = fx * oneMinusFy
+      const w01 = oneMinusFx * fy
+      const w11 = fx * fy
+
+      const i00 = (y0 * srcW + x0) * 4
+      const i10 = (y0 * srcW + x1) * 4
+      const i01 = (y1 * srcW + x0) * 4
+      const i11 = (y1 * srcW + x1) * 4
+
+      const r = srcRgba[i00] * w00 + srcRgba[i10] * w10 + srcRgba[i01] * w01 + srcRgba[i11] * w11
+      const g =
+        srcRgba[i00 + 1] * w00 +
+        srcRgba[i10 + 1] * w10 +
+        srcRgba[i01 + 1] * w01 +
+        srcRgba[i11 + 1] * w11
+      const b =
+        srcRgba[i00 + 2] * w00 +
+        srcRgba[i10 + 2] * w10 +
+        srcRgba[i01 + 2] * w01 +
+        srcRgba[i11 + 2] * w11
+
+      const dstIdx = rowOffset + dx
+      out[dstIdx] = r * s0 + b0
+      out[plane + dstIdx] = g * s1 + b1
+      out[2 * plane + dstIdx] = b * s2 + b2
+    }
   }
   return out
 }
@@ -420,9 +505,80 @@ export const computeCoverCropRect = (videoW, videoH, viewW, viewH) => {
     return { sx: 0, sy: 0, sw: videoW, sh: videoH }
   }
   if (videoAspect > targetAspect) {
-    const sw = Math.round(videoH * targetAspect)
-    return { sx: Math.floor((videoW - sw) * 0.5), sy: 0, sw, sh: videoH }
+    const sw = Math.min(videoW, Math.max(1, Math.round(videoH * targetAspect)))
+    const sx = Math.max(0, Math.min(videoW - sw, Math.floor((videoW - sw) * 0.5)))
+    return { sx, sy: 0, sw, sh: videoH }
   }
-  const sh = Math.round(videoW / targetAspect)
-  return { sx: 0, sy: Math.floor((videoH - sh) * 0.5), sw: videoW, sh }
+  const sh = Math.min(videoH, Math.max(1, Math.round(videoW / targetAspect)))
+  const sy = Math.max(0, Math.min(videoH - sh, Math.floor((videoH - sh) * 0.5)))
+  return { sx: 0, sy, sw: videoW, sh }
+}
+
+/**
+ * Computes a padded high-resolution ROI pixel rectangle inside crop for Stage 2 matching,
+ * preserving 1:1 native video pixels up to maxEdge.
+ * @param {{ sx: number, sy: number, sw: number, sh: number }} crop
+ * @param {ArrayLike<number>} corners
+ * @param {number} [maxEdge=1280]
+ * @param {number} [pad=0.12]
+ */
+export const computeRoiCaptureRect = (crop, corners, maxEdge = 1280, pad = 0.12) => {
+  if (!crop || !corners || corners.length < 8 || !crop.sw || !crop.sh) return null
+  let minX = 1
+  let minY = 1
+  let maxX = 0
+  let maxY = 0
+  for (let i = 0; i < 4; i++) {
+    const x = corners[i * 2]
+    const y = corners[i * 2 + 1]
+    if (!Number.isFinite(x) || !Number.isFinite(y)) return null
+    if (x < minX) minX = x
+    if (x > maxX) maxX = x
+    if (y < minY) minY = y
+    if (y > maxY) maxY = y
+  }
+  const padX = Math.max(0.04, (maxX - minX) * pad)
+  const padY = Math.max(0.04, (maxY - minY) * pad)
+  const u0 = Math.max(0, minX - padX)
+  const v0 = Math.max(0, minY - padY)
+  const u1 = Math.min(1, maxX + padX)
+  const v1 = Math.min(1, maxY + padY)
+
+  const sx = crop.sx + Math.max(0, Math.floor(u0 * crop.sw))
+  const sy = crop.sy + Math.max(0, Math.floor(v0 * crop.sh))
+  const ex = crop.sx + Math.min(crop.sw, Math.ceil(u1 * crop.sw))
+  const ey = crop.sy + Math.min(crop.sh, Math.ceil(v1 * crop.sh))
+  const sw = Math.max(1, ex - sx)
+  const sh = Math.max(1, ey - sy)
+  const scale = Math.min(1, maxEdge / Math.max(sw, sh))
+  return {
+    sx,
+    sy,
+    sw,
+    sh,
+    outW: Math.max(1, Math.round(sw * scale)),
+    outH: Math.max(1, Math.round(sh * scale)),
+    normRect: {
+      u0: (sx - crop.sx) / crop.sw,
+      v0: (sy - crop.sy) / crop.sh,
+      uw: sw / crop.sw,
+      vh: sh / crop.sh,
+    },
+  }
+}
+
+/**
+ * Projects normalized [0..1] ROI corners back into parent crop normalized coordinates.
+ * @param {ArrayLike<number> | null} localCorners
+ * @param {{ u0: number, v0: number, uw: number, vh: number } | null} normRect
+ * @returns {number[] | null}
+ */
+export const mapRoiCornersToParent = (localCorners, normRect) => {
+  if (!localCorners || localCorners.length < 8 || !normRect) return localCorners
+  const out = new Array(8)
+  for (let i = 0; i < 4; i++) {
+    out[i * 2] = normRect.u0 + localCorners[i * 2] * normRect.uw
+    out[i * 2 + 1] = normRect.v0 + localCorners[i * 2 + 1] * normRect.vh
+  }
+  return out
 }

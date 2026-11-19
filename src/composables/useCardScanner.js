@@ -1,15 +1,50 @@
-import { ref, onUnmounted } from 'vue'
+import { ref, watch, onUnmounted } from 'vue'
 import { transfer } from 'comlink'
 import { createManagedWorker } from '@/utils/workerManager'
 import VisionWorker from '@/workers/vision.worker.js?worker'
-import { computeCoverCropRect } from '@/utils/visionGeometry'
+import {
+  computeCoverCropRect,
+  computeRoiCaptureRect,
+  mapRoiCornersToParent,
+} from '@/utils/visionGeometry'
 import { isDecisiveCandidate, SCAN_THRESHOLDS } from '@/utils/visionSearch'
 
 const PERMISSION_ERRORS = new Set(['NotAllowedError', 'PermissionDeniedError', 'SecurityError'])
+const DETECTOR_CAPTURE_SIZE = 384
+const MAX_ROI_CAPTURE_EDGE = 1280
+const CAMERA_FRAME_INTERVAL_MS = 100
+
+const createSoftwareCanvasSlot = () => {
+  let canvas = null
+  let ctx = null
+  return {
+    capture: (source, sx, sy, sw, sh, outW, outH) => {
+      if (!canvas && typeof document !== 'undefined') {
+        canvas = document.createElement('canvas')
+        ctx = canvas.getContext('2d', { alpha: false, willReadFrequently: true })
+      }
+      if (!ctx) return null
+      // Grow-only backing store avoids reallocation churn when alternating 384x384 and ROI captures
+      if (canvas.width < outW) canvas.width = outW
+      if (canvas.height < outH) canvas.height = outH
+      // Extract CPU RGBA pixels via software 2D canvas instead of transferring a video-backed ImageBitmap across workers
+      ctx.drawImage(source, sx, sy, sw, sh, 0, 0, outW, outH)
+      const raw = ctx.getImageData(0, 0, outW, outH).data
+      return raw.byteOffset === 0 && raw.byteLength === raw.buffer.byteLength ? raw : raw.slice()
+    },
+    release: () => {
+      if (canvas) {
+        canvas.width = 0
+        canvas.height = 0
+      }
+    },
+  }
+}
 
 const managedVisionWorker = createManagedWorker(() => new VisionWorker(), {
   idleTimeout: 120_000,
 })
+let activeScannerInstances = 0
 
 const createLockTracker = ({
   windowSize = 3,
@@ -167,11 +202,16 @@ const createInitCoordinator = ({
 
 const openCameraStream = async ({
   mediaDevices,
-  width = 960,
-  height = 540,
+  width = 1280,
+  height = 720,
   shouldAbort = () => false,
 }) => {
   const attempts = [
+    {
+      facingMode: 'environment',
+      width: { ideal: width, max: 1280 },
+      height: { ideal: height, max: 1280 },
+    },
     { facingMode: 'environment', width: { ideal: width }, height: { ideal: height } },
     { width: { ideal: width }, height: { ideal: height } },
   ]
@@ -200,6 +240,7 @@ const openCameraStream = async ({
  * @param {import('vue').Ref<string>} gameRef
  */
 export const useCardScanner = (gameRef) => {
+  activeScannerInstances++
   const mode = ref('camera') // 'camera' | 'image'
   const isInitializing = ref(false)
   const isStartingCamera = ref(false)
@@ -217,6 +258,9 @@ export const useCardScanner = (gameRef) => {
 
   let mediaStream = null
   let rafId = null
+  let frameTimerId = null
+  let lastFrameStartedAt = 0
+  const captureCanvasSlot = createSoftwareCanvasSlot()
   let videoElRef = null
   let cameraActive = false
   let inFlight = false
@@ -272,6 +316,10 @@ export const useCardScanner = (gameRef) => {
   })
 
   const stopLoop = () => {
+    if (frameTimerId !== null) {
+      clearTimeout(frameTimerId)
+      frameTimerId = null
+    }
     if (rafId !== null) {
       cancelAnimationFrame(rafId)
       rafId = null
@@ -281,6 +329,8 @@ export const useCardScanner = (gameRef) => {
   const stopCamera = () => {
     sessionToken++
     stopLoop()
+    captureCanvasSlot.release()
+    lastFrameStartedAt = 0
     activeFrameMeta = null
     consecutiveFrameErrors = 0
     recoveredUninit = false
@@ -314,7 +364,7 @@ export const useCardScanner = (gameRef) => {
     return initCoordinator.ensureReady(gameRef.value, opts)
   }
 
-  const scheduleNextFrame = () => {
+  const scheduleRaf = () => {
     if (rafId !== null || !cameraActive || lockedCardId.value) return
     rafId = requestAnimationFrame(() => {
       rafId = null
@@ -322,16 +372,32 @@ export const useCardScanner = (gameRef) => {
     })
   }
 
-  const captureVisibleFrame = async (videoEl) => {
+  const scheduleNextFrame = () => {
+    if (frameTimerId !== null || rafId !== null || !cameraActive || lockedCardId.value) return
+    const elapsed = lastFrameStartedAt > 0 ? performance.now() - lastFrameStartedAt : Infinity
+    const waitMs = Math.max(0, CAMERA_FRAME_INTERVAL_MS - elapsed)
+    if (waitMs > 0) {
+      frameTimerId = setTimeout(() => {
+        frameTimerId = null
+        scheduleRaf()
+      }, waitMs)
+    } else {
+      scheduleRaf()
+    }
+  }
+
+  const getVisibleVideoCrop = (videoEl) => {
     const videoW = videoEl.videoWidth
     const videoH = videoEl.videoHeight
-    const crop = computeCoverCropRect(videoW, videoH, videoEl.clientWidth, videoEl.clientHeight)
-    if (crop) {
-      const bitmap = await createImageBitmap(videoEl, crop.sx, crop.sy, crop.sw, crop.sh)
-      return { bitmap, width: crop.sw, height: crop.sh }
-    }
-    const bitmap = await createImageBitmap(videoEl)
-    return { bitmap, width: videoW, height: videoH }
+    if (!videoW || !videoH) return null
+    return (
+      computeCoverCropRect(videoW, videoH, videoEl.clientWidth, videoEl.clientHeight) || {
+        sx: 0,
+        sy: 0,
+        sw: videoW,
+        sh: videoH,
+      }
+    )
   }
 
   const pumpFrame = () => {
@@ -342,29 +408,70 @@ export const useCardScanner = (gameRef) => {
     }
 
     inFlight = true
+    lastFrameStartedAt = performance.now()
     const token = sessionToken
     const runFrame = async () => {
       if (!managedVisionWorker.isRunning()) {
         await ensureWorkerReady()
         if (token !== sessionToken || !cameraActive || lockedCardId.value) return null
       }
-      const captured = await captureVisibleFrame(videoElRef)
-      let bitmap = captured.bitmap
-      if (token !== sessionToken || lockedCardId.value) {
-        bitmap.close?.()
-        return null
-      }
-      const meta = { token, width: captured.width, height: captured.height, appliedOverlay: false }
+      const crop = getVisibleVideoCrop(videoElRef)
+      if (!crop || token !== sessionToken || !cameraActive || lockedCardId.value) return null
+
+      // Stage 1: capture 384x384 RGBA region (~0.56 MiB) for detector tracking without reallocating canvas
+      const stage1Rgba = captureCanvasSlot.capture(
+        videoElRef,
+        crop.sx,
+        crop.sy,
+        crop.sw,
+        crop.sh,
+        DETECTOR_CAPTURE_SIZE,
+        DETECTOR_CAPTURE_SIZE
+      )
+      if (!stage1Rgba) return null
+
+      const meta = { token, width: crop.sw, height: crop.sh, appliedOverlay: false }
       activeFrameMeta = meta
-      try {
-        const res = await managedVisionWorker.run((api) => {
-          const transferred = bitmap
-          bitmap = null
-          return api.scanFrame(transfer(transferred, [transferred]))
-        })
-        return { res, width: captured.width, height: captured.height, meta }
-      } finally {
-        bitmap?.close?.()
+      const stage1Res = await managedVisionWorker.run((api) =>
+        api.scanFrame(
+          transfer(stage1Rgba, [stage1Rgba.buffer]),
+          DETECTOR_CAPTURE_SIZE,
+          DETECTOR_CAPTURE_SIZE,
+          crop.sw,
+          crop.sh
+        )
+      )
+      if (stage1Res.status !== 'need_crop') {
+        return { res: stage1Res, width: crop.sw, height: crop.sh, meta, forceOverlay: false }
+      }
+      if (token !== sessionToken || !cameraActive || lockedCardId.value) return null
+
+      // Stage 2: capture 1:1 ROI region reusing the same grow-only canvas slot
+      const roi = computeRoiCaptureRect(crop, stage1Res.corners, MAX_ROI_CAPTURE_EDGE)
+      if (!roi) return null
+      const roiRgba = captureCanvasSlot.capture(
+        videoElRef,
+        roi.sx,
+        roi.sy,
+        roi.sw,
+        roi.sh,
+        roi.outW,
+        roi.outH
+      )
+      if (!roiRgba || token !== sessionToken || !cameraActive || lockedCardId.value) return null
+
+      const stage2Res = await managedVisionWorker.run((api) =>
+        api.matchCardCrop(transfer(roiRgba, [roiRgba.buffer]), roi.outW, roi.outH)
+      )
+      return {
+        res: {
+          ...stage2Res,
+          corners: mapRoiCornersToParent(stage2Res.corners, roi.normRect),
+        },
+        width: crop.sw,
+        height: crop.sh,
+        meta,
+        forceOverlay: true,
       }
     }
 
@@ -373,8 +480,8 @@ export const useCardScanner = (gameRef) => {
         if (!payload || token !== sessionToken || lockedCardId.value) return
         consecutiveFrameErrors = 0
         recoveredUninit = false
-        const { res, width, height, meta } = payload
-        if (!meta.appliedOverlay) {
+        const { res, width, height, meta, forceOverlay } = payload
+        if (!meta.appliedOverlay || forceOverlay) {
           overlayFrameSize.value = { width, height }
           overlayCorners.value = res.corners
         }
@@ -465,8 +572,8 @@ export const useCardScanner = (gameRef) => {
 
       const stream = await openCameraStream({
         mediaDevices: navigator.mediaDevices,
-        width: 960,
-        height: 540,
+        width: 1280,
+        height: 720,
         shouldAbort: () => token !== sessionToken,
       })
       if (!stream) return false
@@ -565,11 +672,24 @@ export const useCardScanner = (gameRef) => {
     }
   }
 
+  // 监听游戏类型切换（如 /search/ws 切换至 /search/wsc）：立即释放旧游戏的视觉索引与 Worker 内存
+  watch(gameRef, (nextGame, prevGame) => {
+    if (prevGame && nextGame !== prevGame) {
+      stopCamera()
+      initCoordinator.dispose()
+      managedVisionWorker.terminate()
+    }
+  })
+
   onUnmounted(() => {
     stopCamera()
     videoElRef = null
     stopOverlayListener()
     initCoordinator.dispose()
+    activeScannerInstances = Math.max(0, activeScannerInstances - 1)
+    if (activeScannerInstances === 0) {
+      managedVisionWorker.terminate()
+    }
   })
 
   return {

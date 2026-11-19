@@ -11,6 +11,7 @@ import {
   dewarpRgba,
   rotateRgba,
   rgbaToNchw,
+  rgbaResizeToNchw,
 } from '@/utils/visionGeometry.js'
 import {
   classifyMatchCandidates,
@@ -82,7 +83,7 @@ const emitProgress = (stage, ratio) => {
   self.postMessage({ type: 'vision:progress', stage, ratio })
 }
 
-// Lazily initialized scratch canvases & buffers so browser/extension OffscreenCanvas errors surface cleanly via RPC
+// Lazily initialized scratch canvases & buffers for static image uploads (camera path uses pure CPU RGBA)
 let scratchDetectorCanvas = null
 let scratchDetectorCtx = null
 let scratchCropCanvas = null
@@ -405,7 +406,6 @@ const createSessionsWithFallback = async (detBuf, miloBuf, eps) =>
   })
 
 const initializeAssets = async (game) => {
-  ensureScratchResources()
   const needOrt = !ortModule || !detectorSession || !miloSession
   const needDataset = currentGame !== game || !datasetState
   if (!needOrt && !needDataset) {
@@ -722,13 +722,7 @@ const matchWithOrientations = async (baseRgba448, isStatic, includeQuarterTurns 
   return { status: classifyMatchCandidates(candidates), candidates }
 }
 
-const detectCard = async (bitmap) => {
-  scratchDetectorCtx.fillStyle = '#000'
-  scratchDetectorCtx.fillRect(0, 0, DETECTOR_SIZE, DETECTOR_SIZE)
-  scratchDetectorCtx.drawImage(bitmap, 0, 0, DETECTOR_SIZE, DETECTOR_SIZE)
-  const imgData = scratchDetectorCtx.getImageData(0, 0, DETECTOR_SIZE, DETECTOR_SIZE)
-  rgbaToNchw(imgData.data, DETECTOR_SIZE, detectorNchwBuf, true)
-
+const runDetectorOnNchw = async (srcW, srcH) => {
   const inputName = detectorSession.inputNames[0]
   const tensor = new ortModule.Tensor('float32', detectorNchwBuf, [
     1,
@@ -750,9 +744,9 @@ const detectCard = async (bitmap) => {
     tensor.dispose?.()
     if (out) Object.values(out).forEach((t) => t?.dispose?.())
   }
-  const corners = orderCardCorners(clamped, bitmap.width, bitmap.height)
+  const corners = orderCardCorners(clamped, srcW, srcH)
 
-  const quadAspect = corners ? computeQuadAspectRatio(corners, bitmap.width, bitmap.height) : 0
+  const quadAspect = corners ? computeQuadAspectRatio(corners, srcW, srcH) : 0
   const hasQuad =
     Boolean(corners) &&
     quadAspect >= 0.42 &&
@@ -760,45 +754,93 @@ const detectCard = async (bitmap) => {
     isValidCardQuad(corners, MIN_AREA_RATIO)
   const showBox = hasQuad && sharpness >= BOX_SHARPNESS_THRESHOLD
   const validForMatch = hasQuad && sharpness >= SHARPNESS_THRESHOLD
-  return { valid: validForMatch, showBox, corners: showBox ? corners : null, sharpness }
+  return { valid: validForMatch, corners: showBox ? corners : null, sharpness }
 }
 
-const processImage = async (bitmap, allowBorderlessFallback, emitOverlay = false) => {
+const detectCard = async (source) => {
+  const srcW = source.width
+  const srcH = source.height
+  const logicalW = source.logicalWidth || srcW
+  const logicalH = source.logicalHeight || srcH
+  if (source.rgba) {
+    rgbaResizeToNchw(source.rgba, srcW, srcH, DETECTOR_SIZE, detectorNchwBuf, true)
+  } else {
+    ensureScratchResources()
+    scratchDetectorCtx.fillStyle = '#000'
+    scratchDetectorCtx.fillRect(0, 0, DETECTOR_SIZE, DETECTOR_SIZE)
+    scratchDetectorCtx.drawImage(source, 0, 0, DETECTOR_SIZE, DETECTOR_SIZE)
+    const imgData = scratchDetectorCtx.getImageData(0, 0, DETECTOR_SIZE, DETECTOR_SIZE)
+    rgbaToNchw(imgData.data, DETECTOR_SIZE, detectorNchwBuf, true)
+  }
+  return await runDetectorOnNchw(logicalW, logicalH)
+}
+
+const assertWorkerReady = () => {
+  if (!detectorSession || !miloSession || !datasetState) {
+    throw new Error('Vision worker not initialized')
+  }
+}
+
+const detectCameraStage = async (rgba, width, height, logicalWidth, logicalHeight) => {
+  assertWorkerReady()
+  const { valid, corners, sharpness } = await detectCard({
+    rgba,
+    width,
+    height,
+    logicalWidth,
+    logicalHeight,
+  })
+  self.postMessage({ type: 'vision:corners', corners })
+
+  if (!valid || !corners) {
+    lastCameraCorners = corners
+    if (!corners) {
+      preferredCameraAngle = 0
+      cameraAngleIdx = 0
+    }
+    return { status: 'no_card', corners, sharpness, candidates: [] }
+  }
+  // Skip Stage 2 high-res ROI capture while card is moving rapidly so green-box tracking stays responsive
+  if (hasCornerShift(lastCameraCorners, corners, logicalWidth, logicalHeight)) {
+    lastCameraCorners = corners
+    return {
+      status: 'no_card',
+      skipped: true,
+      corners,
+      sharpness,
+      candidates: [],
+    }
+  }
+  lastCameraCorners = corners
+  return { status: 'need_crop', corners, sharpness }
+}
+
+const matchCardCropRgba = async (rgba, width, height) => {
+  assertWorkerReady()
+  const { corners, sharpness } = await detectCard({ rgba, width, height })
+  if (!corners) {
+    return { status: 'no_card', corners: null, sharpness, candidates: [] }
+  }
+  const crop = dewarpRgba(rgba, width, height, corners, MILO_SIZE, dewarpCropBuf)
+  if (!crop) {
+    return { status: 'no_card', corners: null, sharpness, candidates: [] }
+  }
+  const cropRes = await matchWithOrientations(crop, false, false)
+  return {
+    status: cropRes.status,
+    corners,
+    sharpness,
+    candidates: cropRes.candidates,
+  }
+}
+
+const processStaticImage = async (bitmap) => {
   try {
     ensureScratchResources()
-    if (!detectorSession || !miloSession || !datasetState) {
-      throw new Error('Vision worker not initialized')
-    }
-    const { valid, showBox, corners, sharpness } = await detectCard(bitmap)
-    if (emitOverlay) {
-      self.postMessage({ type: 'vision:corners', corners: showBox ? corners : null })
-    }
-
-    if (!allowBorderlessFallback) {
-      if (!valid || !corners) {
-        lastCameraCorners = showBox ? corners : null
-        if (!showBox) {
-          preferredCameraAngle = 0
-          cameraAngleIdx = 0
-        }
-        return { status: 'no_card', corners: showBox ? corners : null, sharpness, candidates: [] }
-      }
-      // Skip heavy embedding inference while card is moving rapidly so green-box tracking stays responsive
-      if (hasCornerShift(lastCameraCorners, corners, bitmap.width, bitmap.height)) {
-        lastCameraCorners = corners
-        return {
-          status: 'no_card',
-          skipped: true,
-          corners: showBox ? corners : null,
-          sharpness,
-          candidates: [],
-        }
-      }
-      lastCameraCorners = corners
-    }
+    assertWorkerReady()
+    const { valid, corners, sharpness } = await detectCard(bitmap)
 
     let cropRes = null
-
     if (valid && corners) {
       const srcW = Math.min(bitmap.width, 960)
       const srcH = Math.max(1, Math.round((bitmap.height / Math.max(1, bitmap.width)) * srcW))
@@ -813,20 +855,16 @@ const processImage = async (bitmap, allowBorderlessFallback, emitOverlay = false
       const crop = dewarpRgba(srcRgba, srcW, srcH, corners, MILO_SIZE, dewarpCropBuf)
 
       if (crop) {
-        cropRes = await matchWithOrientations(crop, allowBorderlessFallback, false)
-        if (cropRes.status === 'matched' || !allowBorderlessFallback) {
+        cropRes = await matchWithOrientations(crop, true, false)
+        if (cropRes.status === 'matched') {
           return {
             status: cropRes.status,
-            corners: showBox ? corners : null,
+            corners,
             sharpness,
             candidates: cropRes.candidates,
           }
         }
       }
-    }
-
-    if (!allowBorderlessFallback) {
-      return { status: 'no_card', corners: showBox ? corners : null, sharpness, candidates: [] }
     }
 
     scratchCropCtx.fillStyle = '#000'
@@ -846,12 +884,12 @@ const processImage = async (bitmap, allowBorderlessFallback, emitOverlay = false
     const merged = mergeCandidateMatches([...(cropRes?.candidates || []), ...fullRes.candidates], 3)
     return {
       status: classifyMatchCandidates(merged),
-      corners: showBox ? corners : null,
+      corners,
       sharpness,
       candidates: merged,
     }
   } finally {
-    bitmap.close?.()
+    bitmap?.close?.()
   }
 }
 
@@ -890,8 +928,10 @@ const VisionService = {
       }
     }
   },
-  scanFrame: async (bitmap) => processImage(bitmap, false, true),
-  scanStaticImage: async (bitmap) => processImage(bitmap, true, false),
+  scanFrame: async (rgba, width, height, logicalWidth = width, logicalHeight = height) =>
+    detectCameraStage(rgba, width, height, logicalWidth, logicalHeight),
+  matchCardCrop: async (rgba, width, height) => matchCardCropRgba(rgba, width, height),
+  scanStaticImage: async (bitmap) => processStaticImage(bitmap),
 }
 
 expose(VisionService)

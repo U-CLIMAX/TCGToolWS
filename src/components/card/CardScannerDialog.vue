@@ -216,6 +216,18 @@ const clearPreview = () => {
   }
 }
 
+const resetOverlayCanvas = () => {
+  const canvas = canvasRef.value
+  if (!canvas) return
+  canvas.width = 0
+  canvas.height = 0
+}
+
+const releaseCameraView = () => {
+  stopCamera()
+  resetOverlayCanvas()
+}
+
 const drawOverlay = (corners, locked) => {
   const canvas = canvasRef.value
   const video = videoRef.value
@@ -224,6 +236,11 @@ const drawOverlay = (corners, locked) => {
   const cssW = video.clientWidth || stageRef.value?.clientWidth || 0
   const cssH = video.clientHeight || stageRef.value?.clientHeight || 0
   if (!cssW || !cssH) return
+
+  if (!corners || corners.length < 8) {
+    canvas.getContext('2d')?.clearRect(0, 0, canvas.width, canvas.height)
+    return
+  }
 
   const dpr = Math.min(window.devicePixelRatio || 1, 2)
   const targetW = Math.round(cssW * dpr)
@@ -236,7 +253,6 @@ const drawOverlay = (corners, locked) => {
   const ctx = canvas.getContext('2d')
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
   ctx.clearRect(0, 0, cssW, cssH)
-  if (!corners || corners.length < 8) return
 
   const srcW = overlayFrameSize.value.width || video.videoWidth
   const srcH = overlayFrameSize.value.height || video.videoHeight
@@ -261,7 +277,7 @@ const confirmSelection = (cardId) => {
 }
 
 const handleClose = (val) => {
-  if (!val) stopCamera()
+  if (!val) releaseCameraView()
   emit('update:modelValue', val)
 }
 
@@ -270,7 +286,7 @@ const switchMode = (nextMode) => {
   clearPreview()
   resetResult()
   if (nextMode !== 'camera') {
-    stopCamera()
+    releaseCameraView()
   }
 }
 
@@ -311,7 +327,7 @@ const handlePaste = async (e) => {
   const blob = item?.getAsFile() || fileFromFiles
   if (blob) {
     mode.value = 'image'
-    stopCamera()
+    releaseCameraView()
     await runStaticScan(blob)
   }
 }
@@ -329,7 +345,7 @@ watch(
       window.addEventListener('paste', handlePaste)
     } else {
       window.removeEventListener('paste', handlePaste)
-      stopCamera()
+      releaseCameraView()
       clearPreview()
       resetResult()
     }
@@ -376,7 +392,7 @@ onUnmounted(() => {
   stageResizeObserver?.disconnect()
   window.removeEventListener('paste', handlePaste)
   clearPreview()
-  stopCamera()
+  releaseCameraView()
 })
 </script>
 

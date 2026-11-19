@@ -411,9 +411,10 @@ const CardFilterService = {
   /**
    * 根據屬性篩選已透過關鍵字搜尋的結果
    * @param {object} filters - 篩選條件物件
-   * @returns {Array} 篩選後的卡片陣列
+   * @param {number} [maxResults] - 最大回傳筆數（若指定則回傳 { items, totalCount } 避免跨執行緒複製全量卡片）
+   * @returns {Array | { items: Array, totalCount: number }} 篩選後的卡片陣列或分頁結果
    */
-  filterByAttributes: (filters) => {
+  filterByAttributes: (filters, maxResults) => {
     let results = keywordResultsCache
     if (!results) results = allCards // Keyword search results cache is empty. Filtering all cards.
 
@@ -455,7 +456,7 @@ const CardFilterService = {
 
     const mappedSoul = selectedSoul.length > 0 ? new Set(selectedSoul.map(toZero)) : null
 
-    return results.filter((card) => {
+    const matchesCard = (card) => {
       if (!card) return false
       if (showUniqueCards && !card.isLowestRarity) {
         return false
@@ -491,7 +492,24 @@ const CardFilterService = {
       }
       if (mappedSoul && !mappedSoul.has(toZero(card.soul))) return false
       return true
-    })
+    }
+
+    const hasLimit = Number.isFinite(maxResults) && maxResults > 0
+    if (!hasLimit) {
+      return results.filter(matchesCard)
+    }
+
+    const items = []
+    let totalCount = 0
+    for (let i = 0; i < results.length; i++) {
+      const card = results[i]
+      if (!matchesCard(card)) continue
+      totalCount++
+      if (items.length < maxResults) {
+        items.push(card)
+      }
+    }
+    return { items, totalCount }
   },
 
   /**
