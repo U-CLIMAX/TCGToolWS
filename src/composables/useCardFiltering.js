@@ -1,6 +1,7 @@
 import { ref, computed, watch, shallowRef, toRaw } from 'vue'
-import { wrap } from 'comlink'
+import { wrap, transfer } from 'comlink'
 import FilterWorker from '@/workers/filter.worker.js?worker'
+import { decompressBrotliMapInWorker } from '@/utils/brotliClient.js'
 import { debounceRef } from '@/composables/useDebounceRef'
 
 export const useCardFiltering = () => {
@@ -56,13 +57,47 @@ export const useCardFiltering = () => {
   }
 
   /**
+   * Preloads and decompresses pre-built index buffers in the ephemeral brotli worker.
+   * @param {Record<string, string | string[]>} [indexFiles]
+   * @returns {Promise<Record<string, Uint8Array> | null>}
+   */
+  const preloadIndexBuffers = async (indexFiles) => {
+    if (!indexFiles || Object.keys(indexFiles).length === 0) return null
+    try {
+      return await decompressBrotliMapInWorker(indexFiles)
+    } catch (e) {
+      console.error('❌ Error loading pre-built indexes, falling back to client-side indexing:', e)
+      return null
+    }
+  }
+
+  /**
    * Initializes the worker with card data and options
    */
   const initializeWorker = async (cards, options) => {
     const api = ensureWorker()
 
     if (cards && cards.length > 0) {
-      await api.init(toRaw(cards), toRaw(options))
+      const rawOptions = toRaw(options) || {}
+      const rawIndexFiles = toRaw(rawOptions.indexFiles)
+      const prebuiltIndexBuffers = await preloadIndexBuffers(rawIndexFiles)
+      // Abort stale init if terminateWorker() ran while pre-built indexes were decompressing
+      if (workerApiInstance !== api) return
+
+      const transferables = prebuiltIndexBuffers
+        ? [...new Set(Object.values(prebuiltIndexBuffers).map((bytes) => bytes.buffer))]
+        : []
+      const workerOptions = {
+        game: rawOptions.game,
+        version: rawOptions.version,
+        prebuiltIndexBuffers,
+      }
+      const payload =
+        transferables.length > 0 ? transfer(workerOptions, transferables) : workerOptions
+
+      await api.init(toRaw(cards), payload)
+      if (workerApiInstance !== api) return
+
       if (resolveWorkerReady) {
         resolveWorkerReady()
         resolveWorkerReady = null // Only resolve once

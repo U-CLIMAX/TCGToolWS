@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { ref, watch, nextTick, shallowRef } from 'vue'
 import { useCardFiltering } from '@/composables/useCardFiltering.js'
 import { openDB, saveData, loadData } from '@/utils/db.js'
-import { fetchAndDecompressBrotliText } from '@/utils/brotliStream.js'
+import { decompressBrotliTextInWorker } from '@/utils/brotliClient.js'
 
 const dbName = 'CardDataDB'
 const storeName = 'cardStore'
@@ -186,7 +186,7 @@ export const useGlobalSearchStore = defineStore('globalSearch', () => {
         console.log(`📥 Streaming ${chunks.length} chunks...`)
       }
 
-      const jsonString = await fetchAndDecompressBrotliText(targetFiles, {
+      const jsonString = await decompressBrotliTextInWorker(targetFiles, {
         onProgress: (current, total) => {
           downloadProgress.value.total = total
           downloadProgress.value.current = current

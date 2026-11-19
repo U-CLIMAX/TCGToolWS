@@ -1,7 +1,6 @@
 import { Document } from 'flexsearch'
 import { expose } from 'comlink'
 import { normalizeSearchText } from '@/utils/searchNormalize.js'
-import { fetchAndDecompressBrotliText } from '@/utils/brotliStream.js'
 
 const toZero = (val) => (val === '-' ? 0 : +val)
 
@@ -259,10 +258,10 @@ const CardFilterService = {
    * @param {object} options - 初始化選項
    * @param {string} options.version - 版本號
    * @param {string} options.game - 遊戲類型 (ws/wsr)
-   * @param {object} options.indexFiles - 預先建立的索引檔案對照表 { key: 'file.bin' | ['part1.bin', ...] }
+   * @param {Record<string, Uint8Array>} [options.prebuiltIndexBuffers] - 預先解壓的索引 UTF-8 二進位緩衝區
    */
   init: async (cards, options = {}) => {
-    const { version, game, indexFiles } = options
+    const { version, game, prebuiltIndexBuffers } = options
     allCards = cards || []
     idToCardMap.clear()
     for (let i = 0; i < allCards.length; i++) {
@@ -275,17 +274,18 @@ const CardFilterService = {
     searchIndex = createNewIndex()
 
     // 載入預先建立的索引
-    if (indexFiles && Object.keys(indexFiles).length > 0) {
+    const prebuiltEntries = prebuiltIndexBuffers ? Object.entries(prebuiltIndexBuffers) : []
+    if (prebuiltEntries.length > 0) {
       console.log(`Initializing FlexSearch for ${game} (v${version}) with pre-built indexes...`)
       console.time('Index Loading')
 
       try {
-        await Promise.all(
-          Object.entries(indexFiles).map(async ([key, fileOrChunks]) => {
-            const jsonText = await fetchAndDecompressBrotliText(fileOrChunks)
-            searchIndex.import(key, JSON.parse(jsonText))
-          })
-        )
+        const textDecoder = new TextDecoder()
+        for (const [key, bytes] of prebuiltEntries) {
+          const jsonText = textDecoder.decode(bytes)
+          prebuiltIndexBuffers[key] = null
+          searchIndex.import(key, JSON.parse(jsonText))
+        }
         console.timeEnd('Index Loading')
         console.log(`✅ FlexSearch is ready for ${allCards.length} cards (Loaded from Pre-built).`)
         return
