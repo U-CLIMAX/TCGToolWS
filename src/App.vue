@@ -36,7 +36,7 @@
               :active="item.group && $route.meta.group === item.group"
               :active-color="isHomeRoute ? 'cyan-accent-2' : undefined"
               :color="isHomeRoute ? 'white' : undefined"
-              :disabled="item.requiresAuth && !authStore.isAuthenticated"
+              :disabled="isNavItemDisabled(item)"
             >
               <template #prepend>
                 <v-icon :icon="item.icon" size="24" />
@@ -113,28 +113,13 @@
                   :prepend-icon="subItem.icon"
                   slim
                   class="rounded-3md"
-                  :disabled="
-                    (subItem.requiresAuth && !authStore.isAuthenticated) ||
-                    (subItem.name === 'DecksGallery' && !authStore.isOnline)
-                  "
+                  :disabled="isNavItemDisabled(subItem)"
                 >
                 </v-list-item>
               </template>
             </v-list>
           </v-menu>
         </div>
-        <v-divider
-          class="mx-3 align-self-center d-none d-md-block"
-          length="24"
-          thickness="2"
-          vertical
-          :color="isHomeRoute ? 'transparent' : undefined"
-        ></v-divider>
-        <v-btn icon @click="NoticeDialogRef?.open()" style="min-width: 0" size="x-small">
-          <v-badge :model-value="noticeStore.hasNew" color="error" dot offset-x="2" offset-y="2">
-            <v-icon :color="isHomeRoute ? 'white' : undefined" icon="i-mdi:bell" size="24" />
-          </v-badge>
-        </v-btn>
       </template>
     </v-app-bar>
 
@@ -161,7 +146,9 @@
             size="x-small"
             icon
           >
-            <v-icon icon="i-mdi:account-circle" size="24" />
+            <v-badge :model-value="noticeStore.hasNew" color="error" dot offset-x="0" offset-y="2">
+              <v-icon icon="i-mdi:account-circle" size="24" />
+            </v-badge>
           </v-btn>
 
           <v-btn
@@ -225,10 +212,10 @@
           style="min-width: 0"
           :active-color="isHomeRoute ? 'cyan-accent-2' : undefined"
           :color="isHomeRoute ? 'white' : undefined"
-          class="rounded-pill mx-1"
-          :disabled="item.requiresAuth && !authStore.isAuthenticated"
+          class="rounded-pill"
+          :disabled="isNavItemDisabled(item)"
         >
-          <v-icon :icon="item.icon" size="32" />
+          <v-icon :icon="item.icon" size="28" />
         </v-btn>
       </template>
     </v-bottom-navigation>
@@ -330,10 +317,7 @@
               :prepend-icon="subItem.icon"
               slim
               class="rounded-3md"
-              :disabled="
-                (subItem.requiresAuth && !authStore.isAuthenticated) ||
-                (subItem.name === 'DecksGallery' && !authStore.isOnline)
-              "
+              :disabled="isNavItemDisabled(subItem)"
             >
             </v-list-item>
           </template>
@@ -400,7 +384,11 @@
 
     <AuthDialog ref="authDialog" />
     <SettingsModal v-model="isSettingsModalOpen" />
-    <UserProfileModal v-model="isUserProfileModalOpen" @logout="handleLogoutClick" />
+    <UserProfileModal
+      v-model="isUserProfileModalOpen"
+      @logout="handleLogoutClick"
+      @open-notices="NoticeDialogRef?.open()"
+    />
     <SponsorNoticeDialog v-model="isSponsorNoticeOpen" />
 
     <v-dialog v-model="isLogoutDialogVisible" max-width="320" persistent no-click-animation>
@@ -620,6 +608,10 @@ const confirmLogout = () => {
   isUserProfileModalOpen.value = false
 }
 
+const isNavItemDisabled = (item) =>
+  (item.requiresAuth && !authStore.isAuthenticated) ||
+  (item.name === 'DecksGallery' && !authStore.isOnline)
+
 const navItems = [
   { text: '首页', name: 'Home', requiresAuth: false, icon: HomeIcon },
   {
@@ -630,16 +622,16 @@ const navItems = [
     group: 'series',
   },
   { text: '我的卡组', name: 'Decks', requiresAuth: false, icon: deckIcon, group: 'decks' },
-]
-
-const toolboxItems = [
   {
     text: '卡组广场',
     name: 'DecksGallery',
-    icon: deckGalleryIcon,
     requiresAuth: false,
-    group: 'toolbox',
+    icon: deckGalleryIcon,
+    group: 'gallery',
   },
+]
+
+const toolboxItems = [
   {
     text: '限制卡表',
     name: 'BanList',
@@ -805,6 +797,10 @@ watch(
   top: 0px !important;
 }
 
+.floating-bar.main-bar .nav-btn-compact .v-btn__prepend {
+  margin-inline: -4px 0 !important;
+}
+
 /* Responsive compact layout for narrow screens (600px - 719px) */
 @media (min-width: 600px) and (max-width: 719.98px) {
   .floating-bar.main-bar .v-toolbar__content {
@@ -825,11 +821,14 @@ watch(
     margin-right: 2px !important;
   }
 
+  .floating-bar.main-bar .nav-btn-compact:last-child {
+    margin-right: 0 !important;
+  }
+
   .floating-bar.main-bar .nav-btn-compact .v-icon {
     font-size: 18px !important;
     width: 18px !important;
     height: 18px !important;
-    margin-inline-end: 2px !important;
   }
 }
 
@@ -840,8 +839,8 @@ watch(
   }
 
   .floating-bar.main-bar .v-app-bar-title {
-    min-width: 110px !important;
-    max-width: 130px !important;
+    min-width: 90px !important;
+    max-width: 110px !important;
     margin-inline-start: 0 !important;
   }
 
@@ -853,18 +852,26 @@ watch(
     margin-right: 6px !important;
   }
 
+  .floating-bar.main-bar .nav-btn-compact:last-child {
+    margin-right: 0 !important;
+  }
+
   .floating-bar.main-bar .nav-btn-compact .v-icon {
     font-size: 22px !important;
     width: 22px !important;
     height: 22px !important;
-    margin-inline-end: 4px !important;
   }
 }
 
 .floating-bottom-bar.main-bottom-bar {
   width: fit-content !important;
-  max-width: calc(100% - 32px - 50px - 10px) !important;
+  max-width: calc(100% - 40px - 50px - 12px) !important;
   right: auto !important;
+}
+
+.floating-bottom-bar.main-bottom-bar .v-btn {
+  padding: 0 11px !important;
+  margin: 0 2px !important;
 }
 
 .floating-bottom-bar.sub-bottom-bar {
@@ -874,7 +881,7 @@ watch(
 }
 
 .floating-bottom-bar {
-  margin: 0 9% 20px 9% !important;
+  margin: 0 20px 20px 20px !important;
   left: 0 !important;
   right: 0 !important;
   bottom: 0 !important;

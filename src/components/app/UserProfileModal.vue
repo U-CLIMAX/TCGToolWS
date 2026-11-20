@@ -7,17 +7,19 @@
         <span class="text-h6 font-weight-bold text-high-emphasis">账号资料</span>
         <v-spacer></v-spacer>
         <v-btn
+          v-if="smAndUp"
           icon
           size="40"
           variant="flat"
           color="surface"
           class="rounded-circle"
           :elevation="0"
-          :loading="isRefreshing"
-          @click="handleRefreshToken"
-          title="刷新"
+          @click="emit('open-notices')"
+          title="最近公告"
         >
-          <v-icon icon="i-mdi:refresh" color="primary" size="24" />
+          <v-badge :model-value="noticeStore.hasNew" color="error" dot offset-x="2" offset-y="2">
+            <v-icon icon="i-mdi:bell" color="primary" size="24" />
+          </v-badge>
         </v-btn>
       </v-card-title>
 
@@ -154,8 +156,10 @@
 import { ref, computed, onMounted, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
+import { useDisplay } from 'vuetify'
 import { isTauri } from '@/utils/isTauri'
 import { useAuthStore } from '@/stores/auth'
+import { useNoticeStore } from '@/stores/notice'
 import { useUIStore } from '@/stores/ui'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { writeText } from '@/utils/clipboard'
@@ -167,8 +171,9 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['update:modelValue', 'logout'])
+const emit = defineEmits(['update:modelValue', 'logout', 'open-notices'])
 const router = useRouter()
+const { smAndUp } = useDisplay()
 const uiStore = useUIStore()
 const { theme } = storeToRefs(uiStore)
 
@@ -223,9 +228,9 @@ const handleLogout = () => {
 }
 
 const authStore = useAuthStore()
+const noticeStore = useNoticeStore()
 const { userStatus } = storeToRefs(authStore)
 const { triggerSnackbar } = useSnackbar()
-const isRefreshing = ref(false)
 
 const handleUpgradeClick = () => {
   isSponsorNoticeOpen.value = true
@@ -263,19 +268,6 @@ const formattedExpireTime = computed(() => {
     minute: '2-digit',
   })
 })
-
-const handleRefreshToken = async () => {
-  isRefreshing.value = true
-  try {
-    await authStore.refreshSession()
-    triggerSnackbar('已成功刷新！')
-  } catch (error) {
-    console.error('刷新失敗:', error)
-    triggerSnackbar('刷新失败，请稍后再试。', 'error')
-  } finally {
-    isRefreshing.value = false
-  }
-}
 
 const copyUserId = async (id) => {
   try {

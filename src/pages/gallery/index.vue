@@ -329,7 +329,7 @@ import DeckGalleryIcon from '@/assets/ui/deck-gallery.svg'
 
 definePage({
   name: 'DecksGallery',
-  meta: { group: 'toolbox' },
+  meta: { group: 'gallery' },
 })
 
 useSeoMeta({

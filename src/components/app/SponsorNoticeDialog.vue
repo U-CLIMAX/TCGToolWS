@@ -63,9 +63,7 @@
               size="20"
               class="mr-2 mt-0.5 flex-shrink-0"
             />
-            <span>
-              充电完成后，请刷新网页或前往<b>「账号资料」</b>点击<b>「刷新」</b>按钮更新帐号身份。
-            </span>
+            <span> 充电完成后，请刷新网页更新帐号身份。 </span>
           </div>
           <div class="d-flex align-start text-body-2 text-medium-emphasis">
             <v-icon
