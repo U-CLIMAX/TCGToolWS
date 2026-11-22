@@ -7,18 +7,27 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const rootDir = resolve(__dirname, '..')
 const publicDir = resolve(rootDir, 'public')
 
+const getMode = () => {
+  const idx = process.argv.indexOf('--mode')
+  return idx !== -1 && process.argv[idx + 1] ? process.argv[idx + 1].trim() : ''
+}
+
 const getBaseUrl = () => {
   if (process.env.VITE_WEBSITE_URL) {
     return process.env.VITE_WEBSITE_URL.trim()
       .replace(/^["']|["']$/g, '')
       .replace(/\/$/, '')
   }
-  const envPath = resolve(rootDir, '.env')
-  if (existsSync(envPath)) {
-    const content = readFileSync(envPath, 'utf-8')
-    const match = content.match(/^VITE_WEBSITE_URL=["']?([^"'\r\n]+)["']?/m)
-    if (match && match[1]) {
-      return match[1].trim().replace(/\/$/, '')
+  const mode = getMode()
+  const candidates = mode ? [`.env.${mode}`, '.env'] : ['.env']
+  for (const filename of candidates) {
+    const envPath = resolve(rootDir, filename)
+    if (existsSync(envPath)) {
+      const content = readFileSync(envPath, 'utf-8')
+      const match = content.match(/^VITE_WEBSITE_URL=["']?([^"'\r\n]+)["']?/m)
+      if (match && match[1]) {
+        return match[1].trim().replace(/\/$/, '')
+      }
     }
   }
   return 'https://www.uclimax.top'

@@ -1,0 +1,69 @@
+name: Deploy Frontend to Aliyun OSS
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'README.md'
+      - '.gitignore'
+      - '.gitattributes'
+      - '.env.dev'
+      - '.editorconfig'
+      - '.prettierignore'
+      - '.prettierrc.json'
+      - 'eslint.config.js'
+      - 'schema.sql'
+      - 'LICENSE'
+      - '.vscode/**'
+      - '.agents/**'
+      - 'image/**'
+      - 'src-tauri/**'
+      - '.github/**'
+      - 'PRIVACY.md'
+      - 'GEMINI.md'
+      - 'tests/**'
+      - 'backend/**'
+      - 'wrangler.jsonc'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy-oss:
+    name: Build & Deploy to OSS (ucx-frontend)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          lfs: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install rclone
+        run: curl -fsSL https://rclone.org/install.sh | sudo bash
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build frontend (OSS mode)
+        run: npm run build:oss
+
+      - name: Sync dist/client to Aliyun OSS
+        env:
+          RCLONE_CONFIG_OSS_TYPE: s3
+          RCLONE_CONFIG_OSS_PROVIDER: Alibaba
+          RCLONE_CONFIG_OSS_ENV_AUTH: 'false'
+          RCLONE_CONFIG_OSS_ACCESS_KEY_ID: ${{ secrets.OSS_ACCESS_KEY_ID }}
+          RCLONE_CONFIG_OSS_SECRET_ACCESS_KEY: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
+          RCLONE_CONFIG_OSS_ENDPOINT: ${{ secrets.OSS_ENDPOINT }}
+          OSS_REMOTE: oss
+          OSS_BUCKET: ucx-frontend
+        run: node scripts/deploy-oss.js
