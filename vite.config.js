@@ -16,6 +16,34 @@ import Components from 'unplugin-vue-components/vite'
 
 const pkg = JSON.parse(readFileSync(new URL('./package.json', import.meta.url), 'utf-8'))
 
+const htmlInjectUmami = () => {
+  let env = {}
+  return {
+    name: 'html-inject-umami',
+    apply: 'build',
+    configResolved(config) {
+      env = config.env
+    },
+    transformIndexHtml() {
+      const scriptUrl = env.VITE_UMAMI_SCRIPT_URL
+      const websiteId = env.VITE_UMAMI_ID
+      if (!scriptUrl || !websiteId) return []
+      return [
+        {
+          tag: 'script',
+          attrs: {
+            'defer': true,
+            'src': scriptUrl,
+            'data-website-id': websiteId,
+            'data-performance': 'true',
+          },
+          injectTo: 'head',
+        },
+      ]
+    },
+  }
+}
+
 // https://vite.dev/config/
 export default defineConfig({
   clearScreen: false,
@@ -40,6 +68,7 @@ export default defineConfig({
         return html.replace(/%APP_VERSION%/g, pkg.version)
       },
     },
+    htmlInjectUmami(),
     UnoCSS(),
     VueRouter({
       routesFolder: 'src/pages',
