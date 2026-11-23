@@ -5,6 +5,7 @@
  */
 
 const MAX_CACHE_SIZE = 100
+const FETCH_INITS = [{ mode: 'cors' }, { mode: 'cors', cache: 'reload' }]
 const blobCache = new Map()
 
 /**
@@ -98,43 +99,38 @@ const loadSvgAsBitmap = (src) => {
   })
 }
 
-/**
- * 載入單張圖片並利用 fetch + createImageBitmap 在瀏覽器背景線程完成解碼
- * 若已在記憶體快取中則直接從 Blob 重構 ImageBitmap
- *
- * @param {string} src
- * @returns {Promise<ImageBitmap|null>}
- */
-export const loadImageWithDecode = async (src) => {
-  if (!src) return null
-
-  if (isSvgOrDataUri(src)) {
-    return loadSvgAsBitmap(src)
-  }
-
-  try {
-    let blob = getCachedBlob(src)
-    if (!blob) {
-      const response = await fetch(src, { mode: 'cors' })
-      if (!response.ok) {
-        return loadSvgAsBitmap(src)
-      }
-      blob = await response.blob()
-      setCachedBlob(src, blob)
-    }
-
-    if (typeof createImageBitmap === 'function') {
-      return await createImageBitmap(blob)
-    }
-    return loadSvgAsBitmap(src)
-  } catch {
-    // 網路或 CORS 異常時，安全降級嘗試 new Image()
+// Retry with cache: 'reload' to bypass and refresh stale non-CORS browser cache entries
+const fetchImageBlob = async (src) => {
+  for (const init of FETCH_INITS) {
     try {
-      return await loadSvgAsBitmap(src)
+      const response = await fetch(src, init)
+      if (response.ok) return await response.blob()
     } catch {
-      return null
+      // fallback
     }
   }
+  return null
+}
+
+// Fetch and decode an image into ImageBitmap, caching valid Blobs in LRU
+export const loadImageWithDecode = async (src) => {
+  if (!src || typeof createImageBitmap !== 'function') return null
+
+  if (!isSvgOrDataUri(src)) {
+    try {
+      const cached = getCachedBlob(src)
+      const blob = cached || (await fetchImageBlob(src))
+      if (blob) {
+        const bitmap = await createImageBitmap(blob)
+        if (!cached) setCachedBlob(src, blob)
+        return bitmap
+      }
+    } catch {
+      // Fall through to Image fallback
+    }
+  }
+
+  return loadSvgAsBitmap(src)
 }
 
 /**
