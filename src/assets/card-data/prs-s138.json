@@ -1,0 +1,3067 @@
+{
+  "PRS/S138-001": {
+    "name": "仲間を導く歌声 久慈川りせ",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "音楽", "テレビ"],
+    "color": "黄色",
+    "effect": "【永】你的高潮区有高潮卡，你没有其他「仲間を導く歌声 久慈川りせ」的话，你全部区域的触发标记是<img src=\"/effect-icons/choice.webp\">的高潮卡的触发标记给予<img src=\"/effect-icons/soul.webp\">。<br>【自】你其他《Anniversary》或《音楽》或《テレビ》的角色从手牌放置到舞台时，那个回合中，那个角色的战斗力＋500。<br>【起】集中 [(1) 此卡【横置】] 你将自己卡组顶4张卡放置到休息室。那些卡中每有1张高潮卡，你从自己的休息室选择至多1张角色卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-001",
+        "rarity": "RR"
+      },
+      {
+        "id": "PRS/S138-001S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-002": {
+    "name": "風駆ける青春 花村陽介",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "ジュネス", "魔法"],
+    "color": "黄色",
+    "effect": "【永】你其他的角色有3个以上的话，此卡的战斗力＋5000。<br>【自】【CX联动】此卡攻击时，高潮区有「あとは君が、来るだけだ。」的话，你将自己卡组顶至多4张卡放置到休息室，从自己的休息室选择至多1张等级X以下的《Anniversary》或《ジュネス》或《魔法》的角色卡返回手牌。X是通过这个效果放置到休息室的那些卡的触发标记中<img src=\"/effect-icons/soul.webp\">的合计数量。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-002S",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-002SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "PRS/S138-002",
+        "rarity": "RR"
+      }
+    ]
+  },
+  "PRS/S138-003": {
+    "name": "真実を求める心 P4 主人公",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 3,
+    "power": 8500,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "魔法", "武器"],
+    "color": "黄色",
+    "effect": "【自】此卡从手牌放置到舞台时，你其他的角色有2个以上的话，你看自己卡组顶1张卡，放置到卡组顶或休息室，将自己时计区顶至多1张卡放置到休息室，那个回合中，此卡的战斗力＋4500。<br>【自】此卡直接攻击时，那个回合中，此卡的灵魂值－1。<br>【自】【CX联动】此卡攻击时，高潮区有「MIDNIGHT CHANNEL.」的话，你将自己卡组顶2张卡放置到休息室。你的卡组有2张以上的话，你将通过这个效果放置到休息室的卡按喜欢的顺序放置到卡组底。那些卡中有触发标记有<img src=\"/effect-icons/soul.webp\">的卡的话，给对手造成3点伤害。（发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-003",
+        "rarity": "RR"
+      },
+      {
+        "id": "PRS/S138-003Sa",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-003SSP",
+        "rarity": "SSP"
+      },
+      {
+        "id": "PRS/S138-003Sb",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-004": {
+    "name": "テレビの中の住人 クマ",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "影", "動物"],
+    "color": "黄色",
+    "effect": "【自】此卡从手牌放置到舞台时，你选择对手的1个角色，直到下一个对手的回合结束为止，给予以下能力。『【永】此卡不能移动到其他位置。』<br>【自】[(1) 手牌中1张高潮卡放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你从自己的休息室选择1张高潮卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-004S",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-004SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "PRS/S138-004",
+        "rarity": "R"
+      }
+    ]
+  },
+  "PRS/S138-005": {
+    "name": "巽 完二 on マヨナカステージ",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "不良", "魔法"],
+    "color": "黄色",
+    "effect": "【永】你的回合中，你有其他角色的话，此卡的等级＋1，战斗力＋2000。<br>【自】此卡的战斗对手【倒置】时，你选择自己其他1个角色，【横置】，移动到后列没有角色的位置。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-005",
+        "rarity": "R"
+      },
+      {
+        "id": "PRS/S138-005S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-006": {
+    "name": "里中千枝 on マヨナカステージ",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "スポーツ", "魔法"],
+    "color": "黄色",
+    "effect": "【自】此卡从手牌放置到舞台时，那个回合中，此卡的战斗力＋1500。<br>【自】[(1) 你卡组顶1张卡放置到时计区] 此卡从舞台放置到休息室时，你可以支付费用。如果这么做的话，你从自己的卡组找至多1张等级1以下的角色卡展示给对手后加入手牌，卡组洗切。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-006",
+        "rarity": "R"
+      },
+      {
+        "id": "PRS/S138-006S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-007": {
+    "name": "堂島菜々子 on マヨナカステージ",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 2,
+    "power": 500,
+    "cost": 0,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "ジュネス", "テレビ"],
+    "color": "黄色",
+    "effect": "【永】此卡不会被对手的效果选择，即使侧面攻击灵魂值也不会减少。此卡正面的角色不能侧面攻击。<br>【自】[你休息室1张黄色的角色卡放置到时计区底] 此卡从手牌放置到舞台时，你其他的角色有2个以上的话，你可以支付费用。如果这么做的话，你从自己的休息室选择1张黄色的角色卡返回手牌。<br>【自】[(1) 此卡放置到休息室] 此卡被正面攻击时，你其他的角色有2个以上的话，你可以支付费用。如果这么做的话，你从自己的手牌中选择至多1张「真実を求める心 P4 主人公」，作为防御角色放置到此卡原来的位置。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-007S",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-007",
+        "rarity": "R"
+      }
+    ]
+  },
+  "PRS/S138-008": {
+    "name": "外の世界を知りたい少女 マリー",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "ポエム", "神"],
+    "color": "黄色",
+    "effect": "【永】应援 你此卡前全部等级3以上的角色，战斗力＋2000。<br>【自】[1张手牌放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你从自己的卡组找至多1张角色卡展示给对手后加入手牌，卡组洗切。<br>【自】你的高潮卡放置到高潮区时，你选择自己至多2个角色，那个回合中，给予以下能力。『【自】此卡攻击时，你看自己卡组顶至多2张卡，选择1张卡，放置到卡组顶，其余的卡放置到休息室。』",
+    "all_cards": [
+      {
+        "id": "PRS/S138-008",
+        "rarity": "R"
+      },
+      {
+        "id": "PRS/S138-008S",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-008SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "PRS/S138-009": {
+    "name": "白鐘直斗 on マヨナカステージ",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 3,
+    "power": 7500,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "男装", "探偵"],
+    "color": "黄色",
+    "effect": "【永】对手有等级3以上的角色或你的休息室的高潮卡在2张以下的话，你手牌中此卡的等级－1。<br>【自】此卡从手牌放置到舞台时，那个回合中，此卡的战斗力＋5000，此卡获得以下能力。『【自】此卡的战斗对手【倒置】时，你可以选择对手前列1个费用0以下的角色放置到休息室。』<br>【自】[1张手牌放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你将自己时计区顶1张卡放置到库存区。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-009",
+        "rarity": "R"
+      },
+      {
+        "id": "PRS/S138-009S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-010": {
+    "name": "天城雪子 on マヨナカステージ",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "扇子", "魔法"],
+    "color": "黄色",
+    "effect": "【自】此卡从手牌放置到舞台时，你抽至多2张卡，选择自己的1张手牌放置到休息室。<br>【自】[2张手牌放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，对手将自己的费用全部放置到休息室，从自己的卡组顶将相同张数的卡放置到库存区。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-010",
+        "rarity": "R"
+      },
+      {
+        "id": "PRS/S138-010S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-011": {
+    "name": "真下かなみ on マヨナカステージ",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "音楽", "テレビ"],
+    "color": "黄色",
+    "effect": "【自】[1张手牌放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你从自己的休息室选择1张角色卡思出。下一个你的回合开始时，你将自己思出区的那张角色卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-011",
+        "rarity": "U"
+      },
+      {
+        "id": "PRS/S138-011S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-012": {
+    "name": "マリー on マヨナカステージ",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "ポエム", "神"],
+    "color": "黄色",
+    "effect": "【永】你的费用在2张以下的话，此卡的战斗力＋1500。<br>【自】对手的攻击阶段开始时，你可以选择对手前列的1个角色，移动到前列其他没有角色的位置。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-012",
+        "rarity": "U"
+      },
+      {
+        "id": "PRS/S138-012S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-013": {
+    "name": "イケメン飼いのドS秘書 マーガレット",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "魔法", "神"],
+    "color": "黄色",
+    "effect": "【永】你的回合中，此卡的战斗力＋5000。<br>【自】[(1)] 此卡攻击时，你可以支付费用。如果这么做的话，那次攻击中，你在触发步骤执行2次触发判定。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-013",
+        "rarity": "U"
+      },
+      {
+        "id": "PRS/S138-013SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "PRS/S138-013S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-014": {
+    "name": "花村陽介 on マヨナカステージ",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 1000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "ジュネス", "魔法"],
+    "color": "黄色",
+    "effect": "【自】你使用此卡的『助太刀』时，对手的高潮区有高潮卡的话，你选择自己战斗中的1个《Anniversary》或《ジュネス》或《魔法》的角色，那个回合中，战斗力＋2000。<br>【起】【反击】助太刀2000 等级1 [(1) 手牌中此卡放置到休息室] （你选择自己1个被正面攻击的角色，那个回合中，战斗力＋2000）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-014S",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-014",
+        "rarity": "U"
+      }
+    ]
+  },
+  "PRS/S138-015": {
+    "name": "喧嘩上等 巽 完二",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 2,
+    "power": 5500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "不良", "魔法"],
+    "color": "黄色",
+    "effect": "【永】你的回合中，此卡的战斗力＋4000。<br>【自】[1张手牌放置到休息室] 你的再演步骤开始时，前列有此卡，对手的前列没有角色或对手的前列全部的角色是【倒置】状态的话，你可以支付费用。如果这么做的话，给对手造成1点伤害。（发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-015",
+        "rarity": "U"
+      },
+      {
+        "id": "PRS/S138-015S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-017": {
+    "name": "謎を追う探偵 白鐘直斗",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "男装", "探偵"],
+    "color": "黄色",
+    "effect": "【自】此卡从手牌放置到舞台时，对手前列的角色在1个以下的话，你可以选择对手前列1个费用0以下的角色放置到卡组底。<br>【自】此卡【倒置】时，此卡的战斗对手的等级是0级以下的话，你可以将那个角色放置到库存区。这样做的话，你将对手库存区底1张卡放置到休息室。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-017",
+        "rarity": "C"
+      },
+      {
+        "id": "PRS/S138-017S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-016": {
+    "name": "ドーン！と一発 里中千枝",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 2,
+    "power": 5000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "スポーツ", "魔法"],
+    "color": "黄色",
+    "effect": "【起】[此卡放置到时计区] 你选择对手的1个角色思出。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-016",
+        "rarity": "U"
+      },
+      {
+        "id": "PRS/S138-016S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-018": {
+    "name": "P4 主人公 on マヨナカステージ",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "魔法", "武器"],
+    "color": "黄色",
+    "effect": "【永】你的高潮区有触发标记是<img src=\"/effect-icons/choice.webp\">的高潮卡的话，所有区域的此卡获得触发标记<img src=\"/effect-icons/soul.webp\"><img src=\"/effect-icons/soul.webp\">。<br>【自】此卡从手牌放置到舞台时，那个回合中，此卡的战斗力+X。X是对手角色的数量×1000。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-018",
+        "rarity": "C"
+      },
+      {
+        "id": "PRS/S138-018S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-019": {
+    "name": "久慈川りせ on マヨナカステージ",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "音楽", "テレビ"],
+    "color": "黄色",
+    "effect": "【自】【CX联动】你的「虜にしてア・ゲ・ル♡」放置到高潮区时，你其他的角色有3个以上的话，你选择自己的1个角色，那个回合中，给予以下能力。『【自】此卡攻击时，那次攻击中，你在触发步骤执行2次触发判定。』<br>【起】[(1) 此卡【横置】] 你公开自己卡组顶1张卡，从自己的休息室选择1张等级X以下的《Anniversary》或《音楽》或《テレビ》的角色卡返回手牌。X是公开的卡的等级。（高潮卡视为0级。公开的卡放回原处）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-019",
+        "rarity": "C"
+      },
+      {
+        "id": "PRS/S138-019S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-020": {
+    "name": "掟破りの駄洒落マシーン 皆月 翔",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 3500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "だじゃれ"],
+    "color": "黄色",
+    "effect": "【永】你全部的角色，给予以下能力。『【永】此卡不能侧面攻击。』<br>【自】此卡攻击时，那次攻击中，你在触发步骤执行2次触发判定。执行2次的话，你将自己库存区顶1张卡放置到休息室。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-020",
+        "rarity": "C"
+      },
+      {
+        "id": "PRS/S138-020S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-021": {
+    "name": "クマ on マヨナカステージ",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "影", "動物"],
+    "color": "黄色",
+    "effect": "【永】你的等级在1级以下的话，此卡获得以下能力。『【起】集中 [(1) 此卡【横置】] 你将自己卡组顶4张卡放置到休息室。那些卡中每有1张高潮卡，执行以下行动。『你看自己卡组顶至多3张卡，选择至多1张卡加入手牌，其余的卡放置到休息室。』』<br>【永】你的等级在2级以上的话，此卡获得以下能力。『【自】此卡攻击时，此卡正面的角色的等级在2级以上的话，那个回合中，此卡的战斗力＋6000。』",
+    "all_cards": [
+      {
+        "id": "PRS/S138-021",
+        "rarity": "C"
+      },
+      {
+        "id": "PRS/S138-021S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-022": {
+    "name": "火炎の舞踊 天城雪子",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "扇子", "魔法"],
+    "color": "黄色",
+    "effect": "【自】你其他角色的战斗对手【倒置】时，你选择自己1个《Anniversary》或《扇子》或《魔法》的角色，那个回合中，战斗力＋2000。<br>【起】集中 [(1) 此卡【横置】] 你将自己卡组顶4张卡放置到休息室。给对手造成X点伤害。X是那些卡中高潮卡的数量。（发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-022",
+        "rarity": "C"
+      },
+      {
+        "id": "PRS/S138-022S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-023": {
+    "name": "完全自己中キャベツ刑事 足立 透",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "警察", "ジュネス"],
+    "color": "黄色",
+    "effect": "【永】你的回合中，你有其他《Anniversary》或《警察》或《ジュネス》的角色的话，此卡的战斗力＋6000。<br>【自】[(1) 手牌中1张《Anniversary》或《警察》或《ジュネス》的角色卡放置到休息室] 此卡被正面攻击时，你可以支付费用。如果这么做的话，那个回合中，此卡不会【倒置】。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-023S",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-023",
+        "rarity": "C"
+      }
+    ]
+  },
+  "PRS/S138-024": {
+    "name": "大切な約束、生きる証 ラビリス",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "メカ", "生徒会"],
+    "color": "黄色",
+    "effect": "【永】应援 你此卡前全部的角色，战斗力＋500，给予『【自】再演 [手牌中1张角色卡放置到休息室]』的能力。<br>【起】[此卡【横置】] 你抽1张卡，选择自己的1张手牌放置到休息室。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-024",
+        "rarity": "C"
+      },
+      {
+        "id": "PRS/S138-024S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-025": {
+    "name": "真実を追い求める旅に出よう",
+    "product_name": "Persona 30th Anniversary",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 0,
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "你将对手前列全部费用0以下的角色放置到休息室。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-025",
+        "rarity": "U"
+      },
+      {
+        "id": "PRS/S138-025S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-026": {
+    "name": "『P-1 CLIMAX』",
+    "product_name": "Persona 30th Anniversary",
+    "type": "事件卡",
+    "level": 3,
+    "power": "-",
+    "cost": 2,
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "你将自己卡组顶4张卡放置到休息室，给对手造成X点伤害。X是那些卡的触发标记中<img src=\"/effect-icons/soul.webp\">的合计数量。（发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-026S",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-026",
+        "rarity": "U"
+      }
+    ]
+  },
+  "PRS/S138-027": {
+    "name": "「ねぇ、マヨナカテレビって知ってる？」",
+    "product_name": "Persona 30th Anniversary",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 0,
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "你将自己卡组顶4张卡放置到休息室，从自己的休息室选择至多1张等级X以下的《Anniversary》或《魔法》或《武器》的角色卡返回手牌。X是那些卡的触发标记中<img src=\"/effect-icons/soul.webp\">的合计数量。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-027",
+        "rarity": "C"
+      },
+      {
+        "id": "PRS/S138-027S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-028": {
+    "name": "MIDNIGHT CHANNEL.",
+    "product_name": "Persona 30th Anniversary",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-028",
+        "rarity": "CR"
+      },
+      {
+        "id": "PRS/S138-028Rb",
+        "rarity": "RRR"
+      },
+      {
+        "id": "PRS/S138-028Ra",
+        "rarity": "RRR"
+      }
+    ]
+  },
+  "PRS/S138-029": {
+    "name": "あとは君が、来るだけだ。",
+    "product_name": "Persona 30th Anniversary",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-029R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "PRS/S138-029",
+        "rarity": "CR"
+      }
+    ]
+  },
+  "PRS/S138-030": {
+    "name": "虜にしてア・ゲ・ル♡",
+    "product_name": "Persona 30th Anniversary",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-030R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "PRS/S138-030",
+        "rarity": "CR"
+      }
+    ]
+  },
+  "PRS/S138-031": {
+    "name": "あらゆる姿を映し出す心 P1 主人公",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "女神異聞録", "ピアス"],
+    "color": "绿色",
+    "effect": "【永】此卡的下方有指示物的话，此卡的战斗力＋8000，你全部的角色，给予以下能力。『【永】此卡不能侧面攻击。』<br>【自】此卡从手牌放置到舞台时，你可以从自己的休息室选择1张「あらゆる姿を映し出す心 P1 主人公」，正面朝上放置到此卡的下方作为指示物。<br>【自】【CX联动】此卡攻击时，高潮区有「BE YOUR TRUE MIND.」的话，你从自己的休息室选择至多1张绿色或《Anniversary》的角色卡返回手牌，那个回合中，此卡的战斗力+X。X是你其他绿色或《Anniversary》的角色的数量×500。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-031",
+        "rarity": "RR"
+      },
+      {
+        "id": "PRS/S138-031Sa",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-031Sb",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-031SSP",
+        "rarity": "SSP"
+      }
+    ]
+  },
+  "PRS/S138-032": {
+    "name": "過去を乗り越える心 P2罰 主人公",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 2,
+    "power": 5000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "罰", "記者"],
+    "color": "绿色",
+    "effect": "【永】 记忆 你的思出区有「忘却の彼方の罪。未来を紡ぐ戦い。」的话，此卡获得以下2个能力。『【永】 你的回合中，此卡的战斗力＋5000。』『【自】 再演 ［将1张手牌的绿色的卡放置入休息室］』<br>【自】【CX联动】［(1) 将1张你的高潮区的「ETERNAL PUNISHMENT.」放置入休息室］ 此卡的攻击结束时，你可以支付费用。若如此做，则直到下一个对手的回合结束为止，此卡获得以下能力。『【自】 对手的攻击阶段开始时，你选择1张对手的角色卡，该回合中，灵魂值－3。』",
+    "all_cards": [
+      {
+        "id": "PRS/S138-032Sa",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-032",
+        "rarity": "RR"
+      },
+      {
+        "id": "PRS/S138-032Sb",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-032SSP",
+        "rarity": "SSP"
+      }
+    ]
+  },
+  "PRS/S138-033": {
+    "name": "過去を乗り越える心 P2罪 主人公",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "罪", "バイク"],
+    "color": "绿色",
+    "effect": "【自】此卡从手牌放置到舞台时，你将自己时计区顶至多1张卡放置到休息室，从自己的思出区选择至多1张「忘却の彼方の罪。未来を紡ぐ戦い。」，正面朝上放置到此卡的下方作为指示物。<br>【自】【CX联动】此卡攻击时，高潮区有「INNOCENT SIN.」，此卡的下方有指示物的话，你从以下2个效果中选择1个执行。『给对手造成1点伤害。』『[(1) 1张手牌放置到休息室] 你可以支付费用。如果这么做的话，你看对手卡组顶1张卡，放置到卡组顶或休息室，给对手造成2点伤害。』（发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-033",
+        "rarity": "RR"
+      },
+      {
+        "id": "PRS/S138-033Sb",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-033Sa",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-033SSP",
+        "rarity": "SSP"
+      }
+    ]
+  },
+  "PRS/S138-034": {
+    "name": "“レイジ”城戸玲司",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "女神異聞録", "手品"],
+    "color": "绿色",
+    "effect": "【自】此卡从手牌放置到舞台时，你可以从自己的休息室选择1张「“レイジ”城戸玲司」，正面朝上放置到此卡的下方作为指示物。<br>【自】此卡直接攻击时，此卡的下方有指示物的话，你可以从自己的休息室选择1张绿色的角色卡放置到库存区。<br>【自】对手的抽卡阶段开始时，你将自己卡组顶2张卡放置到休息室。那些卡中有「“レイジ”城戸玲司」或等级2以上的卡的话，你可以将此卡返回手牌。（高潮卡视为0级）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-034",
+        "rarity": "R"
+      },
+      {
+        "id": "PRS/S138-034S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-035": {
+    "name": "花が語る言葉 黒須 淳",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "罪", "花"],
+    "color": "绿色",
+    "effect": "【自】[手牌中1张绿色的卡放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你从自己的卡组找至多1张「忘却の彼方の罪。未来を紡ぐ戦い。」展示给对手后加入手牌，卡组洗切。<br>【自】此卡从舞台放置到休息室时，你的思出区在2张以下的话，你可以从自己的休息室选择1张「忘却の彼方の罪。未来を紡ぐ戦い。」思出。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-035",
+        "rarity": "R"
+      },
+      {
+        "id": "PRS/S138-035S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-036": {
+    "name": "JOKERを追う若手刑事 周防克哉",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "罰", "刑事"],
+    "color": "绿色",
+    "effect": "【自】此卡从手牌放置到舞台时，你可以将自己卡组顶3张卡放置到休息室。<br>【自】[(1) 手牌中1张高潮卡放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你从自己的休息室选择1张高潮卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-036",
+        "rarity": "R"
+      },
+      {
+        "id": "PRS/S138-036S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-037": {
+    "name": "「クーレスト」の記者 天野舞耶",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "罪", "記者"],
+    "color": "绿色",
+    "effect": "【自】此卡从手牌放置到舞台时，那个回合中，此卡的战斗力+X。X是对手的角色数量×1000。<br>【自】[(1)或手牌中1张「「クーレスト」の記者 天野舞耶」公开，放置到库存区底] 此卡的战斗对手【倒置】时，你可以支付费用。如果这么做的话，你从自己的休息室选择1张角色卡返回手牌。<br>【起】[1张手牌放置到休息室，此卡放置到休息室] 你从自己的休息室选择1张等级1以上的角色卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-037",
+        "rarity": "R"
+      },
+      {
+        "id": "PRS/S138-037S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-038": {
+    "name": "“ギンコ”リサ・シルバーマン",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 2,
+    "power": 1500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "罪", "格闘"],
+    "color": "绿色",
+    "effect": "【永】应援 你的回合中，你此卡前全部的角色，战斗力+X。X是那个角色的等级×1000。<br>【自】[1张手牌放置到休息室] 你的攻击阶段开始时，你前列有其他持有「過去を乗り越える心 P2罪 主人公」的标记的话，你可以支付费用。如果这么做的话，对手将自己的费用全部放置到休息室，从自己的卡组顶将相同张数的卡放置到库存区。<br>【起】记忆 [此卡【横置】] 你的思出区有「忘却の彼方の罪。未来を紡ぐ戦い。」，你的等级是3级以上的话，你从自己的手牌中选择至多1张「過去を乗り越える心 P2罪 主人公」，放置到舞台任意位置。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-038S",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-038",
+        "rarity": "R"
+      }
+    ]
+  },
+  "PRS/S138-039": {
+    "name": "トップモデル 桐島英理子",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "罰", "帰国子女"],
+    "color": "绿色",
+    "effect": "【永】你的回合中，你的手牌在5张以上的话，此卡的战斗力＋2000。<br>【自】[你卡组顶1张卡放置到时计区] 此卡从舞台放置到休息室时，你可以支付费用。如果这么做的话，你从自己的卡组找至多1张「忘却の彼方の罪。未来を紡ぐ戦い。」展示给对手后加入手牌，卡组洗切。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-039",
+        "rarity": "U"
+      },
+      {
+        "id": "PRS/S138-039S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-041": {
+    "name": "“エリー”桐島英理子",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "女神異聞録", "帰国子女"],
+    "color": "绿色",
+    "effect": "【自】此卡从手牌放置到舞台时，你将自己卡组顶3张卡放置到休息室，那个回合中，此卡的战斗力+X。X是那些卡的等级合计×1000。（高潮卡视为0级）<br>【自】[1张手牌放置到时计区] 此卡从舞台放置到休息室时，你可以支付费用。如果这么做的话，你从自己的休息室选择1张等级1以上的角色卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-041",
+        "rarity": "U"
+      },
+      {
+        "id": "PRS/S138-041S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-040": {
+    "name": "“アヤセ”綾瀬優香",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "女神異聞録", "ギャル"],
+    "color": "绿色",
+    "effect": "【自】【一回合1次】你的卡从非指示物区放置到指示物区时，你可以抽1张卡。这样做的话，你选择自己的1张手牌放置到休息室。<br>【起】集中 [(1) 此卡【横置】] 你将自己卡组顶4张卡放置到休息室。那些卡中每有1张高潮卡，你从自己的休息室选择至多1张《Anniversary》的角色卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-040",
+        "rarity": "U"
+      },
+      {
+        "id": "PRS/S138-040S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-042": {
+    "name": "フリーのカメラマン 黛 ゆきの",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "罪", "カメラ"],
+    "color": "绿色",
+    "effect": "【起】[此卡【横置】] 你选择自己1个绿色的角色，直到下一个对手的回合结束为止，你从以下2个能力中选择1个给予。『【永】此卡的等级＋1，战斗力＋500。』『【永】此卡正面的角色的等级是2级的话，此卡的战斗力＋3000。』",
+    "all_cards": [
+      {
+        "id": "PRS/S138-042",
+        "rarity": "U"
+      },
+      {
+        "id": "PRS/S138-042S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-043": {
+    "name": "噂を集める謎の男 パオフゥ",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "罰", "謎"],
+    "color": "绿色",
+    "effect": "【自】此卡从舞台放置到休息室时，你看自己卡组顶至多3张卡，选择至多1张高潮卡或「忘却の彼方の罪。未来を紡ぐ戦い。」展示给对手后加入手牌，其余的卡放置到休息室。加入了手牌的话，你选择自己的1张手牌放置到休息室。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-043",
+        "rarity": "U"
+      },
+      {
+        "id": "PRS/S138-043S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-044": {
+    "name": "“なんじょうくん”南条 圭",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "女神異聞録", "御曹司"],
+    "color": "绿色",
+    "effect": "【永】你的回合中，此卡的下方有指示物的话，此卡的战斗力＋4000。<br>【自】此卡从手牌放置到舞台时，你可以从自己的休息室选择1张「“なんじょうくん”南条 圭」，正面朝上放置到此卡的下方作为指示物。<br>【自】[手牌中1张绿色的卡放置到休息室] 此卡攻击时，此卡的下方有指示物的话，你可以支付费用。如果这么做的话，你选择对手后列1个费用1以下的角色放置到休息室。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-044",
+        "rarity": "U"
+      },
+      {
+        "id": "PRS/S138-044S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-045": {
+    "name": "“マキ”園村麻希",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 3,
+    "power": 8000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "女神異聞録", "リボン"],
+    "color": "绿色",
+    "effect": "【永】你休息室触发标记是<img src=\"/effect-icons/recovery.webp\">的高潮卡有3张以上的话，你手牌中此卡的等级－1。<br>【永】此卡的下方有指示物的话，此卡的战斗力＋2500，此卡的战斗中，你不会受到对手角色的【自】效果造成的伤害。<br>【自】此卡从手牌放置到舞台时，你将自己时计区顶至多1张卡放置到休息室，从自己的休息室选择至多1张「“マキ”園村麻希」，正面朝上放置到此卡的下方作为指示物。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-045",
+        "rarity": "U"
+      },
+      {
+        "id": "PRS/S138-045S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-046": {
+    "name": "“マーク”稲葉正男",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "女神異聞録", "帽子"],
+    "color": "绿色",
+    "effect": "【永】你的回合中，此卡不能侧面攻击，此卡的下方有指示物的话，此卡的战斗力＋5000。<br>【自】此卡从手牌放置到舞台时，你可以从自己的休息室选择1张「“マーク”稲葉正男」，正面朝上放置到此卡的下方作为指示物。<br>【自】[1张手牌放置到休息室] 此卡攻击时，你可以支付费用。如果这么做的话，那次攻击中，此卡的战斗力＋1000，你在触发步骤执行2次触发判定。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-046",
+        "rarity": "C"
+      },
+      {
+        "id": "PRS/S138-046S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-047": {
+    "name": "南条グループの御曹司 南条 圭",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "罰", "御曹司"],
+    "color": "绿色",
+    "effect": "【自】[此卡放置到休息室] 你其他等级1以上的角色被正面攻击时，你可以支付费用。如果这么做的话，你选择自己战斗中的1个角色，那个回合中，战斗力＋2000。<br>【起】[此卡【横置】] 你看自己卡组顶1张卡，放置到卡组顶或卡组底或休息室。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-047S",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-047",
+        "rarity": "C"
+      }
+    ]
+  },
+  "PRS/S138-048": {
+    "name": "“ゆきのさん”黛 ゆきの",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "女神異聞録", "恩師想い"],
+    "color": "绿色",
+    "effect": "【自】此卡从手牌放置到舞台时，你从自己的休息室选择至多1张「“ゆきのさん”黛 ゆきの」，正面朝上放置到此卡的下方作为指示物，那个回合中，此卡的战斗力＋3000。<br>【自】[1张手牌放置到休息室] 此卡从手牌放置到舞台的回合中，此卡的战斗对手【倒置】时，此卡的下方有指示物的话，你可以支付费用。如果这么做的话，你看自己卡组顶至多3张卡，按喜欢的顺序放置到卡组顶，抽1张卡。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-048",
+        "rarity": "C"
+      },
+      {
+        "id": "PRS/S138-048S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-049": {
+    "name": "“ミッシェル”三科栄吉",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "罪", "番長"],
+    "color": "绿色",
+    "effect": "【永】记忆 你的回合中，你的思出区有「忘却の彼方の罪。未来を紡ぐ戦い。」的话，此卡的战斗力＋3000，此卡获得以下能力。『【自】[(1)] 你触发到触发标记是<img src=\"/effect-icons/recovery.webp\">的高潮卡时，你可以支付费用。如果这么做的话，你将自己卡组顶1张卡放置到库存区，抽至多1张卡。抽了1张卡的话，你选择自己的1张手牌放置到休息室。』",
+    "all_cards": [
+      {
+        "id": "PRS/S138-049",
+        "rarity": "C"
+      },
+      {
+        "id": "PRS/S138-049S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-050": {
+    "name": "“ブラウン”上杉秀彦",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "女神異聞録", "ファッション"],
+    "color": "绿色",
+    "effect": "【永】此卡的下方有指示物的话，此卡的战斗力＋8000。<br>【自】此卡从手牌放置到舞台时，你可以从自己的休息室选择1张「“ブラウン”上杉秀彦」，正面朝上放置到此卡的下方作为指示物。<br>【自】此卡从手牌放置到舞台时或攻击时，你看自己卡组顶至多2张卡，按喜欢的顺序放置到卡组顶。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-050S",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-050",
+        "rarity": "C"
+      }
+    ]
+  },
+  "PRS/S138-051": {
+    "name": "占い好きの親友 芹沢うらら",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 2,
+    "power": 2500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "罰", "占い"],
+    "color": "绿色",
+    "effect": "【自】你使用此卡的『助太刀』时，你选择自己战斗中的1个角色，那个回合中，给予以下能力。『【自】此卡的战斗对手【倒置】时，你将那个角色思出。』<br>【起】【反击】助太刀3000 等级2 [(1) 手牌中此卡放置到休息室] （你选择自己1个被正面攻击的角色，那个回合中，战斗力＋3000）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-051",
+        "rarity": "C"
+      },
+      {
+        "id": "PRS/S138-051S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-052": {
+    "name": "噂は現実となり、人は『罪』を知る。",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "罪"],
+    "color": "绿色",
+    "effect": "【永】记忆 休息室有此卡，你的等级在3级以上，你的思出区有2张以上的话，此卡获得以下能力。『【起】[(1) 手牌中2张绿色的卡放置到休息室] 你将休息室的此卡放置到舞台没有角色的位置。』<br>【自】[手牌中1张绿色的卡放置到休息室] 此卡从手牌放置到舞台或通过「噂は現実となり、人は『罪』を知る。」的【起】效果放置到舞台时，你可以支付费用。如果这么做的话，你从自己的休息室选择至多2张角色卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-052",
+        "rarity": "C"
+      },
+      {
+        "id": "PRS/S138-052S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-053": {
+    "name": "忘却の彼方の罪。未来を紡ぐ戦い。",
+    "product_name": "Persona 30th Anniversary",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 1,
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "你没有绿色的角色的话，此卡不能从手牌中使用。<br>你看自己卡组顶至多6张卡，选择至多1张绿色的角色卡展示给对手后加入手牌，其余的卡放置到休息室，看自己卡组顶至多3张卡，按喜欢的顺序放置到卡组顶。此卡思出。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-053",
+        "rarity": "R"
+      },
+      {
+        "id": "PRS/S138-053S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-054": {
+    "name": "真実は記憶の裏にある。",
+    "product_name": "Persona 30th Anniversary",
+    "type": "事件卡",
+    "level": 3,
+    "power": "-",
+    "cost": 4,
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "【反击】对手公开自己卡组顶1张卡。那张卡是角色卡的话，你选择对手的1个角色放置到休息室。（公开的卡放回原处）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-054",
+        "rarity": "U"
+      },
+      {
+        "id": "PRS/S138-054S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-056": {
+    "name": "BE YOUR TRUE MIND.",
+    "product_name": "Persona 30th Anniversary",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/recovery.webp\">:此卡被触发时，你将自己时计区底至多1张卡放置到休息室，或从自己的休息室选择至多1张费用0以下的角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-056",
+        "rarity": "CR"
+      },
+      {
+        "id": "PRS/S138-056Ra",
+        "rarity": "RRR"
+      },
+      {
+        "id": "PRS/S138-056Rb",
+        "rarity": "RRR"
+      }
+    ]
+  },
+  "PRS/S138-055": {
+    "name": "もしも僕が悪魔でも、友達でいてくれますか?",
+    "product_name": "Persona 30th Anniversary",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 2,
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "[手牌中2张角色卡放置到休息室] 你可以支付费用。如果这么做的话，你看自己卡组顶至多9张卡，选择至多1张等级3以下的角色卡，放置到舞台任意位置，卡组洗切。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-055",
+        "rarity": "C"
+      },
+      {
+        "id": "PRS/S138-055S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-057": {
+    "name": "INNOCENT SIN.",
+    "product_name": "Persona 30th Anniversary",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/recovery.webp\">:此卡被触发时，你将自己时计区底至多1张卡放置到休息室，或从自己的休息室选择至多1张费用0以下的角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-057",
+        "rarity": "CR"
+      },
+      {
+        "id": "PRS/S138-057Ra",
+        "rarity": "RRR"
+      },
+      {
+        "id": "PRS/S138-057Rb",
+        "rarity": "RRR"
+      }
+    ]
+  },
+  "PRS/S138-058": {
+    "name": "ETERNAL PUNISHMENT.",
+    "product_name": "Persona 30th Anniversary",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/recovery.webp\">:此卡被触发时，你将自己时计区底至多1张卡放置到休息室，或从自己的休息室选择至多1张费用0以下的角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-058",
+        "rarity": "CR"
+      },
+      {
+        "id": "PRS/S138-058Rb",
+        "rarity": "RRR"
+      },
+      {
+        "id": "PRS/S138-058Ra",
+        "rarity": "RRR"
+      }
+    ]
+  },
+  "PRS/S138-059": {
+    "name": "理不尽に抗う反逆の意思 “ジョーカー” P5 主人公",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "怪盗"],
+    "color": "红色",
+    "effect": "【永】你的费用在3张以下的话，此卡的战斗力＋3000。<br>【自】[(1) 你卡组顶1张卡放置到时计区] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你从自己的卡组找至多1张等级1以下的角色卡展示给对手后加入手牌，卡组洗切。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-059",
+        "rarity": "RR"
+      },
+      {
+        "id": "PRS/S138-059Sa",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-059Sb",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-059SSP",
+        "rarity": "SSP"
+      }
+    ]
+  },
+  "PRS/S138-060": {
+    "name": "戦う覚悟 “クイーン” 新島 真",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 3,
+    "power": 8500,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "怪盗", "生徒会"],
+    "color": "红色",
+    "effect": "【永】你《Anniversary》或《怪盗》的角色有4个以上的话，你手牌中此卡的等级－1。<br>【永】你其他《Anniversary》或《怪盗》的角色有2个以上的话，此卡的战斗力＋2000。<br>【自】此卡从手牌放置到舞台时，你有其他《Anniversary》或《怪盗》的角色的话，你将自己时计区顶至多1张卡放置到休息室，看自己卡组顶至多3张卡，选择至多1张事件卡展示给对手后加入手牌，其余的卡放置到休息室。加入了手牌的话，你选择自己的1张手牌放置到休息室。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-060",
+        "rarity": "RR"
+      },
+      {
+        "id": "PRS/S138-060S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-061": {
+    "name": "“ワンダー” P5X 主人公",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "怪盗"],
+    "color": "红色",
+    "effect": "【自】此卡从手牌放置到舞台时，你可以将自己时计区顶1张卡放置到休息室。<br>【自】【CX联动】你的「GO BEYOND」放置到高潮区时，你前列有其他「“ワンダー” P5X 主人公」的话，那个回合中，此卡获得以下2个能力。『【自】[(1)] 此卡攻击时，你可以支付费用。如果这么做的话，给对手造成2点伤害。』『【自】[2张手牌放置到休息室，从对手的思出区选择1张背面的卡放置到休息室] 此卡在直接攻击中造成的伤害没有被取消时，你可以支付费用。如果这么做的话，给对手造成2点伤害2次。』（发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-061Sa",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-061",
+        "rarity": "RR"
+      },
+      {
+        "id": "PRS/S138-061Sb",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-061SSP",
+        "rarity": "SSP"
+      }
+    ]
+  },
+  "PRS/S138-062": {
+    "name": "真実を見抜く心の目 “ナビ” 佐倉双葉",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "怪盗", "ネット"],
+    "color": "红色",
+    "effect": "【自】[对手思出区1张背面的卡放置到休息室] 你直接攻击的角色造成的伤害没有取消时，你可以支付费用。如果这么做的话，你从自己的休息室选择至多1张《Anniversary》或《怪盗》的角色卡放置到库存区。<br>【起】集中 [(1) 此卡【横置】] 你将自己卡组顶4张卡放置到休息室。那些卡中每有1张触发标记是<img src=\"/effect-icons/salvage.webp\">的高潮卡，你从自己的休息室选择至多1张《Anniversary》或《怪盗》的角色卡返回手牌，选择自己的1个角色，那个回合中，灵魂值＋1。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-062",
+        "rarity": "R"
+      },
+      {
+        "id": "PRS/S138-062S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-063": {
+    "name": "栄光への舞踏 “ヴァイオレット” 芳澤かすみ",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "怪盗", "スポーツ"],
+    "color": "红色",
+    "effect": "【自】此卡攻击时，那次攻击中，你在触发步骤执行2次触发判定。执行2次的话，你将自己库存区顶1张卡放置到休息室。<br>【自】对手的攻击阶段开始时，此卡的正面有对手的角色的话，你可以将此卡移动到前列没有角色的位置。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-063",
+        "rarity": "R"
+      },
+      {
+        "id": "PRS/S138-063S",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-063SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "PRS/S138-064": {
+    "name": "“キャトル”ルフェル",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "怪盗"],
+    "color": "红色",
+    "effect": "【自】[1张手牌放置到休息室] 此卡从舞台放置到休息室时，你可以支付费用。如果这么做的话，你看自己卡组顶至多4张卡，选择至多1张《Anniversary》或《怪盗》的角色卡或「闇夜を翔ける反逆の炎」展示给对手后加入手牌，其余的卡放置到休息室。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-064",
+        "rarity": "R"
+      },
+      {
+        "id": "PRS/S138-064S",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-064SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "PRS/S138-065": {
+    "name": "パレスを疾走する怪傑 “モナ” モルガナ",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "怪盗"],
+    "color": "红色",
+    "effect": "【永】应援 你此卡前全部的角色，战斗力+X。X是那个角色的等级×500。<br>【永】记忆 对手的思出区有背面朝上的卡的话，你全部区域的触发标记是<img src=\"/effect-icons/salvage.webp\">的高潮卡的触发标记给予<img src=\"/effect-icons/treasure.webp\">。<br>【自】[手牌中1张角色卡放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。不支付的话，此卡放置到休息室。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-065",
+        "rarity": "R"
+      },
+      {
+        "id": "PRS/S138-065SP",
+        "rarity": "SP"
+      },
+      {
+        "id": "PRS/S138-065S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-066": {
+    "name": "青きコンシェルジュ メロペ",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 2,
+    "power": 4500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "魔法"],
+    "color": "红色",
+    "effect": "【永】此卡可以在不满足颜色条件的情况下从手牌中使用。<br>【永】经验 等级区有此卡，你其他等级区没有「青きコンシェルジュ メロペ」的话，你手牌的数量上限＋1。<br>【起】[(1) 此卡放置到等级区] 你从自己的等级区选择1张卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-066S",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-066",
+        "rarity": "R"
+      },
+      {
+        "id": "PRS/S138-066SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "PRS/S138-067": {
+    "name": "真なる更生への願い ラヴェンツァ",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10500,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "本"],
+    "color": "红色",
+    "effect": "【永】 手牌中此卡被使用时，你可以选择自己的1张「『更生』への協力者 ジュスティーヌ＆カロリーヌ」放置到休息室。这样做的话，此卡可以0费用使用。<br>【自】 此卡从手牌放置到舞台时，你可以将自己时计区顶1张卡放置到休息室。<br>【自】【CX联动】［(1)］ 此卡攻击时，高潮区有「Don't be so naïve」，你前列有其他的「真なる更生への願い ラヴェンツァ」的话，你可以支付费用。如果这么做的话，给对手造成1点伤害，你从对手的休息室选择至多1张卡，放置到卡组顶，直到下一个对手的回合结束为止，此卡的战斗力＋2000。（发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-067",
+        "rarity": "R"
+      },
+      {
+        "id": "PRS/S138-067S",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-067SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "PRS/S138-068": {
+    "name": "奥村 春 in クラブ・ベルベット",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "怪盗", "令嬢"],
+    "color": "红色",
+    "effect": "【自】此卡从手牌放置到舞台时或从舞台放置到休息室时，你选择对手的1个角色，直到那个回合的下一个回合结束为止，给予以下能力。『【永】此卡不能移动到其他位置。』<br>【起】[(1) 1张手牌放置到休息室，此卡放置到休息室] 你看自己卡组顶至多3张卡，选择至多1张卡加入手牌，其余的卡放置到休息室。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-068",
+        "rarity": "U"
+      },
+      {
+        "id": "PRS/S138-068S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-070": {
+    "name": "花咲く悪を断ち切る一閃 “フォックス” 喜多川祐介",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "怪盗"],
+    "color": "红色",
+    "effect": "【自】[1张手牌放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你公开自己卡组顶1张卡，从自己的休息室选择1张等级X以下的《Anniversary》或《怪盗》的角色卡返回手牌。X是公开的卡的等级。（高潮卡视为0级。公开的卡放回原处）<br>【自】【时计区】警铃 [1张手牌放置到休息室] 此卡在时计区最上面的话，你的高潮阶段开始时，你可以支付费用。如果这么做的话，你抽1张卡。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-070",
+        "rarity": "U"
+      },
+      {
+        "id": "PRS/S138-070S",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-070SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "PRS/S138-069": {
+    "name": "坂本竜司 in クラブ・ベルベット",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "怪盗", "スポーツ"],
+    "color": "红色",
+    "effect": "【自】[1张手牌放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你从自己的休息室选择1张「闇夜を翔ける反逆の炎」返回手牌。<br>【自】此卡【倒置】时，此卡的战斗对手的等级是X级以下的话，你可以将那个角色【倒置】。X是你休息室中「坂本竜司 in クラブ・ベルベット」的数量。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-069S",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-069",
+        "rarity": "U"
+      }
+    ]
+  },
+  "PRS/S138-071": {
+    "name": "解き放たれる情熱の炎 “パンサー” 高巻 杏",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "怪盗"],
+    "color": "红色",
+    "effect": "【永】你的事件卡可以在不满足颜色条件的情况下从手牌中使用。<br>【起】[此卡【横置】] 此卡的下方没有指示物的话，你从自己的休息室选择1张《Anniversary》或《怪盗》的角色卡或「闇夜を翔ける反逆の炎」，正面朝上放置到此卡的下方作为指示物。<br>【起】[(1) 此卡【横置】] 你将此卡下方的1张指示物返回手牌。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-071",
+        "rarity": "U"
+      },
+      {
+        "id": "PRS/S138-071S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-072": {
+    "name": "モルガナ in クラブ・ベルベット",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "怪盗"],
+    "color": "红色",
+    "effect": "【自】此卡从手牌放置到舞台时，你选择对手至多1个角色思出，对手从自己的思出区将那个角色放置到舞台任意位置。<br>【自】[(1) 手牌中1张高潮卡放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你从自己的休息室选择1张高潮卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-072",
+        "rarity": "U"
+      },
+      {
+        "id": "PRS/S138-072S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-073": {
+    "name": "P5 主人公 in クラブ・ベルベット",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "怪盗"],
+    "color": "红色",
+    "effect": "【自】此卡【倒置】时，此卡的战斗对手的等级是1级以下的话，你可以将那个角色【倒置】。<br>【自】【CX联动】你的「TAKE YOUR HEART.」放置到高潮区时，你前列有其他「P5 主人公 in クラブ・ベルベット」的话，那个回合中，此卡的战斗力＋2500，你宣言卡组或休息室，看自己宣言的区域，选择至多1张「闇夜を翔ける反逆の炎」展示给对手后加入手牌或放置到库存区。宣言卡组的话，那个卡组洗切。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-073",
+        "rarity": "U"
+      },
+      {
+        "id": "PRS/S138-073S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-074": {
+    "name": "『更生』への協力者 ジュスティーヌ＆カロリーヌ",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "双子", "眼帯"],
+    "color": "红色",
+    "effect": "【自】此卡从手牌放置到舞台时，那个回合中，此卡的战斗力+X。X是对手角色的数量×1000。<br>【起】集中 [(1) 此卡【横置】] 你将自己卡组顶4张卡放置到休息室。那些卡中每有1张高潮卡，执行以下行动。『你看自己卡组顶至多3张卡，选择至多1张卡加入手牌，其余的卡放置到休息室。』",
+    "all_cards": [
+      {
+        "id": "PRS/S138-074S",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-074",
+        "rarity": "U"
+      }
+    ]
+  },
+  "PRS/S138-075": {
+    "name": "喜多川祐介 in クラブ・ベルベット",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 2,
+    "power": 3000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "怪盗"],
+    "color": "红色",
+    "effect": "【自】[(1) 1张手牌放置到休息室，你舞台的1个角色放置到休息室] 你使用此卡的『助太刀』时，你可以支付费用。如果这么做的话，你选择对手1个等级比对手等级高的角色，放置到思出区。<br>【起】【反击】助太刀2500 等级2 [(1) 手牌中此卡放置到休息室] （你选择自己1个被正面攻击的角色，那个回合中，战斗力＋2500）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-075",
+        "rarity": "U"
+      },
+      {
+        "id": "PRS/S138-075S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-076": {
+    "name": "「革命軍」のリーダー エル",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 2,
+    "power": 3500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "タクティカ"],
+    "color": "红色",
+    "effect": "【自】[(1)] 你使用此卡的『助太刀』时，你的休息室触发标记是<img src=\"/effect-icons/salvage.webp\">的高潮卡有5张以上的话，你可以支付费用。如果这么做的话，你将自己休息室的卡全部返回卡组，卡组洗切。<br>【起】【反击】助太刀2500 等级2 [(1) 手牌中此卡放置到休息室] （你选择自己1个被正面攻击的角色，那个回合中，战斗力＋2500）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-076",
+        "rarity": "U"
+      },
+      {
+        "id": "PRS/S138-076S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-077": {
+    "name": "正義を貫く仮面の意思 “クロウ” 明智吾郎",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "怪盗", "探偵"],
+    "color": "红色",
+    "effect": "【自】此卡从手牌放置到舞台时，你看自己卡组顶至多3张卡，按喜欢的顺序放置到卡组顶，抽1张卡。<br>【自】[2张手牌放置到休息室] 此卡攻击时，你可以支付费用。如果这么做的话，你看对手卡组顶至多2张卡，选择至多2张卡，按喜欢的顺序放置到卡组顶，其余的卡放置到休息室，那个回合中，此卡的战斗力＋1000。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-077",
+        "rarity": "U"
+      },
+      {
+        "id": "PRS/S138-077S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-078": {
+    "name": "謎の少女 ソフィア",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10500,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "怪盗", "SCRAMBLE"],
+    "color": "红色",
+    "effect": "【自】此卡从手牌或卡组放置到舞台时，你从自己的手牌中选择至多1张自己等级以下的角色卡，放置到舞台任意位置，那个回合中，此卡的战斗力＋2000。<br>【自】[(2) 2张手牌放置到休息室] 此卡的战斗对手【倒置】时，你可以支付费用。如果这么做的话，给对手造成4点伤害。（发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-078",
+        "rarity": "U"
+      },
+      {
+        "id": "PRS/S138-078S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-079": {
+    "name": "新島 真 in クラブ・ベルベット",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "怪盗", "生徒会"],
+    "color": "红色",
+    "effect": "【自】此卡攻击时，你的手牌在4张以上的话，那个回合中，此卡的战斗力＋3000。<br>【自】此卡的战斗对手【倒置】时，你按喜欢的顺序执行以下2个效果各1次。『你可以将那个角色思出。』『你从自己的休息室选择1张《Anniversary》或《怪盗》的角色卡返回手牌，选择自己的1张手牌放置到休息室。』",
+    "all_cards": [
+      {
+        "id": "PRS/S138-079",
+        "rarity": "C"
+      },
+      {
+        "id": "PRS/S138-079S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-080": {
+    "name": "悪に抗うクレバーな狼 長谷川善吉",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "怪盗", "SCRAMBLE"],
+    "color": "红色",
+    "effect": "【自】此卡从手牌放置到舞台时，你可以选择自己的1张手牌放置到库存区。<br>【自】[(2)] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你将自己休息室的卡全部返回卡组，卡组洗切。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-080",
+        "rarity": "C"
+      },
+      {
+        "id": "PRS/S138-080S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-082": {
+    "name": "佐倉双葉 in クラブ・ベルベット",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "怪盗", "ネット"],
+    "color": "红色",
+    "effect": "【自】你使用此卡的『助太刀』时，战斗中的全部角色，那个回合中，给予以下能力。『【自】此卡从舞台放置到休息室时，你可以将此卡【横置】放置到原来的位置。』<br>【起】【反击】助太刀0 等级1 [手牌中此卡放置到休息室] （你选择自己1个被正面攻击的角色，那个回合中，战斗力＋0）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-082S",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-082",
+        "rarity": "C"
+      }
+    ]
+  },
+  "PRS/S138-081": {
+    "name": "次期総理大臣候補 春日部統志郎",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "タクティカ"],
+    "color": "红色",
+    "effect": "【永】你的费用在2张以下的话，此卡的战斗力＋1500。<br>【自】对手的攻击阶段开始时，你可以将此卡移动到前列没有角色，正面有对手角色的位置。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-081",
+        "rarity": "C"
+      },
+      {
+        "id": "PRS/S138-081S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-083": {
+    "name": "高巻 杏 in クラブ・ベルベット",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "怪盗"],
+    "color": "红色",
+    "effect": "【自】此卡从手牌放置到舞台时，你可以选择对手前列1个等级1以下的角色返回手牌。<br>【自】此卡直接攻击时，你可以执行以下行动。『那个回合中，此卡的战斗力－3000，灵魂值－1。』这样做的话，你选择自己的1个角色，那个回合中，战斗力＋3000，灵魂值＋1。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-083",
+        "rarity": "C"
+      },
+      {
+        "id": "PRS/S138-083S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-084": {
+    "name": "“クローザー”新井素羽",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "怪盗"],
+    "color": "红色",
+    "effect": "【永】你的回合中，你有其他《Anniversary》或《怪盗》的角色的话，此卡的战斗力＋3500，此卡获得以下能力。『【自】此卡攻击时，此卡正面的角色的等级是2级的话，那个回合中，此卡的战斗力＋3000。』<br>【自】此卡或此卡的战斗对手【倒置】时，那个回合中，那个角色不能使用『【自】再演』。（规则的『【自】再演 [(3)]』也不能使用）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-084",
+        "rarity": "C"
+      },
+      {
+        "id": "PRS/S138-084S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-085": {
+    "name": "“ルーチェ”池波星輝",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 1000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "怪盗"],
+    "color": "红色",
+    "effect": "【起】[此卡【横置】] 你选择自己1个《Anniversary》或《怪盗》的角色，从以下4个效果中选择1个执行。『那个回合中，选的角色的战斗力＋2000。』『那个回合中，选的角色的灵魂值＋2。』『那个回合中，给予选的角色以下能力。『【自】此卡攻击时，你看自己卡组顶至多3张卡，按喜欢的顺序放置到卡组顶。』』『那个回合中，给予选的角色以下能力。『【自】此卡的战斗对手【倒置】时，你可以将那个角色放置到卡组顶。』』",
+    "all_cards": [
+      {
+        "id": "PRS/S138-085",
+        "rarity": "C"
+      },
+      {
+        "id": "PRS/S138-085S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-086": {
+    "name": "明智吾郎 in クラブ・ベルベット",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "怪盗", "探偵"],
+    "color": "红色",
+    "effect": "【永】你的回合中，你有其他《Anniversary》或《怪盗》的角色的话，此卡的战斗力＋4500。<br>【永】你其他《Anniversary》或《怪盗》的角色有2个以上的话，此卡获得以下2个能力。『【自】此卡的战斗对手【倒置】时，你从自己的休息室选择1张《Anniversary》或《怪盗》的角色卡返回手牌，选择自己的1张手牌放置到休息室。』『【自】再演 [手牌中1张角色卡放置到休息室]』",
+    "all_cards": [
+      {
+        "id": "PRS/S138-086",
+        "rarity": "C"
+      },
+      {
+        "id": "PRS/S138-086S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-087": {
+    "name": "“ウィンド”多祢村理子",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 2,
+    "power": 3500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "怪盗"],
+    "color": "红色",
+    "effect": "【自】[1张手牌放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你抽1张卡。<br>【起】[此卡【横置】] 你选择自己1个《Anniversary》或《怪盗》的角色，那个回合中，战斗力+X。X是那个角色的等级×2000。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-087",
+        "rarity": "C"
+      },
+      {
+        "id": "PRS/S138-087S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-088": {
+    "name": "“ソイ”加納 駿",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 2,
+    "power": 5000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "怪盗"],
+    "color": "红色",
+    "effect": "【自】此卡【倒置】时，此卡的战斗对手的等级比对手等级高的话，你可以将那个角色思出。<br>【自】【时计区】警铃 此卡在时计区最上面的话，你的高潮阶段开始时，你选择自己的1个角色，那个回合中，给予以下能力。『【自】此卡的战斗对手【倒置】时，你可以将那个角色思出。』",
+    "all_cards": [
+      {
+        "id": "PRS/S138-088",
+        "rarity": "C"
+      },
+      {
+        "id": "PRS/S138-088S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-089": {
+    "name": "悪を討つ反逆のドクロ “スカル” 坂本竜司",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6000,
+    "cost": 1,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "怪盗", "スポーツ"],
+    "color": "红色",
+    "effect": "【自】此卡从手牌放置到舞台时，那个回合中，此卡的战斗力+X。X是对手的角色数量×1000。<br>【自】此卡从手牌放置到舞台时，你其他《Anniversary》或《怪盗》的角色有4个以上的话，你可以从自己的休息室选择1张《Anniversary》或《怪盗》的角色卡放置到库存区。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-089S",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-089",
+        "rarity": "C"
+      }
+    ]
+  },
+  "PRS/S138-090": {
+    "name": "自由への門出 “ノワール” 奥村 春",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "怪盗", "令嬢"],
+    "color": "红色",
+    "effect": "【自】此卡攻击时，那个回合中，此卡的战斗力+X。X是你其他《Anniversary》或《怪盗》的角色的数量×1000。<br>【自】[1张手牌放置到休息室] 此卡的战斗对手【倒置】时，你可以支付费用。如果这么做的话，直到下一个对手的回合结束为止，此卡获得以下能力。『【自】【一回合1次】此卡正面的角色造成的伤害被取消时，你的手牌在6张以下的话，你可以给对手造成相同的伤害。』（发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-090",
+        "rarity": "C"
+      },
+      {
+        "id": "PRS/S138-090S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-091": {
+    "name": "ジュスティーヌ＆カロリーヌ in クラブ・ベルベット",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 2,
+    "power": 7000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "双子", "眼帯"],
+    "color": "红色",
+    "effect": "【永】你的回合中，你每有1个其他的《Anniversary》或《怪盗》的角色，此卡的战斗力＋1000。<br>【自】[(2) 2张手牌放置到休息室] 此卡的战斗对手【倒置】时，你可以支付费用。如果这么做的话，给对手造成2点伤害，你从对手的休息室选择至多1张卡放置到卡组顶。（发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-091",
+        "rarity": "C"
+      },
+      {
+        "id": "PRS/S138-091S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-092": {
+    "name": "闇夜を翔ける反逆の炎",
+    "product_name": "Persona 30th Anniversary",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 0,
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "对手的思出区没有反面朝上的卡的话，对手选择自己的1张手牌，反面朝上放置到思出区，抽至多1张卡。<br>你从以下2个效果中选择1个执行。『你将自己卡组顶3张卡放置到休息室，从自己的休息室选择至多1张等级X以下的《Anniversary》或《怪盗》的角色卡返回手牌。X是那些卡中没有触发标记<img src=\"/effect-icons/soul.webp\">的卡的数量。』『你的等级在2级以上的话，你选择对手的1个角色返回手牌。』",
+    "all_cards": [
+      {
+        "id": "PRS/S138-092",
+        "rarity": "R"
+      },
+      {
+        "id": "PRS/S138-092S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-095": {
+    "name": "Don't be so naïve",
+    "product_name": "Persona 30th Anniversary",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-095",
+        "rarity": "CR"
+      },
+      {
+        "id": "PRS/S138-095R",
+        "rarity": "RRR"
+      }
+    ]
+  },
+  "PRS/S138-093": {
+    "name": "心の怪盗団、新生。",
+    "product_name": "Persona 30th Anniversary",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 0,
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "你公开自己卡组顶1张卡。那张卡是《Anniversary》或《怪盗》的角色卡的话放置到舞台任意位置。（否则放回原处）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-093",
+        "rarity": "U"
+      },
+      {
+        "id": "PRS/S138-093S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-094": {
+    "name": "GO BEYOND",
+    "product_name": "Persona 30th Anniversary",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-094R",
+        "rarity": "RRR"
+      },
+      {
+        "id": "PRS/S138-094",
+        "rarity": "CR"
+      }
+    ]
+  },
+  "PRS/S138-096": {
+    "name": "TAKE YOUR HEART.",
+    "product_name": "Persona 30th Anniversary",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-096",
+        "rarity": "CR"
+      },
+      {
+        "id": "PRS/S138-096A",
+        "rarity": "AGR"
+      },
+      {
+        "id": "PRS/S138-096Ra",
+        "rarity": "RRR"
+      },
+      {
+        "id": "PRS/S138-096Rb",
+        "rarity": "RRR"
+      }
+    ]
+  },
+  "PRS/S138-097": {
+    "name": "エリザベス in クラブ・ベルベット",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "魔法", "神"],
+    "color": "蓝色",
+    "effect": "【自】此卡从手牌放置到舞台时，你看自己卡组顶1张卡，放置到卡组顶或卡组底。<br>【自】[1张手牌放置到休息室] 此卡攻击时，你可以支付费用。如果这么做的话，你看自己卡组顶至多4张卡，选择至多1张「エリザベス in クラブ・ベルベット」或等级1以上的卡展示给对手后加入手牌，其余的卡放置到休息室。（高潮卡视为0级）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-097",
+        "rarity": "RR"
+      },
+      {
+        "id": "PRS/S138-097S",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-097SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "PRS/S138-098": {
+    "name": "『絆』を紡ぐ心 P3P 主人公",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "魔法", "武器"],
+    "color": "蓝色",
+    "effect": "【永】记忆 你的回合中，你的思出区有卡的话，此卡的战斗力＋4500。<br>【自】【CX联动】记忆 [手牌中1张蓝色的卡放置到休息室] 此卡攻击时，高潮区有「THE DARK HOUR.」，你的思出区有卡的话，你可以支付费用。如果这么做的话，你看自己卡组顶至多6张卡，选择至多2张《Anniversary》或《魔法》或《武器》的角色卡或「影時間、始マル――」展示给对手后加入手牌，其余的卡放置到休息室，你的思出区在2张以下的话，你从自己的休息室选择至多1张「影時間、始マル――」思出。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-098",
+        "rarity": "RR"
+      },
+      {
+        "id": "PRS/S138-098Sa",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-098Sb",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-098SSP",
+        "rarity": "SSP"
+      }
+    ]
+  },
+  "PRS/S138-099": {
+    "name": "『絆』を紡ぐ心 P3 主人公",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "魔法", "武器"],
+    "color": "蓝色",
+    "effect": "【自】此卡被正面攻击时，此卡位于前列中央的话，你看自己卡组顶至多2张卡，选择至多2张卡放置到休息室，其余的卡按喜欢的顺序放回卡组顶。<br>【自】【CX联动】记忆 [(1) 2张手牌放置到休息室] 你的攻击阶段开始时，高潮区有「MEMENTO MORI.」，前列有此卡，你没有其他前列的角色的话，你可以支付费用。如果这么做的话，对手将自己卡组顶10张卡放置到休息室，你给对手造成1点伤害，2点伤害，3点伤害2次，你的思出区每有2个持有『绊』的角色，直到下一个对手的回合结束为止，此卡的战斗力＋500。（发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-099",
+        "rarity": "RR"
+      },
+      {
+        "id": "PRS/S138-099Sb",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-099Sa",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-099SSP",
+        "rarity": "SSP"
+      }
+    ]
+  },
+  "PRS/S138-100": {
+    "name": "強い想いの力 岳羽ゆかり",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "魔法", "武器"],
+    "color": "蓝色",
+    "effect": "【永】记忆 思出区有此卡的话，你全部的「『絆』を紡ぐ心 P3 主人公」，给予以下能力。『【永】你的等级在3级以上的话，此卡不会被对手的效果选择。』<br>【起】[1张手牌放置到休息室，此卡放置到休息室] 你从自己的休息室选择1张拥有『绊』的角色卡或「『絆』を紡ぐ心 P3 主人公」返回手牌，你的思出区在5张以下的话，你从自己的休息室选择至多1张「強い想いの力 岳羽ゆかり」，放置到思出区。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-100",
+        "rarity": "R"
+      },
+      {
+        "id": "PRS/S138-100S",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-100SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "PRS/S138-101": {
+    "name": "影時間を消す闘志 桐条美鶴",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "魔法", "生徒会"],
+    "color": "蓝色",
+    "effect": "【永】记忆 思出区有此卡的话，此卡获得以下能力。『【起】[手牌中1张「『絆』を紡ぐ心 P3 主人公」放置到休息室] 你选择自己的1个「『絆』を紡ぐ心 P3 主人公」，直到下一个对手的回合结束为止，战斗力＋1000，给予『【永】大活躍』的能力。』<br>【起】集中 [(1) 此卡【横置】] 你将自己卡组顶4张卡放置到休息室。那些卡中每有1张高潮卡，你从自己的休息室选择至多1张角色卡返回手牌。通过这个效果放置到休息室的卡中没有高潮卡的话，你从自己的休息室选择至多1张「影時間を消す闘志 桐条美鶴」思出。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-101S",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-101",
+        "rarity": "R"
+      }
+    ]
+  },
+  "PRS/S138-102": {
+    "name": "可能性への期待 伊織順平",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "魔法", "武器"],
+    "color": "蓝色",
+    "effect": "【永】你的回合中，你有其他《Anniversary》或《魔法》或《武器》的角色的话，此卡的战斗力＋3000。<br>【起】[(1) 此卡思出] 你看自己卡组顶至多3张卡，选择至多1张《Anniversary》或《魔法》或《武器》的角色卡展示给对手后加入手牌，其余的卡放置到休息室。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-102",
+        "rarity": "R"
+      },
+      {
+        "id": "PRS/S138-102S",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-102SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "PRS/S138-103": {
+    "name": "駆動する鋼の心 アイギス",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "メカ", "武器"],
+    "color": "蓝色",
+    "effect": "【永】记忆 思出区有此卡的话，你全部区域中卡名不包含「主人公」的角色，给予『【自】絆／「『絆』を紡ぐ心 P3 主人公」「『絆』を紡ぐ心 P3P 主人公」 [1张手牌放置到休息室]』的能力。<br>【自】此卡从手牌放置到舞台时，你有其他《Anniversary》或《魔法》或《武器》的角色的话，你看自己卡组顶1张卡，放置到卡组顶或卡组底，那个回合中，此卡的战斗力＋1500。<br>【起】[(1)] 此卡思出。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-103",
+        "rarity": "R"
+      },
+      {
+        "id": "PRS/S138-103S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-105": {
+    "name": "荒垣真次郎 in クラブ・ベルベット",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "魔法", "武器"],
+    "color": "蓝色",
+    "effect": "【自】此卡从手牌放置到舞台时，你可以将自己时计区顶1张卡放置到休息室。<br>【起】[此卡思出] 你从以下3个效果中选择1个执行。『你看自己卡组顶至多3张卡，选择至多1张卡加入手牌，其余的卡放置到休息室。』『你可以将自己时计区顶1张卡放置到休息室。』『你选择自己的1个角色，那个回合中，战斗力＋8000。』",
+    "all_cards": [
+      {
+        "id": "PRS/S138-105",
+        "rarity": "R"
+      },
+      {
+        "id": "PRS/S138-105S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-104": {
+    "name": "湧き上がる闘志 真田明彦",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "魔法", "スポーツ"],
+    "color": "蓝色",
+    "effect": "【永】记忆 你的回合中，你的思出区有卡的话，此卡的战斗力＋4500。<br>【永】记忆 思出区有此卡的话，你前列中央的「『絆』を紡ぐ心 P3 主人公」，战斗力＋1000。<br>【自】[(1)] 你触发到触发标记是<img src=\"/effect-icons/gate.webp\">的高潮卡时，你其他《Anniversary》或《魔法》或《武器》的角色有2个以上的话，你可以支付费用。如果这么做的话，你抽至多1张卡，选择自己的至多1张手牌放置到库存区。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-104",
+        "rarity": "R"
+      },
+      {
+        "id": "PRS/S138-104S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-106": {
+    "name": "テオドア in クラブ・ベルベット",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "魔法", "神"],
+    "color": "蓝色",
+    "effect": "【自】[手牌中1张高潮卡放置到休息室，你其他舞台的1个角色放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你从自己的休息室选择1张高潮卡返回手牌。<br>【自】此卡通过「『絆』を紡ぐ心 P3P 主人公」的【CX联动】的费用从手牌放置到休息室时，你可以选择对手1个等级比对手等级高的角色返回手牌。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-106",
+        "rarity": "U"
+      },
+      {
+        "id": "PRS/S138-106S",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-106SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "PRS/S138-107": {
+    "name": "高まる負けん気 天田 乾",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "魔法", "武器"],
+    "color": "蓝色",
+    "effect": "【永】你的回合中，你前列有其他「昂ぶる気持ち コロマル」的话，此卡的战斗力＋2000，此卡获得以下能力。『【自】[(1)] 此卡攻击时，你可以支付费用。如果这么做的话，那次攻击中，你在触发步骤执行2次触发判定。』<br>【自】[手牌中1张《Anniversary》或《魔法》或《武器》的角色卡放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你从自己的卡组找至多1张「不退転の覚悟 荒垣真次郎」展示给对手后加入手牌，卡组洗切。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-107S",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-107",
+        "rarity": "U"
+      }
+    ]
+  },
+  "PRS/S138-108": {
+    "name": "昂ぶる気持ち コロマル",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "動物", "武器"],
+    "color": "蓝色",
+    "effect": "【永】你的回合中，你前列有其他「高まる負けん気 天田 乾」的话，此卡的战斗力＋2000，灵魂值＋1。<br>【自】[手牌中1张《Anniversary》或《魔法》或《武器》的角色卡放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你从自己的卡组找至多1张「高まる負けん気 天田 乾」展示给对手后加入手牌，卡组洗切。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-108",
+        "rarity": "U"
+      },
+      {
+        "id": "PRS/S138-108S",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-108SP",
+        "rarity": "SP"
+      }
+    ]
+  },
+  "PRS/S138-109": {
+    "name": "もう１人の機械の少女 メティス",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["もう１つのAnniversary", "Episode Aegis", "メカ"],
+    "color": "蓝色",
+    "effect": "【起】[(1) 此卡【横置】] 你从对手的休息室选择至多2张卡返回卡组，对手将卡组洗切。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-109",
+        "rarity": "U"
+      },
+      {
+        "id": "PRS/S138-109S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-110": {
+    "name": "アイギス in クラブ・ベルベット",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 0,
+    "power": 2500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "メカ", "武器"],
+    "color": "蓝色",
+    "effect": "【自】[(1) 你舞台其他1个【竖置】的蓝色的角色思出] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你从自己的卡组找至多1张蓝色的角色卡展示给对手后加入手牌，卡组洗切。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-110",
+        "rarity": "U"
+      },
+      {
+        "id": "PRS/S138-110S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-111": {
+    "name": "真田明彦 in クラブ・ベルベット",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 2500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "魔法", "スポーツ"],
+    "color": "蓝色",
+    "effect": "【自】[(4) 手牌中1张高潮卡放置到休息室] 你使用此卡的『助太刀』时，你可以支付费用。如果这么做的话，你选择对手的1个角色，【横置】。<br>【起】【反击】助太刀1000 等级1 [手牌中此卡放置到休息室] （你选择自己1个被正面攻击的角色，那个回合中，战斗力＋1000）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-111",
+        "rarity": "U"
+      },
+      {
+        "id": "PRS/S138-111S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-112": {
+    "name": "仲間を支える力 山岸風花",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 2,
+    "power": 4000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "魔法"],
+    "color": "蓝色",
+    "effect": "【永】应援 你此卡前全部的角色，战斗力+X。X是那个角色的等级×500。<br>【永】记忆 思出区有此卡的话，你前列中央的「『絆』を紡ぐ心 P3 主人公」，战斗力＋1000。<br>【起】【一回合1次】[你舞台1个《Anniversary》或《魔法》或《武器》的角色思出] 你看自己卡组顶至多3张卡，按喜欢的顺序放回卡组顶。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-112",
+        "rarity": "U"
+      },
+      {
+        "id": "PRS/S138-112S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-113": {
+    "name": "不退転の覚悟 荒垣真次郎",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "魔法", "武器"],
+    "color": "蓝色",
+    "effect": "【永】你的回合中，你其他全部《Anniversary》或《魔法》或《武器》的角色，战斗力＋1000。<br>【自】[1张手牌放置到休息室] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你公开自己卡组顶1张卡，从自己的休息室选择1张等级X以下的《Anniversary》或《魔法》或《武器》的角色卡返回手牌。X是3以上的话，你将自己卡组顶至多1张卡放置到库存区。X是公开的卡的等级。（高潮卡视为0级。不放置到库存区的话放回原处）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-113",
+        "rarity": "C"
+      },
+      {
+        "id": "PRS/S138-113S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-114": {
+    "name": "岳羽ゆかり in クラブ・ベルベット",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 4000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "魔法", "武器"],
+    "color": "蓝色",
+    "effect": "【自】记忆 此卡攻击时，你的思出区有卡，此卡正面的角色的等级是2级的话，那个回合中，此卡的战斗力＋7000，灵魂值＋1。<br>【自】你的触发标记是<img src=\"/effect-icons/gate.webp\">的高潮卡放置到高潮区时，你选择自己1个《Anniversary》或《魔法》或《武器》的角色，那个回合中，战斗力＋2000。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-114S",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-114",
+        "rarity": "C"
+      }
+    ]
+  },
+  "PRS/S138-115": {
+    "name": "山岸風花 in クラブ・ベルベット",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 1000,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "魔法"],
+    "color": "蓝色",
+    "effect": "【自】你使用此卡的『助太刀』时，你有《Anniversary》或《魔法》或《武器》的角色的话，你将自己或对手卡组顶3张卡放置到休息室。<br>【起】【反击】助太刀2000 等级1 [(1) 手牌中此卡放置到休息室] （你选择自己1个被正面攻击的角色，那个回合中，战斗力＋2000）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-115",
+        "rarity": "C"
+      },
+      {
+        "id": "PRS/S138-115S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-116": {
+    "name": "天田 乾 in クラブ・ベルベット",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "魔法", "武器"],
+    "color": "蓝色",
+    "effect": "【自】此卡攻击时，你可以选择自己其他1个角色放置到库存区。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-116S",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-116",
+        "rarity": "C"
+      }
+    ]
+  },
+  "PRS/S138-117": {
+    "name": "伊織順平 in クラブ・ベルベット",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 2,
+    "power": 4500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "魔法", "武器"],
+    "color": "蓝色",
+    "effect": "【自】此卡从手牌放置到舞台时，你选择自己至多2个角色，那个回合中，给予以下能力。『【自】此卡【倒置】时，此卡的战斗对手的等级比对手等级高的话，你可以将那个角色放置到卡组底。』",
+    "all_cards": [
+      {
+        "id": "PRS/S138-117",
+        "rarity": "C"
+      },
+      {
+        "id": "PRS/S138-117S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-119": {
+    "name": "桐条美鶴 in クラブ・ベルベット",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "魔法", "生徒会"],
+    "color": "蓝色",
+    "effect": "【永】你休息室触发标记是<img src=\"/effect-icons/gate.webp\">的高潮卡有3张以上的话，你手牌中此卡的等级－1。<br>【自】此卡从手牌放置到舞台时，那个回合中，此卡的战斗力＋1500。<br>【自】此卡从手牌放置到舞台时，你其他《Anniversary》或《魔法》或《武器》的角色有2个以上的话，你可以从自己的时计区选择1张角色卡思出。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-119",
+        "rarity": "C"
+      },
+      {
+        "id": "PRS/S138-119S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-118": {
+    "name": "P3 主人公 in クラブ・ベルベット",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 2,
+    "power": 6500,
+    "cost": 1,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "魔法", "武器"],
+    "color": "蓝色",
+    "effect": "【永】你《Anniversary》或《魔法》或《武器》的角色有4个以上的话，你手牌中此卡的等级－1。<br>【永】你的回合中，你的手牌在5张以下的话，此卡的战斗力＋3000。<br>【自】【CX联动】[你高潮区的1张「DANCING MOON NIGHT」放置到休息室] 此卡的攻击结束时，你的手牌在5张以下的话，你可以支付费用。如果这么做的话，你看自己卡组顶至多3张卡，选择至多2张《Anniversary》或《魔法》或《武器》的角色卡或「影時間、始マル――」展示给对手后加入手牌，其余的卡放置到休息室，从自己的休息室选择至多2张《Anniversary》或《魔法》或《武器》的角色卡思出。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-118S",
+        "rarity": "SR"
+      },
+      {
+        "id": "PRS/S138-118",
+        "rarity": "C"
+      }
+    ]
+  },
+  "PRS/S138-120": {
+    "name": "影時間、始マル――",
+    "product_name": "Persona 30th Anniversary",
+    "type": "事件卡",
+    "level": 1,
+    "power": "-",
+    "cost": 1,
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "你公开自己卡组顶1张卡。那张卡是等级0以下的角色卡的话放置到库存区。（否则放回原处）<br>此卡思出。<br>你从自己的休息室选择1张等级X以下的《Anniversary》或《魔法》或《武器》的角色卡返回手牌。X是你思出区的卡的数量。<br>【自】记忆 思出区有此卡的话，你的主要阶段开始时，你可以从自己的休息室选择1张《Anniversary》或《魔法》或《武器》的角色卡和此卡互换。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-120",
+        "rarity": "R"
+      },
+      {
+        "id": "PRS/S138-120S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-121": {
+    "name": "“我は汝…汝は我…”",
+    "product_name": "Persona 30th Anniversary",
+    "type": "事件卡",
+    "level": 3,
+    "power": "-",
+    "cost": 1,
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "对手将自己的费用全部放置到休息室，从自己的卡组顶将相同张数的卡放置到库存区。你选择自己1个《魔法》或《武器》的角色，那个回合中，战斗力＋5000。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-121",
+        "rarity": "U"
+      },
+      {
+        "id": "PRS/S138-121S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-122": {
+    "name": "THE DARK HOUR.",
+    "product_name": "Persona 30th Anniversary",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-122",
+        "rarity": "CR"
+      },
+      {
+        "id": "PRS/S138-122Rb",
+        "rarity": "RRR"
+      },
+      {
+        "id": "PRS/S138-122Ra",
+        "rarity": "RRR"
+      }
+    ]
+  },
+  "PRS/S138-123": {
+    "name": "MEMENTO MORI.",
+    "product_name": "Persona 30th Anniversary",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-123",
+        "rarity": "CR"
+      },
+      {
+        "id": "PRS/S138-123Ra",
+        "rarity": "RRR"
+      },
+      {
+        "id": "PRS/S138-123Rb",
+        "rarity": "RRR"
+      }
+    ]
+  },
+  "PRS/S138-124": {
+    "name": "DANCING MOON NIGHT",
+    "product_name": "Persona 30th Anniversary",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-124",
+        "rarity": "CR"
+      },
+      {
+        "id": "PRS/S138-124R",
+        "rarity": "RRR"
+      }
+    ]
+  },
+  "PRS/S138-125": {
+    "name": "月光館学園の生徒",
+    "product_name": "Persona 30th Anniversary",
+    "type": "事件卡",
+    "level": 2,
+    "power": "-",
+    "cost": 4,
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【反击】你选择对手的1个角色，【横置】。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-125S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-126": {
+    "name": "“契約の鍵”主人公",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 1,
+    "power": 5000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["魔法"],
+    "color": "黄色",
+    "effect": "【永】此卡通过效果选择的角色有的话，此卡的战斗力＋2000。<br>【自】此卡放置到舞台时，你选择自己其他1个角色。<br>【自】此卡从舞台放置到休息室时，你选择此游戏中通过此卡的效果选择的自己的1个角色放置到休息室。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-126S",
+        "rarity": "SR"
+      }
+    ]
+  },
+  "PRS/S138-127": {
+    "name": "主人公＆アルセーヌ / JOKER",
+    "product_name": "Persona 30th Anniversary",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["怪盗"],
+    "color": "黄色",
+    "effect": "【永】你每有1个其他的《怪盗》的角色，此卡的战斗力＋500。<br>【自】此卡从手牌放置到舞台时，你可以将自己时计区顶1张卡放置到休息室。<br>【自】[(3) 手牌中1张《怪盗》的角色卡放置到休息室] 你的再演步骤开始时，对手的前列没有角色或对手的前列全部的角色是【倒置】状态的话，你可以支付费用。如果这么做的话，你的前列每有1个《怪盗》的角色，执行以下行动。『你公开自己卡组顶1张卡，将那张卡放置到卡组底，给对手造成X点伤害。X是那张卡的等级。』之后，卡组洗切。（高潮卡视为0级。发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-127S",
+        "rarity": "SR"
+      }
+    ]
+  }
+}

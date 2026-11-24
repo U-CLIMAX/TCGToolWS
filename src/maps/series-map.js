@@ -109,8 +109,8 @@ const wsSeriesMap = {
   },
   'persona': {
     name: '女神异闻录',
-    prefixes: ['P3', 'P4', 'PQ', 'P5'],
-    latestReleaseDate: '2024-05-17',
+    prefixes: ['P3', 'P4', 'PQ', 'P5', 'PRS'],
+    latestReleaseDate: '2026-11-27',
   },
   'lrc': {
     name: '莉可丽丝',

@@ -1,0 +1,506 @@
+{
+  "PRS/S138-001": {
+    "name": "仲間を導く歌声 久慈川りせ",
+    "product_name": "PRカード【Sサイド】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "音楽", "テレビ"],
+    "color": "黄色",
+    "effect": "【永】你的高潮区有高潮卡，你没有其他「仲間を導く歌声 久慈川りせ」的话，你全部区域的触发标记是<img src=\"/effect-icons/choice.webp\">的高潮卡的触发标记给予<img src=\"/effect-icons/soul.webp\">。<br>【自】你其他《Anniversary》或《音楽》或《テレビ》的角色从手牌放置到舞台时，那个回合中，那个角色的战斗力＋500。<br>【起】集中 [(1) 此卡【横置】] 你将自己卡组顶4张卡放置到休息室。那些卡中每有1张高潮卡，你从自己的休息室选择至多1张角色卡返回手牌。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-001PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "PRS/S138-002": {
+    "name": "風駆ける青春 花村陽介",
+    "product_name": "PRカード【Sサイド】",
+    "type": "角色卡",
+    "level": 1,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "ジュネス", "魔法"],
+    "color": "黄色",
+    "effect": "【永】你其他的角色有3个以上的话，此卡的战斗力＋5000。<br>【自】【CX联动】此卡攻击时，高潮区有「あとは君が、来るだけだ。」的话，你将自己卡组顶至多4张卡放置到休息室，从自己的休息室选择至多1张等级X以下的《Anniversary》或《ジュネス》或《魔法》的角色卡返回手牌。X是通过这个效果放置到休息室的那些卡的触发标记中<img src=\"/effect-icons/soul.webp\">的合计数量。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-002PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "PRS/S138-028": {
+    "name": "MIDNIGHT CHANNEL.",
+    "product_name": "PRカード【Sサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-028P",
+        "rarity": "PR"
+      },
+      {
+        "id": "PRS/S138-028PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "PRS/S138-029": {
+    "name": "あとは君が、来るだけだ。",
+    "product_name": "PRカード【Sサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-029P",
+        "rarity": "PR"
+      },
+      {
+        "id": "PRS/S138-029PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "PRS/S138-003": {
+    "name": "真実を求める心 P4 主人公",
+    "product_name": "PRカード【Sサイド】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 8500,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "魔法", "武器"],
+    "color": "黄色",
+    "effect": "【自】此卡从手牌放置到舞台时，你其他的角色有2个以上的话，你看自己卡组顶1张卡，放置到卡组顶或休息室，将自己时计区顶至多1张卡放置到休息室，那个回合中，此卡的战斗力＋4500。<br>【自】此卡直接攻击时，那个回合中，此卡的灵魂值－1。<br>【自】【CX联动】此卡攻击时，高潮区有「MIDNIGHT CHANNEL.」的话，你将自己卡组顶2张卡放置到休息室。你的卡组有2张以上的话，你将通过这个效果放置到休息室的卡按喜欢的顺序放置到卡组底。那些卡中有触发标记有<img src=\"/effect-icons/soul.webp\">的卡的话，给对手造成3点伤害。（发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-003PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "PRS/S138-030": {
+    "name": "虜にしてア・ゲ・ル♡",
+    "product_name": "PRカード【Sサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "黄色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/choice.webp\">:此卡被触发时，你可以从自己的休息室选择1张触发标记有<img src=\"/effect-icons/soul.webp\">的角色卡返回手牌或放置到库存区）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-030PS",
+        "rarity": "PR"
+      },
+      {
+        "id": "PRS/S138-030P",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "PRS/S138-031": {
+    "name": "あらゆる姿を映し出す心 P1 主人公",
+    "product_name": "PRカード【Sサイド】",
+    "type": "角色卡",
+    "level": 1,
+    "power": 1000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "女神異聞録", "ピアス"],
+    "color": "绿色",
+    "effect": "【永】此卡的下方有指示物的话，此卡的战斗力＋8000，你全部的角色，给予以下能力。『【永】此卡不能侧面攻击。』<br>【自】此卡从手牌放置到舞台时，你可以从自己的休息室选择1张「あらゆる姿を映し出す心 P1 主人公」，正面朝上放置到此卡的下方作为指示物。<br>【自】【CX联动】此卡攻击时，高潮区有「BE YOUR TRUE MIND.」的话，你从自己的休息室选择至多1张绿色或《Anniversary》的角色卡返回手牌，那个回合中，此卡的战斗力+X。X是你其他绿色或《Anniversary》的角色的数量×500。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-031PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "PRS/S138-032": {
+    "name": "過去を乗り越える心 P2罰 主人公",
+    "product_name": "PRカード【Sサイド】",
+    "type": "角色卡",
+    "level": 2,
+    "power": 5000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "罰", "記者"],
+    "color": "绿色",
+    "effect": "【永】 记忆 你的思出区有「忘却の彼方の罪。未来を紡ぐ戦い。」的话，此卡获得以下2个能力。『【永】 你的回合中，此卡的战斗力＋5000。』『【自】 再演 ［将1张手牌的绿色的卡放置入休息室］』<br>【自】【CX联动】［(1) 将1张你的高潮区的「ETERNAL PUNISHMENT.」放置入休息室］ 此卡的攻击结束时，你可以支付费用。若如此做，则直到下一个对手的回合结束为止，此卡获得以下能力。『【自】 对手的攻击阶段开始时，你选择1张对手的角色卡，该回合中，灵魂值－3。』",
+    "all_cards": [
+      {
+        "id": "PRS/S138-032PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "PRS/S138-033": {
+    "name": "過去を乗り越える心 P2罪 主人公",
+    "product_name": "PRカード【Sサイド】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "罪", "バイク"],
+    "color": "绿色",
+    "effect": "【自】此卡从手牌放置到舞台时，你将自己时计区顶至多1张卡放置到休息室，从自己的思出区选择至多1张「忘却の彼方の罪。未来を紡ぐ戦い。」，正面朝上放置到此卡的下方作为指示物。<br>【自】【CX联动】此卡攻击时，高潮区有「INNOCENT SIN.」，此卡的下方有指示物的话，你从以下2个效果中选择1个执行。『给对手造成1点伤害。』『[(1) 1张手牌放置到休息室] 你可以支付费用。如果这么做的话，你看对手卡组顶1张卡，放置到卡组顶或休息室，给对手造成2点伤害。』（发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-033PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "PRS/S138-056": {
+    "name": "BE YOUR TRUE MIND.",
+    "product_name": "PRカード【Sサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/recovery.webp\">:此卡被触发时，你将自己时计区底至多1张卡放置到休息室，或从自己的休息室选择至多1张费用0以下的角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-056P",
+        "rarity": "PR"
+      },
+      {
+        "id": "PRS/S138-056PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "PRS/S138-057": {
+    "name": "INNOCENT SIN.",
+    "product_name": "PRカード【Sサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/recovery.webp\">:此卡被触发时，你将自己时计区底至多1张卡放置到休息室，或从自己的休息室选择至多1张费用0以下的角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-057PS",
+        "rarity": "PR"
+      },
+      {
+        "id": "PRS/S138-057P",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "PRS/S138-058": {
+    "name": "ETERNAL PUNISHMENT.",
+    "product_name": "PRカード【Sサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "绿色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/recovery.webp\">:此卡被触发时，你将自己时计区底至多1张卡放置到休息室，或从自己的休息室选择至多1张费用0以下的角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-058P",
+        "rarity": "PR"
+      },
+      {
+        "id": "PRS/S138-058PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "PRS/S138-059": {
+    "name": "理不尽に抗う反逆の意思 “ジョーカー” P5 主人公",
+    "product_name": "PRカード【Sサイド】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "怪盗"],
+    "color": "红色",
+    "effect": "【永】你的费用在3张以下的话，此卡的战斗力＋3000。<br>【自】[(1) 你卡组顶1张卡放置到时计区] 此卡从手牌放置到舞台时，你可以支付费用。如果这么做的话，你从自己的卡组找至多1张等级1以下的角色卡展示给对手后加入手牌，卡组洗切。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-059PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "PRS/S138-060": {
+    "name": "戦う覚悟 “クイーン” 新島 真",
+    "product_name": "PRカード【Sサイド】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 8500,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "怪盗", "生徒会"],
+    "color": "红色",
+    "effect": "【永】你《Anniversary》或《怪盗》的角色有4个以上的话，你手牌中此卡的等级－1。<br>【永】你其他《Anniversary》或《怪盗》的角色有2个以上的话，此卡的战斗力＋2000。<br>【自】此卡从手牌放置到舞台时，你有其他《Anniversary》或《怪盗》的角色的话，你将自己时计区顶至多1张卡放置到休息室，看自己卡组顶至多3张卡，选择至多1张事件卡展示给对手后加入手牌，其余的卡放置到休息室。加入了手牌的话，你选择自己的1张手牌放置到休息室。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-060PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "PRS/S138-061": {
+    "name": "“ワンダー” P5X 主人公",
+    "product_name": "PRカード【Sサイド】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 9500,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "怪盗"],
+    "color": "红色",
+    "effect": "【自】此卡从手牌放置到舞台时，你可以将自己时计区顶1张卡放置到休息室。<br>【自】【CX联动】你的「GO BEYOND」放置到高潮区时，你前列有其他「“ワンダー” P5X 主人公」的话，那个回合中，此卡获得以下2个能力。『【自】[(1)] 此卡攻击时，你可以支付费用。如果这么做的话，给对手造成2点伤害。』『【自】[2张手牌放置到休息室，从对手的思出区选择1张背面的卡放置到休息室] 此卡在直接攻击中造成的伤害没有被取消时，你可以支付费用。如果这么做的话，给对手造成2点伤害2次。』（发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-061PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "PRS/S138-094": {
+    "name": "GO BEYOND",
+    "product_name": "PRカード【Sサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-094P",
+        "rarity": "PR"
+      },
+      {
+        "id": "PRS/S138-094PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "PRS/S138-095": {
+    "name": "Don't be so naïve",
+    "product_name": "PRカード【Sサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-095P",
+        "rarity": "PR"
+      },
+      {
+        "id": "PRS/S138-095PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "PRS/S138-096": {
+    "name": "TAKE YOUR HEART.",
+    "product_name": "PRカード【Sサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 0,
+    "trait": "-",
+    "color": "红色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/salvage.webp\">:此卡被触发时，你可以从自己的休息室选择1张角色卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-096P",
+        "rarity": "PR"
+      },
+      {
+        "id": "PRS/S138-096PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "PRS/S138-097": {
+    "name": "エリザベス in クラブ・ベルベット",
+    "product_name": "PRカード【Sサイド】",
+    "type": "角色卡",
+    "level": 0,
+    "power": 1500,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "魔法", "神"],
+    "color": "蓝色",
+    "effect": "【自】此卡从手牌放置到舞台时，你看自己卡组顶1张卡，放置到卡组顶或卡组底。<br>【自】[1张手牌放置到休息室] 此卡攻击时，你可以支付费用。如果这么做的话，你看自己卡组顶至多4张卡，选择至多1张「エリザベス in クラブ・ベルベット」或等级1以上的卡展示给对手后加入手牌，其余的卡放置到休息室。（高潮卡视为0级）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-097PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "PRS/S138-098": {
+    "name": "『絆』を紡ぐ心 P3P 主人公",
+    "product_name": "PRカード【Sサイド】",
+    "type": "角色卡",
+    "level": 1,
+    "power": 3000,
+    "cost": 0,
+    "soul": 1,
+    "trigger_soul_count": 0,
+    "trait": ["Anniversary", "魔法", "武器"],
+    "color": "蓝色",
+    "effect": "【永】 记忆 你的回合中，你的思出区有卡的话，此卡的战斗力＋4500。<br>【自】【CX联动】 记忆 [手牌中1张蓝色的卡放置到休息室] 此卡攻击时，高潮区有「THE DARK HOUR.」，你的思出区有卡的话，你可以支付费用。如果这么做的话，你看自己卡组顶至多6张卡，选择至多2张《Anniversary》或《魔法》或《武器》的角色卡或「影時間、始マル――」展示给对手后加入手牌，其余的卡放置到休息室，你的思出区在2张以下的话，你从自己的休息室选择至多1张「影時間、始マル――」，放置到思出区。",
+    "all_cards": [
+      {
+        "id": "PRS/S138-098PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "PRS/S138-099": {
+    "name": "『絆』を紡ぐ心 P3 主人公",
+    "product_name": "PRカード【Sサイド】",
+    "type": "角色卡",
+    "level": 3,
+    "power": 10000,
+    "cost": 2,
+    "soul": 2,
+    "trigger_soul_count": 1,
+    "trait": ["Anniversary", "魔法", "武器"],
+    "color": "蓝色",
+    "effect": "【自】此卡被正面攻击时，此卡位于前列中央的话，你看自己卡组顶至多2张卡，选择至多2张卡放置到休息室，其余的卡按喜欢的顺序放回卡组顶。<br>【自】【CX联动】记忆 [(1) 2张手牌放置到休息室] 你的攻击阶段开始时，高潮区有「MEMENTO MORI.」，前列有此卡，你没有其他前列的角色的话，你可以支付费用。如果这么做的话，对手将自己卡组顶10张卡放置到休息室，你给对手造成1点伤害，2点伤害，3点伤害2次，你的思出区每有2个持有『绊』的角色，直到下一个对手的回合结束为止，此卡的战斗力＋500。（发生伤害取消）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-099PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "PRS/S138-122": {
+    "name": "THE DARK HOUR.",
+    "product_name": "PRカード【Sサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-122P",
+        "rarity": "PR"
+      },
+      {
+        "id": "PRS/S138-122PS",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "PRS/S138-124": {
+    "name": "DANCING MOON NIGHT",
+    "product_name": "PRカード【Sサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-124PS",
+        "rarity": "PR"
+      },
+      {
+        "id": "PRS/S138-124P",
+        "rarity": "PR"
+      }
+    ]
+  },
+  "PRS/S138-123": {
+    "name": "MEMENTO MORI.",
+    "product_name": "PRカード【Sサイド】",
+    "type": "高潮卡",
+    "level": "-",
+    "power": "-",
+    "cost": "-",
+    "soul": "-",
+    "trigger_soul_count": 1,
+    "trait": "-",
+    "color": "蓝色",
+    "effect": "【永】你全部的角色战斗力＋1000，灵魂值＋1。<br>（<img src=\"/effect-icons/gate.webp\">:此卡被触发时，你可以从自己的休息室选择1张高潮卡返回手牌）",
+    "all_cards": [
+      {
+        "id": "PRS/S138-123P",
+        "rarity": "PR"
+      },
+      {
+        "id": "PRS/S138-123PS",
+        "rarity": "PR"
+      }
+    ]
+  }
+}
