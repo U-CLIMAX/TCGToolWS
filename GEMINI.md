@@ -1,23 +1,30 @@
-# TCGToolWS Agent Execution Standard
+# TCGToolWS Project Guide
 
-You are the Lead Engineer for TCGToolWS (Vue 3, Vuetify 3, Hono, Cloudflare D1, FlexSearch).
+## Stack & Layout
 
-## Golden Gatekeeper Rules
+- **Frontend (`src/`)**: Vue 3.5 (`<script setup>`), Vuetify 3, UnoCSS, Pinia, FlexSearch, Vite 8.
+- **Backend (`backend/`)**: Hono on Cloudflare Workers + Cloudflare D1 (`schema.sql`, `wrangler.jsonc`, `worker-configuration.d.ts`).
+- **Native (`src-tauri/`)**: Tauri 2 (Rust + Android/Kotlin under `src-tauri/gen/android/`).
+- **Scripts (`scripts/`)**: `build-card-index.js`, `build-card-embeddings.js`, `generate-sitemap.js`, `create-test-user.js`.
 
-1. Evidence Before Code:
-   - PROHIBITED: Writing or editing .vue files, composables, or API routes based purely on pre-training memory.
-   - REQUIRED: You MUST fetch verifiable API signatures via MCP tools (vuetify-mcp, context7, mdn, chrome-devtools) or https://developers.cloudflare.com/agents/llms.txt before modifying code.
+## Key Commands
 
-2. Autonomous Tool Dispatch:
-   - UI / Vuetify 3 Components: Call vuetify-mcp (get_component_api_by_version).
-   - Third-Party Libs (Hono, FlexSearch, Pinia, Vite): Call context7 (resolve-library-id, query-docs).
-   - Web APIs / CSS Compatibility: Call mdn (get-doc, get-compat).
-   - Cloudflare Platform / D1 / Workers: Read https://developers.cloudflare.com/agents/llms.txt.
-   - Browser / Runtime Errors / E2E: Call chrome-devtools (navigate_page, list_console_messages, take_screenshot).
+- **Dev / Build**: `npm run dev` | `npm run build` (auto-runs `build:index` & `build:sitemap`) | `npm run build:oss` | `npm run build:tauri` | `npm run build:index`
+- **Database**: `npm run db:init` | `npm run db:seed`
+- **Verify**: `npm run lint` (oxlint --fix) & `npm run fmt` (oxfmt); if Rust/Android changed, also run `lint:rust`/`fmt:rust` or `lint:android`/`fmt:android`.
 
-3. Pre-Action Thinking Protocol:
-   - Before executing any file edit or terminal command, verify:
-     "Have I checked the exact API signature via MCP? If not, pause writing and invoke the tool first."
+## Project Invariants
 
-4. Deterministic Verification:
-   - Before claiming any task complete, ALWAYS execute `npm run lint` and `npm run fmt`.
+- **Frontend**:
+  - `<script setup>` Composition API only (no Options API); PascalCase components; prefer arrow functions for helpers.
+  - Always use `@/` alias for `src/` imports (no deep relative paths).
+  - Standardize on Vuetify 3 components; clean up listeners/timers in `onUnmounted`.
+  - Use `computed` for derived state; reserve `watch`/`watchEffect` strictly for side effects and document each with a brief comment.
+- **Backend**:
+  - All D1 queries MUST use parameterized statements (`db.prepare(...).bind(...)`).
+  - Sync DB schema changes to `schema.sql` and Worker bindings/env vars to `worker-configuration.d.ts`.
+  - Annotate core backend handlers/services with JSDoc `@param {Env} env`.
+- **API Verification**:
+  - When uncertain about APIs, check `vuetify-mcp` (Vuetify 3), `context7` (Hono/Pinia/FlexSearch/Vite), `mdn` (Web/CSS), `chrome-devtools` (runtime UI debugging), or `https://developers.cloudflare.com/agents/llms.txt` (Workers/D1).
+- **Completion Gate**:
+  - Run `npm run lint` and `npm run fmt` before declaring code changes complete.
