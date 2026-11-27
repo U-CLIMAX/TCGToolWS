@@ -18,7 +18,7 @@ export const seriesYytMap = {
   'fantasia':
     'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=fujimif&vers[]=fujimif2.0&rare=&type=&kizu=0',
   'persona':
-    'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=p3&vers[]=p3chronicle&vers[]=p3rpb&vers[]=p4&vers[]=animep4&vers[]=p5&vers[]=p4ext&vers[]=animep4ext1.0&vers[]=p4uext1.0&vers[]=pqext&rare=&type=&kizu=0',
+    'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=p3&vers[]=p3chronicle&vers[]=p3rpb&vers[]=p4&vers[]=animep4&vers[]=p5&vers[]=p4ext&vers[]=animep4ext1.0&vers[]=p4uext1.0&vers[]=pqext&vers[]=p30th&rare=&type=&kizu=0',
   'lrc':
     'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=lrc&vers[]=lrcpb&rare=&type=&kizu=0',
   'gbc': 'https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers[]=gcrpb&rare=&type=&kizu=0',
